@@ -1,16 +1,18 @@
-import { DxcImage, DxcParagraph, DxcFlex, DxcBulletedList } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcBulletedList } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Image from "@/common/Image";
+import anatomy from "./images/image_anatomy.png";
 
 const sections = [
   {
-    title: "Overview",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>
-          The Image component serves as a versatile tool for efficiently loading and displaying visual content across
+          The image component serves as a versatile tool for efficiently loading and displaying visual content across
           diverse contexts within your application. This powerful component is designed to optimize performance while
           enhancing the overall user experience. By leveraging its capabilities, developers can seamlessly integrate
           images into their projects, ensuring smooth rendering and responsive behavior.
@@ -27,6 +29,26 @@ const sections = [
           These insights will help you optimize performance, enhance accessibility, and create a more engaging visual
           experience for your users across different devices and contexts.
         </DxcParagraph>
+      </>
+    ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={anatomy} alt="Image's anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
+            <strong>Image:</strong> a visual element used to illustrate content, provide context, or support
+            storytelling. It should be relevant and meaningful, helping users better understand the subject or message
+            being conveyed.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Caption</strong> <em>(Optional)</em>: a short piece of descriptive text placed below the image. It
+            provides context, credits, or additional explanation for the image, improving accessibility and user
+            comprehension.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -102,39 +124,39 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Use high-quality images.</strong> Always use high-resolution images to deliver a crisp and clear
+          <strong>Use high-quality images:</strong> always use high-resolution images to deliver a crisp and clear
           display, especially on high-density (retina) screens. This ensures a professional look and prevents
           pixelation.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Optimize images.</strong> Compress and optimize images for the web to minimize file sizes. Reducing
+          <strong>Optimize images:</strong> compress and optimize images for the web to minimize file sizes. Reducing
           load times and bandwidth consumption is crucial for performance, especially on mobile devices.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Leverage modern formats.</strong> Whenever possible, use newer image formats like WebP for improved
+          <strong>Leverage modern formats:</strong> whenever possible, use newer image formats like WebP for improved
           compression without sacrificing quality. Be sure to provide fallback formats for browsers that don't support
           them.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Allow lazy loading.</strong> Implement lazy loading (<Code>loading="lazy"</Code>) for images that
+          <strong>Allow lazy loading:</strong> implement lazy loading (<Code>loading="lazy"</Code>) for images that
           appear later on the page (below the fold). This helps speed up initial page loads and improve overall
           performance.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use responsive image techniques.</strong> Make use of <Code>srcset</Code> and <Code>sizes</Code> props
+          <strong>Use responsive image techniques:</strong> make use of <Code>srcset</Code> and <Code>sizes</Code> props
           to serve images that adapt to different screen resolutions and sizes, ensuring the best display quality across
           devices.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Avoid using images for text content.</strong> Text embedded within images reduces accessibility and
+          <strong>Avoid using images for text content:</strong> text embedded within images reduces accessibility and
           harms SEO. Always use HTML text to ensure readability by screen readers and search engines.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Limit decorative images.</strong> Avoid overloading pages with unnecessary decorative images. This not
+          <strong>Limit decorative images:</strong> avoid overloading pages with unnecessary decorative images. This not
           only reduces performance but can also distract users from the main content.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Avoid images for icons.</strong> Use scalable vector graphics (SVGs) instead of images for icons. SVGs
+          <strong>Avoid images for icons:</strong> use scalable vector graphics (SVGs) instead of images for icons. SVGs
           offer better performance, scalability, and accessibility across various screen sizes.
         </DxcBulletedList.Item>
       </DxcBulletedList>
@@ -142,15 +164,13 @@ const sections = [
   },
 ];
 
-const ImageUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/image/usage/ImageUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ImageOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/image/overview/ImageOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default ImageUsagePage;
+export default ImageOverviewPage;
