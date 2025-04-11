@@ -3,9 +3,24 @@ import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
 import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 
-type SidenavLogoProps = { subtitle?: string };
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-padding-none) var(--spacing-padding-l);
+`;
 
-const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Element => {
+const Title = styled.div`
+  color: var(--color-fg-primary-strong);
+  font-size: var(--typography-title-l);
+`;
+
+const Subtitle = styled.div`
+  color: var(--color-fg-neutral-strongest);
+  font-size: var(--typography-title-m);
+  margin-left: var(--spacing-padding-s);
+`;
+
+export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?: string }) {
   const pathVersion = process.env.NEXT_PUBLIC_SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
@@ -25,23 +40,4 @@ const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Elem
       />
     </DxcFlex>
   );
-};
-
-const LogoContainer = styled.div`
-  margin: 0 24px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.div`
-  font-size: 1.3rem;
-  color: #5f249f;
-`;
-
-const Subtitle = styled.div`
-  font-size: 1rem;
-  color: #4d4d4d;
-  margin-left: 0.8rem;
-`;
-
-export default SidenavLogo;
+}

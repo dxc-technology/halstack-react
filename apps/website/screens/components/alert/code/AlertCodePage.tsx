@@ -6,8 +6,7 @@ import basicUsage from "./examples/basicUsage";
 import semantic from "./examples/semantic";
 import severalMessages from "./examples/severalMessages";
 import Example from "@/common/example/Example";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
-import Code from "@/common/Code";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
@@ -163,7 +162,7 @@ const sections = [
 const AlertCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
     <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
     </QuickNavContainerLayout>
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/code/AlertCodePage.tsx" />
   </DxcFlex>

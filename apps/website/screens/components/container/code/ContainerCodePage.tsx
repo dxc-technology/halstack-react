@@ -1,10 +1,9 @@
 import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import listbox from "./examples/listbox";

@@ -9,9 +9,8 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
 import accordions from "./examples/accordions";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const sections = [
   {

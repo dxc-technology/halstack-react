@@ -6,7 +6,7 @@ import ContextualMenuCodePage from "screens/components/contextual-menu/code/Cont
 const Code = () => (
   <>
     <Head>
-      <title>Contextual Menu Code — Halstack Design System</title>
+      <title>Contextual menu code — Halstack Design System</title>
     </Head>
     <ContextualMenuCodePage />
   </>

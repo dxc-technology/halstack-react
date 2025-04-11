@@ -807,20 +807,18 @@ const sections = [
   },
 ];
 
-const ColorPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/color/ColorPage.tsx" />
-    </DxcFlex>
-  );
-};
+const ColorPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="2rem">
+        <DxcHeading level={1} text="Color" weight="bold" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/color/ColorPage.tsx" />
+  </DxcFlex>
+);
 
 export default ColorPage;

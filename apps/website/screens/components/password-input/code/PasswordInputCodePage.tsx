@@ -1,4 +1,3 @@
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -7,7 +6,7 @@ import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import controlled from "./examples/controlled";
 import errorHandling from "./examples/errorHandling";
 import uncontrolled from "./examples/uncontrolled";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {

@@ -1,12 +1,11 @@
 import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basic from "./examples/basic";
 import layout from "./examples/layout";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const gapTypeString = `{

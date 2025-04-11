@@ -2,13 +2,12 @@ import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halsta
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
 import semantic from "./examples/semantic";
 import loading from "./examples/loading";
-import Code from "@/common/Code";
 
 const actionTypeString = `{
   icon: string | 
