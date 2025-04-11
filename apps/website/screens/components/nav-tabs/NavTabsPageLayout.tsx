@@ -14,12 +14,12 @@ const NumberInputPageHeading = ({ children }: { children: ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Nav Tabs" />
+          <ComponentHeading name="Nav tabs" />
           <DxcParagraph>
             Nav tabs lets users switch between different views or sections within the same page, organizing related
             content into a clear and accessible layout.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

@@ -6,7 +6,7 @@ import NavTabsCodePage from "screens/components/nav-tabs/code/NavTabsCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Nav Tabs Code — Halstack Design System</title>
+      <title>Nav tabs code — Halstack Design System</title>
     </Head>
     <NavTabsCodePage />
   </>
