@@ -52,6 +52,17 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="new" />
@@ -75,17 +86,6 @@ const sections = [
             <td>
               <TableCode>'default'</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -170,15 +170,13 @@ const sections = [
   },
 ];
 
-const TableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/table/code/TableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const TableCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/table/code/TableCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default TableCodePage;
