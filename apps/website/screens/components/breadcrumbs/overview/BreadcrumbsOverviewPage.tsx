@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Button's anatomy" />
+        <Image src={anatomy} alt="Breadcrumbs's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Unvisited item:</strong> these are links that represent the navigational path taken by the user but
