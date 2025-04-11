@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import AccordionPageLayout from "screens/components/accordion/AccordionPageLayout";
-import AccordionCodePage from "screens/components/accordion/code/AccordionCodePage";
+import AccordionOverviewPage from "screens/components/accordion/overview/AccordionOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Accordion — Halstack Design System</title>
-      </Head>
-      <AccordionCodePage></AccordionCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Accordion — Halstack Design System</title>
+    </Head>
+    <AccordionOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <AccordionPageLayout>{page}</AccordionPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <AccordionPageLayout>{page}</AccordionPageLayout>;
 
 export default Index;

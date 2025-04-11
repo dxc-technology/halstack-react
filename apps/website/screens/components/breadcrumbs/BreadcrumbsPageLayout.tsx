@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const BreadcrumbsPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/breadcrumbs" },
-    { label: "Usage", path: "/components/breadcrumbs/usage" },
-    { label: "Specifications", path: "/components/breadcrumbs/specifications" },
+    { label: "Overview", path: "/components/breadcrumbs" },
+    { label: "Code", path: "/components/breadcrumbs/code" },
   ];
 
   return (
@@ -20,7 +19,7 @@ const BreadcrumbsPageHeading = ({ children }: { children: ReactNode }) => {
             A breadcrumbs trail is a secondary form of navigation that allows users to keep track and maintain awareness
             of their location as they move through a hierarchically structured web application.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

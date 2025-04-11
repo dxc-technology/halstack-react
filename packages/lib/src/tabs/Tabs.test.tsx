@@ -2,6 +2,12 @@ import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import DxcTabs from "./Tabs";
 
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+
 const sampleTabs = (
   <DxcTabs>
     <DxcTabs.Tab label="Tab-1" notificationNumber={10} defaultActive>

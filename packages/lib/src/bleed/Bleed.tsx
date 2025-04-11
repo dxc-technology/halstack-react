@@ -1,29 +1,19 @@
-import styled from "styled-components";
 import BleedPropsType from "./types";
-import { CoreSpacingTokensType } from "../common/coreTokens";
+import DxcContainer from "../container/Container";
 
-const getSpacingValue = (spacingName?: CoreSpacingTokensType) => (spacingName ?? "0rem");
+const getNegativeValue = (value?: string) => (value ? `calc(${value} * -1)` : null);
 
-const StyledBleed = styled.div<BleedPropsType>`
-  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
-    margin: -${getSpacingValue(top || vertical || space)} -${getSpacingValue(
-      right || horizontal || space
-    )} -${getSpacingValue(bottom || vertical || space)} -${getSpacingValue(left || horizontal || space)};
-  `}
-`;
-
-const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType) => (
-  <StyledBleed
-    space={space}
-    horizontal={horizontal}
-    vertical={vertical}
-    top={top}
-    right={right}
-    bottom={bottom}
-    left={left}
-  >
-    {children}
-  </StyledBleed>
-);
-
-export default Bleed;
+export default function DxcBleed({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType) {
+  return (
+    <DxcContainer
+      margin={{
+        top: getNegativeValue(top) ?? getNegativeValue(vertical) ?? getNegativeValue(space) ?? "0rem",
+        right: getNegativeValue(right) ?? getNegativeValue(horizontal) ?? getNegativeValue(space) ?? "0rem",
+        bottom: getNegativeValue(bottom) ?? getNegativeValue(vertical) ?? getNegativeValue(space) ?? "0rem",
+        left: getNegativeValue(left) ?? getNegativeValue(horizontal) ?? getNegativeValue(space) ?? "0rem",
+      }}
+    >
+      {children}
+    </DxcContainer>
+  );
+}
