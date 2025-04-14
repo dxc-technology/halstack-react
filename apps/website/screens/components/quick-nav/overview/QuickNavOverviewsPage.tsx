@@ -10,7 +10,7 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        Quick Nav is used to improve in-page navigation by listing content sections and subsections based on the heading
+        Quick nav is used to improve in-page navigation by listing content sections and subsections based on the heading
         hierarchy. This helps users understand the page structure at a glance and jump directly to the content they're
         interested in. It's especially useful on documentation pages, dashboards and long-form content.
       </DxcParagraph>
@@ -23,7 +23,7 @@ const sections = [
         <Image src={anatomyImage} alt="Quick nav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Divider:</strong> a thin vertical line that visually separates the Quick Nav from the main content
+            <strong>Divider:</strong> a thin vertical line that visually separates the quick nav from the main content
             area. Its purpose is to create a clear boundary between navigation and content, improving readability and
             layout organization.
           </DxcBulletedList.Item>
@@ -52,22 +52,22 @@ const sections = [
           the context of the links.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Show structure clearly:</strong> use Quick Nav to mirror the hierarchy of your content, making it
+          <strong>Show structure clearly:</strong> use quick nav to mirror the hierarchy of your content, making it
           easier to follow and navigate. Keep headings descriptive and consistent so link labels are meaningful when
           rendered.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Avoid clutter:</strong> avoid rendering Quick Nav on pages with very little content; it can feel
+          <strong>Avoid clutter:</strong> avoid rendering quick nav on pages with very little content; it can feel
           redundant.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Maintain visual separation from main content:</strong> always allow sufficient spacing between the
-          Quick Nav and the main content area. This helps users visually distinguish navigation from content and avoids
-          overwhelming the layout. Use padding or margins to ensure the Quick Nav doesn't feel cramped or interfere with
+          quick nav and the main content area. This helps users visually distinguish navigation from content and avoids
+          overwhelming the layout. Use padding or margins to ensure the quick nav doesn't feel cramped or interfere with
           readability, especially on larger screens or dense layouts.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Pair with other navigational tools:</strong> combine Quick Nav with tabs or breadcrumbs for a
+          <strong>Pair with other navigational tools:</strong> combine quick nav with tabs or breadcrumbs for a
           comprehensive navigation experience across and within pages.
         </DxcBulletedList.Item>
       </DxcBulletedList>
