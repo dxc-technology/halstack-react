@@ -2,7 +2,6 @@ import { useContext } from "react";
 import slugify from "slugify";
 import styled from "styled-components";
 import DxcHeading from "../heading/Heading";
-import DxcTypography from "../typography/Typography";
 import { HalstackLanguageContext } from "../HalstackContext";
 import QuickNavTypes from "./types";
 
