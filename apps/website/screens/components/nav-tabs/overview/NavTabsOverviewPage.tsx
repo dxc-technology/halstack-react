@@ -73,7 +73,7 @@ const sections = [
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Use the <strong>top position</strong> when the tabs are displayed in a horizontal layout and you want to
-                emphasize the icon as a key visual cue—ideal for dashboards or mobile - first interfaces where vertical
+                emphasize the icon as a key visual cue—ideal for dashboards or mobile-first interfaces where vertical
                 stacking feels more natural.
                 <Example example={icons_top} defaultIsVisible={false} />
               </DxcBulletedList.Item>
@@ -138,8 +138,8 @@ const sections = [
             </DxcBulletedList>
             <DxcParagraph>
               Both components improve usability, but <strong>tabs</strong> are best for grouping related content within
-              a page, while
-              <strong>nav tabs</strong> help users move across different sections or pages of an application.
+              a page, while <strong>nav tabs</strong> help users move across different sections or pages of an
+              application.
             </DxcParagraph>
           </>
         ),
@@ -160,7 +160,7 @@ const sections = [
             especially on smaller viewports.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Ensure that tabs <strong>follow a logical order</strong> — based on frequency of use, workflow, or user
+            Ensure that tabs <strong>follow a logical order</strong>—based on frequency of use, workflow, or user
             priority.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -174,8 +174,8 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Choose icon placement (left or top) based on the available space and the importance of the icon in the
-            context of the label. Left is preferred for horizontal layouts; top works best in vertical or space -
-            constrained scenarios.
+            context of the label. Left is preferred for horizontal layouts; top works best in vertical or
+            space-constrained scenarios.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Avoid mixing navigation tabs and action buttons within the same group, as this can create confusion around
