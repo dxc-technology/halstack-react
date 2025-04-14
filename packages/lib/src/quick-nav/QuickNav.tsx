@@ -5,8 +5,6 @@ import DxcHeading from "../heading/Heading";
 import { HalstackLanguageContext } from "../HalstackContext";
 import QuickNavTypes from "./types";
 
-const translatedLabels = useContext(HalstackLanguageContext);
-
 const QuickNavContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,6 +55,8 @@ const Link = styled.a`
 `;
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
+  const translatedLabels = useContext(HalstackLanguageContext);
+
   return (
     <QuickNavContainer>
       <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
