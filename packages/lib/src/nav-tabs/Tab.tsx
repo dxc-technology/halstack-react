@@ -29,8 +29,7 @@ const TabLink = styled.a<{
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   border-radius: var(--border-radius-s);
   background-color: var(--color-bg-neutral-lightest);
-  text-decoration-color: transparent;
-  text-decoration-line: none;
+  text-decoration: none;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
@@ -81,7 +80,8 @@ const Underline = styled.span<{ active: TabProps["active"] }>`
   bottom: 0;
   width: 100%;
   height: var(--border-width-m);
-  background-color: ${({ active }) => (active ? "var(--border-color-primary-stronger)" : "transparent")};
+  background-color: ${({ active }) =>
+    active ? "var(--border-color-primary-stronger)" : "var(--border-color-neutral-medium)"};
 `;
 
 const Tab = forwardRef(
