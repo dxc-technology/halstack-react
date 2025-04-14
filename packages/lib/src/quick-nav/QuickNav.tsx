@@ -45,6 +45,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    height: var(--height-s);
     width: fit-content;
     max-width: 100%;
 
@@ -53,7 +54,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
     }
     &:focus {
       border-radius: var(--border-radius-xs);
-      border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     }
   `;
   return (
@@ -62,24 +63,22 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
       <ListColumn>
         {links.map((link) => (
           <li key={link.label}>
-            <DxcTypography>
-              <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
+            <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
+            {link.links?.length && (
               <ListSecondColumn>
                 {link.links?.map((sublink) => (
                   <li key={sublink.label}>
-                    <DxcTypography>
-                      <Link
-                        href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
-                          lower: true,
-                        })}`}
-                      >
-                        {sublink.label}
-                      </Link>
-                    </DxcTypography>
+                    <Link
+                      href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
+                        lower: true,
+                      })}`}
+                    >
+                      {sublink.label}
+                    </Link>
                   </li>
                 ))}
               </ListSecondColumn>
-            </DxcTypography>
+            )}
           </li>
         ))}
       </ListColumn>
