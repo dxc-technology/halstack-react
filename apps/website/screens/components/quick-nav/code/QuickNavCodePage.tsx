@@ -23,14 +23,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>title</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Title of the quick nav component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -56,6 +48,14 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>title</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Title of the quick nav component.</td>
+            <td>-</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -65,33 +65,23 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={quickNav} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={quickNav} defaultIsVisible />,
       },
       {
         title: "With content",
-        content: (
-          <>
-            <Example example={withContent} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={withContent} defaultIsVisible />,
       },
     ],
   },
 ];
 
-const QuickNavCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/code/QuickNavCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const QuickNavCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/code/QuickNavCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default QuickNavCodePage;
