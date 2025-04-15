@@ -6,7 +6,7 @@ import QuickNavOverviewPage from "screens/components/quick-nav/overview/QuickNav
 const Index = () => (
   <>
     <Head>
-      <title>Quick Nav — Halstack Design System</title>
+      <title>Quick nav — Halstack Design System</title>
     </Head>
     <QuickNavOverviewPage />
   </>

@@ -6,7 +6,7 @@ import QuickNavPageLayout from "screens/components/quick-nav/QuickNavPageLayout"
 const Code = () => (
   <>
     <Head>
-      <title>Quick Nav Code — Halstack Design System</title>
+      <title>Quick nav code — Halstack Design System</title>
     </Head>
     <QuickNavCodePage />
   </>
