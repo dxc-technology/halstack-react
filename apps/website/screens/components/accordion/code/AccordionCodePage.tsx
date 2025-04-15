@@ -27,17 +27,17 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>independent</td>
             <td>
-              <TableCode>boolean</TableCode>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
             </td>
             <td>
-              When true, limits the user to single-open section at a time. When false, multiple sections can be opened
-              simultaneously.
+              <TableCode>{`ReactElement<AccordionPropsType>[] | ReactElement<AccordionPropsType>`}</TableCode>
             </td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
+            <td>Contains one or more accordion items.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>defaultIndexActive</td>
@@ -51,6 +51,19 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>independent</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              When true, limits the user to single-open section at a time. When false, multiple sections can be opened
+              simultaneously.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>indexActive</td>
             <td>
               <TableCode>number | number[]</TableCode>
@@ -59,17 +72,6 @@ const sections = [
               The index of the active accordion. If undefined, the component will be uncontrolled and the active
               accordion will be managed internally by the component. If null, the component will be controlled and all
               accordions will be closed. If the accordion is not independent, several accordions can be activated.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onActiveChange</td>
-            <td>
-              <TableCode>{`(index: number | number[]) => void`}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user clicks on an accordion. The index of the clicked accordion will
-              be passed as a parameter.
             </td>
             <td>-</td>
           </tr>
@@ -85,16 +87,14 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>onActiveChange</td>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
+              <TableCode>{`(index: number | number[]) => void`}</TableCode>
             </td>
             <td>
-              <TableCode>{`ReactElement<AccordionPropsType>[] | ReactElement<AccordionPropsType>`}</TableCode>
+              This function will be called when the user clicks on an accordion. The index of the clicked accordion will
+              be passed as a parameter.
             </td>
-            <td>Contains one or more accordion items.</td>
             <td>-</td>
           </tr>
         </tbody>
@@ -119,29 +119,11 @@ const sections = [
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    label
-                  </DxcFlex>
-                </td>
+                <td>assistiveText</td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
-                <td>The panel label.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    subLabel
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Additional info label positioned under the label.</td>
+                <td>Assistive text to be placed on the right side of the panel.</td>
                 <td>-</td>
               </tr>
               <tr>
@@ -160,15 +142,25 @@ const sections = [
               <tr>
                 <td>
                   <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    statusLight
+                    <StatusBadge status="required" />
+                    children
                   </DxcFlex>
                 </td>
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>
-                <td>Status light component to add extra value to the accordion.</td>
+                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
                 <td>-</td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>If true, the component will be disabled.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
               </tr>
               <tr>
                 <td>icon</td>
@@ -186,34 +178,42 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
-                <td>assistiveText</td>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    label
+                  </DxcFlex>
+                </td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
-                <td>Assistive text to be placed on the right side of the panel.</td>
+                <td>The panel label.</td>
                 <td>-</td>
-              </tr>
-              <tr>
-                <td>disabled</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>If true, the component will be disabled.</td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
               </tr>
               <tr>
                 <td>
                   <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
+                    <StatusBadge status="new" />
+                    statusLight
                   </DxcFlex>
                 </td>
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>
-                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>Status light component to add extra value to the accordion.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    subLabel
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Additional info label positioned under the label.</td>
                 <td>-</td>
               </tr>
               <tr>

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcQuickNav from "./QuickNav";
@@ -11,13 +10,6 @@ export default {
   title: "Quick Nav",
   component: DxcQuickNav,
 } as Meta<typeof DxcQuickNav>;
-
-const opinionatedTheme = {
-  quickNav: {
-    fontColor: "#666666",
-    accentColor: "#9a6bb2",
-  },
-};
 
 const defaultLinks = [
   {
@@ -345,12 +337,6 @@ const QuickNav = () => (
           <DxcQuickNav title="Sections" links={links} />
         </QuickNavContainer>
       </Container>
-    </ExampleContainer>
-    <Title title="Opinionated theme" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcQuickNav links={defaultLinks} />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
