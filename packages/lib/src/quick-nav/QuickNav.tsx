@@ -18,7 +18,7 @@ const ListColumn = styled.ul`
   flex-direction: column;
   gap: var(--spacing-gap-s);
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-padding-none);
   list-style-type: none;
 `;
 
@@ -44,6 +44,7 @@ const Link = styled.a`
   height: var(--height-s);
   width: fit-content;
   max-width: 100%;
+  border-radius: var(--border-radius-xs);
 
   > span {
     text-overflow: ellipsis;
@@ -54,7 +55,6 @@ const Link = styled.a`
     color: var(--color-fg-primary-strong);
   }
   &:focus {
-    border-radius: var(--border-radius-xs);
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
 `;
