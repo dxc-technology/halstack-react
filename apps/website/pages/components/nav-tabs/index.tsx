@@ -6,7 +6,7 @@ import NavTabsOverviewPage from "screens/components/nav-tabs/overview/NavTabsOve
 const Index = () => (
   <>
     <Head>
-      <title>Nav Tabs — Halstack Design System</title>
+      <title>Nav tabs — Halstack Design System</title>
     </Head>
     <NavTabsOverviewPage />
   </>
