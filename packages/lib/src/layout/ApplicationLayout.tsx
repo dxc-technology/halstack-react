@@ -37,6 +37,7 @@ const HeaderContainer = styled.div`
   z-index: 3;
 `;
 
+// TODO: Has to be added to Figma to refactor
 const VisibilityToggle = styled.div`
   position: fixed;
   top: 64px;
@@ -47,11 +48,12 @@ const VisibilityToggle = styled.div`
   align-items: center;
   padding: 4px 16px;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--color-bg-neutral-light);
   user-select: none;
   z-index: 2;
 `;
 
+// TODO: Has to be added to Figma to refactor
 const HamburgerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
@@ -110,7 +112,7 @@ const MainContainer = styled.div`
 
 const MainContentContainer = styled.main`
   flex: 1;
-  background-color: #fff;
+  background-color: var(--color-bg-neutral-lightest);
 `;
 
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
