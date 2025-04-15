@@ -37,14 +37,19 @@ const Link = styled.a`
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   color: var(--color-fg-neutral-stronger);
-  display: block;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
-  line-height: var(--height-s);
+  height: var(--height-s);
   width: fit-content;
   max-width: 100%;
 
+  > span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   &:hover {
     color: var(--color-fg-primary-strong);
   }
@@ -63,7 +68,9 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
       <ListColumn>
         {links.map((link) => (
           <li key={link.label}>
-            <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
+            <Link href={`#${slugify(link.label, { lower: true })}`}>
+              <span>{link.label}</span>
+            </Link>
             {link.links?.length && (
               <ListSecondColumn>
                 {link.links?.map((sublink) => (
@@ -73,7 +80,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
                         lower: true,
                       })}`}
                     >
-                      {sublink.label}
+                      <span>{sublink.label}</span>
                     </Link>
                   </li>
                 ))}
