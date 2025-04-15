@@ -41,13 +41,13 @@ const sections = [
         </tr>
         <tr>
           <td>
-            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
               <StatusBadge status="required" />
               items
             </DxcFlex>
           </td>
           <td>
-            <TableCode style={{ fontSize: "0.875rem" }}>(Item | GroupItem)[] | Section[]</TableCode>
+            <TableCode>(Item | GroupItem)[] | Section[]</TableCode>
             <p>
               being an <Code>Item</Code> an object with the following properties:
             </p>

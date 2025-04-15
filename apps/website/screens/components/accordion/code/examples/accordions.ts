@@ -10,7 +10,7 @@ const code = `() => {
           badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Person information
           </DxcInset>
         </DxcAccordion.AccordionItem>
@@ -20,7 +20,7 @@ const code = `() => {
           badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
           defaultIsExpanded
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Person creation information
           </DxcInset>
         </DxcAccordion.AccordionItem>
@@ -30,7 +30,7 @@ const code = `() => {
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
           defaultIsExpanded
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Interactions information
           </DxcInset>
         </DxcAccordion.AccordionItem>
@@ -40,7 +40,7 @@ const code = `() => {
           icon="delete"
           badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Deletion information
           </DxcInset>
         </DxcAccordion.AccordionItem>

@@ -23,14 +23,14 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="1.5rem">
+      <DxcFlex gap="var(--spacing-gap-l)">
         <DxcButton label="Success dialog" onClick={() => setLoadDialog(1)} />
         <DxcButton label="Info dialog" onClick={() => setLoadDialog(2)} />
         <DxcButton label="Warning dialog" onClick={() => setLoadDialog(3)} />
         <DxcButton label="Error dialog" onClick={() => setLoadDialog(4)} />
       </DxcFlex>
       {loadDialog !== 0 && (
-        <DxcFlex direction="column" gap="1.5rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-l)">
           {loadDialog === 1 && (
             <DxcAlert
               message={messagesSuccess}

@@ -64,7 +64,7 @@ const code = `() => {
   
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcSelect
           label="Select data set"
           options={options}

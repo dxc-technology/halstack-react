@@ -15,7 +15,7 @@ const PasswordInputPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Password Input" />

@@ -3,7 +3,7 @@ import { DxcParagraph, DxcInset, DxcTypography, DxcFlex } from "@dxc-technology/
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="3rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcParagraph>
           Lorem ipsum dolor sit amet,{" "}
           <DxcTypography fontWeight="700" display="inline">

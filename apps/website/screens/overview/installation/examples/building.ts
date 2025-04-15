@@ -2,7 +2,7 @@ import { DxcButton, DxcFlex, DxcHeading, DxcInset, DxcParagraph } from "@dxc-tec
 
 const code = `() => (
   <DxcInset space="2rem">
-    <DxcFlex direction="column" gap="1.5rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-l)">
       <DxcHeading level={2} text="Welcome to Halstack!" />
       <DxcParagraph>
         Halstack is an Open Source Design System built and maintained by DXC Technology 

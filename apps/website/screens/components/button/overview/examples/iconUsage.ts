@@ -3,7 +3,7 @@ import { DxcButton, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="1.5rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-l)">
         <DxcFlex justifyContent="space-evenly">
           <DxcButton label="Primary" size={{ width: "large" }} icon="filled_home" />
           <DxcButton label="Primary" size={{ width: "large" }} iconPosition="after" icon="filled_home" />

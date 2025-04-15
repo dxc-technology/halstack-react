@@ -14,7 +14,7 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="How to edit your profile?"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             To edit your profile you need to go to Settings and click on Profile.
           </DxcInset>
         </DxcAccordion.AccordionItem>

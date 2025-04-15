@@ -9,7 +9,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="0.5rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-s)">
         <DxcSlider
           label="Continuous"
           maxValue={100}

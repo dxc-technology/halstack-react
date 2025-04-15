@@ -10,7 +10,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="3rem">
+      <DxcFlex gap="var(--spacing-gap-xl)">
         <DxcTag label="Favourite" icon={icon} />
         <DxcTag label="Julia" icon="person" />
       </DxcFlex>

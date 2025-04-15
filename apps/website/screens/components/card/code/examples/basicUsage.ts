@@ -4,7 +4,9 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcCard imageSrc="https://picsum.photos/id/1022/200/300">
-        <DxcInset space="1rem">Personal information</DxcInset>
+        <DxcInset space="var(--spacing-padding-m)">
+          Personal information
+        </DxcInset>
       </DxcCard>
     </DxcInset>
   );

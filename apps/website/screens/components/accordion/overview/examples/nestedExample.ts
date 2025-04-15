@@ -8,12 +8,12 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="Parent"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             <DxcAccordion>
               <DxcAccordion.AccordionItem
                 label="Child"
               >
-                <DxcInset space="1.5rem">
+                <DxcInset space="var(--spacing-padding-l)">
                   Details
                 </DxcInset>
               </DxcAccordion.AccordionItem>

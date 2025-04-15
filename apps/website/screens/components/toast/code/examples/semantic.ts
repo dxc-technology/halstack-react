@@ -7,7 +7,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="1rem">
+      <DxcFlex gap="var(--spacing-gap-ml)">
         <DxcButton 
           label="Show information toast"
           semantic="info"

@@ -101,7 +101,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   onSelectOption
                 </DxcFlex>
@@ -117,7 +117,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   options
                 </DxcFlex>

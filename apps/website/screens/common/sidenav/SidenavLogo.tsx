@@ -27,15 +27,15 @@ export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?:
   return (
     <DxcFlex alignItems="center">
       <LogoContainer>
-        <DxcFlex alignItems="center" gap="0.5rem">
-          <Image src={halstackLogo} alt="Halstack logo" width={24} height={24} />
+        <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+          <Image alt="Halstack logo" height={24} src={halstackLogo} width={24} />
           <Title>Halstack</Title>
         </DxcFlex>
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <DxcBadge
-        label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         color="purple"
+        label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         size="small"
       />
     </DxcFlex>

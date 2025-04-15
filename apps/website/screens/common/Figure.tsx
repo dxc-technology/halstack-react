@@ -14,7 +14,7 @@ const StyledFigcaption = styled.figcaption`
 
 const Figure = ({ caption, children }: { caption: string | ReactNode; children: ReactNode }) => (
   <StyledFigure>
-    <DxcFlex direction="column" gap="1rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
       {children}
       <StyledFigcaption>{caption}</StyledFigcaption>
     </DxcFlex>

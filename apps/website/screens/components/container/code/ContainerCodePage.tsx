@@ -91,7 +91,7 @@ const sections = [
           <tr>
             <td>border</td>
             <td>
-              <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-s)" alignItems="baseline">
                 <ExtendedTableCode>{borderTypeString}</ExtendedTableCode>
                 <p>
                   being <Code>BorderProperties</Code> an object with the following properties:

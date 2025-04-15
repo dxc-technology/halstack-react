@@ -48,7 +48,7 @@ type ExamplePropTypes = {
   };
 };
 
-const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
+export default function Example({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) {
   const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [liveCode, setLiveCode] = useState(example.code);
@@ -69,7 +69,7 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   };
 
   return (
-    <DxcFlex direction="column" gap="0.75rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-m)">
       <LiveProvider code={liveCode} scope={example.scope} theme={theme}>
         <StyledPreview>
           <LivePreview />
@@ -78,11 +78,11 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
           </StyledError>
         </StyledPreview>
         {actionsVisible && (
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            {isCodeVisible && <DxcButton label="Copy code" icon="content_copy" mode="tertiary" onClick={handleCopy} />}
+          <DxcFlex gap="var(--spacing-gap-s)" justifyContent="flex-end">
+            {isCodeVisible && <DxcButton icon="content_copy" label="Copy code" mode="tertiary" onClick={handleCopy} />}
             <DxcButton
-              label={isCodeVisible ? "Hide code" : "View code"}
               icon={isCodeVisible ? "code_off" : "code"}
+              label={isCodeVisible ? "Hide code" : "View code"}
               mode="tertiary"
               onClick={handleCodeOnClick}
             />
@@ -96,6 +96,4 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
       </LiveProvider>
     </DxcFlex>
   );
-};
-
-export default Example;
+}

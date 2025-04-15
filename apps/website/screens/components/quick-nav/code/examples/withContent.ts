@@ -17,10 +17,10 @@ const code = `() => {
       <DxcFlex direction="row">
         <DxcFlex direction="column" gap="2rem">
           <div id="accordion">
-            <DxcFlex direction="column" gap="1rem">
+            <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
               <DxcHeading level={2} text="Accordion" />
               <div id="accordion-code">
-                <DxcFlex direction="column" gap="1rem">
+                <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
                   <DxcHeading level={3} text="Code" />
                   <DxcParagraph>
                     Accordions are used to group similar content and hide or
@@ -31,7 +31,7 @@ const code = `() => {
                 </DxcFlex>
               </div>
               <div id="accordion-usage">
-                <DxcFlex direction="column" gap="1rem">
+                <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
                   <DxcHeading level={3} text="Usage" />
                   <DxcParagraph>
                     The accordion component delivers large amounts of content in
@@ -42,10 +42,10 @@ const code = `() => {
             </DxcFlex>
           </div>
           <div id="alert">
-            <DxcFlex direction="column" gap="1rem">
+            <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
               <DxcHeading level={2} text="Alert" />
               <div id="alert-code">
-                <DxcFlex direction="column" gap="1rem">
+                <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
                   <DxcHeading level={3} text="Code" />
                   <DxcParagraph>
                     Alert messages are meant to provide contextual feedback

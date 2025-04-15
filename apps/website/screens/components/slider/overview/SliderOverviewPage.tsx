@@ -70,7 +70,7 @@ const sections = [
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Dragging the thumb</strong>
-            <DxcInset top="0.5rem" bottom="0.5rem">
+            <DxcInset top="var(--spacing-padding-xs)" bottom="0.5rem">
               <DxcBulletedList>
                 <DxcBulletedList.Item>
                   Users can <strong>click and drag</strong> the thumb along the track to adjust the value.
@@ -86,7 +86,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Clicking the track</strong>
-            <DxcInset top="0.5rem" bottom="0.5rem">
+            <DxcInset top="var(--spacing-padding-xs)" bottom="0.5rem">
               <DxcBulletedList>
                 <DxcBulletedList.Item>
                   Users can <strong>click</strong> anywhere on the track to move the thumb directly to that position.
@@ -100,11 +100,11 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Keyboard support</strong>
-            <DxcInset top="0.5rem" bottom="0.5rem">
+            <DxcInset vertical="var(--spacing-padding-xs)">
               <DxcBulletedList>
                 <DxcBulletedList.Item>
                   Users can adjust the slider using the arrow keys for precise control:
-                  <DxcInset top="0.25rem" bottom="0.25rem">
+                  <DxcInset vertical="var(--spacing-padding-xxs)">
                     <DxcBulletedList type="circle">
                       <DxcBulletedList.Item>
                         <strong>Left / Down arrow:</strong> decrease value.

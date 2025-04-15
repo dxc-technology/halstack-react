@@ -19,7 +19,7 @@ const code = `() => {
       <DxcButton label="Enter your address" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             <DxcGrid gap="2rem">
               <DxcHeading level={2} text="Delivery address" weight="normal" />
               <DxcGrid templateColumns={["1fr", "1fr"]} templateColumns={["1fr", "1fr"]} gap="var(--spacing-gap-ml)">
@@ -29,7 +29,7 @@ const code = `() => {
                   <DxcTextInput label="State" size="fillParent" />
                 </DxcGrid.Item>
               </DxcGrid>
-              <DxcFlex justifyContent="flex-end" gap="0.5rem">
+              <DxcFlex justifyContent="flex-end" gap="var(--spacing-gap-s)">
                 <DxcButton label="Add client" onClick={handleClick} />
                 <DxcButton label="Cancel" onClick={handleClick} mode="tertiary" />
               </DxcFlex>
