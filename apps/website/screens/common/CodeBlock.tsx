@@ -46,7 +46,7 @@ export default function CodeBlock({ children }: { children: ReactNode }) {
       <PreformattedText onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
         <Code>{children}</Code>
         {copyActionIsVisible && (
-          <DxcContainer position="absolute" inset={{ top: "0", right: "0" }} padding="xsmall">
+          <DxcContainer inset={{ top: "0", right: "0" }} padding="var(--spacing-padding-xs)" position="absolute">
             <DxcButton
               icon={copied ? "check" : "content_copy"}
               mode="tertiary"

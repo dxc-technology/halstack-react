@@ -3,79 +3,39 @@ import { DxcTypography, DxcLink, DxcFlex, DxcDivider } from "@dxc-technology/hal
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 
-const arrowForward = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
-    <path
-      data-name="Path 2990"
-      d="M9.333,4l-.94.94,3.72,3.727H4V10h8.113l-3.72,3.727.94.94,5.333-5.333Z"
-      transform="translate(-1.333 -1.333)"
-    />
-  </svg>
-);
-
-const arrowBack = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <g transform="translate(16 16) rotate(180)">
-      <path data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
-      <path
-        data-name="Path 2990"
-        d="M9.333,4l-.94.94,3.72,3.727H4V10h8.113l-3.72,3.727.94.94,5.333-5.333Z"
-        transform="translate(-1.333 -1.333)"
-      />
-    </g>
-  </svg>
-);
-
-const reportIssueIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-    <path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-  </svg>
-);
-
-const editIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill="currentColor">
-    <path d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" />
-  </svg>
-);
-
 export default function DocFooter({ githubLink }: { githubLink: string }) {
   const { pathname } = useRouter();
-  const { previousLink, nextLink } = getNavigationLinks(pathname);
+  const { nextLink, previousLink } = getNavigationLinks(pathname);
 
   return (
     <div style={{ maxWidth: "800px" }}>
       <DxcFlex direction="column" gap="2rem">
         <DxcFlex gap="2rem">
-          <DxcLink icon={editIcon} href={githubLink} newWindow>
+          <DxcLink href={githubLink} icon="edit" newWindow>
             Edit this page on GitHub
           </DxcLink>
-          <DxcLink
-            icon={reportIssueIcon}
-            href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
-            newWindow
-          >
+          <DxcLink href="https://github.com/dxc-technology/halstack-react/issues/new/choose" icon="error" newWindow>
             Report an issue on GitHub
           </DxcLink>
         </DxcFlex>
         <DxcDivider color="darkGrey" />
         <DxcFlex justifyContent="space-between">
-          <DxcFlex direction="column" gap="1rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
             {previousLink && (
               <>
                 <DxcTypography>Previous</DxcTypography>
                 <Link href={previousLink.path} passHref legacyBehavior>
-                  <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
+                  <DxcLink icon="arrow_back">{previousLink.label}</DxcLink>
                 </Link>
               </>
             )}
           </DxcFlex>
-          <DxcFlex direction="column" alignItems="flex-end" gap="1rem">
+          <DxcFlex direction="column" alignItems="flex-end" gap="var(--spacing-gap-ml)">
             {nextLink && (
               <>
                 <DxcTypography>Next</DxcTypography>
                 <Link href={nextLink.path} passHref legacyBehavior>
-                  <DxcLink icon={arrowForward} iconPosition="after">
+                  <DxcLink icon="arrow_forward" iconPosition="after">
                     {nextLink.label}
                   </DxcLink>
                 </Link>

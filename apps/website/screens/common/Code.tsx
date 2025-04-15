@@ -13,10 +13,15 @@ export default styled.code`
   font-size: inherit;
 `;
 
+export const TableCode = styled.code`
+  ${codeStyles}
+  font-size: var(--typography-label-s);
+`;
+
 const ExtendedCodeContainer = styled.div`
   ${codeStyles}
   white-space: pre;
-  font-size: 0.75rem;
+  font-size: var(--typography-label-s);
 `;
 
 export const ExtendedTableCode = ({ children }: { children: ReactNode }) => (
@@ -24,8 +29,3 @@ export const ExtendedTableCode = ({ children }: { children: ReactNode }) => (
     <code>{children}</code>
   </ExtendedCodeContainer>
 );
-
-export const TableCode = styled.code`
-  ${codeStyles}
-  font-size: 0.75rem;
-`;

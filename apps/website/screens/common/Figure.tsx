@@ -4,11 +4,12 @@ import { ReactNode } from "react";
 
 const StyledFigure = styled.figure`
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-padding-none);
 `;
 
 const StyledFigcaption = styled.figcaption`
   font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
 `;
 
 const Figure = ({ caption, children }: { caption: string | ReactNode; children: ReactNode }) => (

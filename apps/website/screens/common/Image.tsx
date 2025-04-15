@@ -9,6 +9,7 @@ type ImageProps = {
   width?: number;
   height?: number;
 };
+
 export default function Image(props: ImageProps) {
   return (
     <NextImage
