@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     subSections: [
       {
         title: "Do's",
@@ -33,15 +33,13 @@ const sections = [
   },
 ];
 
-const PasswordInputUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/password-input/usage/PasswordInputUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const PasswordInputOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/password-input/overview/PasswordInputOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default PasswordInputUsagePage;
+export default PasswordInputOverviewPage;
