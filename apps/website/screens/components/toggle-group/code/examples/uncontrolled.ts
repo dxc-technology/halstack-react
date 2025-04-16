@@ -72,7 +72,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="var(--spacing-gap-xl)">
+      <DxcFlex gap="var(--spacing-gap-xxl)">
         <DxcToggleGroup
           multiple
           onChange={onChange}

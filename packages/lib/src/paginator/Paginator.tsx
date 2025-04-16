@@ -54,7 +54,7 @@ const DxcPaginator = ({
   `;
 
   const TotalItemsContainer = styled.span`
-    margin-right: var(--spacing-gap-xl);
+    margin-right: var(--spacing-gap-xxl);
   `;
 
   const GoToPageContainer = styled.div`
