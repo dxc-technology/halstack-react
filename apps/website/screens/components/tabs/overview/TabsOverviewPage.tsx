@@ -78,14 +78,14 @@ const sections = [
                   <DxcBulletedList.Item>
                     <strong>Default tabs:</strong> used for main navigation, placed above the header, spanning 100% of
                     the screen width.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={defaultUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
                     <strong>Container tabs:</strong> Used for panel navigation, placed at the top of the panel, using
                     the full available width. Scrollable tabs are allowed when space is limited.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={scrollableUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>

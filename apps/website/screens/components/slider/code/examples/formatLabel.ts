@@ -11,7 +11,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcSlider
         label="Select a value"
         value={value}

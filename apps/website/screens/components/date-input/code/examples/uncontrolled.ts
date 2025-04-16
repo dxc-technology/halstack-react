@@ -9,8 +9,8 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem" justifyContent="flex-start">
+    <DxcInset space="var(--spacing-gap-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" justifyContent="flex-start">
         <DxcDateInput
           label="Start date"
           helperText="Please enter the start date."

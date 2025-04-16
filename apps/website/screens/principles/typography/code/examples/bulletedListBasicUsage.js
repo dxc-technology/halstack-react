@@ -6,7 +6,7 @@ import {
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcBulletedList type="disc">
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>

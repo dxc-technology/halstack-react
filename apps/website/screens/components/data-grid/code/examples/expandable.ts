@@ -40,7 +40,7 @@ const code = `() => {
   ];
   
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">
       <DxcDataGrid columns={columns} rows={rows} expandable uniqueRowId="id" />
     </DxcInset>
   );

@@ -117,7 +117,7 @@ const FileItem = ({
         ))}
       <FileItemContent>
         <FileName id={fileNameId}>{fileName}</FileName>
-        <DxcFlex gap="0.25rem">
+        <DxcFlex gap="var(--spacing-gap-xs)">
           {error && (
             <ErrorIcon>
               <DxcIcon icon="filled_error" />

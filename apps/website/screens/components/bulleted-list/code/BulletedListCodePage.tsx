@@ -1,4 +1,3 @@
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -6,7 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcParagraph, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedList from "./examples/nestedList";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
@@ -50,7 +49,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 children
               </DxcFlex>
@@ -86,7 +85,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     children
                   </DxcFlex>

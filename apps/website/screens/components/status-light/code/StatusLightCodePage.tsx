@@ -2,7 +2,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import StatusBadge from "@/common/StatusBadge";
@@ -23,7 +23,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 label
               </DxcFlex>

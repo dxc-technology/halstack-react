@@ -19,7 +19,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex gap="var(--spacing-gap-l)">
         <DxcToggleGroup
           defaultValue={2}

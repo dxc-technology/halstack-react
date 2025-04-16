@@ -14,7 +14,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcRadioGroup
         label="Food"
         options={options}

@@ -27,7 +27,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
   const colorsTheme = useContext(HalstackContext);
 
   return (
-    <DxcFlex gap="0.5rem" alignItems="center">
+    <DxcFlex gap="var(--spacing-gap-s)" alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (

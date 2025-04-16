@@ -22,7 +22,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcTextarea
         label="Comments"
         value={value}

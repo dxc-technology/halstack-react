@@ -3,9 +3,9 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex gap="2rem" direction="column">
-        <DxcFlex gap="2rem" justifyContent="space-evenly">
+    <DxcInset space="var(--spacing-gap-xl)">
+      <DxcFlex gap="var(--spacing-gap-xl)" direction="column">
+        <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
           <DxcBadge label="Label" color="green" icon="info" />
           <DxcBadge label="Label" color="blue" icon="info" />
           <DxcBadge label="Label" color="red" icon="info" />
@@ -14,7 +14,7 @@ const code = `() => {
           <DxcBadge label="Label" color="purple" icon="info" />
           <DxcBadge label="Label" icon="info" />
         </DxcFlex>
-        <DxcFlex gap="2rem" justifyContent="space-evenly">
+        <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
           <DxcBadge label="Label" color="green"/>
           <DxcBadge label="Label" color="blue"/>
           <DxcBadge label="Label" color="red" />

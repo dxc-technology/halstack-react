@@ -11,9 +11,9 @@ const WizardPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Wizard" />
           <DxcParagraph>
             Wizard represents a stepped workflow as a form of linear and mandatory progression through a defined process

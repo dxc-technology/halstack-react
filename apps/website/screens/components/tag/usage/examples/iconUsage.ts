@@ -9,17 +9,17 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex justifyContent="space-evenly">
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcHeading level={4} text="Icon before"></DxcHeading>
           <DxcTag label="Enabled" labelPosition="before" icon={icon} />
         </DxcFlex>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcHeading level={4} text="Icon after"></DxcHeading>
           <DxcTag label="Enabled" icon={icon} />
         </DxcFlex>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcHeading level={4} text="Only icon"></DxcHeading>
           <DxcTag icon={icon} />
         </DxcFlex>

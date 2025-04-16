@@ -9,7 +9,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcPaginator
         currentPage={page}
         itemsPerPage={items}

@@ -84,7 +84,7 @@ const PasswordInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcPasswordInput label="fillParent" size="fillParent" />
         <DxcPasswordInput label="medium" size="medium" />
         <DxcPasswordInput label="large" size="large" />

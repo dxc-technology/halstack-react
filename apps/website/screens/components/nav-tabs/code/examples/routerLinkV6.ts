@@ -38,7 +38,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcNavTabs>
         <CustomTab active to="/components/nav-tabs/">
           Tab 1

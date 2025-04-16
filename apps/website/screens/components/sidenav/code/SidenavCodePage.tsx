@@ -1,9 +1,8 @@
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import { DxcLink, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
@@ -28,7 +27,7 @@ const sections = [
         </tr>
         <tr>
           <td>
-            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
               <StatusBadge status="required" />
               children
             </DxcFlex>
@@ -63,7 +62,7 @@ const sections = [
             <tr>
               <td>
                 {" "}
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   children
                 </DxcFlex>
@@ -102,7 +101,7 @@ const sections = [
             <tr>
               <td>
                 {" "}
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   children
                 </DxcFlex>
@@ -175,7 +174,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   children
                 </DxcFlex>
@@ -273,7 +272,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   children
                 </DxcFlex>

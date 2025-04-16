@@ -53,7 +53,7 @@ const code = `() => {
   applyTheme({ theme });
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcHeading text="Themed bar chart" level={2} margin={{ bottom: "large" }} />
       <BarChart
         series={[

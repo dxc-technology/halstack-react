@@ -5,10 +5,10 @@ export default function DxcInset({ bottom, children, horizontal, left, right, sp
   return (
     <DxcContainer
       padding={{
-        bottom: bottom ?? vertical ?? space ?? "0rem",
-        left: left ?? horizontal ?? space ?? "0rem",
-        right: right ?? horizontal ?? space ?? "0rem",
-        top: top ?? vertical ?? space ?? "0rem",
+        bottom: bottom ?? vertical ?? space ?? "var(--spacing-padding-none)",
+        left: left ?? horizontal ?? space ?? "var(--spacing-padding-none)",
+        right: right ?? horizontal ?? space ?? "var(--spacing-padding-none)",
+        top: top ?? vertical ?? space ?? "var(--spacing-padding-none)",
       }}
     >
       {children}

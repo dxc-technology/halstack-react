@@ -40,7 +40,7 @@ const DxcFooter = ({
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} mode={mode}>
-        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
+        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="var(--spacing-gap-l)">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
             <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>

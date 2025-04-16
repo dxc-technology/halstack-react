@@ -11,7 +11,7 @@ const Actions = memo(
     semantic,
   }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) =>
     (primaryAction != null || secondaryAction != null) && (
-      <DxcFlex gap="0.5rem" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
+      <DxcFlex gap="var(--spacing-gap-s)" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
         {secondaryAction?.onClick && (
           <DxcButton
             icon={secondaryAction.icon}

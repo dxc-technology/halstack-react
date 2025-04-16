@@ -120,7 +120,7 @@ const NumberInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcNumberInput label="fillParent" size="fillParent" />
         <DxcNumberInput label="medium" size="medium" />
         <DxcNumberInput label="large" size="large" />

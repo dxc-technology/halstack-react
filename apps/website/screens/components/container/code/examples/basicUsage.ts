@@ -2,7 +2,7 @@ import { DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcContainer
         border={{ 
           color: "var(--border-color-primary-light)",

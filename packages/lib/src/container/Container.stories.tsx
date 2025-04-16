@@ -144,7 +144,7 @@ const Container = () => (
           width: "var(--border-width-m)",
           style: "var(--border-style-dashed)",
         }}
-        borderRadius="0.25rem"
+        borderRadius="var(--border-radius-s)"
       >
         <DxcContainer
           background={{ color: "var(--color-bg-primary-medium)" }}

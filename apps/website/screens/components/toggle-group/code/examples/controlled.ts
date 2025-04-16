@@ -22,7 +22,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcToggleGroup
         onChange={onChange}
         options={options}
