@@ -22,15 +22,17 @@ const Heading = () => (
       <DxcHeading text="Heading for sections within the page" level={4} />
       <Title title="Level 5" theme="light" level={4} />
       <DxcHeading text="Heading for sections within the page" level={5} />
+      <Title title="Level 6" theme="light" level={4} />
+      <DxcHeading text="Heading for sections within the page" level={6} />
     </ExampleContainer>
     <Title title="Weights" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="'light' Weight" theme="light" level={4} />
+      <Title title="Default weight" theme="light" level={4} />
+      <DxcHeading text="Heading for sections within the page" level={2} weight="default" />
+      <Title title="Regular weight" theme="light" level={4} />
+      <DxcHeading text="Heading for sections within the page" level={2} weight="regular" />
+      <Title title="Light weight" theme="light" level={4} />
       <DxcHeading text="Heading for sections within the page" level={2} weight="light" />
-      <Title title="'normal' Weight" theme="light" level={4} />
-      <DxcHeading text="Heading for sections within the page" level={2} weight="normal" />
-      <Title title="'bold' Weight" theme="light" level={4} />
-      <DxcHeading text="Heading for sections within the page" level={2} weight="bold" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -48,7 +50,6 @@ const Heading = () => (
       <DxcHeading text="Xlarge" margin="xlarge" />
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcHeading text="Xxlarge" margin="xxlarge" />
-      <hr />
     </ExampleContainer>
   </>
 );
