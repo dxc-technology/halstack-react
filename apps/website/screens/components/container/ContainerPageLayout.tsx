@@ -13,7 +13,7 @@ const ContainerPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)"-spacing-gap-xl)">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Container" />
           <DxcParagraph>
             The container component represents the box model inside the Halstack Design System.

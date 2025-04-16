@@ -16,7 +16,7 @@ const BulletedListPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)"-spacing-gap-xl)">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Bulleted List" />
           <DxcParagraph>Bulleted list are used to display text items in a bulleted format.</DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
