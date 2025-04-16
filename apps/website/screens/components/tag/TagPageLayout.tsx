@@ -15,7 +15,7 @@ const TagPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Tag" />
           <DxcParagraph>
             The Tag represents resources and global terms to identify and linked with a text section to provide to the

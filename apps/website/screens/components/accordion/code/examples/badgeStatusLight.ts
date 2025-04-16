@@ -2,7 +2,7 @@ import { DxcInset, DxcAccordion, DxcBadge, DxcStatusLight } from "@dxc-technolog
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcAccordion>
         <DxcAccordion.AccordionItem
           label="GET request"

@@ -14,7 +14,7 @@ const ParagraphPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Paragraph" />
           <DxcParagraph>Paragraph is a block of text.</DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>

@@ -116,7 +116,7 @@ const getReleasesPageSections = (releases: Release[]) => {
 const Releases = ({ releases }: { releases: Release[] }) => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
-      <DxcFlex direction="column" gap="2rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcHeading level={1} text="Releases" weight="bold" />
         <DxcParagraph>
           Access all the major releases of the Halstack React library and see the changelog of every version available.

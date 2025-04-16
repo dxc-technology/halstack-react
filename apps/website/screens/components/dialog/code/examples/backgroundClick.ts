@@ -8,7 +8,7 @@ const code = `() => {
   };
   
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcButton label="Enter your data" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onBackgroundClick={handleClick} closable={false}>

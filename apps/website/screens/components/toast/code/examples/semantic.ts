@@ -6,7 +6,7 @@ const code = `() => {
   const action = { label: "Action", onClick: () => {} };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex gap="var(--spacing-gap-ml)">
         <DxcButton 
           label="Show information toast"

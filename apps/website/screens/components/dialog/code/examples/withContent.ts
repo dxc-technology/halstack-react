@@ -15,12 +15,12 @@ const code = `() => {
     setDialogVisible(!isDialogVisible);
   };
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcButton label="Enter your address" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
           <DxcInset space="var(--spacing-padding-l)">
-            <DxcGrid gap="2rem">
+            <DxcGrid gap="var(--spacing-gap-xl)">
               <DxcHeading level={2} text="Delivery address" weight="normal" />
               <DxcGrid templateColumns={["1fr", "1fr"]} templateColumns={["1fr", "1fr"]} gap="var(--spacing-gap-ml)">
                 <DxcTextInput label="Street" size="fillParent" />

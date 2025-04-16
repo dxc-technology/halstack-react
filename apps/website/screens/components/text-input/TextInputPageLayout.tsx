@@ -14,7 +14,7 @@ const TextInputPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Text Input" />
           <DxcParagraph>
             Text inputs are input fields typically used in forms that allow the user to enter text data in a structured

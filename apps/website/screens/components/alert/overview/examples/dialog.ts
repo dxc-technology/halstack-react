@@ -22,7 +22,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex gap="var(--spacing-gap-l)">
         <DxcButton label="Success dialog" onClick={() => setLoadDialog(1)} />
         <DxcButton label="Info dialog" onClick={() => setLoadDialog(2)} />

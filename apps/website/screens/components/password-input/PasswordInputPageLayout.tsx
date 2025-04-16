@@ -17,7 +17,7 @@ const PasswordInputPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Password Input" />
           <DxcParagraph>
             The password input component is very much like the text input, with the difference that their value is

@@ -15,7 +15,7 @@ export type SectionType = {
 const Section = ({ content, level = 1, navSubtitle, subSections, title }: SectionType) => (
   <DxcFlex
     direction="column"
-    gap={level === 1 ? "var(--spacing-gap-xl)" : level === 2 ? "2rem" : "var(--spacing-gap-l)"}
+    gap={level === 1 ? "var(--spacing-gap-xl)" : level === 2 ? "var(--spacing-gap-xl)" : "var(--spacing-gap-l)"}
   >
     <HeadingLink level={level} navSubtitle={navSubtitle}>
       {title}

@@ -1,7 +1,7 @@
 import { DxcBulletedList, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">
       <DxcBulletedList type="number">
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>

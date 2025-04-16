@@ -13,7 +13,7 @@ const FlexPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Flex" />
           <DxcParagraph>
             The flex component allows building flexible box module based layouts. It serves as a technical component

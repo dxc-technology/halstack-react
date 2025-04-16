@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex direction="column" gap="var(--spacing-gap-s)">
         <DxcSlider
           label="Continuous"

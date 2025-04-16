@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcAccordion indexActive={indexAccordion}
         onActiveChange={onActiveChange} independent={true}>
         <DxcAccordion.AccordionItem

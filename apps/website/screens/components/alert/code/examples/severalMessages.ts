@@ -8,7 +8,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex direction="column" gap="var(--spacing-gap-l)">
         <DxcAlert
           title="Auto-saved document"

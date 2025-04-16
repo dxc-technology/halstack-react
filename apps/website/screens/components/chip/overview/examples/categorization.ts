@@ -2,7 +2,7 @@ import { DxcChip, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex gap="var(--spacing-gap-s)" justifyContent="center">
         <DxcChip label="GPDR Compliant" suffixIcon="open_in_new" onClickSuffix={() => {}} />
         <DxcChip label="ISO 27001 Certified" suffixIcon="open_in_new" onClickSuffix={() => {}} />

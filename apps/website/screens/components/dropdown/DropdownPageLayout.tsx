@@ -13,7 +13,7 @@ const DropdownPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Dropdown" />
           <DxcParagraph>
             The dropdown component is a compact, interactive element that allows users to select from a list of options,

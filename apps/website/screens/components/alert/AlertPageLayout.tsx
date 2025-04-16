@@ -13,7 +13,7 @@ const AlertPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Alert" />
           <DxcParagraph>
             Alert messages are meant to provide contextual feedback about important changes in the interface.

@@ -21,7 +21,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcQuickNav links={links}></DxcQuickNav>
     </DxcInset>
   );

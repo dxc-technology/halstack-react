@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
           label="Parent"

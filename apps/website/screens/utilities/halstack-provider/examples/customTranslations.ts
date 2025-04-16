@@ -27,8 +27,8 @@ const code = `() => {
 
   return (
     <HalstackProvider labels={labels}>
-      <DxcInset space="2rem">
-        <DxcFlex gap="2rem">
+      <DxcInset space="var(--spacing-gap-xl)">
+        <DxcFlex gap="var(--spacing-gap-xl)">
           <DxcTextInput
             label="Input text"
             defaultValue="Example text"

@@ -13,7 +13,7 @@ const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Accordion" />
           <DxcParagraph>
             The accordion component is a vertical stack of interactive headers used to group related content into

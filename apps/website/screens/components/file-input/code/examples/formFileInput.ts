@@ -15,8 +15,8 @@ const code = `() => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <DxcInset space="2rem">
-        <DxcFlex direction="column" gap="2rem">
+      <DxcInset space="var(--spacing-gap-xl)">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcFileInput
             label="Select your files"
             value={files}

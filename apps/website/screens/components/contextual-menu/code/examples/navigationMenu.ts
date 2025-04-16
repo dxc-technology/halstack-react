@@ -47,7 +47,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcContainer width="300px">
         <DxcContextualMenu items={groupItems} />
       </DxcContainer>

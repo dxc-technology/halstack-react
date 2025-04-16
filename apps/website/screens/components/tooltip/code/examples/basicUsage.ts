@@ -2,7 +2,7 @@ import { DxcTooltip, DxcButton, DxcInset } from "@dxc-technology/halstack-react"
 
 const code = `() => {
     return (
-      <DxcInset space="2rem">
+      <DxcInset space="var(--spacing-gap-xl)">
         <DxcTooltip label="Tooltip Test" position="top">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>

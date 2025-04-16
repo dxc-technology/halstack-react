@@ -10,7 +10,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcPasswordInput label="Password" ref={inputRef} clearable />
       <DxcInset top="var(--spacing-padding-m)">
         <DxcButton onClick={handleSubmit} label="Submit" />

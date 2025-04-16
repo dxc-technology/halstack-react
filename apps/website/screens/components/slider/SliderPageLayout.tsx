@@ -13,7 +13,7 @@ const SliderPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Slider" />
           <DxcParagraph>
             Slider control enables users to select a specific value from a predefined set by dragging a thumb along a

@@ -3,7 +3,7 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)" wrap="wrap">
         <DxcBadge label="Authorized" />
         <DxcBadge label="Reserved" color="blue" />

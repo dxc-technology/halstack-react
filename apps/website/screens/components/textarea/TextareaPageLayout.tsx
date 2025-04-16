@@ -14,7 +14,7 @@ const TextareaPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Textarea" />
           <DxcParagraph>A textarea allows the users enter a multi-line, free-form text.</DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>

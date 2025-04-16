@@ -13,7 +13,7 @@ const DividerPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Divider" />
           <DxcParagraph>
             A divider is a thin line that visually separates groups of content within a specific area of an application.

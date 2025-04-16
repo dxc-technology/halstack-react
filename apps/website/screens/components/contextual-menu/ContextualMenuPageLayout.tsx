@@ -13,7 +13,7 @@ const ContextualMenuPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Contextual menu" />
           <DxcParagraph>
             The contextual menu provides quick access to navigation or actions related to the current context, enhancing

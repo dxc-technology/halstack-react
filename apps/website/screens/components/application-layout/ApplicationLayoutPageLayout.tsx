@@ -17,7 +17,7 @@ const ApplicationLayoutPageHeading = ({ children }: { children: ReactNode }) => 
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Application Layout" />
           <DxcParagraph>
             The application layout provides a base UI wrapper for any application built with Halstack.

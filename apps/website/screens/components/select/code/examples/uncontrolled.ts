@@ -15,8 +15,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
+    <DxcInset space="var(--spacing-gap-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" alignItems="flex-start">
         <DxcSelect
           label="Select your favorite city"
           placeholder="Choose a city"

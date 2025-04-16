@@ -17,7 +17,7 @@ const FileInputPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="File Input" />
           <DxcParagraph>
             The file input component is used to choose files from any location in the local machine and update those

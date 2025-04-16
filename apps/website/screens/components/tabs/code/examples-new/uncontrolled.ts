@@ -2,7 +2,7 @@ import { DxcTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcTabs>
         <DxcTabs.Tab label="Mail" defaultActive>
           <></>

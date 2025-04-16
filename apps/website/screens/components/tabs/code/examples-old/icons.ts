@@ -28,7 +28,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcTabs
         activeTabIndex={activeTab}
         onTabClick={onTabClick}

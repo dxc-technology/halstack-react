@@ -13,7 +13,7 @@ const ToastPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Toast" />
           <DxcParagraph>
             The toast component is a lightweight notification element that appears temporarily to provide feedback or

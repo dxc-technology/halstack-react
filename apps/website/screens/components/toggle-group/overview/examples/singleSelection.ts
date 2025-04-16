@@ -25,7 +25,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcToggleGroup
         defaultValue={1}
         options={options}

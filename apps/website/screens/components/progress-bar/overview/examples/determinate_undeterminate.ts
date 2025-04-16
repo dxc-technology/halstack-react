@@ -2,8 +2,8 @@ import { DxcProgressBar, DxcInset, DxcFlex } from "@dxc-technology/halstack-reac
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcProgressBar
           label="Determinate"
           helperText="Helper text"

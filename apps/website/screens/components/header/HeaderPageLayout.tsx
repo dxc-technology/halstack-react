@@ -15,7 +15,7 @@ const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Header" />
           <DxcParagraph>
             The header is an important component in the interface, it is the area dedicated for the navigation across

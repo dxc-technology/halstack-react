@@ -13,7 +13,7 @@ const BreadcrumbsPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Breadcrumbs" />
           <DxcParagraph>
             A breadcrumbs trail is a secondary form of navigation that allows users to keep track and maintain awareness

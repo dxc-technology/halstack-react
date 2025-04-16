@@ -13,7 +13,7 @@ const GridPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Grid" />
           <DxcParagraph>
             The grid component allows building applications based on the CSS grid layout module. It is a technical

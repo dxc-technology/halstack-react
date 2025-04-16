@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcAccordion defaultIndexActive={0} independent={true}>
         <DxcAccordion.AccordionItem label="How to edit your profile?">
           <DxcInset space="var(--spacing-padding-l)">

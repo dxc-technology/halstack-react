@@ -69,7 +69,7 @@ const sections = [
           respective translation for their labels.
         </DxcParagraph>
         <Example example={customTranslations} defaultIsVisible />
-        <DxcBleed top="2rem">
+        <DxcBleed top="var(--spacing-gap-xl)">
           <DxcTypography fontSize="0.875rem">
             *(to see the translated error message you should try to add any file on the <Code>DxcFileInput</Code>).
           </DxcTypography>
@@ -82,7 +82,7 @@ const sections = [
 const HalstackProvider = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
-      <DxcFlex direction="column" gap="2rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcHeading level={1} text="Halstack Provider" weight="bold" />
         <DxcParagraph>
           Halstack Provider is the context provider used for a whole application or an isolated group of components,

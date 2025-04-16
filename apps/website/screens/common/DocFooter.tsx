@@ -9,8 +9,8 @@ export default function DocFooter({ githubLink }: { githubLink: string }) {
 
   return (
     <div style={{ maxWidth: "800px" }}>
-      <DxcFlex direction="column" gap="2rem">
-        <DxcFlex gap="2rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcFlex gap="var(--spacing-gap-xl)">
           <DxcLink href={githubLink} icon="edit" newWindow>
             Edit this page on GitHub
           </DxcLink>

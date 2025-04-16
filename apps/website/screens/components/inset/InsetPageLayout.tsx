@@ -13,7 +13,7 @@ const InsetPageHeading = ({ children }: { children: ReactNode }) => {
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Inset" />
           <DxcParagraph>Inset layout applies positive spacing scale to its child nodes.</DxcParagraph>
           <TabsPageHeading tabs={tabs} />

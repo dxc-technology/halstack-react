@@ -59,7 +59,7 @@ export default function HeadingLink({ as, children, level, navSubtitle }: Headin
   const elementId = slugify(navSubtitle ?? children, { lower: true });
   return (
     <HeadingLinkContainer id={elementId}>
-      <DxcBleed left="2rem">
+      <DxcBleed left="var(--spacing-gap-xl)">
         <DxcTooltip label={`Go to '${children}'`}>
           <HeadingAnchor href={`#${elementId}`} aria-label={`Go to the section '${children}'`}>
             {linkIcon}

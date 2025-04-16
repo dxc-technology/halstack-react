@@ -1,7 +1,7 @@
 import { DxcDivider, DxcFlex, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 const code = `() => {
     return (
-      <DxcInset space="2rem">
+      <DxcInset space="var(--spacing-gap-xl)">
         <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
           <DxcParagraph>
             Lorem i psum dolor sit amet, consectetur adipiscing elit.

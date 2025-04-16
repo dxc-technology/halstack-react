@@ -13,9 +13,9 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-gap-xl)">
       <DxcFlex direction="row">
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <div id="accordion">
             <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
               <DxcHeading level={2} text="Accordion" />
@@ -56,7 +56,7 @@ const code = `() => {
             </DxcFlex>
           </div>
         </DxcFlex>
-        <DxcInset space="2rem">
+        <DxcInset space="var(--spacing-gap-xl)">
           <DxcQuickNav links={links}></DxcQuickNav>
         </DxcInset>
       </DxcFlex>

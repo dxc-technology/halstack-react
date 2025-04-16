@@ -242,7 +242,7 @@ const sections = [
 const Layout = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
-      <DxcFlex direction="column" gap="2rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcHeading level={1} text="Layout" weight="bold" />
       </DxcFlex>
     </PageHeading>
