@@ -1,15 +1,23 @@
-import { DxcHeading, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcHeading level={2} text="Introduction" />
+      <DxcFlex gap="var(--spacing-gap-l)" direction="column">
+        <DxcHeading level={1} text="Introduction" />
+        <DxcHeading level={2} text="Use case" />
+        <DxcHeading level={3} text="Default" />
+        <DxcHeading level={4} text="Best practices" />
+        <DxcHeading level={5} text="Example" />
+        <DxcHeading level={6} text="Code" />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcHeading,
+  DxcFlex,
   DxcInset,
 };
 

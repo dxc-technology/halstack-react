@@ -21,7 +21,7 @@ const code = `() => {
         <DxcDialog onCloseClick={handleClick}>
           <DxcInset space="1.5rem">
             <DxcGrid gap="2rem">
-              <DxcHeading level={2} text="Delivery address" weight="normal" />
+              <DxcHeading level={2} text="Delivery address" weight="regular" />
               <DxcGrid templateColumns={["1fr", "1fr"]} templateColumns={["1fr", "1fr"]} gap="var(--spacing-gap-ml)">
                 <DxcTextInput label="Street" size="fillParent" />
                 <DxcTextInput label="City" size="fillParent" />

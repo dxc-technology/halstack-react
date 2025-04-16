@@ -114,7 +114,7 @@ const Releases = ({ releases }: { releases: Release[] }) => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="2rem">
-        <DxcHeading level={1} text="Releases" weight="bold" />
+        <DxcHeading level={1} text="Releases" />
         <DxcParagraph>
           Access all the major releases of the Halstack React library and see the changelog of every version available.
         </DxcParagraph>

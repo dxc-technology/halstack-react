@@ -630,7 +630,7 @@ const Localization = () => {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Localization" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Localization"></DxcHeading>
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>

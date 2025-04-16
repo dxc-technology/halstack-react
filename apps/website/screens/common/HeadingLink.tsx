@@ -14,8 +14,8 @@ const linkIcon = (
 
 type HeadingLinkProps = {
   children: string;
-  level?: 1 | 2 | 3 | 4 | 5;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5";
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   navSubtitle?: string;
 };
 
@@ -32,7 +32,7 @@ const HeadingLink = ({ children, level, as, navSubtitle }: HeadingLinkProps) => 
           {linkIcon}
         </HeadingAnchor>
       </DxcBleed>
-      <DxcHeading weight="bold" text={children} level={level} as={as} />
+      <DxcHeading text={children} level={level} as={as} />
     </HeadingLinkContainer>
   );
 };
