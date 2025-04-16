@@ -29,7 +29,7 @@ const Heading = styled.h1<{
 export default function DxcHeading({ as, level = 1, margin, text, weight = "default" }: HeadingPropsType) {
   return (
     <HeadingContainer margin={margin}>
-      <Heading as={as} $level={level} $weight={weight}>
+      <Heading as={as ?? `h${level}`} $level={level} $weight={weight}>
         {text}
       </Heading>
     </HeadingContainer>
