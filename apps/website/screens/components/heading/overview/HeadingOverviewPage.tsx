@@ -15,9 +15,9 @@ const sections = [
     content: (
       <DxcParagraph>
         The heading component provides consistent typographic structure for titles and section headers within the UI. It
-        enforces semantic hierarchy through HTML tags (h1 through h6), supports visual distinction via styles and
-        weights, and plays a key role in SEO and accessibility. The component is flexible in use, allowing control over
-        styling and structure without breaking the logical order of information.
+        enforces semantic hierarchy through HTML tags (<Code>h1</Code> through <Code>h6</Code>), supports visual
+        distinction via styles and weights, and plays a key role in SEO and accessibility. The component is flexible in
+        use, allowing control over styling and structure without breaking the logical order of information.
       </DxcParagraph>
     ),
   },
