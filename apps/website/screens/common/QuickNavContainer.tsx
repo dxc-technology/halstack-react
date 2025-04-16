@@ -57,23 +57,27 @@ const QuickNavContainer = styled.div`
   }
 `;
 
-const DxcQuickNavContainer = ({ sections, startHeadingLevel = 1, title = "On this page" }: QuickNavContainerTypes) => (
-  <MainContainer>
-    <DxcGrid gap="var(--spacing-gap-xl)" templateColumns={["minmax(0, 1fr)"]}>
-      {sections.map((section) => (
-        <Section
-          key={`section-${section.title}`}
-          title={section.title}
-          level={startHeadingLevel}
-          subSections={section.subSections}
-          content={section.content}
-        />
-      ))}
-    </DxcGrid>
-    <QuickNavContainer>
-      <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
-    </QuickNavContainer>
-  </MainContainer>
-);
-
-export default DxcQuickNavContainer;
+export default function DxcQuickNavContainer({
+  sections,
+  startHeadingLevel = 1,
+  title = "On this page",
+}: QuickNavContainerTypes) {
+  return (
+    <MainContainer>
+      <DxcGrid gap="var(--spacing-gap-xxl)" templateColumns={["minmax(0, 1fr)"]}>
+        {sections.map((section) => (
+          <Section
+            key={`section-${section.title}`}
+            title={section.title}
+            level={startHeadingLevel}
+            subSections={section.subSections}
+            content={section.content}
+          />
+        ))}
+      </DxcGrid>
+      <QuickNavContainer>
+        <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
+      </QuickNavContainer>
+    </MainContainer>
+  );
+}
