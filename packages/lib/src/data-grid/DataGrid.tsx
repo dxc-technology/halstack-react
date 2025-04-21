@@ -24,8 +24,6 @@ import { DxcActionsCell } from "../table/Table";
 import HalstackContext from "../HalstackContext";
 import { scrollbarStyles } from "../styles/scroll";
 
-const root = document.documentElement;
-
 const DataGridContainer = styled.div<{
   paginatorRendered: boolean;
 }>`
@@ -177,6 +175,7 @@ const DxcDataGrid = ({
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(defaultPage);
+  const root = document.documentElement;
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
