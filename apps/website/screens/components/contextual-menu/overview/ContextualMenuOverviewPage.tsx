@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
-import anatomy from "./images/contextual-menu_anatomy.png";
+import anatomy from "./images/contextual_menu_anatomy.png";
 
 const sections = [
   {

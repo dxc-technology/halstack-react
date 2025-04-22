@@ -1,32 +1,35 @@
-import { useContext, useEffect, useId, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useEffect, useId, useState } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
-import HalstackContext from "../HalstackContext";
 import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";
+import { auxTextStyles, labelTextStyles, textColorStyles } from "./utils";
 
-const Overlay = styled.div<{
+const ProgressBarContainer = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
-  ${({ overlay, theme }) =>
-    overlay
-      ? `background-color: ${theme.overlayColor};
-      width: 100%;
-      justify-content: center;
-      height: 100vh;
-      align-items: center;
-      max-width: 100%;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 1300;`
-      : `background-color: transparent;`}
   display: flex;
   flex-wrap: wrap;
   min-width: 100px;
   width: 100%;
+  ${({ overlay }) =>
+    overlay &&
+    `
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      z-index: 1300;
+    `}
+`;
+
+const Overlay = styled.div`
+  background-color: var(--color-bg-alpha-medium);
+  height: 100%;
+  inset: 0;
+  position: fixed;
 `;
 
 const MainContainer = styled.div<{
@@ -45,19 +48,15 @@ const MainContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   z-index: ${(props) => (props.overlay ? "100" : "0")};
+  gap: var(--spacing-gap-s);
 `;
 
 const ProgressBarLabel = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  text-transform: ${(props) => props.theme.labelFontTextTransform};
-  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.labelFontColor)};
+  ${labelTextStyles};
+  ${(props) => textColorStyles(props.overlay)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -67,35 +66,29 @@ const ProgressBarLabel = styled.div<{
 const ProgressBarProgress = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
+  ${auxTextStyles};
+  ${(props) => textColorStyles(props.overlay)};
   flex-shrink: 0;
-  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.valueFontColor)};
-  font-family: ${(props) => props.theme.valueFontFamily};
-  font-style: ${(props) => props.theme.valueFontStyle};
-  font-size: ${(props) => props.theme.valueFontSize};
-  font-weight: ${(props) => props.theme.valueFontWeight};
-  text-transform: ${(props) => props.theme.valueFontTextTransform};
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: 1.5em;
+  ${(props) => textColorStyles(props.overlay)};
+  ${auxTextStyles};
 `;
 
 const LinearProgress = styled.div<{
   helperText: ProgressBarPropsType["helperText"];
+  overlay: ProgressBarPropsType["overlay"];
 }>`
   position: relative;
-  border-radius: ${(props) => props.theme.borderRadius};
-  height: ${(props) => props.theme.thickness};
-  background-color: ${(props) => props.theme.totalLineColor};
+  border-radius: var(--border-radius-m);
+  height: 8px;
+  background-color: ${(props) => (props.overlay ? "var(--color-bg-neutral-lighter)" : "var(--color-bg-neutral-light)")};
   overflow: hidden;
 `;
 
 const LinearProgressBar = styled.span<{
+  overlay: ProgressBarPropsType["overlay"];
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
 }>`
@@ -107,7 +100,7 @@ const LinearProgressBar = styled.span<{
   transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   transition: ${(props) => (props.variant === "determinate" ? "transform .4s linear" : "transform 0.2s linear")};
   transform-origin: left;
-  background-color: ${(props) => props.theme.trackLineColor};
+  background-color: ${(props) => (props.overlay ? "var(--color-fg-primary-medium)" : "var(--color-fg-primary-strong)")};
   ${(props) =>
     props.variant === "indeterminate"
       ? "animation: keyframes-indeterminate-first 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;"
@@ -153,7 +146,6 @@ const DxcProgressBar = ({
   margin,
   ariaLabel = "Progress bar",
 }: ProgressBarPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
   const labelId = `label-${useId()}`;
   const [innerValue, setInnerValue] = useState<number | undefined>();
 
@@ -162,34 +154,38 @@ const DxcProgressBar = ({
   }, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme.progressBar}>
-      <Overlay overlay={overlay}>
-        <MainContainer overlay={overlay} margin={margin}>
-          <DxcFlex justifyContent="space-between" gap="0.5rem">
-            {label && (
-              <ProgressBarLabel id={labelId} overlay={overlay}>
-                {label}
-              </ProgressBarLabel>
-            )}
-            {innerValue != null && showValue && (
-              <ProgressBarProgress overlay={overlay}>{innerValue} %</ProgressBarProgress>
-            )}
-          </DxcFlex>
-          <LinearProgress
-            role="progressbar"
-            helperText={helperText}
-            aria-label={label ? undefined : ariaLabel}
-            aria-labelledby={label ? labelId : undefined}
-            aria-valuenow={innerValue}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            <LinearProgressBar variant={innerValue == null ? "indeterminate" : "determinate"} value={innerValue} />
-          </LinearProgress>
-          {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
-        </MainContainer>
-      </Overlay>
-    </ThemeProvider>
+    <ProgressBarContainer overlay={overlay}>
+      {overlay && <Overlay />}
+      <MainContainer overlay={overlay} margin={margin}>
+        <DxcFlex justifyContent="space-between">
+          {label && (
+            <ProgressBarLabel id={labelId} overlay={overlay}>
+              {label}
+            </ProgressBarLabel>
+          )}
+          {innerValue != null && showValue && (
+            <ProgressBarProgress overlay={overlay}>{innerValue} %</ProgressBarProgress>
+          )}
+        </DxcFlex>
+        <LinearProgress
+          aria-label={label ? undefined : ariaLabel}
+          aria-labelledby={label ? labelId : undefined}
+          aria-valuenow={innerValue}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          helperText={helperText}
+          role="progressbar"
+          overlay={overlay}
+        >
+          <LinearProgressBar
+            overlay={overlay}
+            variant={innerValue == null ? "indeterminate" : "determinate"}
+            value={innerValue}
+          />
+        </LinearProgress>
+        {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
+      </MainContainer>
+    </ProgressBarContainer>
   );
 };
 

@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SwitchPageLayout from "screens/components/switch/SwitchPageLayout";
-import SwitchCodePage from "screens/components/switch/code/SwitchCodePage";
+import SwitchOverviewPage from "screens/components/switch/overview/SwitchOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Switch — Halstack Design System</title>
-      </Head>
-      <SwitchCodePage></SwitchCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Switch — Halstack Design System</title>
+    </Head>
+    <SwitchOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <SwitchPageLayout>{page}</SwitchPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <SwitchPageLayout>{page}</SwitchPageLayout>;
 
 export default Index;

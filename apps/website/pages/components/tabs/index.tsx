@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsCodePage from "screens/components/tabs/code/TabsCodePage";
+import TabsOverviewPage from "screens/components/tabs/overview/TabsOverviewPage";
 import TabsPageLayout from "screens/components/tabs/TabsPageLayout";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Tabs — Halstack Design System</title>
-      </Head>
-      <TabsCodePage></TabsCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Tabs — Halstack Design System</title>
+    </Head>
+    <TabsOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TabsPageLayout>{page}</TabsPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TabsPageLayout>{page}</TabsPageLayout>;
 
 export default Index;

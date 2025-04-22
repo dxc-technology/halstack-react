@@ -3,7 +3,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/switch/disabledRules";
-import { HalstackProvider } from "../HalstackContext";
 import DxcSwitch from "./Switch";
 
 export default {
@@ -21,13 +20,6 @@ export default {
   },
 } as Meta<typeof DxcSwitch>;
 
-const opinionatedTheme = {
-  switch: {
-    checkedBaseColor: "#5f249f",
-    fontColor: "#000000",
-  },
-};
-
 const Switch = () => (
   <>
     <ExampleContainer>
@@ -38,7 +30,7 @@ const Switch = () => (
       <Title title="Without label" theme="light" level={4} />
       <DxcSwitch />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus-visible">
+    <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcSwitch label="Switch" labelPosition="after" />
     </ExampleContainer>
@@ -97,15 +89,16 @@ const Switch = () => (
       <DxcSwitch label="Small" size="small" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium size (with large label)" theme="light" level={4} />
+      <Title title="Medium size (with long label)" theme="light" level={4} />
       <DxcSwitch label="Very very very large label or even huge" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium size (with long label)" theme="light" level={4} />
+      <Title title="Medium size (with long label + optional label)" theme="light" level={4} />
       <DxcSwitch
         label="Large texttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
         labelPosition="after"
         size="medium"
+        optional
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -119,31 +112,6 @@ const Switch = () => (
     <ExampleContainer>
       <Title title="FitContent size" theme="light" level={4} />
       <DxcSwitch label="FitContent" size="fitContent" />
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Checked" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSwitch label="Switch" defaultChecked />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSwitch label="Switch" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSwitch label="Switch" disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled checked" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSwitch label="Switch" disabled defaultChecked />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );

@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const GridPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/grid" },
-    { label: "Usage", path: "/components/grid/usage" },
-    { label: "Specifications", path: "/components/grid/specifications" },
+    { label: "Overview", path: "/components/grid" },
+    { label: "Code", path: "/components/grid/code" },
   ];
 
   return (
@@ -17,14 +16,11 @@ const GridPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Grid" />
           <DxcParagraph>
-            Grid allows users to build applications based on{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">
-              CSS Grid Layout
-            </DxcLink>
-            . It is a technical component that abstracts users from working directly with CSS Grid properties and allows
-            them to write more consistent and semantic layouts.
+            The grid component allows building applications based on the CSS grid layout module. It is a technical
+            component that abstracts users from working directly with grid properties and allows them to write more
+            consistent and semantic layouts.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

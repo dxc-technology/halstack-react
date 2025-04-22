@@ -816,8 +816,10 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
-    expect(getByRole("listbox")).toBeTruthy();
+    expect(getByText("Searching...")).toBeTruthy();
+    expect(getByText("Searching...").getAttribute("aria-live")).toBe("polite");
     await waitForElementToBeRemoved(() => getByText("Searching..."));
+    expect(getByRole("listbox")).toBeTruthy();
     expect(getByText("Afghanistan")).toBeTruthy();
     expect(getByText("Albania")).toBeTruthy();
     expect(getByText("Algeria")).toBeTruthy();
@@ -844,12 +846,12 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       return result;
     });
     const onChange = jest.fn();
-    const { getByRole, queryByText, queryByRole } = render(
+    const { getByRole, getByText, queryByText, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
-    expect(getByRole("listbox")).toBeTruthy();
+    expect(getByText("Searching...")).toBeTruthy();
     userEvent.type(input, "Ab");
     fireEvent.keyDown(input, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
     expect(queryByRole("listbox")).toBeFalsy();
@@ -874,16 +876,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
-    const list = getByRole("listbox");
-    expect(list).toBeTruthy();
+    expect(getByText("Searching...")).toBeTruthy();
     userEvent.type(input, "Ab");
     fireEvent.keyDown(input, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(queryByText("Searching...")).toBeFalsy();
     expect(input.value).toBe("");
     fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    expect(list).toBeTruthy();
     await waitForElementToBeRemoved(() => getByText("Searching..."));
+    expect(getByRole("listbox")).toBeTruthy();
     expect(getByText("Afghanistan")).toBeTruthy();
     expect(getByText("Albania")).toBeTruthy();
     expect(getByText("Algeria")).toBeTruthy();
