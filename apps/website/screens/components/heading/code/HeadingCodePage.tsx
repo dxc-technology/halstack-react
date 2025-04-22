@@ -78,7 +78,9 @@ const sections = [
                 <TableCode>'default' | 'regular' | 'light'</TableCode>
               </td>
               <td>Modifies the weight of the heading.</td>
-              <td>-</td>
+              <td>
+                <TableCode>'default'</TableCode>
+              </td>
             </tr>
           </tbody>
         </DxcTable>

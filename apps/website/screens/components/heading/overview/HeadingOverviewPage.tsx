@@ -88,34 +88,34 @@ const sections = [
           followed by <Code>h2-h6</Code> for content hierarchy and structure.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Organize subsections with appropriate heading levels:</strong> Use <Code>h3</Code>, <Code>h4</Code>,{" "}
+          <strong>Organize subsections with appropriate heading levels:</strong> use <Code>h3</Code>, <Code>h4</Code>,{" "}
           <Code>h5</Code>, <Code>h6</Code> to title content within larger sections for better scannability.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Apply headings to group content semantically in UI elements:</strong> Use headings inside, cards, or
+          <strong>Apply headings to group content semantically in UI elements:</strong> use headings inside, cards, or
           other containers to establish clear structure.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Support accessibility and SEO with semantic heading structure:</strong> Proper use of heading tags
+          <strong>Support accessibility and SEO with semantic heading structure:</strong> proper use of heading tags
           enhances screen reader navigation and search engine indexing.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Always use the Heading component for structural content:</strong> Don't manually style text to look
+          <strong>Always use the Heading component for structural content:</strong> don't manually style text to look
           like a heading—use the component to maintain consistency and semantics.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Maintain proper heading order:</strong> Avoid skipping levels (e.g., going from <Code>h1</Code> to{" "}
+          <strong>Maintain proper heading order:</strong> avoid skipping levels (e.g., going from <Code>h1</Code> to{" "}
           <Code>h4</Code>) unless there's a clear content structure that justifies it.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Avoid stacking headings without content:</strong> Every heading should introduce related content.
+          <strong>Avoid stacking headings without content:</strong> every heading should introduce related content.
           Don't chain multiple headings together without context
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>
             Use the <Code>level</Code> prop to set visual style, and <Code>as</Code> to control the semantic tag:
           </strong>{" "}
-          While we recommend following the defined levels and styles to maintain consistency, we understand that certain
+          while we recommend following the defined levels and styles to maintain consistency, we understand that certain
           interfaces may require customization. Use these props to adapt the component as needed—just ensure semantic
           meaning and structural clarity are preserved.
         </DxcBulletedList.Item>
