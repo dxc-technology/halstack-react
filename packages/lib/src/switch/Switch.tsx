@@ -1,104 +1,9 @@
-import { forwardRef, KeyboardEvent, useContext, useId, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { AdvancedTheme, spaces } from "../common/variables";
+import { forwardRef, KeyboardEvent, useContext, useState } from "react";
+import styled from "styled-components";
+import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import SwitchPropsType, { RefType } from "./types";
-
-const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
-  (
-    {
-      defaultChecked = false,
-      checked,
-      value,
-      label = "",
-      labelPosition = "before",
-      name = "",
-      disabled = false,
-      optional = false,
-      onChange,
-      margin,
-      size = "fitContent",
-      tabIndex = 0,
-      ariaLabel = "Switch",
-    },
-    ref
-  ): JSX.Element => {
-    const switchId = `switch-${useId()}`;
-    const labelId = `label-${switchId}`;
-    const [innerChecked, setInnerChecked] = useState(defaultChecked);
-
-    const colorsTheme = useContext(HalstackContext);
-    const translatedLabels = useContext(HalstackLanguageContext);
-    const refTrack = useRef<HTMLSpanElement | null>(null);
-
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      switch (event.key) {
-        case "Enter":
-        case " ":
-          event.preventDefault();
-          refTrack.current?.focus();
-          setInnerChecked(!(checked ?? innerChecked));
-          onChange?.(!(checked ?? innerChecked));
-          break;
-        default:
-          break;
-      }
-    };
-
-    const handlerSwitchChange = () => {
-      if (checked == null) {
-        setInnerChecked((currentInnerChecked) => !currentInnerChecked);
-      }
-      onChange?.(checked ? !checked : !innerChecked);
-    };
-
-    return (
-      <ThemeProvider theme={colorsTheme.switch}>
-        <SwitchContainer
-          margin={margin}
-          size={size}
-          onKeyDown={handleOnKeyDown}
-          disabled={disabled}
-          onClick={!disabled ? handlerSwitchChange : undefined}
-          ref={ref}
-        >
-          {labelPosition === "before" && label && (
-            <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
-            </LabelContainer>
-          )}
-          <ValueInput
-            type="checkbox"
-            name={name}
-            aria-hidden
-            value={value}
-            disabled={disabled}
-            checked={checked ?? innerChecked}
-            readOnly
-          />
-          <SwitchBase>
-            <SwitchTrack
-              role="switch"
-              aria-checked={checked ?? innerChecked}
-              aria-disabled={disabled}
-              disabled={disabled}
-              aria-labelledby={labelId}
-              aria-label={label ? undefined : ariaLabel}
-              tabIndex={!disabled ? tabIndex : -1}
-              ref={refTrack}
-            />
-          </SwitchBase>
-          {labelPosition === "after" && label && (
-            <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
-            </LabelContainer>
-          )}
-        </SwitchContainer>
-      </ThemeProvider>
-    );
-  }
-);
 
 const sizes = {
   small: "60px",
@@ -112,187 +17,176 @@ const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
-
-const getDisabledColor = (
-  theme: AdvancedTheme["switch"],
-  element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck"
-) => {
-  switch (element) {
-    case "track":
-      switch (subElement) {
-        case "check":
-          return theme.disabledCheckedTrackBackgroundColor;
-        case "uncheck":
-          return theme.disabledUncheckedTrackBackgroundColor;
-        default:
-          return undefined;
-      }
-    case "thumb":
-      switch (subElement) {
-        case "check":
-          return theme.disabledCheckedThumbBackgroundColor;
-        case "uncheck":
-          return theme.disabledUncheckedThumbBackgroundColor;
-        default:
-          return undefined;
-      }
-    case "label":
-      return theme.disabledLabelFontColor;
-    default:
-      return undefined;
-  }
-};
-
-const getNotDisabledColor = (
-  theme: AdvancedTheme["switch"],
-  element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck"
-) => {
-  switch (element) {
-    case "track":
-      switch (subElement) {
-        case "check":
-          return theme.checkedTrackBackgroundColor;
-        case "uncheck":
-          return theme.uncheckedTrackBackgroundColor;
-        default:
-          return undefined;
-      }
-      break;
-    case "thumb":
-      switch (subElement) {
-        case "check":
-          return theme.checkedThumbBackgroundColor;
-        case "uncheck":
-          return theme.uncheckedThumbBackgroundColor;
-        default:
-          return undefined;
-      }
-      break;
-    case "label":
-      return theme.labelFontColor;
-    default:
-      return undefined;
-  }
-};
+    
+const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]) =>
+  disabled
+    ? checked
+      ? "var(--color-bg-primary-lighter)"
+      : "var(--color-bg-neutral-light)"
+    : checked
+      ? "var(--color-bg-primary-strong)"
+      : "var(--color-bg-neutral-strong)";
 
 const SwitchContainer = styled.div<{
+  disabled: SwitchPropsType["disabled"];
+  labelPosition: SwitchPropsType["labelPosition"];
   margin: SwitchPropsType["margin"];
   size: SwitchPropsType["size"];
-  disabled: SwitchPropsType["disabled"];
 }>`
-  display: inline-flex;
-  align-items: center;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  height: 40px;
-  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
+  display: inline-grid;
+  grid-template-columns: ${({ labelPosition }) =>
+    labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px"};
+  place-items: center;
+  gap: var(--spacing-gap-m);
+  width: ${({ margin, size }) => calculateWidth(margin, size)};
+  height: var(--height-m);
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  &:focus {
+    outline: none;
+    /* Thumb focus */
+    &:not([aria-disabled="true"]) {
+      > span::before {
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline-offset: var(--spacing-padding-xxxs);
+      }
+    }
+  }
 `;
 
 const LabelContainer = styled.span<{
-  labelPosition: SwitchPropsType["labelPosition"];
   disabled: SwitchPropsType["disabled"];
-  label: SwitchPropsType["label"];
+  labelPosition: SwitchPropsType["labelPosition"];
 }>`
+  display: flex;
+  gap: var(--spacing-gap-xs);
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  max-width: 100%;
+  order: ${({ labelPosition }) => (labelPosition === "before" ? 0 : 1)};
+`;
+
+const Label = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${(props) =>
-    props.disabled ? getDisabledColor(props.theme, "label") : getNotDisabledColor(props.theme, "label")};
-  opacity: 1;
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-
-  ${(props) =>
-    !props.label
-      ? "margin: 0px;"
-      : props.labelPosition === "after"
-        ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
-        : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
-
-  ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
-const SwitchBase = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  margin: 0px 12px;
+const OptionalLabel = styled.span<{
+  disabled: SwitchPropsType["disabled"];
+}>`
+  ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
 `;
 
-const ValueInput = styled.input`
-  display: none;
-`;
-
-const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
-  border-radius: 15px;
-  width: ${(props) => props.theme.trackWidth};
-  height: ${(props) => props.theme.trackHeight};
+const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
   position: relative;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  width: 36px;
+  height: var(--height-xxxs);
+  border-radius: var(--border-radius-xl);
+  background-color: ${({ checked, disabled }) => getTrackColor(checked, disabled)};
+  transition: background-color 0.2s ease-in-out; /* Background color transition */
 
-  &:focus-visible {
-    outline: none;
-    ::before {
-      outline: ${(props) => `${props.theme.thumbFocusColor} solid 2px`};
-      outline-offset: 6px;
-    }
-  }
-
-  /* Thumb element */
+  /* Thumb */
   ::before {
     content: "";
-    transform: initial;
     position: absolute;
-    width: ${(props) => props.theme.thumbWidth};
-    height: ${(props) => props.theme.thumbHeight};
-    border-radius: 50%;
-    box-shadow:
-      0px 2px 1px -1px rgb(0 0 0 / 20%),
-      0px 1px 1px 0px rgb(0 0 0 / 14%),
-      0px 1px 3px 0px rgb(0 0 0 / 12%);
     bottom: -6px;
     left: -4px;
-    transform: translateX(0px);
-    background-color: ${(props) =>
-      props.disabled
-        ? getDisabledColor(props.theme, "thumb", "uncheck")
-        : getNotDisabledColor(props.theme, "thumb", "uncheck")};
-  }
-
-  /* Unchecked */
-  background-color: ${(props) =>
-    props.disabled
-      ? getDisabledColor(props.theme, "track", "uncheck")
-      : getNotDisabledColor(props.theme, "track", "uncheck")};
-
-  /* Checked */
-  &[aria-checked="true"] {
-    background-color: ${(props) =>
-      props.disabled
-        ? getDisabledColor(props.theme, "track", "check")
-        : getNotDisabledColor(props.theme, "track", "check")};
-    ::before {
-      transform: translateX(${(props) => props.theme.thumbShift});
-      background-color: ${(props) =>
-        props.disabled
-          ? getDisabledColor(props.theme, "thumb", "check")
-          : getNotDisabledColor(props.theme, "thumb", "check")};
-    }
+    width: 24px;
+    height: var(--height-s);
+    background-color: var(--color-fg-neutral-bright);
+    border-radius: 50%;
+    box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur)
+      var(--shadow-low-spread) var(--shadow-dark);
+    transform: ${({ checked }) => checked && "translateX(20px)"};
+    transition: transform 0.2s ease-in-out; /* Thumb transform transition */
   }
 `;
+
+const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
+  (
+    {
+      ariaLabel = "Switch",
+      checked,
+      defaultChecked = false,
+      disabled,
+      label,
+      labelPosition = "before",
+      margin,
+      name,
+      onChange,
+      optional,
+      size = "fitContent",
+      tabIndex = 0,
+      value,
+    },
+    ref
+  ) => {
+    const [innerChecked, setInnerChecked] = useState(defaultChecked);
+    const translatedLabels = useContext(HalstackLanguageContext);
+
+    const handleOnChange = () => {
+      if (checked == null) setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+      onChange?.(!(checked ?? innerChecked));
+    };
+
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+      switch (event.key) {
+        case "Enter":
+        case " ":
+          event.preventDefault();
+          setInnerChecked(!(checked ?? innerChecked));
+          onChange?.(!(checked ?? innerChecked));
+          break;
+        default:
+          break;
+      }
+    };
+
+    return (
+      <SwitchContainer
+        aria-checked={checked ?? innerChecked}
+        aria-disabled={disabled}
+        aria-label={label ? undefined : ariaLabel}
+        disabled={disabled}
+        labelPosition={labelPosition}
+        margin={margin}
+        onClick={!disabled ? handleOnChange : undefined}
+        onKeyDown={!disabled ? handleOnKeyDown : undefined}
+        ref={ref}
+        role="switch"
+        size={size}
+        tabIndex={disabled ? -1 : tabIndex}
+      >
+        {label && (
+          <LabelContainer disabled={disabled} labelPosition={labelPosition}>
+            <Label>{label}</Label>
+            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+          </LabelContainer>
+        )}
+        <Switch checked={checked ?? innerChecked} disabled={disabled} />
+        <input
+          aria-hidden
+          checked={checked ?? innerChecked}
+          disabled={disabled}
+          name={name}
+          readOnly
+          role="switch"
+          style={{ display: "none" }}
+          type="checkbox"
+          value={value}
+        />
+      </SwitchContainer>
+    );
+  }
+);
 
 export default DxcSwitch;

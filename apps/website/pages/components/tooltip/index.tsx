@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import TooltipPageLayout from "screens/components/tooltip/TooltipPageLayout";
-import TooltipCodePage from "screens/components/tooltip/code/TooltipCodePage";
+import TooltipOverviewPage from "screens/components/tooltip/overview/TooltipOverviewPage";
 
 const Index = () => {
   return (
@@ -9,13 +9,11 @@ const Index = () => {
       <Head>
         <title>Tooltip — Halstack Design System</title>
       </Head>
-      <TooltipCodePage></TooltipCodePage>
+      <TooltipOverviewPage />
     </>
   );
 };
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TooltipPageLayout>{page}</TooltipPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TooltipPageLayout>{page}</TooltipPageLayout>;
 
 export default Index;

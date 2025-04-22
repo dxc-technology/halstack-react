@@ -3,7 +3,6 @@ import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import HalstackContext from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
@@ -86,86 +85,72 @@ const optionWithIcon: Option[] = [
 
 const optionsIcon: any = options.map((op, i) => ({ ...op, icon: icons[i] }));
 
-const opinionatedTheme = {
-  dropdown: {
-    baseColor: "#fabada",
-    fontColor: "#fff",
-    optionFontColor: "#0095ff",
-  },
-};
-
 const Dropdown = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} />
+      <DxcDropdown label="Default" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} />
+      <DxcDropdown label="Hovered" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} />
+      <DxcDropdown label="Focused" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} />
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
+      <Title title="Active" theme="light" level={4} />
+      <DxcDropdown label="Active" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} disabled />
+      <DxcDropdown label="Disabled" options={options} onSelectOption={() => {}} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Caret hidden" theme="light" level={4} />
-      <DxcDropdown label="Caret hidden" options={options} onSelectOption={(value) => {}} caretHidden />
+      <DxcDropdown label="Caret hidden" options={options} onSelectOption={() => {}} caretHidden />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon before" theme="light" level={4} />
-      <DxcDropdown label="Icon before" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      <DxcDropdown label="Icon before" options={options} onSelectOption={() => {}} icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon after" theme="light" level={4} />
       <DxcDropdown
         label="Icon after"
         options={options}
-        onSelectOption={(value) => {}}
+        onSelectOption={() => {}}
         icon="shopping_cart"
         iconPosition="after"
       />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon" theme="light" level={4} />
-      <DxcDropdown options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      <DxcDropdown options={options} onSelectOption={() => {}} icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon without caret" theme="light" level={4} />
-      <DxcDropdown options={options} onSelectOption={(value) => {}} icon="menu" caretHidden />
+      <DxcDropdown options={options} onSelectOption={() => {}} icon="menu" caretHidden />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (SVG)" theme="light" level={4} />
-      <DxcDropdown label="Large icon" options={options} onSelectOption={(value) => {}} icon={iconSVGLarge} />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={() => {}} icon={iconSVGLarge} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (image)" theme="light" level={4} />
-      <DxcDropdown label="Large icon" options={options} onSelectOption={(value) => {}} icon="menu" />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={() => {}} icon="menu" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with icon" theme="light" level={4} />
-      <DxcDropdown
-        label="Disabled with icon"
-        options={options}
-        onSelectOption={(value) => {}}
-        icon={iconSVG}
-        disabled
-      />
+      <DxcDropdown label="Disabled with icon" options={options} onSelectOption={() => {}} icon={iconSVG} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Ellipsis" theme="light" level={4} />
       <DxcDropdown
         label="Very long text in dropdown button"
         options={options}
-        onSelectOption={(value) => {}}
+        onSelectOption={() => {}}
         icon={iconSVG}
         size="medium"
       />
@@ -173,68 +158,56 @@ const Dropdown = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
-      <DxcDropdown label="Xxsmall" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="xxsmall" />
+      <DxcDropdown label="Xxsmall" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
-      <DxcDropdown label="Xsmall" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="xsmall" />
+      <DxcDropdown label="Xsmall" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcDropdown label="Small" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="small" />
+      <DxcDropdown label="Small" options={options} onSelectOption={() => {}} icon={iconSVG} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcDropdown label="Medium" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="medium" />
+      <DxcDropdown label="Medium" options={options} onSelectOption={() => {}} icon={iconSVG} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcDropdown label="Large" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="large" />
+      <DxcDropdown label="Large" options={options} onSelectOption={() => {}} icon={iconSVG} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
-      <DxcDropdown label="Xlarge" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="xlarge" />
+      <DxcDropdown label="Xlarge" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge" theme="light" level={4} />
-      <DxcDropdown label="Xxlarge" options={options} onSelectOption={(value) => {}} icon={iconSVG} margin="xxlarge" />
+      <DxcDropdown label="Xxlarge" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xxlarge" />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcDropdown label="Small" options={options} onSelectOption={(value) => {}} icon={iconSVG} size="small" />
+      <DxcDropdown label="Small" options={options} onSelectOption={() => {}} icon={iconSVG} size="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcDropdown label="Medium" options={options} onSelectOption={(value) => {}} icon={iconSVG} size="medium" />
+      <DxcDropdown label="Medium" options={options} onSelectOption={() => {}} icon={iconSVG} size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcDropdown label="Large" options={options} onSelectOption={(value) => {}} icon={iconSVG} size="large" />
+      <DxcDropdown label="Large" options={options} onSelectOption={() => {}} icon={iconSVG} size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FitContent" theme="light" level={4} />
-      <DxcDropdown
-        label="FitContent"
-        options={options}
-        onSelectOption={(value) => {}}
-        icon={iconSVG}
-        size="fitContent"
-      />
+      <DxcDropdown label="FitContent" options={options} onSelectOption={() => {}} icon={iconSVG} size="fitContent" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FillParent" theme="light" level={4} />
-      <DxcDropdown
-        label="FillParent"
-        options={options}
-        onSelectOption={(value) => {}}
-        icon={iconSVG}
-        size="fillParent"
-      />
+      <DxcDropdown label="FillParent" options={options} onSelectOption={() => {}} icon={iconSVG} size="fillParent" />
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Opened menu" theme="light" level={4} />
-      <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} margin={{ top: "xxlarge" }} />
+      <DxcDropdown label="Label" options={options} onSelectOption={() => {}} margin={{ top: "xxlarge" }} />
     </ExampleContainer>
   </>
 );
@@ -285,8 +258,8 @@ const DropdownListStates = () => {
             dropdownTriggerId="dtx1"
             iconsPosition="before"
             visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
+            menuItemOnClick={() => {}}
+            onKeyDown={() => {}}
             options={optionWithIcon}
             styles={{ width: 240 }}
           />
@@ -298,8 +271,8 @@ const DropdownListStates = () => {
             dropdownTriggerId="dtx2"
             iconsPosition="before"
             visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
+            menuItemOnClick={() => {}}
+            onKeyDown={() => {}}
             options={optionWithIcon}
             styles={{ width: 240 }}
           />
@@ -311,8 +284,8 @@ const DropdownListStates = () => {
             dropdownTriggerId="dtx3"
             iconsPosition="before"
             visualFocusIndex={0}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
+            menuItemOnClick={() => {}}
+            onKeyDown={() => {}}
             options={options}
             styles={{ width: 240 }}
           />
@@ -325,8 +298,8 @@ const DropdownListStates = () => {
             dropdownTriggerId="dtx4"
             iconsPosition="before"
             visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
+            menuItemOnClick={() => {}}
+            onKeyDown={() => {}}
             options={optionsIcon}
             styles={{ width: 240 }}
           />
@@ -336,8 +309,8 @@ const DropdownListStates = () => {
             dropdownTriggerId="dtx5"
             iconsPosition="after"
             visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
+            menuItemOnClick={() => {}}
+            onKeyDown={() => {}}
             options={optionsIcon}
             styles={{ width: 240 }}
           />
@@ -347,55 +320,13 @@ const DropdownListStates = () => {
   );
 };
 
-const OpinionatedTheme = () => (
-  <>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Active" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer expanded>
-      <Title title="List opened" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-  </>
-);
-
 const TooltipTitle = () => (
   <ExampleContainer expanded>
     <Title title="Tooltip" theme="light" level={3} />
     <DxcDropdown
       title="Show options"
       options={options}
-      onSelectOption={(value) => {}}
+      onSelectOption={() => {}}
       icon="menu"
       caretHidden
       margin="large"
@@ -407,16 +338,6 @@ type Story = StoryObj<typeof DxcDropdown>;
 
 export const Chromatic: Story = {
   render: Dropdown,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttonList = canvas.getAllByRole("button");
-    const lastButton = buttonList[buttonList.length - 1];
-    lastButton != null && (await userEvent.click(lastButton));
-  },
-};
-
-export const OpinionatedThemed: Story = {
-  render: OpinionatedTheme,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const buttonList = canvas.getAllByRole("button");

@@ -8,22 +8,22 @@ describe("Container component tests", () => {
         boxSizing="border-box"
         width="200px"
         height="200px"
-        background={{ color: "color_purple_400" }}
+        background={{ color: "var(--color-bg-primary-medium)" }}
         border={{
           top: {
-            width: "2px",
-            color: "color_blue_600",
-            style: "solid",
+            width: "var(--border-width-m)",
+            color: "var(--border-color-secondary-strong)",
+            style: "var(--border-style-default)",
           },
           bottom: {
-            width: "thick",
-            color: "color_purple_600",
-            style: "solid",
+            width: "var(--border-width-l)",
+            color: "var(--border-color-primary-strong)",
+            style: "var(--border-style-default)",
           },
         }}
-        borderRadius="0 0 0.25rem 0.25rem"
-        padding="medium"
-        margin="large"
+        borderRadius="var(--border-radius-none) var(--border-radius-none) var(--border-radius-s) var(--border-radius-s)"
+        padding="var(--spacing-padding-m)"
+        margin="var(--spacing-padding-l)"
       >
         <b>Example text</b>
       </DxcContainer>

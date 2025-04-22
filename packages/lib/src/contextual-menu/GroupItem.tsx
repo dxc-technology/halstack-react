@@ -1,19 +1,13 @@
 import { useContext, useMemo, useState, memo, useId } from "react";
 import DxcIcon from "../icon/Icon";
-import { SubMenu } from "./ContextualMenu";
+import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
-import { GroupItemProps, ItemWithId } from "./types";
+import { GroupItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
+import { isGroupSelected } from "./utils";
 
-const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number): boolean =>
-  items.some((item) => {
-    if ("items" in item) return isGroupSelected(item.items, selectedItemId);
-    else if (selectedItemId !== -1) return item.id === selectedItemId;
-    else return (item as ItemWithId).selectedByDefault;
-  });
-
-const GroupItem = ({ items, ...props }: GroupItemProps) => {
+export default function GroupItem({ items, ...props }: GroupItemProps) {
   const groupMenuId = `group-menu-${useId()}`;
   const { selectedItemId } = useContext(ContextualMenuContext) ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
@@ -42,5 +36,3 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
     </>
   );
 };
-
-export default memo(GroupItem);

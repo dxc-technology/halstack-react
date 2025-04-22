@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/accordion" },
-    { label: "Usage", path: "/components/accordion/usage" },
-    { label: "Specifications", path: "/components/accordion/specifications" },
+    { label: "Overview", path: "/components/accordion" },
+    { label: "Code", path: "/components/accordion/code" },
   ];
 
   return (
@@ -22,7 +21,7 @@ const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
             enhances the user experience by organizing information into smaller, digestible chunks, helping reduce
             cognitive load and save screen space.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

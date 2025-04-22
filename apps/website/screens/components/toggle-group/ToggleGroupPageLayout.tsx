@@ -6,26 +6,21 @@ import { ReactNode } from "react";
 
 const ToggleGroupPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/toggle-group" },
-    { label: "Usage", path: "/components/toggle-group/usage" },
-    {
-      label: "Specifications",
-      path: "/components/toggle-group/specifications",
-    },
+    { label: "Overview", path: "/components/toggle-group" },
+    { label: "Code", path: "/components/toggle-group/code" },
   ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Toggle Group" />
+          <ComponentHeading name="Toggle group" />
           <DxcParagraph>
-            Toggle buttons can be used to put together related options that share a common attribute modification. It
-            allows the user to switch from one selected option to another in the same control, having one option
-            selected at a time. Also, there can be another variation that allows selecting multiple options from the
-            current toggle group.
+            The toggle group component is a set of toggle buttons that function as a unified control, allowing users to
+            make either single or multiple selections. It is ideal for grouping related actions or options within a
+            compact and interactive interface.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

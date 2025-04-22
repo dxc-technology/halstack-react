@@ -54,6 +54,7 @@ export type HierarchyGridRow = GridRow & {
 export type ExpandableGridRow = GridRow & {
   expandedContent?: ReactNode;
   expandedContentHeight?: number;
+  contentIsExpanded?: boolean;
 };
 
 export type ExpandableRows = {
@@ -136,6 +137,10 @@ type PaginatedProps = {
    * Function called whenever the current page is changed.
    */
   onPageChange?: (_page: number) => void;
+  /**
+   * Default page in which the datagrid is rendered
+   */
+  defaultPage?: number;
 };
 
 type NonPaginatedProps = {
@@ -168,6 +173,10 @@ type NonPaginatedProps = {
    * Function called whenever the current page is changed.
    */
   onPageChange?: never;
+  /**
+   * Default page in which the datagrid is rendered
+   */
+  defaultPage?: never;
 };
 
 export type CommonProps = {

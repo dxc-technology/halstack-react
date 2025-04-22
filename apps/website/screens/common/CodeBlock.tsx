@@ -51,7 +51,7 @@ export default function CodeBlock({ children }: { children: ReactNode; language?
       <PreformattedText onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <Code>{children}</Code>
         {copyActionIsVisible && (
-          <DxcContainer position="absolute" inset={{ top: "0", right: "0" }} padding="xsmall">
+          <DxcContainer position="absolute" inset={{ top: "0", right: "0" }} padding="var(--spacing-padding-xs)">
             <HalstackProvider advancedTheme={buttonTokens}>
               <DxcButton
                 icon={copied ? "check" : "content_copy"}

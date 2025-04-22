@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcCheckbox from "./Checkbox";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -9,14 +8,6 @@ export default {
   title: "Checkbox",
   component: DxcCheckbox,
 } as Meta<typeof DxcCheckbox>;
-
-const opinionatedTheme = {
-  checkbox: {
-    baseColor: "#0067b3",
-    checkColor: "#ffffff",
-    fontColor: "#000000",
-  },
-};
 
 const ScrollableContainer = styled.div`
   display: flex;
@@ -39,6 +30,7 @@ const SmallContainer = styled.div`
 
 const Checkbox = () => (
   <>
+    <Title title="Enabled" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" />
@@ -46,30 +38,6 @@ const Checkbox = () => (
     <ExampleContainer>
       <Title title="Checked" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" defaultChecked />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" disabled />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled, checked and optional" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Read-only" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" readOnly />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered read-only" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" readOnly />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Read-only, checked and optional" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" readOnly defaultChecked optional />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered read-only and checked" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" readOnly defaultChecked optional />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
@@ -83,9 +51,59 @@ const Checkbox = () => (
       <Title title="Hovered and checked" theme="light" level={4} />
       <DxcCheckbox label="Hovered" defaultChecked />
     </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-focus", "pseudo-active"]}>
+      <Title title="Active" theme="light" level={4} />
+      <DxcCheckbox label="Active" />
+    </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-focus", "pseudo-active"]}>
+      <Title title="Active and checked" theme="light" level={4} />
+      <DxcCheckbox label="Active" defaultChecked />
+    </ExampleContainer>
     <ExampleContainer>
       <Title title="Optional" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" optional />
+    </ExampleContainer>
+    <Title title="Disabled" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" disabled />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled, checked and optional" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
+    </ExampleContainer>
+    <Title title="Read only" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Read-only" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Read-only and optional" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly optional />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Read-only and focused" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly optional />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Read-only and checked" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly defaultChecked />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered and read-only" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly />
+    </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
+      <Title title="Active and read-only" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered, read-only and checked" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly defaultChecked />
+    </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
+      <Title title="Active, read-only and checked" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly defaultChecked />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Label after" theme="light" level={4} />
@@ -167,49 +185,6 @@ const Checkbox = () => (
         <DxcCheckbox label="Very long label to check its overflowing" defaultChecked />
         <DxcCheckbox label="Very long label to check its overflowing" labelPosition="after" />
       </SmallContainer>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Checkbox" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Checked" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Checkbox" defaultChecked />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Checkbox" disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled checked" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Checkbox" defaultChecked disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Focused" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Hovered" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered and checked" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcCheckbox label="Hovered" defaultChecked />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
