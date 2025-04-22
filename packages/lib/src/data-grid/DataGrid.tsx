@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
 import {
@@ -173,7 +173,6 @@ const DxcDataGrid = ({
   defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
-  const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
 
@@ -269,7 +268,7 @@ const DxcDataGrid = ({
           },
           renderHeaderCell: () => (
             <ActionContainer id="small_action">
-              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
+              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
             </ActionContainer>
           ),
         },
@@ -395,41 +394,39 @@ const DxcDataGrid = ({
   }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
-        <DataGrid
-          columns={reorderedColumns}
-          rows={filteredRows}
-          onColumnsReorder={onColumnsReorder}
-          onRowsChange={onRowsChange}
-          renderers={{ renderSortStatus }}
-          sortColumns={sortColumns}
-          onSortColumnsChange={handleSortChange}
-          rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
-          rowHeight={(row) =>
-            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
-              ? row.expandedContentHeight
-              : (colHeight ?? 0)
-          }
-          selectedRows={selectedRows}
-          bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
-          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
-          className="fill-grid"
+    <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
+      <DataGrid
+        columns={reorderedColumns}
+        rows={filteredRows}
+        onColumnsReorder={onColumnsReorder}
+        onRowsChange={onRowsChange}
+        renderers={{ renderSortStatus }}
+        sortColumns={sortColumns}
+        onSortColumnsChange={handleSortChange}
+        rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
+        rowHeight={(row) =>
+          row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
+            ? row.expandedContentHeight
+            : (colHeight ?? 0)
+        }
+        selectedRows={selectedRows}
+        bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
+        headerRowHeight={colHeight}
+        summaryRowHeight={colHeight}
+        className="fill-grid"
+      />
+      {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
+        <DxcPaginator
+          totalItems={totalItems ?? rows.length}
+          itemsPerPage={itemsPerPage}
+          itemsPerPageOptions={itemsPerPageOptions}
+          itemsPerPageFunction={itemsPerPageFunction}
+          currentPage={page}
+          showGoToPage={showGoToPage}
+          onPageChange={goToPage}
         />
-        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
-          <DxcPaginator
-            totalItems={totalItems ?? rows.length}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageOptions={itemsPerPageOptions}
-            itemsPerPageFunction={itemsPerPageFunction}
-            currentPage={page}
-            showGoToPage={showGoToPage}
-            onPageChange={goToPage}
-          />
-        )}
-      </DataGridContainer>
-    </ThemeProvider>
+      )}
+    </DataGridContainer>
   );
 };
 
