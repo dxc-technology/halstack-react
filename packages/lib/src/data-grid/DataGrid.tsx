@@ -175,7 +175,7 @@ const DxcDataGrid = ({
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(defaultPage);
-  const root = document.documentElement;
+  const [colHeight, setColHeight] = useState(36);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
@@ -281,6 +281,11 @@ const DxcDataGrid = ({
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
+
+  useEffect(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    if (rootStyles) setColHeight(parseFloat(rootStyles.getPropertyValue("--height-l")));
+  }, []);
 
   useEffect(() => {
     setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
@@ -404,7 +409,7 @@ const DxcDataGrid = ({
           rowHeight={(row) =>
             row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
               ? row.expandedContentHeight
-              : (parseFloat(getComputedStyle(root).getPropertyValue("--height-l")) ?? 0)
+              : (colHeight ?? 0)
           }
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
