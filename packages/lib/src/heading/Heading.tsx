@@ -4,15 +4,12 @@ import HeadingPropsType from "./types";
 import { getHeadingSize, getHeadingWeight } from "./utils";
 
 const HeadingContainer = styled.div<{ margin: HeadingPropsType["margin"] }>`
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 `;
 
 const Heading = styled.h1<{
