@@ -16,7 +16,7 @@ const sections = [
           Text areas are essential UI components that allow users to enter and interact with{" "}
           <strong>multi-line text-based information</strong>. They are commonly used in forms to collect feedback,
           comments, descriptions, and longer messages where a single-line input is not sufficient. Text areas support a
-          wide range of use cases—from support forms and user profiles to product reviews and detailed reports.
+          wide range of use cases, from support forms and user profiles to product reviews and detailed reports.
         </DxcParagraph>
         <DxcParagraph>
           Providing clear labels, helpful guidance, and proper formatting improves the user's ability to input
@@ -75,7 +75,7 @@ const sections = [
         <DxcParagraph>
           A form input (also known as a form field) is used to capture user data. Common input types include text
           fields, date pickers, number fields, radio buttons, checkboxes, toggles, and dropdowns. Forms should always
-          include a submission method —such as a submit button, link, or keyboard trigger— to complete the interaction.
+          include a submission method, such as a submit button, link, or keyboard trigger, to complete the interaction.
         </DxcParagraph>
       </>
     ),
@@ -97,8 +97,8 @@ const sections = [
                 character limit that defines how much text can be entered.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input
-                —like currency symbols or units— to help clarify the expected data.
+                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input,
+                like currency symbols or units, to help clarify the expected data.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Helper text:</strong> additional information displayed below the field to guide the user in
@@ -146,7 +146,7 @@ const sections = [
           <Link href="/components/text-input" passHref legacyBehavior>
             <DxcLink>text inputs</DxcLink>
           </Link>{" "}
-          are ideal for short, single-line entries—such as names, email addresses, or search queries—text areas are
+          are ideal for short, single-line entries such as names, email addresses, or search queries, text areas are
           specifically designed to handle <strong>multi-line, freeform text</strong>. They offer users more space and
           flexibility, making them the right choice for collecting messages, feedback, descriptions, or any content that
           may extend beyond a sentence or two.
@@ -179,7 +179,7 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Allow resizing only when beneficial:</strong> enable textarea resizing if the user may benefit from
-          adjusting the visible input area—especially for writing long or detailed content.
+          adjusting the visible input area, especially for writing long or detailed content.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Avoid auto-expanding fields excessively:</strong> dynamic resizing can enhance usability, but ensure
