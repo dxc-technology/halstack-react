@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -7,14 +7,10 @@ const sections = [
   {
     title: "Introduction",
     content: (
-      <DxcBulletedList>
-        <DxcBulletedList.Item>Use the table component to compare information in rows and columns.</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Every table cell requires a logical column header/row header.</DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          Don't use the table to create visual layout of the content of a page.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Avoid truncating content, wrap instead.</DxcBulletedList.Item>
-      </DxcBulletedList>
+      <DxcParagraph>
+        The Table component is a powerful and flexible tool for displaying tabular data in a structured format. It
+        allows users to present information in rows and columns, making it easy to read and analyze large datasets.
+      </DxcParagraph>
     ),
   },
 ];
