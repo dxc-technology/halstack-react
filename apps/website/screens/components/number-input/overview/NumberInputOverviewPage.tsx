@@ -50,7 +50,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Spin buttons increase/decrease</strong> <em>(Optional)</em>: small interactive controls, displayed
-            as plus (+) and minus (—) icons, that allow users to increment or decrement the numeric value using mouse
+            as plus (+) and minus (-) icons, that allow users to increment or decrement the numeric value using mouse
             clicks or keyboard input. These buttons improve usability by offering an alternative to manual typing, help
             prevent entry errors, and support accessibility for users who may prefer step-based adjustments.
           </DxcBulletedList.Item>
@@ -220,7 +220,7 @@ const sections = [
               might be unclear, add helper text to avoid confusion and input errors.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Indicate when the field is optional:</strong> use an “Optional” label when applicable to reduce
+              <strong>Indicate when the field is optional:</strong> use an "Optional" label when applicable to reduce
               user hesitation or over-input.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
