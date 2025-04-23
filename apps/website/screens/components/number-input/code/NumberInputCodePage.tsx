@@ -230,10 +230,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>
-              Decides whether the number input has actions to increase or decrease the value, following the defined
-              step.
-            </td>
+            <td>Decides whether the number input displays or not the spin buttons to adjust the value.</td>
             <td>
               <TableCode>true</TableCode>
             </td>
@@ -253,7 +250,7 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>The step interval to use when using the up and down arrows to adjust the value.</td>
+            <td>The step interval to use when using the spin buttons to adjust the value.</td>
             <td>
               <TableCode>1</TableCode>
             </td>

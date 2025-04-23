@@ -28,7 +28,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Text input's anatomy" />
+        <Image src={anatomy} alt="Text input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
