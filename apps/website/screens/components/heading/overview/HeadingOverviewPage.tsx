@@ -101,7 +101,7 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Always use the Heading component for structural content:</strong> don't manually style text to look
-          like a heading—use the component to maintain consistency and semantics.
+          like a heading. Use the component to maintain consistency and semantics.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Maintain proper heading order:</strong> avoid skipping levels (e.g., going from <Code>h1</Code> to{" "}
@@ -116,7 +116,7 @@ const sections = [
             Use the <Code>level</Code> prop to set visual style, and <Code>as</Code> to control the semantic tag:
           </strong>{" "}
           while we recommend following the defined levels and styles to maintain consistency, we understand that certain
-          interfaces may require customization. Use these props to adapt the component as needed—just ensure semantic
+          interfaces may require customization. Use these props to adapt the component as needed and ensure semantic
           meaning and structural clarity are preserved.
         </DxcBulletedList.Item>
       </DxcBulletedList>
