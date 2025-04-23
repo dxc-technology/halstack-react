@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 
 export const inputStylesByState = (disabled: boolean, error: boolean, readOnly: boolean) => css`
+  background-color: ${disabled ? `var(--color-bg-neutral-lighter)` : `transparent`};
   border-radius: var(--border-radius-s);
   border: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"} var(--border-style-default)
     ${(() => {

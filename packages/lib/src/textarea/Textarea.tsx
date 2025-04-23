@@ -5,7 +5,10 @@ import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
-import DxcIcon from "../icon/Icon";
+import ErrorMessage from "../styles/forms/ErrorMessage";
+import Label from "../styles/forms/Label";
+import HelperText from "../styles/forms/HelperText";
+import { inputStylesByState } from "../styles/forms/inputStylesByState";
 
 const sizes = {
   small: "240px",
@@ -34,33 +37,10 @@ const TextareaContainer = styled.div<{
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 `;
 
-const Label = styled.label<{
-  disabled: TextareaPropsType["disabled"];
-  helperText: TextareaPropsType["helperText"];
-}>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-  ${({ helperText }) => !helperText && "margin-bottom: var(--spacing-gap-xs);"}
-
-  /* Optional text */
-  > span {
-    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-    font-weight: var(--typography-label-regular);
-  }
-`;
-
-const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"] }>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-  margin-bottom: var(--spacing-gap-xs);
-`;
-
 const Textarea = styled.textarea<{
-  error: TextareaPropsType["error"];
+  disabled: Required<TextareaPropsType>["disabled"];
+  error: boolean;
+  readOnly: Required<TextareaPropsType>["readOnly"];
   verticalGrow: TextareaPropsType["verticalGrow"];
 }>`
   ${({ verticalGrow }) => {
@@ -69,58 +49,16 @@ const Textarea = styled.textarea<{
     else if (verticalGrow === "manual") return "resize: vertical;";
     else return `resize: none;`;
   }};
-  ${scrollbarStyles}
   padding: var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xxxs) var(--spacing-padding-xs);
-  background-color: ${({ disabled }) => (disabled ? `var(--color-bg-neutral-lighter)` : `transparent`)};
-  border-radius: var(--border-radius-s);
-  border: ${({ disabled, error }) => (!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)")}
-    var(--border-style-default)
-    ${(props) => {
-      if (props.disabled) return "var(--border-color-neutral-strong)";
-      else if (props.error) return "var(--border-color-error-medium)";
-      else if (props.readOnly) return "var(--border-color-neutral-strong)";
-      else return "var(--border-color-neutral-dark)";
-    }};
-
-  ${(props) =>
-    !props.disabled
-      ? `&:hover {
-        border-color: ${
-          props.error
-            ? "var(--border-color-error-strong)"
-            : props.readOnly
-              ? "var(--border-color-neutral-stronger)"
-              : "var(--border-color-primary-strong)"
-        };
-      }
-      &:focus, &:focus-within {
-        border-color: transparent;
-        outline-offset: -2px;
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      }`
-      : "cursor: not-allowed;"};
-
+  ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
+  line-height: 1.36;
+  ${scrollbarStyles}
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
-  }
-`;
-
-const ErrorMessage = styled.span`
-  display: flex;
-  align-items: center;
-  color: var(--color-fg-error-medium);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-  margin-top: var(--spacing-gap-xs);
-
-  /* Error icon */
-  > span[role="img"] {
-    font-size: var(--height-xxs);
   }
 `;
 
@@ -223,39 +161,38 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     return (
       <TextareaContainer margin={margin} size={size} ref={ref}>
         {label && (
-          <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
+          <Label disabled={disabled} hasMargin={!helperText} htmlFor={textareaId}>
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-        <Textarea
-          id={textareaId}
-          name={name}
-          value={value ?? innerValue}
-          placeholder={placeholder}
-          verticalGrow={verticalGrow}
-          rows={rows}
-          onChange={handleOnChange}
-          onBlur={handleOnBlur}
-          disabled={disabled}
-          readOnly={readOnly}
-          error={error}
-          minLength={minLength}
-          maxLength={maxLength}
-          autoComplete={autocomplete}
-          ref={textareaRef}
-          tabIndex={tabIndex}
-          aria-invalid={!!error}
-          aria-errormessage={error ? errorId : undefined}
-          aria-required={!disabled && !optional}
-          aria-label={label ? undefined : ariaLabel}
-        />
-        {!disabled && typeof error === "string" && (
-          <ErrorMessage id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
-            {error && <DxcIcon icon="filled_error" />}
-            {error}
-          </ErrorMessage>
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
         )}
+        <Textarea
+          aria-errormessage={error ? errorId : undefined}
+          aria-invalid={!!error}
+          aria-label={label ? undefined : ariaLabel}
+          aria-required={!disabled && !optional}
+          autoComplete={autocomplete}
+          disabled={disabled}
+          error={!!error}
+          id={textareaId}
+          maxLength={maxLength}
+          minLength={minLength}
+          name={name}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          ref={textareaRef}
+          rows={rows}
+          tabIndex={tabIndex}
+          value={value ?? innerValue}
+          verticalGrow={verticalGrow}
+        />
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
       </TextareaContainer>
     );
   }
