@@ -1,10 +1,11 @@
-import { memo, useContext, useId } from "react";
+import { memo, MouseEvent, useContext, useId, useState } from "react";
 import styled from "styled-components";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { HalstackLanguageContext } from "../HalstackContext";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const ListItem = styled.li`
   list-style: none;
@@ -115,7 +116,13 @@ const FileItem = ({
   tabIndex,
 }: FileItemProps): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
+  const [hasTooltip, setHasTooltip] = useState(false);
   const fileNameId = useId();
+
+  const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
+  };
 
   return (
     <ListItem>
@@ -141,12 +148,14 @@ const FileItem = ({
         </FileItemContent>
       </MainContainer>
       {error && (
-        <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode}>
-          <ErrorIcon>
-            <DxcIcon icon="filled_error" />
-          </ErrorIcon>
-          <ErrorMessage>{error}</ErrorMessage>
-        </ErrorMessageContainer>
+        <TooltipWrapper condition={hasTooltip} label={error}>
+          <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode}>
+            <ErrorIcon>
+              <DxcIcon icon="filled_error" />
+            </ErrorIcon>
+            <ErrorMessage onMouseEnter={handleOnMouseEnter}>{error}</ErrorMessage>
+          </ErrorMessageContainer>
+        </TooltipWrapper>
       )}
     </ListItem>
   );

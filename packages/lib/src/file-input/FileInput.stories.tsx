@@ -3,6 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFileInput from "./FileInput";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "File Input",
@@ -597,4 +598,9 @@ type Story = StoryObj<typeof DxcFileInput>;
 
 export const Chromatic: Story = {
   render: FileInput,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const longError = canvas.getAllByText("This error message is a multiline paragraph")[0];
+    longError && (await userEvent.hover(longError));
+  },
 };
