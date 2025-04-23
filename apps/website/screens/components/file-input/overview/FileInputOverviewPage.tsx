@@ -63,9 +63,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>File input button:</strong> instructional or informative text inside the drop area (e.g., “Select
-            files or drop files here”) that helps orient users and encourage interaction.instructional or informative
-            text inside the drop area (e.g., “Select files or drop files here”) that helps orient users and encourage
-            interaction.
+            files or drop files here”) that helps orient users and encourage interaction.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>File item container:</strong> displays the name of the file(s) selected or dropped.
