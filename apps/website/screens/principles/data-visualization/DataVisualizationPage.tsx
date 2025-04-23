@@ -331,7 +331,7 @@ const DataVisualizationPage = () => {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Data visualization" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Data visualization"></DxcHeading>
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
