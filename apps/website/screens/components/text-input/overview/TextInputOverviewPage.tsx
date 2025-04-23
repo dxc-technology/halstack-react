@@ -31,8 +31,9 @@ const sections = [
         <Image src={anatomy} alt="Text input's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Label:</strong> a descriptive text that helps users understand what information is expected in the
-            input field. It should be clear, concise, and placed near the input for better readability.
+            <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
+            is expected in the input field. It should be clear, concise, and placed near the input for better
+            readability.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Optional indicator</strong> <em>(Optional)</em>: a small indicator that signals the input field is
@@ -81,7 +82,7 @@ const sections = [
         <DxcParagraph>
           A form input (also known as a form field) is used to capture user data. Common input types include text
           fields, date pickers, number fields, radio buttons, checkboxes, toggles, and dropdowns. Forms should always
-          include a submission method —such as a submit button, link, or keyboard trigger— to complete the interaction.
+          include a submission method, such as a submit button, link, or keyboard trigger, to complete the interaction.
         </DxcParagraph>
       </>
     ),
@@ -103,8 +104,8 @@ const sections = [
                 character limit that defines how much text can be entered.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input
-                —like currency symbols or units— to help clarify the expected data.
+                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input,
+                like currency symbols or units, to help clarify the expected data.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Helper text:</strong> additional information displayed below the field to guide the user in
@@ -193,9 +194,9 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Halstack inputs also support the use of prefixes and suffixes—visual elements that help users quickly{" "}
-              <strong>understand the type of data expected in the field</strong>. These cues provide additional context
-              and improve clarity during data entry.
+              Halstack inputs also support the use of prefixes and suffixes, which are visual elements that help users
+              quickly <strong>understand the type of data expected in the field</strong>. These cues provide additional
+              context and improve clarity during data entry.
             </DxcParagraph>
             <Example example={prefixSuffix} />
           </>
@@ -214,7 +215,7 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               This feature is particularly useful for reducing input errors, speeding up data entry, and guiding users
-              toward valid or commonly used values—especially in cases where the list of possibilities is large but
+              toward valid or commonly used values, especially in cases where the list of possibilities is large but
               predictable, such as country names, email domains, or product codes. It enhances usability by minimizing
               typing effort and improving overall form completion accuracy.
             </DxcParagraph>
@@ -289,7 +290,7 @@ const sections = [
               editable to avoid confusion with the actual value being typed.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Keep it minimal and functional:</strong> avoid decorative or unnecessary additions—prefixes and
+              <strong>Keep it minimal and functional:</strong> avoid decorative or unnecessary additions. Prefixes and
               suffixes should always serve a clear purpose.
             </DxcBulletedList.Item>
           </DxcBulletedList>

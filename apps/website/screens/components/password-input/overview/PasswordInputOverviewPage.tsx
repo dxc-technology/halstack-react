@@ -79,7 +79,7 @@ const sections = [
         <DxcParagraph>
           A form input (also known as a form field) is used to capture user data. Common input types include text
           fields, date pickers, number fields, radio buttons, checkboxes, toggles, and dropdowns. Forms should always
-          include a submission method —such as a submit button, link, or keyboard trigger— to complete the interaction.
+          include a submission method, such as a submit button, link, or keyboard trigger, to complete the interaction.
         </DxcParagraph>
       </>
     ),
@@ -101,8 +101,8 @@ const sections = [
                 character limit that defines how much text can be entered.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input
-                —like currency symbols or units— to help clarify the expected data.
+                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input,
+                like currency symbols or units, to help clarify the expected data.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Helper text:</strong> additional information displayed below the field to guide the user in
@@ -178,8 +178,8 @@ const sections = [
                 <DxcParagraph>
                   To improve usability without compromising security, our password input include a show/hide action
                   icon. This control allows users to <strong>reveal the password temporarily</strong>, helping prevent
-                  input errors—especially on small screens or when dealing with complex passwords. By default, passwords
-                  are hidden and masked with dots, and toggling the visibility should be a clearly labeled and
+                  input errors, especially on small screens or when dealing with complex passwords. By default,
+                  passwords are hidden and masked with dots, and toggling the visibility should be a clearly labeled and
                   accessible action.
                 </DxcParagraph>
                 <Example example={showHide} />
@@ -192,38 +192,69 @@ const sections = [
   },
   {
     title: "Best practices",
-    content: (
-      <DxcBulletedList>
-        <DxcBulletedList.Item>
-          <strong>Use the password input only for sensitive information:</strong> limit its use to fields where the user
-          is required to enter secure data, such as passwords, passcodes, or access tokens.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Include a show/hide toggle icon:</strong> this gives users the option to view their input and helps
-          prevent typing errors without compromising usability.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Provide helper text or guidelines when necessary:</strong> if there are specific password requirements
-          (length, special characters, etc.), display them clearly below the input field.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Avoid auto-filling or pre-populating password fields:</strong> for security reasons, let users input
-          their credentials manually unless using a trusted browser-based password manager.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Use the clear icon sparingly:</strong> only include a clear action when it improves user experience,
-          such as on mobile or when the field is optional.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Ensure strong visual feedback for validation:</strong> use clear error messages and states to help
-          users correct mistakes quickly and securely.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Never use plain text inputs for passwords:</strong> always use the dedicated password input component
-          to ensure proper handling, masking, and interaction.
-        </DxcBulletedList.Item>
-      </DxcBulletedList>
-    ),
+    subSections: [
+      {
+        title: "General",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use password inputs <strong>exclusively for sensitive or private data</strong>, such as account
+              credentials or security codes.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Always provide <strong>proper labeling and helper text</strong> if needed, especially when specifying
+              password requirements (e.g., minimum length, special characters).
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Show/hide action",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use clear, accessible labels for the action action (e.g., "Show password" / "Hide password") and ensure
+              they update dynamically based on the current state.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Avoid auto-enabling password visibility</strong> — keep the initial state masked for privacy.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Close action",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use a clear (close) icon to help users quickly delete the entered password if needed.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Display the clear icon only when the field is not empty</strong> to avoid unnecessary
+              distractions.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Security considerations",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Never store passwords in local storage or pre-fill them without explicit user action.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Do not rely solely on masking or toggle visibility for security — always combine with backend encryption
+              and secure handling.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Prevent clipboard access via double-click or right-click when appropriate, depending on the app's security
+              level.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+    ],
   },
 ];
 
