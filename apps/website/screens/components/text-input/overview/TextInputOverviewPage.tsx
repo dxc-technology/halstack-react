@@ -60,9 +60,10 @@ const sections = [
             currency symbols or units, to help clarify the expected data.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Placeholder:</strong> a short hint displayed inside the input field before any text is entered,
-            offering a brief example or instruction on what type of data is expected. It disappears when the user starts
-            typing.
+            <strong>Placeholder/Value:</strong> a short hint displayed inside the input field before any text is
+            entered, offering a brief example or instruction on what type of data is expected. It disappears when the
+            user starts typing. The value represents the actual content entered by the user. Unlike the placeholder, the
+            value persists during interaction and is what gets submitted with the form.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>

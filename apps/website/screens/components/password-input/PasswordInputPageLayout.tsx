@@ -16,9 +16,9 @@ const PasswordInputPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Password input" />
           <DxcParagraph>
-            The password input component is very much like the text input, with the difference that their value is
-            obscured by default by replacing its characters with dot symbol ("•"), and the mask can be toggled on/off
-            using the show and hide component action.
+            Password inputs provide a way for users to securely enter a password. Its value is obscured by default by
+            replacing its characters with dot symbol ("•"), and the mask can be toggled on/off using the show and hide
+            component action.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
