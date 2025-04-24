@@ -6,6 +6,8 @@ import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { getFilePreview, isFileIncluded } from "./utils";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
 
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
@@ -20,22 +22,6 @@ const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: fit-content;
-`;
-
-const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-  line-height: normal;
-`;
-
-const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: var(--color-fg-neutral-stronger);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-  line-height: normal;
 `;
 
 const FileContainer = styled.div<{ singleFileMode: boolean }>`

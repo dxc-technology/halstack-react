@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcFileInput from "./FileInput";
 import { userEvent, within } from "@storybook/test";
 
@@ -70,12 +69,6 @@ const filesExamples = [
     preview: picPreview,
   },
 ];
-
-const opinionatedTheme = {
-  fileInput: {
-    fontColor: "#000000",
-  },
-};
 
 const FileInput = () => (
   <>
@@ -513,83 +506,6 @@ const FileInput = () => (
         mode="dropzone"
         margin="xxlarge"
       />
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="Single file" theme="light" level={4} />
-        <DxcFileInput
-          label="File input"
-          helperText="Please select files"
-          value={fileExample}
-          multiple={false}
-          callbackFile={() => {}}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="Invalid single file" theme="light" level={4} />
-        <DxcFileInput
-          label="File input"
-          helperText="Please select files"
-          value={fileExampleError}
-          multiple={false}
-          callbackFile={() => {}}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Single file" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFileInput
-          mode="filedrop"
-          label="File input"
-          helperText="Please select files"
-          value={fileExample}
-          multiple={false}
-          callbackFile={() => {}}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Invalid single file" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFileInput
-          mode="filedrop"
-          label="File input"
-          helperText="Please select files"
-          value={fileExampleError}
-          multiple={false}
-          callbackFile={() => {}}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Single file" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFileInput
-          label="File input"
-          helperText="Please select files"
-          mode="dropzone"
-          value={fileExample}
-          callbackFile={() => {}}
-          multiple={false}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Invalid single file" theme="light" level={4} />{" "}
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFileInput
-          label="File input"
-          helperText="Please select files"
-          mode="dropzone"
-          value={fileExampleError}
-          callbackFile={() => {}}
-          multiple={false}
-        />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
