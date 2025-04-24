@@ -12,10 +12,7 @@ const OptionItem = styled.li<{
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
   ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
-  &:hover {
-    background-color: ${({ selected }) =>
-      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
-  }
+  &:hover,
   &:active {
     background-color: ${({ selected }) =>
       selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
