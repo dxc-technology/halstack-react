@@ -535,7 +535,7 @@ export const FileInputEllipsisInError: Story = {
   render: EllipsisError,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText(/^This error message/));
-    await userEvent.hover(canvas.getByText(/^This error message/));
+    await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
+    await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
   },
 };
