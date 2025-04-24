@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
-import { screen, userEvent, within } from "@storybook/test";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "File Input",
@@ -534,7 +534,8 @@ export const Chromatic: Story = {
 export const FileInputEllipsisInError: Story = {
   render: EllipsisError,
   play: async ({ canvasElement }) => {
-    await userEvent.hover(screen.getByText(/^This error message/));
-    await userEvent.hover(screen.getByText(/^This error message/));
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByText(/^This error message/));
+    await userEvent.hover(canvas.getByText(/^This error message/));
   },
 };
