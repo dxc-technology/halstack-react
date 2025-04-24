@@ -5,7 +5,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionsCellPropsType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const calculateWidth = (margin: TablePropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
@@ -80,32 +80,39 @@ const ActionsContainer = styled.div`
   }
 `;
 
-const DxcActionsCell = ({ actions }: ActionsCellPropsType) => (
-  <ActionsContainer>
-    {actions.map((action, index) =>
-      "options" in action ? (
+const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
+  const actionIcons = useMemo(() => actions.filter((action) => !action.options), [actions]);
+  const dropdownAction = useMemo(() => actions.find((action) => action.options), [actions]);
+
+  return (
+    <ActionsContainer>
+      {actionIcons.map(
+        (action, index) =>
+          index < (dropdownAction ? 2 : 3) && (
+            <DxcActionIcon
+              icon={action.icon}
+              disabled={action.disabled ?? false}
+              key={`action-${index}`}
+              onClick={action.onClick}
+              tabIndex={action.tabIndex ?? 0}
+              title={action.title}
+            />
+          )
+      )}
+      {dropdownAction && (
         <DxcDropdown
           caretHidden
-          disabled={action.disabled}
+          disabled={dropdownAction.disabled}
           icon="more_vert"
-          onSelectOption={action.onClick}
-          options={action.options ?? []}
-          tabIndex={action.tabIndex}
-          title={action.title}
+          onSelectOption={dropdownAction.onClick}
+          options={dropdownAction.options ?? []}
+          tabIndex={dropdownAction.tabIndex}
+          title={dropdownAction.title}
         />
-      ) : (
-        <DxcActionIcon
-          icon={action.icon}
-          disabled={action.disabled ?? false}
-          key={`action-${index}`}
-          onClick={action.onClick}
-          tabIndex={action.tabIndex ?? 0}
-          title={action.title}
-        />
-      )
-    )}
-  </ActionsContainer>
-);
+      )}
+    </ActionsContainer>
+  );
+};
 
 const DxcTable = ({ children, margin, mode = "default" }: TablePropsType) => (
   <TableContainer margin={margin}>
