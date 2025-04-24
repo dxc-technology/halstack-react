@@ -597,7 +597,7 @@ const EllipsisError = () => {
   return (
     <>
       <ExampleContainer>
-        <Title title="Multiple files" theme="light" level={4} />
+        <Title title="Ellipsis error" theme="light" level={4} />
         <DxcFileInput
           label="File input"
           helperText="Please select files"
@@ -619,7 +619,6 @@ export const FileInputEllipsisInError: Story = {
   render: EllipsisError,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    canvas.getByText("This error message is a multiline paragraph for testing.");
     await userEvent.hover(canvas.getByText("This error message is a multiline paragraph for testing."));
     await userEvent.hover(canvas.getByText("This error message is a multiline paragraph for testing."));
   },
