@@ -7,19 +7,19 @@ import DxcIcon from "../icon/Icon";
 import { scrollbarStyles } from "../styles/scroll";
 
 const SuggestionsContainer = styled.div`
+  box-sizing: border-box;
+  max-height: 304px;
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   background-color: var(--color-bg-neutral-lightest);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
-  box-sizing: border-box;
-  max-height: 304px;
-  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-  overflow: auto;
+  overflow-y: auto;
   ${scrollbarStyles}
 `;
 

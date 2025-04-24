@@ -180,7 +180,7 @@ const HalstackProvider = () => {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Halstack Provider" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Halstack Provider"></DxcHeading>
           <DxcParagraph>
             Halstack Provider is the context provider used for a whole application or an isolated group of components,
             which defines the custom theme and/or translation labels.
