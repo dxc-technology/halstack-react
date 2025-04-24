@@ -593,15 +593,34 @@ const FileInput = () => (
     </ExampleContainer>
   </>
 );
+const EllipsisError = () => {
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Multiple files" theme="light" level={4} />
+        <DxcFileInput
+          label="File input"
+          helperText="Please select files"
+          value={filesExamples}
+          callbackFile={() => {}}
+        />
+      </ExampleContainer>
+    </>
+  );
+};
 
 type Story = StoryObj<typeof DxcFileInput>;
 
 export const Chromatic: Story = {
   render: FileInput,
+};
+
+export const FileInputEllipsisInError: Story = {
+  render: EllipsisError,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const longError = canvas.getAllByText("This error message is a multiline paragraph for testing.")[0];
-    longError && (await userEvent.hover(longError));
-    longError && (await userEvent.hover(longError));
+    canvas.getByText("This error message is a multiline paragraph for testing.");
+    await userEvent.hover(canvas.getByText("This error message is a multiline paragraph for testing."));
+    await userEvent.hover(canvas.getByText("This error message is a multiline paragraph for testing."));
   },
 };
