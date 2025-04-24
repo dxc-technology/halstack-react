@@ -10,7 +10,6 @@ export const inputStylesByState = (disabled: boolean, error: boolean, readOnly: 
       else if (readOnly) return "var(--border-color-neutral-strong)";
       else return "var(--border-color-neutral-dark)";
     })()};
-  cursor: pointer;
   ${!disabled
     ? `&:hover {
       border-color: ${
