@@ -4,6 +4,6 @@ type ComponentHeadingProps = {
   name: string;
 };
 
-const ComponentHeading = ({ name }: ComponentHeadingProps) => <DxcHeading level={1} text={name} weight="bold" />;
+const ComponentHeading = ({ name }: ComponentHeadingProps) => <DxcHeading level={1} text={name} />;
 
 export default ComponentHeading;

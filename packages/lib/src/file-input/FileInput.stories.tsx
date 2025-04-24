@@ -597,7 +597,7 @@ const EllipsisError = () => {
   return (
     <>
       <ExampleContainer>
-        <Title title="Multiple files" theme="light" level={4} />
+        <Title title="Ellipsis error" theme="light" level={4} />
         <DxcFileInput
           label="File input"
           helperText="Please select files"

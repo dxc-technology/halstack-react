@@ -116,7 +116,7 @@ const IconographyPage = () => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Iconography" weight="bold" />
+          <DxcHeading level={1} text="Iconography" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
