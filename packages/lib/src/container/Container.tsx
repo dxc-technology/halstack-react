@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
-import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties.width ?? ""} ${borderProperties.style ?? ""} ${
@@ -63,21 +62,21 @@ const Container = styled.div<StyledProps>`
     }
     return styles;
   }};
-  margin: ${({ margin }) => (typeof margin === "string" ? spaces[margin] : "")};
-  margin-top: ${({ margin }) => (typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) => (typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : "")};
-  margin-left: ${({ margin }) => (typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
+  margin: ${({ margin }) => (typeof margin === "string" ? margin : "")};
+  margin-top: ${({ margin }) => (typeof margin === "object" && margin.top ? margin.top : "")};
+  margin-right: ${({ margin }) => (typeof margin === "object" && margin.right ? margin.right : "")};
+  margin-bottom: ${({ margin }) => (typeof margin === "object" && margin.bottom ? margin.bottom : "")};
+  margin-left: ${({ margin }) => (typeof margin === "object" && margin.left ? margin.left : "")};
   outline: ${({ outline }) => `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ?? ""}`};
   outline-offset: ${({ outline }) => outline?.offset};
   overflow: ${({ $overflow }) => (typeof $overflow === "string" ? $overflow : "")};
   overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
   overflow-y: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.y}` : "")};
-  padding: ${({ padding }) => (typeof padding === "string" ? spaces[padding] : "")};
-  padding-top: ${({ padding }) => (typeof padding === "object" && padding.top ? spaces[padding.top] : "")};
-  padding-right: ${({ padding }) => (typeof padding === "object" && padding.right ? spaces[padding.right] : "")};
-  padding-bottom: ${({ padding }) => (typeof padding === "object" && padding.bottom ? spaces[padding.bottom] : "")};
-  padding-left: ${({ padding }) => (typeof padding === "object" && padding.left ? spaces[padding.left] : "")};
+  padding: ${({ padding }) => (typeof padding === "string" ? padding : "")};
+  padding-top: ${({ padding }) => (typeof padding === "object" && padding.top ? padding.top : "")};
+  padding-right: ${({ padding }) => (typeof padding === "object" && padding.right ? padding.right : "")};
+  padding-bottom: ${({ padding }) => (typeof padding === "object" && padding.bottom ? padding.bottom : "")};
+  padding-left: ${({ padding }) => (typeof padding === "object" && padding.left ? padding.left : "")};
 `;
 
 export default function DxcContainer({ display, width, height, overflow, ...props }: ContainerPropsType) {

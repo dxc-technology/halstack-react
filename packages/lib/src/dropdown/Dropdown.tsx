@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
@@ -133,7 +132,6 @@ const DxcDropdown = ({
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
-  const colorsTheme = useContext(HalstackContext);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const width = useWidth(triggerRef.current);
@@ -309,7 +307,7 @@ const DxcDropdown = ({
               visualFocusIndex={visualFocusIndex}
               menuItemOnClick={handleMenuItemOnClick}
               onKeyDown={handleMenuOnKeyDown}
-              styles={{ width, zIndex: "2147483647" }}
+              styles={{ width }}
               ref={menuRef}
             />
           </Popover.Content>

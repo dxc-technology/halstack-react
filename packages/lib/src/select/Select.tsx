@@ -33,6 +33,10 @@ import {
 import SelectPropsType, { ListOptionType, RefType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
+import ErrorMessage from "../styles/forms/ErrorMessage";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
+import { inputStylesByState } from "../styles/forms/inputStylesByState";
 
 const SelectContainer = styled.div<{
   margin: SelectPropsType["margin"];
@@ -54,34 +58,9 @@ const SelectContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.label<{
-  disabled: SelectPropsType["disabled"];
-  helperText: SelectPropsType["helperText"];
-}>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-  ${({ helperText }) => !helperText && "margin-bottom: var(--spacing-gap-xs);"}
-
-  /* Optional text */
-  > span {
-    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-    font-weight: var(--typography-label-regular);
-  }
-`;
-
-const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
-  margin-bottom: var(--spacing-gap-xs);
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-`;
-
 const Select = styled.div<{
-  disabled: SelectPropsType["disabled"];
-  error: SelectPropsType["error"];
+  disabled: Required<SelectPropsType>["disabled"];
+  error: boolean;
 }>`
   position: relative;
   display: flex;
@@ -89,24 +68,7 @@ const Select = styled.div<{
   gap: var(--spacing-gap-s);
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
-  border-radius: var(--border-radius-s);
-  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-dark);
-  ${({ disabled, error }) =>
-    error && !disabled && "border: var(--border-width-m) var(--border-style-default) var(--border-color-error-medium);"}
-
-  ${({ disabled, error }) =>
-    !disabled
-      ? `
-      cursor: pointer;
-      &:hover {
-        border-color: ${error ? "var(--border-color-error-strong)" : "var(--border-color-primary-strong)"};
-      }
-      &:focus-within {
-        outline-offset: -2px;
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      }
-    `
-      : "background: var(--color-bg-neutral-lighter); border-color: var(--border-color-neutral-medium); cursor: not-allowed;"};
+  ${({ disabled, error }) => inputStylesByState(disabled, error, false)}
 
   /* Collapse indicator */
   > span[role="img"] {
@@ -202,21 +164,6 @@ const SearchInput = styled.input`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-`;
-
-const Error = styled.span`
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-gap-xs);
-  color: var(--color-fg-error-medium);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular, 400);
-  margin-top: var(--spacing-gap-xs);
-
-  /* Error icon */
-  > span[role="img"] {
-    font-size: var(--height-xxs);
-  }
 `;
 
 const DxcSelect = forwardRef<RefType, SelectPropsType>(
@@ -476,24 +423,28 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         }
         setSearchValue("");
       },
-      [handleOnChangeValue, closeListbox, multiple]
+      [closeListbox, handleOnChangeValue, multiple]
     );
 
     return (
-      <SelectContainer margin={margin} size={size} ref={ref}>
+      <SelectContainer margin={margin} ref={ref} size={size}>
         {label && (
           <Label
-            id={labelId}
             disabled={disabled}
+            hasMargin={!helperText}
+            id={labelId}
             onClick={() => {
               selectRef?.current?.focus();
             }}
-            helperText={helperText}
           >
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
+        )}
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
             <Select
@@ -508,7 +459,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               aria-labelledby={label ? labelId : undefined}
               aria-required={!disabled && !optional}
               disabled={disabled}
-              error={error}
+              error={!!error}
               id={selectInputId}
               onBlur={handleOnBlur}
               onClick={handleOnClick}
@@ -523,14 +474,14 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
                   <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearOptionsAction
+                      aria-label={translatedLabels.select.actionClearSelectionTitle}
                       disabled={disabled}
+                      onClick={handleClearOptionsActionOnClick}
                       onMouseDown={(event) => {
                         // Avoid input to lose focus when pressed
                         event.preventDefault();
                       }}
-                      onClick={handleClearOptionsActionOnClick}
                       tabIndex={-1}
-                      aria-label={translatedLabels.select.actionClearSelectionTitle}
                     >
                       <DxcIcon icon="clear" />
                     </ClearOptionsAction>
@@ -540,9 +491,9 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
                 <SearchableValueContainer>
                   <input
-                    type="hidden"
-                    name={name}
                     disabled={disabled}
+                    name={name}
+                    type="hidden"
                     value={
                       multiple
                         ? (Array.isArray(value) ? value : Array.isArray(innerValue) ? innerValue : []).join(",")
@@ -551,23 +502,23 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   />
                   {searchable && (
                     <SearchInput
-                      value={searchValue}
+                      aria-labelledby={label ? labelId : undefined}
+                      autoComplete="nope"
+                      autoCorrect="nope"
                       disabled={disabled}
                       onChange={handleSearchIOnChange}
                       ref={selectSearchInputRef}
-                      autoComplete="nope"
-                      autoCorrect="nope"
                       size={1}
-                      aria-labelledby={label ? labelId : undefined}
+                      value={searchValue}
                     />
                   )}
                   {(!searchable || searchValue === "") && (
                     <SelectedOption
-                      disabled={disabled}
                       atBackground={
                         (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
                         (searchable && isOpen)
                       }
+                      disabled={disabled}
                       onMouseEnter={handleOnMouseEnter}
                     >
                       {getSelectedOptionLabel(placeholder, selectedOption)}
@@ -592,40 +543,35 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content
-              sideOffset={4}
-              style={{ zIndex: "2147483647" }}
-              onOpenAutoFocus={(event) => {
-                // Avoid select to lose focus when the list is opened
-                event.preventDefault();
-              }}
               onCloseAutoFocus={(event) => {
                 // Avoid select to lose focus when the list is closed
                 event.preventDefault();
               }}
+              onOpenAutoFocus={(event) => {
+                // Avoid select to lose focus when the list is opened
+                event.preventDefault();
+              }}
+              sideOffset={4}
+              style={{ zIndex: "2147483647" }}
             >
               <Listbox
                 ariaLabelledBy={labelId}
-                id={listboxId}
                 currentValue={value ?? innerValue}
-                options={searchable ? filteredOptions : options}
-                visualFocusIndex={visualFocusIndex}
+                handleOptionOnClick={handleOptionOnClick}
+                id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}
                 optional={optional}
                 optionalItem={optionalItem}
+                options={searchable ? filteredOptions : options}
                 searchable={searchable}
-                handleOptionOnClick={handleOptionOnClick}
                 styles={{ width }}
+                visualFocusIndex={visualFocusIndex}
               />
             </Popover.Content>
           </Popover.Portal>
         </Popover.Root>
-        {!disabled && typeof error === "string" && (
-          <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
-            {error && <DxcIcon icon="filled_error" />}
-            {error}
-          </Error>
-        )}
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
       </SelectContainer>
     );
   }
