@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ImagePageLayout from "screens/components/image/ImagePageLayout";
-import ImageCodePage from "screens/components/image/code/ImageCodePage";
+import ImageOverviewPage from "screens/components/image/overview/ImageOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Image — Halstack Design System</title>
-      </Head>
-      <ImageCodePage></ImageCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Image — Halstack Design System</title>
+    </Head>
+    <ImageOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <ImagePageLayout>{page}</ImagePageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ImagePageLayout>{page}</ImagePageLayout>;
 
 export default Index;
