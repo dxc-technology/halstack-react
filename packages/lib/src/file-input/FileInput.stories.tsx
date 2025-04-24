@@ -600,7 +600,7 @@ export const Chromatic: Story = {
   render: FileInput,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const longError = canvas.getAllByText("This error message is a multiline paragraph")[0];
+    const longError = canvas.getAllByText("This error message is a multiline paragraph for testing.")[0];
     longError && (await userEvent.hover(longError));
   },
 };
