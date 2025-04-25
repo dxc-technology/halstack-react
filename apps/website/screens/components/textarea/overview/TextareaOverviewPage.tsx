@@ -40,12 +40,12 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Optional indicator</strong> <em>(Optional)</em>: a small indicator that signals the input field is
             not mandatory. It helps users know they can leave the field empty without causing validation errors.
-            readability.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Placeholder/Value:</strong> a short hint displayed inside the input field before any text is
             entered, offering a brief example or instruction on what type of data is expected. It disappears when the
-            user starts typing.
+            user starts typing. The value represents the actual content entered by the user. Unlike the placeholder, the
+            value persists during interaction and is what gets submitted with the form.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Helper text</strong> <em>(Optional)</em>: additional text placed below the input label that provides
