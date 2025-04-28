@@ -13,11 +13,11 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The Date Input component allows users to enter or select a specific date using a calendar picker or manual text
-        entry. Designed to support a wide range of use cases, from booking systems to form submissions, it ensures
-        clarity and consistency in date formats, helps prevent input errors, and adapts to different locale and
-        accessibility requirements. Its combination of manual input and guided selection provides flexibility while
-        maintaining a streamlined user experience.
+        Date inputs allow users to enter or select a specific date using a calendar picker or manual text entry.
+        Designed to support a wide range of use cases, from booking systems to form submissions, it ensures clarity and
+        consistency in date formats, helps prevent input errors, and adapts to different locale and accessibility
+        requirements. Its combination of manual input and guided selection provides flexibility while maintaining a
+        streamlined user experience.
       </DxcParagraph>
     ),
   },
@@ -175,10 +175,11 @@ const sections = [
         title: "Internationalization",
         content: (
           <DxcParagraph>
-            Our date input supports internationalization by <strong>adapting to locale-specific formats</strong> (e.g., DD/MM/YYYY vs.
-            MM/DD/YYYY) and calendar language. This ensures that users across different regions understand the input
-            format and interact with the component comfortably. It's especially important to align the expected format
-            with the user's regional settings or provide format guidance with placeholders and helper text.
+            Our date input supports internationalization by <strong>adapting to locale-specific formats</strong> (e.g.,
+            DD/MM/YYYY vs. MM/DD/YYYY) and calendar language. This ensures that users across different regions
+            understand the input format and interact with the component comfortably. It's especially important to align
+            the expected format with the user's regional settings or provide format guidance with placeholders and
+            helper text.
           </DxcParagraph>
         ),
       },
