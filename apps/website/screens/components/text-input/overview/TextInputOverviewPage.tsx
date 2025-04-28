@@ -45,7 +45,7 @@ const sections = [
             searching).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Close action</strong> <em>(Optional)</em>: a small button, represented by an "X" icon, that allows
+            <strong>Clear action</strong> <em>(Optional)</em>: a small button, represented by an "X" icon, that allows
             users to clear the entered text quickly without manually deleting it.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
