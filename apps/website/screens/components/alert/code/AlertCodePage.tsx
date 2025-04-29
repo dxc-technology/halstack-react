@@ -11,7 +11,7 @@ import Code from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
-  icon?: (React.ReactNode 
+  icon?: string | (React.ReactNode 
     & React.SVGProps<SVGSVGElement>); 
   label: string;
   onClick: () => void;

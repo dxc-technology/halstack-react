@@ -68,10 +68,11 @@ const Select = styled.div<{
   gap: var(--spacing-gap-s);
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  cursor: pointer;
   ${({ disabled, error }) => inputStylesByState(disabled, error, false)}
 
   /* Collapse indicator */
-  > span[role="img"] {
+  > div > span[role="img"] {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
     font-size: var(--height-xxs);
   }
@@ -98,7 +99,7 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   font-weight: var(--typography-label-regular);
   text-align: center;
   user-select: none;
-  ${({ disabled }) => (disabled ? "cursor: not-allowed;" : "cursor: default;")}
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "default")};
 `;
 
 const ClearOptionsAction = styled.button`

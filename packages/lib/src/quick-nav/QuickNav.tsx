@@ -59,12 +59,12 @@ const Link = styled.a`
   }
 `;
 
-const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
+export default function DxcQuickNav({ links, title }: QuickNavTypes) {
   const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
     <QuickNavContainer>
-      <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
+      <DxcHeading level={5} text={title ?? translatedLabels.quickNav.contentTitle} />
       <ListColumn>
         {links.map((link) => (
           <li key={link.label}>
@@ -91,6 +91,4 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
       </ListColumn>
     </QuickNavContainer>
   );
-};
-
-export default DxcQuickNav;
+}
