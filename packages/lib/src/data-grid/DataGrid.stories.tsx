@@ -652,13 +652,6 @@ const customSortRows = [
 ];
 
 const DataGrid = () => {
-  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
-  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
-
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
       <ExampleContainer>
@@ -669,6 +662,34 @@ const DataGrid = () => {
         <Title title="Expandable" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Summary row" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          uniqueRowId="id"
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Scrollable Data Grid" theme="light" level={4} />
+        <DxcContainer height="250px">
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        </DxcContainer>
+      </ExampleContainer>
+    </>
+  );
+};
+
+const DataGridControlled = () => {
+  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
+  const [page, setPage] = useState(0);
+
+  return (
+    <>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
         <DxcDataGrid
@@ -706,21 +727,6 @@ const DataGrid = () => {
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
         />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          uniqueRowId="id"
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
-        </DxcContainer>
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
@@ -1077,9 +1083,10 @@ type Story = StoryObj<typeof DxcDataGrid>;
 
 export const Chromatic: Story = {
   render: DataGrid,
-  parameters: {
-    chromatic: { delay: 10000 },
-  },
+};
+
+export const Controlled: Story = {
+  render: DataGridControlled,
 };
 
 export const CustomSort: Story = {
