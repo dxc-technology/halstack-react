@@ -1077,6 +1077,9 @@ type Story = StoryObj<typeof DxcDataGrid>;
 
 export const Chromatic: Story = {
   render: DataGrid,
+  parameters: {
+    chromatic: { delay: 1000 },
+  },
 };
 
 export const CustomSort: Story = {
