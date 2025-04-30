@@ -95,7 +95,7 @@ const sections = [
         <DxcParagraph>
           A form input (also known as a form field) is used to capture user data. Common input types include text
           fields, date pickers, number fields, radio buttons, checkboxes, toggles and dropdowns. Forms should always
-          include a submission method—such as a submit button, link or keyboard trigger—to complete the interaction.
+          include a submission method, such as a submit button, link or keyboard trigger, to complete the interaction.
         </DxcParagraph>
       </>
     ),
@@ -127,7 +127,7 @@ const sections = [
             <DxcParagraph>Most inputs can also present standard interactive or informative states:</DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Disabled:</strong> this state prevents users from interacting with the field. It’s typically
+                <strong>Disabled:</strong> this state prevents users from interacting with the field. It's typically
                 used when a value is not applicable or editable under certain conditions or roles.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
