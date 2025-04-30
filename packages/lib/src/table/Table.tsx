@@ -1,163 +1,125 @@
-import { useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { spaces, AdvancedTheme } from "../common/variables";
+import styled from "styled-components";
+import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
-import DxcFlex from "../flex/Flex";
-import HalstackContext, { DeepPartial, HalstackProvider } from "../HalstackContext";
-import dropdownTheme from "./dropdownTheme";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import TablePropsType, { ActionCellsPropsType } from "./types";
-
-const overwriteTheme = (theme: AdvancedTheme): DeepPartial<AdvancedTheme> => {
-  const newTheme = dropdownTheme;
-  newTheme.dropdown.buttonBackgroundColor = theme.table.actionBackgroundColor;
-  newTheme.dropdown.hoverButtonBackgroundColor = theme.table.hoverActionBackgroundColor;
-  newTheme.dropdown.activeButtonBackgroundColor = theme.table.activeActionBackgroundColor;
-  newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
-  newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
-  newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
-  return newTheme;
-};
-
-export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
-  const actionIcons = actions.filter((action) => !action.options);
-  const actionDropdown = actions.find((action) => action.options);
-  const maxNumberOfActions = actionDropdown ? 2 : 3;
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <DxcFlex gap="0.5rem" alignItems="center">
-      {actionIcons.map(
-        (action, index) =>
-          index < maxNumberOfActions && (
-            <DxcActionIcon
-              icon={action.icon}
-              title={action.title}
-              onClick={action.onClick}
-              disabled={action.disabled ?? false}
-              tabIndex={action.tabIndex ?? 0}
-              key={`action-${index}`}
-            />
-          )
-      )}
-      {actionDropdown && (
-        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key="provider-dropdown">
-          <DxcDropdown
-            options={actionDropdown.options ?? []}
-            onSelectOption={actionDropdown.onClick}
-            disabled={actionDropdown.disabled}
-            icon="more_vert"
-            tabIndex={actionDropdown.tabIndex}
-            caretHidden
-          ></DxcDropdown>
-        </HalstackProvider>
-      )}
-    </DxcFlex>
-  );
-};
-
-const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}>
-        <DxcTableContent mode={mode}>{children}</DxcTableContent>
-      </DxcTableContainer>
-    </ThemeProvider>
-  );
-};
+import TablePropsType, { ActionsCellPropsType } from "./types";
+import { scrollbarStyles } from "../styles/scroll";
+import { useEffect, useMemo } from "react";
 
 const calculateWidth = (margin: TablePropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
-  width: ${(props) => calculateWidth(props.margin)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
+const TableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
+  width: ${({ margin }) => calculateWidth(margin)};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   overflow: auto;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.scrollBarThumbColor};
-    border-radius: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollBarTrackColor};
-    border-radius: 6px;
-  }
+  ${scrollbarStyles}
 `;
 
-const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
+const Table = styled.table<{ mode: TablePropsType["mode"] }>`
   border-collapse: collapse;
   width: 100%;
 
   & tr {
-    border-bottom: ${(props) =>
-      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    height: ${(props) => (props.mode === "default" ? "60px" : "36px")};
+    border-bottom: var(--border-width-s) solid var(--border-color-neutral-lighter);
+    height: ${({ mode }) => (mode === "default" ? "var(--height-xxl)" : "var(--height-l)")};
   }
   & td {
-    background-color: ${(props) => props.theme.dataBackgroundColor};
-    font-family: ${(props) => props.theme.dataFontFamily};
-    font-size: ${(props) => props.theme.dataFontSize};
-    font-style: ${(props) => props.theme.dataFontStyle};
-    font-weight: ${(props) => props.theme.dataFontWeight};
-    color: ${(props) => props.theme.dataFontColor};
-    text-transform: ${(props) => props.theme.dataFontTextTransform};
-    text-align: ${(props) => props.theme.dataTextAlign};
-    line-height: ${(props) => props.theme.dataTextLineHeight};
-    padding: ${(props) =>
-      props.mode === "default"
-        ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
-        : `${props.theme.dataPaddingTopReduced} ${props.theme.dataPaddingRightReduced} ${props.theme.dataPaddingBottomReduced} ${props.theme.dataPaddingLeftReduced}`};
+    background-color: var(--color-fg-neutral-bright);
+    color: var(--color-fg-neutral-dark);
+    font-family: var(--typography-font-family);
+    font-size: var(--typography-label-m);
+    font-style: normal;
+    font-weight: var(--typography-label-regular);
+    line-height: normal;
+    padding: var(--spacing-padding-s) var(--spacing-padding-m);
+    text-align: start;
   }
   & th {
-    background-color: ${(props) => props.theme.headerBackgroundColor};
-    font-family: ${(props) => props.theme.headerFontFamily};
-    font-size: ${(props) => props.theme.headerFontSize};
-    font-style: ${(props) => props.theme.headerFontStyle};
-    font-weight: ${(props) => props.theme.headerFontWeight};
-    color: ${(props) => props.theme.headerFontColor};
-    text-transform: ${(props) => props.theme.headerFontTextTransform};
-    text-align: ${(props) => props.theme.headerTextAlign};
-    line-height: ${(props) => props.theme.headerTextLineHeight};
-    padding: ${(props) =>
-      props.mode === "default"
-        ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
-        : `${props.theme.headerPaddingTopReduced} ${props.theme.headerPaddingRightReduced} ${props.theme.headerPaddingBottomReduced} ${props.theme.headerPaddingLeftReduced}`};
+    background-color: var(--color-fg-primary-strong);
+    color: var(--color-fg-neutral-bright);
+    font-family: var(--typography-font-family);
+    font-size: var(--typography-label-m);
+    font-style: normal;
+    font-weight: var(--typography-label-regular);
+    line-height: normal;
+    padding: var(--spacing-padding-s) var(--spacing-padding-m);
+    text-align: start;
   }
   & th:first-child {
-    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-left: ${(props) =>
-      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
+    border-top-left-radius: var(--border-radius-s);
+    padding-left: var(--spacing-padding-ml);
   }
   & th:last-child {
-    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-right: ${(props) =>
-      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
+    border-top-right-radius: var(--border-radius-s);
+    padding-right: var(--spacing-padding-ml);
   }
   & td:first-child {
-    padding-left: ${(props) =>
-      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
+    padding-left: var(--spacing-padding-ml);
   }
   & td:last-child {
-    padding-right: ${(props) =>
-      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
+    padding-right: var(--spacing-padding-ml);
   }
 `;
 
-DxcTable.ActionsCell = DxcActionsCell;
+const ActionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
 
+  /* Action icons and dropdown trigger selector */
+  > button:enabled,
+  > div > button:enabled {
+    color: var(--color-fg-primary-strong);
+  }
+`;
+
+const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
+  const actionIcons = useMemo(() => actions.filter((action) => !action.options), [actions]);
+  const dropdownAction = useMemo(() => actions.find((action) => action.options), [actions]);
+
+  return (
+    <ActionsContainer>
+      {actionIcons.map(
+        (action, index) =>
+          index < (dropdownAction ? 2 : 3) && (
+            <DxcActionIcon
+              icon={action.icon}
+              disabled={action.disabled ?? false}
+              key={`action-${index}`}
+              onClick={action.onClick}
+              tabIndex={action.tabIndex ?? 0}
+              title={action.title}
+            />
+          )
+      )}
+      {dropdownAction && (
+        <DxcDropdown
+          caretHidden
+          disabled={dropdownAction.disabled}
+          icon="more_vert"
+          onSelectOption={dropdownAction.onClick}
+          options={dropdownAction.options ?? []}
+          tabIndex={dropdownAction.tabIndex}
+          title={dropdownAction.title}
+        />
+      )}
+    </ActionsContainer>
+  );
+};
+
+const DxcTable = ({ children, margin, mode = "default" }: TablePropsType) => (
+  <TableContainer margin={margin}>
+    <Table mode={mode}>{children}</Table>
+  </TableContainer>
+);
+
+DxcTable.ActionsCell = DxcActionsCell;
+export { DxcActionsCell };
 export default DxcTable;
