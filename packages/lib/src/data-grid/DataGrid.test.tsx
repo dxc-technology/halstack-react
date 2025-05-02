@@ -1,6 +1,15 @@
 import { render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn } from "./types";
+
+Object.defineProperty(window, "getComputedStyle", {
+  value: () => ({
+    getPropertyValue: (prop: string) => {
+      if (prop === "--height-l") return "36px";
+      return "";
+    },
+  }),
+});
 
 const columns: GridColumn[] = [
   {
@@ -56,9 +65,7 @@ describe("Data grid component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
   test("Renders with correct content", async () => {
-    const { getByText, getAllByRole } = await render(
-      <DxcDataGrid columns={columns} rows={expandableRows} />
-    );
+    const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
