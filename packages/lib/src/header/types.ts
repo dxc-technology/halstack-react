@@ -3,20 +3,17 @@ import { Space } from "../common/utils";
 
 export type Logo = {
   /**
+   * URL to navigate when the logo is clicked.
+   */
+  href?: string;
+  /**
    * Source of the logo image.
    */
   src: string;
-
   /**
    * Alternative text for the logo image.
    */
   title?: string;
-
-  /**
-   * URL to navigate when the logo is clicked.
-   * Ignored if `onClick` is provided.
-   */
-  href?: string;
 };
 
 type Props = {
@@ -36,7 +33,7 @@ type Props = {
    */
   responsiveContent?: (closeHandler: () => void) => ReactNode;
   /**
-   * Logo configuration object. If defined, the logo will appear in the header.
+   * Logo to be displayed inside the header
    */
   logo?: Logo;
   /**
