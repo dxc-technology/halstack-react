@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 
 const DataGridPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Overiew", path: "/components/data-grid" },
+    { label: "Overview", path: "/components/data-grid" },
     { label: "Code", path: "/components/data-grid/code" },
   ];
 

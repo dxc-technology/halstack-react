@@ -3,16 +3,16 @@ import type { ReactElement } from "react";
 import DataGridPageLayout from "screens/components/data-grid/DataGridPageLayout";
 import DataGridOverviewPage from "screens/components/data-grid/overview/DataGridOverviewPage";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
-        <title>Data Grid — Halstack Design System</title>
+        <title>Data grid — Halstack Design System</title>
       </Head>
       <DataGridOverviewPage />
     </>
   );
 };
 
-Usage.getLayout = (page: ReactElement) => <DataGridPageLayout>{page}</DataGridPageLayout>;
-export default Usage;
+Index.getLayout = (page: ReactElement) => <DataGridPageLayout>{page}</DataGridPageLayout>;
+export default Index;

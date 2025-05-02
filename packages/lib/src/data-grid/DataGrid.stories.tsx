@@ -946,10 +946,6 @@ const DataGridUnknownUniqueRowId = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
 
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
       <ExampleContainer>

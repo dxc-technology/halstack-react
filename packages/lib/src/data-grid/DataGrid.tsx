@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "styled-components";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -21,7 +21,6 @@ import {
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
-import HalstackContext from "../HalstackContext";
 import { scrollbarStyles } from "../styles/scroll";
 
 const DataGridContainer = styled.div<{

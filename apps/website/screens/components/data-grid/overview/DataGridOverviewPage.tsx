@@ -67,8 +67,8 @@ const sections = [
                 checkboxes for multiple row selection, or else radio buttons for single-row selection.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Row <strong>selection can persist across pages when pagination is used</strong>in the datagrid, ensuring
-                users can perform bulk actions on rows even if they navigate away from the current view.
+                Row <strong>selection can persist across pages when pagination is used</strong> in the datagrid,
+                ensuring users can perform bulk actions on rows even if they navigate away from the current view.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 Users can set a default selected row on initial load, useful for pre-populating forms or automatically
@@ -83,7 +83,7 @@ const sections = [
         ),
       },
       {
-        title: "Row selection",
+        title: "Sorting and filtering",
         content: (
           <>
             <DxcBulletedList>
@@ -156,10 +156,10 @@ const sections = [
               <DxcBulletedList.Item>
                 The re-ordering feature of our datagrid allows users to <strong>rearrange columns</strong> according to
                 their preferences <strong>by dragging and dropping them</strong>, enhancing the personalized data
-                viewing experinece.
+                viewing experience.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                y letting users prioritize the most relevant columns, this feature helps them access and analyze data
+                By letting users prioritize the most relevant columns, this feature helps them access and analyze data
                 more efficiently. It is also designed to be user-friendly, enabling quick adjustments with minimal
                 effort.
               </DxcBulletedList.Item>
@@ -183,7 +183,7 @@ const sections = [
             ensuring users understand the significance of the data they are viewing.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Column alignment:</strong> though data can be aligned in columns however the user chooses, it must
+            <strong>Column alignment:</strong> although data can be aligned in columns however the user chooses, it must
             be aligned consistently across columns to enhance readability:
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
@@ -259,7 +259,7 @@ const DataGridOverviewPage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/data-grid/overiew/DataGridOverviewPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/data-grid/overview/DataGridOverviewPage.tsx" />
     </DxcFlex>
   );
 };
