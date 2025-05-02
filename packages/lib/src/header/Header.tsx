@@ -1,13 +1,179 @@
-import { ComponentProps, useEffect, useMemo, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { ComponentProps, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
-import HeaderPropsType from "./types";
+import HeaderPropsType, { Logo } from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
 import { useContext } from "react";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
+import DxcActionIcon from "../action-icon/ActionIcon";
+
+const HeaderDropdown = styled.div`
+  display: flex;
+  button {
+    background-color: transparent;
+    :hover {
+      background-color: transparent;
+    }
+  }
+`;
+
+const HeaderContainer = styled.header<{
+  margin: HeaderPropsType["margin"];
+  underlined: HeaderPropsType["underlined"];
+}>`
+  background-color: var(--color-bg-neutral-lightest);
+  border-bottom: ${(props) =>
+    props.underlined && `var(--border-width-m) var(--border-style-default) var(--border-color-neutral-strongest)`};
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
+  min-height: 64px;
+  padding: var(--spacing-padding-none) var(--spacing-padding-l);
+`;
+
+const LogoAnchor = styled.a<{ interactive: boolean }>`
+  ${(props) => (props.interactive ? "cursor: pointer" : "cursor: default; outline:none;")};
+`;
+
+const LogoImg = styled.img`
+  max-height: var(--height-xl);
+  width: auto;
+`;
+
+const LogoContainer = styled.div`
+  max-height: var(--height-xl);
+  vertical-align: middle;
+  width: auto;
+`;
+
+const ChildContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  width: calc(100% - 186px);
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-end;
+  width: calc(100% - 186px);
+  color: var(--color-fg-neutral-dark);
+`;
+
+const HamburgerTrigger = styled.button`
+  align-items: center;
+  background-color: transparent;
+  border-radius: var(--border-radius-xs);
+  border: var(--border-width-s) var(--border-style-default) transparent;
+  color: var(--color-fg-neutral-dark);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-s);
+  font-weight: var(--typography-label-semibold);
+  height: var(--height-xl);
+  justify-content: center;
+  // TODO: Ask about padding (spacing-padding-m or spacing-padding-xs?)
+  padding: var(--spacing-padding-none) var(--spacing-padding-m);
+  text-transform: uppercase;
+  :hover {
+    background-color: var(--color-bg-neutral-medium);
+  }
+  &:focus {
+    outline: var(--border-color-secondary-medium) var(--border-style-default) var(--border-width-m);
+  }
+  & > svg {
+    fill: var(--color-fg-neutral-dark);
+  }
+  & > span {
+    font-size: var(--height-s);
+  }
+`;
+
+const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-neutral-lightest);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+
+  @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
+    width: 60vw;
+  }
+
+  @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
+    width: 100vw;
+  }
+
+  height: 100vh;
+  padding: 20px;
+  transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
+  transition-property: transform, opacity;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+  box-sizing: border-box;
+`;
+
+const ResponsiveLogoContainer = styled.div`
+  max-height: var(--height-xl);
+  width: auto;
+  display: flex;
+`;
+
+const CloseAction = styled.button`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: unset;
+  border-radius: var(--border-radius-xs);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  cursor: pointer;
+
+  :focus,
+  :focus-visible {
+    outline: var(--border-color-secondary-medium) var(--border-style-default) var(--border-width-m);
+  }
+  font-size: var(--height-s);
+  svg {
+    height: var(--height-s);
+    width: 24px;
+  }
+`;
+
+const MenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  color: var(--color-fg-neutral-dark);
+`;
+
+const Overlay = styled.div<{ hasVisibility: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${(props) => (props.hasVisibility ? "var(--color-bg-alpha-medium)" : "transparent")};
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    ${(props) => !props.hasVisibility && "display: none"};
+  }
+
+  z-index: 1600;
+`;
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -15,8 +181,10 @@ const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   </HeaderDropdown>
 );
 
-const getLogoElement = (themeInput?: string, logoLabel?: string) => {
-  if (!themeInput) {
+const getLogoElement = (logo?: Logo) => {
+  if (logo) {
+    return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
+  } else {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
         <title>DXC Logo</title>
@@ -36,8 +204,7 @@ const getLogoElement = (themeInput?: string, logoLabel?: string) => {
         </g>
       </svg>
     );
-  } else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
-  else return themeInput;
+  }
 };
 
 type ContentProps = {
@@ -58,13 +225,13 @@ const DxcHeader = ({
   underlined = false,
   content,
   responsiveContent,
-  onClick,
+  logo,
   margin,
+  onClick,
   tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const colorsTheme = useContext(HalstackContext);
   const translatedLabels = useContext(HalstackLanguageContext);
   const ref = useRef(null);
 
@@ -76,15 +243,7 @@ const DxcHeader = ({
     }
   };
 
-  const headerLogo = useMemo(
-    () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme, translatedLabels]
-  );
-
-  const headerResponsiveLogo = useMemo(
-    () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme, translatedLabels]
-  );
+  const headerLogo = getLogoElement(logo);
 
   useEffect(() => {
     const handleResize = () => {
@@ -105,223 +264,61 @@ const DxcHeader = ({
   }, [isResponsive]);
 
   return (
-    <ThemeProvider theme={colorsTheme.header}>
-      <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={!!onClick} onClick={onClick}>
-          <LogoContainer>{headerLogo}</LogoContainer>
-        </LogoAnchor>
-        {isResponsive && responsiveContent && (
-          <DxcFlex grow={1}>
-            <ChildContainer>
-              <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
-                <DxcIcon icon="menu" />
-                {translatedLabels.header.hamburgerTitle}
-              </HamburgerTrigger>
-            </ChildContainer>
-            <ResponsiveMenu hasVisibility={isMenuVisible}>
-              <DxcFlex justifyContent="space-between" alignItems="center">
-                <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <Tooltip label={translatedLabels.header.closeIcon}>
-                  <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
-                    <DxcIcon icon="close" />
-                  </CloseAction>
-                </Tooltip>
-              </DxcFlex>
-              <Content
-                isResponsive={isResponsive}
-                responsiveContent={responsiveContent}
-                handleMenu={handleMenu}
-                content={content}
-              />
-            </ResponsiveMenu>
-            <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
-          </DxcFlex>
-        )}
-        {!isResponsive && (
-          <Content
-            isResponsive={isResponsive}
-            responsiveContent={responsiveContent}
-            handleMenu={handleMenu}
-            content={content}
-          />
-        )}
-      </HeaderContainer>
-    </ThemeProvider>
+    <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
+      <LogoAnchor
+        href={logo?.href}
+        tabIndex={onClick ? tabIndex : -1}
+        interactive={!!onClick || !!logo?.href}
+        onClick={onClick}
+      >
+        <LogoContainer>{headerLogo}</LogoContainer>
+      </LogoAnchor>
+      {isResponsive && responsiveContent && (
+        <DxcFlex grow={1}>
+          <ChildContainer>
+            <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
+              <DxcIcon icon="menu" />
+              {translatedLabels.header.hamburgerTitle}
+            </HamburgerTrigger>
+          </ChildContainer>
+          <ResponsiveMenu hasVisibility={isMenuVisible}>
+            <DxcFlex justifyContent="space-between" alignItems="center">
+              <ResponsiveLogoContainer>{headerLogo}</ResponsiveLogoContainer>
+              <Tooltip label={translatedLabels.header.closeIcon}>
+                {/* TODO: Ask if DxcActionIcon can be used instead */}
+                {/* <DxcActionIcon
+                  icon="close"
+                  title={translatedLabels.header.closeIcon}
+                  onClick={handleMenu}
+                  tabIndex={tabIndex}
+                /> */}
+                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                  <DxcIcon icon="close" />
+                </CloseAction>
+              </Tooltip>
+            </DxcFlex>
+            <Content
+              isResponsive={isResponsive}
+              responsiveContent={responsiveContent}
+              handleMenu={handleMenu}
+              content={content}
+            />
+          </ResponsiveMenu>
+          <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} />
+        </DxcFlex>
+      )}
+      {!isResponsive && (
+        <Content
+          isResponsive={isResponsive}
+          responsiveContent={responsiveContent}
+          handleMenu={handleMenu}
+          content={content}
+        />
+      )}
+    </HeaderContainer>
   );
 };
 
 DxcHeader.Dropdown = Dropdown;
-
-const HeaderDropdown = styled.div`
-  display: flex;
-  button {
-    background-color: transparent;
-    :hover {
-      background-color: transparent;
-    }
-  }
-`;
-
-const HeaderContainer = styled.header<{
-  margin: HeaderPropsType["margin"];
-  underlined: HeaderPropsType["underlined"];
-}>`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  min-height: ${(props) => props.theme.minHeight};
-  margin-bottom: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  padding: ${(props) =>
-    `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
-  background-color: ${(props) => props.theme.backgroundColor};
-  border-bottom: ${(props) =>
-    props.underlined &&
-    `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
-`;
-
-const LogoAnchor = styled.a<{ interactive: boolean }>`
-  ${(props) => (props.interactive ? "cursor: pointer" : "cursor: default; outline:none;")};
-`;
-
-const LogoImg = styled.img`
-  max-height: ${(props) => props.theme.logoHeight};
-  width: ${(props) => props.theme.logoWidth};
-`;
-
-const LogoContainer = styled.div`
-  max-height: ${(props) => props.theme.logoHeight};
-  width: ${(props) => props.theme.logoWidth};
-  vertical-align: middle;
-`;
-
-const ChildContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-grow: 1;
-  width: calc(100% - 186px);
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-end;
-  width: calc(100% - 186px);
-  color: ${(props) => props.theme.contentColor};
-`;
-
-const HamburgerTrigger = styled.button`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 54px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  background-color: transparent;
-  :hover {
-    background-color: ${(props) => props.theme.hamburgerHoverColor};
-  }
-  &:focus {
-    outline: ${(props) => props.theme.hamburgerFocusColor} auto 1px;
-  }
-  & > svg {
-    fill: ${(props) => props.theme.hamburgerIconColor};
-  }
-  & > span {
-    font-size: 24px;
-  }
-  font-family: ${(props) => props.theme.hamburgerFontFamily};
-  font-style: ${(props) => props.theme.hamburgerFontStyle};
-  font-size: ${(props) => props.theme.hamburgerFontSize};
-  text-transform: ${(props) => props.theme.hamburgerTextTransform};
-  font-weight: ${(props) => props.theme.hamburgerFontWeight};
-  color: ${(props) => props.theme.hamburgerFontColor};
-`;
-
-const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
-  display: flex;
-  flex-direction: column;
-  background-color: ${(props) => props.theme.menuBackgroundColor};
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: ${(props) => props.theme.menuZindex};
-
-  @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
-    width: ${(props) => props.theme.menuTabletWidth};
-  }
-
-  @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
-    width: ${(props) => props.theme.menuMobileWidth};
-  }
-
-  height: 100vh;
-  padding: 20px;
-  transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
-  opacity: ${(props) => (props.hasVisibility ? "1" : "0.96")};
-  transition-property: transform, opacity;
-  transition-duration: 0.6s;
-  transition-timing-function: ease-in-out;
-  box-sizing: border-box;
-`;
-
-const ResponsiveLogoContainer = styled.div`
-  max-height: ${(props) => props.theme.logoHeight};
-  width: ${(props) => props.theme.logoWidth};
-  display: flex;
-`;
-
-const CloseAction = styled.button`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding: 6px;
-  border: unset;
-  border-radius: 2px;
-  background-color: transparent;
-  cursor: pointer;
-
-  :focus,
-  :focus-visible {
-    outline: ${(props) => props.theme.hamburgerFocusColor} auto 1px;
-  }
-  font-size: 24px;
-  svg {
-    height: 24px;
-    width: 24px;
-  }
-`;
-
-const MenuContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-  color: ${(props) => props.theme.contentColor};
-`;
-
-const Overlay = styled.div<{ hasVisibility: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: ${(props) => props.theme.overlayColor};
-  opacity: ${(props) => props.theme.overlayOpacity} !important;
-  visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
-  opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    display: none;
-  }
-
-  transition: opacity 0.2s 0.2s ease-in-out;
-  z-index: ${(props) => props.theme.overlayZindex};
-`;
 
 export default DxcHeader;

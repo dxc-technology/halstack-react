@@ -6,7 +6,6 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
-import { HalstackProvider } from "../HalstackContext";
 import DxcLink from "../link/Link";
 import DxcHeader from "./Header";
 import { Meta, StoryObj } from "@storybook/react";
@@ -50,21 +49,6 @@ const options2: any = [
     label: "Sign out",
   },
 ];
-
-const opinionatedTheme = {
-  header: {
-    baseColor: "#ffffff",
-    accentColor: "#000000",
-    fontColor: "#000000",
-    menuBaseColor: "#ffffff",
-    hamburgerColor: "#000000",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-    logoResponsive:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-    contentColor: "#000000",
-    overlayColor: "#000000b3",
-  },
-};
 
 const Header = () => (
   <>
@@ -128,20 +112,21 @@ const Header = () => (
       <DxcHeader underlined margin="xxlarge" />
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
+  </>
+);
+
+const HeaderCustomLogo = () => (
+  <>
     <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcHeader
-          underlined
-          content={<DxcButton label={"Custom Button"} />}
-          responsiveContent={(closeHandler) => (
-            <>
-              <DxcButton label={"Custom Button"} onClick={closeHandler} />
-              Custom content
-            </>
-          )}
-        />
-      </HalstackProvider>
+      <Title title="Default with dropdown" theme="light" level={4} />
+      <DxcHeader
+        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
+        logo={{
+          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+          title: "Custom Logo",
+          href: "#test",
+        }}
+      />
     </ExampleContainer>
   </>
 );
@@ -187,19 +172,14 @@ const RespHeaderMenuTablet = () => (
   </ExampleContainer>
 );
 
-const RespHeaderMenuOpinionated = () => (
-  <ExampleContainer>
-    <Title title="Responsive menu" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 type Story = StoryObj<typeof DxcHeader>;
 
 export const Chromatic: Story = {
   render: Header,
+};
+
+export const CustomLogo: Story = {
+  render: HeaderCustomLogo,
 };
 
 export const ResponsiveHeader: Story = {
@@ -257,21 +237,6 @@ export const ResponsiveHeaderMenuMobile: Story = {
 
 export const ResponsiveHeaderMenuTablet: Story = {
   render: RespHeaderMenuTablet,
-  parameters: {
-    viewport: {
-      defaultViewport: "pixelxl",
-    },
-    chromatic: { viewports: [720] },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(canvas.getByText("Menu"));
-  },
-};
-
-export const ResponsiveHeaderMenuOpinionated: Story = {
-  render: RespHeaderMenuOpinionated,
   parameters: {
     viewport: {
       defaultViewport: "pixelxl",
