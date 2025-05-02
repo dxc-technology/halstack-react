@@ -1,6 +1,24 @@
 import { ReactNode } from "react";
 import { Space } from "../common/utils";
 
+export type Logo = {
+  /**
+   * Source of the logo image.
+   */
+  src: string;
+
+  /**
+   * Alternative text for the logo image.
+   */
+  title?: string;
+
+  /**
+   * URL to navigate when the logo is clicked.
+   * Ignored if `onClick` is provided.
+   */
+  href?: string;
+};
+
 type Props = {
   /**
    * Whether a contrast line should appear at the bottom of the header.
@@ -18,13 +36,17 @@ type Props = {
    */
   responsiveContent?: (closeHandler: () => void) => ReactNode;
   /**
-   * This function will be called when the user clicks the header logo.
+   * Logo configuration object. If defined, the logo will appear in the header.
    */
-  onClick?: () => void;
+  logo?: Logo;
   /**
    * Size of the bottom margin to be applied to the header.
    */
   margin?: Space;
+  /**
+   * This function will be called when the user clicks the header logo.
+   */
+  onClick?: () => void;
   /**
    * Value of the tabindex for all interactive elements, except those inside the
    * custom area.
