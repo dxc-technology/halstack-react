@@ -2,49 +2,38 @@ import { memo, useMemo } from "react";
 import styled from "styled-components";
 import { SuggestionProps } from "./types";
 import { transformSpecialChars } from "./utils";
+import DxcDivider from "../divider/Divider";
+import DxcFlex from "../flex/Flex";
 
 const SuggestionContainer = styled.li<{
   visuallyFocused: SuggestionProps["visuallyFocused"];
 }>`
   display: flex;
-  padding: 0 0.5rem;
-  line-height: 1.715em;
+  flex-direction: column;
+  height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
-  box-shadow: inset 0 0 0 2px
-    ${(props) => (props.visuallyFocused ? props.theme.focusListOptionBorderColor : "transparent")};
-
-  &:hover {
-    background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
-  }
+  &:hover,
   &:active {
-    background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
+    background-color: var(--color-bg-neutral-light);
   }
+  ${({ visuallyFocused }) =>
+    visuallyFocused &&
+    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: -2px;"}
 `;
 
-const StyledSuggestion = styled.span<{
-  visuallyFocused: SuggestionProps["visuallyFocused"];
-  isLast: SuggestionProps["isLast"];
-}>`
-  width: 100%;
+const StyledSuggestion = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 0.25rem 0.5rem 0.188rem 0.5rem;
-  ${(props) =>
-    props.isLast || props.visuallyFocused
-      ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
+
+  /* Highlighted text */
+  > span {
+    font-weight: var(--typography-label-semibold);
+  }
 `;
 
-const Suggestion = ({
-  id,
-  value,
-  onClick,
-  suggestion,
-  isLast,
-  visuallyFocused,
-  highlighted,
-}: SuggestionProps): JSX.Element => {
+const Suggestion = ({ highlighted, id, isLast, onClick, suggestion, value, visuallyFocused }: SuggestionProps) => {
   const matchedSuggestion = useMemo(() => {
     const regEx = new RegExp(transformSpecialChars(value), "i");
     return {
@@ -55,24 +44,27 @@ const Suggestion = ({
 
   return (
     <SuggestionContainer
+      aria-selected={visuallyFocused ? true : undefined}
       id={id}
       onClick={() => {
         onClick(suggestion);
       }}
-      visuallyFocused={visuallyFocused}
       role="option"
-      aria-selected={visuallyFocused ? true : undefined}
+      visuallyFocused={visuallyFocused}
     >
-      <StyledSuggestion isLast={isLast} visuallyFocused={visuallyFocused}>
-        {highlighted ? (
-          <>
-            <strong>{matchedSuggestion.matchedWords}</strong>
-            {matchedSuggestion.noMatchedWords}
-          </>
-        ) : (
-          suggestion
-        )}
-      </StyledSuggestion>
+      <DxcFlex alignItems="center" grow={1}>
+        <StyledSuggestion>
+          {highlighted ? (
+            <>
+              <span>{matchedSuggestion.matchedWords}</span>
+              {matchedSuggestion.noMatchedWords}
+            </>
+          ) : (
+            suggestion
+          )}
+        </StyledSuggestion>
+      </DxcFlex>
+      {!isLast && <DxcDivider />}
     </SuggestionContainer>
   );
 };

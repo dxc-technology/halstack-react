@@ -57,6 +57,14 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>height</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Sets the rendered height of the image.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>lazyLoading</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -68,65 +76,6 @@ const sections = [
             <td>
               <TableCode>false</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                src
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>URL of the image.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>srcSet</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              List of one or more strings separated by commas indicating a set of possible images for the user agent to
-              use. See{" "}
-              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset">
-                MDN
-              </DxcLink>{" "}
-              for further information.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>sizes</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              One or more strings separated by commas, indicating a set of source sizes. If the <Code>srcSet</Code>{" "}
-              attribute is absent or contains no values with a width descriptor, then this attribute has no effect. See{" "}
-              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes">
-                MDN
-              </DxcLink>{" "}
-              for further information.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>width</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Sets the rendered width of the image.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>height</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Sets the rendered height of the image.</td>
-            <td>-</td>
           </tr>
           <tr>
             <td>objectFit</td>
@@ -161,6 +110,14 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>onError</td>
+            <td>
+              <TableCode>{"React.ReactEventHandler <HTMLImageElement>"}</TableCode>
+            </td>
+            <td>This function will be called when the image fails to load.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>onLoad</td>
             <td>
               <TableCode>{"React.ReactEventHandler <HTMLImageElement>"}</TableCode>
@@ -169,11 +126,54 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onError</td>
+            <td>sizes</td>
             <td>
-              <TableCode>{"React.ReactEventHandler <HTMLImageElement>"}</TableCode>
+              <TableCode>string</TableCode>
             </td>
-            <td>This function will be called when the image fails to load.</td>
+            <td>
+              One or more strings separated by commas, indicating a set of source sizes. If the <Code>srcSet</Code>{" "}
+              attribute is absent or contains no values with a width descriptor, then this attribute has no effect. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                src
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>URL of the image.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>srcSet</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              List of one or more strings separated by commas indicating a set of possible images for the user agent to
+              use. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>width</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Sets the rendered width of the image.</td>
             <td>-</td>
           </tr>
         </tbody>
@@ -191,15 +191,13 @@ const sections = [
   },
 ];
 
-const ImageCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/image/code/ImageCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ImageCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/image/code/ImageCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ImageCodePage;

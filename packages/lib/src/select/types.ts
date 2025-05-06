@@ -131,6 +131,7 @@ type SingleSelect = CommonProps & {
    */
   onBlur?: (val: { value: string; error?: string }) => void;
 };
+
 type MultipleSelect = CommonProps & {
   /**
    * If true, the select component will support multiple selected options.
@@ -182,6 +183,7 @@ export type OptionProps = {
  * Listbox from the select component.
  */
 export type ListboxProps = {
+  ariaLabelledBy: string;
   id: string;
   currentValue: string | string[];
   options: ListOptionType[] | ListOptionGroupType[];

@@ -56,7 +56,7 @@ const NestedTooltip = () => (
   <>
     <Title title="Nested tooltip" theme="light" level={2} />
     <ExampleContainer>
-      <DxcInset top="3rem">
+      <DxcInset top="var(--spacing-padding-xxl)">
         <DxcTooltip label="Favourite" position="top">
           <DxcActionIcon icon="favorite" title="Favourite" />
         </DxcTooltip>

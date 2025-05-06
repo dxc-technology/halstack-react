@@ -3,50 +3,60 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import listbox from "./examples/listbox";
-import Link from "next/link";
 
 const backgroundTypeString = `{
     attachment?: string;
     clip?: string;
-    color?: CoreColorTokens;
+    color?: string;
     image?: string;
     origin?: string;
     position?: string;
     repeat?: string;
     size?: string;
 }`;
+
 const borderTypeString = `BorderProperties | {
     top?: BorderProperties;
     right?: BorderProperties;
     bottom?: BorderProperties;
     left?: BorderProperties;
 }`;
+
 const borderPropertiesTypeString = `{
     width?: string;
     style?: LineStyleValues;
-    color?: CoreColorTokens;
+    color?: string;
 }`;
+
 const insetTypeString = `{
     top?: string;
     right?: string;
     bottom?: string;
     left?: string;
 }`;
+
 const outlineTypeString = `{
     width?: string;
     style?: LineStyleValues;
-    color?: CoreColorTokens;
+    color?: string;
     offset?: string;
 }`;
+
 const overflowTypeString = `OverflowValues | 
 { 
     x?: OverflowValues; 
     y?: OverflowValues;
+}`;
+
+const spaceTypeString = `{
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
 }`;
 
 const sections = [
@@ -67,13 +77,6 @@ const sections = [
             <td>background</td>
             <td>
               <ExtendedTableCode>{backgroundTypeString}</ExtendedTableCode>
-              <p>
-                being <Code>CoreColorTokens</Code> the color tokens provided by Halstack Design System. See our{" "}
-                <Link href="/principles/color/#color-tokens-core-color-tokens" passHref legacyBehavior>
-                  <DxcLink newWindow>Color palette</DxcLink>
-                </Link>{" "}
-                for further knowledge.
-              </p>
             </td>
             <td>
               Based on the CSS property <Code>background</Code> allows configuring all properties related to the
@@ -155,12 +158,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
-            </td>
+            <td>children</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -233,12 +231,13 @@ const sections = [
           <tr>
             <td>margin</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Space</TableCode>
+              <TableCode>string | Space</TableCode>
+              <p>
+                being <Code>Space</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{spaceTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
+            <td>Size of the margin to be applied to the container.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -339,12 +338,13 @@ const sections = [
           <tr>
             <td>padding</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Space</TableCode>
+              <TableCode>string | Space</TableCode>
+              <p>
+                being <Code>Space</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{spaceTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
+            <td>Size of the padding to be applied to the container.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -412,8 +412,8 @@ const sections = [
           <>
             <DxcParagraph>
               This code provides an illustration of a custom component created exclusively with the{" "}
-              <Code>DxcContainer</Code>. <strong>You should not copy this code</strong>, but use instead our{" "}
-              <Code>DxcSelect</Code>.
+              <Code>DxcContainer</Code>. <strong>You should not copy this code</strong>, use our <Code>DxcSelect</Code>{" "}
+              instead.
             </DxcParagraph>
             <DxcParagraph>
               It is imperative to exclusively utilize Halstack components for optimal compatibility and adherence to our
@@ -421,7 +421,7 @@ const sections = [
               <DxcLink href="https://github.com/dxc-technology/halstack-react/discussions/new/choose" newWindow>
                 reach out to our development team
               </DxcLink>{" "}
-              first to discuss your particular situation.
+              first to discuss your particular scenario.
             </DxcParagraph>
             <Example example={listbox} defaultIsVisible />
           </>
@@ -431,15 +431,13 @@ const sections = [
   },
 ];
 
-const ContainerCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/code/ContainerCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ContainerCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/code/ContainerCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ContainerCodePage;

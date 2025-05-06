@@ -1,14 +1,7 @@
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../../test/accessibility/axe-helper";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcFlex from "../flex/Flex";
 import DxcSelect from "./Select";
-
-// TODO: REMOVE
-import rules from "../../test/accessibility/rules/specific/select/disabledRules";
-
-const disabledRules = {
-  rules: formatRules(rules),
-};
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -122,7 +115,7 @@ describe("Select component accessibility tests", () => {
         />
       </DxcFlex>
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for group mode", async () => {
@@ -157,7 +150,7 @@ describe("Select component accessibility tests", () => {
         />
       </DxcFlex>
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
   });
 });

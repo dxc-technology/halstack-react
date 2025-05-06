@@ -410,13 +410,9 @@ export const AscendentSorting: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const idHeader = canvas.getAllByRole("button")[0];
-    const idHeader2 = canvas.getAllByRole("button")[6];
-    if (idHeader) {
-      await userEvent.click(idHeader);
-    }
-    if (idHeader2) {
-      await userEvent.click(idHeader2);
-    }
+    const idHeader2 = canvas.getAllByRole("button")[2];
+    if (idHeader) await userEvent.click(idHeader);
+    if (idHeader2) await userEvent.click(idHeader2);
   },
 };
 
@@ -425,19 +421,11 @@ export const DescendantSorting: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const nameHeader = canvas.getAllByRole("button")[1];
-    const nameHeader2 = canvas.getAllByRole("button")[7];
-    if (nameHeader) {
-      await userEvent.click(nameHeader);
-    }
-    if (nameHeader) {
-      await userEvent.click(nameHeader);
-    }
-    if (nameHeader2) {
-      await userEvent.click(nameHeader2);
-    }
-    if (nameHeader2) {
-      await userEvent.click(nameHeader2);
-    }
+    const nameHeader2 = canvas.getAllByRole("button")[3];
+    if (nameHeader) await userEvent.click(nameHeader);
+    if (nameHeader) await userEvent.click(nameHeader);
+    if (nameHeader2) await userEvent.click(nameHeader2);
+    if (nameHeader2) await userEvent.click(nameHeader2);
   },
 };
 

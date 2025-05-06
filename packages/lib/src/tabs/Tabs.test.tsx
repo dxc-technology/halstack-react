@@ -2,6 +2,12 @@ import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import DxcTabs from "./Tabs";
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 const sampleTabs = (
   <DxcTabs>
     <DxcTabs.Tab label="Tab-1" notificationNumber={10} defaultActive>

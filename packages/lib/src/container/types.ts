@@ -1,15 +1,11 @@
 import { ReactNode } from "react";
-import { CoreColorTokensType } from "../common/coreTokens";
-import { Space as SpacingValues } from "../common/utils";
 
-type Space =
-  | SpacingValues
-  | {
-      top?: SpacingValues;
-      right?: SpacingValues;
-      bottom?: SpacingValues;
-      left?: SpacingValues;
-    };
+type Space = {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+};
 
 type Inset = {
   top?: string;
@@ -21,7 +17,7 @@ type Inset = {
 type Background = {
   attachment?: string;
   clip?: string;
-  color?: CoreColorTokensType;
+  color?: string;
   image?: string;
   origin?: string;
   position?: string;
@@ -31,17 +27,17 @@ type Background = {
 
 export type BorderProperties = {
   width?: string;
-  style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
-  color?: CoreColorTokensType;
+  style?: string;
+  color?: string;
 };
 type Border =
   | BorderProperties
   | {
-      top?: BorderProperties;
-      right?: BorderProperties;
-      bottom?: BorderProperties;
-      left?: BorderProperties;
-    };
+    top?: BorderProperties;
+    right?: BorderProperties;
+    bottom?: BorderProperties;
+    left?: BorderProperties;
+  };
 
 type Outline = BorderProperties & {
   offset?: string;
@@ -82,7 +78,7 @@ type Props = {
   /**
    * Custom content inside the container.
    */
-  children: ReactNode;
+  children?: ReactNode;
   /**
    * Sets the display CSS property.
    * The set of values is limited to the ones related to the outer display type.
@@ -110,17 +106,9 @@ type Props = {
    */
   inset?: Inset;
   /**
-   * Size of the margin to be applied to the component.
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties
-   * in order to specify different margin sizes.
+   * Size of the margin to be applied to the container.
    */
-  margin?: Space;
-  /**
-   * Sets the max-height CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
-   */
-  maxWidth?: string;
+  margin?: string | Space;
   /**
    * Sets the max-width CSS property.
    *
@@ -128,17 +116,23 @@ type Props = {
    */
   maxHeight?: string;
   /**
-   * Sets the min-height CSS property.
+   * Sets the max-height CSS property.
    *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
    */
-  minWidth?: string;
+  maxWidth?: string;
   /**
    * Sets the min-width CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
    */
   minHeight?: string;
+  /**
+   * Sets the min-height CSS property.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+   */
+  minWidth?: string;
   /**
    * Based on the CSS property outline allows configuring all properties related
    * to the outline of a container.
@@ -151,11 +145,9 @@ type Props = {
    */
   overflow?: Overflow;
   /**
-   * Size of the margin to be applied to the component.
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties
-   * in order to specify different margin sizes.
+   * Size of the padding to be applied to the container.
    */
-  padding?: Space;
+  padding?: string | Space;
   /**
    * Sets the position CSS property.
    *
@@ -178,9 +170,9 @@ type Props = {
 
 export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
-  $width?: string;
   $height?: string;
   $overflow?: Overflow;
+  $width?: string;
 };
 
 export default Props;

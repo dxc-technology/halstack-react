@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcLink from "./Link";
 
 export default {
@@ -19,12 +18,6 @@ const icon = (
     </g>
   </svg>
 );
-
-const opinionatedTheme = {
-  link: {
-    baseColor: "#fabada",
-  },
-};
 
 const Link = () => (
   <>
@@ -63,7 +56,9 @@ const Link = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
-      This is a <DxcLink inheritColor>Test</DxcLink>.
+      <span style={{ color: "#fabada" }}>
+        This is a <DxcLink inheritColor>Test</DxcLink>.
+      </span>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With brackets and focus" theme="light" level={4} />
@@ -197,13 +192,6 @@ const Link = () => (
       <DxcLink margin="xxlarge" href="https://www.linkedin.com/">
         Test
       </DxcLink>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-visited">
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="With link visited" theme="light" level={4} />
-        <DxcLink href="https://www.google.com">Test</DxcLink>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );

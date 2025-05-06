@@ -1,6 +1,8 @@
 import { render } from "@testing-library/react";
 import DxcAccordion from "./Accordion";
 import { axe } from "../../test/accessibility/axe-helper";
+import DxcBadge from "../badge/Badge";
+import DxcStatusLight from "../status-light/StatusLight";
 
 const folderIcon = (
   <svg
@@ -23,17 +25,70 @@ const folderIcon = (
 describe("Accordion component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcAccordion label="Accordion" assistiveText="Assistive Text" icon={folderIcon} margin="small" defaultIsExpanded>
-        <div>test-expanded</div>
+      <DxcAccordion defaultIndexActive={0} independent>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236532"
+          icon={folderIcon}
+        >
+          <div>test-expanded</div>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
+
+  it("Should not have basic accessibility issues with badge and status light", async () => {
+    const { container } = render(
+      <DxcAccordion defaultIndexActive={0} independent>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236532"
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" icon={folderIcon} /> }}
+          statusLight={<DxcStatusLight label="Active" />}
+        >
+          <div>test-expanded</div>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
-      <DxcAccordion label="Accordion" assistiveText="Assistive Text" icon={folderIcon} margin="small" disabled>
-        <div>test-expanded</div>
+      <DxcAccordion defaultIndexActive={0} independent>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236532"
+          icon={folderIcon}
+          disabled
+        >
+          <div>test-expanded</div>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it("Should not have basic accessibility issues for disabled mode with badge and status light", async () => {
+    const { container } = render(
+      <DxcAccordion defaultIndexActive={0} independent>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236532"
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" icon={folderIcon} /> }}
+          statusLight={<DxcStatusLight label="Active" />}
+          disabled
+        >
+          <div>test-expanded</div>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     );
     const results = await axe(container);

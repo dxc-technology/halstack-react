@@ -1,6 +1,5 @@
-import { ReactNode, SVGProps } from "react";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { MouseEvent } from "react";
+import { SVG } from "../common/utils";
 
 type Props = {
   /**
@@ -17,8 +16,9 @@ type Props = {
   icon: string | SVG;
   /**
    * This function will be called when the user clicks the button.
+   * @param event The event source of the callback.
    */
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   /**
    * Value of the tabindex attribute.
    */

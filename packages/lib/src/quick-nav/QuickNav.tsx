@@ -1,104 +1,94 @@
 import { useContext } from "react";
 import slugify from "slugify";
-import styled, { ThemeProvider } from "styled-components";
-import DxcFlex from "../flex/Flex";
+import styled from "styled-components";
 import DxcHeading from "../heading/Heading";
-import DxcInset from "../inset/Inset";
-import DxcTypography from "../typography/Typography";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import QuickNavTypes from "./types";
 
-const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
-  const translatedLabels = useContext(HalstackLanguageContext);
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <ThemeProvider theme={colorsTheme.quickNav}>
-      <QuickNavContainer>
-        <DxcFlex direction="column" gap="0.5rem">
-          <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
-          <ListColumn>
-            {links.map((link) => (
-              <li key={link.label}>
-                <DxcInset space="0.25rem">
-                  <DxcTypography>
-                    <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
-                    <ListSecondColumn>
-                      {link.links?.map((sublink) => (
-                        <li key={sublink.label}>
-                          <DxcInset horizontal="0.5rem">
-                            <DxcTypography>
-                              <Link
-                                href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
-                                  lower: true,
-                                })}`}
-                              >
-                                {sublink.label}
-                              </Link>
-                            </DxcTypography>
-                          </DxcInset>
-                        </li>
-                      ))}
-                    </ListSecondColumn>
-                  </DxcTypography>
-                </DxcInset>
-              </li>
-            ))}
-          </ListColumn>
-        </DxcFlex>
-      </QuickNavContainer>
-    </ThemeProvider>
-  );
-};
-
 const QuickNavContainer = styled.div`
-  padding-top: ${(props) => props.theme.paddingTop};
-  padding-bottom: ${(props) => props.theme.paddingBottom};
-  padding-left: ${(props) => props.theme.paddingLeft};
-  padding-right: ${(props) => props.theme.paddingRight};
-  border-left: 2px solid ${(props) => props.theme.dividerBorderColor};
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-m);
+  padding: var(--spacing-padding-xs) var(--spacing-padding-m);
+  border-left: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-medium);
 `;
 
 const ListColumn = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-gap-s);
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-padding-none);
   list-style-type: none;
 `;
 
 const ListSecondColumn = styled.ul`
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 0;
+  gap: var(--spacing-gap-xs);
+  margin-top: var(--spacing-gap-xs);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   list-style-type: none;
 `;
 
 const Link = styled.a`
   text-decoration: none;
-  font-size: ${(props) => props.theme.fontSize};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => props.theme.fontColor};
-  display: block;
-  text-overflow: ellipsis;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  color: var(--color-fg-neutral-stronger);
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
+  height: var(--height-s);
   width: fit-content;
   max-width: 100%;
+  border-radius: var(--border-radius-xs);
 
+  > span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   &:hover {
-    color: ${(props) => props.theme.hoverFontColor};
+    color: var(--color-fg-primary-strong);
   }
   &:focus {
-    outline-color: ${(props) => props.theme.focusBorderColor};
-    outline-style: ${(props) => props.theme.focusBorderStyle};
-    outline-width: ${(props) => props.theme.focusBorderThickness};
-    border-radius: ${(props) => props.theme.focusBorderRadius};
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
 `;
 
-export default DxcQuickNav;
+export default function DxcQuickNav({ links, title }: QuickNavTypes) {
+  const translatedLabels = useContext(HalstackLanguageContext);
+
+  return (
+    <QuickNavContainer>
+      <DxcHeading level={5} text={title ?? translatedLabels.quickNav.contentTitle} />
+      <ListColumn>
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link href={`#${slugify(link.label, { lower: true })}`}>
+              <span>{link.label}</span>
+            </Link>
+            {link.links?.length && (
+              <ListSecondColumn>
+                {link.links?.map((sublink) => (
+                  <li key={sublink.label}>
+                    <Link
+                      href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
+                        lower: true,
+                      })}`}
+                    >
+                      <span>{sublink.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ListSecondColumn>
+            )}
+          </li>
+        ))}
+      </ListColumn>
+    </QuickNavContainer>
+  );
+}

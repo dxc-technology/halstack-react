@@ -26,6 +26,67 @@ dayjs.extend(customParseFormat);
 
 const SIDEOFFSET = 4;
 
+const sizes = {
+  small: "240px",
+  medium: "360px",
+  large: "480px",
+  fillParent: "100%",
+};
+
+const calculateWidth = (margin: DateInputPropsType["margin"], size: DateInputPropsType["size"]) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : size && sizes[size];
+
+const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  font-family: var(--typography-font-family);
+`;
+
+const Label = styled.label<{
+  disabled: DateInputPropsType["disabled"];
+  hasHelperText: boolean;
+}>`
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+  ${(props) => !props.hasHelperText && "margin-bottom: var(--spacing-gap-xs);"}
+`;
+
+const OptionalLabel = styled.span<{
+  disabled: DateInputPropsType["disabled"];
+}>`
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger);")};
+  font-weight: var(--typography-label-regular);
+`;
+
+const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger);")};
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+  margin-bottom: var(--spacing-gap-xs);
+`;
+
+const StyledPopoverContent = styled(Popover.Content)`
+  z-index: 2147483647;
+  &:focus-visible {
+    outline: none;
+  }
+`;
+
 const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
 
 const getDate = (
@@ -234,7 +295,10 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label}{" "}
+              {optional && (
+                <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
+              )}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -282,70 +346,6 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     );
   }
 );
-
-const sizes = {
-  small: "240px",
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
-const calculateWidth = (margin: DateInputPropsType["margin"], size: DateInputPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
-  ${(props) => props.size === "fillParent" && "width: 100%;"}
-  display: flex;
-  flex-direction: column;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  font-family: ${(props) => props.theme.textInput.fontFamily};
-`;
-
-const Label = styled.label<{
-  disabled: DateInputPropsType["disabled"];
-  hasHelperText: boolean;
-}>`
-  color: ${(props) =>
-    props.disabled ? props.theme.textInput.disabledLabelFontColor : props.theme.textInput.labelFontColor};
-  font-size: ${(props) => props.theme.textInput.labelFontSize};
-  font-style: ${(props) => props.theme.textInput.labelFontStyle};
-  font-weight: ${(props) => props.theme.textInput.labelFontWeight};
-  line-height: ${(props) => props.theme.textInput.labelLineHeight};
-  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
-`;
-
-const OptionalLabel = styled.span`
-  font-weight: ${(props) => props.theme.textInput.optionalLabelFontWeight};
-`;
-
-const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
-  color: ${(props) =>
-    props.disabled ? props.theme.textInput.disabledHelperTextFontColor : props.theme.textInput.helperTextFontColor};
-  font-size: ${(props) => props.theme.textInput.helperTextFontSize};
-  font-style: ${(props) => props.theme.textInput.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.textInput.helperTextFontWeight};
-  line-height: ${(props) => props.theme.textInput.helperTextLineHeight};
-  margin-bottom: 0.25rem;
-`;
-
-const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483647;
-  &:focus-visible {
-    outline: none;
-  }
-`;
 
 DxcDateInput.displayName = "DxcDateInput";
 

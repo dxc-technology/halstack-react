@@ -1,11 +1,13 @@
 import { useCallback, useContext, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import { getFilePreview, isFileIncluded } from "./utils";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
 
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
@@ -22,27 +24,13 @@ const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   width: fit-content;
 `;
 
-const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-`;
-
-const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-`;
-
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
-  margin-top: 0.25rem;
+    props.singleFileMode
+      ? "flex-direction: row; column-gap: var(--spacing-gap-xs);"
+      : "flex-direction: column; row-gap: var(--spacing-gap-xs);"}
+  margin-top: var(--spacing-gap-xs);
 `;
 
 const ValueInput = styled.input`
@@ -52,14 +40,14 @@ const ValueInput = styled.input`
 const FileItemListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 0.25rem;
+  row-gap: var(--spacing-gap-xs);
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 0.25rem;
-  margin-top: 0.25rem;
+  row-gap: var(--spacing-gap-xs);
+  margin-top: var(--spacing-gap-xs);
 `;
 
 const DragDropArea = styled.div<{
@@ -71,26 +59,21 @@ const DragDropArea = styled.div<{
   display: flex;
   ${(props) =>
     props.mode === "filedrop"
-      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
-      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
+      ? "flex-direction: row; column-gap: var(--spacing-gap-s);"
+      : "justify-content: center; flex-direction: column; row-gap: var(--spacing-gap-s); height: 160px;"}
   align-items: center;
   width: 320px;
-  padding: ${(props) =>
-    props.mode === "filedrop"
-      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
-      : "1rem"};
+  padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-padding-xxs)` : "var(--spacing-padding-m)")};
   overflow: hidden;
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: ${(props) => props.theme.dropBorderRadius};
-  border-width: ${(props) => props.theme.dropBorderThickness};
-  border-style: ${(props) => props.theme.dropBorderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+  border-radius: var(--border-radius-m);
+  border-width: var(--border-width-s);
+  border-style: var(--border-style-outline);
+  border-color: var(--border-color-neutral-dark);
   ${(props) =>
     props.isDragging &&
     `
-      background-color: ${props.theme.dragoverDropBackgroundColor};
-      border-color: transparent;
-      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
+      background-color: var(--color-bg-secondary-lightest);
+      border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     `}
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
@@ -102,29 +85,20 @@ const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
-`;
-
-const ErrorMessage = styled.div`
-  color: ${(props) => props.theme.errorMessageFontColor};
-  font-family: ${(props) => props.theme.errorMessageFontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessageLineHeight};
-  margin-top: 0.25rem;
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
@@ -151,7 +125,6 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
     const fileInputId = `file-input-${useId()}`;
-    const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
@@ -254,121 +227,116 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <ThemeProvider theme={colorsTheme.fileInput}>
-        <FileInputContainer margin={margin} ref={ref}>
-          <Label htmlFor={fileInputId} disabled={disabled}>
-            {label}
-          </Label>
-          <HelperText disabled={disabled}>{helperText}</HelperText>
-          {mode === "file" ? (
-            <FileContainer singleFileMode={!multiple && files.length === 1}>
-              <ValueInput
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-                disabled={disabled}
-                readOnly
-              />
+      <FileInputContainer margin={margin} ref={ref}>
+        <Label htmlFor={fileInputId} disabled={disabled}>
+          {label}
+        </Label>
+        <HelperText disabled={disabled}>{helperText}</HelperText>
+        {mode === "file" ? (
+          <FileContainer singleFileMode={!multiple && files.length === 1}>
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              disabled={disabled}
+              readOnly
+            />
+            <DxcButton
+              mode="secondary"
+              label={
+                buttonLabel ??
+                (multiple
+                  ? translatedLabels.fileInput.multipleButtonLabelDefault
+                  : translatedLabels.fileInput.singleButtonLabelDefault)
+              }
+              onClick={handleClick}
+              disabled={disabled}
+              size={{ width: "fitContent", height: "medium" }}
+              tabIndex={tabIndex}
+            />
+            {files.length > 0 && (
+              <FileItemListContainer role="list">
+                {files.map((file, index) => (
+                  <FileItem
+                    fileName={file.file.name}
+                    error={file.error}
+                    singleFileMode={!multiple && files.length === 1}
+                    showPreview={mode === "file" && !multiple ? false : showPreview}
+                    preview={file.preview ?? ""}
+                    type={file.file.type}
+                    onDelete={onDelete}
+                    tabIndex={tabIndex}
+                    key={`file-${index}`}
+                  />
+                ))}
+              </FileItemListContainer>
+            )}
+          </FileContainer>
+        ) : (
+          <Container>
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              disabled={disabled}
+              readOnly
+            />
+            <DragDropArea
+              isDragging={isDragging}
+              disabled={disabled}
+              mode={mode}
+              onDrop={handleDrop}
+              onDragEnter={handleDragIn}
+              onDragOver={handleDrag}
+              onDragLeave={handleDragOut}
+            >
               <DxcButton
                 mode="secondary"
-                label={
-                  buttonLabel ??
-                  (multiple
-                    ? translatedLabels.fileInput.multipleButtonLabelDefault
-                    : translatedLabels.fileInput.singleButtonLabelDefault)
-                }
+                label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                 onClick={handleClick}
                 disabled={disabled}
-                size={{ width: "fitContent" }}
-                tabIndex={tabIndex}
+                size={{ width: "fitContent", height: "medium" }}
               />
-              {files.length > 0 && (
-                <FileItemListContainer role="list">
-                  {files.map((file, index) => (
-                    <FileItem
-                      fileName={file.file.name}
-                      error={file.error}
-                      singleFileMode={!multiple && files.length === 1}
-                      showPreview={mode === "file" && !multiple ? false : showPreview}
-                      preview={file.preview ?? ""}
-                      type={file.file.type}
-                      onDelete={onDelete}
-                      tabIndex={tabIndex}
-                      key={`file-${index}`}
-                    />
-                  ))}
-                </FileItemListContainer>
+              {mode === "dropzone" ? (
+                <DropzoneLabel disabled={disabled}>
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                </DropzoneLabel>
+              ) : (
+                <FiledropLabel disabled={disabled}>
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                </FiledropLabel>
               )}
-            </FileContainer>
-          ) : (
-            <Container>
-              <ValueInput
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-                disabled={disabled}
-                readOnly
-              />
-              <DragDropArea
-                isDragging={isDragging}
-                disabled={disabled}
-                mode={mode}
-                onDrop={handleDrop}
-                onDragEnter={handleDragIn}
-                onDragOver={handleDrag}
-                onDragLeave={handleDragOut}
-              >
-                <DxcButton
-                  mode="secondary"
-                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
-                  onClick={handleClick}
-                  disabled={disabled}
-                  size={{ width: "fitContent" }}
-                />
-                {mode === "dropzone" ? (
-                  <DropzoneLabel disabled={disabled}>
-                    {dropAreaLabel ??
-                      (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                  </DropzoneLabel>
-                ) : (
-                  <FiledropLabel disabled={disabled}>
-                    {dropAreaLabel ??
-                      (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                  </FiledropLabel>
-                )}
-              </DragDropArea>
-              {files.length > 0 && (
-                <FileItemListContainer role="list">
-                  {files.map((file, index) => (
-                    <FileItem
-                      fileName={file.file.name}
-                      error={file.error}
-                      singleFileMode={false}
-                      showPreview={showPreview}
-                      preview={file.preview ?? ""}
-                      type={file.file.type}
-                      onDelete={onDelete}
-                      tabIndex={tabIndex}
-                      key={`file-${index}`}
-                    />
-                  ))}
-                </FileItemListContainer>
-              )}
-            </Container>
-          )}
-          {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
-            <ErrorMessage>{files[0].error}</ErrorMessage>
-          )}
-        </FileInputContainer>
-      </ThemeProvider>
+            </DragDropArea>
+            {files.length > 0 && (
+              <FileItemListContainer role="list">
+                {files.map((file, index) => (
+                  <FileItem
+                    fileName={file.file.name}
+                    error={file.error}
+                    singleFileMode={false}
+                    showPreview={showPreview}
+                    preview={file.preview ?? ""}
+                    type={file.file.type}
+                    onDelete={onDelete}
+                    tabIndex={tabIndex}
+                    key={`file-${index}`}
+                  />
+                ))}
+              </FileItemListContainer>
+            )}
+          </Container>
+        )}
+      </FileInputContainer>
     );
   }
 );

@@ -5,7 +5,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
-import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcInset from "../inset/Inset";
 import DxcParagraph from "../paragraph/Paragraph";
@@ -33,20 +32,12 @@ const customViewports = {
   },
 };
 
-const opinionatedTheme = {
-  dialog: {
-    baseColor: "#ffffff",
-    closeIconColor: "#000000",
-    overlayColor: "#000000b3",
-  },
-};
-
 const Dialog = () => (
   <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
@@ -65,40 +56,14 @@ const Dialog = () => (
   </ExampleContainer>
 );
 
-const DialogOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Default dialog" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcDialog>
-        <DxcInset space="1.5rem">
-          <DxcFlex direction="column" gap="1rem">
-            <DxcHeading level={4} text="Example title" />
-            <DxcParagraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa
-              magna, placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo
-              sed dapibus tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis
-              Jia Le, risus eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
-              ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit
-              ornare, malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit
-              amet. Etiam sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum
-              blandit justo. Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
-            </DxcParagraph>
-          </DxcFlex>
-        </DxcInset>
-      </DxcDialog>
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 const DialogInput = () => (
   <ExampleContainer expanded>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
+          <DxcFlex gap="var(--spacing-padding-m)" direction="column">
             <DxcTextInput size="fillParent" label="Name" />
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
@@ -109,7 +74,7 @@ const DialogInput = () => (
               text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
             }}
           />
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+          <DxcFlex justifyContent="flex-end" gap="var(--spacing-padding-xs)">
             <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
@@ -123,8 +88,8 @@ const DialogNoOverlay = () => (
   <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
@@ -147,7 +112,7 @@ const DialogCloseNoVisible = () => (
   <ExampleContainer expanded>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog closable={false}>
-      <DxcInset space="1.5rem">
+      <DxcInset space="var(--spacing-padding-l)">
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
           placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -168,14 +133,14 @@ const RespDialog = () => (
   <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
+          <DxcFlex gap="var(--spacing-padding-m)" direction="column">
             <DxcTextInput size="fillParent" label="Name" />
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+          <DxcFlex justifyContent="flex-end" gap="var(--spacing-padding-xs)">
             <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
@@ -324,8 +289,8 @@ const ScrollingDialog = () => (
       </DxcParagraph>
     </>
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
@@ -349,10 +314,6 @@ type Story = StoryObj<typeof DxcDialog>;
 
 export const DefaultDialog: Story = {
   render: Dialog,
-};
-
-export const DefaultDialogOpinionated: Story = {
-  render: DialogOpinionated,
 };
 
 export const DialogWithInputs: Story = {

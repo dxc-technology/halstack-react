@@ -34,7 +34,7 @@ const Image = () => (
         metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
         volutpat id lorem.
       </DxcParagraph>
-      <DxcInset top="2rem" bottom="2rem">
+      <DxcInset top="var(--spacing-padding-xl)" bottom="var(--spacing-padding-xl)">
         <DxcImage
           alt="Ratatouille is a great movie"
           caption="Ratatouille with a smile on his face."

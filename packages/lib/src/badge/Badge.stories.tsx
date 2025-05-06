@@ -225,7 +225,7 @@ const NestedTooltip = () => (
   <>
     <Title title="Nested tooltip" theme="light" level={2} />
     <ExampleContainer>
-      <DxcInset top="3rem">
+      <DxcInset top="var(--spacing-padding-xxl)">
         <DxcTooltip label="Tooltip label" position="top">
           <DxcBadge label="Tooltip label" title="Label" />
         </DxcTooltip>

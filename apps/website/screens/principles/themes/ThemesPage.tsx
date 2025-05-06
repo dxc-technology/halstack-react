@@ -149,6 +149,13 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
+                        <td>Sublabel font color</td>
+                        <td>
+                          <br />
+                          <Code>subLabelFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
                         <td>Assistive text font color</td>
                         <td>
                           <Code>assistiveTextFontColor</Code>
@@ -1532,7 +1539,7 @@ const Themes = () => {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Themes" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Themes"></DxcHeading>
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>

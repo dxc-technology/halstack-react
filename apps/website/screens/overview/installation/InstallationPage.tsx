@@ -101,7 +101,7 @@ export default function Installation() {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Installation" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Installation"></DxcHeading>
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>

@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import GridPageLayout from "screens/components/grid/GridPageLayout";
-import GridCodePage from "screens/components/grid/code/GridCodePage";
+import GridOverviewPage from "screens/components/grid/overview/GridOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Grid — Halstack Design System</title>
-      </Head>
-      <GridCodePage></GridCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Grid — Halstack Design System</title>
+    </Head>
+    <GridOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <GridPageLayout>{page}</GridPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <GridPageLayout>{page}</GridPageLayout>;
 
 export default Index;

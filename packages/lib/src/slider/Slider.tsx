@@ -1,31 +1,13 @@
-import { ChangeEvent, forwardRef, MouseEvent, useContext, useId, useMemo, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import DxcTextInput from "../text-input/TextInput";
+import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
+import styled, { css } from "styled-components";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
-import HalstackContext from "../HalstackContext";
 import SliderPropsType, { RefType } from "./types";
+import { calculateWidth, roundUp, stepPrecision } from "./utils";
+import DxcNumberInput from "../number-input/NumberInput";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
 
-const sizes = {
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
-const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const getChromeStyles = () => `
-  width: 100%;
-  margin-right: 4px;`;
-
-const getFirefoxStyles = () => `
-  width: calc(100% - 16px);
-  margin-right: 3px;`;
-
-const Container = styled.div<{
+const SliderContainer = styled.div<{
   margin: SliderPropsType["margin"];
   size: SliderPropsType["size"];
 }>`
@@ -43,331 +25,252 @@ const Container = styled.div<{
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-const Label = styled.label<{ disabled: SliderPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
+const MainContainer = styled.div<{ showInput: SliderPropsType["showInput"] }>`
+  display: grid;
+  gap: var(--spacing-gap-l);
+  ${({ showInput }) => showInput && "grid-template-columns: 1fr 64px;"};
+  height: var(--height-xxl);
+  place-items: center;
 `;
 
-const HelperText = styled.span<{ disabled: SliderPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-`;
-
-const SliderInput = styled.input<{
-  disabled: SliderPropsType["disabled"];
-  value: SliderPropsType["value"];
-  min: SliderPropsType["minValue"];
-  max: SliderPropsType["maxValue"];
-}>`
-  width: 100%;
-  min-width: 240px;
-  height: ${(props) => props.theme.trackLineThickness};
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  background-color: ${(props) =>
-    props.disabled ? `${props.theme.disabledTotalLineColor}61` : props.theme.totalLineColor};
-  background-image: ${(props) =>
-    props.disabled
-      ? `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
-      : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
-  background-repeat: no-repeat;
-  background-size: ${(props) =>
-    props.value != null &&
-    props.min != null &&
-    props.max != null &&
-    `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
-  border-radius: 5px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  &::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-    margin: 0px -8px;
-  }
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: ${(props) => props.theme.thumbHeight};
-    width: ${(props) => props.theme.thumbWidth};
-    border-radius: 25px;
-    background: ${(props) =>
-      props.disabled ? props.theme.disabledThumbBackgroundColor : props.theme.thumbBackgroundColor};
-    &:active {
-      ${(props) =>
-        !props.disabled &&
-        `
-          background: ${props.theme.activeThumbBackgroundColor};
-            transform: scale(1.16667);`}
-    }
-    &:hover {
-      ${(props) =>
-        !props.disabled &&
-        `height: ${props.theme.hoverThumbHeight};
-          width: ${props.theme.hoverThumbWidth};
-          transform: scale(1.16667);
-          transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`}
-    }
-  }
-  &::-moz-range-track {
-    -webkit-appearance: none;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-  }
-  &::-moz-range-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: ${(props) => props.theme.thumbHeight};
-    width: ${(props) => props.theme.thumbWidth};
-    border-radius: 25px;
-    background: ${(props) =>
-      props.disabled ? props.theme.disabledThumbBackgroundColor : props.theme.thumbBackgroundColor};
-    &:active {
-      background: ${(props) => props.theme.activeThumbBackgroundColor};
-      transform: scale(1.16667);
-    }
-    &:hover {
-      ${(props) =>
-        !props.disabled &&
-        `height: ${props.theme.hoverThumbHeight};
-          width: ${props.theme.hoverThumbWidth};
-          transform: scale(1.16667);
-          transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`}
-    }
-  }
-  &:focus {
-    outline: none;
-    &::-webkit-slider-thumb {
-      outline: ${(props) => (props.disabled ? props.theme.disabledFocusColor : props.theme.focusColor)} auto 1px;
-      outline-offset: 2px;
-    }
-    &::-moz-range-thumb {
-      outline: ${(props) => (props.disabled ? props.theme.disabledFocusColor : props.theme.focusColor)} auto 1px;
-      outline-offset: 2px;
-    }
-  }
-`;
-
-const SliderContainer = styled.div`
-  display: flex;
-  height: 48px;
+const LimitsValueGrid = styled.div<{ showLimitsValues: SliderPropsType["showLimitsValues"] }>`
+  display: grid;
   align-items: center;
+  gap: var(--spacing-gap-ml);
+  ${({ showLimitsValues }) => showLimitsValues && "grid-template-columns: auto 1fr auto;"}
+  width: 100%;
 `;
 
-const LimitLabelContainer = styled.span<{
+const LimitLabel = styled.span<{
   disabled: SliderPropsType["disabled"];
 }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLimitValuesFontColor : props.theme.limitValuesFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.limitValuesFontSize};
-  font-style: ${(props) => props.theme.limitValuesFontStyle};
-  font-weight: ${(props) => props.theme.limitValuesFontWeight};
-  letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
-  white-space: nowrap;
-`;
-
-const MinLabelContainer = styled(LimitLabelContainer)`
-  margin-right: ${(props) => props.theme.floorLabelMarginRight};
-`;
-
-const MaxLabelContainer = styled(LimitLabelContainer)<{ step: number }>`
-  margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
 `;
 
 const SliderInputContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 24px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: -2px;
-  padding-top: 1px;
-  z-index: 0;
+  height: var(--height-xxxs);
+  min-width: 184px;
 `;
 
-const MarksContainer = styled.div<{ isFirefox: boolean }>`
-  ${(props) => (props.isFirefox ? getFirefoxStyles() : getChromeStyles())}
-  position: absolute;
-  pointer-events: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
+const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
+  -webkit-appearance: none;
+  width: 12px;
+  height: var(--height-xxxs);
+  background-color: ${disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+  border: none;
+  border-radius: 50%;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease;
+  &:active {
+    ${!disabled && `background-color: var(--color-fg-secondary-stronger);`}
+  }
+  &:hover {
+    ${!disabled &&
+    `background-color: var(--color-fg-secondary-strong);
+     height: var(--height-xxs);
+     width: 16px;`}
+  }
 `;
-
-const TickMark = styled.span<{
-  stepPosition: number;
+const thumbFocusStyles = css`
+  outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+  outline-offset: 2px;
+`;
+const SliderInput = styled.input<{
   disabled: SliderPropsType["disabled"];
-  stepValue: SliderPropsType["value"];
+  max: Required<SliderPropsType>["maxValue"];
+  min: Required<SliderPropsType>["minValue"];
+  value: Required<SliderPropsType>["value"];
 }>`
-  position: absolute;
-  background: ${(props) =>
-    props.disabled ? props.theme.disabledTickBackgroundColor : props.theme.tickBackgroundColor};
-  height: ${(props) => props.theme.tickHeight};
-  width: ${(props) => props.theme.tickWidth};
-  border-radius: 18px;
-  left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => props.stepValue != null && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
+  -webkit-appearance: none;
+  margin: 0;
+  width: 100%;
+  height: 2px;
+  background-color: ${({ disabled }) =>
+    disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-lighter)"};
+  background-image: ${({ disabled }) =>
+    disabled
+      ? "linear-gradient(var(--color-fg-neutral-medium), var(--color-fg-neutral-medium))"
+      : "linear-gradient(var(--color-fg-secondary-medium), var(--color-fg-secondary-medium))"};
+  background-repeat: no-repeat;
+  ${({ max, min, value }) => {
+    const base10 = ((value - min) / (max - min)) * 100;
+    return `background-size: ${base10}% 100%;`;
+  }}
+  border-radius: var(--border-radius-m);
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  &::-webkit-slider-thumb {
+    ${({ disabled }) => thumbStyles(disabled)}
+  }
+  &::-moz-range-thumb {
+    ${({ disabled }) => thumbStyles(disabled)}
+  }
+  &:focus {
+    outline: none;
+    ::-webkit-slider-thumb {
+      ${thumbFocusStyles}
+    }
+    ::-moz-range-thumb {
+      ${thumbFocusStyles}
+    }
+  }
 `;
 
-const TextInputContainer = styled.div`
-  margin-left: ${(props) => props.theme.inputMarginLeft};
-  max-width: 70px;
+const TicksContainer = styled.datalist`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+`;
+
+const Tick = styled.option<{
+  disabled: SliderPropsType["disabled"];
+  currentTick: boolean;
+}>`
+  all: unset;
+  background-color: ${({ disabled }) =>
+    disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+  border-radius: 50%;
+  height: 4px;
+  width: 4px;
+  ${({ currentTick }) => currentTick && "visibility: hidden;"};
 `;
 
 const DxcSlider = forwardRef<RefType, SliderPropsType>(
   (
     {
-      label = "",
-      name = "",
-      defaultValue,
-      value,
-      helperText = "",
-      minValue = 0,
-      maxValue = 100,
-      step = 1,
-      showLimitsValues = false,
-      showInput = false,
+      ariaLabel = "Slider",
+      defaultValue = 0,
       disabled = false,
-      marks = false,
-      onChange,
-      onDragEnd,
+      helperText,
+      label,
       labelFormatCallback,
       margin,
+      marks,
+      maxValue = 100,
+      minValue = 0,
+      name,
+      onChange,
+      onDragEnd,
+      showLimitsValues,
+      showInput,
       size = "fillParent",
-      ariaLabel = "Slider",
+      step = 1,
+      value,
     },
     ref
-  ): JSX.Element => {
+  ) => {
     const labelId = `label-${useId()}`;
-    const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
-    const [dragging, setDragging] = useState(false);
-    const colorsTheme = useContext(HalstackContext);
-    const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
-
-    const minLabel = useMemo(
-      () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
-      [labelFormatCallback, minValue]
+    const [innerValue, setInnerValue] = useState(defaultValue);
+    const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());
+    const roundedUpValue = useMemo(
+      () => roundUp(value ?? innerValue, step, minValue, maxValue),
+      [innerValue, maxValue, minValue, step, value]
     );
+    const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
+    const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
-    const maxLabel = useMemo(
-      () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
-      [labelFormatCallback, maxValue]
-    );
-
-    const tickMarks = useMemo(() => {
-      const numberOfMarks = Math.floor(maxValue / step - minValue / step);
-      const range = maxValue - minValue;
-      const ticks = [];
-
-      if (marks) {
-        for (let index = 0; index <= numberOfMarks; index++) {
-          ticks.push(
-            <TickMark
-              disabled={disabled}
-              stepPosition={(step * index) / range}
-              stepValue={(value ?? innerValue) / maxValue}
-              key={`tickmark-${index}`}
-            />
-          );
-        }
-        return ticks;
-      }
-      return null;
-    }, [minValue, maxValue, step, value, innerValue]);
-
-    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const intValue = parseInt(event.target.value, 10);
-      if (intValue !== value || intValue !== innerValue) {
-        setInnerValue(intValue);
-      }
-      onChange?.(intValue);
+    const changeValue = (newValue: string) => {
+      if (showInput) setInputValue(newValue);
+      const numberValue = Number(newValue);
+      if (value == null) setInnerValue(numberValue);
+      onChange?.(numberValue);
     };
 
-    const handleSliderDragging = () => {
-      setDragging(true);
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+      changeValue(event.target.value);
     };
 
-    const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
-      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
-      if (dragging) {
-        setDragging(false);
-        onDragEnd?.(intValue);
-      }
+    const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
+      const sliderIntegerValue = Number((event.target as HTMLInputElement).value);
+      onDragEnd?.(sliderIntegerValue);
     };
 
-    const handlerInputChange = (event: { value: string; error?: string }) => {
-      const intValue = parseInt(event.value, 10);
-      if (!Number.isNaN(intValue)) {
-        if (value == null) setInnerValue(intValue > maxValue ? maxValue : intValue);
-        onChange?.(intValue > maxValue ? maxValue : intValue);
-      }
+    const handlerNumberInputOnChange = (event: { value: string; error?: string }) => {
+      changeValue(event.value);
+    };
+
+    const handlerNumberInputOnBlur = (event: { value: string; error?: string }) => {
+      const textInputIntegerValue = Number(event.value);
+      if (textInputIntegerValue < minValue) changeValue(minValue.toString());
+      else if (textInputIntegerValue > maxValue) changeValue(maxValue.toString());
+      else changeValue(roundUp(textInputIntegerValue, step, minValue, maxValue).toString());
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.slider}>
-        <Container margin={margin} size={size} ref={ref}>
-          {label && (
-            <Label id={labelId} disabled={disabled}>
-              {label}
-            </Label>
-          )}
-          <HelperText disabled={disabled}>{helperText}</HelperText>
-          <SliderContainer>
-            {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
+      <SliderContainer margin={margin} size={size} ref={ref}>
+        {label && (
+          <Label id={labelId} disabled={disabled}>
+            {label}
+          </Label>
+        )}
+        {helperText && (
+          <HelperText disabled={disabled}>
+            {helperText}
+          </HelperText>
+        )}
+        <MainContainer showInput={showInput}>
+          <LimitsValueGrid showLimitsValues={showLimitsValues}>
+            {showLimitsValues && <LimitLabel disabled={disabled}>{minLabel}</LimitLabel>}
             <SliderInputContainer>
               <SliderInput
-                role="slider"
-                type="range"
-                value={value != null && value >= 0 ? value : innerValue}
-                min={minValue}
-                max={maxValue}
-                step={step}
-                disabled={disabled}
+                aria-label={label ? undefined : ariaLabel}
                 aria-labelledby={label ? labelId : undefined}
                 aria-orientation="horizontal"
                 aria-valuemax={maxValue}
                 aria-valuemin={minValue}
-                aria-valuenow={value != null && value >= 0 ? value : innerValue}
-                aria-label={label ? undefined : ariaLabel}
-                onChange={handleSliderChange}
-                onMouseUp={handleSliderOnChangeCommitted}
-                onMouseDown={handleSliderDragging}
+                aria-valuenow={value ?? innerValue}
+                disabled={disabled}
+                max={maxValue}
+                min={minValue}
+                onChange={handleOnChange}
+                onMouseUp={handleOnMouseUp}
+                role="slider"
+                step={step}
+                type="range"
+                value={roundedUpValue}
               />
-              {marks && <MarksContainer isFirefox={isFirefox}>{tickMarks}</MarksContainer>}
+              {marks && (
+                <TicksContainer>
+                  {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => {
+                    const tick = minValue + index * step;
+                    return (
+                      <Tick
+                        currentTick={roundedUpValue === stepPrecision(tick, step)}
+                        disabled={disabled}
+                        key={`tickmark-${index}`}
+                        value={tick.toString()}
+                      />
+                    );
+                  })}
+                </TicksContainer>
+              )}
             </SliderInputContainer>
-            {showLimitsValues && (
-              <MaxLabelContainer disabled={disabled} step={step}>
-                {maxLabel}
-              </MaxLabelContainer>
-            )}
-            {showInput && (
-              <TextInputContainer>
-                <DxcTextInput
-                  name={name}
-                  value={value != null && value >= 0 ? value.toString() : innerValue.toString()}
-                  disabled={disabled}
-                  onChange={handlerInputChange}
-                  size="fillParent"
-                />
-              </TextInputContainer>
-            )}
-          </SliderContainer>
-        </Container>
-      </ThemeProvider>
+            {showLimitsValues && <LimitLabel disabled={disabled}>{maxLabel}</LimitLabel>}
+          </LimitsValueGrid>
+          {showInput && (
+            <DxcNumberInput
+              disabled={disabled}
+              name={name}
+              onBlur={handlerNumberInputOnBlur}
+              onChange={handlerNumberInputOnChange}
+              showControls={false}
+              size="fillParent"
+              step={step}
+              value={inputValue}
+            />
+          )}
+        </MainContainer>
+      </SliderContainer>
     );
   }
 );

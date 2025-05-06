@@ -33,8 +33,9 @@ module.exports = {
     {
       files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
       rules: {
-        "jsx-a11y/tabindex-no-positive": "off",
+        "jsx-a11y/label-has-associated-control": "off",
         "jsx-a11y/no-noninteractive-tabindex": "off",
+        "jsx-a11y/tabindex-no-positive": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "react/jsx-no-useless-fragment": "off",
         "no-console": "off",
@@ -50,6 +51,7 @@ module.exports = {
     {
       files: ["**/?(*.)+(stories).[jt]s?(x)"],
       rules: {
+        "jsx-a11y/label-has-associated-control": "off",
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "react/jsx-no-useless-fragment": "off",
         "no-console": "off",

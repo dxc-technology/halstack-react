@@ -53,6 +53,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   const accordionTokens = componentTokensCopy.accordion;
   accordionTokens.assistiveTextFontColor =
     theme.accordion?.assistiveTextFontColor ?? accordionTokens.assistiveTextFontColor;
+  accordionTokens.subLabelFontColor = theme.accordion?.subLabelFontColor ?? accordionTokens.subLabelFontColor;
   accordionTokens.titleLabelFontColor = theme.accordion?.titleFontColor ?? accordionTokens.titleLabelFontColor;
   accordionTokens.arrowColor = theme.accordion?.accentColor ?? accordionTokens.arrowColor;
   accordionTokens.iconColor = theme.accordion?.accentColor ?? accordionTokens.iconColor;
@@ -191,8 +192,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   headerTokens.menuBackgroundColor = theme.header?.menuBaseColor ?? headerTokens.menuBackgroundColor;
   headerTokens.hamburgerFontColor = theme.header?.fontColor ?? headerTokens.hamburgerFontColor;
   headerTokens.hamburgerIconColor = theme.header?.hamburgerColor ?? headerTokens.hamburgerIconColor;
-  headerTokens.hamburgerHoverColor =
-    addLightness(90, theme.header?.hamburgerColor) ?? headerTokens.hamburgerHoverColor;
+  headerTokens.hamburgerHoverColor = addLightness(90, theme.header?.hamburgerColor) ?? headerTokens.hamburgerHoverColor;
   headerTokens.logo = theme.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme.header?.contentColor ?? headerTokens.contentColor;

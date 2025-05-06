@@ -213,7 +213,7 @@ const ActiveGroupSidenav = () => (
     <Title title="Active state for groups (selected and not)" theme="light" level={4} />
     <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
       <DxcSidenav.Section>
-        <DxcInset space="1rem">
+        <DxcInset space="var(--spacing-padding-m)">
           <DxcSelect
             defaultValue="1"
             options={[

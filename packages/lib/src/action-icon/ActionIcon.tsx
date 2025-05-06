@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 import ActionIconPropsTypes, { RefType } from "./types";
-import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
@@ -11,43 +10,27 @@ const ActionIcon = styled.button`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 2px;
+  border-radius: var(--border-radius-xs);
+  height: var(--height-s);
   width: 24px;
-  height: 24px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  box-shadow: 0 0 0 2px transparent;
-  background-color: ${(props) =>
-    props.disabled
-      ? (props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent)
-      : (props.theme.actionBackgroundColor ?? CoreTokens.color_transparent)};
-  color: ${(props) =>
-    props.disabled
-      ? (props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500)
-      : (props.theme.actionIconColor ?? CoreTokens.color_grey_900)};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
 
   ${(props) =>
     !props.disabled &&
     `
       &:focus,
       &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor ?? CoreTokens.color_blue_600};
-        color: ${props.theme.focusActionIconColor ?? CoreTokens.color_grey_900};
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
       }
       &:hover {
-        background-color: ${props.theme.hoverActionBackgroundColor ?? CoreTokens.color_grey_100};
-        color: ${props.theme.hoverActionIconColor ?? CoreTokens.color_grey_900};
-      }
-      &:active {
-        background-color: ${props.theme.activeActionBackgroundColor ?? CoreTokens.color_grey_300};
-        color: ${props.theme.activeActionIconColor ?? CoreTokens.color_grey_900};
+        background-color: var(--color-bg-alpha-light);
       }
     `}
-
-  font-size: 16px;
+  font-size: var(--height-xxs);
   > svg {
+    height: var(--height-xxs);
     width: 16px;
-    height: 16px;
   }
 `;
 

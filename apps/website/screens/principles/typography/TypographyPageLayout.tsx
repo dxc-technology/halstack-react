@@ -12,7 +12,7 @@ const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Typography"></DxcHeading>
           <DxcParagraph>
             This section explains and shows examples of all the typographic variables included in Halstack Design
             System.

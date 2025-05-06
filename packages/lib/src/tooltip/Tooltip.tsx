@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
-import CoreTokens from "../common/coreTokens";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import TooltipContext from "./TooltipContext";
 
@@ -76,14 +75,14 @@ const StyledTooltipContent = styled(Content)`
 
 const TooltipContainer = styled.div`
   box-sizing: border-box;
-  max-width: 242px;
-  border-radius: 4px;
-  border-color: ${CoreTokens.color_grey_800};
-  padding: 8px 12px;
-  font-size: ${CoreTokens.type_scale_01};
-  font-family: ${CoreTokens.type_sans};
-  color: ${CoreTokens.color_white};
-  background-color: ${CoreTokens.color_grey_800};
+  max-width: 271px;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-bg-neutral-stronger);
+  padding: var(--spacing-padding-xs) var(--spacing-padding-s);
+  color: var(--color-fg-neutral-bright);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-s);
+  font-weight: var(--typography-label-regular);
   overflow-wrap: break-word;
 `;
 
@@ -98,17 +97,17 @@ const triangleIcon = (
   >
     <path
       d="M0.351562 0L5.30131 4.94975C5.69184 5.34027 6.325 5.34027 6.71552 4.94975L11.6653 0H6.00842H0.351562Z"
-      fill={CoreTokens.color_grey_800}
+      fill="var(--color-bg-neutral-stronger)"
     />
   </svg>
 );
 
 export const Tooltip = ({
-  label,
-  hasAdditionalContainer = false,
-  position = "bottom",
   children,
-}: { hasAdditionalContainer?: boolean } & TooltipPropsType): JSX.Element => {
+  hasAdditionalContainer,
+  label,
+  position = "bottom",
+}: { hasAdditionalContainer?: boolean } & TooltipPropsType) => {
   const hasTooltip = useContext(TooltipContext);
 
   return (

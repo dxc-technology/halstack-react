@@ -8,8 +8,6 @@ import basicUsage from "./examples/basicUsage";
 import customSizes from "./examples/customSides";
 import StatusBadge from "@/common/StatusBadge";
 
-const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
-
 const sections = [
   {
     title: "Props",
@@ -25,59 +23,11 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>space</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to all sides.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>horizontal</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to the left and right sides.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>vertical</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to the top and bottom sides.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>top</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to the top side.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>right</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to the right side.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>bottom</td>
             <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>Applies the spacing scale to the bottom side.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>left</td>
-            <td>
-              <TableCode>{coreSpacingTokensTypeString}</TableCode>
-            </td>
-            <td>Applies the spacing scale to the left side.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -91,6 +41,54 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>Custom content inside the bleed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>horizontal</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the left and right sides.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>left</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the left side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>right</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the right side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>space</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to all sides.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>top</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the top side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>vertical</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the top and bottom sides.</td>
             <td>-</td>
           </tr>
         </tbody>
@@ -112,15 +110,13 @@ const sections = [
   },
 ];
 
-const BleedTableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/TableCode/BleedTableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const BleedCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/code/BleedCodePage.tsx" />
+  </DxcFlex>
+);
 
-export default BleedTableCodePage;
+export default BleedCodePage;

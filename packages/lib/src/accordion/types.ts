@@ -1,23 +1,31 @@
-import { ReactNode } from "react";
+import { ReactNode, ReactElement } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
-type Props = {
+export type AccordionItemProps = {
   /**
    * The panel label.
    */
   label: string;
   /**
-   * Initial state of the panel, only when it is uncontrolled.
+   * Additional info label positioned under the label.
    */
-  defaultIsExpanded?: boolean;
+  subLabel?: string;
   /**
-   * Represents the state of the panel. When true, the component will be
-   * expanded. If undefined, the component will be uncontrolled and its
-   * value will be managed internally by the component.
+   * Badge component to add extra value to the accordion.
    */
-  isExpanded?: boolean;
+  badge?: {
+    position: "before" | "after";
+    element: ReactNode;
+  };
   /**
-   * Material Symbol name or SVG element used as the icon that will be placed next to panel label.
+   * Status light component to add extra value to the accordion.
+   */
+  statusLight?: ReactNode;
+  /**
+   * Material Symbol name or SVG element used as the icon that will be
+   * placed next to panel label. When using Material Symbols, replace spaces with underscores.
+   * By default they are outlined if you want it to be filled
+   * prefix the symbol name with "filled_".
    */
   icon?: string | SVG;
   /**
@@ -29,24 +37,79 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * This function will be called when the user clicks the accordion to expand or collapse
-   * the panel. The new state of the panel will be passed as a parameter.
-   */
-  onChange?: (isExpanded: boolean) => void;
-  /**
    * The expanded panel of the accordion. This area can be used to render
    * custom content.
    */
   children: ReactNode;
+  /**
+   * Value of the tabindex attribute.
+   */
+  tabIndex?: number;
+};
+
+type CommonProps = {
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
-   * Value of the tabindex attribute.
+   * Contains one or more accordion items.
    */
-  tabIndex?: number;
+  children: ReactElement<AccordionItemProps>[] | ReactElement<AccordionItemProps>;
+};
+
+type IndependentProps = CommonProps & {
+  /**
+   * When true, limits the user to single-open section at a time. When false, multiple sections can be opened simultaneously.
+   */
+  independent: true;
+  /**
+   * Initially active accordion, only when it is uncontrolled.If the accordion is not independent,
+   * several accordions can be activated by default.
+   */
+  defaultIndexActive?: number;
+  /**
+   * The index of the active accordion. If undefined, the component will be uncontrolled and the active
+   * accordion will be managed internally by the component. If null, the component will be controlled and all
+   * accordions will be closed. If the accordion is not independent, several accordions can be activated.
+   */
+  indexActive?: number;
+  /**
+   * This function will be called when the user clicks on an accordion. The index of the clicked accordion will be passed as a parameter.
+   */
+  onActiveChange?: (index: number) => void;
+};
+
+type NonIndependentProps = CommonProps & {
+  /**
+   * When true, limits the user to single-open section at a time. When false, multiple sections can be opened simultaneously.
+   */
+  independent?: false;
+  /**
+   * Initially active accordion, only when it is uncontrolled. If the accordion is not independent,
+   * several accordions can be activated by default.
+   */
+  defaultIndexActive?: number[];
+  /**
+   * The index of the active accordion. If undefined, the component will be uncontrolled and the active
+   * accordion will be managed internally by the component. If null, the component will be controlled and all
+   * accordions will be closed. If the accordion is not independent, several accordions can be activated.
+   */
+  indexActive?: number[];
+  /**
+   * This function will be called when the user clicks on an accordion. The index of the clicked accordion will be passed as a parameter.
+   */
+  onActiveChange?: (index: number[]) => void;
+};
+
+type Props = IndependentProps | NonIndependentProps;
+
+export type AccordionContextProps = {
+  index: number;
+  activeIndex?: number | number[];
+  handlerActiveChange?: (index: number | number[]) => void;
+  independent?: boolean;
 };
 
 export default Props;

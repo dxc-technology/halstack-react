@@ -1,30 +1,25 @@
 import { ReactNode } from "react";
-import { CoreSpacingTokensType } from "../common/coreTokens";
 
-type Gap =
-  | { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType }
-  | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType }
-  | CoreSpacingTokensType;
-type GridCell = { start: number | string; end: number | string };
-
-type PlaceSelfValues = "auto" | "start" | "end" | "center" | "stretch" | "baseline";
+type Gap = string | { columnGap?: string; rowGap: string; } | { columnGap: string; rowGap?: string; };
+type GridCell = { end: number | string; start: number | string; };
+type PlaceSelfValues = "auto" | "baseline" | "center" | "end" | "start" | "stretch";
 type PlaceContentValues =
-  | "normal"
-  | "start"
-  | "end"
+  | "baseline"
   | "center"
-  | "stretch"
-  | "space-between"
+  | "end"
+  | "normal"
   | "space-around"
+  | "space-between"
   | "space-evenly"
-  | "baseline";
-type PlaceItemsValues = "normal" | "start" | "end" | "center" | "stretch" | "baseline";
+  | "start"
+  | "stretch";
+type PlaceItemsValues = "baseline" | "center" | "end" | "normal" | "start" | "stretch";
 type PlaceObject<Type, Suffix extends string> = {
   [Property in keyof Type as `${string & Property}${Capitalize<string & Suffix>}`]: Type[Property];
 };
 type PlaceGeneric<PlaceValues, Element extends string> =
-  | PlaceObject<{ justify?: PlaceValues; align: PlaceValues }, Element>
-  | PlaceObject<{ justify: PlaceValues; align?: PlaceValues }, Element>
+  | PlaceObject<{ align: PlaceValues; justify?: PlaceValues; }, Element>
+  | PlaceObject<{ align?: PlaceValues; justify: PlaceValues; }, Element>
   | PlaceValues;
 
 export type GridItemProps = {
@@ -33,24 +28,6 @@ export type GridItemProps = {
    */
   areaName?: string;
   /**
-   * Sets the grid-column CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
-   */
-  column?: number | string | GridCell;
-  /**
-   * Sets the grid-row CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
-   */
-  row?: number | string | GridCell;
-  /**
-   * Sets the place-self CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self
-   */
-  placeSelf?: PlaceGeneric<PlaceSelfValues, "self">;
-  /**
    * Sets a custom HTML tag.
    */
   as?: keyof HTMLElementTagNameMap;
@@ -58,6 +35,24 @@ export type GridItemProps = {
    * Custom content inside the grid container.
    */
   children: ReactNode;
+  /**
+   * Sets the grid-column CSS property.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
+   */
+  column?: number | string | GridCell;
+  /**
+   * Sets the place-self CSS property.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self
+   */
+  placeSelf?: PlaceGeneric<PlaceSelfValues, "self">;
+  /**
+   * Sets the grid-row CSS property.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
+   */
+  row?: number | string | GridCell;
 };
 
 type Props = GridItemProps & {
@@ -84,7 +79,7 @@ type Props = GridItemProps & {
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
    */
-  gap?: CoreSpacingTokensType | Gap;
+  gap?: Gap;
   /**
    * Sets the place-content CSS property.
    *

@@ -13,6 +13,13 @@ const setAriaAttributes = (ariaExpanded: "true" | "false", element: HTMLDivEleme
   buttonElement?.setAttribute("aria-expanded", ariaExpanded);
 };
 
+const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
+  & ::-ms-reveal {
+    display: none;
+  }
+`;
+
 const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
   (
     {
@@ -56,7 +63,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
     }, [isPasswordVisible, passwordInput]);
 
     return (
-      <PasswordInput ref={ref} role="group" size={size}>
+      <PasswordInput ref={ref} size={size}>
         <DxcTextInput
           label={label}
           name={name}
@@ -87,13 +94,6 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
     );
   }
 );
-
-const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
-  ${(props) => props.size === "fillParent" && "width: 100%;"}
-  & ::-ms-reveal {
-    display: none;
-  }
-`;
 
 DxcPasswordInput.displayName = "DxcPasswordInput";
 

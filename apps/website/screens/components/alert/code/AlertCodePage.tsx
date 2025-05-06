@@ -11,7 +11,7 @@ import Code from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
-  icon?: (React.ReactNode 
+  icon?: string | (React.ReactNode 
     & React.SVGProps<SVGSVGElement>); 
   label: string;
   onClick: () => void;
@@ -160,15 +160,13 @@ const sections = [
   },
 ];
 
-const AlertCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/code/AlertCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const AlertCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/code/AlertCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default AlertCodePage;

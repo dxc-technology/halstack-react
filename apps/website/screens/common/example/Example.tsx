@@ -46,30 +46,29 @@ type ExamplePropTypes = {
   };
 };
 
-const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes): JSX.Element => {
+const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
   const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
+  const [liveCode, setLiveCode] = useState(example.code);
 
   const handleCodeOnClick = () => {
     changeIsCodeVisible(!isCodeVisible);
   };
 
   const handleCopy = () => {
-    if (example.code) {
-      navigator.clipboard
-        .writeText(example.code)
-        .then(() => {
-          toast.success({ message: "Code copied to the clipboard." });
-        })
-        .catch(() => {
-          toast.warning({ message: "Failed to copy the text to the clipboard." });
-        });
-    }
+    navigator.clipboard
+      .writeText(liveCode)
+      .then(() => {
+        toast.success({ message: "Code copied to the clipboard." });
+      })
+      .catch(() => {
+        toast.warning({ message: "Failed to copy the text to the clipboard." });
+      });
   };
 
   return (
     <DxcFlex direction="column" gap="0.75rem">
-      <LiveProvider code={example.code} scope={example.scope} theme={theme}>
+      <LiveProvider code={liveCode} scope={example.scope} theme={theme}>
         <StyledPreview>
           <LivePreview />
           <StyledError>
@@ -89,7 +88,7 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
         )}
         {isCodeVisible && (
           <StyledEditor>
-            <LiveEditor />
+            <LiveEditor code={liveCode} onChange={setLiveCode} />
           </StyledEditor>
         )}
       </LiveProvider>

@@ -2,12 +2,25 @@ import { forwardRef, memo } from "react";
 import styled from "styled-components";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
+import scrollbarStyles from "../styles/scroll";
+
+const DropdownMenuContainer = styled.ul`
+  max-height: 230px;
+  min-width: min-content;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-bg-neutral-lightest);
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread)
+    var(--shadow-dark);
+  outline: none;
+  overflow-y: auto;
+  z-index: 2147483647;
+  ${scrollbarStyles}
+`;
 
 const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
-  (
-    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
-    ref
-  ): JSX.Element => (
+  ({ id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles }, ref) => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
         // Prevent the onBlur event from closing menu when clicking on the menu since
@@ -25,49 +38,18 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
       style={styles}
     >
       {options.map((option, index) => (
-          <DropdownMenuItem
-            id={`${id}-option-${index}`}
-            key={`${id}-option-${index}`}
-            visuallyFocused={index === visualFocusIndex}
-            iconPosition={iconsPosition}
-            onClick={menuItemOnClick}
-            option={option}
-          />
-        ))}
+        <DropdownMenuItem
+          id={`${id}-option-${index}`}
+          key={`${id}-option-${index}`}
+          visuallyFocused={index === visualFocusIndex}
+          iconPosition={iconsPosition}
+          onClick={menuItemOnClick}
+          option={option}
+        />
+      ))}
     </DropdownMenuContainer>
   )
 );
-
-const DropdownMenuContainer = styled.ul`
-  box-sizing: border-box;
-  max-height: 230px;
-  min-width: min-content;
-  padding: 0;
-  margin: 0;
-  background-color: ${(props) => props.theme.optionBackgroundColor};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) => props.theme.borderColor};
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  outline: none;
-
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.scrollBarThumbColor};
-    border-radius: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollBarTrackColor};
-    border-radius: 6px;
-  }
-`;
 
 DropdownMenu.displayName = "DropdownMenu";
 

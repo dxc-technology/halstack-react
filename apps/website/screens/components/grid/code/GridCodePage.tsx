@@ -6,10 +6,13 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basic from "./examples/basic";
 import layout from "./examples/layout";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
-const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
+const gapTypeString = `{
+  columnGap: string;
+  rowGap: string;
+}`;
 
 const sections = [
   {
@@ -25,6 +28,16 @@ const sections = [
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>as</td>
+            <td>
+              <TableCode>keyof HTMLElementTagNameMap</TableCode>
+            </td>
+            <td>Sets a custom HTML tag.</td>
+            <td>
+              <TableCode>'div'</TableCode>
+            </td>
+          </tr>
           <tr>
             <td>autoColumns</td>
             <td>
@@ -74,9 +87,26 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Custom content inside the grid container.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>gap</td>
             <td>
-              <TableCode>{coreSpacingTokensTypeString} | Gap</TableCode>
+              <TableCode>Gap</TableCode>
+              <p>
+                being <Code>Message</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{gapTypeString}</ExtendedTableCode>
             </td>
             <td>
               Sets the <Code>gap</Code> CSS property. See{" "}
@@ -193,29 +223,6 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
-          <tr>
-            <td>as</td>
-            <td>
-              <TableCode>keyof HTMLElementTagNameMap</TableCode>
-            </td>
-            <td>Sets a custom HTML tag.</td>
-            <td>
-              <TableCode>'div'</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>Custom content inside the grid container.</td>
-            <td>-</td>
-          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -262,6 +269,29 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
+                <td>as</td>
+                <td>
+                  <TableCode>keyof HTMLElementTagNameMap</TableCode>
+                </td>
+                <td>Sets a custom HTML tag.</td>
+                <td>
+                  <TableCode>'div'</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>Custom content inside the grid item container.</td>
+                <td>-</td>
+              </tr>
+              <tr>
                 <td>column</td>
                 <td>
                   <TableCode>number | string | GridCell</TableCode>
@@ -279,29 +309,6 @@ const sections = [
                     </li>
                     <li>
                       <b>end</b>: ending position within the grid column.
-                    </li>
-                  </ul>
-                </td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>row</td>
-                <td>
-                  <TableCode>number | string | GridCell</TableCode>
-                </td>
-                <td>
-                  Sets the <Code>grid-row</Code> CSS property. See{" "}
-                  <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row">
-                    MDN
-                  </DxcLink>{" "}
-                  for further information. It can be either a value from the range or an object with the following
-                  properties:
-                  <ul>
-                    <li>
-                      <b>start</b>: starting position within the grid row.
-                    </li>
-                    <li>
-                      <b>end</b>: ending position within the grid row.
                     </li>
                   </ul>
                 </td>
@@ -333,26 +340,26 @@ const sections = [
                 </td>
               </tr>
               <tr>
-                <td>as</td>
+                <td>row</td>
                 <td>
-                  <TableCode>keyof HTMLElementTagNameMap</TableCode>
-                </td>
-                <td>Sets a custom HTML tag.</td>
-                <td>
-                  <TableCode>'div'</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
+                  <TableCode>number | string | GridCell</TableCode>
                 </td>
                 <td>
-                  <TableCode>React.ReactNode</TableCode>
+                  Sets the <Code>grid-row</Code> CSS property. See{" "}
+                  <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row">
+                    MDN
+                  </DxcLink>{" "}
+                  for further information. It can be either a value from the range or an object with the following
+                  properties:
+                  <ul>
+                    <li>
+                      <b>start</b>: starting position within the grid row.
+                    </li>
+                    <li>
+                      <b>end</b>: ending position within the grid row.
+                    </li>
+                  </ul>
                 </td>
-                <td>Custom content inside the grid item container.</td>
                 <td>-</td>
               </tr>
             </tbody>
@@ -376,15 +383,13 @@ const sections = [
   },
 ];
 
-const GridCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/grid/code/GridCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const GridCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/grid/code/GridCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default GridCodePage;
