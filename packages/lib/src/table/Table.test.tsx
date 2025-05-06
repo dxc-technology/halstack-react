@@ -3,16 +3,12 @@ import userEvent from "@testing-library/user-event";
 import DxcTable from "./Table";
 import { ActionCellsPropsType } from "./types";
 
-// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -79,9 +75,9 @@ describe("Table component tests", () => {
         ],
       },
       {
-        icon: icon,
+        icon,
         title: "icon2",
-        onClick: onClick,
+        onClick,
       },
     ];
     const { getAllByRole, getByRole, getByText } = render(
@@ -102,7 +98,7 @@ describe("Table component tests", () => {
           <tr>
             <td>cell-4</td>
             <td>cell-5</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
@@ -112,14 +108,18 @@ describe("Table component tests", () => {
 
     const dropdown = getAllByRole("button")[1];
     act(() => {
-      dropdown && userEvent.click(dropdown);
+      if (dropdown) {
+        userEvent.click(dropdown);
+      }
     });
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
     userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("3");
     const action = getAllByRole("button")[0];
-    action && userEvent.click(action);
+    if (action) {
+      userEvent.click(action);
+    }
     expect(onClick).toHaveBeenCalled();
   });
 });

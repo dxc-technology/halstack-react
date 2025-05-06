@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTag from "./Tag";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Tag",
@@ -63,13 +63,7 @@ const Tag = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With action focused" theme="light" level={4} />
-      <DxcTag
-        icon="done"
-        label="Tag"
-        onClick={() => {
-          console.log("click");
-        }}
-      />
+      <DxcTag icon="done" label="Tag" onClick={() => {}} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

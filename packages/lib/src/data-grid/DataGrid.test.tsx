@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn } from "./types";
 
 const columns: GridColumn[] = [
   {
@@ -51,7 +51,7 @@ const expandableRows = [
 describe("Data grid component tests", () => {
   beforeAll(() => {
     (global as any).CSS = {
-      escape: (str: string): string => str,
+      escape: (str: string) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
@@ -63,16 +63,4 @@ describe("Data grid component tests", () => {
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
   });
-  // test("Content is sorted correctly", async () => {
-  //   const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
-  //   expect(getByText("% Complete")).toBeTruthy();
-  //   const headerCell = screen.getAllByRole("columnheader")[1];
-  //   expect(getAllByRole("gridcell")[0].textContent).toBe("1");
-  //   expect(headerCell.textContent).toBe(" % Complete");
-  //   await fireEvent.click(headerCell);
-  //   expect(headerCell.getAttribute("aria-sort")).toBe("ascending");
-  //   expect(getByText("5")).toBeTruthy();
-  //   // await waitFor(() => expect(getAllByRole("gridcell")[0].textContent).toBe("4"));
-  //   //waitFor(() => expect(getAllByRole("gridcell").length).toBe(8));
-  // });
 });

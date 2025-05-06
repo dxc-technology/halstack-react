@@ -4,7 +4,6 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import PageHeading from "@/common/PageHeading";
 import Code from "@/common/Code";
-import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import Link from "next/link";
 import colorPalette from "./images/bar_chart_color_palette.png";

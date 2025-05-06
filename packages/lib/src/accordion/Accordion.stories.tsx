@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from "@storybook/react";
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { Meta, StoryObj } from "@storybook/react";
 import DxcBadge from "../badge/Badge";
 import DxcStatusLight from "../status-light/StatusLight";
 import DxcInset from "../inset/Inset";

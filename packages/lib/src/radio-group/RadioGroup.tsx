@@ -81,7 +81,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
 
     const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
         setFirstTimeFocus(true);
         const currentValue = value ?? innerValue;
         onBlur?.({
@@ -195,5 +195,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     );
   }
 );
+
+DxcRadioGroup.displayName = "DxcRadioGroup";
 
 export default DxcRadioGroup;

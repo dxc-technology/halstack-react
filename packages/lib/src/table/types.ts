@@ -2,10 +2,6 @@ import { ReactNode } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 import { Option } from "../dropdown/types";
 
-export type ActionCellsPropsType = {
-  actions: ActionsPropsType;
-};
-
 export type ActionsPropsType = Array<
   | {
       icon: string | SVG;
@@ -24,6 +20,10 @@ export type ActionsPropsType = Array<
       options: Option[];
     }
 >;
+
+export type ActionCellsPropsType = {
+  actions: ActionsPropsType;
+};
 
 type Props = {
   /**

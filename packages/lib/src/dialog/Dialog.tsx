@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { HalstackLanguageContext } from "../HalstackContext";

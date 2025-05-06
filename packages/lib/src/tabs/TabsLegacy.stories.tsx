@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabsLegacy from "./TabsLegacy";
-import { Meta, StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Tabs Legacy",

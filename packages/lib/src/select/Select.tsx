@@ -36,7 +36,7 @@ import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
-import { inputStylesByState } from "../styles/forms/inputStylesByState";
+import inputStylesByState from "../styles/forms/inputStylesByState";
 
 const SelectContainer = styled.div<{
   margin: SelectPropsType["margin"];
@@ -242,7 +242,9 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             newValue = currentValue.includes(newOption.value)
               ? currentValue.filter((optionVal) => optionVal !== newOption.value)
               : [...currentValue, newOption.value];
-          } else newValue = newOption.value;
+          } else {
+            newValue = newOption.value;
+          }
 
           if (value == null) {
             setInnerValue(newValue);
@@ -280,11 +282,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
         const currentValue = value ?? innerValue;
         if (notOptionalCheck(currentValue, multiple, optional)) {
+          // TODO: Fix types
           onBlur?.({
             value: currentValue as string & string[],
             error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
+          // TODO: Fix types
           onBlur?.({ value: currentValue as string & string[] });
         }
       }
@@ -402,6 +406,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         setInnerValue(empty);
       }
       if (!optional) {
+        // TODO: Fix types
         onChange?.({
           value: empty as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
@@ -577,5 +582,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     );
   }
 );
+
+DxcSelect.displayName = "DxcSelect";
 
 export default DxcSelect;

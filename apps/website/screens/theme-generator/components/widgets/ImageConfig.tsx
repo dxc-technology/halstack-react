@@ -7,8 +7,10 @@ const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: Theme
   const [logoImage, setLogoImage] = useState(propertyValue);
 
   const clickToUpload = (event: MouseEvent<HTMLButtonElement>) => {
-    const input = event.currentTarget.previousSibling as HTMLInputElement;
-    input.click();
+    const input = event.currentTarget.previousSibling;
+    if (input instanceof HTMLInputElement) {
+      input.click();
+    }
   };
   const upload = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;

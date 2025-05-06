@@ -39,7 +39,7 @@ const action = {
   ),
 };
 
-const errorCallbackFunc: (value: string) => Promise<string[]> = (): Promise<string[]> => {
+const errorCallbackFunc: (_value: string) => Promise<string[]> = (): Promise<string[]> => {
   const result = new Promise<string[]>((resolve, reject) =>
     setTimeout(() => {
       reject("err");

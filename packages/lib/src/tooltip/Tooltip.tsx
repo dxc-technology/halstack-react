@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import { useContext } from "react";
-import { Root, Trigger, Portal, Arrow, Content } from "@radix-ui/react-tooltip";
-import { Provider } from "@radix-ui/react-tooltip";
-import { TooltipContext } from "./TooltipContext";
+import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
+import TooltipPropsType, { TooltipWrapperProps } from "./types";
+import TooltipContext from "./TooltipContext";
 
 const TooltipTriggerContainer = styled.div`
   position: relative;
@@ -112,7 +111,7 @@ export const Tooltip = ({
   const hasTooltip = useContext(TooltipContext);
 
   return (
-    <TooltipContext.Provider value={true}>
+    <TooltipContext.Provider value>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
           <Root>
@@ -139,6 +138,6 @@ export const Tooltip = ({
 export const TooltipWrapper = ({ condition, children, label }: TooltipWrapperProps) =>
   condition ? <Tooltip label={label}>{children}</Tooltip> : <>{children}</>;
 
-export default function DxcTooltip(props: TooltipPropsType) {
-  return <Tooltip {...props} hasAdditionalContainer />;
-}
+const DxcTooltip = (props: TooltipPropsType) => <Tooltip {...props} hasAdditionalContainer />;
+
+export default DxcTooltip;

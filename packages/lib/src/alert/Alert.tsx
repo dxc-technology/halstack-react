@@ -91,7 +91,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
   }
 };
 
-export default function DxcAlert({
+const DxcAlert = ({
   closable = true,
   message = [],
   mode = "inline",
@@ -99,7 +99,7 @@ export default function DxcAlert({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) {
+}: AlertPropsType) => {
   const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -121,7 +121,9 @@ export default function DxcAlert({
   }, [messages, currentIndex, mode]);
 
   useEffect(() => {
-    if (currentIndex === messages.length) handlePrevOnClick();
+    if (currentIndex === messages.length) {
+      handlePrevOnClick();
+    }
   }, [currentIndex, messages, handlePrevOnClick]);
 
   return (
@@ -199,4 +201,6 @@ export default function DxcAlert({
       </AlertContainer>
     </ModalAlertWrapper>
   );
-}
+};
+
+export default DxcAlert;

@@ -174,4 +174,6 @@ const DxcTab = forwardRef(
   }
 );
 
+DxcTab.displayName = "DxcTab";
+
 export default DxcTab;

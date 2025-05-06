@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
-import { Meta, StoryObj } from "@storybook/react/*";
-import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Tabs",
@@ -78,7 +78,7 @@ const firstDisabledTabs = (
 
 const tabsNotification = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
@@ -130,7 +130,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>

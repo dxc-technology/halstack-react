@@ -1,11 +1,8 @@
-import { DxcParagraph, DxcBulletedList, DxcTable, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
-import Link from "next/link";
+import { DxcBulletedList, DxcTable, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Code from "@/common/Code";
+import Code from '@/common/Code';
 
 const sections = [
   {

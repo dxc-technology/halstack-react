@@ -1,7 +1,7 @@
 type ThemeInputWidgetProps = {
   propertyName: string;
   propertyValue: string;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
 };
 
 export default ThemeInputWidgetProps;

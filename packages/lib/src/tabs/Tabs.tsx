@@ -102,21 +102,26 @@ const DxcTabs = ({
   tabIndex = 0,
   tabs,
 }: TabsPropsType) => {
+  // TODO: Find a way to remove this type assertion (should not be needed)
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
   );
   const [activeTabLabel, setActiveTabLabel] = useState(() => {
     const hasActiveChild = childrenArray.some(
-      (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+      (child) =>
+        isValidElement<TabProps>(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
     const initialActiveTab = hasActiveChild
       ? childrenArray.find(
-          (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+          (child) =>
+            isValidElement<TabProps>(child) &&
+            (child.props.active || child.props.defaultActive) &&
+            !child.props.disabled
         )
-      : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+      : childrenArray.find((child) => isValidElement<TabProps>(child) && !child.props.disabled);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+    return isValidElement<TabProps>(initialActiveTab) ? initialActiveTab.props.label : "";
   });
   const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
@@ -172,7 +177,9 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+    const activeTab = childrenArray.findIndex(
+      (child) => isValidElement<TabProps>(child) && child.props.label === activeTabLabel
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":

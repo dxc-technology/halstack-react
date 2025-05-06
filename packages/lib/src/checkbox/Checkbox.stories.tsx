@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcCheckbox from "./Checkbox";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Checkbox",

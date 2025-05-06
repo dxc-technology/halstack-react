@@ -93,4 +93,5 @@ const GridItem = styled.div<GridItemProps>`
 
 const DxcGrid = (props: GridPropsType) => <Grid {...props} />;
 DxcGrid.Item = GridItem;
+
 export default DxcGrid;

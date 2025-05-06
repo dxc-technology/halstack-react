@@ -91,27 +91,27 @@ const DxcLink = forwardRef(
       ...otherProps
     }: LinkProps,
     ref: Ref<HTMLAnchorElement>
-  ): JSX.Element => {
-    return (
-      <StyledLink
-        as={onClick && !href ? "button" : "a"}
-        tabIndex={tabIndex}
-        onClick={!disabled ? onClick : undefined}
-        href={!disabled && href ? href : undefined}
-        target={href ? (newWindow ? "_blank" : "_self") : undefined}
-        disabled={disabled}
-        inheritColor={inheritColor}
-        margin={margin}
-        ref={ref}
-        {...otherProps}
-      >
-        <LinkContainer iconPosition={iconPosition} inheritColor={inheritColor}>
-          {children}
-          {icon && <LinkIconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</LinkIconContainer>}
-        </LinkContainer>
-      </StyledLink>
-    );
-  }
+  ) => (
+    <StyledLink
+      as={onClick && !href ? "button" : "a"}
+      tabIndex={tabIndex}
+      onClick={!disabled ? onClick : undefined}
+      href={!disabled && href ? href : undefined}
+      target={href ? (newWindow ? "_blank" : "_self") : undefined}
+      disabled={disabled}
+      inheritColor={inheritColor}
+      margin={margin}
+      ref={ref}
+      {...otherProps}
+    >
+      <LinkContainer iconPosition={iconPosition} inheritColor={inheritColor}>
+        {children}
+        {icon && <LinkIconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</LinkIconContainer>}
+      </LinkContainer>
+    </StyledLink>
+  )
 );
+
+DxcLink.displayName = "DxcLink";
 
 export default DxcLink;

@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/footer/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
-import { Meta, StoryObj } from "@storybook/react";
 
 const social = [
   {
@@ -115,7 +115,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -169,7 +169,7 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
           {info.map((tag, index) => (
             <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
@@ -208,14 +208,12 @@ const Footer = () => (
   </>
 );
 
-const Tooltip = () => {
-  return (
-    <ExampleContainer>
-      <Title title="Default tooltip" theme="light" level={2} />
-      <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
-    </ExampleContainer>
-  );
-};
+const Tooltip = () => (
+  <ExampleContainer>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
+  </ExampleContainer>
+);
 
 type Story = StoryObj<typeof DxcFooter>;
 
@@ -228,7 +226,9 @@ export const FooterTooltipFirst: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getAllByRole("link")[0];
-    link != null && (await userEvent.hover(link));
+    if (link != null) {
+      await userEvent.hover(link);
+    }
   },
 };
 
@@ -237,6 +237,8 @@ export const FooterTooltipSecond: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getAllByRole("link")[1];
-    link != null && (await userEvent.hover(link));
+    if (link != null) {
+      await userEvent.hover(link);
+    }
   },
 };

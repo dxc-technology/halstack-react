@@ -1,4 +1,4 @@
-import { Children, KeyboardEvent, ReactElement, useMemo, useState } from "react";
+import { Children, KeyboardEvent, useMemo, useState } from "react";
 import styled from "styled-components";
 import NavTabsPropsType from "./types";
 import Tab from "./Tab";
@@ -25,7 +25,7 @@ const DxcNavTabs = ({ iconPosition = "left", tabIndex = 0, children }: NavTabsPr
 
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
-  ) as ReactElement[];
+  );
 
   const contextValue = useMemo(
     () => ({

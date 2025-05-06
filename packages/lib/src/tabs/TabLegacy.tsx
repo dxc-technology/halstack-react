@@ -188,4 +188,6 @@ const TabIconContainer = styled.div<{
   }
 `;
 
+Tab.displayName = "DxcTabLegacy";
+
 export default memo(Tab);

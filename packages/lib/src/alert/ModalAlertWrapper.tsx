@@ -1,9 +1,9 @@
 import { createPortal } from "react-dom";
+import { useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import FocusLock from "../utils/FocusLock";
 import { ModalAlertWrapperProps } from "./types";
-import { useEffect } from "react";
 
 const BodyStyle = createGlobalStyle`
   body {

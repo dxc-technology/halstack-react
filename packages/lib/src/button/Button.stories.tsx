@@ -1,11 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import DxcButton from "./Button";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
-import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Button",

@@ -18,7 +18,7 @@ const ThemeInputsConfig = ({
     <ThemeInputsConfigContainer>
       <Title>Theme Inputs</Title>
       <ThemeInputsList>
-        {Object.keys(componentInputs).map((propertyName, index) => (
+        {(Object.keys(componentInputs)).map((propertyName, index) => (
           <ThemeInput
             key={`themeInput-${index}`}
             propertyName={propertyName}

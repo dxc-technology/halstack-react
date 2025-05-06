@@ -28,8 +28,9 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
 /**
  * Checks if the options are grouped options (groups and single options can't be mixed)
  */
-export const isArrayOfGroupedOptions = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
-  options[0] != null && isOptionGroup(options[0]);
+export const isArrayOfGroupedOptions = (
+  options: ListOptionType[] | ListOptionGroupType[]
+): options is ListOptionGroupType[] => options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options. If the options parameter is not an array of grouped options,
@@ -108,7 +109,7 @@ export const getSelectedOption = (
   optional: boolean,
   optionalItem: ListOptionType
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
+  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
@@ -141,12 +142,14 @@ export const getSelectedOption = (
           groupIndex++;
           return false;
         });
+        return false;
       } else if (option.value === value) {
         selectedOption = option;
         singleSelectionIndex = optional ? index + 1 : index;
         return true;
+      } else {
+        return false;
       }
-      return false;
     });
   }
 
@@ -159,9 +162,12 @@ export const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-export const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+export const getSelectedOptionLabel = (
+  placeholder: string,
+  selectedOption: ListOptionType | ListOptionType[] | null
+) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);

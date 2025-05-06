@@ -2,9 +2,8 @@ import { useContext } from "react";
 import styled from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import HalstackContext from "../HalstackContext";
-import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
+import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({
   currentPage = 1,

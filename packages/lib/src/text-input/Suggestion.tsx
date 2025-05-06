@@ -36,7 +36,10 @@ const StyledSuggestion = styled.span`
 const Suggestion = ({ highlighted, id, isLast, onClick, suggestion, value, visuallyFocused }: SuggestionProps) => {
   const matchedSuggestion = useMemo(() => {
     const regEx = new RegExp(transformSpecialChars(value), "i");
-    return { matchedWords: suggestion.match(regEx), noMatchedWords: suggestion.replace(regEx, "") };
+    return {
+      matchedWords: suggestion.match(regEx),
+      noMatchedWords: suggestion.replace(regEx, ""),
+    };
   }, [value, suggestion]);
 
   return (

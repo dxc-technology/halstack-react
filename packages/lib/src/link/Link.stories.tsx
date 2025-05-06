@@ -1,8 +1,7 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcLink from "./Link";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Link",

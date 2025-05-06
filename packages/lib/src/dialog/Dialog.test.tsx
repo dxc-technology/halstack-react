@@ -19,11 +19,11 @@ import DxcAlert from "../alert/Alert";
 (global as any).DOMRect = {
   fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const options = [
   { label: "Female", value: "female" },
@@ -62,7 +62,12 @@ describe("Dialog component tests", () => {
   test("Calls correct function onCloseClick when 'Escape' key is pressed", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
-    fireEvent.keyDown(getByRole("dialog"), { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(getByRole("dialog"), {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).toHaveBeenCalled();
   });
   test("Does not call function onCloseClick when 'Escape' key is pressed while a child popover is opened", () => {
@@ -74,8 +79,12 @@ describe("Dialog component tests", () => {
     );
     const calendarAction = getByRole("combobox");
     userEvent.click(calendarAction);
-    document.activeElement != null &&
-      fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document.activeElement!, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).not.toHaveBeenCalled();
   });
 });
@@ -263,8 +272,8 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     userEvent.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);
-    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
-    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
   test("Focus travels correctly in a complex tab sequence", () => {
@@ -288,14 +297,18 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const select = getAllByRole("combobox")[0];
     expect(document.activeElement).toEqual(select);
-    select != null && fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    if (select != null) {
+      fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    }
     expect(queryByRole("listbox")).toBeTruthy();
     userEvent.tab();
     userEvent.tab();
     userEvent.keyboard("{Enter}");
     expect(getAllByRole("dialog")[1]).toBeTruthy();
     const dialog = getAllByRole("dialog")[0];
-    dialog != null && userEvent.click(dialog);
+    if (dialog != null) {
+      userEvent.click(dialog);
+    }
     userEvent.tab();
     userEvent.tab();
     userEvent.tab();

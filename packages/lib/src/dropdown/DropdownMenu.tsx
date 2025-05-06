@@ -2,7 +2,7 @@ import { forwardRef, memo } from "react";
 import styled from "styled-components";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 
 const DropdownMenuContainer = styled.ul`
   max-height: 230px;
@@ -20,10 +20,7 @@ const DropdownMenuContainer = styled.ul`
 `;
 
 const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
-  (
-    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
-    ref
-  ) => (
+  ({ id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles }, ref) => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
         // Prevent the onBlur event from closing menu when clicking on the menu since
@@ -53,5 +50,7 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
     </DropdownMenuContainer>
   )
 );
+
+DropdownMenu.displayName = "DropdownMenu";
 
 export default memo(DropdownMenu);

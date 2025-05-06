@@ -3,7 +3,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import Code from "@/common/Code";
 import Image from "@/common/Image";
 import anatomy from "./images/toggle_group_anatomy.png";
 import singleSelection from "./examples/singleSelection";

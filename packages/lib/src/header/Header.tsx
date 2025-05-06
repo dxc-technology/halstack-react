@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useMemo, useRef, useState } from "react";
+import { ComponentProps, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
@@ -6,7 +6,6 @@ import DxcIcon from "../icon/Icon";
 import HeaderPropsType from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
-import { useContext } from "react";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
@@ -36,8 +35,11 @@ const getLogoElement = (themeInput?: string, logoLabel?: string) => {
         </g>
       </svg>
     );
-  } else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
-  else return themeInput;
+  } else if (typeof themeInput === "string") {
+    return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
+  } else {
+    return themeInput;
+  }
 };
 
 type ContentProps = {
@@ -122,7 +124,11 @@ const DxcHeader = ({
               <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                 <Tooltip label={translatedLabels.header.closeIcon}>
-                  <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                  <CloseAction
+                    tabIndex={tabIndex}
+                    onClick={handleMenu}
+                    aria-label={translatedLabels.header.closeIcon}
+                  >
                     <DxcIcon icon="close" />
                   </CloseAction>
                 </Tooltip>

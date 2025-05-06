@@ -5,7 +5,7 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 
 const ListboxContainer = styled.div`
   box-sizing: border-box;
@@ -117,10 +117,12 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
-      listEl?.scrollTo?.({
-        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
-      });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      if (selectedListOptionEl instanceof HTMLUListElement) {
+        listEl?.scrollTo?.({
+          top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+        });
+      }
     }
   }, [currentValue, multiple]);
 

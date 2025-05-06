@@ -1,8 +1,7 @@
-import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcWizard from "./Wizard";
-import { Meta, StoryObj } from "@storybook/react";
 import DxcContainer from "../container/Container";
 
 export default {

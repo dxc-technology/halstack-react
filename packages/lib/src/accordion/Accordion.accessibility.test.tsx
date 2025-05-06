@@ -25,7 +25,7 @@ const folderIcon = (
 describe("Accordion component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcAccordion defaultIndexActive={0} independent={true}>
+      <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
@@ -40,9 +40,9 @@ describe("Accordion component accessibility tests", () => {
     expect(results).toHaveNoViolations();
   });
 
-  it("Should not have basic accessibility issues", async () => {
+  it("Should not have basic accessibility issues with badge and status light", async () => {
     const { container } = render(
-      <DxcAccordion defaultIndexActive={0} independent={true}>
+      <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
@@ -60,7 +60,7 @@ describe("Accordion component accessibility tests", () => {
 
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
-      <DxcAccordion defaultIndexActive={0} independent={true}>
+      <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
@@ -76,9 +76,9 @@ describe("Accordion component accessibility tests", () => {
     expect(results).toHaveNoViolations();
   });
 
-  it("Should not have basic accessibility issues for disabled mode", async () => {
+  it("Should not have basic accessibility issues for disabled mode with badge and status light", async () => {
     const { container } = render(
-      <DxcAccordion defaultIndexActive={0} independent={true}>
+      <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
