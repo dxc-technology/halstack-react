@@ -28,8 +28,9 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
 /**
  * Checks if the options are grouped options (groups and single options can't be mixed)
  */
-export const isArrayOfGroupedOptions = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
-  options[0] != null && isOptionGroup(options[0]);
+export const isArrayOfGroupedOptions = (
+  options: ListOptionType[] | ListOptionGroupType[]
+): options is ListOptionGroupType[] => options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options. If the options parameter is not an array of grouped options,
@@ -161,9 +162,12 @@ export const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-export const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+export const getSelectedOptionLabel = (
+  placeholder: string,
+  selectedOption: ListOptionType | ListOptionType[] | null
+) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);
