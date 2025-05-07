@@ -207,18 +207,18 @@ const sections = [
   },
 ];
 
-const Introduction = () => (
-  <DxcFlex direction="column" gap="4rem">
-    <PageHeading>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Introduction" weight="bold" />
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
-  </DxcFlex>
-);
-
-export default Introduction;
+export default function Introduction() {
+  return (
+    <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Introduction" />
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
+    </DxcFlex>
+  );
+}

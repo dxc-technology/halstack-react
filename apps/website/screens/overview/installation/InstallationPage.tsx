@@ -96,18 +96,18 @@ const sections = [
   },
 ];
 
-const Installation = () => (
-  <DxcFlex direction="column" gap="4rem">
-    <PageHeading>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Installation" weight="bold" />
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
-  </DxcFlex>
-);
-
-export default Installation;
+export default function Installation() {
+  return (
+    <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Installation" />
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
+    </DxcFlex>
+  );
+}

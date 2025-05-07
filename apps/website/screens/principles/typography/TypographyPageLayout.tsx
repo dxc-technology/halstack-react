@@ -8,12 +8,12 @@ const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
     { label: "Code", path: "/principles/typography" },
     { label: "Usage", path: "/principles/typography/usage" },
   ];
-  
+
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Typography" weight="bold" />
+          <DxcHeading level={1} text="Typography" />
           <DxcParagraph>
             This section explains and shows examples of all the typographic variables included in Halstack Design
             System.

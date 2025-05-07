@@ -325,18 +325,18 @@ const sections = [
   },
 ];
 
-const DataVisualizationPage = () => (
-  <DxcFlex direction="column" gap="4rem">
-    <PageHeading>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Data visualization" weight="bold" />
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/data-visualization/DataVisualizationPage.tsx" />
-  </DxcFlex>
-);
-
-export default DataVisualizationPage;
+export default function DataVisualizationPage() {
+  return (
+    <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Data visualization" />
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/data-visualization/DataVisualizationPage.tsx" />
+    </DxcFlex>
+  );
+}

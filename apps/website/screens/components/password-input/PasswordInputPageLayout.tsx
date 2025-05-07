@@ -6,25 +6,21 @@ import { ReactNode } from "react";
 
 const PasswordInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/password-input" },
-    { label: "Usage", path: "/components/password-input/usage" },
-    {
-      label: "Specifications",
-      path: "/components/password-input/specifications",
-    },
+    { label: "Overview", path: "/components/password-input" },
+    { label: "Code", path: "/components/password-input/code" },
   ];
 
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <ComponentHeading name="Password Input" />
+          <ComponentHeading name="Password input" />
           <DxcParagraph>
-            The password input component is very much like the text input, with the difference that their value is
-            obscured by default (by replacing its characters with dot symbol ("•"), and the mask can be toggled on/off
-            using the show and hide component action.
+            Password inputs provide a way for users to securely enter a password. Its value is obscured by default by
+            replacing its characters with dot symbol ("•"), and the mask can be toggled on/off using the show and hide
+            component action.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

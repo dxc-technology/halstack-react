@@ -23,12 +23,20 @@ const sections = [
           </thead>
           <tbody>
             <tr>
+              <td>as</td>
+              <td>
+                <TableCode>'h1' | 'h2' | 'h3' | 'h4'| 'h5' | 'h6'</TableCode>
+              </td>
+              <td>Specifies the HTML tag of the heading.</td>
+              <td>-</td>
+            </tr>
+            <tr>
               <td>level</td>
               <td>
-                <TableCode>1 | 2 | 3 | 4 | 5</TableCode>
+                <TableCode>1 | 2 | 3 | 4 | 5 | 6</TableCode>
               </td>
               <td>
-                Defines the heading level from 1 to 5. The styles of the heading are applied according to the level. The
+                Defines the heading level from 1 to 6. The styles of the heading are applied according to the level. The
                 HTML tag of the heading will be the one specified in the <Code>as</Code> prop. If no <Code>as</Code>{" "}
                 prop is provided, the tag of the heading is the the one corresponding to the value of the{" "}
                 <Code>level</Code> prop (for example, level 1 will render an <Code>h1</Code> tag).
@@ -36,6 +44,19 @@ const sections = [
               <td>
                 <TableCode>1</TableCode>
               </td>
+            </tr>
+            <tr>
+              <td>margin</td>
+              <td>
+                <TableCode>
+                  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin
+                </TableCode>
+              </td>
+              <td>
+                Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left'
+                and 'right' properties in order to specify different margin sizes.
+              </td>
+              <td>-</td>
             </tr>
             <tr>
               <td>
@@ -53,31 +74,12 @@ const sections = [
             <tr>
               <td>weight</td>
               <td>
-                <TableCode>'light' | 'normal' | 'bold'</TableCode>
+                <TableCode>'default' | 'regular' | 'light'</TableCode>
               </td>
-              <td>Modifies the default weight of the heading.</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>as</td>
+              <td>Modifies the weight of the heading.</td>
               <td>
-                <TableCode>'h1' | 'h2' | 'h3' | 'h4'| 'h5'</TableCode>
+                <TableCode>'default'</TableCode>
               </td>
-              <td>Specifies the HTML tag of the heading.</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>margin</td>
-              <td>
-                <TableCode>
-                  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin
-                </TableCode>
-              </td>
-              <td>
-                Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left'
-                and 'right' properties in order to specify different margin sizes.
-              </td>
-              <td>-</td>
             </tr>
           </tbody>
         </DxcTable>
@@ -95,15 +97,13 @@ const sections = [
   },
 ];
 
-const HeadingCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/heading/code/HeadingCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const HeadingCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/heading/code/HeadingCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default HeadingCodePage;

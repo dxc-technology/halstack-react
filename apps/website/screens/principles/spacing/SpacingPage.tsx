@@ -293,18 +293,16 @@ const sections = [
   },
 ];
 
-const Spacing = () => (
+export default function SpacingPage() {
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Spacing" weight="bold" />
+        <DxcHeading level={1} text="Spacing" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainerLayout>
       <QuickNavContainer sections={sections} startHeadingLevel={2} />
     </QuickNavContainerLayout>
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/spacing/SpacingPage.tsx" />
-  </DxcFlex>
-);
-
-export default Spacing;
+  </DxcFlex>;
+}

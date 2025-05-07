@@ -6,21 +6,20 @@ import { ReactNode } from "react";
 
 const TextInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/text-input" },
-    { label: "Usage", path: "/components/text-input/usage" },
-    { label: "Specifications", path: "/components/text-input/specifications" },
+    { label: "Overview", path: "/components/text-input" },
+    { label: "Code", path: "/components/text-input/code" },
   ];
 
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <ComponentHeading name="Text Input" />
+          <ComponentHeading name="Text input" />
           <DxcParagraph>
-            Text inputs are input fields typically used in forms that allow the user to enter text data in a structured
+            Text inputs are fields commonly used in forms to capture user-entered text in a structured and accessible
             format.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

@@ -14,6 +14,7 @@ const code = `() => {
     <DxcInset space="var(--spacing-gap-xl)">
       <DxcTextarea
         label="Comments"
+        placeholder="Write your general thoughts and comments here."
         value={value}
         onChange={onChange}
         onBlur={onBlur}

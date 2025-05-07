@@ -26,10 +26,10 @@ const HeadingLinkContainer = styled.div`
 `;
 
 const HeadingAnchor = styled.a`
+  display: inline-flex;
   align-items: center;
   border-radius: var(--border-radius-s);
   color: var(--color-fg-neutral-strong);
-  display: inline-flex;
   opacity: 0;
   padding: var(--spacing-gap-s);
   text-decoration: none;
@@ -49,13 +49,13 @@ const HeadingAnchor = styled.a`
 `;
 
 type HeadingLinkProps = {
-  as?: "h1" | "h2" | "h3" | "h4" | "h5";
   children: string;
-  level?: 1 | 2 | 3 | 4 | 5;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   navSubtitle?: string;
 };
 
-export default function HeadingLink({ as, children, level, navSubtitle }: HeadingLinkProps) {
+export default function HeadingLink({ children, level, as, navSubtitle }: HeadingLinkProps) {
   const elementId = slugify(navSubtitle ?? children, { lower: true });
   return (
     <HeadingLinkContainer id={elementId}>
@@ -66,7 +66,7 @@ export default function HeadingLink({ as, children, level, navSubtitle }: Headin
           </HeadingAnchor>
         </DxcTooltip>
       </DxcBleed>
-      <DxcHeading weight="bold" text={children} level={level} as={as} />
+      <DxcHeading text={children} level={level} as={as} />
     </HeadingLinkContainer>
   );
 }

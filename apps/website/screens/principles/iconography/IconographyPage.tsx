@@ -111,18 +111,18 @@ const sections = [
   },
 ];
 
-const IconographyPage = () => (
-  <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-    <PageHeading>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Iconography" weight="bold" />
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/iconography/IconographyPage.tsx" />
-  </DxcFlex>
-);
-
-export default IconographyPage;
+export default function IconographyPage() {
+  return (
+    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Iconography" />
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/iconography/IconographyPage.tsx" />
+    </DxcFlex>
+  );
+}

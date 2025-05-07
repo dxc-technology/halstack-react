@@ -79,22 +79,22 @@ const sections = [
   },
 ];
 
-const HalstackProvider = () => (
-  <DxcFlex direction="column" gap="4rem">
-    <PageHeading>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Halstack Provider" weight="bold" />
-        <DxcParagraph>
-          Halstack Provider is the context provider used for a whole application or an isolated group of components,
-          which defines the custom theme and/or translation labels.
-        </DxcParagraph>
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
-  </DxcFlex>
-);
-
-export default HalstackProvider;
+export default function HalstackProviderPage() {
+  return (
+    <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Halstack Provider" />
+          <DxcParagraph>
+            Halstack Provider is the context provider used for a whole application or an isolated group of components,
+            which defines the custom theme and/or translation labels.
+          </DxcParagraph>
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
+    </DxcFlex>
+  );
+}

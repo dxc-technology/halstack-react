@@ -1,10 +1,18 @@
-import { memo, useContext, useId } from "react";
+import { memo, MouseEvent, useContext, useId, useState } from "react";
 import styled from "styled-components";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { HalstackLanguageContext } from "../HalstackContext";
+import { TooltipWrapper } from "../tooltip/Tooltip";
+
+const ListItem = styled.li`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xs);
+`;
 
 const MainContainer = styled.div<{
   error: FileItemProps["error"];
@@ -13,18 +21,19 @@ const MainContainer = styled.div<{
 }>`
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  gap: 0.75rem;
+  align-items: center;
+  gap: var(--spacing-gap-m);
   width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+  height: ${(props) => (props.singleFileMode || !props.showPreview) && "var(--height-m)"};
   padding: ${(props) =>
-    props.showPreview
-      ? `calc(8px - ${props.theme.fileItemBorderThickness})`
-      : `calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
-  ${(props) => (props.error ? `background-color: ${props.theme.errorFileItemBackgroundColor};` : "")};
-  border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
-  border-width: ${(props) => props.theme.fileItemBorderThickness};
-  border-style: ${(props) => props.theme.fileItemBorderStyle};
-  border-radius: ${(props) => props.theme.fileItemBorderRadius};
+    props.showPreview && !props.singleFileMode
+      ? `var(--spacing-padding-xs) var(--spacing-padding-s)`
+      : `0px var(--spacing-padding-s)`};
+  ${(props) => props.error && `background-color: var(--color-bg-error-lightest)`};
+  border-color: ${(props) => (props.error ? `var(--border-color-error-medium)` : `var(--border-color-neutral-light)`)};
+  border-width: ${(props) => (props.error ? `var(--border-width-m)` : `var(--border-width-s)`)};
+  border-style: var(--border-style-default);
+  border-radius: var(--border-radius-s);
 `;
 
 const ImagePreview = styled.img`
@@ -39,17 +48,16 @@ const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) =>
-    props.error ? props.theme.errorFilePreviewBackgroundColor : props.theme.filePreviewBackgroundColor};
+  background-color: ${(props) => (props.error ? `var(--color-bg-error-light) ` : `var(--color-bg-neutral-light)`)};
   width: 48px;
   height: 48px;
   padding: 15px;
   border-radius: 2px;
-  color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
-  font-size: 18px;
+  color: ${(props) => (props.error ? `var(--color-fg-error-medium)` : `var(--color-fg-neutral-strong) `)};
+  font-size: var(--height-xs);
   svg {
-    height: 18px;
-    width: 18px;
+    width: 20px;
+    height: var(--height-xs);
   }
 `;
 
@@ -58,38 +66,43 @@ const FileItemContent = styled.div`
   display: grid;
   grid-template-columns: auto min-content;
   grid-template-rows: min-content auto;
-  column-gap: 0.25rem;
+  column-gap: var(--spacing-gap-s);
 `;
 
 const FileName = styled.span`
   align-self: center;
-  color: ${(props) => props.theme.fileNameFontColor};
-  font-family: ${(props) => props.theme.fileItemFontFamily};
-  font-size: ${(props) => props.theme.fileItemFontSize};
-  font-weight: ${(props) => props.theme.fileItemFontWeight};
-  line-height: ${(props) => props.theme.fileItemLineHeight};
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
   white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
+const ErrorMessageContainer = styled.div<{ singleFileMode: FileItemProps["singleFileMode"] }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-xs);
+  color: var(--color-fg-error-medium);
+  max-width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+`;
 const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  padding: 3px;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: #d0011b;
+  font-size: var(--height-xs);
 `;
 
-const ErrorMessage = styled.span`
-  color: ${(props) => props.theme.errorMessageFontColor};
-  font-family: ${(props) => props.theme.errorMessageFontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessageLineHeight};
+const ErrorMessage = styled.div`
+  display: block;
+  color: var(--color-fg-error-medium);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const FileItem = ({
@@ -103,40 +116,48 @@ const FileItem = ({
   tabIndex,
 }: FileItemProps): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
+  const [hasTooltip, setHasTooltip] = useState(false);
   const fileNameId = useId();
 
+  const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
+  };
+
   return (
-    <MainContainer error={error} role="listitem" singleFileMode={singleFileMode} showPreview={showPreview}>
-      {showPreview &&
-        (type.includes("image") ? (
-          <ImagePreview src={preview} alt={fileName} />
-        ) : (
-          <IconPreview aria-labelledby={fileNameId} error={error} role="img">
-            <DxcIcon icon={preview} />
-          </IconPreview>
-        ))}
-      <FileItemContent>
-        <FileName id={fileNameId}>{fileName}</FileName>
-        <DxcFlex gap="var(--spacing-gap-xs)">
-          {error && (
+    <ListItem>
+      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
+        {showPreview &&
+          (type.includes("image") ? (
+            <ImagePreview src={preview} alt={`Preview of ${fileName}`} />
+          ) : (
+            <IconPreview aria-labelledby={fileNameId} error={error} role="img">
+              <DxcIcon icon={preview} />
+            </IconPreview>
+          ))}
+        <FileItemContent>
+          <FileName id={fileNameId}>{fileName}</FileName>
+          <DxcFlex>
+            <DxcActionIcon
+              onClick={() => onDelete(fileName)}
+              icon="close"
+              tabIndex={tabIndex}
+              title={translatedLabels.fileInput.deleteFileActionTitle}
+            />
+          </DxcFlex>
+        </FileItemContent>
+      </MainContainer>
+      {error && (
+        <TooltipWrapper condition={hasTooltip} label={error}>
+          <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode}>
             <ErrorIcon>
               <DxcIcon icon="filled_error" />
             </ErrorIcon>
-          )}
-          <DxcActionIcon
-            onClick={() => onDelete(fileName)}
-            icon="close"
-            tabIndex={tabIndex}
-            title={translatedLabels.fileInput.deleteFileActionTitle}
-          />
-        </DxcFlex>
-        {error && !singleFileMode && (
-          <ErrorMessage role="alert" aria-live="assertive">
-            {error}
-          </ErrorMessage>
-        )}
-      </FileItemContent>
-    </MainContainer>
+            <ErrorMessage onMouseEnter={handleOnMouseEnter}>{error}</ErrorMessage>
+          </ErrorMessageContainer>
+        </TooltipWrapper>
+      )}
+    </ListItem>
   );
 };
 

@@ -180,7 +180,7 @@ const ComponentLifecyclePage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Component lifecycle" weight="bold" />
+        <DxcHeading level={1} text="Component lifecycle" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainerLayout>
