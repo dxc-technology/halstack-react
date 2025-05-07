@@ -96,7 +96,7 @@ const sections = [
   },
 ];
 
-export default function Installation() {
+export default function InstallationPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>

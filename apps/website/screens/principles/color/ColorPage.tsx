@@ -807,7 +807,7 @@ const sections = [
   },
 ];
 
-export default function Color() {
+export default function ColorPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>

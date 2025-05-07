@@ -113,7 +113,7 @@ const getReleasesPageSections = (releases: Release[]) => {
   return [...sections, section];
 };
 
-export default function Releases({ releases }: { releases: Release[] }) {
+export default function ReleasesPage({ releases }: { releases: Release[] }) {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>

@@ -207,7 +207,7 @@ const sections = [
   },
 ];
 
-export default function Introduction() {
+export default function IntroductionPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
