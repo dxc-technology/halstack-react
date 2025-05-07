@@ -14,7 +14,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcNumberInput
         label="Enter your age"
         value={value}

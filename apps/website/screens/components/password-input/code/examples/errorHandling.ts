@@ -15,7 +15,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcPasswordInput
         label="Password"
         helperText="Password must contain at least one lower case letter, one upper case letter and a special character."

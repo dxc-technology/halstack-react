@@ -2,7 +2,7 @@ import { DxcCheckbox, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/h
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xxl)" justifyContent="center">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           <DxcTypography

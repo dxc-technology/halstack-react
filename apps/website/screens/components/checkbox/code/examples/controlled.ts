@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcCheckbox label="Of legal age" checked={checked} onChange={onChange} />
     </DxcInset>
   );

@@ -3,7 +3,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
+import { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import basic from "./examples/basicUsage";
 import reduced from "./examples/reduced";

@@ -2,7 +2,7 @@ import { DxcAlert, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex direction="column" gap="var(--spacing-gap-l)">
         <DxcAlert title="Auto-saved document" message={{ text: "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically." }} />
         <DxcAlert title="Read carefully" semantic="warning" message={{ text: "Please read the documents carefully before the submission of the data." }} />

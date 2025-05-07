@@ -13,7 +13,7 @@ const code = `() => {
     }
   );
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       This is a text with a
       <Link href="/components/link" passHref legacyBehavior>
         <CustomLink>next</CustomLink>

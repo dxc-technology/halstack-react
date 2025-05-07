@@ -2,7 +2,7 @@ import { DxcButton, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
     <DxcFlex gap="var(--spacing-gap-l)" direction="column">
         <DxcFlex gap="var(--spacing-gap-l)">
           <DxcButton icon="person" semantic="default" size={{ height: "small", width: "small" }} />

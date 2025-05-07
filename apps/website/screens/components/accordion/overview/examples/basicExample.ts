@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
         <DxcAccordion>
           <DxcAccordion.AccordionItem

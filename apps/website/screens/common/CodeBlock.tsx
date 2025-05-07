@@ -13,7 +13,7 @@ const PreformattedText = styled.pre`
 `;
 
 const Code = styled.code`
-  color: var(--color-bg-neutral-strongest);
+  color: var(--color-fg-neutral-dark);
   font-size: var(--typography-body-s);
   white-space: pre-wrap;
   word-wrap: break-word;

@@ -4,7 +4,7 @@ const code = `() => {
   const toast = useToast();
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcButton 
         label="Show toast" 
         onClick={() => {

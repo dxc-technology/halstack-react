@@ -13,7 +13,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex direction="row">
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <div id="accordion">
@@ -56,7 +56,7 @@ const code = `() => {
             </DxcFlex>
           </div>
         </DxcFlex>
-        <DxcInset space="var(--spacing-gap-xl)">
+        <DxcInset space="var(--spacing-padding-xl)">
           <DxcQuickNav links={links}></DxcQuickNav>
         </DxcInset>
       </DxcFlex>

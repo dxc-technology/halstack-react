@@ -79,7 +79,7 @@ const code = `() => {
   const summaryRow = { label: "Total", total: 100, id: "summary" }
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcDataGrid columns={columns} rows={rows} summaryRow={summaryRow} uniqueRowId="id" />
     </DxcInset>
   );

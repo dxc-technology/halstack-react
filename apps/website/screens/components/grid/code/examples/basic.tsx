@@ -3,7 +3,7 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcGrid>
         <Placeholder />
         <Placeholder />

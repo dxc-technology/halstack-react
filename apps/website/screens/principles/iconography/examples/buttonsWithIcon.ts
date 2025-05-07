@@ -2,7 +2,7 @@ import { DxcButton, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-l)">
         <DxcButton icon="cloud_upload" label="Upload" />
         <DxcButton icon="filled_delete" mode="secondary" label="Delete" />

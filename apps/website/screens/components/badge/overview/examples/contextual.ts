@@ -3,7 +3,7 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)" direction="column">
         <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
           <DxcBadge label="Label" color="green" icon="info" />

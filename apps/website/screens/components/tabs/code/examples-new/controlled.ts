@@ -5,7 +5,7 @@ const code = `() => {
   const [selectedTab, setSelectedTab] = useState("Mail");
   
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTabs>
         <DxcTabs.Tab label="Mail" active={selectedTab === "Mail"} onClick={() => setSelectedTab("Mail")}>
           <></>

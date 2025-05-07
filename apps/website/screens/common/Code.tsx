@@ -8,10 +8,12 @@ const codeStyles = css`
   padding: var(--spacing-padding-xxxs) var(--spacing-padding-xxs);
 `;
 
-export default styled.code`
+const Code = styled.code`
   ${codeStyles}
   font-size: inherit;
 `;
+
+export default Code;
 
 export const TableCode = styled.code`
   ${codeStyles}

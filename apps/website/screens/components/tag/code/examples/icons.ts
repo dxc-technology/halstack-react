@@ -9,7 +9,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)">
         <DxcTag label="Favourite" icon={icon} />
         <DxcTag label="Julia" icon="person" />

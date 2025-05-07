@@ -26,7 +26,7 @@ const code = `() => {
     return result;
   };
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTextInput
         label="Enter your country"
         value={value}

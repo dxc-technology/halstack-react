@@ -70,7 +70,7 @@ const sections = [
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Dragging the thumb</strong>
-            <DxcInset top="var(--spacing-padding-xs)" bottom="0.5rem">
+            <DxcInset vertical="var(--spacing-padding-xs)">
               <DxcBulletedList>
                 <DxcBulletedList.Item>
                   Users can <strong>click and drag</strong> the thumb along the track to adjust the value.
@@ -86,7 +86,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Clicking the track</strong>
-            <DxcInset top="var(--spacing-padding-xs)" bottom="0.5rem">
+            <DxcInset vertical="var(--spacing-padding-xs)">
               <DxcBulletedList>
                 <DxcBulletedList.Item>
                   Users can <strong>click</strong> anywhere on the track to move the thumb directly to that position.

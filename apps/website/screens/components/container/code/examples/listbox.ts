@@ -4,7 +4,7 @@ const code = `() => {
   const suggestions = ["Option 1", "Option 2", "Option 3", "Option 4"];
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcContainer
         background={{ color: "var(--border-color-neutral-brighter)" }}
         border={{ 

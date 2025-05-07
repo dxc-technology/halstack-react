@@ -2,7 +2,7 @@ import { DxcAccordion, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcAccordion>
         <DxcAccordion.AccordionItem
           label="How to edit your profile?">

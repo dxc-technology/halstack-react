@@ -10,8 +10,8 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">    
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)"-spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">    
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcCheckbox
           label="Of legal age"
           defaultChecked

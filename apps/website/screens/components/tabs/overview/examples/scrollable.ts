@@ -2,7 +2,7 @@ import { DxcContainer, DxcTabs, DxcInset, DxcFlex } from "@dxc-technology/halsta
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex justifyContent="center">
         <DxcContainer width="350px">
           <DxcTabs>

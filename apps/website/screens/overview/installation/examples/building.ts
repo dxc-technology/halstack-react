@@ -1,7 +1,7 @@
 import { DxcButton, DxcFlex, DxcHeading, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const code = `() => (
-  <DxcInset space="var(--spacing-gap-xl)">
+  <DxcInset space="var(--spacing-padding-xl)">
     <DxcFlex direction="column" gap="var(--spacing-gap-l)">
       <DxcHeading level={2} text="Welcome to Halstack!" />
       <DxcParagraph>

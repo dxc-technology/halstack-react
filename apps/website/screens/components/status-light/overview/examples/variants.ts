@@ -2,7 +2,7 @@ import { DxcStatusLight, DxcInset, DxcFlex } from "@dxc-technology/halstack-reac
 
 const code = `() => {
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="center">
         <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
           <DxcStatusLight label="Default" size="small" />

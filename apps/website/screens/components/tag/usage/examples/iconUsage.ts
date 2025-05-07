@@ -9,7 +9,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex justifyContent="space-evenly">
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcHeading level={4} text="Icon before"></DxcHeading>

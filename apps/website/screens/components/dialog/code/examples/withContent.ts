@@ -15,7 +15,7 @@ const code = `() => {
     setDialogVisible(!isDialogVisible);
   };
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcButton label="Enter your address" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>

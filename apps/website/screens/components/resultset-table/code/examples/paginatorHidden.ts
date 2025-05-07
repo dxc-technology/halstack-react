@@ -70,7 +70,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcResultsetTable
         columns={columns}
         rows={rows}

@@ -52,7 +52,7 @@ const code = `() => {
   
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcSelect
         label="Select your favourite social media"
         placeholder="Choose an option"

@@ -19,7 +19,7 @@ const code = `() => {
     console.log("Favorite.");
   };
   return (
-    <DxcInset space="var(--spacing-gap-xl)"-spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-ml)">
         <DxcChip label="Home" suffixIcon={icon} onClickSuffix={onClickSuffix} />
         <DxcChip label="Home" prefixIcon="favorite" onClickPrefix={onClickPrefix} />

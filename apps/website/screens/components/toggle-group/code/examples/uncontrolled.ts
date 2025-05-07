@@ -71,7 +71,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xxl)">
         <DxcToggleGroup
           multiple

@@ -11,7 +11,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTextarea
         label="Comments"
         placeholder="Write your general thoughts and comments here."

@@ -21,7 +21,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTabs>
         <DxcTabs.Tab label="3G Mobile" icon={mobileIcon} notificationNumber={true}>
           <></>
