@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const DateInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/date-input" },
-    { label: "Usage", path: "/components/date-input/usage" },
-    { label: "Specifications", path: "/components/date-input/specifications" },
+    { label: "Overview", path: "/components/date-input" },
+    { label: "Code", path: "/components/date-input/code" },
   ];
 
   return (
@@ -16,10 +15,8 @@ const DateInputPageHeading = ({ children }: { children: ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Date Input" />
-          <DxcParagraph>
-            A date input is a user interface element where the user can type or select a date in a predefined format.
-          </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <DxcParagraph>Date inputs enable users to type or select a date in a predefined format.</DxcParagraph>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

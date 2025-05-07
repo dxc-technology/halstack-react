@@ -48,7 +48,7 @@ const sections = [
             triggers the action of revealing the password.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Close action</strong> <em>(Optional)</em>: a small button, usually represented by an "X" icon, that
+            <strong>Clear action</strong> <em>(Optional)</em>: a small button, usually represented by an "X" icon, that
             allows users to clear the entered password quickly without manually deleting it.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -223,7 +223,7 @@ const sections = [
         ),
       },
       {
-        title: "Close action",
+        title: "Clear action",
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
