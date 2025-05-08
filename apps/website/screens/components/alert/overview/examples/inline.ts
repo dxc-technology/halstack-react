@@ -19,8 +19,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="1.5rem">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-l)">
         <DxcAlert
           message={messagesSuccess}
           primaryAction={{ label: "Primary action", onClick: () => {} }}

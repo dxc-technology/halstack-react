@@ -20,7 +20,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcDropdown
         label="Select platform"
         options={options}

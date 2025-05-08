@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import slugify from "slugify";
-import { DxcBleed, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcBleed, DxcHeading, DxcTooltip } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../common/variables";
 
 const linkIcon = (
@@ -12,39 +12,10 @@ const linkIcon = (
   </svg>
 );
 
-type HeadingLinkProps = {
-  children: string;
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  navSubtitle?: string;
-};
-
-const HeadingLink = ({ children, level, as, navSubtitle }: HeadingLinkProps) => {
-  const elementId = slugify(navSubtitle ?? children, { lower: true });
-  return (
-    <HeadingLinkContainer id={elementId}>
-      <DxcBleed left="2rem">
-        <HeadingAnchor
-          href={`#${elementId}`}
-          title={`Go to '${children}'`}
-          aria-label={`Go to the section '${children}'`}
-        >
-          {linkIcon}
-        </HeadingAnchor>
-      </DxcBleed>
-      <DxcHeading text={children} level={level} as={as} />
-    </HeadingLinkContainer>
-  );
-};
-
 const HeadingLinkContainer = styled.div`
   display: flex;
   align-items: center;
   scroll-margin-top: 64px;
-
-  &:hover svg {
-    opacity: 0.5;
-  }
 
   @media (max-width: ${responsiveSizes.tablet}px) {
     word-break: break-word;
@@ -55,23 +26,47 @@ const HeadingLinkContainer = styled.div`
 `;
 
 const HeadingAnchor = styled.a`
-  color: inherit;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  padding: 8px;
+  border-radius: var(--border-radius-s);
+  color: var(--color-fg-neutral-strong);
+  opacity: 0;
+  padding: var(--spacing-gap-s);
+  text-decoration: none;
 
   svg {
+    height: var(--height-xxs);
     width: 16px;
-    height: 16px;
-    opacity: 0;
   }
   &:focus {
-    outline-color: #0095ff;
-    outline-offset: -0.25rem;
-    svg {
-      opacity: 0.5;
-    }
+    opacity: 1;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -4px;
+  }
+  &:hover {
+    opacity: 1;
   }
 `;
-export default HeadingLink;
+
+type HeadingLinkProps = {
+  children: string;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  navSubtitle?: string;
+};
+
+export default function HeadingLink({ children, level, as, navSubtitle }: HeadingLinkProps) {
+  const elementId = slugify(navSubtitle ?? children, { lower: true });
+  return (
+    <HeadingLinkContainer id={elementId}>
+      <DxcBleed left="var(--spacing-gap-xl)">
+        <DxcTooltip label={`Go to '${children}'`}>
+          <HeadingAnchor href={`#${elementId}`} aria-label={`Go to the section '${children}'`}>
+            {linkIcon}
+          </HeadingAnchor>
+        </DxcTooltip>
+      </DxcBleed>
+      <DxcHeading text={children} level={level} as={as} />
+    </HeadingLinkContainer>
+  );
+}

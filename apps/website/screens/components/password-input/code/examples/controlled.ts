@@ -12,7 +12,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcPasswordInput
         label="Password"
         value={value}

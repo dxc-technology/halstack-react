@@ -2,7 +2,7 @@ import { DxcHeading, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-l)" direction="column">
         <DxcHeading level={1} text="Introduction" />
         <DxcHeading level={2} text="Use case" />

@@ -2,7 +2,7 @@ import { DxcImage, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcImage 
         alt="Wooden dock on a lake" 
         caption="Wooden dock on a beautifully landscaped lake."

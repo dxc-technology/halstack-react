@@ -29,6 +29,9 @@ const sections = [
         <DxcParagraph>Every major release of Halstack is collected below:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/halstack/15/overview/introduction/">Halstack 15</DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/halstack/14/overview/introduction/">Halstack 14</DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -110,21 +113,22 @@ const getReleasesPageSections = (releases: Release[]) => {
   return [...sections, section];
 };
 
-const Releases = ({ releases }: { releases: Release[] }) => (
-  <DxcFlex direction="column" gap="4rem">
-    <PageHeading>
-      <DxcFlex direction="column" gap="2rem">
-        <DxcHeading level={1} text="Releases" />
-        <DxcParagraph>
-          Access all the major releases of the Halstack React library and see the changelog of every version available.
-        </DxcParagraph>
-      </DxcFlex>
-    </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
-  </DxcFlex>
-);
-
-export default Releases;
+export default function ReleasesPage({ releases }: { releases: Release[] }) {
+  return (
+    <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Releases" />
+          <DxcParagraph>
+            Access all the major releases of the Halstack React library and see the changelog of every version
+            available.
+          </DxcParagraph>
+        </DxcFlex>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
+    </DxcFlex>
+  );
+}

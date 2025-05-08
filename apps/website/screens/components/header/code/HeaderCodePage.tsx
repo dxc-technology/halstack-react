@@ -3,8 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import TableCode from "@/common/TableCode";
-import Code from "@/common/Code";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {

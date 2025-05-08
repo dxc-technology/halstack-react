@@ -134,7 +134,7 @@ export default function DxcAlert({
         semantic={semantic}
         mode={mode}
       >
-        <DxcFlex gap="0.75rem" alignItems="center">
+        <DxcFlex gap="var(--spacing-gap-m)" alignItems="center">
           <TitleContainer mode={mode} semantic={semantic}>
             {getIcon(semantic)}
             {mode === "banner" ? (
@@ -152,7 +152,7 @@ export default function DxcAlert({
             <Actions semantic={semantic} mode={mode} primaryAction={primaryAction} secondaryAction={secondaryAction} />
           )}
           {messages.length > 1 && (
-            <DxcFlex alignItems="center" gap="0.25rem">
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
               <DxcActionIcon
                 icon="chevron_left"
                 title={translatedLabels.alert.previousMessageActionTitle}
@@ -171,7 +171,7 @@ export default function DxcAlert({
             </DxcFlex>
           )}
           {closable && (
-            <DxcFlex gap="0.25rem">
+            <DxcFlex gap="var(--spacing-gap-xs)">
               {mode !== "modal" && <DxcDivider orientation="vertical" />}
               <DxcActionIcon
                 icon="close"
