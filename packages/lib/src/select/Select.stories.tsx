@@ -218,12 +218,15 @@ const optionsWithEllipsis = [
 
 const Select = () => (
   <>
-    <Title title="States" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <DxcSelect options={single_options} />
+      <Title title="Select all with single options" theme="light" level={4} />
+      <DxcSelect options={single_options} multiple enableSelectAll />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
+    <ExampleContainer>
+      <Title title="Select all with grouped options" theme="light" level={4} />
+      <DxcSelect options={group_options} multiple enableSelectAll />
+    </ExampleContainer>
+    {/* <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />
     </ExampleContainer>
@@ -356,7 +359,7 @@ const Select = () => (
         options={optionsWithEllipsis}
         margin={{ top: "xxlarge" }}
       />
-    </ExampleContainer>
+    </ExampleContainer> */}
   </>
 );
 
@@ -406,7 +409,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
@@ -424,7 +429,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -442,7 +449,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
@@ -460,7 +469,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
@@ -478,7 +489,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <Title title="Listbox with icons" theme="light" level={3} />
@@ -497,7 +510,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -515,7 +530,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -533,7 +550,9 @@ const SelectListbox = () => {
           optionalItem={{ label: "Empty", value: "" }}
           searchable={false}
           handleOptionOnClick={() => {}}
+          handleSelectAllOnClick={() => {}}
           styles={{ width: 360 }}
+          enabledSelectAll={false}
         />
       </ExampleContainer>
     </>
@@ -633,7 +652,9 @@ const TooltipOption = () => {
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
         styles={{ width: 360 }}
+        enabledSelectAll={false}
       />
     </ExampleContainer>
   );

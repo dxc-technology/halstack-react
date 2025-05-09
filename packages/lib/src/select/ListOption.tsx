@@ -66,7 +66,8 @@ const OptionContent = styled.span`
   }
 `;
 
-const OptionLabel = styled.span`
+const OptionLabel = styled.span<{ isSelectAllOption: OptionProps["isSelectAllOption"] }>`
+  ${({ isSelectAllOption }) => isSelectAllOption && "font-weight: var(--typography-label-semibold);"}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -77,6 +78,7 @@ const ListOption = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
+  isSelectAllOption = false,
   multiple,
   onClick,
   option,
@@ -113,7 +115,9 @@ const ListOption = ({
             <OptionIcon>{typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}</OptionIcon>
           )}
           <OptionContent>
-            <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
+            <OptionLabel isSelectAllOption={isSelectAllOption} onMouseEnter={handleOnMouseEnter}>
+              {option.label}
+            </OptionLabel>
             {!multiple && isSelected && <DxcIcon icon="done" />}
           </OptionContent>
         </StyledOption>

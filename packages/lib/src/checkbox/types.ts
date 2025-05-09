@@ -70,4 +70,8 @@ type Props = {
  */
 export type RefType = HTMLDivElement;
 
+export type CheckboxContextProps = {
+  partial: boolean;
+};
+
 export default Props;

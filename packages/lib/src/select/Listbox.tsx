@@ -3,9 +3,10 @@ import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
-import { groupsHaveOptions } from "./utils";
+import { getSelectionType, groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
+import CheckboxContext from "../checkbox/CheckboxContext";
 
 const ListboxContainer = styled.div`
   box-sizing: border-box;
@@ -49,7 +50,9 @@ const GroupLabel = styled.li`
 const Listbox = ({
   ariaLabelledBy,
   currentValue,
+  enabledSelectAll,
   handleOptionOnClick,
+  handleSelectAllOnClick,
   id,
   lastOptionIndex,
   multiple,
@@ -63,8 +66,7 @@ const Listbox = ({
   const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLDivElement>(null);
 
-  let globalIndex = optional && !multiple ? 0 : -1;
-
+  let globalIndex = (multiple ? enabledSelectAll : optional) ? 0 : -1;
   const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
     if ("options" in option) {
@@ -114,6 +116,50 @@ const Listbox = ({
     }
   };
 
+  const getFirstItem = () => {
+    if (searchable && (options.length === 0 || !groupsHaveOptions(options)))
+      return (
+        <OptionsSystemMessage>
+          <DxcIcon icon="search_off" />
+          {translatedLabels.select.noMatchesErrorMessage}
+        </OptionsSystemMessage>
+      );
+    else if (optional && !multiple)
+      return (
+        <ListOption
+          id={`${id}-option-${0}`}
+          isLastOption={lastOptionIndex === 0}
+          isSelected={currentValue === optionalItem.value}
+          key={`${id}-option-${optionalItem.value}`}
+          multiple={false}
+          onClick={handleOptionOnClick}
+          option={optionalItem}
+          visualFocused={visualFocusIndex === 0}
+        />
+      );
+    else if (multiple && enabledSelectAll) {
+      const selectionType = getSelectionType(options, currentValue as string[]);
+      return (
+        <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+          <ListOption
+            id={`${id}-option-${0}`}
+            isLastOption={lastOptionIndex === 0}
+            isSelected={selectionType === "checked"}
+            isSelectAllOption
+            key={`${id}-option-${optionalItem.value}`}
+            multiple={true}
+            onClick={handleSelectAllOnClick}
+            option={{
+              label: translatedLabels.select.selectAllLabel,
+              value: "",
+            }}
+            visualFocused={visualFocusIndex === 0}
+          />
+        </CheckboxContext.Provider>
+      );
+    }
+  };
+
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
@@ -147,26 +193,7 @@ const Listbox = ({
       role="listbox"
       style={styles}
     >
-      {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
-        <OptionsSystemMessage>
-          <DxcIcon icon="search_off" />
-          {translatedLabels.select.noMatchesErrorMessage}
-        </OptionsSystemMessage>
-      ) : (
-        optional &&
-        !multiple && (
-          <ListOption
-            id={`${id}-option-${0}`}
-            isLastOption={lastOptionIndex === 0}
-            isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
-            key={`${id}-option-${optionalItem.value}`}
-            multiple={multiple}
-            onClick={handleOptionOnClick}
-            option={optionalItem}
-            visualFocused={visualFocusIndex === 0}
-          />
-        )
-      )}
+      {getFirstItem()}
       {options.map(mapOptionFunc)}
     </ListboxContainer>
   );

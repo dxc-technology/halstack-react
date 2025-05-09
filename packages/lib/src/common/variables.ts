@@ -1537,9 +1537,10 @@ export const defaultTranslatedComponentLabels = {
     optionalItemLabelDefault: "N/A",
   },
   select: {
-    noMatchesErrorMessage: "No matches found",
     actionClearSelectionTitle: "Clear selection",
     actionClearSearchTitle: "Clear search",
+    noMatchesErrorMessage: "No matches found",
+    selectAllLabel: "Select all"
   },
   tabs: {
     scrollLeft: "Scroll left",
