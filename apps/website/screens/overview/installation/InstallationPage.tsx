@@ -96,12 +96,12 @@ const sections = [
   },
 ];
 
-export default function Installation() {
+export default function InstallationPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Installation"></DxcHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Installation" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>

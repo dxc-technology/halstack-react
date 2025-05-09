@@ -11,9 +11,9 @@ const ToggleGroupPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Toggle group" />
           <DxcParagraph>
             The toggle group component is a set of toggle buttons that function as a unified control, allowing users to

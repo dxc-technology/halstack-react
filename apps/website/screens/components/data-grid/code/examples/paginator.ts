@@ -37,7 +37,7 @@ const code = `() => {
   ];
   
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" showPaginator itemsPerPage={2} />
     </DxcInset>
   );

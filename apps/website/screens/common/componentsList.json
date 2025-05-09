@@ -1,6 +1,6 @@
 [
   { "label": "Accordion", "path": "/components/accordion", "status": "stable" },
-  { "label": "Alert", "path": "/components/alert", "status": "new" },
+  { "label": "Alert", "path": "/components/alert", "status": "stable" },
   {
     "label": "Application layout",
     "path": "/components/application-layout",
@@ -114,7 +114,7 @@
     "status": "stable"
   },
   { "label": "Textarea", "path": "/components/textarea", "status": "stable" },
-  { "label": "Toast", "path": "/components/toast", "status": "new" },
+  { "label": "Toast", "path": "/components/toast", "status": "stable" },
   {
     "label": "Toggle group",
     "path": "/components/toggle-group",

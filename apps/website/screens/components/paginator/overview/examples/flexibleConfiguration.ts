@@ -4,8 +4,8 @@ import { useState } from "react";
 const code = `() => {
 
   return (
-    <DxcInset space="1rem">
-      <DxcFlex gap="1rem" direction="column">
+    <DxcInset space="var(--spacing-padding-m)">>
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcPaginator/>
         <DxcPaginator itemsPerPageOptions={[5, 10, 15]} />
         <DxcPaginator showGoToPage />

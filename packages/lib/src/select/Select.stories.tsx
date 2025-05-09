@@ -310,7 +310,7 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcSelect label="fillParent" size="fillParent" options={single_options} />
         <DxcSelect label="medium" size="medium" options={single_options} />
         <DxcSelect label="large" size="large" options={single_options} />

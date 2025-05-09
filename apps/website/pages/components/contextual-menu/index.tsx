@@ -3,15 +3,15 @@ import type { ReactElement } from "react";
 import ContextualMenuOverviewPage from "screens/components/contextual-menu/overview/ContextualMenuOverviewPage";
 import ContextualMenuPageLayout from "screens/components/contextual-menu/ContextualMenuPageLayout";
 
-const Usage = () => (
+const Index = () => (
   <>
     <Head>
-      <title>Contextual Menu — Halstack Design System</title>
+      <title>Contextual menu — Halstack Design System</title>
     </Head>
     <ContextualMenuOverviewPage />
   </>
 );
 
-Usage.getLayout = (page: ReactElement) => <ContextualMenuPageLayout>{page}</ContextualMenuPageLayout>;
+Index.getLayout = (page: ReactElement) => <ContextualMenuPageLayout>{page}</ContextualMenuPageLayout>;
 
-export default Usage;
+export default Index;

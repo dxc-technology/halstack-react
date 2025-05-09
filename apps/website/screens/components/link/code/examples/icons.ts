@@ -15,8 +15,8 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex gap="1.5rem" direction="column">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex gap="var(--spacing-gap-l)" direction="column">
         <DxcParagraph>
           This is a text with a <DxcLink href="#" icon={icon}>Link</DxcLink> with icon.
         </DxcParagraph>

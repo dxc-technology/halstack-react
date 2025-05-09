@@ -1,7 +1,6 @@
 import { DxcLink, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
@@ -9,7 +8,7 @@ import uncontrolled from "./examples/uncontrolled";
 import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 
 const actionTypeString = `{
   icon?: string | (React.ReactNode 

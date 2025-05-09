@@ -35,7 +35,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcToggleGroup
         defaultValue={[3, 4]}
         multiple

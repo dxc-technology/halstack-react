@@ -6,7 +6,12 @@ const code = `() => {
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex direction="column" gap="var(--spacing-padding-xl)">
         <Placeholder height="var(--height-xxl)" />
-        <DxcBleed top="var(--spacing-padding-xs)" right="var(--spacing-padding-m)" bottom="var(--spacing-padding-l)" left="var(--spacing-padding-l)">
+        <DxcBleed 
+          bottom="var(--spacing-padding-l)"
+          left="var(--spacing-padding-l)"
+          right="var(--spacing-padding-m)"
+          top="var(--spacing-padding-xs)"
+        >
           <Placeholder height="var(--height-xxl)" />
         </DxcBleed>
         <Placeholder height="var(--height-xxl)" />
