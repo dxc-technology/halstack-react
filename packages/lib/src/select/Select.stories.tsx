@@ -218,6 +218,10 @@ const optionsWithEllipsis = [
 
 const Select = () => (
   <>
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcSelect label="Default" options={single_options} />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />

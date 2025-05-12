@@ -102,6 +102,9 @@ type CommonProps = {
 };
 
 type SingleSelect = CommonProps & {
+  /**
+   * Enables users to select multiple items from the list.
+   */
   enableSelectAll?: never;
   /**
    * If true, the select component will support multiple selected options.
@@ -134,6 +137,9 @@ type SingleSelect = CommonProps & {
 };
 
 type MultipleSelect = CommonProps & {
+  /**
+   * Enables users to select multiple items from the list.
+   */
   enableSelectAll?: boolean;
   /**
    * If true, the select component will support multiple selected options.
