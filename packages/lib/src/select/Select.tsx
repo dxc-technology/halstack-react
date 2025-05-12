@@ -7,7 +7,6 @@ import {
   MouseEvent,
   useCallback,
   useContext,
-  useEffect,
   useId,
   useMemo,
   useRef,
@@ -325,21 +324,20 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         case "Enter":
           if (isOpen && visualFocusIndex >= 0) {
             let accLength = (multiple ? enableSelectAll : optional) ? 1 : 0;
-            if (searchable) {
-              if (filteredOptions.length > 0) {
-                if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
-                else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
-                else if (isArrayOfGroupedOptions(filteredOptions)) {
-                  if (groupsHaveOptions(filteredOptions))
-                    filteredOptions.some((groupOption) => {
-                      const groupLength = accLength + groupOption.options.length;
-                      if (groupLength > visualFocusIndex)
-                        handleOnChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                      accLength = groupLength;
-                      return groupLength > visualFocusIndex;
-                    });
-                } else handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
-              }
+
+            if (searchable && filteredOptions.length > 0) {
+              if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
+              else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
+              else if (isArrayOfGroupedOptions(filteredOptions)) {
+                if (groupsHaveOptions(filteredOptions))
+                  filteredOptions.some((groupOption) => {
+                    const groupLength = accLength + groupOption.options.length;
+                    if (groupLength > visualFocusIndex)
+                      handleOnChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                    accLength = groupLength;
+                    return groupLength > visualFocusIndex;
+                  });
+              } else handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
             } else if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
             else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
             else if (isArrayOfGroupedOptions(options))
@@ -351,6 +349,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 return groupLength > visualFocusIndex;
               });
             else handleOnChangeValue(options[visualFocusIndex - accLength]);
+
             if (!multiple) closeListbox();
             setSearchValue("");
           }
@@ -405,7 +404,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         if (value == null) setInnerValue(selectAll(options));
         onChange?.({ value: selectAll(options) as string & string[] });
       }
-    }, [handleClearOptionsActionOnClick, onChange, options, value]);
+    }, [handleClearOptionsActionOnClick, innerValue, multiple, onChange, options, selectAll, value]);
 
     return (
       <SelectContainer margin={margin} ref={ref} size={size}>
