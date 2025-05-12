@@ -2,8 +2,12 @@
   "extends": "@dxc-technology/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    // "baseUrl": ".",
+    // "paths": {
+    //   "styled-system/*": ["./styled-system/*"]
+    // }
   },
-  "include": ["src", "test", ".", ".storybook/**/*"],
+  "include": ["src", "test", ".", ".storybook/**/*", "panda.config.mjs, styled-system"],
   "exclude": ["node_modules", "dist", ".turbo"]
 }

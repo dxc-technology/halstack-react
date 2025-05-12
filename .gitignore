@@ -40,3 +40,6 @@ yarn-error.log*
 # Storybook
 *storybook.log
 storybook-static
+## Panda
+styled-system
+styled-system-studio

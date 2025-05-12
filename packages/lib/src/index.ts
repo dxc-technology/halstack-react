@@ -1,3 +1,4 @@
+// import "../styled-system/styles.css"; // THIS IS NOT RESOLVING PROPERLY, NEEDS TO BE FIXED, IT WORKS IF INSIDE styles/
 import "./styles/fonts.css";
 import "./styles/variables.css";
 
