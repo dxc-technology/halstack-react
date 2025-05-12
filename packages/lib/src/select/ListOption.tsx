@@ -24,7 +24,6 @@ const OptionItem = styled.li<{
 
 const StyledOption = styled.span<{
   grouped: OptionProps["isGroupedOption"];
-  isSelectAllOption: OptionProps["isSelectAllOption"];
   last: OptionProps["isLastOption"];
   selected: OptionProps["isSelected"];
   visualFocused: OptionProps["visualFocused"];
@@ -35,7 +34,6 @@ const StyledOption = styled.span<{
   gap: var(--spacing-gap-s);
   height: var(--height-m);
   ${({ grouped }) => grouped && "padding-left: var(--spacing-padding-s);"}
-  ${({ isSelectAllOption }) => isSelectAllOption && "margin-bottom: var(--spacing-padding-xxs);"}
   ${(props) =>
     `border-bottom: var(--border-width-s) var(--border-style-default) 
     ${props.last || props.visualFocused || props.selected ? "transparent" : "var(--border-color-neutral-lighter)"};`};
@@ -110,13 +108,7 @@ const ListOption = ({
         selected={isSelected}
         visualFocused={visualFocused}
       >
-        <StyledOption
-          isSelectAllOption={isSelectAllOption}
-          grouped={isGroupedOption}
-          selected={isSelected}
-          visualFocused={visualFocused}
-          last={isLastOption}
-        >
+        <StyledOption grouped={isGroupedOption} last={isLastOption} selected={isSelected} visualFocused={visualFocused}>
           {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} ref={checkboxRef} />}
           {option.icon && (
             <OptionIcon>{typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}</OptionIcon>
