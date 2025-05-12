@@ -1011,7 +1011,7 @@ describe("Select component tests", () => {
     userEvent.click(clearSelectionButton);
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
-  test("Select all (single) - 'Select all' options is included and selects all the options available", () => {
+  test("Select all (single) - 'Select all' option is included and selects all the options available", () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcSelect
@@ -1025,14 +1025,36 @@ describe("Select component tests", () => {
       />
     );
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    expect(getByText("Select all")).toBeTruthy();
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    userEvent.click(select);
+    const selectAllOption = getByText("Select all");
+    selectAllOption && userEvent.click(selectAllOption);
     expect(onChange).toHaveBeenCalledWith({ value: ["1", "2", "3", "4"] });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    selectAllOption && userEvent.click(selectAllOption);
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
-  test("Select all (groups) - 'Select all' options is included and selects all the options available", () => {
+  test("Select all (groups) - 'Select all' option is included and selects all the options available", () => {
+    const onChange = jest.fn();
+    const { getByRole, getByText } = render(
+      <DxcSelect
+        enableSelectAll
+        label="Select an option"
+        multiple
+        options={reducedGroupedOptions}
+        placeholder="Select an available option"
+        onChange={onChange}
+      />
+    );
+    const select = getByRole("combobox");
+    userEvent.click(select);
+    const selectAllOption = getByText("Select all");
+    selectAllOption && userEvent.click(selectAllOption);
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["azul", "rojo", "rosa", "madrid", "oviedo", "sevilla", "miño", "duero", "tajo"],
+    });
+    selectAllOption && userEvent.click(selectAllOption);
+    expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
+  });
+  test("Select all - Keyboard navigation is correct", () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcSelect
