@@ -116,7 +116,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="var(--spacing-padding-m)">>
+    <DxcInset space="var(--spacing-padding-m)">
       <DxcContainer height="200px">
         <DxcDataGrid showPaginator columns={columns} rows={expandableRows} uniqueRowId="id" />
       </DxcContainer>

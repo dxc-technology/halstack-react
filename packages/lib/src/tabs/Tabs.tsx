@@ -118,6 +118,7 @@ const DxcTabs = ({
 
     return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
   });
+  console.log("activeTabLabel", activeTabLabel);
   const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
@@ -244,9 +245,11 @@ const DxcTabs = ({
           )}
         </Tabs>
       </TabsContainer>
-      {Children.map(children, (child) =>
-        isValidElement(child) && child.props.label === activeTabLabel ? child.props.children : null
-      )}
+      {
+      // Children.map(children, (child) =>
+      //   isValidElement(child) && child.props.label === activeTabLabel ? child.props.children : null
+      // )
+      }
     </>
   ) : (
     tabs != null && (
