@@ -107,7 +107,6 @@
   { "label": "Switch", "path": "/components/switch", "status": "stable" },
   { "label": "Table", "path": "/components/table", "status": "stable" },
   { "label": "Tabs", "path": "/components/tabs", "status": "stable" },
-  { "label": "Tag", "path": "/components/tag", "status": "deprecated" },
   {
     "label": "Text input",
     "path": "/components/text-input",
