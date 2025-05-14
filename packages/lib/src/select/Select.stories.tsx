@@ -405,8 +405,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -425,8 +427,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -445,8 +449,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
@@ -465,8 +471,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -485,8 +493,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <Title title="Listbox with icons" theme="light" level={3} />
@@ -506,8 +516,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -526,8 +538,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -546,8 +560,10 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
-        enabledSelectAll={false}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
   </>
@@ -646,8 +662,10 @@ const TooltipOption = () => (
       searchable={false}
       handleOptionOnClick={() => {}}
       handleSelectAllOnClick={() => {}}
+      handleGroupOnClick={() => {}}
+      selectionType="unchecked"
       styles={{ width: 360 }}
-      enabledSelectAll={false}
+      enableSelectAll={false}
     />
   </ExampleContainer>
 );
@@ -669,6 +687,7 @@ const SelectAll = () => (
       multiple
       options={group_options}
       placeholder="Select an available option"
+      searchable
     />
   </ExampleContainer>
 );

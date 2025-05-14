@@ -194,7 +194,8 @@ export type OptionProps = {
 export type ListboxProps = {
   ariaLabelledBy: string;
   currentValue: string | string[];
-  enabledSelectAll: boolean;
+  enableSelectAll: boolean;
+  handleGroupOnClick: (group: ListOptionGroupType) => void;
   handleOptionOnClick: (option: ListOptionType) => void;
   handleSelectAllOnClick: () => void;
   id: string;
@@ -204,6 +205,7 @@ export type ListboxProps = {
   optionalItem: ListOptionType;
   options: ListOptionType[] | ListOptionGroupType[];
   searchable: boolean;
+  selectionType: "checked" | "unchecked" | "indeterminate";
   styles: CSSProperties;
   visualFocusIndex: number;
 };

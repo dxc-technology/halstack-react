@@ -221,14 +221,14 @@ describe("Select component tests", () => {
     options[2] && userEvent.click(options[2]);
     userEvent.click(submit);
   });
-  test("Searching for a value with an empty list of options passed doesn't open the listbox", async () => {
+  test("Searching for a value with an empty list of options passed doesn't open the listbox", () => {
     const { container, getByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={[]} searchable />
     );
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     userEvent.click(select);
-    await act(() => {
+    act(() => {
       searchInput && userEvent.type(searchInput, "test");
     });
     expect(queryByRole("listbox")).toBeFalsy();
@@ -421,7 +421,7 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-  test("Non-Grouped Options - Filtering options never affects the optional item until there are no coincidences", async () => {
+  test("Non-Grouped Options - Filtering options never affects the optional item until there are no coincidences", () => {
     const { getAllByRole, getByText, queryByText, container } = render(
       <DxcSelect
         label="test-select-label"
@@ -432,12 +432,12 @@ describe("Select component tests", () => {
       />
     );
     const searchInput = container.querySelectorAll("input")[1];
-    await act(() => {
+    act(() => {
       searchInput && userEvent.type(searchInput, "1");
     });
     expect(getByText("Placeholder example")).toBeTruthy();
     expect(getAllByRole("option").length).toBe(12);
-    await act(() => {
+    act(() => {
       searchInput && userEvent.type(searchInput, "123");
     });
     expect(queryByText("Placeholder example")).toBeFalsy();
@@ -522,14 +522,14 @@ describe("Select component tests", () => {
     searchInput && userEvent.type(searchInput, "abc");
     expect(getByText("No matches found")).toBeTruthy();
   });
-  test("Non-Grouped Options: Searchable - Clicking the select, when the list is open, clears the search value", async () => {
+  test("Non-Grouped Options: Searchable - Clicking the select, when the list is open, clears the search value", () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole, getAllByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} searchable />
     );
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
-    await act(() => {
+    act(() => {
       searchInput && userEvent.type(searchInput, "2");
     });
     expect(getByRole("listbox")).toBeTruthy();
@@ -537,7 +537,7 @@ describe("Select component tests", () => {
     expect(getByText("Option 12")).toBeTruthy();
     expect(getByText("Option 20")).toBeTruthy();
     expect(getAllByRole("option").length).toBe(3);
-    await act(() => {
+    act(() => {
       userEvent.click(select);
     });
     expect(searchInput?.value).toBe("");
@@ -1011,7 +1011,7 @@ describe("Select component tests", () => {
     userEvent.click(clearSelectionButton);
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
-  test("Select all (single) - 'Select all' option is included and selects all the options available", () => {
+  test("Select all (single) - 'Select all' option is included and (un)selects all the options available", () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcSelect
@@ -1032,7 +1032,7 @@ describe("Select component tests", () => {
     selectAllOption && userEvent.click(selectAllOption);
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
-  test("Select all (groups) - 'Select all' option is included and selects all the options available", () => {
+  test("Select all (groups) - 'Select all' option is included and (un)selects all the options available", () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcSelect
@@ -1075,5 +1075,120 @@ describe("Select component tests", () => {
     });
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
+  });
+  test("Select all (groups) - 'Select all' option selects all the options when there's a partial selection", () => {
+    const onChange = jest.fn();
+    const { getByRole, getByText } = render(
+      <DxcSelect
+        enableSelectAll
+        label="Select an option"
+        multiple
+        options={reducedGroupedOptions}
+        placeholder="Select an available option"
+        onChange={onChange}
+        defaultValue={["azul", "rojo", "rosa"]}
+      />
+    );
+    const select = getByRole("combobox");
+    userEvent.click(select);
+    const selectAllOption = getByText("Select all");
+    selectAllOption && userEvent.click(selectAllOption);
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["azul", "rojo", "rosa", "madrid", "oviedo", "sevilla", "miño", "duero", "tajo"],
+    });
+    selectAllOption && userEvent.click(selectAllOption);
+    expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
+  });
+  test("Select all options from a group - The header of a group is selectable and (un)selects all the options from its group", () => {
+    const onChange = jest.fn();
+    const { getByRole, getByText } = render(
+      <DxcSelect
+        enableSelectAll
+        label="Select an option"
+        multiple
+        options={reducedGroupedOptions}
+        placeholder="Select an available option"
+        onChange={onChange}
+      />
+    );
+    const select = getByRole("combobox");
+    userEvent.click(select);
+    const thirdGroupHeader = getByText("Ríos españoles");
+    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["miño", "duero", "tajo"],
+    });
+    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
+  });
+  test("Select all options from a group - The header of a group selects all the options when there's a partial selection", () => {
+    const onChange = jest.fn();
+    const { getByRole, getByText } = render(
+      <DxcSelect
+        enableSelectAll
+        label="Select an option"
+        multiple
+        options={reducedGroupedOptions}
+        placeholder="Select an available option"
+        onChange={onChange}
+        defaultValue={["miño", "duero"]}
+      />
+    );
+    const select = getByRole("combobox");
+    userEvent.click(select);
+    const thirdGroupHeader = getByText("Ríos españoles");
+    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["miño", "duero", "tajo"],
+    });
+    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
+  });
+  test("Select all options from a group - Keyboard navigation is correct", () => {
+    const onChange = jest.fn();
+    const { getByRole } = render(
+      <DxcSelect
+        enableSelectAll
+        label="Select an option"
+        multiple
+        options={reducedGroupedOptions}
+        placeholder="Select an available option"
+        onChange={onChange}
+      />
+    );
+    const select = getByRole("combobox");
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({
+      value: ["azul", "rojo", "rosa"],
+    });
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({
+      value: ["rojo", "rosa"],
+    });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({
+      value: ["rojo", "rosa", "azul"],
+    });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({
+      value: ["rojo", "rosa", "azul", "miño", "duero", "tajo"],
+    });
+    fireEvent.keyDown(select, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({
+      value: ["azul", "rojo", "rosa", "madrid", "oviedo", "sevilla", "miño", "duero", "tajo"],
+    });
+    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    expect(onChange).toHaveBeenLastCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
   });
 });

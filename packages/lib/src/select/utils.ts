@@ -75,26 +75,21 @@ export const getLastOptionIndex = (
   searchable: boolean,
   optional: boolean,
   multiple: boolean,
-  enabledSelectAll: boolean
+  enableSelectAll: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current.options.length ?? 0);
+  const reducer = (acc: number, current: ListOptionGroupType) =>
+    acc + (current.options.length ?? 0) + (enableSelectAll ? 1 : 0);
 
   if (searchable && filteredOptions.length > 0) {
-    if (isArrayOfGroupedOptions(filteredOptions)) {
-      last = filteredOptions.reduce(reducer, 0) - 1;
-    } else {
-      last = filteredOptions.length - 1;
-    }
+    if (isArrayOfGroupedOptions(filteredOptions)) last = filteredOptions.reduce(reducer, 0) - 1;
+    else last = filteredOptions.length - 1;
   } else if (options.length > 0) {
-    if (isArrayOfGroupedOptions(options)) {
-      last = options.reduce(reducer, 0) - 1;
-    } else {
-      last = options.length - 1;
-    }
+    if (isArrayOfGroupedOptions(options)) last = options.reduce(reducer, 0) - 1;
+    else last = options.length - 1;
   }
 
-  return (multiple ? enabledSelectAll : optional) ? last + 1 : last;
+  return (multiple ? enableSelectAll : optional) ? last + 1 : last;
 };
 
 /**
@@ -187,11 +182,38 @@ export const getSelectionType = (options: Props["options"], value: string[]) => 
 };
 
 /**
- * Return an array with all the values from the options passed by the user, whether grouped or not.
+ * Returns a determined string value depending on the amount of options selected from a group:
+ *   - All grouped options are selected -> "checked"
+ *   - Partial selection -> "indeterminate"
+ *   - No option from the group is selected -> "unchecked"
+ * @param options
+ * @param value
+ * @returns boolean
+ */
+export const getGroupSelectionType = (options: ListOptionType[], value: string[]) =>
+  options.every((option) => value.includes(option.value))
+    ? "checked"
+    : options.some((option) => value.includes(option.value))
+      ? "indeterminate"
+      : "unchecked";
+
+/**
+ * Return an array with all the values from the options passed by the user, whether grouped or not, that can be selected.
  * @param options
  * @returns
  */
-export const selectAll = (options: Props["options"]) =>
+export const getSelectableOptionsValues = (options: Props["options"]) =>
   isArrayOfGroupedOptions(options)
     ? options.flatMap((group) => group.options.map((option) => option.value))
     : options.map((option) => option.value);
+
+/**
+ * (Un)Selects the option passed as parameter.
+ * @param currentValue 
+ * @param newOption 
+ * @returns 
+ */
+export const computeNewValue = (currentValue: string[], newOption: ListOptionType) =>
+  currentValue.includes(newOption.value)
+    ? currentValue.filter((val) => val !== newOption.value)
+    : [...currentValue, newOption.value];
