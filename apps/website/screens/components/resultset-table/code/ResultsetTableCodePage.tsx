@@ -29,6 +29,7 @@ const cellTypeString = `{
   displayValue: React.ReactNode; 
   sortValue?: string | number | Date; 
 }[]`;
+
 const columnTypeString = `{ 
   displayValue: React.ReactNode; 
   isSortable?: boolean; 
@@ -290,15 +291,13 @@ const sections = [
   },
 ];
 
-const ResultsetTableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ResultsetTableCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ResultsetTableCodePage;

@@ -4,9 +4,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
-import { HalstackProvider } from "../HalstackContext";
 import DxcResultsetTable from "./ResultsetTable";
-import { ActionsPropsType } from "../table/types";
 import { Meta, StoryObj } from "@storybook/react";
 
 export default {
@@ -42,21 +40,10 @@ const rows = [
   [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
 ];
 
-const advancedTheme = {
-  table: {
-    actionIconColor: "#1B75BB",
-    hoverActionIconColor: "#1B75BB",
-    activeActionIconColor: "#1B75BB",
-    focusActionIconColor: "#1B75BB",
-    disabledActionIconColor: "#666666",
-    hoverButtonBackgroundColor: "#cccccc",
-  },
-};
-
-const actions: ActionsPropsType = [
+const actions = [
   {
     title: "icon",
-    onClick: (value?) => {
+    onClick: (value?: string) => {
       console.log(value);
     },
     options: [
@@ -391,10 +378,6 @@ const ResultsetActionsCellDropdown = () => (
   <ExampleContainer>
     <Title title="Dropdown Action" theme="light" level={4} />
     <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
-    <Title title="Custom theme actions cell" theme="light" level={4} />
-    <HalstackProvider advancedTheme={advancedTheme}>
-      <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
-    </HalstackProvider>
   </ExampleContainer>
 );
 

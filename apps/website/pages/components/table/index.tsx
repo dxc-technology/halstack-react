@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TableCodePage from "screens/components/table/code/TableCodePage";
+import TableOverviewPage from "screens/components/table/overview/TableOverviewPage";
 import TablePageLayout from "screens/components/table/TablePageLayout";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Table — Halstack Design System</title>
-      </Head>
-      <TableCodePage></TableCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Table — Halstack Design System</title>
+    </Head>
+    <TableOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TablePageLayout>{page}</TablePageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TablePageLayout>{page}</TablePageLayout>;
 
 export default Index;

@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const TablePageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/table" },
-    { label: "Usage", path: "/components/table/usage" },
-    { label: "Specifications", path: "/components/table/specifications" },
+    { label: "Overview", path: "/components/table" },
+    { label: "Code", path: "/components/table/code" },
   ];
 
   return (
@@ -22,7 +21,7 @@ const TablePageHeading = ({ children }: { children: ReactNode }) => {
             grid structure, defining columns and rows to place the data and allow the users to scan, analyze, compare
             and filter that information.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
