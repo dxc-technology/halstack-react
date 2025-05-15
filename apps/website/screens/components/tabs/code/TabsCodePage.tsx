@@ -254,21 +254,21 @@ const sections = [
                   </DxcLink>{" "}
                   name or SVG element as the icon that will be displayed in the tab. When using Material Symbols,
                   replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-                  symbol name with <TableCode>"filled_"</TableCode>.
+                  symbol name with <TableCode>"filled_"</TableCode>. The icon or the label, either of which must have a
+                  valid value.
                 </td>
                 <td>-</td>
               </tr>
               <tr>
                 <td>
                   <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
                     label
                   </DxcFlex>
                 </td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
-                <td>Tab label text.</td>
+                <td>Tab label text. The icon or the label, either of which must have a valid value.</td>
                 <td>-</td>
               </tr>
               <tr>
@@ -299,6 +299,18 @@ const sections = [
                   <TableCode>{"() => void"}</TableCode>
                 </td>
                 <td>This function will be called when the user hovers this tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    tabId
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Value used to identify the tab internally.</td>
                 <td>-</td>
               </tr>
               <tr>
