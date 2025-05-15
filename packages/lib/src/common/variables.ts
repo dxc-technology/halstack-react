@@ -1044,23 +1044,6 @@ export const componentTokens = {
     focusOutline: CoreTokens.color_purple_700,
     scrollButtonsWidth: "48px",
   },
-  tag: {
-    fontFamily: CoreTokens.type_sans,
-    fontColor: CoreTokens.color_black,
-    fontSize: CoreTokens.type_scale_02,
-    fontStyle: CoreTokens.type_normal,
-    fontWeight: CoreTokens.type_regular,
-    labelPaddingTop: CoreTokens.spacing_0,
-    labelPaddingBottom: CoreTokens.spacing_0,
-    labelPaddingLeft: CoreTokens.spacing_16,
-    labelPaddingRight: CoreTokens.spacing_16,
-    height: "40px",
-    iconColor: CoreTokens.color_white,
-    iconSectionWidth: "40px",
-    iconHeight: "24px",
-    iconWidth: "auto",
-    focusColor: CoreTokens.color_blue_600,
-  },
   textarea: {
     fontFamily: CoreTokens.type_sans,
     enabledBorderColor: CoreTokens.color_black,
@@ -1409,10 +1392,6 @@ export type OpinionatedTheme = {
   };
   tabs: {
     baseColor: string;
-  };
-  tag: {
-    fontColor: string;
-    iconColor: string;
   };
   textarea: {
     fontColor: string;

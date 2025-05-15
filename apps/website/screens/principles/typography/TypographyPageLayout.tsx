@@ -10,7 +10,7 @@ const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <DxcHeading level={1} text="Typography" />

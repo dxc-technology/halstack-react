@@ -13,7 +13,7 @@ const roles = ["Admin", "Security Analyst", "Auditor", "Read-Only User"];
   };
 
   return (
-    <DxcInset space="var(--spacing-padding-m)">>
+    <DxcInset space="var(--spacing-padding-m)">
       <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcSelect
           label="Available roles"
