@@ -10,8 +10,8 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" alignItems="flex-start">
         <DxcTextInput
           label="Enter your surname"
           defaultValue="Harris"

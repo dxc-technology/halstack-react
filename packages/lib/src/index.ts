@@ -42,7 +42,6 @@ export { default as DxcStatusLight } from "./status-light/StatusLight";
 export { default as DxcSwitch } from "./switch/Switch";
 export { default as DxcTable } from "./table/Table";
 export { default as DxcTabs } from "./tabs/Tabs";
-export { default as DxcTag } from "./tag/Tag";
 export { default as DxcTextarea } from "./textarea/Textarea";
 export { default as DxcTextInput } from "./text-input/TextInput";
 export { default as DxcToastsQueue } from "./toast/ToastsQueue";

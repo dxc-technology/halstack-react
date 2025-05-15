@@ -11,9 +11,9 @@ const ResultsetTablePageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Resultset table" />
           <DxcParagraph>
             Data table is a component with a high rate of usage within the applications. It allows to show the user a

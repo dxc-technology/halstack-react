@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
 import { calculateWidth, icons, spaces } from "./utils";
+import CheckboxContext from "./CheckboxContext";
 
 const Label = styled.span<{
   disabled: CheckboxPropsType["disabled"];
@@ -93,6 +94,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef<HTMLSpanElement | null>(null);
     const translatedLabels = useContext(HalstackLanguageContext);
+    const { partial } = useContext(CheckboxContext) ?? {};
 
     const handleOnChange = () => {
       if (!disabled && !readOnly) {
@@ -142,7 +144,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           ref={checkboxRef}
           tabIndex={disabled ? -1 : tabIndex}
         >
-          {(checked ?? innerChecked) ? icons.checked : icons.unchecked}
+          {partial ? icons.partial : (checked ?? innerChecked) ? icons.checked : icons.unchecked}
         </Checkbox>
         <input
           checked={checked ?? innerChecked}

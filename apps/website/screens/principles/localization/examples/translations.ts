@@ -25,7 +25,7 @@ const code = `() => {
 
   return (
     <HalstackProvider labels={labels}>
-      <DxcInset space="2rem">
+      <DxcInset space="var(--spacing-padding-xl)">
         <DxcSelect
           label="Label"
           helperText="Helper text"
@@ -40,7 +40,7 @@ const code = `() => {
           optional
         />
       </DxcInset>
-      <DxcInset space="2rem">
+      <DxcInset space="var(--spacing-padding-xl)">
         <DxcTextInput
           label="Input text"
           defaultValue="Example text"
@@ -48,7 +48,7 @@ const code = `() => {
           optional
         />
       </DxcInset>
-      <DxcInset space="2rem">
+      <DxcInset space="var(--spacing-padding-xl)">
         <DxcPaginator
           itemsPerPageOptions={[10, 15]}
           totalItems={27}

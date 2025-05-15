@@ -21,7 +21,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex justifyContent="center">
         <DxcDropdown
           icon="filled_home"

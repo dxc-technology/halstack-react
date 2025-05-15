@@ -9,8 +9,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem" alignItems="center">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" alignItems="center">
         <DxcSelect
           label="Multiple selection"
           helperText="Select one or more options"

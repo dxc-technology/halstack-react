@@ -8,11 +8,11 @@ const code = `() => {
   };
   
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcButton label="Enter your data" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onBackgroundClick={handleClick} closable={false}>
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Please enter your personal information.
           </DxcInset>
         </DxcDialog>

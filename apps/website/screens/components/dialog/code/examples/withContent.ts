@@ -15,12 +15,12 @@ const code = `() => {
     setDialogVisible(!isDialogVisible);
   };
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcButton label="Enter your address" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
-          <DxcInset space="1.5rem">
-            <DxcGrid gap="2rem">
+          <DxcInset space="var(--spacing-padding-l)">
+            <DxcGrid gap="var(--spacing-gap-xl)">
               <DxcHeading level={2} text="Delivery address" weight="regular" />
               <DxcGrid templateColumns={["1fr", "1fr"]} templateColumns={["1fr", "1fr"]} gap="var(--spacing-gap-ml)">
                 <DxcTextInput label="Street" size="fillParent" />
@@ -29,7 +29,7 @@ const code = `() => {
                   <DxcTextInput label="State" size="fillParent" />
                 </DxcGrid.Item>
               </DxcGrid>
-              <DxcFlex justifyContent="flex-end" gap="0.5rem">
+              <DxcFlex justifyContent="flex-end" gap="var(--spacing-gap-s)">
                 <DxcButton label="Add client" onClick={handleClick} />
                 <DxcButton label="Cancel" onClick={handleClick} mode="tertiary" />
               </DxcFlex>

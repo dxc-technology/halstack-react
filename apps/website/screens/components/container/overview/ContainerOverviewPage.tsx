@@ -38,7 +38,7 @@ const sections = [
             <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_model" newWindow>
               MDN web docs: CSS box model
             </DxcLink>
-            <DxcInset top="0.5rem" bottom="0.5rem">
+            <DxcInset vertical="var(--spacing-padding-xs)">
               <DxcBulletedList type="circle">
                 <DxcBulletedList.Item>
                   <DxcLink
