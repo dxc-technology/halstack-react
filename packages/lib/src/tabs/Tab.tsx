@@ -94,15 +94,15 @@ const Underline = styled.span<{ active: boolean }>`
 
 const DxcTab = forwardRef(
   (
-    { active, disabled, icon, label, notificationNumber, onClick, onHover, title }: TabProps,
+    { active, disabled, icon, label, notificationNumber, onClick, onHover, title, tabId }: TabProps,
     ref: Ref<HTMLButtonElement>
   ) => {
     const {
-      activeLabel,
-      focusedLabel,
+      activeTabId,
+      focusedTabId,
       iconPosition,
       isControlled,
-      setActiveLabel,
+      setActiveTabId,
       tabIndex = 0,
     } = useContext(TabsContext) ?? {};
     const tabRef = useRef<HTMLButtonElement | null>(null);
@@ -120,22 +120,22 @@ const DxcTab = forwardRef(
     };
 
     useEffect(() => {
-      if (focusedLabel === label) tabRef?.current?.focus();
-    }, [focusedLabel, label]);
+      if (focusedTabId === tabId) tabRef?.current?.focus();
+    }, [focusedTabId, tabId]);
 
     useEffect(() => {
-      if (active) setActiveLabel?.(label);
-    }, [active, label, setActiveLabel]);
+      if (active) setActiveTabId?.(tabId);
+    }, [active, tabId, setActiveTabId]);
 
     return (
       <Tooltip label={title}>
         <Tab
-          aria-selected={activeLabel === label}
+          aria-selected={activeTabId === tabId}
           disabled={disabled}
           hasLabelAndIcon={Boolean(icon && label)}
           iconPosition={iconPosition}
           onClick={() => {
-            if (!isControlled) setActiveLabel?.(label);
+            if (!isControlled) setActiveTabId?.(tabId);
             onClick?.();
           }}
           onKeyDown={handleOnKeyDown}
@@ -151,7 +151,7 @@ const DxcTab = forwardRef(
             }
           }}
           role="tab"
-          tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
+          tabIndex={activeTabId === label && !disabled ? tabIndex : -1}
           type="button"
         >
           <LabelIconContainer iconPosition={iconPosition}>
@@ -167,7 +167,7 @@ const DxcTab = forwardRef(
               />
             </BadgeContainer>
           )}
-          <Underline active={activeLabel === label} />
+          <Underline active={activeTabId === tabId} />
         </Tab>
       </Tooltip>
     );
