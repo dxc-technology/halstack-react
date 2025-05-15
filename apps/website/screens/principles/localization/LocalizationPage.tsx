@@ -541,12 +541,6 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>noMatchesErrorMessage</Code>
-                </td>
-                <td>No matches found</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>actionClearSelectionTitle</Code>
                 </td>
                 <td>Clear selection</td>
@@ -556,6 +550,18 @@ const sections = [
                   <Code>actionClearSearchTitle</Code>
                 </td>
                 <td>Clear search</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>noMatchesErrorMessage</Code>
+                </td>
+                <td>No matches found</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>selectAllLabel</Code>
+                </td>
+                <td>Select all</td>
               </tr>
             </tbody>
           </DxcTable>

@@ -1,5 +1,6 @@
 import SelectPropsType, { ListOptionType, ListOptionGroupType } from "./types";
 import { getMargin } from "../common/utils";
+import Props from "./types";
 
 const sizes = {
   small: "240px",
@@ -28,14 +29,14 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
 /**
  * Checks if the options are grouped options (groups and single options can't be mixed)
  */
-export const isArrayOfGroupedOptions = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
+export const isArrayOfGroupedOptions = (options: Props["options"]): options is ListOptionGroupType[] =>
   options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options. If the options parameter is not an array of grouped options,
  * it will return true and not check nothing else.
  */
-export const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupType[]) =>
+export const groupsHaveOptions = (options: Props["options"]) =>
   isArrayOfGroupedOptions(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
 
 /**
@@ -44,16 +45,13 @@ export const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupTyp
  * - The listbox has more than one single option.
  * - The listbox has more than one group with options contained.
  */
-export const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disabled: boolean) =>
+export const canOpenListbox = (options: Props["options"], disabled: boolean) =>
   !disabled && options.length > 0 && groupsHaveOptions(options);
 
 /**
  * Filters the options by the search value.
  */
-export const filterOptionsBySearchValue = (
-  options: ListOptionType[] | ListOptionGroupType[],
-  searchValue: string
-): ListOptionType[] | ListOptionGroupType[] =>
+export const filterOptionsBySearchValue = (options: Props["options"], searchValue: string): Props["options"] =>
   options.length > 0
     ? isArrayOfGroupedOptions(options)
       ? options.map((optionGroup) => {
@@ -72,30 +70,26 @@ export const filterOptionsBySearchValue = (
  * Returns the index of the last option, depending on several conditions.
  */
 export const getLastOptionIndex = (
-  options: ListOptionType[] | ListOptionGroupType[],
-  filteredOptions: ListOptionType[] | ListOptionGroupType[],
+  options: Props["options"],
+  filteredOptions: Props["options"],
   searchable: boolean,
   optional: boolean,
-  multiple: boolean
+  multiple: boolean,
+  enableSelectAll: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current.options.length ?? 0);
+  const reducer = (acc: number, current: ListOptionGroupType) =>
+    acc + (current.options.length ?? 0) + (enableSelectAll ? 1 : 0);
 
   if (searchable && filteredOptions.length > 0) {
-    if (isArrayOfGroupedOptions(filteredOptions)) {
-      last = filteredOptions.reduce(reducer, 0) - 1;
-    } else {
-      last = filteredOptions.length - 1;
-    }
+    if (isArrayOfGroupedOptions(filteredOptions)) last = filteredOptions.reduce(reducer, 0) - 1;
+    else last = filteredOptions.length - 1;
   } else if (options.length > 0) {
-    if (isArrayOfGroupedOptions(options)) {
-      last = options.reduce(reducer, 0) - 1;
-    } else {
-      last = options.length - 1;
-    }
+    if (isArrayOfGroupedOptions(options)) last = options.reduce(reducer, 0) - 1;
+    else last = options.length - 1;
   }
 
-  return optional && !multiple ? last + 1 : last;
+  return (multiple ? enableSelectAll : optional) ? last + 1 : last;
 };
 
 /**
@@ -103,7 +97,7 @@ export const getLastOptionIndex = (
  */
 export const getSelectedOption = (
   value: string | string[],
-  options: ListOptionType[] | ListOptionGroupType[],
+  options: Props["options"],
   multiple: boolean,
   optional: boolean,
   optionalItem: ListOptionType
@@ -165,3 +159,61 @@ export const getSelectedOptionLabel = (placeholder: string, selectedOption: List
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
     : (selectedOption.label ?? placeholder);
+
+/**
+ * Returns a determined string value depending on the amount of options selected:
+ *   - All options are selected -> "checked"
+ *   - Partial selection -> "indeterminate"
+ *   - No option is selected -> "unchecked"
+ * @param options
+ * @param value
+ * @returns
+ */
+export const getSelectionType = (options: Props["options"], value: string[]) => {
+  if (value.length > 0) {
+    if (
+      isArrayOfGroupedOptions(options)
+        ? options.flatMap((group) => group.options.map((option) => option.value)).length === value.length
+        : options.length === value.length
+    )
+      return "checked";
+    else return "indeterminate";
+  } else return "unchecked";
+};
+
+/**
+ * Returns a determined string value depending on the amount of options selected from a group:
+ *   - All grouped options are selected -> "checked"
+ *   - Partial selection -> "indeterminate"
+ *   - No option from the group is selected -> "unchecked"
+ * @param options
+ * @param value
+ * @returns boolean
+ */
+export const getGroupSelectionType = (options: ListOptionType[], value: string[]) =>
+  options.every((option) => value.includes(option.value))
+    ? "checked"
+    : options.some((option) => value.includes(option.value))
+      ? "indeterminate"
+      : "unchecked";
+
+/**
+ * Return an array with all the values from the options passed by the user, whether grouped or not, that can be selected.
+ * @param options
+ * @returns
+ */
+export const getSelectableOptionsValues = (options: Props["options"]) =>
+  isArrayOfGroupedOptions(options)
+    ? options.flatMap((group) => group.options.map((option) => option.value))
+    : options.map((option) => option.value);
+
+/**
+ * (Un)Selects the option passed as parameter.
+ * @param currentValue 
+ * @param newOption 
+ * @returns 
+ */
+export const computeNewValue = (currentValue: string[], newOption: ListOptionType) =>
+  currentValue.includes(newOption.value)
+    ? currentValue.filter((val) => val !== newOption.value)
+    : [...currentValue, newOption.value];

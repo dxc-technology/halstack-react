@@ -62,6 +62,21 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                enableSelectAll
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Enables users to select multiple items from the list.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>error</td>
             <td>
               <TableCode>string</TableCode>
@@ -305,7 +320,7 @@ const sections = [
         content: <Example example={groups} defaultIsVisible />,
       },
       {
-        title: "Icons",
+        title: "Icon usage",
         content: <Example example={icons} defaultIsVisible />,
       },
     ],
