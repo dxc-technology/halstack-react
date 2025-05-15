@@ -112,7 +112,7 @@ type LegacyProps = {
    * @deprecated This prop is deprecated and will be removed in future versions.
    * An array of objects representing the tabs.
    */
-  tabs?: (TabLabelProps | TabIconProps)[];
+  tabs?: (TabCommonProps & (TabLabelProps | TabIconProps))[];
 };
 
 type NewProps = {
