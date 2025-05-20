@@ -188,6 +188,7 @@ const AccordionLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
 `;
 
 const SubLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>`
