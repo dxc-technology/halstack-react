@@ -332,6 +332,27 @@ const Accordion = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Sublabel longer than label" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Avg, actions per session"
+          subLabel="Tue, May 20, 10:11 AM"
+          badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
+        >
+          <DxcInset space="var(--spacing-padding-l)">
+            To edit your profile you need to go to Settings and click on Profile.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Bounce Rate"
+          subLabel="Mon, May 19, 3:17 PM"
+          badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
+        >
+          <DxcInset space="1rem">To edit your profile you need to go to Settings and click on Profile.</DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Short label, long sublabel and long assistive text" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem
@@ -549,27 +570,6 @@ const Accordion = () => (
           </DxcInset>
         </DxcAccordion.AccordionItem>
       </DxcAccordion>
-    </ExampleContainer>
-    <Title title="Several accordions" theme="light" level={2} />
-    <ExampleContainer>
-      <DxcInset space="1rem">
-        <DxcAccordion>
-          <DxcAccordion.AccordionItem
-            label="Avg, actions per session"
-            subLabel="Tue, May 20, 10:11 AM"
-            badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
-          >
-            <DxcInset space="1rem">To edit your profile you need to go to Settings and click on Profile.</DxcInset>
-          </DxcAccordion.AccordionItem>
-          <DxcAccordion.AccordionItem
-            label="Bounce Rate"
-            subLabel="Mon, May 19, 3:17 PM"
-            badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
-          >
-            <DxcInset space="1rem">To edit your profile you need to go to Settings and click on Profile.</DxcInset>
-          </DxcAccordion.AccordionItem>
-        </DxcAccordion>
-      </DxcInset>
     </ExampleContainer>
   </>
 );
