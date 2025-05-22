@@ -8,7 +8,7 @@ import { disabledRules } from "../../test/accessibility/rules/specific/data-grid
 import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
-import { Action } from "../table/types";
+import { ActionsCellPropsType } from "../table/types";
 import { Meta, StoryObj } from "@storybook/react";
 import { isKeyOfRow } from "./utils";
 
@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof DxcDataGrid>;
 
-const actions: Action = [
+const actions: ActionsCellPropsType["actions"] = [
   {
     title: "icon",
     onClick: (value?) => {
