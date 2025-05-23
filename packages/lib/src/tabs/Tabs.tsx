@@ -116,7 +116,7 @@ const DxcTabs = ({
         )
       : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.tabId : "";
+    return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });
   const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
@@ -131,7 +131,7 @@ const DxcTabs = ({
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {
       activeTabId: activeTabId,
-      focusedTabId: isValidElement(focusedChild) ? focusedChild.props.tabId : "",
+      focusedTabId: isValidElement(focusedChild) ? (focusedChild.props.label ?? focusedChild.props.tabId) : "",
       iconPosition,
       isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
       setActiveTabId: setActiveTabId,
@@ -172,7 +172,9 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.tabId === activeTabId);
+    const activeTab = childrenArray.findIndex(
+      (child: ReactElement) => (child.props.label ?? child.props.tabId) === activeTabId
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":

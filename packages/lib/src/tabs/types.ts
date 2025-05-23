@@ -18,8 +18,8 @@ type TabCommonProps = {
 };
 
 export type TabsContextProps = {
-  activeTabId: string;
-  focusedTabId: string;
+  activeTabId?: string;
+  focusedTabId?: string;
   iconPosition?: "top" | "left";
   isControlled: boolean;
   setActiveTabId: (_tab: string) => void;
@@ -63,7 +63,7 @@ export type TabProps = {
   defaultActive?: boolean;
   active?: boolean;
   title?: string;
-  tabId: string;
+  tabId?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
   children: ReactNode;
