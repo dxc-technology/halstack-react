@@ -155,6 +155,7 @@ const DxcTab = forwardRef(
           role="tab"
           tabIndex={activeTabId === label && !disabled ? tabIndex : -1}
           type="button"
+          aria-label={label ?? tabId ?? "tab"}
         >
           <LabelIconContainer iconPosition={iconPosition}>
             {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
