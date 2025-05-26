@@ -6,12 +6,8 @@ import { ReactNode } from "react";
 
 const BulletedListPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/bulleted-list" },
-    { label: "Usage", path: "/components/bulleted-list/usage" },
-    {
-      label: "Specifications",
-      path: "/components/bulleted-list/specifications",
-    },
+    { label: "Overview", path: "/components/bulleted-list" },
+    { label: "Code", path: "/components/bulleted-list/code" },
   ];
   return (
     <DxcFlex direction="column" gap="3rem">
@@ -19,7 +15,7 @@ const BulletedListPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Bulleted List" />
           <DxcParagraph>Bulleted list are used to display text items in a bulleted format.</DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
