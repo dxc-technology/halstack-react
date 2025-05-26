@@ -4,11 +4,10 @@ import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
 import HeaderPropsType, { Logo } from "./types";
-import { Tooltip } from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
 import { useContext } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
-import DxcActionIcon from "../action-icon/ActionIcon";
+import ActionIcon from "../action-icon/ActionIcon";
 
 const HeaderDropdown = styled.div`
   display: flex;
@@ -130,26 +129,6 @@ const ResponsiveLogoContainer = styled.div`
   max-height: var(--height-xl);
   width: auto;
   display: flex;
-`;
-
-const CloseAction = styled.button`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  border: unset;
-  border-radius: var(--border-radius-xs);
-  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
-  cursor: pointer;
-
-  :focus,
-  :focus-visible {
-    outline: var(--border-color-secondary-medium) var(--border-style-default) var(--border-width-m);
-  }
-  font-size: var(--height-s);
-  svg {
-    height: var(--height-s);
-    width: 24px;
-  }
 `;
 
 const MenuContent = styled.div`
@@ -284,18 +263,12 @@ const DxcHeader = ({
           <ResponsiveMenu hasVisibility={isMenuVisible}>
             <DxcFlex justifyContent="space-between" alignItems="center">
               <ResponsiveLogoContainer>{headerLogo}</ResponsiveLogoContainer>
-              <Tooltip label={translatedLabels.header.closeIcon}>
-                {/* TODO: Ask if DxcActionIcon can be used instead */}
-                {/* <DxcActionIcon
-                  icon="close"
-                  title={translatedLabels.header.closeIcon}
-                  onClick={handleMenu}
-                  tabIndex={tabIndex}
-                /> */}
-                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
-                  <DxcIcon icon="close" />
-                </CloseAction>
-              </Tooltip>
+              <ActionIcon
+                icon="close"
+                onClick={handleMenu}
+                tabIndex={tabIndex}
+                title={translatedLabels.header.closeIcon}
+              />
             </DxcFlex>
             <Content
               isResponsive={isResponsive}
