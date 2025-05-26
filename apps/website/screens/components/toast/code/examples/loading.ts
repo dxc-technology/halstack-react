@@ -13,7 +13,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcButton 
         label="Load process" 
         onClick={loadProcess} 

@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ResultsetTableCodePage from "screens/components/resultset-table/code/ResultsetTableCodePage";
+import ResultsetTableOverviewPage from "screens/components/resultset-table/overview/ResultsetTableOverviewPage";
 import ResultsetTablePageLayout from "screens/components/resultset-table/ResultsetTablePageLayout";
 
-const Usage = () => {
-  return (
-    <>
-      <Head>
-        <title>Resultset Table — Halstack Design System</title>
-      </Head>
-      <ResultsetTableCodePage></ResultsetTableCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Resultset table — Halstack Design System</title>
+    </Head>
+    <ResultsetTableOverviewPage />
+  </>
+);
 
-Usage.getLayout = function getLayout(page: ReactElement) {
-  return <ResultsetTablePageLayout>{page}</ResultsetTablePageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ResultsetTablePageLayout>{page}</ResultsetTablePageLayout>;
 
-export default Usage;
+export default Index;

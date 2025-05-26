@@ -5,57 +5,54 @@ import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
 import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
+import DxcInset from "../inset/Inset";
 
-const TabContainer = styled.div<{ active: TabProps["active"] }>`
-  align-items: stretch;
-  border-bottom: var(--border-width-s) var(--border-style-default)
-    ${(props) => (props.active ? "var(--border-color-primary-stronger)" : "transparent")};
-  padding: var(--spacing-padding-xs);
+const TabContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
-const Tab = styled.a<{
+const TabLink = styled.a<{
   disabled: TabProps["disabled"];
-  hasIcon: boolean;
   iconPosition: NavTabsPropsType["iconPosition"];
 }>`
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
+  flex-direction: ${({ iconPosition }) => (iconPosition === "top" ? "column" : "row")};
   justify-content: center;
   align-items: center;
   gap: var(--spacing-gap-xs);
-  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
+  height: ${({ iconPosition }) => (iconPosition === "top" ? "78px" : "100%")};
   min-width: 176px;
   min-height: 48px;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   border-radius: var(--border-radius-s);
-  background: var(--color-bg-neutral-lightest);
-  text-decoration-color: transparent;
-  text-decoration-line: none;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  background-color: var(--color-bg-neutral-lightest);
+  text-decoration: none;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
     !props.disabled &&
     `
       :hover {
-        background: var(--color-bg-primary-lighter);
+        background-color: var(--color-bg-primary-lighter);
       }
       :focus {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        outline-offset: var(--border-width-m);
+        outline-offset: calc(var(--border-width-m) * -1);
       }
       :active {
-        background: var(--color-bg-primary-lighter);
+        background-color: var(--color-bg-primary-lighter);
       }
   `}
 `;
 
 const Label = styled.span<{
   disabled: TabProps["disabled"];
-  active: TabProps["active"];
 }>`
   display: inline;
-  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-weight: var(--typography-label-semibold);
@@ -65,27 +62,35 @@ const Label = styled.span<{
   white-space: normal;
 `;
 
-const TabIconContainer = styled.div<{
-  iconPosition: NavTabsPropsType["iconPosition"];
-  active: TabProps["active"];
+const IconContainer = styled.div<{
   disabled: TabProps["disabled"];
 }>`
   display: flex;
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-size: var(--height-s);
-  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   svg {
     height: var(--height-s);
     width: 24px;
   }
 `;
 
-const DxcTab = forwardRef(
+const Underline = styled.span<{ active: TabProps["active"] }>`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--border-width-m);
+  background-color: ${({ active }) =>
+    active ? "var(--border-color-primary-stronger)" : "var(--border-color-neutral-medium)"};
+`;
+
+const Tab = forwardRef(
   (
     { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
     ref: Ref<HTMLAnchorElement>
-  ): JSX.Element => {
-    const tabRef = useRef<HTMLAnchorElement>();
+  ) => {
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
+    const tabRef = useRef<HTMLAnchorElement>();
     const innerRef = useRef<HTMLAnchorElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 
@@ -93,7 +98,7 @@ const DxcTab = forwardRef(
       if (focusedLabel === children.toString()) {
         tabRef?.current?.focus();
       }
-    }, [focusedLabel]);
+    }, [children, focusedLabel]);
 
     const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
@@ -108,51 +113,47 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active}>
-        <Tab
-          href={!disabled ? href : undefined}
-          disabled={disabled}
-          iconPosition={iconPosition}
-          hasIcon={icon != null}
-          ref={(anchorRef: HTMLAnchorElement) => {
-            tabRef.current = anchorRef;
-
-            if (ref) {
-              if (typeof ref === "function") {
-                ref(anchorRef);
-              } else {
-                innerRef.current = anchorRef;
+      <TabContainer>
+        <DxcInset space="var(--spacing-padding-xs)">
+          <TabLink
+            href={!disabled ? href : undefined}
+            disabled={disabled}
+            iconPosition={iconPosition}
+            ref={(anchorRef: HTMLAnchorElement) => {
+              tabRef.current = anchorRef;
+              if (ref) {
+                if (typeof ref === "function") ref(anchorRef);
+                else innerRef.current = anchorRef;
               }
-            }
-          }}
-          onKeyDown={handleOnKeyDown}
-          tabIndex={active ? tabIndex : -1}
-          role="tab"
-          aria-selected={active}
-          aria-disabled={disabled}
-          {...otherProps}
-        >
-          {icon && (
-            <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
-              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-            </TabIconContainer>
-          )}
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-            <Label active={active} disabled={disabled}>
-              {children}
-            </Label>
-            {notificationNumber && !disabled && (
-              <DxcBadge
-                mode="notification"
-                size="small"
-                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
-              />
+            }}
+            onKeyDown={handleOnKeyDown}
+            tabIndex={active ? tabIndex : -1}
+            role="tab"
+            aria-selected={active}
+            aria-disabled={disabled}
+            {...otherProps}
+          >
+            {icon && (
+              <IconContainer disabled={disabled}>
+                {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+              </IconContainer>
             )}
-          </DxcFlex>
-        </Tab>
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+              <Label disabled={disabled}>{children}</Label>
+              {notificationNumber && !disabled && (
+                <DxcBadge
+                  mode="notification"
+                  size="small"
+                  label={typeof notificationNumber === "number" ? notificationNumber : undefined}
+                />
+              )}
+            </DxcFlex>
+          </TabLink>
+        </DxcInset>
+        <Underline active={active} />
       </TabContainer>
     );
   }
 );
 
-export default DxcTab;
+export default Tab;

@@ -12,9 +12,9 @@ const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Header" />
           <DxcParagraph>
             A horizontal bar located at the top of the application, providing branding, primary navigation, and user

@@ -69,7 +69,7 @@ const Inset = () => (
     </Container>
     <Title title="Inside a flex column" level={4} />
     <Container>
-      <DxcFlex direction="column" gap="1rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
         <Placeholder />
         <DxcInset
           top="var(--spacing-padding-xxs)"

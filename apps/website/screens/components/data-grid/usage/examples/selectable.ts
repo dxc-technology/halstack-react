@@ -35,7 +35,7 @@ const code = `() => {
   
   const [selectedRows, setSelectedRows] = useState(new Set([1, 2]));
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcDataGrid
           columns={columns}
           rows={rows}

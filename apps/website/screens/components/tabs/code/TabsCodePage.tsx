@@ -2,12 +2,11 @@ import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halsta
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import controlledDeprecated from "./examples-old/controlled";
 import uncontrolledDeprecated from "./examples-old/uncontrolled";
 import iconsDeprecated from "./examples-old/icons";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import controlled from "./examples-new/controlled";
 import uncontrolled from "./examples-new/uncontrolled";
@@ -29,7 +28,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="deprecated" />
                 activeTabIndex
               </DxcFlex>
@@ -45,7 +44,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 {/* TODO: Swap experimental for required once old logic is removed */}
                 <StatusBadge status="experimental" />
                 children
@@ -61,7 +60,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="deprecated" />
                 defaultActiveTabIndex
               </DxcFlex>
@@ -95,7 +94,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="deprecated" />
                 onTabClick
               </DxcFlex>
@@ -111,7 +110,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="deprecated" />
                 onTabHover
               </DxcFlex>
@@ -139,7 +138,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="deprecated" />
                 tabs
               </DxcFlex>
@@ -213,7 +212,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     children
                   </DxcFlex>
@@ -255,21 +254,21 @@ const sections = [
                   </DxcLink>{" "}
                   name or SVG element as the icon that will be displayed in the tab. When using Material Symbols,
                   replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-                  symbol name with <TableCode>"filled_"</TableCode>.
+                  symbol name with <TableCode>"filled_"</TableCode>. The icon or the label, either of which must have a
+                  valid value.
                 </td>
                 <td>-</td>
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     label
                   </DxcFlex>
                 </td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
-                <td>Tab label text.</td>
+                <td>Tab label text. The icon or the label, either of which must have a valid value.</td>
                 <td>-</td>
               </tr>
               <tr>
@@ -304,7 +303,20 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    tabId
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Value used to identify the tab internally.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     title
                   </DxcFlex>
                 </td>

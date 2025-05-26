@@ -4,7 +4,6 @@ import DxcResultsetTable from "./ResultsetTable";
 
 // TODO: REMOVE
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
-import { ActionCellsPropsType } from "../table/types";
 
 const disabledRules = {
   rules: formatRules(rules),
@@ -28,7 +27,7 @@ const deleteIcon = (
   disconnect() {}
 };
 
-const actions: ActionCellsPropsType["actions"] = [
+const actions = [
   {
     title: "icon",
     onClick: () => {},

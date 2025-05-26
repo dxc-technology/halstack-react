@@ -2,8 +2,8 @@ import { DxcSwitch, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/hal
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="center">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex gap="var(--spacing-gap-xxl)" justifyContent="center">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           <DxcTypography
             color="var(--color-fg-neutral-dark)"

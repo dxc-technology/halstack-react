@@ -3,8 +3,8 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex gap="0.5rem">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex gap="var(--spacing-gap-s)">
         <DxcFlex order={3} grow={1}>
           <Placeholder width="100%">3</Placeholder>
         </DxcFlex>

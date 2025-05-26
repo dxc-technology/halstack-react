@@ -12,8 +12,11 @@ export type SectionType = {
   navSubtitle?: string;
 };
 
-const Section = ({ title, level = 1, subSections, content, navSubtitle }: SectionType): JSX.Element => (
-  <DxcFlex direction="column" gap={level === 1 ? "3rem" : level === 2 ? "2rem" : "1.5rem"}>
+const Section = ({ content, level = 1, navSubtitle, subSections, title }: SectionType) => (
+  <DxcFlex
+    direction="column"
+    gap={level === 1 ? "var(--spacing-gap-xl)" : level === 2 ? "var(--spacing-gap-xl)" : "var(--spacing-gap-l)"}
+  >
     <HeadingLink level={level} navSubtitle={navSubtitle}>
       {title}
     </HeadingLink>
@@ -21,12 +24,12 @@ const Section = ({ title, level = 1, subSections, content, navSubtitle }: Sectio
     {subSections?.map((subSection) => (
       <DxcFlex direction="column" key={subSection.title}>
         <Section
-          key={`subSection-${subSection.title}`}
-          title={subSection.title}
-          level={(level + 1 <= 5 ? level + 1 : 5) as LevelEnum}
-          subSections={subSection.subSections}
           content={subSection.content}
+          key={`subSection-${subSection.title}`}
+          level={(level + 1 <= 5 ? level + 1 : 5) as LevelEnum}
           navSubtitle={`${title} ${subSection.title}`}
+          subSections={subSection.subSections}
+          title={subSection.title}
         />
       </DxcFlex>
     ))}

@@ -37,13 +37,13 @@ const sections = [
           contemplated in the following list:
         </DxcParagraph>
         <DxcBulletedList>
-          <DxcFlex direction="column" gap="0.5rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-s)">
             <DxcBulletedList.Item>Plain text or content</DxcBulletedList.Item>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Informational purpose text</DxcBulletedList.Item>
             </DxcBulletedList>
           </DxcFlex>
-          <DxcFlex direction="column" gap="0.5rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-s)">
             <DxcParagraph>Menu links</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Global navigation</DxcBulletedList.Item>
@@ -51,7 +51,7 @@ const sections = [
               <DxcBulletedList.Item>Useful links or resources</DxcBulletedList.Item>
             </DxcBulletedList>
           </DxcFlex>
-          <DxcFlex direction="column" gap="0.5rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-s)">
             <DxcParagraph>Forms</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Select language</DxcBulletedList.Item>
@@ -59,7 +59,7 @@ const sections = [
               <DxcBulletedList.Item>Provide email adress / Subscribe</DxcBulletedList.Item>
             </DxcBulletedList>
           </DxcFlex>
-          <DxcFlex direction="column" gap="0.5rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-s)">
             <DxcParagraph>Actions</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Ask for help / Support</DxcBulletedList.Item>

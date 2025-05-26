@@ -11,9 +11,9 @@ const SelectPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Select" />
           <DxcParagraph>
             The select component allows users to make single or multiple selections from a pre-defined list of options.
