@@ -1,7 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
 import { GridColumn, HierarchyGridRow } from "./types";
-import { useState } from "react";
 
 const columns: GridColumn[] = [
   {

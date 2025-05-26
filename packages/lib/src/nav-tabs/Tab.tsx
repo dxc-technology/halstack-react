@@ -98,7 +98,7 @@ const Tab = forwardRef(
       if (focusedLabel === children.toString()) {
         tabRef?.current?.focus();
       }
-    }, [children, focusedLabel, tabRef.current]);
+    }, [children, focusedLabel]);
 
     const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {

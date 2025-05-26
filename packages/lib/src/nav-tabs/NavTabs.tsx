@@ -1,4 +1,4 @@
-import { Children, KeyboardEvent, MouseEvent, ReactElement, useMemo, useState } from "react";
+import { Children, KeyboardEvent, ReactElement, useMemo, useState } from "react";
 import styled from "styled-components";
 import NavTabsPropsType from "./types";
 import Tab from "./Tab";
