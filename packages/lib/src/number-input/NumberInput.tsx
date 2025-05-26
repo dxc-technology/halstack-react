@@ -4,31 +4,48 @@ import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
 import NumberInputContext from "./NumberInputContext";
 
+const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
+  ${({ size }) => size === "fillParent" && "width: 100%;"}
+
+  // Chrome, Safari, Edge, Opera
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // Firefox
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+`;
+
 const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
   (
     {
-      label,
-      name,
-      defaultValue,
-      value,
-      helperText,
-      placeholder,
-      disabled,
-      optional,
-      readOnly,
-      prefix,
-      suffix,
-      min,
-      max,
-      step = 1,
-      onChange,
-      onBlur,
-      error,
-      autocomplete,
-      margin,
-      size,
-      tabIndex,
       ariaLabel = "Number input",
+      autocomplete,
+      defaultValue,
+      disabled,
+      error,
+      helperText,
+      label,
+      margin,
+      max,
+      min,
+      name,
+      onBlur,
+      onChange,
+      optional,
+      placeholder,
+      prefix,
+      readOnly,
+      showControls = true,
+      size,
+      step = 1,
+      suffix,
+      tabIndex,
+      value,
     },
     ref
   ) => {
@@ -36,12 +53,13 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
 
     const contextValue = useMemo(
       () => ({
-        typeNumber: "number",
-        minNumber: min,
         maxNumber: max,
+        minNumber: min,
+        showControls,
         stepNumber: step,
+        typeNumber: "number",
       }),
-      [min, max, step]
+      [max, min, showControls, step]
     );
 
     useEffect(() => {
@@ -85,20 +103,5 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     );
   }
 );
-
-const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
-  ${(props) => props.size === "fillParent" && "width: 100%;"}
-  // Chrome, Safari, Edge, Opera
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  // Firefox
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-`;
 
 export default DxcNumberInput;

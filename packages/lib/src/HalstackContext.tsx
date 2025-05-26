@@ -53,6 +53,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   const accordionTokens = componentTokensCopy.accordion;
   accordionTokens.assistiveTextFontColor =
     theme.accordion?.assistiveTextFontColor ?? accordionTokens.assistiveTextFontColor;
+  accordionTokens.subLabelFontColor = theme.accordion?.subLabelFontColor ?? accordionTokens.subLabelFontColor;
   accordionTokens.titleLabelFontColor = theme.accordion?.titleFontColor ?? accordionTokens.titleLabelFontColor;
   accordionTokens.arrowColor = theme.accordion?.accentColor ?? accordionTokens.arrowColor;
   accordionTokens.iconColor = theme.accordion?.accentColor ?? accordionTokens.iconColor;
@@ -142,8 +143,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   dateTokens.pickerCurrentYearFontColor = theme.dateInput?.baseColor ?? dateTokens.pickerCurrentYearFontColor;
   dateTokens.pickerHeaderActiveBackgroundColor =
     subLightness(8, theme.dateInput?.baseColor) ?? dateTokens.pickerHeaderActiveBackgroundColor;
-  dateTokens.pickerHeaderActiveFontColor =
-    theme.dateInput?.selectedFontColor ?? dateTokens.pickerHeaderActiveFontColor;
+  dateTokens.pickerHeaderActiveFontColor = theme.dateInput?.selectedFontColor ?? dateTokens.pickerHeaderActiveFontColor;
   dateTokens.pickerHoverBackgroundColor =
     addLightness(52, theme.dateInput?.baseColor) ?? dateTokens.pickerHoverBackgroundColor;
   dateTokens.pickerCurrentDateBorderColor =
@@ -192,8 +192,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   headerTokens.menuBackgroundColor = theme.header?.menuBaseColor ?? headerTokens.menuBackgroundColor;
   headerTokens.hamburgerFontColor = theme.header?.fontColor ?? headerTokens.hamburgerFontColor;
   headerTokens.hamburgerIconColor = theme.header?.hamburgerColor ?? headerTokens.hamburgerIconColor;
-  headerTokens.hamburgerHoverColor =
-    addLightness(90, theme.header?.hamburgerColor) ?? headerTokens.hamburgerHoverColor;
+  headerTokens.hamburgerHoverColor = addLightness(90, theme.header?.hamburgerColor) ?? headerTokens.hamburgerHoverColor;
   headerTokens.logo = theme.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme.header?.contentColor ?? headerTokens.contentColor;
@@ -209,8 +208,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   navTabsTokens.selectedIconColor = theme.navTabs?.baseColor ?? navTabsTokens.selectedIconColor;
   navTabsTokens.unselectedIconColor = theme.navTabs?.baseColor ?? navTabsTokens.selectedIconColor;
   navTabsTokens.selectedUnderlineColor = theme.navTabs?.accentColor ?? navTabsTokens.selectedUnderlineColor;
-  navTabsTokens.hoverBackgroundColor =
-    addLightness(55, theme.navTabs?.baseColor) ?? navTabsTokens.hoverBackgroundColor;
+  navTabsTokens.hoverBackgroundColor = addLightness(55, theme.navTabs?.baseColor) ?? navTabsTokens.hoverBackgroundColor;
   navTabsTokens.pressedBackgroundColor =
     addLightness(50, theme.navTabs?.baseColor) ?? navTabsTokens.pressedBackgroundColor;
 
@@ -253,8 +251,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   selectTokens.collapseIndicatorColor = theme.select?.fontColor ?? selectTokens.collapseIndicatorColor;
   selectTokens.hoverInputBorderColor = theme.select?.hoverBorderColor ?? selectTokens.hoverInputBorderColor;
   selectTokens.selectedHoverListOptionBackgroundColor =
-    subLightness(5, theme.select?.selectedOptionBackgroundColor) ??
-    selectTokens.selectedHoverListOptionBackgroundColor;
+    subLightness(5, theme.select?.selectedOptionBackgroundColor) ?? selectTokens.selectedHoverListOptionBackgroundColor;
   selectTokens.selectedActiveListOptionBackgroundColor =
     subLightness(15, theme.select?.selectedOptionBackgroundColor) ??
     selectTokens.selectedActiveListOptionBackgroundColor;
@@ -287,8 +284,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
     theme.spinner?.overlayFontColor ?? spinnerTokens.overlayProgressValueFontColor;
 
   const switchTokens = componentTokensCopy.switch;
-  switchTokens.checkedTrackBackgroundColor =
-    theme.switch?.checkedBaseColor ?? switchTokens.checkedTrackBackgroundColor;
+  switchTokens.checkedTrackBackgroundColor = theme.switch?.checkedBaseColor ?? switchTokens.checkedTrackBackgroundColor;
   switchTokens.labelFontColor = theme.switch?.fontColor ?? switchTokens.labelFontColor;
   switchTokens.disabledCheckedTrackBackgroundColor =
     addLightness(57, theme.switch?.checkedBaseColor) ?? switchTokens.disabledCheckedTrackBackgroundColor;
@@ -310,10 +306,6 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   tabsTokens.focusOutline = theme.tabs?.baseColor ?? tabsTokens.focusOutline;
   tabsTokens.hoverBackgroundColor = addLightness(57, theme.tabs?.baseColor) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(52, theme.tabs?.baseColor) ?? tabsTokens.pressedBackgroundColor;
-
-  const tagTokens = componentTokensCopy.tag;
-  tagTokens.fontColor = theme.tag?.fontColor ?? tagTokens.fontColor;
-  tagTokens.iconColor = theme.tag?.iconColor ?? tagTokens.iconColor;
 
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.labelFontColor = theme.textInput?.fontColor ?? textInputTokens.labelFontColor;

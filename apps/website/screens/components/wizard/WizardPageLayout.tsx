@@ -6,22 +6,21 @@ import { ReactNode } from "react";
 
 const WizardPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/wizard" },
-    { label: "Usage", path: "/components/wizard/usage" },
-    { label: "Specifications", path: "/components/wizard/specifications" },
+    { label: "Overview", path: "/components/wizard" },
+    { label: "Code", path: "/components/wizard/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Wizard" />
           <DxcParagraph>
             Wizard represents a stepped workflow as a form of linear and mandatory progression through a defined process
             with several bullet points where the user need to interact with the content of each step during the
             workflow.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

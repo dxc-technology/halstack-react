@@ -52,11 +52,13 @@ const code = `() => {
   
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcSelect
-        label="Select your favourite social media"
-        placeholder="Choose an option"
+        label="Select your favourite hobbies"
+        placeholder="Choose your hobbies"
         options={options_material}
+        multiple
+        enableSelectAll
       />
     </DxcInset>
   );

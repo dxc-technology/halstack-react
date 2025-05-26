@@ -1,15 +1,13 @@
-import { forwardRef, Ref, useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { forwardRef, Ref } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 import { LinkProps } from "./types";
-import CoreTokens from "../common/coreTokens";
 
-const StyledLink = styled.a<{
-  margin: LinkProps["margin"];
+const Link = styled.a<{
   disabled: LinkProps["disabled"];
   inheritColor: LinkProps["inheritColor"];
+  margin: LinkProps["margin"];
 }>`
   all: unset;
   display: inline-flex;
@@ -25,106 +23,87 @@ const StyledLink = styled.a<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--spacing-gap-xs);
   width: fit-content;
-  ${(props) => `padding-bottom: ${props.theme.underlineSpacing};`}
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
-  line-height: ${CoreTokens.type_leading_compact_02};
+  font-family: var(--typography-font-family);
+  font-size: inherit;
+  font-weight: var(--typography-link-regular);
   text-decoration: none;
-  color: ${(props) =>
-    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
-  ${(props) => (props.disabled ? "cursor: default;" : "cursor: pointer;")}
-  ${(props) => (props.disabled ? "pointer-events: none;" : "")}
-
-  &:visited {
-    color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
-    & > span:hover {
-      ${(props) => `color: ${props.theme.visitedFontColor};
-                    border-bottom-color: ${props.theme.visitedUnderlineColor};`}
-    }
-  }
+  color: ${({ disabled, inheritColor }) =>
+    inheritColor ? "inherit" : !disabled ? "var(--color-fg-secondary-strong)" : "var(--color-fg-neutral-medium)"};
+  ${({ disabled }) => (disabled ? "cursor: default;" : "cursor: pointer;")}
+  ${({ disabled }) => (disabled ? "pointer-events: none;" : "")}  
+  ${({ disabled, inheritColor }) =>
+    !inheritColor && !disabled && "&:visited { color: var(--color-fg-primary-strong); }"};
   &:focus {
-    outline: 2px solid ${(props) => props.theme.focusColor};
-    outline-offset: 2px;
-    ${(props) => props.disabled && "outline: none"}
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    ${({ disabled }) => disabled && "outline: none"}
   }
 `;
 
-const LinkContainer = styled.span<{
+const LinkContent = styled.span<{
   iconPosition: LinkProps["iconPosition"];
   inheritColor: LinkProps["inheritColor"];
 }>`
-  ${(props) => `border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
   display: inline-flex;
   align-items: center;
-  ${(props) => (props.iconPosition === "before" ? "flex-direction: row-reverse;" : "")}
-  gap: ${(props) => props.theme.iconSpacing};
+  ${({ iconPosition }) => iconPosition === "before" && "flex-direction: row-reverse;"}
+  gap: var(--spacing-gap-xs);
+  padding: var(--spacing-padding-xxxs);
 
   &:hover {
-    ${(props) =>
-      `color: ${props.theme.hoverFontColor};
-       cursor: pointer;
-       border-bottom-color: ${props.theme.hoverUnderlineColor};`}
+    color: var(--color-fg-secondary-stronger);
+    cursor: pointer;
   }
   &:active {
-    ${(props) => `color: ${props.theme.activeFontColor} !important;
-                  border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
+    color: var(--color-fg-neutral-dark) !important;
   }
 `;
 
-const LinkIconContainer = styled.div`
+const IconContainer = styled.div`
   display: flex;
-  font-size: ${(props) => props.theme.iconSize};
+  font-size: var(--height-xxs);
   svg {
-    width: ${(props) => props.theme.iconSize};
-    height: ${(props) => props.theme.iconSize};
+    width: 16px;
+    height: var(--height-xxs);
   }
 `;
 
 const DxcLink = forwardRef(
   (
     {
-      inheritColor = false,
-      disabled = false,
+      children,
+      disabled,
+      href,
       icon,
       iconPosition = "before",
-      href = "",
-      newWindow = false,
-      onClick,
+      inheritColor,
       margin,
+      newWindow,
+      onClick,
       tabIndex = 0,
-      children,
       ...otherProps
     }: LinkProps,
     ref: Ref<HTMLAnchorElement>
-  ): JSX.Element => {
-    const colorsTheme = useContext(HalstackContext);
-
-    return (
-      <ThemeProvider theme={colorsTheme.link}>
-        <StyledLink
-          as={onClick && !href ? "button" : "a"}
-          tabIndex={tabIndex}
-          onClick={!disabled ? onClick : undefined}
-          href={!disabled && href ? href : undefined}
-          target={href ? (newWindow ? "_blank" : "_self") : undefined}
-          disabled={disabled}
-          inheritColor={inheritColor}
-          margin={margin}
-          ref={ref}
-          {...otherProps}
-        >
-          <LinkContainer iconPosition={iconPosition} inheritColor={inheritColor}>
-            {children}
-            {icon && <LinkIconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</LinkIconContainer>}
-          </LinkContainer>
-        </StyledLink>
-      </ThemeProvider>
-    );
-  }
+  ) => (
+    <Link
+      as={onClick && !href ? "button" : "a"}
+      tabIndex={tabIndex}
+      onClick={!disabled ? onClick : undefined}
+      href={!disabled && href ? href : undefined}
+      target={href ? (newWindow ? "_blank" : "_self") : undefined}
+      disabled={disabled}
+      inheritColor={inheritColor}
+      margin={margin}
+      ref={ref}
+      {...otherProps}
+    >
+      <LinkContent iconPosition={iconPosition} inheritColor={inheritColor}>
+        {children}
+        {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+      </LinkContent>
+    </Link>
+  )
 );
 
 export default DxcLink;

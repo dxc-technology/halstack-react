@@ -1,5 +1,4 @@
 import { DxcParagraph, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -7,7 +6,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import withContent from "./examples/withContent";
 import backgroundClick from "./examples/backgroundClick";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
@@ -25,50 +24,8 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>closable</td>
             <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the close button will be visible.</td>
-            <td>
-              <TableCode>true</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>onCloseClick</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user clicks the close button. The responsibility of hiding the
-              dialog lies with the user.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onBackgroundClick</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the on the background of the modal. The responsibility of hiding the
-              dialog lies with the user.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>overlay</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the dialog will be displayed over a darker background that covers the content behind.</td>
-            <td>
-              <TableCode>true</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 children
               </DxcFlex>
@@ -82,6 +39,48 @@ const sections = [
               behaviour for keyboard users, affecting the order of focus and focus locking within the dialog.
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>closable</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the close button will be visible.</td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>onBackgroundClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user clicks on the background of the modal. The responsibility of hiding the
+              dialog lies with the user.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onCloseClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user clicks the close button. The responsibility of hiding the
+              dialog lies with the user.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>overlay</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the dialog will be displayed over a darker background that covers the content behind.</td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -135,7 +134,7 @@ const DialogCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dialog/code/DialogCodePage.tsx" />
     </DxcFlex>

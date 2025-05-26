@@ -2,145 +2,127 @@ import styled from "styled-components";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { TooltipWrapper } from "../tooltip/Tooltip";
+
+const OptionItem = styled.li<{
+  visualFocused: OptionProps["visualFocused"];
+  selected: OptionProps["isSelected"];
+}>`
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  cursor: pointer;
+  ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
+  &:hover,
+  &:active {
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
+  }
+  ${({ visualFocused }) =>
+    visualFocused &&
+    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: -2px;"}
+`;
+
+const StyledOption = styled.span<{
+  grouped: OptionProps["isGroupedOption"];
+  last: OptionProps["isLastOption"];
+  selected: OptionProps["isSelected"];
+  visualFocused: OptionProps["visualFocused"];
+}>`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  height: var(--height-m);
+  ${({ grouped }) => grouped && "padding-left: var(--spacing-padding-s);"}
+  ${(props) =>
+    `border-bottom: var(--border-width-s) var(--border-style-default) 
+    ${props.last || props.visualFocused || props.selected ? "transparent" : "var(--border-color-neutral-lighter)"};`};
+`;
+
+const OptionIcon = styled.span`
+  display: grid;
+  place-items: center;
+  color: var(--color-fg-neutral-dark);
+  font-size: var(--height-xxs);
+  svg {
+    height: var(--height-xxs);
+    width: 16px;
+  }
+`;
+
+const OptionContent = styled.span`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+
+  /* Option selected icon */
+  > span[role="img"] {
+    color: var(--color-fg-neutral-dark);
+    font-size: var(--height-xxs);
+  }
+`;
+
+const OptionLabel = styled.span<{ isSelectAllOption: OptionProps["isSelectAllOption"] }>`
+  ${({ isSelectAllOption }) => isSelectAllOption && "font-weight: var(--typography-label-semibold);"}
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 const ListOption = ({
   id,
-  option,
-  onClick,
-  multiple,
-  visualFocused,
   isGroupedOption = false,
   isLastOption,
   isSelected,
-}: OptionProps): JSX.Element => {
+  isSelectAllOption = false,
+  multiple,
+  onClick,
+  option,
+  visualFocused,
+}: OptionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
+  const checkboxRef = useRef<HTMLDivElement>(null);
 
   const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
     const text = event.currentTarget;
     setHasTooltip(text.scrollWidth > text.clientWidth);
   };
 
+  useEffect(() => {
+    if (checkboxRef.current) checkboxRef.current.style.pointerEvents = "none";
+  }, []);
+
   return (
     <TooltipWrapper condition={hasTooltip} label={option.label}>
       <OptionItem
+        aria-selected={!multiple ? isSelected : undefined}
+        as={isGroupedOption ? "li" : "div"}
         id={id}
         onClick={() => {
           onClick(option);
         }}
-        visualFocused={visualFocused}
-        selected={isSelected}
         role="option"
-        aria-selected={!multiple ? isSelected : undefined}
+        selected={isSelected}
+        visualFocused={visualFocused}
       >
-        <StyledOption
-          visualFocused={visualFocused}
-          selected={isSelected}
-          last={isLastOption}
-          grouped={isGroupedOption}
-          multiple={multiple}
-        >
-          {multiple && (
-            <div style={{ display: "flex", pointerEvents: "none" }}>
-              <DxcCheckbox checked={isSelected} tabIndex={-1} />
-            </div>
-          )}
+        <StyledOption grouped={isGroupedOption} last={isLastOption} selected={isSelected} visualFocused={visualFocused}>
+          {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} ref={checkboxRef} />}
           {option.icon && (
-            <OptionIcon grouped={isGroupedOption} multiple={multiple}>
-              {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
-            </OptionIcon>
+            <OptionIcon>{typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}</OptionIcon>
           )}
-          <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-            <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
-            {!multiple && isSelected && (
-              <OptionSelectedIndicator>
-                <DxcIcon icon="done" />
-              </OptionSelectedIndicator>
-            )}
+          <OptionContent>
+            <OptionLabel isSelectAllOption={isSelectAllOption} onMouseEnter={handleOnMouseEnter}>
+              {option.label}
+            </OptionLabel>
+            {!multiple && isSelected && <DxcIcon icon="done" />}
           </OptionContent>
         </StyledOption>
       </OptionItem>
     </TooltipWrapper>
   );
 };
-
-const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
-  padding: 0 0.5rem;
-  box-shadow: inset 0 0 0 2px transparent;
-  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
-  ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
-  cursor: pointer;
-
-  &:hover {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${props.theme.selectedHoverListOptionBackgroundColor};`
-        : `background-color: ${props.theme.unselectedHoverListOptionBackgroundColor};`};
-  }
-  &:active {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${props.theme.selectedActiveListOptionBackgroundColor};`
-        : `background-color: ${props.theme.unselectedActiveListOptionBackgroundColor};`};
-  }
-`;
-
-const StyledOption = styled.span<{
-  grouped: OptionProps["isGroupedOption"];
-  multiple: OptionProps["multiple"];
-  visualFocused: OptionProps["visualFocused"];
-  selected: OptionProps["isSelected"];
-  last: OptionProps["isLastOption"];
-}>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  height: 32px;
-  padding: 4px 8px 4px 0;
-  ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
-  ${(props) =>
-    props.last || props.visualFocused || props.selected
-      ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
-`;
-
-const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
-  margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
-  display: grid;
-  place-items: center;
-  color: ${(props) => props.theme.listOptionIconColor};
-  font-size: 24px;
-  svg {
-    height: 24px;
-    width: 24px;
-  }
-`;
-
-const OptionContent = styled.span<{
-  grouped: OptionProps["isGroupedOption"];
-  multiple: OptionProps["multiple"];
-  hasIcon: boolean;
-}>`
-  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
-  display: flex;
-  justify-content: space-between;
-  gap: 0.25rem;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const OptionLabel = styled.span`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const OptionSelectedIndicator = styled.span`
-  display: flex;
-  align-items: center;
-  color: ${(props) => props.theme.selectedListOptionIconColor};
-  font-size: 16px;
-`;
 
 export default ListOption;

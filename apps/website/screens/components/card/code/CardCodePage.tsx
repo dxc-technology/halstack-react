@@ -3,9 +3,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {
@@ -22,14 +21,11 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>imageSrc</td>
+            <td>children</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>React.ReactNode</TableCode>
             </td>
-            <td>
-              URL of the image that will be placed in the card component. In case of omission, the image container will
-              not appear and the content will occupy its space.
-            </td>
+            <td>Custom content that will be placed inside the component.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -40,6 +36,16 @@ const sections = [
             <td>Color of the background image.</td>
             <td>
               <TableCode>'black'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>imageCover</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Whether the image must cover the its whole area of the card.</td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
@@ -66,6 +72,17 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>imageSrc</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              URL of the image that will be placed in the card component. In case of omission, the image container will
+              not appear and the content will occupy its space.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>linkHref</td>
             <td>
               <TableCode>string</TableCode>
@@ -73,6 +90,17 @@ const sections = [
             <td>
               If defined, the card will be displayed as an anchor, using this prop as <Code>href</Code>. The component
               will display visual information on mouse-over.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -88,17 +116,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>imageCover</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>Whether the image must cover the its whole area of the card.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-
-          <tr>
             <td>outlined</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -107,25 +124,6 @@ const sections = [
             <td>
               <TableCode>true</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>Custom content that will be placed inside the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -154,15 +152,13 @@ const sections = [
   },
 ];
 
-const SelectCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/code/CardCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const CardCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/code/CardCodePage.tsx" />
+  </DxcFlex>
+);
 
-export default SelectCodePage;
+export default CardCodePage;

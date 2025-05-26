@@ -6,20 +6,19 @@ import { ReactNode } from "react";
 
 const RadioGroupPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/radio-group" },
-    { label: "Usage", path: "/components/radio-group/usage" },
-    { label: "Specifications", path: "/components/radio-group/specifications" },
+    { label: "Overview", path: "/components/radio-group" },
+    { label: "Code", path: "/components/radio-group/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Radio Group" />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <ComponentHeading name="Radio group" />
           <DxcParagraph>
-            A radio group let the user make a mutually exclusive selection from a group of options.
+            A radio group allows users to select one option from a set of related, mutually exclusive choices.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

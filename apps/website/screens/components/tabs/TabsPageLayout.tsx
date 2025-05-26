@@ -6,21 +6,21 @@ import { ReactNode } from "react";
 
 const TabsPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/tabs" },
-    { label: "Usage", path: "/components/tabs/usage" },
-    { label: "Specifications", path: "/components/tabs/specifications" },
+    { label: "Overview", path: "/components/tabs" },
+    { label: "Code", path: "/components/tabs/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Tabs" />
           <DxcParagraph>
-            Tabs allow the user to interact across the sections to switch from one set of content to another, making the
-            transition easily from one peer to the other.
+            A tab is a UI component that allows users to switch between different sections of content without leaving
+            the page. Tabs are often used to organize related information into distinct views, making it easier to
+            navigate between them.
           </DxcParagraph>
-          <TabsPageLayout tabs={tabs}></TabsPageLayout>
+          <TabsPageLayout tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

@@ -6,22 +6,20 @@ import { ReactNode } from "react";
 
 const SliderPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/slider" },
-    { label: "Usage", path: "/components/slider/usage" },
-    { label: "Specifications", path: "/components/slider/specifications" },
+    { label: "Overview", path: "/components/slider" },
+    { label: "Code", path: "/components/slider/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Slider" />
           <DxcParagraph>
-            Slider control allows users to select a specific value or a range of values from a set. Usually, slider
-            presents a relatively large dataset and the way that the user interacts with it is helpful to explore the
-            multiple options swiftly.
+            Slider control enables users to select a specific value from a predefined set by dragging a thumb along a
+            track.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

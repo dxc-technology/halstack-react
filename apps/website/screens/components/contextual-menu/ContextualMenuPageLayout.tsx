@@ -6,22 +6,20 @@ import { ReactNode } from "react";
 
 const ContextualMenuPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/contextual-menu" },
-    { label: "Usage", path: "/components/contextual-menu/usage" },
-    { label: "Specifications", path: "/components/contextual-menu/specifications" },
+    { label: "Overview", path: "/components/contextual-menu" },
+    { label: "Code", path: "/components/contextual-menu/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Contextual Menu" />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <ComponentHeading name="Contextual menu" />
           <DxcParagraph>
-            The Contextual menu is a powerful component that improves user experience by allowing users to navigate
-            through page-level content or choose from a list of actions while complementing the general disposition of
-            the main content within the interface.
+            The contextual menu provides quick access to navigation or actions related to the current context, enhancing
+            usability and content organization.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

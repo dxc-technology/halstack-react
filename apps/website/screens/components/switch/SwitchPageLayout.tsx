@@ -6,22 +6,20 @@ import { ReactNode } from "react";
 
 const SwitchPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/switch" },
-    { label: "Usage", path: "/components/switch/usage" },
-    { label: "Specifications", path: "/components/switch/specifications" },
+    { label: "Overview", path: "/components/switch" },
+    { label: "Code", path: "/components/switch/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Switch" />
           <DxcParagraph>
-            Switch toggles are elements that can get two simple states, each of them has an impact on the system and it
-            can be switched on or off, there are no more options. If the switch toggle is on one state, the action to
-            change it will modify to value of the element to the contrary.
+            A switch allows users to toggle a single setting between two opposing states, such as on/off or
+            enabled/disabled. It represents a binary choice that takes effect immediately.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

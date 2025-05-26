@@ -6,20 +6,19 @@ import { ReactNode } from "react";
 
 const SpinnerPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/spinner" },
-    { label: "Usage", path: "/components/spinner/usage" },
-    { label: "Specifications", path: "/components/spinner/specifications" },
+    { label: "Overview", path: "/components/spinner" },
+    { label: "Code", path: "/components/spinner/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Spinner" />
           <DxcParagraph>
-            Loading spinner is a waiting indicator in the user interface to communicate users an ongoing proccess.
+            Loading spinner is a waiting indicator in the user interface to communicate users an ongoing process.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

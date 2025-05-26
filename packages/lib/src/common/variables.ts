@@ -4,45 +4,43 @@ export const componentTokens = {
   accordion: {
     backgroundColor: CoreTokens.color_white,
     hoverBackgroundColor: CoreTokens.color_purple_100,
+    focusBackgroundColor: CoreTokens.color_transparent,
+    activeBackgroundColor: CoreTokens.color_purple_100,
     arrowColor: CoreTokens.color_purple_700,
     disabledArrowColor: CoreTokens.color_grey_500,
+    subLabelFontFamily: CoreTokens.type_sans,
+    subLabelFontSize: CoreTokens.type_scale_01,
+    subLabelFontWeight: CoreTokens.type_regular,
+    subLabelFontStyle: CoreTokens.type_normal,
+    subLabelFontColor: CoreTokens.color_grey_700,
+    disabledSubLabelFontColor: CoreTokens.color_grey_500,
     assistiveTextFontFamily: CoreTokens.type_sans,
-    assistiveTextFontSize: CoreTokens.type_scale_03,
-    assistiveTextFontWeight: CoreTokens.type_light,
-    assistiveTextFontStyle: CoreTokens.type_italic,
-    assistiveTextLetterSpacing: CoreTokens.type_spacing_wide_01,
+    assistiveTextFontSize: CoreTokens.type_scale_01,
+    assistiveTextFontWeight: CoreTokens.type_regular,
+    assistiveTextFontStyle: CoreTokens.type_normal,
     assistiveTextFontColor: CoreTokens.color_grey_700,
     disabledAssistiveTextFontColor: CoreTokens.color_grey_500,
-    assistiveTextMinWidth: "100px",
-    assistiveTextPaddingRight: CoreTokens.spacing_24,
-    assistiveTextPaddingLeft: CoreTokens.spacing_0,
     titleLabelFontFamily: CoreTokens.type_sans,
     titleLabelFontSize: CoreTokens.type_scale_03,
     titleLabelFontWeight: CoreTokens.type_regular,
     titleLabelFontStyle: CoreTokens.type_normal,
-    titleLabelFontColor: CoreTokens.color_black,
+    titleLabelFontColor: CoreTokens.color_grey_900,
     disabledTitleLabelFontColor: CoreTokens.color_grey_500,
-    titleLabelPaddingTop: CoreTokens.spacing_0,
-    titleLabelPaddingBottom: CoreTokens.spacing_0,
-    titleLabelPaddingLeft: CoreTokens.spacing_0,
-    titleLabelPaddingRight: CoreTokens.spacing_16,
     focusBorderColor: CoreTokens.color_blue_600,
     focusBorderStyle: CoreTokens.border_solid,
     focusBorderThickness: "2px",
     borderRadius: "4px",
     boxShadowOffsetX: "0px",
-    boxShadowOffsetY: "6px",
-    boxShadowBlur: "10px",
+    boxShadowOffsetY: "12px",
+    boxShadowBlur: "12px",
+    boxShadowSpread: "0px",
     boxShadowColor: CoreTokens.color_grey_200_a,
     iconColor: CoreTokens.color_purple_700,
     disabledIconColor: CoreTokens.color_grey_500,
     iconSize: "24px",
-    iconMarginLeft: CoreTokens.spacing_0,
-    iconMarginRight: CoreTokens.spacing_12,
-    accordionGroupSeparatorBorderColor: CoreTokens.color_grey_200_a,
-    accordionGroupSeparatorBorderThickness: "1px",
-    accordionGroupSeparatorBorderRadius: "0px",
-    accordionGroupSeparatorBorderStyle: CoreTokens.border_solid,
+    accordionSeparatorBorderColor: CoreTokens.color_grey_200,
+    accordionSeparatorBorderThickness: "1px",
+    accordionSeparatorBorderStyle: CoreTokens.border_solid,
   },
   alert: {
     errorBackgroundColor: CoreTokens.color_red_100,
@@ -63,7 +61,7 @@ export const componentTokens = {
     successIconColor: CoreTokens.color_green_700,
     warningBackgroundColor: CoreTokens.color_yellow_100,
     warningIconColor: CoreTokens.color_yellow_700,
-  },  
+  },
   bulletedList: {
     fontColor: CoreTokens.color_black,
     bulletIconHeight: "1.5rem",
@@ -1046,23 +1044,6 @@ export const componentTokens = {
     focusOutline: CoreTokens.color_purple_700,
     scrollButtonsWidth: "48px",
   },
-  tag: {
-    fontFamily: CoreTokens.type_sans,
-    fontColor: CoreTokens.color_black,
-    fontSize: CoreTokens.type_scale_02,
-    fontStyle: CoreTokens.type_normal,
-    fontWeight: CoreTokens.type_regular,
-    labelPaddingTop: CoreTokens.spacing_0,
-    labelPaddingBottom: CoreTokens.spacing_0,
-    labelPaddingLeft: CoreTokens.spacing_16,
-    labelPaddingRight: CoreTokens.spacing_16,
-    height: "40px",
-    iconColor: CoreTokens.color_white,
-    iconSectionWidth: "40px",
-    iconHeight: "24px",
-    iconWidth: "auto",
-    focusColor: CoreTokens.color_blue_600,
-  },
   textarea: {
     fontFamily: CoreTokens.type_sans,
     enabledBorderColor: CoreTokens.color_black,
@@ -1285,6 +1266,7 @@ export type OpinionatedTheme = {
   accordion: {
     accentColor: string;
     titleFontColor: string;
+    subLabelFontColor: string;
     assistiveTextFontColor: string;
   };
   alert: {
@@ -1411,10 +1393,6 @@ export type OpinionatedTheme = {
   tabs: {
     baseColor: string;
   };
-  tag: {
-    fontColor: string;
-    iconColor: string;
-  };
   textarea: {
     fontColor: string;
     hoverBorderColor: string;
@@ -1538,9 +1516,10 @@ export const defaultTranslatedComponentLabels = {
     optionalItemLabelDefault: "N/A",
   },
   select: {
-    noMatchesErrorMessage: "No matches found",
     actionClearSelectionTitle: "Clear selection",
     actionClearSearchTitle: "Clear search",
+    noMatchesErrorMessage: "No matches found",
+    selectAllLabel: "Select all"
   },
   tabs: {
     scrollLeft: "Scroll left",

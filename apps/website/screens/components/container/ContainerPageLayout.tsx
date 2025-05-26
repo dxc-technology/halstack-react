@@ -6,21 +6,19 @@ import { ReactNode } from "react";
 
 const ContainerPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/container" },
-    { label: "Usage", path: "/components/container/usage" },
+    { label: "Overview", path: "/components/container" },
+    { label: "Code", path: "/components/container/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Container" />
           <DxcParagraph>
-            The container component represents the box model inside the Halstack Design System. Is a general-purpose
-            container that allows for controlled use of our design tokens. Being generic in nature can be "over-used",
-            so it's important to consider situations where more specific and expressive components could be used.
+            The container component represents the box model inside the Halstack Design System.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

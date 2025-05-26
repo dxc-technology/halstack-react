@@ -5,92 +5,93 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import customSides from "./examples/customSides";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-
-const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
 
 const sections = [
   {
     title: "Props",
     content: (
       <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-        <tr>
-          <td>space</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to all sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>horizontal</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the left and right sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>vertical</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the top and bottom sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>top</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the top side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>right</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the right side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>bottom</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the bottom side.</td>
-
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>left</td>
-          <td>
-            <TableCode>{coreSpacingTokensTypeString}</TableCode>
-          </td>
-          <td>Applies the spacing scale to the left side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>
-            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusBadge status="required" />
-              children
-            </DxcFlex>
-          </td>
-          <td>
-            <TableCode>React.ReactNode</TableCode>
-          </td>
-          <td>Custom content inside the inset.</td>
-          <td>-</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>bottom</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the bottom side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Custom content inside the inset.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>horizontal</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the left and right sides.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>left</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the left side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>right</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the right side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>space</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to all sides.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>top</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the top side.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>vertical</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Applies the spacing scale to the top and bottom sides.</td>
+            <td>-</td>
+          </tr>
+        </tbody>
       </DxcTable>
     ),
   },
@@ -109,15 +110,13 @@ const sections = [
   },
 ];
 
-const InsetCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/inset/code/InsetCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const InsetCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/inset/code/InsetCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default InsetCodePage;

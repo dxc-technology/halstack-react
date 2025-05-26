@@ -6,25 +6,20 @@ import { ReactNode } from "react";
 
 const TooltipPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/tooltip" },
-    { label: "Usage", path: "/components/tooltip/usage" },
-    {
-      label: "Specifications",
-      path: "/components/tooltip/specifications",
-    },
+    { label: "Overview", path: "/components/tooltip" },
+    { label: "Code", path: "/components/tooltip/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Tooltip" />
           <DxcParagraph>
             A tooltip is a descriptive or supplementary element that is displayed when an object is focused or hovered
-            over. They are typically employed to enhance user experience by offering brief and helpful descriptions,
-            instructions or tips without cluttering the interface.
+            over.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

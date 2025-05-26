@@ -6,17 +6,17 @@ import { ReactNode } from "react";
 
 const ImagePageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/image" },
-    { label: "Usage", path: "/components/image/usage" },
+    { label: "Overview", path: "/components/image" },
+    { label: "Code", path: "/components/image/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Image" />
-          <DxcParagraph>The Image component is used to embed images in Halstack-based user interfaces.</DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <DxcParagraph>The image component is used to embed images in Halstack-based user interfaces.</DxcParagraph>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

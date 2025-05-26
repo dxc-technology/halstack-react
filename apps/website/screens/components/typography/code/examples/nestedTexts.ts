@@ -2,7 +2,7 @@ import { DxcTypography, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTypography fontFamily="Open Sans, sans-serif">
         This DxcTypography component has some children with different styles;
         parent has a fontFamily 'Open Sans, sans-serif' and{" "}

@@ -309,7 +309,6 @@ const AlertSuccess = () => (
       message={message}
       primaryAction={{ label: "Primary action", onClick: () => {} }}
       secondaryAction={{ label: "Secondary action", onClick: () => {} }}
-      closable={false}
     />
   </ExampleContainer>
 );

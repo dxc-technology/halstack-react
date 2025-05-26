@@ -6,22 +6,21 @@ import { ReactNode } from "react";
 
 const BadgePageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/badge" },
-    { label: "Usage", path: "/components/badge/usage" },
-    { label: "Specifications", path: "/components/badge/specifications" },
+    { label: "Overview", path: "/components/badge" },
+    { label: "Code", path: "/components/badge/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Badge" />
           <DxcParagraph>
             The badge component enables users to categorize content effectively and uniformly across their interfaces.
             It offers a quick overview of a category or status and is frequently used to display numerical or status
             data.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

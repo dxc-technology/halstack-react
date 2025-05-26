@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextInputCodePage from "screens/components/text-input/code/TextInputCodePage";
+import TextInputOverviewPage from "screens/components/text-input/overview/TextInputOverviewPage";
 import TextInputPageLayout from "screens/components/text-input/TextInputPageLayout";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Text Input — Halstack Design System</title>
-      </Head>
-      <TextInputCodePage></TextInputCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Text input — Halstack Design System</title>
+    </Head>
+    <TextInputOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TextInputPageLayout>{page}</TextInputPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TextInputPageLayout>{page}</TextInputPageLayout>;
 
 export default Index;

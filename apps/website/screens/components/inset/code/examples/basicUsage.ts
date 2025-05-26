@@ -3,13 +3,13 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem">
-        <Placeholder height="50px" />
-        <DxcInset space="1rem">
-          <Placeholder height="50px" />
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-padding-xl)">
+        <Placeholder height="var(--height-xxl)" />
+        <DxcInset space="var(--spacing-padding-m)">
+          <Placeholder height="var(--height-xxl)" />
         </DxcInset>
-        <Placeholder height="50px" />
+        <Placeholder height="var(--height-xxl)" />
       </DxcFlex>
     </DxcInset>
   );

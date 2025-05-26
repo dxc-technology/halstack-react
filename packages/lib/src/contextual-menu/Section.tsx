@@ -1,17 +1,30 @@
 import styled from "styled-components";
 import { DxcInset } from "..";
-import CoreTokens from "../common/coreTokens";
 import DxcDivider from "../divider/Divider";
-import { SubMenu } from "./ContextualMenu";
+import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
 import { useId } from "react";
 
-const Section = ({ section, index, length }: SectionProps) => {
+const SectionContainer = styled.section`
+  display: grid;
+  gap: var(--spacing-gap-xs);
+`;
+
+const Title = styled.h2`
+  all: unset;
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-semibold);
+  padding: var(--spacing-padding-xxs);
+`;
+
+export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
 
   return (
-    <section aria-label={section.title ?? id} aria-labelledby={id}>
+    <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
         {section.items.map((item, index) => (
@@ -19,23 +32,10 @@ const Section = ({ section, index, length }: SectionProps) => {
         ))}
       </SubMenu>
       {index !== length - 1 && (
-        <DxcInset top="0.25rem" bottom="0.25rem">
+        <DxcInset top="var(--spacing-padding-xxs)" bottom="var(--spacing-padding-xxs)">
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
-    </section>
+    </SectionContainer>
   );
-};
-
-const Title = styled.h2`
-  margin: 0 0 ${CoreTokens.spacing_4} 0;
-  padding: ${CoreTokens.spacing_4};
-  color: ${({ theme }) => theme.sectionTitleFontColor};
-  font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.sectionTitleFontSize};
-  font-style: ${({ theme }) => theme.sectionTitleFontStyle};
-  font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
-  line-height: ${({ theme }) => theme.sectionTitleLineHeight};
-`;
-
-export default Section;
+}

@@ -6,24 +6,20 @@ import { ReactNode } from "react";
 
 const CardPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/card" },
-    { label: "Usage", path: "/components/card/usage" },
-    { label: "Specifications", path: "/components/card/specifications" },
+    { label: "Overview", path: "/components/card" },
+    { label: "Code", path: "/components/card/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Card" />
           <DxcParagraph>
-            Cards are a container of information, actions and data with a hierarchy to make easy scanning the content. A
-            card can be defined as a unit, so it has all the information within it, making the component useful to show
-            images, text, and interactive elements. The structure of the card can be seen as blocks, each block is
-            optional to be displayed but the overall element should make a cohesive design, even if it includes text,
-            images or other elements.
+            A card is a flexible, modular UI components used to group related information and actions within a
+            contained, clean and visually distinct layout.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

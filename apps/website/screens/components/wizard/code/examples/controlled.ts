@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcWizard
         currentStep={myCurrentStep}
         onStepClick={onStepClick}
@@ -19,7 +19,7 @@ const code = `() => {
           },
           {
             label: "Policy",
-            valid: true,
+            valid: false,
           },
           {
             label: "Payment",

@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -6,28 +6,21 @@ import { ReactNode } from "react";
 
 const FlexPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/flex" },
-    { label: "Usage", path: "/components/flex/usage" },
-    { label: "Specifications", path: "/components/flex/specifications" },
+    { label: "Overview", path: "/components/flex" },
+    { label: "Code", path: "/components/flex/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Flex" />
           <DxcParagraph>
-            Flex allows users to build{" "}
-            <DxcLink
-              newWindow
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox"
-            >
-              Flexible Box Module
-            </DxcLink>{" "}
-            based layouts. It serves as a technical component that abstracts users from working directly with CSS
-            Flexbox and helps them write more semantic layouts.
+            The flex component allows building flexible box module based layouts. It serves as a technical component
+            that abstracts users from working directly with CSS flexible box layout and helps them write more semantic
+            layouts.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

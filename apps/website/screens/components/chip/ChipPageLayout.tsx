@@ -6,20 +6,20 @@ import { ReactNode } from "react";
 
 const ChipPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/chip" },
-    { label: "Usage", path: "/components/chip/usage" },
-    { label: "Specifications", path: "/components/chip/specifications" },
+    { label: "Overview", path: "/components/chip" },
+    { label: "Code", path: "/components/chip/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Chip" />
           <DxcParagraph>
-            Chips are elements that represent status, complementary information, or association between elements.
+            A chip is a compact, interactive UI element used to represent small pieces of information, actions, or
+            selections.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

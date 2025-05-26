@@ -2,14 +2,13 @@ import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const optionsType = `{ 
@@ -33,6 +32,18 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the name for the select element when no <Code>label</Code> is provided.
+            </td>
+            <td>
+              <TableCode>'Select'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>defaultValue</td>
             <td>
               <TableCode>string | string[]</TableCode>
@@ -41,14 +52,49 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>value</td>
+            <td>disabled</td>
             <td>
-              <TableCode>string | string[]</TableCode>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                enableSelectAll
+              </DxcFlex>
             </td>
             <td>
-              Value of the select. If undefined, the component will be uncontrolled and the value will be managed
-              internally by the component.
+              <TableCode>boolean</TableCode>
             </td>
+            <td>Enables users to select multiple items from the list.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>error</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              If it is a defined value and also a truthy string, the component will change its appearance, showing the
+              error below the select component. If the defined value is an empty string, it will reserve a space below
+              the component for a future error, but it would not change its look. In case of being undefined or null,
+              both the appearance and the space for the error message would not be modified.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>helperText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Helper text to be placed above the select.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -58,6 +104,30 @@ const sections = [
             </td>
             <td>Text to be placed above the select.</td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>multiple</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the select component will support multiple selected options. In that case, value will be an array
+              of strings with each selected option value.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>name</td>
@@ -73,8 +143,47 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>onBlur</td>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the select loses the focus. An object including the value (or values)
+              and the error (if the value selected is not valid) will be passed to this function. If there is no error,{" "}
+              <Code>error</Code> will not be defined.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onChange</td>
+            <td>
+              <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user selects an option. An object including the new value (or
+              values) and the error (if the value selected is not valid) will be passed to this function. If there is no
+              error, <Code>error</Code> will not be defined.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>optional</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the select will be optional, showing '(Optional)' next to the label and adding a default first
+              option with an empty string as value and the placeholder (if defined) as its label. Otherwise, the field
+              will be considered required and an error will be passed as a parameter to the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions if an option wasn't selected.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 options
               </DxcFlex>
@@ -123,15 +232,9 @@ const sections = [
                   <b>options</b>: List of <Code>Option</Code> instances.
                 </li>
               </ul>
+              <br />
+              <strong>You can't mix single and grouped options in the same array.</strong>
             </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>helperText</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Helper text to be placed above the select.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -151,92 +254,6 @@ const sections = [
             <td>
               <TableCode>false</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>multiple</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>
-              If true, the select component will support multiple selected options. In that case, value will be an array
-              of strings with each selected option value.
-            </td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>disabled</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the component will be disabled.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>optional</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>
-              If true, the select will be optional, showing '(Optional)' next to the label and adding a default first
-              option with an empty string as value and the placeholder (if defined) as its label. Otherwise, the field
-              will be considered required and an error will be passed as a parameter to the <Code>onBlur</Code> and{" "}
-              <Code>onChange</Code> functions if an option wasn't selected.
-            </td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>onChange</td>
-            <td>
-              <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user selects an option. An object including the new value (or
-              values) and the error (if the value selected is not valid) will be passed to this function. If there is no
-              error, <Code>error</Code> will not be defined.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onBlur</td>
-            <td>
-              <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the select loses the focus. An object including the value (or values)
-              and the error (if the value selected is not valid) will be passed to this function. If there is no error,{" "}
-              <Code>error</Code> will not be defined.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>error</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              If it is a defined value and also a truthy string, the component will change its appearance, showing the
-              error below the select component. If the defined value is an empty string, it will reserve a space below
-              the component for a future error, but it would not change its look. In case of being undefined or null,
-              both the appearance and the space for the error message would not be modified.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
           <tr>
             <td>size</td>
@@ -269,14 +286,15 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>ariaLabel</td>
+            <td>value</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>string | string[]</TableCode>
             </td>
             <td>
-              Specifies a string to be used as the name for the select element when no <Code>label</Code> is provided.
+              Value of the select. If undefined, the component will be uncontrolled and the value will be managed
+              internally by the component.
             </td>
-            <td>'Select'</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -302,22 +320,20 @@ const sections = [
         content: <Example example={groups} defaultIsVisible />,
       },
       {
-        title: "Icons",
+        title: "Icon usage",
         content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },
 ];
 
-const SelectCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/select/code/SelectCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const SelectCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/select/code/SelectCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default SelectCodePage;

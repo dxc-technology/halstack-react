@@ -16,6 +16,10 @@ const NumberInput = () => (
       <DxcNumberInput />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Without controls" theme="light" level={4} />
+      <DxcNumberInput showControls={false} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With label and placeholder" theme="light" level={4} />
       <DxcNumberInput label="Number input" placeholder="Placeholder" />
     </ExampleContainer>
@@ -116,7 +120,7 @@ const NumberInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcNumberInput label="fillParent" size="fillParent" />
         <DxcNumberInput label="medium" size="medium" />
         <DxcNumberInput label="large" size="large" />

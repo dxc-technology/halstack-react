@@ -1,7 +1,7 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import contextual from "./examples/contextual";
@@ -18,6 +18,31 @@ const sections = [
           <th>Type</th>
           <th>Description</th>
           <th>Default</th>
+        </tr>
+        <tr>
+          <td>color</td>
+          <td>
+            <TableCode>'grey' | 'blue' | 'green' | 'orange' | 'red' | 'yellow' | 'purple'</TableCode>
+          </td>
+          <td>Affects the visual style of the badge. It can be used following semantic purposes or not.</td>
+          <td>
+            <TableCode>'grey'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>
+            <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+          </td>
+          <td>
+            <DxcLink newWindow href="https://fonts.google.com/icons">
+              Material Symbol
+            </DxcLink>{" "}
+            name or SVG element as the icon that will be placed next to the badge label. When using Material Symbols,
+            replace spaces with underscores. By default they are outlined, if you want it to be filled prefix the symbol
+            name with <TableCode>"filled_"</TableCode>.
+          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>label</td>
@@ -51,6 +76,16 @@ const sections = [
           </td>
         </tr>
         <tr>
+          <td>size</td>
+          <td>
+            <TableCode>'small' | 'medium' | 'large'</TableCode>
+          </td>
+          <td>Size of the component.</td>
+          <td>
+            <TableCode>'medium'</TableCode>
+          </td>
+        </tr>
+        <tr>
           <td>title</td>
           <td>
             <TableCode>string</TableCode>
@@ -60,41 +95,6 @@ const sections = [
             accessible label for the component.
           </td>
           <td>-</td>
-        </tr>
-        <tr>
-          <td>color</td>
-          <td>
-            <TableCode>'grey' | 'blue' | 'green' | 'orange' | 'red' | 'yellow' | 'purple'</TableCode>
-          </td>
-          <td>Affects the visual style of the badge. It can be used following semantic purposes or not.</td>
-          <td>
-            <TableCode>'grey'</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>icon</td>
-          <td>
-            <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-          </td>
-          <td>
-            <DxcLink newWindow href="https://fonts.google.com/icons">
-              Material Symbol
-            </DxcLink>{" "}
-            name or SVG element as the icon that will be placed next to the badge label. When using Material Symbols,
-            replace spaces with underscores. By default they are outlined, if you want it to be filled prefix the symbol
-            name with <TableCode>"filled_"</TableCode>.
-          </td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>size</td>
-          <td>
-            <TableCode>'small' | 'medium' | 'large'</TableCode>
-          </td>
-          <td>Size of the component.</td>
-          <td>
-            <TableCode>'medium'</TableCode>
-          </td>
         </tr>
       </DxcTable>
     ),
@@ -107,18 +107,18 @@ const sections = [
         content: <Example example={contextual} defaultIsVisible />,
       },
       {
-        title: "Notification",
-        content: <Example example={notification} defaultIsVisible />,
-      },
-      {
         title: "Icons",
         content: <Example example={icons} defaultIsVisible />,
+      },
+      {
+        title: "Notification",
+        content: <Example example={notification} defaultIsVisible />,
       },
     ],
   },
 ];
 
-const BadgeTableCodePage = () => {
+const BadgeCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -129,4 +129,4 @@ const BadgeTableCodePage = () => {
   );
 };
 
-export default BadgeTableCodePage;
+export default BadgeCodePage;

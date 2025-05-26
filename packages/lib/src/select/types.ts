@@ -1,16 +1,6 @@
 import { CSSProperties } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
-export type ListOptionGroupType = {
-  /**
-   * Label of the group to be shown in the select's listbox.
-   */
-  label: string;
-  /**
-   * List of the grouped options.
-   */
-  options: ListOptionType[];
-};
 export type ListOptionType = {
   /**
    * Element used as the icon that will be placed before the option label.
@@ -29,6 +19,17 @@ export type ListOptionType = {
    * by optional prop.
    */
   value: string;
+};
+
+export type ListOptionGroupType = {
+  /**
+   * Label of the group to be shown in the select's listbox.
+   */
+  label: string;
+  /**
+   * List of the grouped options.
+   */
+  options: ListOptionType[];
 };
 
 type CommonProps = {
@@ -102,6 +103,10 @@ type CommonProps = {
 
 type SingleSelect = CommonProps & {
   /**
+   * Enables users to select multiple items from the list.
+   */
+  enableSelectAll?: never;
+  /**
    * If true, the select component will support multiple selected options.
    * In that case, value will be an array of strings with each selected
    * option value.
@@ -130,7 +135,12 @@ type SingleSelect = CommonProps & {
    */
   onBlur?: (val: { value: string; error?: string }) => void;
 };
+
 type MultipleSelect = CommonProps & {
+  /**
+   * Enables users to select multiple items from the list.
+   */
+  enableSelectAll?: boolean;
   /**
    * If true, the select component will support multiple selected options.
    * In that case, value will be an array of strings with each selected
@@ -168,30 +178,36 @@ type Props = SingleSelect | MultipleSelect;
  */
 export type OptionProps = {
   id: string;
-  option: ListOptionType;
-  onClick: (option: ListOptionType) => void;
-  multiple: boolean;
-  visualFocused: boolean;
   isGroupedOption?: boolean;
   isLastOption: boolean;
   isSelected: boolean;
+  isSelectAllOption?: boolean;
+  multiple: boolean;
+  option: ListOptionType;
+  onClick: (option: ListOptionType) => void;
+  visualFocused: boolean;
 };
 
 /**
  * Listbox from the select component.
  */
 export type ListboxProps = {
-  id: string;
+  ariaLabelledBy: string;
   currentValue: string | string[];
-  options: ListOptionType[] | ListOptionGroupType[];
-  visualFocusIndex: number;
+  enableSelectAll: boolean;
+  handleGroupOnClick: (group: ListOptionGroupType) => void;
+  handleOptionOnClick: (option: ListOptionType) => void;
+  handleSelectAllOnClick: () => void;
+  id: string;
   lastOptionIndex: number;
   multiple: boolean;
   optional: boolean;
   optionalItem: ListOptionType;
+  options: ListOptionType[] | ListOptionGroupType[];
   searchable: boolean;
-  handleOptionOnClick: (option: ListOptionType) => void;
+  selectionType: "checked" | "unchecked" | "indeterminate";
   styles: CSSProperties;
+  visualFocusIndex: number;
 };
 
 /**

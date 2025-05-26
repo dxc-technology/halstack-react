@@ -2,11 +2,15 @@ import { DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcContainer
-        border={{ color: "color_purple_400", width: "2px", style: "dashed" }}
-        borderRadius="0.25rem"
-        padding="xsmall"
+        border={{ 
+          color: "var(--border-color-primary-light)",
+          width: "var(--border-width-m)",
+          style: "var(--border-style-outline)"
+        }}
+        borderRadius="var(--border-radius-s)"
+        padding="var(--spacing-padding-xs)"
         width="fit-content"
       >
         Example text

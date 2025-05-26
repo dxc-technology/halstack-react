@@ -1,24 +1,21 @@
-import styled, { ThemeProvider } from "styled-components";
-import { ReactNode, useCallback, useContext } from "react";
-import ImagePropsType, { CaptionWrapperProps } from "./types";
-import HalstackContext from "../HalstackContext";
+import styled from "styled-components";
+import { ReactNode } from "react";
+import ImagePropsType from "./types";
 
 const Figure = styled.figure`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-gap-s);
   width: fit-content;
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-padding-none);
 `;
 
 const CaptionContainer = styled.figcaption`
-  color: ${(props) => props.theme.captionFontColor};
-  font-family: ${(props) => props.theme.captionFontFamily};
-  font-size: ${(props) => props.theme.captionFontSize};
-  font-style: ${(props) => props.theme.captionFontStyle};
-  font-weight: ${(props) => props.theme.captionFontWeight};
-  line-height: ${(props) => props.theme.captionLineHeight};
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-s);
+  font-weight: var(--typography-label-regular);
 `;
 
 const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
@@ -34,38 +31,34 @@ const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["captio
 export default function DxcImage({
   alt,
   caption,
-  lazyLoading = false,
-  src,
-  srcSet,
-  sizes,
-  width,
   height,
+  lazyLoading = false,
   objectFit,
   objectPosition,
-  onLoad,
   onError,
+  onLoad,
+  sizes,
+  src,
+  srcSet,
+  width,
 }: ImagePropsType) {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper caption={caption}>
-        <img
-          alt={alt}
-          loading={lazyLoading ? "lazy" : undefined}
-          onLoad={onLoad}
-          onError={onError}
-          src={src}
-          srcSet={srcSet}
-          sizes={sizes}
-          style={{
-            objectFit,
-            objectPosition,
-            width,
-            height,
-          }}
-        />
-      </CaptionWrapper>
-    </ThemeProvider>
+    <CaptionWrapper caption={caption}>
+      <img
+        alt={alt}
+        loading={lazyLoading ? "lazy" : undefined}
+        onError={onError}
+        onLoad={onLoad}
+        sizes={sizes}
+        src={src}
+        srcSet={srcSet}
+        style={{
+          objectFit,
+          objectPosition,
+          width,
+          height,
+        }}
+      />
+    </CaptionWrapper>
   );
 }

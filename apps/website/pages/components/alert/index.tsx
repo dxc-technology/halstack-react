@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import AlertPageLayout from "screens/components/alert/AlertPageLayout";
-import AlertCodePage from "screens/components/alert/code/AlertCodePage";
+import AlertOverviewPage from "screens/components/alert/overview/AlertOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Alert — Halstack Design System</title>
-      </Head>
-      <AlertCodePage></AlertCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Alert — Halstack Design System</title>
+    </Head>
+    <AlertOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <AlertPageLayout>{page}</AlertPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <AlertPageLayout>{page}</AlertPageLayout>;
 
 export default Index;

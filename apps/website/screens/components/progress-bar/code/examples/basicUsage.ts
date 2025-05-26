@@ -1,7 +1,7 @@
 import { DxcProgressBar, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => (
-  <DxcInset space="2rem">
+  <DxcInset space="var(--spacing-padding-xl)">
     <DxcProgressBar label="Loading" />
   </DxcInset>
 );`;

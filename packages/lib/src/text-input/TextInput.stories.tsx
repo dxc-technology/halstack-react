@@ -35,15 +35,10 @@ const actionLargeIconSVG = {
   title: "Clock",
 };
 
-const actionLargeIconURL = {
-  onClick: () => {},
-  icon: "search",
-  title: "Search",
-};
-
 const country = ["Afghanistan"];
 
 const countries = [
+  "A very long country name just to test the ellipsis when text overflows in a suggestion",
   "Afghanistan",
   "Albania",
   "Algeria",
@@ -68,75 +63,40 @@ const countries = [
   "Djibouti",
 ];
 
-const opinionatedTheme = {
-  textInput: {
-    fontColor: "#000000",
-    hoverBorderColor: "#a46ede",
-  },
-};
-
 const TextInput = () => (
   <>
+    <Title title="States" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcTextInput />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered input" theme="light" level={4} />
-      <DxcTextInput label="Text input" />
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcTextInput />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus-within">
-      <Title title="Focused input" theme="light" level={4} />
-      <DxcTextInput label="Text input" />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered action" theme="light" level={4} />
-      <DxcTextInput label="Text input" defaultValue="Text" clearable />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived action" theme="light" level={4} />
-      <DxcTextInput label="Text input" action={action} clearable />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused action" theme="light" level={4} />
-      <DxcTextInput label="Text input" action={action} clearable />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Without label" theme="light" level={4} />
+      <Title title="Focused" theme="light" level={4} />
       <DxcTextInput />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label and placeholder" theme="light" level={4} />
-      <DxcTextInput label="Text input" placeholder="Placeholder" />
+      <Title title="Disabled" theme="light" level={4} />
+      <DxcTextInput disabled placeholder="Name" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Helper text, optional, and clearable" theme="light" level={4} />
-      <DxcTextInput label="Text input" clearable defaultValue="Text" helperText="Help message" optional />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Clearable and large icon action (SVG)" theme="light" level={4} />
+      <Title title="Disabled - Complete example" theme="light" level={4} />
       <DxcTextInput
-        label="Text input"
-        defaultValue="Text text text text text text text text text text"
-        clearable
-        action={actionLargeIconSVG}
+        label="Disabled"
+        helperText="Help text"
+        disabled
+        defaultValue="John Doe"
+        action={action}
+        optional
+        prefix="+34"
+        suffix="USD"
       />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Clearable and large icon action (URL)" theme="light" level={4} />
-      <DxcTextInput
-        label="Text input"
-        defaultValue="Text text text text text text text text text text"
-        clearable
-        action={actionLargeIconURL}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Prefix" theme="light" level={4} />
-      <DxcTextInput label="With prefix" prefix="+34" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Suffix and action" theme="light" level={4} />
-      <DxcTextInput label="With suffix" suffix="USD" action={action} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Invalid" theme="light" level={4} />
+      <Title title="Error" theme="light" level={4} />
       <DxcTextInput
         label="Error text input"
         helperText="Help message"
@@ -148,40 +108,12 @@ const TextInput = () => (
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Invalid and hovered" theme="light" level={4} />
+      <Title title="Hovered error" theme="light" level={4} />
       <DxcTextInput
         label="Error text input"
         helperText="Help message"
         placeholder="Placeholder"
         error="Error message."
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled and placeholder" theme="light" level={4} />
-      <DxcTextInput label="Disabled text input" disabled placeholder="Placeholder" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled, helper text, optional, value and action" theme="light" level={4} />
-      <DxcTextInput
-        label="Disabled text input"
-        helperText="Help message"
-        disabled
-        optional
-        defaultValue="Text"
-        action={action}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled with prefix and suffix" theme="light" level={4} />
-      <DxcTextInput
-        label="Disabled text input"
-        helperText="Help message"
-        disabled
-        optional
-        prefix="+34"
-        suffix="USD"
-        defaultValue="Text"
-        action={action}
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -210,17 +142,28 @@ const TextInput = () => (
         action={action}
       />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active read only" theme="light" level={4} />
+    <Title title="Anatomy" theme="light" level={2} />{" "}
+    <ExampleContainer>
+      <Title title="Complete example" theme="light" level={4} />
       <DxcTextInput
-        label="Example label"
-        helperText="Help message"
-        clearable
-        readOnly
+        label="Insert your phone number"
+        helperText="Help text"
+        defaultValue="983 023 123"
+        action={action}
         optional
         prefix="+34"
-        defaultValue="Text"
-        action={action}
+        suffix="USD"
+        clearable
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Text ellipsis and large icon action (SVG)" theme="light" level={4} />
+      <DxcTextInput
+        label="Text input"
+        defaultValue="Text text text text text text text text text text"
+        clearable
+        action={actionLargeIconSVG}
+        suffix="SUFFIX"
       />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
@@ -271,174 +214,110 @@ const TextInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1.5rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-l)">
         <DxcTextInput label="Text input" size="fillParent" />
         <DxcTextInput label="Text input" size="medium" />
         <DxcTextInput label="Text input" size="large" />
       </DxcFlex>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered input" theme="light" level={4} />
-          <DxcTextInput label="Text input" helperText="Help message" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus-within">
-          <Title title="Focused input" theme="light" level={4} />
-          <DxcTextInput label="Text input" helperText="Help message" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered action" theme="light" level={4} />
-          <DxcTextInput label="Text input" helperText="Help message" defaultValue="Text" clearable />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Actived action" theme="light" level={4} />
-          <DxcTextInput label="Text input" helperText="Help message" action={action} clearable />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused action" theme="light" level={4} />
-          <DxcTextInput label="Text input" helperText="Help message" action={action} clearable />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Prefix" theme="light" level={4} />
-          <DxcTextInput label="With prefix" prefix="+34" helperText="Help message" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Suffix and action" theme="light" level={4} />
-          <DxcTextInput label="With suffix" helperText="Help message" suffix="USD" action={action} />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Invalid" theme="light" level={4} />
-          <DxcTextInput
-            label="Error text input"
-            helperText="Help message"
-            error="Error message."
-            defaultValue="Text"
-            clearable
-            optional
-            action={action}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled and placeholder" theme="light" level={4} />
-          <DxcTextInput label="Disabled text input" disabled placeholder="Placeholder" prefix="+34" suffix="USD" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled, helper text, optional, value and action" theme="light" level={4} />
-          <DxcTextInput
-            label="Disabled text input"
-            helperText="Help message"
-            disabled
-            optional
-            defaultValue="Text"
-            action={action}
-          />
-        </ExampleContainer>
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
 
-const AutosuggestListbox = () => {
-  const colorsTheme: any = useContext(HalstackContext);
-
-  return (
-    <ThemeProvider theme={colorsTheme.textInput}>
+const AutosuggestListbox = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Autosuggest listbox" theme="light" level={2} />
       <ExampleContainer>
-        <Title title="Autosuggest listbox" theme="light" level={2} />
-        <ExampleContainer>
-          <Title
-            title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
-            theme="light"
-            level={3}
+        <Title
+          title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
+          theme="light"
+          level={3}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            height: "150px",
+            width: "500px",
+            marginBottom: "250px",
+            padding: "20px",
+            border: "1px solid black",
+            borderRadius: "4px",
+            overflow: "auto",
+            zIndex: "1300",
+            position: "relative",
+          }}
+        >
+          <DxcTextInput
+            label="Label"
+            suggestions={countries}
+            optional
+            placeholder="Choose an option"
+            size="fillParent"
           />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              height: "150px",
-              width: "500px",
-              marginBottom: "250px",
-              padding: "20px",
-              border: "1px solid black",
-              borderRadius: "4px",
-              overflow: "auto",
-              zIndex: "1300",
-              position: "relative",
-            }}
-          >
-            <DxcTextInput
-              label="Label"
-              suggestions={countries}
-              optional
-              placeholder="Choose an option"
-              size="fillParent"
-            />
-            <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
-          </div>
-        </ExampleContainer>
-        <Title title="Listbox suggestion states" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered suggestion" theme="light" level={4} />
-          <Suggestions
-            id="x1"
-            value=""
-            suggestions={country}
-            visualFocusIndex={-1}
-            highlightedSuggestions={false}
-            searchHasErrors={false}
-            isSearching={false}
-            suggestionOnClick={() => {}}
-            styles={{ width: 350 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Active suggestion" theme="light" level={4} />
-          <Suggestions
-            id="x2"
-            value=""
-            suggestions={country}
-            visualFocusIndex={-1}
-            highlightedSuggestions={false}
-            searchHasErrors={false}
-            isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
-            styles={{ width: 350 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Focused suggestion" theme="light" level={4} />
-          <Suggestions
-            id="x3"
-            value=""
-            suggestions={country}
-            visualFocusIndex={0}
-            highlightedSuggestions={false}
-            searchHasErrors={false}
-            isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
-            styles={{ width: 350 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Highlighted suggestion" theme="light" level={4} />
-          <Suggestions
-            id="x4"
-            value="Afgh"
-            suggestions={country}
-            visualFocusIndex={-1}
-            highlightedSuggestions={true}
-            searchHasErrors={false}
-            isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
-            styles={{ width: 350 }}
-          />
-        </ExampleContainer>
+          <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+        </div>
+      </ExampleContainer>
+      <Title title="Listbox suggestion states" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered" theme="light" level={4} />
+        <Suggestions
+          id="x1"
+          value=""
+          suggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={false}
+          isSearching={false}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Active" theme="light" level={4} />
+        <Suggestions
+          id="x2"
+          value=""
+          suggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={false}
+          isSearching={false}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Autosuggest Error" theme="light" level={3} />
+        <Title title="Focused" theme="light" level={4} />
+        <Suggestions
+          id="x3"
+          value=""
+          suggestions={country}
+          visualFocusIndex={0}
+          highlightedSuggestions={false}
+          searchHasErrors={false}
+          isSearching={false}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Highlighted" theme="light" level={4} />
+        <Suggestions
+          id="x4"
+          value="Afgh"
+          suggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={true}
+          searchHasErrors={false}
+          isSearching={false}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Error" theme="light" level={4} />
         <Suggestions
           id="x5"
           value=""
@@ -447,12 +326,12 @@ const AutosuggestListbox = () => {
           highlightedSuggestions={false}
           searchHasErrors={true}
           isSearching={false}
-          suggestionOnClick={(suggestion) => {}}
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Autosuggest Searching message" theme="light" level={3} />
+        <Title title="Searching" theme="light" level={4} />
         <Suggestions
           id="x6"
           value=""
@@ -461,13 +340,13 @@ const AutosuggestListbox = () => {
           highlightedSuggestions={false}
           searchHasErrors={false}
           isSearching={true}
-          suggestionOnClick={(suggestion) => {}}
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>
-    </ThemeProvider>
-  );
-};
+    </ExampleContainer>
+  </>
+);
 
 type Story = StoryObj<typeof DxcTextInput>;
 

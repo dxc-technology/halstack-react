@@ -6,20 +6,19 @@ import { ReactNode } from "react";
 
 const SelectPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/select" },
-    { label: "Usage", path: "/components/select/usage" },
-    { label: "Specifications", path: "/components/select/specifications" },
+    { label: "Overview", path: "/components/select" },
+    { label: "Code", path: "/components/select/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Select" />
           <DxcParagraph>
             The select component allows users to make single or multiple selections from a pre-defined list of options.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

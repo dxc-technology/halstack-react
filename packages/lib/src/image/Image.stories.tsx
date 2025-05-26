@@ -34,7 +34,7 @@ const Image = () => (
         metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
         volutpat id lorem.
       </DxcParagraph>
-      <DxcInset top="2rem" bottom="2rem">
+      <DxcInset top="var(--spacing-padding-xl)" bottom="var(--spacing-padding-xl)">
         <DxcImage
           alt="Ratatouille is a great movie"
           caption="Ratatouille with a smile on his face."
@@ -54,7 +54,7 @@ const Image = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Example image" theme="light" level={4} />
-      <DxcFlex gap="1rem">
+      <DxcFlex gap="var(--spacing-gap-ml)">
         <DxcImage
           alt="Camera pic"
           caption="Picture of a camera and the sunset."
@@ -93,7 +93,14 @@ const Image = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Object fit: contain" theme="light" level={4} />
-      <div style={{ display: "flex", width: "fit-content", border: "1px solid #000", padding: "0.5rem" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "fit-content",
+          border: "var(--border-width-s) var(--border-style-default) var(--border-color-neutral-dark)",
+          padding: "var(--spacing-padding-xs)",
+        }}
+      >
         <DxcImage
           alt="Dog pic"
           src="https://cc-prod.scene7.com/is/image/CCProdAuthor/What-is-Stock-Photography_P1_mobile?$pjpeg$&jpegSize=200&wid=720"

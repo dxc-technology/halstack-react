@@ -6,23 +6,20 @@ import { ReactNode } from "react";
 
 const DropdownPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/dropdown" },
-    { label: "Usage", path: "/components/dropdown/usage" },
-    { label: "Specifications", path: "/components/dropdown/specifications" },
+    { label: "Overview", path: "/components/dropdown" },
+    { label: "Code", path: "/components/dropdown/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Dropdown" />
           <DxcParagraph>
-            The use of dropdowns has its advantages but it depends on the screen support. Dropdowns are a standard
-            widget, so the users know how to interact with them. The options available in a dropdown component are
-            static, preventing erroneous data entered by the user since it only shows a range of correct values for that
-            input.
+            The dropdown component is a compact, interactive element that allows users to select from a list of options,
+            reducing clutter in the interface.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

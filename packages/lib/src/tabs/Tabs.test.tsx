@@ -2,28 +2,34 @@ import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import DxcTabs from "./Tabs";
 
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+
 const sampleTabs = (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" notificationNumber={10} defaultActive>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" notificationNumber={10} defaultActive>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" notificationNumber={20}>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" notificationNumber={20}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" notificationNumber={30}>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" notificationNumber={30}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
 );
 const sampleTabsWithBadge = (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" notificationNumber={10}>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" notificationNumber={10}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" notificationNumber={20}>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" notificationNumber={20}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" notificationNumber={101} defaultActive>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" notificationNumber={101} defaultActive>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -31,36 +37,36 @@ const sampleTabsWithBadge = (
 
 const sampleTabsFirstDisabled = (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" disabled>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2">
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2">
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
 );
 const sampleTabsInteraction = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} defaultActive>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" onClick={onTabClick[0]} defaultActive>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" onClick={onTabClick[1]}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
 );
 const sampleTabsMiddleDisabled = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]}>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" onClick={onTabClick[0]}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" onClick={onTabClick[1]} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -68,13 +74,13 @@ const sampleTabsMiddleDisabled = (onTabClick: (() => void)[]) => (
 
 const sampleTabsLastTabNonDisabledFirstActive = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} disabled defaultActive>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" onClick={onTabClick[0]} disabled defaultActive>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" onClick={onTabClick[1]} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -82,13 +88,13 @@ const sampleTabsLastTabNonDisabledFirstActive = (onTabClick: (() => void)[]) => 
 
 const sampleControlledTabsInteraction = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} active>
+    <DxcTabs.Tab tabId="Tab-1" label="Tab-1" onClick={onTabClick[0]} active>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
+    <DxcTabs.Tab tabId="Tab-2" label="Tab-2" onClick={onTabClick[1]}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+    <DxcTabs.Tab tabId="Tab-3" label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>

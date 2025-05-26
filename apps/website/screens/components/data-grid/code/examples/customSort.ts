@@ -45,7 +45,7 @@ const code = `() => {
   const [page, setPage] = useState(0);
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcDataGrid
           columns={columns}
           rows={rowsControlled}

@@ -9,8 +9,8 @@ const sections = [
     title: "What Halstack is",
     content: (
       <DxcParagraph>
-        Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing
-        all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences
+        Halstack is an open source Design System built and maintained by DXC Technology with the purpose of providing
+        all the necessary tools for designing and implementing accessible, intuitive and consistent user experiences
         with Figma, UXPin and React.
       </DxcParagraph>
     ),
@@ -19,7 +19,7 @@ const sections = [
         title: "A tool for designers",
         content: (
           <DxcParagraph>
-            Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
+            Halstack's first goal is to provide product designers with pre-created designs for the most common use-cases
             they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel
             looking for a solution to these mundane problems, and can focus on adding business value. Also, by
             centralizing these efforts in a Design System team, we can pay the right amount of attention to aspects as
@@ -66,7 +66,7 @@ const sections = [
           <>
             <DxcParagraph>
               All the opinions provided by Halstack Design System always remain within the boundaries of the generalist
-              UI/UX Design domain. Halstack will not get into business-specific elements even if they are reusable. For
+              UI/UX design domain. Halstack will not get into business-specific elements even if they are reusable. For
               example, Halstack might provide guidelines on using forms within the context of digital applications.
               Still, it doesn't get into the specifics of designing a form for an insurance quote application.
             </DxcParagraph>
@@ -87,7 +87,7 @@ const sections = [
         title: "A replacement for the Product Design stage",
         content: (
           <DxcParagraph>
-            Halstack should always be considered as assistance to the Product Design process, but never as a
+            Halstack should always be considered as assistance to the product design process, but never as a
             replacement. Product Designers are still a fundamental piece of this process since they will need to add the
             business context, validate the patterns contemplated by the Design System, and contribute back to the design
             system when necessary.
@@ -207,12 +207,12 @@ const sections = [
   },
 ];
 
-const Introduction = () => {
+export default function IntroductionPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Introduction" weight="bold"></DxcHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Introduction" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
@@ -221,6 +221,4 @@ const Introduction = () => {
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
     </DxcFlex>
   );
-};
-
-export default Introduction;
+}

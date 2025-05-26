@@ -6,18 +6,17 @@ import { ReactNode } from "react";
 
 const InsetPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/inset" },
-    { label: "Usage", path: "/components/inset/usage" },
-    { label: "Specifications", path: "/components/inset/specifications" },
+    { label: "Overview", path: "/components/inset" },
+    { label: "Code", path: "/components/inset/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Inset" />
           <DxcParagraph>Inset layout applies positive spacing scale to its child nodes.</DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
