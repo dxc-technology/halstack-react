@@ -66,7 +66,6 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: var(--spacing-gap-s);
   padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -101,7 +100,6 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: var(--spacing-gap-s);
   padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -143,17 +141,11 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   );
 };
 
-const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
-  <DxcBleed horizontal="1rem">
-    <SidenavTitle>{children}</SidenavTitle>
-  </DxcBleed>
-);
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <>
-    <DxcBleed horizontal="1rem">
-      <DxcFlex direction="column">{children}</DxcFlex>
-    </DxcBleed>
+    <DxcFlex direction="column">{children}</DxcFlex>
     <DxcDivider />
   </>
 );
@@ -170,7 +162,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
           onClick={() => setCollapsed(!collapsed)}
           selectedGroup={collapsed && isSelected}
         >
-          <DxcFlex alignItems="center" gap="0.5rem">
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
             {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             {title}
           </DxcFlex>
@@ -215,7 +207,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         onClick={handleClick}
         {...otherProps}
       >
-        <DxcFlex alignItems="center" gap="0.5rem">
+        <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
           {children}
         </DxcFlex>
