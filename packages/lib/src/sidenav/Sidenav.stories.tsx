@@ -57,7 +57,7 @@ const SideNav = () => (
           </p>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link selected>Single Link</DxcSidenav.Link>
           <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
