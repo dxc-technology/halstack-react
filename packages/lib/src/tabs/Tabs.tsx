@@ -77,17 +77,11 @@ const DxcTabs = ({
     const hasActiveChild = childrenArray.some(
       (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
-    console.log(`hasActiveChild: ${hasActiveChild}`);
     const initialActiveTab = hasActiveChild
       ? childrenArray.find(
           (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
         )
       : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
-    console.log(initialActiveTab);
-
-    console.log(
-      isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "not valid"
-    );
 
     return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });

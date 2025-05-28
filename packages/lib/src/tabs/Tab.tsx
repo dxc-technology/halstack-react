@@ -50,7 +50,7 @@ const DxcTab = forwardRef(
 
     useEffect(() => {
       if (active) {
-        setActiveTab?.(tabId);
+        setActiveTab?.(tabId ?? label ?? "");
       }
     }, [active, label, setActiveTab]);
 
