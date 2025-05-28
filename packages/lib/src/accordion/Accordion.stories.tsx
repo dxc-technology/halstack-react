@@ -335,20 +335,13 @@ const Accordion = () => (
       <Title title="Sublabel longer than label" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem
-          label="Avg, actions per session"
-          subLabel="Tue, May 20, 10:11 AM"
+          label="Bounce Rate"
+          subLabel="Mon, May 19, 3:17 PM"
           badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
             To edit your profile you need to go to Settings and click on Profile.
           </DxcInset>
-        </DxcAccordion.AccordionItem>
-        <DxcAccordion.AccordionItem
-          label="Bounce Rate"
-          subLabel="Mon, May 19, 3:17 PM"
-          badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
-        >
-          <DxcInset space="1rem">To edit your profile you need to go to Settings and click on Profile.</DxcInset>
         </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
