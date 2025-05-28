@@ -18,18 +18,18 @@ type TabCommonProps = {
 };
 
 export type TabsContextProps = {
+  activeTab?: string;
+  focusedTab?: string;
   iconPosition: "top" | "left";
   tabIndex: number;
-  focusedLabel: string;
   isControlled: boolean;
-  activeLabel: string;
   hasLabelAndIcon: boolean;
-  setActiveLabel: (_tab: string) => void;
+  setActiveTab: (_tab: string) => void;
   setActiveIndicatorWidth: (_width: number) => void;
   setActiveIndicatorLeft: (_left: number) => void;
 };
 
-export type TabLabelProps = TabCommonProps & {
+export type TabLabelProps = {
   /**
    * Tab label.
    */
@@ -40,7 +40,7 @@ export type TabLabelProps = TabCommonProps & {
   icon?: string | SVG;
 };
 
-export type TabIconProps = TabCommonProps & {
+export type TabIconProps = {
   /**
    * Tab label.
    */
@@ -52,7 +52,7 @@ export type TabIconProps = TabCommonProps & {
 };
 
 export type TabPropsLegacy = {
-  tab: TabLabelProps | TabIconProps;
+  tab: TabCommonProps & (TabLabelProps | TabIconProps);
   active: boolean;
   tabIndex: number;
   hasLabelAndIcon: boolean;
@@ -65,15 +65,14 @@ export type TabPropsLegacy = {
 export type TabProps = {
   defaultActive?: boolean;
   active?: boolean;
-  icon?: string | SVG;
-  label: string;
   title?: string;
+  tabId?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
   children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
-};
+} & (TabLabelProps | TabIconProps);
 
 type LegacyProps = {
   /**

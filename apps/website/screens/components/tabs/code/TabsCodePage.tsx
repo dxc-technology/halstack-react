@@ -232,16 +232,22 @@ const sections = [
                 </td>
               </tr>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    label
-                  </DxcFlex>
-                </td>
+                <td>label</td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
                 <td>Tab label text.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>tabId</td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>
+                  Value used to identify the tab internally. When no label is set this prop is required to identify the
+                  tab.
+                </td>
                 <td>-</td>
               </tr>
               <tr>

@@ -12,6 +12,7 @@ const DxcTab = forwardRef(
       icon,
       label,
       title,
+      tabId = label,
       disabled = false,
       active,
       notificationNumber = false,
@@ -25,33 +26,33 @@ const DxcTab = forwardRef(
     const {
       iconPosition = "top",
       tabIndex = 0,
-      focusedLabel,
+      focusedTab,
       isControlled,
-      activeLabel,
+      activeTab,
       hasLabelAndIcon = false,
-      setActiveLabel,
+      setActiveTab,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
     } = useContext(TabsContext) ?? {};
 
     useEffect(() => {
-      if (focusedLabel === label) {
+      if (focusedTab === tabId) {
         tabRef?.current?.focus();
       }
-    }, [focusedLabel, label]);
+    }, [focusedTab, tabId]);
 
     useEffect(() => {
-      if (activeLabel === label) {
+      if (activeTab === tabId) {
         setActiveIndicatorWidth?.(tabRef.current?.offsetWidth ?? 0);
         setActiveIndicatorLeft?.(tabRef.current?.offsetLeft ?? 0);
       }
-    }, [activeLabel, label, setActiveIndicatorWidth, setActiveIndicatorLeft]);
+    }, [activeTab, tabId, setActiveIndicatorWidth, setActiveIndicatorLeft]);
 
     useEffect(() => {
       if (active) {
-        setActiveLabel?.(label);
+        setActiveTab?.(tabId);
       }
-    }, [active, label, setActiveLabel]);
+    }, [active, label, setActiveTab]);
 
     const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
@@ -70,14 +71,14 @@ const DxcTab = forwardRef(
         <TabContainer
           role="tab"
           type="button"
-          tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
+          tabIndex={activeTab === tabId && !disabled ? tabIndex : -1}
           disabled={disabled}
-          aria-selected={activeLabel === label}
+          aria-label={label ?? tabId ?? "tab"}
+          aria-selected={activeTab === tabId}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
-
             if (ref) {
               if (typeof ref === "function") {
                 ref(anchorRef);
@@ -89,7 +90,8 @@ const DxcTab = forwardRef(
           }}
           onClick={() => {
             if (!isControlled) {
-              setActiveLabel?.(label);
+              setActiveTab?.(tabId ?? "");
+              console.log(tabId);
             }
             onClick();
           }}
@@ -107,9 +109,11 @@ const DxcTab = forwardRef(
                 {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               </TabIconContainer>
             )}
-            <Label disabled={disabled} activeLabel={activeLabel} label={label}>
-              {label}
-            </Label>
+            {label && (
+              <Label disabled={disabled} active={activeTab === tabId} label={label}>
+                {label}
+              </Label>
+            )}
           </MainLabelContainer>
           {notificationNumber && !disabled && (
             <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -224,13 +228,13 @@ const MainLabelContainer = styled.div<{
 const Label = styled.span<{
   disabled: TabProps["disabled"];
   label: TabProps["label"];
-  activeLabel?: string;
+  active: boolean;
 }>`
   display: inline;
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledFontColor
-      : props.activeLabel === props.label
+      : props.active
         ? props.theme.selectedFontColor
         : props.theme.unselectedFontColor};
   font-family: ${(props) => props.theme.fontFamily};

@@ -73,18 +73,23 @@ const DxcTabs = ({
     () => childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label),
     [childrenArray]
   );
-
-  const [activeTabLabel, setActiveTabLabel] = useState(() => {
+  const [activeTab, setActiveTab] = useState(() => {
     const hasActiveChild = childrenArray.some(
       (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
+    console.log(`hasActiveChild: ${hasActiveChild}`);
     const initialActiveTab = hasActiveChild
       ? childrenArray.find(
           (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
         )
       : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+    console.log(initialActiveTab);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+    console.log(
+      isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "not valid"
+    );
+
+    return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
@@ -113,15 +118,15 @@ const DxcTabs = ({
     return {
       iconPosition,
       tabIndex,
-      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
+      focusedTab: isValidElement(focusedChild) ? (focusedChild.props.label ?? focusedChild.props.tabId) : "",
       isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
-      activeLabel: activeTabLabel,
+      activeTab: activeTab,
       hasLabelAndIcon,
-      setActiveLabel: setActiveTabLabel,
+      setActiveTab: setActiveTab,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
     };
-  }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
+  }, [iconPosition, tabIndex, innerFocusIndex, activeTab, childrenArray, hasLabelAndIcon]);
 
   const scrollLeft = () => {
     const scrollWidth = (refTabList?.current?.offsetHeight ?? 0) * 0.75;
@@ -157,21 +162,23 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+    const active = childrenArray.findIndex(
+      (child: ReactElement) => child.props.label ?? child.props.tabId === activeTab
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? active : innerFocusIndex));
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? active : innerFocusIndex));
         break;
       case "Tab":
-        if (activeTab !== innerFocusIndex) {
-          setInnerFocusIndex(activeTab);
+        if (active !== innerFocusIndex) {
+          setInnerFocusIndex(active);
         }
         break;
       default:
@@ -204,7 +211,10 @@ const DxcTabs = ({
                   tabWidth={activeIndicatorWidth}
                   tabLeft={activeIndicatorLeft}
                   aria-disabled={childrenArray.some(
-                    (child) => isValidElement(child) && activeTabLabel === child.props.label && child.props.disabled
+                    (child) =>
+                      isValidElement(child) &&
+                      activeTab === (child.props.label ?? child.props.tabId) &&
+                      child.props.disabled
                   )}
                 />
               </TabsContentScroll>
@@ -223,7 +233,7 @@ const DxcTabs = ({
         </TabsContainer>
       </ThemeProvider>
       {Children.map(children, (child) => {
-        if (isValidElement(child) && child.props.label === activeTabLabel) {
+        if (isValidElement(child) && (child.props.label ?? child.props.tabId) === activeTab) {
           return child.props.children;
         }
         return null;
