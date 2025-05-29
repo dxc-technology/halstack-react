@@ -17,20 +17,12 @@ const FooterContainer = styled.footer<{
   display: flex;
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
-  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  /* TODO: Ask about min height */
+  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
   min-height: ${(props) => (props?.mode === "default" ? "124px" : "40px")};
   width: 100%;
-  gap: ${(props) => (props?.mode === "default" ? "var(--spacing-gap-none)" : "32px")};
-  @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) =>
-      props?.mode === "default"
-        ? "var(--spacing-padding-m) var(--spacing-padding-xl)"
-        : "var(--spacing-padding-s) var(--spacing-padding-xl)"};
-  }
-  /* TODO: Ask about responsive styles */
+  gap: var(--spacing-gap-m);
+  padding: var(--spacing-padding-l) var(--spacing-padding-ml);
   @media (max-width: ${responsiveSizes.small}rem) {
-    padding: 20px;
     flex-direction: column;
   }
 `;
@@ -53,7 +45,7 @@ const BottomContainer = styled.div`
 `;
 
 const ChildComponents = styled.div`
-  min-height: 16px;
+  min-height: var(--height-xxs);
   overflow: hidden;
 `;
 
@@ -81,19 +73,17 @@ const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
   width: auto;
 `;
 
-// TODO: Remove and use logo from the props instead
-// const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-//   max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
-//   width: auto;
-// `;
+const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  width: auto;
+`;
 
-// TODO: Need an example in Figma with focus state
 const SocialAnchor = styled.a<{ index: number }>`
-  border-radius: 4px;
+  border-radius: var(--border-radius-s);
 
   &:focus {
-    outline: 2px solid #0095ff;
-    outline-offset: 2px;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: var(--border-width-m);
   }
 `;
 
@@ -131,50 +121,40 @@ const BottomLinks = styled.div`
   }
 `;
 
-// TODO: Add examples with focus to figma to see border-radius and outline width
 const BottomLink = styled.a`
   text-decoration: none;
-  border-radius: 2px;
-
+  border-radius: var(--border-radius-xs);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   color: var(--color-fg-neutral-bright);
 
   &:focus {
-    outline: 2px solid #0095ff;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
 `;
 
+const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["logo"]) => {
+  if (logo) {
+    return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
+  } else {
+    return mode === "default" ? dxcLogo : dxcSmallLogo;
+  }
+};
+
 const DxcFooter = ({
-  socialLinks,
   bottomLinks,
-  copyright,
   children,
+  copyright,
+  logo,
   margin,
-  tabIndex = 0,
   mode = "default",
+  socialLinks,
+  tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  // TODO
-  // const footerLogo = useMemo(
-  //   () =>
-  //     !colorsTheme.footer.logo ? (
-  //       mode === "default" ? (
-  //         dxcLogo
-  //       ) : (
-  //         dxcSmallLogo
-  //       )
-  //     ) : typeof colorsTheme.footer.logo === "string" ? (
-  //       <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
-  //     ) : (
-  //       colorsTheme.footer.logo
-  //     ),
-  //   [colorsTheme, translatedLabels]
-  // );
-
-  const footerLogo = mode === "default" ? dxcLogo : dxcSmallLogo;
+  const footerLogo = getLogoElement(mode, logo);
 
   return (
     <FooterContainer margin={margin} mode={mode}>
