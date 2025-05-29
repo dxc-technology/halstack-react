@@ -671,12 +671,12 @@ const DataGrid = () => {
           uniqueRowId="id"
         />
       </ExampleContainer>
-      <ExampleContainer>
+      {/* <ExampleContainer>
         <Title title="Scrollable Data Grid" theme="light" level={4} />
         <DxcContainer height="250px">
           <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
         </DxcContainer>
-      </ExampleContainer>
+      </ExampleContainer> */}
     </>
   );
 };
