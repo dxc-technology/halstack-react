@@ -1,12 +1,11 @@
 import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import reduced from "./examples/reduced";
 import Link from "next/link";
@@ -30,6 +29,7 @@ const cellTypeString = `{
   displayValue: React.ReactNode; 
   sortValue?: string | number | Date; 
 }[]`;
+
 const columnTypeString = `{ 
   displayValue: React.ReactNode; 
   isSortable?: boolean; 
@@ -51,7 +51,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 columns
               </DxcFlex>
@@ -78,7 +78,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 rows
               </DxcFlex>
@@ -108,7 +108,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
                 mode
               </DxcFlex>
@@ -133,7 +133,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
                 hidePaginator
               </DxcFlex>
@@ -235,7 +235,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     actions
                   </DxcFlex>
@@ -291,15 +291,13 @@ const sections = [
   },
 ];
 
-const ResultsetTableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ResultsetTableCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ResultsetTableCodePage;

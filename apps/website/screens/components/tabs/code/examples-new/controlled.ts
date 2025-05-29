@@ -5,15 +5,15 @@ const code = `() => {
   const [selectedTab, setSelectedTab] = useState("Mail");
   
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTabs>
-        <DxcTabs.Tab label="Mail" active={selectedTab === "Mail"} onClick={() => setSelectedTab("Mail")}>
+        <DxcTabs.Tab tabId="Mail" label="Mail" active={selectedTab === "Mail"} onClick={() => setSelectedTab("Mail")}>
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Calendar" active={selectedTab === "Calendar"} onClick={() => setSelectedTab("Calendar")}>
+        <DxcTabs.Tab tabId="Calendar" label="Calendar" active={selectedTab === "Calendar"} onClick={() => setSelectedTab("Calendar")}>
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Contacts" active={selectedTab === "Contacts"} onClick={() => setSelectedTab("Contacts")}>
+        <DxcTabs.Tab tabId="Contacts" label="Contacts" active={selectedTab === "Contacts"} onClick={() => setSelectedTab("Contacts")}>
           <></>
         </DxcTabs.Tab>
       </DxcTabs>

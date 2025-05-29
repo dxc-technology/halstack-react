@@ -219,7 +219,7 @@ const Screens = () => {
   return (
     <ExampleContainer>
       <Title title="Screen placement" />
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcButton
           label="Show default toast"
           onClick={() => {

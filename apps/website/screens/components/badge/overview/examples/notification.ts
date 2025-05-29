@@ -3,8 +3,8 @@ import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex gap="3rem">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex gap="var(--spacing-gap-xl)">
         <DxcBadge label={100} mode="notification" size="large"/>
         <DxcBadge mode="notification" size="large" />
       </DxcFlex>

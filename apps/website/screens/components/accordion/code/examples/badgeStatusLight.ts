@@ -2,7 +2,7 @@ import { DxcInset, DxcAccordion, DxcBadge, DxcStatusLight } from "@dxc-technolog
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcAccordion>
         <DxcAccordion.AccordionItem
           label="GET request"
@@ -10,7 +10,7 @@ const code = `() => {
           badge={{ position: "before", element: <DxcBadge label="GET" color="green"/> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             To edit your profile you need to go to Settings and click on Profile.
           </DxcInset>
         </DxcAccordion.AccordionItem>

@@ -12,10 +12,7 @@ const OptionItem = styled.li<{
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
   ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
-  &:hover {
-    background-color: ${({ selected }) =>
-      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
-  }
+  &:hover,
   &:active {
     background-color: ${({ selected }) =>
       selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
@@ -47,7 +44,6 @@ const OptionIcon = styled.span`
   place-items: center;
   color: var(--color-fg-neutral-dark);
   font-size: var(--height-xxs);
-
   svg {
     height: var(--height-xxs);
     width: 16px;
@@ -69,7 +65,8 @@ const OptionContent = styled.span`
   }
 `;
 
-const OptionLabel = styled.span`
+const OptionLabel = styled.span<{ isSelectAllOption: OptionProps["isSelectAllOption"] }>`
+  ${({ isSelectAllOption }) => isSelectAllOption && "font-weight: var(--typography-label-semibold);"}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -80,6 +77,7 @@ const ListOption = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
+  isSelectAllOption = false,
   multiple,
   onClick,
   option,
@@ -110,13 +108,15 @@ const ListOption = ({
         selected={isSelected}
         visualFocused={visualFocused}
       >
-        <StyledOption grouped={isGroupedOption} selected={isSelected} visualFocused={visualFocused} last={isLastOption}>
+        <StyledOption grouped={isGroupedOption} last={isLastOption} selected={isSelected} visualFocused={visualFocused}>
           {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} ref={checkboxRef} />}
           {option.icon && (
             <OptionIcon>{typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}</OptionIcon>
           )}
           <OptionContent>
-            <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
+            <OptionLabel isSelectAllOption={isSelectAllOption} onMouseEnter={handleOnMouseEnter}>
+              {option.label}
+            </OptionLabel>
             {!multiple && isSelected && <DxcIcon icon="done" />}
           </OptionContent>
         </StyledOption>

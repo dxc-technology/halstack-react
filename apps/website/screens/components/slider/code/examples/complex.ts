@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcSlider 
         helperText="Help message"
         label="Slider"

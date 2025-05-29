@@ -3,12 +3,12 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="1rem">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
         <DxcAccordion>
           <DxcAccordion.AccordionItem
             label="Hello world">
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>
@@ -19,7 +19,7 @@ const code = `() => {
             icon="filled_mail"
             subLabel="Jan, 09 2025"
           >
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>
@@ -30,7 +30,7 @@ const code = `() => {
             statusLight={<DxcStatusLight label="Active" mode="success" />}
             subLabel="Jan, 09 2025"
           >
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>
@@ -41,7 +41,7 @@ const code = `() => {
             label="Assure Claims"
             statusLight={<DxcStatusLight label="Active" mode="success" />}
           >
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>
@@ -52,7 +52,7 @@ const code = `() => {
             label="Life Policy"
             subLabel="Ref - 1236554546"
           >
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>
@@ -64,7 +64,7 @@ const code = `() => {
             statusLight={<DxcStatusLight label="Active" mode="success" />}
             subLabel="Ref - 1236554546"
           >
-            <DxcInset space="1.5rem">
+            <DxcInset space="var(--spacing-padding-l)">
               Details
             </DxcInset>
           </DxcAccordion.AccordionItem>

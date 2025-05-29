@@ -39,7 +39,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcContainer width="300px">
         <DxcContextualMenu items={items} />
       </DxcContainer>

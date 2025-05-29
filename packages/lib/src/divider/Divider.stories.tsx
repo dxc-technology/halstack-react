@@ -14,7 +14,7 @@ const Divider = () => (
   <>
     <Title title="Default" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -40,7 +40,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Default strong" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -66,7 +66,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Default light grey" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -92,7 +92,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Default dark grey" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="column">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -118,7 +118,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Vertical" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="row">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="row">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -144,7 +144,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Vertical strong" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="row">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="row">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -170,7 +170,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Vertical light grey" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="row">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="row">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -196,7 +196,7 @@ const Divider = () => (
     </ExampleContainer>
     <Title title="Vertical dark grey" level={4} />
     <ExampleContainer>
-      <DxcFlex gap="1rem" direction="row">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="row">
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra

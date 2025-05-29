@@ -100,6 +100,20 @@ const sampleControlledTabsInteraction = (onTabClick: (() => void)[]) => (
   </DxcTabs>
 );
 
+const sampleTabsWithoutLabel = (onTabClick: (() => void)[]) => (
+  <DxcTabs>
+    <DxcTabs.Tab tabId="Tab 1" icon="api" onClick={onTabClick[0]}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 2" icon="api" onClick={onTabClick[1]}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 3" icon="api" onClick={onTabClick[2]}>
+      <></>
+    </DxcTabs.Tab>
+  </DxcTabs>
+);
+
 describe("Tabs component tests", () => {
   test("Tabs render with correct labels", () => {
     const { getByText, getAllByRole } = render(sampleTabs);
@@ -243,6 +257,7 @@ describe("Tabs component tests", () => {
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick[2]).toHaveBeenCalled();
   });
+
   test("Controlled tabs interaction", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
     const { getAllByRole } = render(sampleControlledTabsInteraction(onTabClick));
@@ -262,5 +277,26 @@ describe("Tabs component tests", () => {
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+  });
+
+  test("Tabs without label interaction", () => {
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getAllByRole } = render(sampleTabsWithoutLabel(onTabClick));
+    const tabs = getAllByRole("tab");
+    tabs[0] && fireEvent.click(tabs[0]);
+    expect(onTabClick[0]).toHaveBeenCalled();
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+    tabs[1] && fireEvent.click(tabs[1]);
+    expect(onTabClick[1]).toHaveBeenCalled();
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+    tabs[2] && fireEvent.click(tabs[2]);
+    expect(onTabClick[2]).toHaveBeenCalled();
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
   });
 });

@@ -1,78 +1,30 @@
-import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { Children, KeyboardEvent, ReactElement, useMemo, useState } from "react";
 import styled from "styled-components";
 import NavTabsPropsType from "./types";
-import DxcTab from "./Tab";
+import Tab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
+import { getLabelFromTab, getPropInChild, getPreviousTabIndex, getNextTabIndex } from "./utils";
 
-const getPropInChild = (child: ReactNode, propName: string) => {
-  if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
-    if (childWithProps.props[propName]) {
-      return childWithProps.props[propName];
-    } else if (childWithProps.props.children) {
-      return getPropInChild(childWithProps.props.children, propName);
-    }
-  }
-};
+const NavTabsContainer = styled.div`
+  position: relative;
+  display: flex;
+  overflow: auto hidden;
+`;
 
-const getLabelFromTab = (child: ReactNode) => {
-  if (typeof child === "string") {
-    return child;
-  } else if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
-    if (Array.isArray(childWithProps.props.children)) {
-      return getLabelFromTab(childWithProps.props.children[0]);
-    } else {
-      return getLabelFromTab(childWithProps.props.children);
-    }
-  }
-};
-
-const getPreviousTabIndex = (array: ReactElement[], initialIndex: number): number => {
-  let index = initialIndex === 0 ? array.length - 1 : initialIndex - 1;
-  while (getPropInChild(array[index], "disabled")) {
-    index = index === 0 ? array.length - 1 : index - 1;
-  }
-  return index;
-};
-
-const getNextTabIndex = (array: ReactElement[], initialIndex: number): number => {
-  let index = initialIndex === array.length - 1 ? 0 : initialIndex + 1;
-  while (getPropInChild(array[index], "disabled")) {
-    index = index === array.length - 1 ? 0 : index + 1;
-  }
-  return index;
-};
-
-const Underline = styled.div<{ underlineWidth: number }>`
+const Underline = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
   height: var(--border-width-m);
   background-color: var(--border-color-neutral-medium);
-  z-index: -1;
-  width: ${(props) => props.underlineWidth}px;
+  width: 100%;
 `;
 
-const NavTabsContainer = styled.div`
-  display: flex;
-  position: relative;
-  overflow: auto;
-  z-index: 0;
-`;
-
-const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
+const DxcNavTabs = ({ iconPosition = "left", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
-  const [underlineWidth, setUnderlineWidth] = useState<number | null>(null);
-  const refNavTabList = useRef<HTMLDivElement | null>(null);
-
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
   ) as ReactElement[];
-
-  useEffect(() => {
-    setUnderlineWidth(refNavTabList?.current?.scrollWidth ?? null);
-  }, [children]);
 
   const contextValue = useMemo(
     () => ({
@@ -103,13 +55,13 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   };
 
   return (
-    <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
+    <NavTabsContainer onKeyDown={handleOnKeyDown} role="tablist" aria-label="Navigation tabs">
+      <Underline />
       <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
-      <Underline underlineWidth={underlineWidth ?? 0} />
     </NavTabsContainer>
   );
 };
 
-DxcNavTabs.Tab = DxcTab;
+DxcNavTabs.Tab = Tab;
 
 export default DxcNavTabs;
