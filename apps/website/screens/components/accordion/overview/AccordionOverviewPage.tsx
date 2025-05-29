@@ -187,119 +187,116 @@ const sections = [
           </>
         ),
       },
+    ],
+  },
+  {
+    title: "Best practices",
+    content: (
+      <DxcParagraph>
+        To ensure a clean, efficient, and user-friendly experience, follow these best practices when designing and
+        implementing accordion components:
+      </DxcParagraph>
+    ),
+    subSections: [
       {
-        title: "Best practices",
+        title: "Use accordions to manage space and structure",
         content: (
-          <DxcParagraph>
-            To ensure a clean, efficient, and user-friendly experience, follow these best practices when designing and
-            implementing accordion components:
-          </DxcParagraph>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Apply accordions when you need to organize large or secondary content into collapsible sections.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              They are particularly useful for FAQs, optional content, or detailed information nested under high-level
+              summaries.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Collapsing content helps reduce scrolling and offers users control over what they choose to engage with.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
-        subSections: [
-          {
-            title: "Use accordions to manage space and structure",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Apply accordions when you need to organize large or secondary content into collapsible sections.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  They are particularly useful for FAQs, optional content, or detailed information nested under
-                  high-level summaries.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Collapsing content helps reduce scrolling and offers users control over what they choose to engage
-                  with.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-          {
-            title: "Keep headers simple and informative",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Each accordion header must include a clear, concise title that describes the content inside.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Use a sublabel only when additional context is necessary —it should not overpower the title.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Avoid hiding essential or primary information inside an accordion panel.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-          {
-            title: "Limit secondary elements for clarity",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Use <strong>only one secondary element per side</strong> of the header (left and right) to avoid
-                  clutter.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Choose either an icon or a badge for the left side, and a helper text, badge, or status light for the
-                  right side —never more than one per side.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Avoid placing two elements of the same type in one header (e.g., two badges), as this reduces
-                  scannability and can confuse users.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-          {
-            title: "Respect visual hierarchy and semantic meaning",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Always prioritize the visibility of mandatory elements like the title over optional elements.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  If both a badge and a status light are present, avoid applying semantic colors (e.g., red, green) to
-                  the badge to prevent visual conflict with the status indicator.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Maintain consistency in layout and alignment to support content scanning, especially when multiple
-                  accordion sections are used together.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-          {
-            title: "Choose the appropriate expand behavior",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Use <strong>single-open behavior</strong> when content is interdependent, linear, or when space is
-                  limited.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Use <strong>multi-open behavior</strong> when content is independent or when users may need to view
-                  multiple sections at once.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Consider the context of use and user goals when deciding which interaction pattern is most
-                  appropriate.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-          {
-            title: "Design for mobile and accessibility",
-            content: (
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  Accordions should span the full width of the screen on smaller devices for easier interaction.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  Ensure all interactive elements are large enough to be tapped comfortably on touchscreens.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
-            ),
-          },
-        ],
+      },
+      {
+        title: "Keep headers simple and informative",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Each accordion header must include a clear, concise title that describes the content inside.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Use a sublabel only when additional context is necessary —it should not overpower the title.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Avoid hiding essential or primary information inside an accordion panel.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Limit secondary elements for clarity",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use <strong>only one secondary element per side</strong> of the header (left and right) to avoid clutter.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Choose either an icon or a badge for the left side, and a helper text, badge, or status light for the
+              right side —never more than one per side.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Avoid placing two elements of the same type in one header (e.g., two badges), as this reduces scannability
+              and can confuse users.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Respect visual hierarchy and semantic meaning",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Always prioritize the visibility of mandatory elements like the title over optional elements.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              If both a badge and a status light are present, avoid applying semantic colors (e.g., red, green) to the
+              badge to prevent visual conflict with the status indicator.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Maintain consistency in layout and alignment to support content scanning, especially when multiple
+              accordion sections are used together.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Choose the appropriate expand behavior",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use <strong>single-open behavior</strong> when content is interdependent, linear, or when space is
+              limited.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Use <strong>multi-open behavior</strong> when content is independent or when users may need to view
+              multiple sections at once.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Consider the context of use and user goals when deciding which interaction pattern is most appropriate.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Design for mobile and accessibility",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Accordions should span the full width of the screen on smaller devices for easier interaction.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Ensure all interactive elements are large enough to be tapped comfortably on touchscreens.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
       },
     ],
   },
