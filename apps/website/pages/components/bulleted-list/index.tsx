@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import BulletedListPageLayout from "screens/components/bulleted-list/BulletedListPageLayout";
-import BulletedListCodePage from "screens/components/bulleted-list/code/BulletedListCodePage";
+import BulletedListOverviewPage from "screens/components/bulleted-list/overview/BulletedListOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Bulleted List — Halstack Design System</title>
-      </Head>
-      <BulletedListCodePage />
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Bulleted List — Halstack Design System</title>
+    </Head>
+    <BulletedListOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <BulletedListPageLayout>{page}</BulletedListPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <BulletedListPageLayout>{page}</BulletedListPageLayout>;
 
 export default Index;
