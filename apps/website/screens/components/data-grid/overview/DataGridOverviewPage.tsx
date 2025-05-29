@@ -171,6 +171,30 @@ const sections = [
           </>
         ),
       },
+      {
+        title: "Hierarchical data",
+        content: (
+          <>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                The datagrid supports <strong>hierarchical or tree-structured data</strong>, allowing users to explore
+                nested information within expandable rows. This is especially useful when working with parent-child
+                relationships, such as organizational structures, grouped datasets, or categories with subcategories.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Rows can be expanded to reveal child rows, enabling users to{" "}
+                <strong>view and interact with multi-level data in context</strong>, without navigating away or loading
+                separate tables.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                This feature improves clarity and usability for complex datasets by letting users{" "}
+                <strong>drill down into relevant sections</strong> while keeping the rest of the grid collapsed and
+                clean.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </>
+        ),
+      },
     ],
   },
   {
