@@ -2,8 +2,8 @@ import { DxcCheckbox, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
-      <DxcFlex justifyContent="center" gap="var(--spacing-gap-xl)">
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcFlex justifyContent="center" gap="var(--spacing-gap-xxl)">
         <DxcCheckbox defaultChecked label="Check all" />
         <DxcCheckbox label="Check all" labelPosition="after" />
       </DxcFlex>

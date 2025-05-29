@@ -8,6 +8,7 @@ import multiple from "./examples/multiple";
 import filterable from "./examples/filterable";
 import Image from "@/common/Image";
 import anatomy from "./images/select_anatomy.png";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -157,6 +158,61 @@ const sections = [
             </DxcParagraph>
           </>
         ),
+      },
+      {
+        title: "Select all and grouped selection",
+        content: (
+          <DxcParagraph>
+            <strong>Select all</strong> and <strong>grouped selection</strong> options provide users with efficient ways
+            to manage large sets of checkable items within a list, dropdown, or multi-select component. These options
+            help reduce interaction costs and minimize repetitive actions, especially when dealing with categorized data
+            or bulk selection scenarios.
+          </DxcParagraph>
+        ),
+        subSections: [
+          {
+            title: "Select all",
+            content: (
+              <>
+                <DxcParagraph>
+                  The <strong>select all</strong> option (<Code>enableSelectAll</Code>) allows users to quickly select
+                  or deselect all items in a list with a single action.
+                </DxcParagraph>
+                <DxcParagraph>
+                  When the flag is set to true, a checkbox labelled with <em>"Select all"</em> text is placed at the top
+                  of the list or above grouped items. It should visually reflect the current state:
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Unselected when no items are selected.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Selected when all items are selected.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Indeterminate when only some items are selected.</DxcBulletedList.Item>
+                </DxcBulletedList>
+              </>
+            ),
+          },
+          {
+            title: "Grouped selection",
+            content: (
+              <>
+                <DxcParagraph>
+                  <strong>Grouped selection</strong> enables users to manage selections within categorized sections of a
+                  list. Each group has its own header with a group-level checkbox. This allows users to:
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Quickly select all items within a specific group.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Understand how items are organized.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    Maintain more granular control over selection without losing the efficiency of bulk actions.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+                <DxcParagraph>
+                  Just like the global select all, group checkboxes also reflect the selection state (selected,
+                  unselected, indeterminate) based on the individual items in that group.
+                </DxcParagraph>
+              </>
+            ),
+          },
+        ],
       },
     ],
   },

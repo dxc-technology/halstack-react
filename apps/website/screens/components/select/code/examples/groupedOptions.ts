@@ -3,36 +3,32 @@ import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   const options = [
     {
-      label: "Managers",
-      options: [
-        { label: "Pablo", value: "pablo" },
-        { label: "Marcos", value: "marcos" },
-        { label: "Rachel", value: "rachel" },
-        { label: "Margaret", value: "margaret" },
-      ],
-    },
-    {
-      label: "Engineers",
-      options: [
-        { label: "Yiminghe", value: "yiminghe" },
-        { label: "Manuel", value: "manuel" },
-        { label: "Bryan", value: "bryan" },
-        { label: "Anand", value: "anand" },
-        { label: "Jiale", value: "jiale" },
-      ],
-    },
-    {
       label: "Designers",
       options: [
-        { label: "Alex", value: "alex" },
-        { label: "Tim", value: "tim" },
-        { label: "Jairo", value: "Jairo" },
+        { label: "Lara", value: "lara" },
+        { label: "Irene", value: "irene" }
+      ],
+    },
+    {
+      label: "Developers",
+      options: [
+        { label: "Jairo", value: "jairo" },
+        { label: "Enrique", value: "enrique" },
+        { label: "Jiale", value: "jiale" },
+        { label: "Iván", value: "ivan" }
+      ],
+    },
+    {
+      label: "Managers",
+      options: [
+        { label: "Aitor", value: "aitor" },
+        { label: "Raquel", value: "Raquel" }
       ],
     },
   ];
 
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcSelect
         label="Select your coworkers"
         placeholder="Choose a colleague"

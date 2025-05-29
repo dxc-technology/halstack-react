@@ -78,14 +78,14 @@ const sections = [
                   <DxcBulletedList.Item>
                     <strong>Default tabs:</strong> used for main navigation, placed above the header, spanning 100% of
                     the screen width.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={defaultUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
                     <strong>Container tabs:</strong> Used for panel navigation, placed at the top of the panel, using
                     the full available width. Scrollable tabs are allowed when space is limited.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={scrollableUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>
@@ -160,72 +160,37 @@ const sections = [
   {
     title: "Best practices",
     content: (
-      <DxcParagraph>
-        To ensure an intuitive and user-friendly experience, follow these best practices when designing and implementing
-        tabs:
-      </DxcParagraph>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Maintain logical order:</strong> arrange tabs in a meaningful sequence based on user needs and place
+          frequently used or primary tabs first.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Keep tab labels short & clear:</strong> use concise, descriptive labels (1-2 words) that clearly
+          indicate the content. Avoid using generic or ambiguous labels like "Info" or "More." Instead, choose specific
+          terms that reflect the content, such as "Account Details" for user-related settings or "Billing" for payment
+          information and prioritize readability—avoid using all caps unless necessary.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Managing the number of tabs effectively:</strong> while not a strict rule, keeping the number of tabs
+          manageable (ideally 5-7) helps maintain clarity and usability. If additional tabs are necessary, assess the
+          information architecture carefully and consider grouping related items.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Use icons thoughtfully:</strong> ensure the icon is intuitive and clearly represents the content of
+          the tab. While they are generally used alongside labels, they can also be used independently. In such cases,
+          it is crucial to choose highly recognizable icons that clearly convey meaning without additional text. When
+          used together, the icon and label must work harmoniously to reinforce their meaning and avoid any conflicting
+          interpretations. Avoid using overly decorative or generic icons that do not provide clear meaning, such as an
+          abstract shape with no context.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Keep design consistent:</strong> while the component is flexible enough to support a mix of label-only
+          and label-with-icon tabs, it's best to choose one style per set. Mixing both can reduce scannability and
+          create visual imbalance, impacting the overall usability.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
-    subSections: [
-      {
-        title: "Maintain logical order",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>Arrange tabs in a meaningful sequence based on user needs.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Place frequently used or primary tabs first.</DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Keep tab labels short & clear",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Use concise, descriptive labels (1-2 words) that clearly indicate the content.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Avoid using generic or ambiguous labels like "Info" or "More." Instead, choose specific terms that reflect
-              the content, such as "Account Details" for user-related settings or "Billing" for payment information.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>Prioritize readability—avoid using all caps unless necessary.</DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Managing the number of tabs effectively",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              While not a strict rule, keeping the number of tabs manageable (ideally 5-7) helps maintain clarity and
-              usability.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              If additional tabs are necessary, assess the information architecture carefully and consider grouping
-              related items.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Use icons thoughtfully",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Ensure the icon is intuitive and clearly represents the content of the tab. While they are generally used
-              alongside labels, they can also be used independently. In such cases, it is crucial to choose highly
-              recognizable icons that clearly convey meaning without additional text.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              When used together, the icon and label must work harmoniously to reinforce their meaning and avoid any
-              conflicting interpretations.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Avoid using overly decorative or generic icons that do not provide clear meaning, such as an abstract
-              shape with no context.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
   },
 ];
 

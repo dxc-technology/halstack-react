@@ -11,9 +11,9 @@ const PaginatorPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Paginator" />
           <DxcParagraph>
             The paginator component allows dividing large amounts of content into multiple pages.

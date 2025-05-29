@@ -179,7 +179,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Choose the right variant:</strong>
-            <DxcInset top="0.5rem" bottom="0.5rem">
+            <DxcInset vertical="var(--spacing-padding-xs)">
               <DxcBulletedList type="circle">
                 <DxcBulletedList.Item>
                   The <strong>default (large) spinner</strong> is ideal for full-page or major loading states that

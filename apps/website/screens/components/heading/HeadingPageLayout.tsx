@@ -6,22 +6,20 @@ import { ReactNode } from "react";
 
 const HeadingPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/heading" },
-    { label: "Usage", path: "/components/heading/usage" },
-    { label: "Specifications", path: "/components/heading/specifications" },
+    { label: "Overview", path: "/components/heading" },
+    { label: "Code", path: "/components/heading/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Heading" />
           <DxcParagraph>
-            Heading component is an essential element that contributes to define a great hierarchy within the
-            application. It helps to give semantic meaning to the content as well as contributing to define a good
-            structure for SEO (search engine optimization). The implementation will rely on the use of HTML tags.
+            A component used to establish clear content hierarchy and structure, ensuring both visual and semantic
+            clarity across interfaces.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

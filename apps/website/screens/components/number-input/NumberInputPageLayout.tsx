@@ -6,24 +6,20 @@ import { ReactNode } from "react";
 
 const NumberInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/number-input" },
-    { label: "Usage", path: "/components/number-input/usage" },
-    {
-      label: "Specifications",
-      path: "/components/number-input/specifications",
-    },
+    { label: "Overview", path: "/components/number-input" },
+    { label: "Code", path: "/components/number-input/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Number Input" />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <ComponentHeading name="Number input" />
           <DxcParagraph>
-            The number input is a text input component that only allows numerical values and it has controls for
-            incrementing or decrementing them.
+            Number inputs are fields specifically used to capture numeric user input in a structured and accessible
+            format.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

@@ -2,7 +2,7 @@ import { DxcParagraph, DxcInset, DxcTypography } from "@dxc-technology/halstack-
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcParagraph>
         Lorem ipsum dolor sit amet,{" "}
         <DxcTypography fontWeight="700" display="inline">

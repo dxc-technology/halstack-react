@@ -6,15 +6,14 @@ import { ReactNode } from "react";
 
 const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/accordion" },
-    { label: "Usage", path: "/components/accordion/usage" },
-    { label: "Specifications", path: "/components/accordion/specifications" },
+    { label: "Overview", path: "/components/accordion" },
+    { label: "Code", path: "/components/accordion/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Accordion" />
           <DxcParagraph>
             The accordion component is a vertical stack of interactive headers used to group related content into
@@ -22,7 +21,7 @@ const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
             enhances the user experience by organizing information into smaller, digestible chunks, helping reduce
             cognitive load and save screen space.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

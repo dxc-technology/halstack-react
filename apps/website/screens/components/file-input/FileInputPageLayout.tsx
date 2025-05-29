@@ -6,25 +6,20 @@ import { ReactNode } from "react";
 
 const FileInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/file-input" },
-    { label: "Usage", path: "/components/file-input/usage" },
-    {
-      label: "Specifications",
-      path: "/components/file-input/specifications",
-    },
+    { label: "Overview", path: "/components/file-input" },
+    { label: "Code", path: "/components/file-input/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="File Input" />
           <DxcParagraph>
-            The file input component is used to choose files from any location in the local machine and update those
-            files to the server where the application is hosted. It is a common procedure in applications where files
-            are required, like documents, images, or other information in digital formats.
+            File inputs are used to allow users to upload one or more files from their local device to an application in
+            a structured and accessible way.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
