@@ -2,15 +2,15 @@ import { DxcTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcTabs>
-        <DxcTabs.Tab label="Mail" defaultActive>
+        <DxcTabs.Tab tabId="Mail" label="Mail" defaultActive>
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Calendar">
+        <DxcTabs.Tab tabId="Calendar" label="Calendar">
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Contacts">
+        <DxcTabs.Tab tabId="Contacts" label="Contacts">
           <></>
         </DxcTabs.Tab></DxcTabs>
     </DxcInset>

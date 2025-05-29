@@ -1,10 +1,9 @@
 import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import listbox from "./examples/listbox";
@@ -92,7 +91,7 @@ const sections = [
           <tr>
             <td>border</td>
             <td>
-              <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-s)" alignItems="baseline">
                 <ExtendedTableCode>{borderTypeString}</ExtendedTableCode>
                 <p>
                   being <Code>BorderProperties</Code> an object with the following properties:

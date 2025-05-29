@@ -214,7 +214,7 @@ const TextInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1.5rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-l)">
         <DxcTextInput label="Text input" size="fillParent" />
         <DxcTextInput label="Text input" size="medium" />
         <DxcTextInput label="Text input" size="large" />

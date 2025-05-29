@@ -1,6 +1,6 @@
 [
   { "label": "Accordion", "path": "/components/accordion", "status": "stable" },
-  { "label": "Alert", "path": "/components/alert", "status": "new" },
+  { "label": "Alert", "path": "/components/alert", "status": "stable" },
   {
     "label": "Application layout",
     "path": "/components/application-layout",
@@ -107,14 +107,13 @@
   { "label": "Switch", "path": "/components/switch", "status": "stable" },
   { "label": "Table", "path": "/components/table", "status": "stable" },
   { "label": "Tabs", "path": "/components/tabs", "status": "stable" },
-  { "label": "Tag", "path": "/components/tag", "status": "deprecated" },
   {
     "label": "Text input",
     "path": "/components/text-input",
     "status": "stable"
   },
   { "label": "Textarea", "path": "/components/textarea", "status": "stable" },
-  { "label": "Toast", "path": "/components/toast", "status": "new" },
+  { "label": "Toast", "path": "/components/toast", "status": "stable" },
   {
     "label": "Toggle group",
     "path": "/components/toggle-group",

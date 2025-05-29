@@ -29,8 +29,12 @@ import {
   groupsHaveOptions,
   isArrayOfGroupedOptions,
   notOptionalCheck,
+  getSelectableOptionsValues,
+  getSelectionType,
+  getGroupSelectionType,
+  computeNewValue,
 } from "./utils";
-import SelectPropsType, { ListOptionType, RefType } from "./types";
+import SelectPropsType, { ListOptionGroupType, ListOptionType, RefType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
@@ -173,6 +177,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       ariaLabel = "Select",
       defaultValue,
       disabled = false,
+      enableSelectAll = false,
       error,
       helperText,
       label,
@@ -212,12 +217,17 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
     const lastOptionIndex = useMemo(
-      () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
-      [options, filteredOptions, searchable, optional, multiple]
+      () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple, enableSelectAll),
+      [options, filteredOptions, searchable, optional, multiple, enableSelectAll]
     );
     const { selectedOption, singleSelectionIndex } = useMemo(
       () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
       [value, innerValue, options, multiple, optional, optionalItem]
+    );
+    const selectableOptionsValues = useMemo(() => getSelectableOptionsValues(options), [options]);
+    const selectionType = useMemo(
+      () => getSelectionType(options, (value ?? innerValue) as string[]),
+      [innerValue, options, value]
     );
 
     const openListbox = () => {
@@ -225,6 +235,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         changeIsOpen(true);
       }
     };
+
     const closeListbox = () => {
       if (isOpen) {
         changeIsOpen(false);
@@ -233,62 +244,72 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     };
 
     const handleOnChangeValue = useCallback(
-      (newOption: ListOptionType | undefined) => {
+      (newOption?: ListOptionType) => {
         if (newOption) {
-          let newValue: string | string[];
-
           if (multiple) {
-            const currentValue = (value ?? innerValue) as string[];
-            newValue = currentValue.includes(newOption.value)
-              ? currentValue.filter((optionVal) => optionVal !== newOption.value)
-              : [...currentValue, newOption.value];
-          } else newValue = newOption.value;
-
-          if (value == null) {
-            setInnerValue(newValue);
+            if (value == null) {
+              // uncontrolled mode: safely update using functional updates
+              setInnerValue((prev) => {
+                const newValue = computeNewValue(prev as string[], newOption);
+                onChange?.({
+                  value: newValue as string & string[],
+                  error: notOptionalCheck(newValue, multiple, optional)
+                    ? translatedLabels.formFields.requiredValueErrorMessage
+                    : undefined,
+                });
+                return newValue;
+              });
+            } else {
+              // controlled mode: just call onChange
+              const newValue = computeNewValue((value ?? innerValue) as string[], newOption);
+              onChange?.({
+                value: newValue as string & string[],
+                error: notOptionalCheck(newValue, multiple, optional)
+                  ? translatedLabels.formFields.requiredValueErrorMessage
+                  : undefined,
+              });
+            }
+          } else {
+            if (value == null) setInnerValue(newOption.value);
+            onChange?.({
+              value: newOption.value as string & string[],
+              error: notOptionalCheck(newOption.value, multiple, optional)
+                ? translatedLabels.formFields.requiredValueErrorMessage
+                : undefined,
+            });
           }
-          onChange?.({
-            value: newValue as string & string[],
-            error: notOptionalCheck(newValue, multiple, optional)
-              ? translatedLabels.formFields.requiredValueErrorMessage
-              : undefined,
-          });
         }
       },
-      [multiple, value, innerValue, onChange, optional, translatedLabels]
+      [multiple, value, onChange, optional, translatedLabels]
     );
+
     const handleOnClick = () => {
-      if (searchable) {
-        selectSearchInputRef?.current?.focus();
-      }
+      if (searchable) selectSearchInputRef?.current?.focus();
       if (isOpen) {
         closeListbox();
         setSearchValue("");
-      } else {
-        openListbox();
-      }
+      } else openListbox();
     };
+
     const handleOnFocus = (event: FocusEvent<HTMLInputElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
-        selectSearchInputRef?.current?.focus();
-      }
+      if (!event.currentTarget.contains(event.relatedTarget) && searchable) selectSearchInputRef?.current?.focus();
     };
+
     const handleOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeListbox();
         setSearchValue("");
 
         const currentValue = value ?? innerValue;
-        if (notOptionalCheck(currentValue, multiple, optional)) {
+        if (notOptionalCheck(currentValue, multiple, optional))
           onBlur?.({
             value: currentValue as string & string[],
             error: translatedLabels.formFields.requiredValueErrorMessage,
           });
-        } else {
-          onBlur?.({ value: currentValue as string & string[] });
-        }
+        else onBlur?.({ value: currentValue as string & string[] });
       }
     };
+
     const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Down":
@@ -298,16 +319,12 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             singleSelectionIndex != null &&
             (!isOpen ||
               (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-          ) {
+          )
             changeVisualFocusIndex(singleSelectionIndex);
-          } else {
-            changeVisualFocusIndex((currentVisualFocusIndex) => {
-              if (currentVisualFocusIndex < lastOptionIndex) {
-                return currentVisualFocusIndex + 1;
-              }
-              return 0;
-            });
-          }
+          else
+            changeVisualFocusIndex((currentVisualFocusIndex) =>
+              currentVisualFocusIndex < lastOptionIndex ? currentVisualFocusIndex + 1 : 0
+            );
           openListbox();
           break;
         case "Up":
@@ -317,65 +334,82 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             singleSelectionIndex != null &&
             (!isOpen ||
               (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-          ) {
+          )
             changeVisualFocusIndex(singleSelectionIndex);
-          } else {
+          else
             changeVisualFocusIndex((currentVisualFocusIndex) =>
               currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
                 ? lastOptionIndex
                 : currentVisualFocusIndex - 1
             );
-          }
           openListbox();
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
-          if (isOpen) {
-            event.stopPropagation();
-          }
+          if (isOpen) event.stopPropagation();
           closeListbox();
           setSearchValue("");
           break;
         case "Enter":
           if (isOpen && visualFocusIndex >= 0) {
-            let accLength = optional && !multiple ? 1 : 0;
-            if (searchable) {
-              if (filteredOptions.length > 0) {
-                if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions)) {
-                  handleOnChangeValue(optionalItem);
-                } else if (isArrayOfGroupedOptions(filteredOptions)) {
-                  if (groupsHaveOptions(filteredOptions)) {
-                    filteredOptions.some((groupOption) => {
-                      const groupLength = accLength + groupOption.options.length;
-                      if (groupLength > visualFocusIndex) {
-                        handleOnChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                      }
-                      accLength = groupLength;
-                      return groupLength > visualFocusIndex;
-                    });
-                  }
+            let accLength = (multiple ? enableSelectAll : optional) ? 1 : 0;
+            if (searchable && filteredOptions.length > 0) {
+              if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
+              else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
+              else if (isArrayOfGroupedOptions(filteredOptions) && enableSelectAll) {
+                if (groupsHaveOptions(filteredOptions))
+                  filteredOptions.some((group) => {
+                    if (visualFocusIndex === accLength) {
+                      handleSelectAllGroup(group);
+                      return true;
+                    } else {
+                      accLength++;
+                      return group.options.some((option) => {
+                        if (visualFocusIndex === accLength) {
+                          handleOnChangeValue(option);
+                          return true;
+                        } else accLength++;
+                      });
+                    }
+                  });
+              } else if (isArrayOfGroupedOptions(filteredOptions)) {
+                if (groupsHaveOptions(filteredOptions))
+                  filteredOptions.some((group) => {
+                    const groupLength = accLength + group.options.length;
+                    if (groupLength > visualFocusIndex)
+                      handleOnChangeValue(group.options[visualFocusIndex - accLength]);
+                    accLength = groupLength;
+                    return groupLength > visualFocusIndex;
+                  });
+              } else handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
+            } else if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
+            else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
+            else if (isArrayOfGroupedOptions(options) && enableSelectAll)
+              options.some((group) => {
+                if (visualFocusIndex === accLength) {
+                  handleSelectAllGroup(group);
+                  return true;
                 } else {
-                  handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
+                  accLength++;
+                  return group.options.some((option) => {
+                    if (visualFocusIndex === accLength) {
+                      handleOnChangeValue(option);
+                      return true;
+                    } else accLength++;
+                  });
                 }
-              }
-            } else if (optional && !multiple && visualFocusIndex === 0) {
-              handleOnChangeValue(optionalItem);
-            } else if (isArrayOfGroupedOptions(options)) {
-              options.some((groupOption) => {
-                const groupLength = accLength + groupOption.options.length;
-                if (groupLength > visualFocusIndex) {
-                  handleOnChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                }
+              });
+            else if (isArrayOfGroupedOptions(options))
+              options.some((group) => {
+                const groupLength = accLength + group.options.length;
+                if (groupLength > visualFocusIndex) handleOnChangeValue(group.options[visualFocusIndex - accLength]);
                 accLength = groupLength;
                 return groupLength > visualFocusIndex;
               });
-            } else {
-              handleOnChangeValue(options[visualFocusIndex - accLength]);
-            }
-            if (!multiple) {
-              closeListbox();
-            }
+            else handleOnChangeValue(options[visualFocusIndex - accLength]);
+
+            if (!multiple) closeListbox();
             setSearchValue("");
           }
           break;
@@ -383,6 +417,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           break;
       }
     };
+
     const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
       const text = event.currentTarget;
       setHasTooltip(text.scrollWidth > text.clientWidth);
@@ -394,21 +429,16 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       openListbox();
     };
 
-    const handleClearOptionsActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
-      event.stopPropagation();
-
+    const handleClearOptionsActionOnClick = (event?: MouseEvent<HTMLButtonElement>) => {
+      event?.stopPropagation();
       const empty: string[] = [];
-      if (value == null) {
-        setInnerValue(empty);
-      }
-      if (!optional) {
+      if (value == null) setInnerValue(empty);
+      if (!optional)
         onChange?.({
           value: empty as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else {
-        onChange?.({ value: empty as string & string[] });
-      }
+      else onChange?.({ value: empty as string & string[] });
     };
 
     const handleClearSearchActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -419,12 +449,30 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleOptionOnClick = useCallback(
       (option: ListOptionType) => {
         handleOnChangeValue(option);
-        if (!multiple) {
-          closeListbox();
-        }
+        if (!multiple) closeListbox();
         setSearchValue("");
       },
       [closeListbox, handleOnChangeValue, multiple]
+    );
+
+    const handleSelectAllOnClick = useCallback(() => {
+      if (selectionType === "checked") handleClearOptionsActionOnClick();
+      else {
+        if (value == null) setInnerValue(selectableOptionsValues);
+        onChange?.({ value: selectableOptionsValues as string & string[] });
+      }
+    }, [handleClearOptionsActionOnClick, innerValue, multiple, onChange, options, value]);
+
+    const handleSelectAllGroup = useCallback(
+      (group: ListOptionGroupType) => {
+        const groupSelectionType = getGroupSelectionType(group.options, (value ?? innerValue) as string[]);
+        if (groupSelectionType === "indeterminate")
+          group.options.forEach(
+            (option) => !(value ?? innerValue).includes(option.value) && handleOptionOnClick(option)
+          );
+        else group.options.forEach((option) => handleOptionOnClick(option));
+      },
+      [handleOptionOnClick, innerValue, value]
     );
 
     return (
@@ -558,7 +606,10 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               <Listbox
                 ariaLabelledBy={labelId}
                 currentValue={value ?? innerValue}
+                enableSelectAll={enableSelectAll}
                 handleOptionOnClick={handleOptionOnClick}
+                handleGroupOnClick={handleSelectAllGroup}
+                handleSelectAllOnClick={handleSelectAllOnClick}
                 id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}
@@ -566,6 +617,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 optionalItem={optionalItem}
                 options={searchable ? filteredOptions : options}
                 searchable={searchable}
+                selectionType={selectionType}
                 styles={{ width }}
                 visualFocusIndex={visualFocusIndex}
               />

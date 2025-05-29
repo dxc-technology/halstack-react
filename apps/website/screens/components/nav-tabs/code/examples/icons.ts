@@ -2,7 +2,7 @@ import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcNavTabs iconPosition="left">
         <DxcNavTabs.Tab href="#" active icon="favorite" notificationNumber>
           Tab 1

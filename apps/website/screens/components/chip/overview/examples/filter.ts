@@ -13,8 +13,8 @@ const roles = ["Admin", "Security Analyst", "Auditor", "Read-Only User"];
   };
 
   return (
-    <DxcInset space="1rem">
-      <DxcFlex gap="1rem" direction="column">
+    <DxcInset space="var(--spacing-padding-m)">
+      <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
         <DxcSelect
           label="Available roles"
           helperText="Select one or more roles to filter"
@@ -23,9 +23,9 @@ const roles = ["Admin", "Security Analyst", "Auditor", "Read-Only User"];
           value={selectedRoles}
           multiple
         />
-        <DxcFlex gap="0.25rem" direction="column">
+        <DxcFlex gap="var(--spacing-gap-xs)" direction="column">
           <DxcHeading level={5} text="Selected roles" />
-          <DxcFlex gap="0.5rem">
+          <DxcFlex gap="var(--spacing-gap-s)">
             {selectedRoles.map((role) => (
               <DxcChip
                 key={role}

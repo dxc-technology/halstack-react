@@ -104,6 +104,32 @@ const tabsNotification = (iconPosition?: "top" | "left") => (
 
 const tabsIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
+    <DxcTabs.Tab tabId="Tab 1" icon={iconSVG}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 2" icon={iconSVG}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 3" icon={iconSVG} disabled>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 4" icon="filled_star">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 5" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 6" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab tabId="Tab 7" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+  </DxcTabs>
+);
+
+const tabsIconLabel = (iconPosition?: "top" | "left") => (
+  <DxcTabs iconPosition={iconPosition}>
     <DxcTabs.Tab label="Tab 1" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
@@ -113,7 +139,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
     <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4">
+    <DxcTabs.Tab label="Tab 4" icon="filled_star">
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 5" icon="mail">
@@ -187,10 +213,12 @@ const Tabs = () => (
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
       {tabsIcon()}
+      {tabsIconLabel()}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
       {tabsIcon("top")}
+      {tabsIconLabel("top")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />

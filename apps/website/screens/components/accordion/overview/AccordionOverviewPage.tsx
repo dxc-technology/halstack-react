@@ -38,8 +38,8 @@ const sections = [
             section. It helps users understand what type of information they can expect to find inside.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Chevron icon</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
-            (expanded or collapsed). It provides an affordance for interaction and ensures users can toggle the
+            <strong>Chevron icon</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current
+            state (expanded or collapsed). It provides an affordance for interaction and ensures users can toggle the
             accordion intuitively.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -305,15 +305,13 @@ const sections = [
   },
 ];
 
-const AccordionOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/overview/AccordionOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const AccordionOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/overview/AccordionOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default AccordionOverviewPage;

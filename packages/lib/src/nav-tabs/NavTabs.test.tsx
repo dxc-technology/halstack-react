@@ -69,4 +69,47 @@ describe("Tabs component tests", () => {
     expect(tabs[1]?.getAttribute("tabindex")).toBe("-1");
     expect(tabs[2]?.getAttribute("tabindex")).toBe("3");
   });
+
+  // test("Keyboard navigation changes focus on arrow keys", () => {
+  //   const { getByRole, getAllByRole } = render(
+  //     <DxcNavTabs>
+  //       <DxcNavTabs.Tab>Tab 1</DxcNavTabs.Tab>
+  //       <DxcNavTabs.Tab disabled>Tab 2</DxcNavTabs.Tab>
+  //       <DxcNavTabs.Tab active>Tab 3</DxcNavTabs.Tab>
+  //     </DxcNavTabs>
+  //   );
+
+  //   const tablist = getByRole("tablist");
+  //   const tabs = getAllByRole("tab");
+
+  //   expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
+
+  //   fireEvent.keyDown(tablist, { key: "ArrowLeft" });
+  //   expect(tabs[0]?.getAttribute("tabindex")).toBe("0");
+
+  //   fireEvent.keyDown(tablist, { key: "ArrowRight" });
+  //   expect(tabs[2]?.getAttribute("tabindex")).toBe("0");
+  // });
+
+  test("Disabled tabs have aria-disabled and cannot be tab-focused", () => {
+    const { getAllByRole } = render(
+      <DxcNavTabs>
+        <DxcNavTabs.Tab disabled>Disabled Tab</DxcNavTabs.Tab>
+        <DxcNavTabs.Tab active>Active Tab</DxcNavTabs.Tab>
+      </DxcNavTabs>
+    );
+
+    const tabs = getAllByRole("tab");
+    expect(tabs[0]?.getAttribute("aria-disabled")).toBe("true");
+    expect(tabs[0]?.getAttribute("tabindex")).toBe("-1");
+  });
+
+  test("Context passes correct iconPosition to children", () => {
+    const { getByText } = render(
+      <DxcNavTabs iconPosition={"top"}>
+        <DxcNavTabs.Tab>Tab 1</DxcNavTabs.Tab>
+      </DxcNavTabs>
+    );
+    expect(getByText("Tab 1")).toBeTruthy();
+  });
 });

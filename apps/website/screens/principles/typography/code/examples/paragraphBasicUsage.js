@@ -2,7 +2,7 @@ import { DxcParagraph, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       <DxcParagraph>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id tortor
         sit amet velit auctor cursus id eget nisl. Vivamus luctus egestas eros,

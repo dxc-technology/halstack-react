@@ -11,9 +11,9 @@ const ImagePageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Image" />
           <DxcParagraph>The image component is used to embed images in Halstack-based user interfaces.</DxcParagraph>
           <TabsPageHeading tabs={tabs} />

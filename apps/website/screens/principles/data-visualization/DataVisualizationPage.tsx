@@ -4,7 +4,6 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import PageHeading from "@/common/PageHeading";
 import Code from "@/common/Code";
-import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import Link from "next/link";
 import colorPalette from "./images/bar_chart_color_palette.png";
@@ -326,20 +325,18 @@ const sections = [
   },
 ];
 
-const DataVisualizationPage = () => {
+export default function DataVisualizationPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Data visualization"></DxcHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Data visualization" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/data-visualization/DataVisualizationPage.tsx" />
     </DxcFlex>
   );
-};
-
-export default DataVisualizationPage;
+}

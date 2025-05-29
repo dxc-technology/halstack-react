@@ -307,10 +307,6 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   tabsTokens.hoverBackgroundColor = addLightness(57, theme.tabs?.baseColor) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(52, theme.tabs?.baseColor) ?? tabsTokens.pressedBackgroundColor;
 
-  const tagTokens = componentTokensCopy.tag;
-  tagTokens.fontColor = theme.tag?.fontColor ?? tagTokens.fontColor;
-  tagTokens.iconColor = theme.tag?.iconColor ?? tagTokens.iconColor;
-
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.labelFontColor = theme.textInput?.fontColor ?? textInputTokens.labelFontColor;
   textInputTokens.helperTextFontColor = theme.textInput?.fontColor ?? textInputTokens.helperTextFontColor;

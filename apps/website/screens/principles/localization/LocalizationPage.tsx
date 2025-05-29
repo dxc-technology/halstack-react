@@ -541,12 +541,6 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>noMatchesErrorMessage</Code>
-                </td>
-                <td>No matches found</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>actionClearSelectionTitle</Code>
                 </td>
                 <td>Clear selection</td>
@@ -556,6 +550,18 @@ const sections = [
                   <Code>actionClearSearchTitle</Code>
                 </td>
                 <td>Clear search</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>noMatchesErrorMessage</Code>
+                </td>
+                <td>No matches found</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>selectAllLabel</Code>
+                </td>
+                <td>Select all</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -625,20 +631,18 @@ const sections = [
   },
 ];
 
-const Localization = () => {
+export default function LocalizationPage() {
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Localization"></DxcHeading>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcHeading level={1} text="Localization" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/localization/LocalizationPage.tsx" />
     </DxcFlex>
   );
-};
-
-export default Localization;
+}

@@ -2,14 +2,13 @@ import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const optionsType = `{ 
@@ -58,6 +57,21 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                enableSelectAll
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Enables users to select multiple items from the list.</td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -169,7 +183,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 options
               </DxcFlex>
@@ -306,7 +320,7 @@ const sections = [
         content: <Example example={groups} defaultIsVisible />,
       },
       {
-        title: "Icons",
+        title: "Icon usage",
         content: <Example example={icons} defaultIsVisible />,
       },
     ],

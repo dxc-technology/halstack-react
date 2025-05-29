@@ -4,9 +4,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const sections = [
   {
@@ -61,7 +60,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   text
                 </DxcFlex>

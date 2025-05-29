@@ -2,13 +2,12 @@ import { DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halsta
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {

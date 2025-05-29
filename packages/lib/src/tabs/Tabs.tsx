@@ -106,7 +106,7 @@ const DxcTabs = ({
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
   );
-  const [activeTabLabel, setActiveTabLabel] = useState(() => {
+  const [activeTabId, setActiveTabId] = useState(() => {
     const hasActiveChild = childrenArray.some(
       (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
@@ -116,7 +116,7 @@ const DxcTabs = ({
         )
       : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+    return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });
   const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
@@ -130,14 +130,14 @@ const DxcTabs = ({
   const contextValue = useMemo(() => {
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {
-      activeLabel: activeTabLabel,
-      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
+      activeTabId: activeTabId,
+      focusedTabId: isValidElement(focusedChild) ? (focusedChild.props.label ?? focusedChild.props.tabId) : "",
       iconPosition,
       isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
-      setActiveLabel: setActiveTabLabel,
+      setActiveTabId: setActiveTabId,
       tabIndex,
     };
-  }, [activeTabLabel, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
+  }, [activeTabId, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
 
   const scrollLeft = () => {
     const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
@@ -172,7 +172,9 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+    const activeTab = childrenArray.findIndex(
+      (child: ReactElement) => (child.props.label ?? child.props.tabId) === activeTabId
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -245,7 +247,7 @@ const DxcTabs = ({
         </Tabs>
       </TabsContainer>
       {Children.map(children, (child) =>
-        isValidElement(child) && child.props.label === activeTabLabel ? child.props.children : null
+        isValidElement(child) && child.props.tabId === activeTabId ? child.props.children : null
       )}
     </>
   ) : (
