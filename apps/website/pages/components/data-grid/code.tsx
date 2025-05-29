@@ -1,18 +1,18 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
+import DataGridCodePage from "screens/components/data-grid/code/DataGridCodePage";
 import DataGridPageLayout from "screens/components/data-grid/DataGridPageLayout";
-import DataGridOverviewPage from "screens/components/data-grid/overview/DataGridOverviewPage";
 
-const Index = () => {
+const Code = () => {
   return (
     <>
       <Head>
         <title>Data grid — Halstack Design System</title>
       </Head>
-      <DataGridOverviewPage />
+      <DataGridCodePage />
     </>
   );
 };
 
-Index.getLayout = (page: ReactElement) => <DataGridPageLayout>{page}</DataGridPageLayout>;
-export default Index;
+Code.getLayout = (page: ReactElement) => <DataGridPageLayout>{page}</DataGridPageLayout>;
+export default Code;
