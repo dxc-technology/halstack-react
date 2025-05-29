@@ -7,9 +7,8 @@ import { ReactNode } from "react";
 
 const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/header" },
-    { label: "Usage", path: "/components/header/usage" },
-    { label: "Specifications", path: "/components/header/specifications" },
+    { label: "Overview", path: "/components/header" },
+    { label: "Code", path: "/components/header/code" },
   ];
 
   return (
@@ -18,9 +17,8 @@ const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Header" />
           <DxcParagraph>
-            The header is an important component in the interface, it is the area dedicated for the navigation across
-            the application and helps users understand what the content of the page is about. They appear at the top of
-            a page, above the main content.
+            A horizontal bar located at the top of the application, providing branding, primary navigation, and user
+            account controls.
           </DxcParagraph>
           <DxcParagraph>
             The header is part of the application layout, so it can only be used inside of it. Please check the{" "}
@@ -29,7 +27,7 @@ const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
             </Link>{" "}
             documentation.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
