@@ -652,13 +652,6 @@ const customSortRows = [
 ];
 
 const DataGrid = () => {
-  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
-  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
-
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
       <ExampleContainer>
@@ -669,6 +662,34 @@ const DataGrid = () => {
         <Title title="Expandable" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Summary row" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          uniqueRowId="id"
+        />
+      </ExampleContainer>
+      {/* <ExampleContainer>
+        <Title title="Scrollable Data Grid" theme="light" level={4} />
+        <DxcContainer height="250px">
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        </DxcContainer>
+      </ExampleContainer> */}
+    </>
+  );
+};
+
+const DataGridControlled = () => {
+  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
+  const [page, setPage] = useState(0);
+
+  return (
+    <>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
         <DxcDataGrid
@@ -706,21 +727,6 @@ const DataGrid = () => {
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
         />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          uniqueRowId="id"
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
-        </DxcContainer>
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
@@ -940,38 +946,14 @@ const DataGridUnknownUniqueRowId = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
 
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Expandable" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" expandable />
-      </ExampleContainer>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
           rows={expandableRows}
           uniqueRowId="error"
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Selectable & expandable" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          uniqueRowId="error"
-          expandable
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
@@ -993,21 +975,6 @@ const DataGridUnknownUniqueRowId = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          uniqueRowId="error"
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" />
-        </DxcContainer>
-      </ExampleContainer>
-      <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
@@ -1018,57 +985,6 @@ const DataGridUnknownUniqueRowId = () => {
           onSelectRows={setSelectedChildRows}
         />
       </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Controlled Rows" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={rowsControlled}
-          uniqueRowId="error"
-          showPaginator
-          onSort={(sortColumn) => {
-            if (sortColumn) {
-              const { columnKey, direction } = sortColumn;
-              console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => {
-                return currentRows.sort((a, b) => {
-                  if (isKeyOfRow(columnKey, a) && isKeyOfRow(columnKey, b)) {
-                    const valueA = a[columnKey];
-                    const valueB = b[columnKey];
-                    if (valueA != null && valueB != null) {
-                      if (direction === "ASC") {
-                        return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
-                      } else {
-                        return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
-                      }
-                    } else {
-                      return 0;
-                    }
-                  } else {
-                    return 0;
-                  }
-                });
-              });
-            } else {
-              console.log("Removed sorting criteria");
-              setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
-            }
-          }}
-          onPageChange={(page) => {
-            const internalPage = page - 1;
-            setPage(internalPage);
-            setRowsControlled(
-              expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
-            );
-          }}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={[5, 10]}
-          itemsPerPageFunction={(n) => {
-            setItemsPerPage(n);
-            setRowsControlled(expandableRows.slice(0, n));
-          }}
-          totalItems={expandableRows.length}
-        />
-      </ExampleContainer>
     </>
   );
 };
@@ -1077,6 +993,10 @@ type Story = StoryObj<typeof DxcDataGrid>;
 
 export const Chromatic: Story = {
   render: DataGrid,
+};
+
+export const Controlled: Story = {
+  render: DataGridControlled,
 };
 
 export const CustomSort: Story = {
