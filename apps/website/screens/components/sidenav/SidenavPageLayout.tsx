@@ -7,9 +7,8 @@ import { ReactNode } from "react";
 
 const SidenavPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/sidenav" },
-    { label: "Usage", path: "/components/sidenav/usage" },
-    { label: "Specifications", path: "/components/sidenav/specifications" },
+    { label: "Overview", path: "/components/sidenav" },
+    { label: "Code", path: "/components/sidenav/code" },
   ];
 
   return (
@@ -18,9 +17,7 @@ const SidenavPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Sidenav" />
           <DxcParagraph>
-            The sidenav component is part of the layout of the application and it makes easier to divide the main screen
-            into two different areas. The main area will have all the content and the sidenav as a secondary element as
-            an index, including links to different resources on the web page.
+            The sidenav component provides a vertical navigation structure placed on the left side of the interface.
           </DxcParagraph>
           <DxcParagraph>
             The sidenav is part of the application layout, so it can only be used inside of it. Please check the{" "}
