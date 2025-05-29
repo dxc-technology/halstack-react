@@ -40,11 +40,16 @@ const SidenavTitle = styled.div`
   font-weight: var(--typography-label-semibold);
 `;
 
+const SidenavGroup = styled.div`
+  a {
+    padding: var(--spacing-padding-xs) var(--spacing-padding-xxl);
+  }
+`;
+
 const SidenavGroupTitle = styled.span`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  width: 100%;
   gap: var(--spacing-gap-s);
   padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
   font-family: var(--typography-font-family);
@@ -99,7 +104,6 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -156,27 +160,29 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
 
   return (
     <GroupContextProvider value={changeIsSelected}>
-      {collapsable && title ? (
-        <SidenavGroupTitleButton
-          aria-expanded={!collapsed}
-          onClick={() => setCollapsed(!collapsed)}
-          selectedGroup={collapsed && isSelected}
-        >
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-            {title}
-          </DxcFlex>
-          <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
-        </SidenavGroupTitleButton>
-      ) : (
-        title && (
-          <SidenavGroupTitle>
-            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-            {title}
-          </SidenavGroupTitle>
-        )
-      )}
-      {!collapsed && children}
+      <SidenavGroup>
+        {collapsable && title ? (
+          <SidenavGroupTitleButton
+            aria-expanded={!collapsed}
+            onClick={() => setCollapsed(!collapsed)}
+            selectedGroup={collapsed && isSelected}
+          >
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+              {title}
+            </DxcFlex>
+            <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
+          </SidenavGroupTitleButton>
+        ) : (
+          title && (
+            <SidenavGroupTitle>
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+              {title}
+            </SidenavGroupTitle>
+          )
+        )}
+        {!collapsed && children}
+      </SidenavGroup>
     </GroupContextProvider>
   );
 };
