@@ -1,105 +1,28 @@
-import { useMemo, useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useContext } from "react";
+import styled from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
-import { CoreSpacingTokensType } from "../common/coreTokens";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
-
-const DxcFooter = ({
-  socialLinks,
-  bottomLinks,
-  copyright,
-  children,
-  margin,
-  tabIndex = 0,
-  mode = "default",
-}: FooterPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
-  const translatedLabels = useContext(HalstackLanguageContext);
-
-  const footerLogo = useMemo(
-    () =>
-      !colorsTheme.footer.logo ? (
-        mode === "default" ? (
-          dxcLogo
-        ) : (
-          dxcSmallLogo
-        )
-      ) : typeof colorsTheme.footer.logo === "string" ? (
-        <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
-      ) : (
-        colorsTheme.footer.logo
-      ),
-    [colorsTheme, translatedLabels]
-  );
-
-  return (
-    <ThemeProvider theme={colorsTheme.footer}>
-      <FooterContainer margin={margin} mode={mode}>
-        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="var(--spacing-gap-l)">
-          <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
-          {mode === "default" && (
-            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>
-              {socialLinks?.map((link, index) => (
-                <Tooltip label={link.title} key={`social${index}${link.href}`}>
-                  <SocialAnchor
-                    href={link.href}
-                    tabIndex={tabIndex}
-                    aria-label={link.title}
-                    key={`social${index}${link.href}`}
-                    index={index}
-                  >
-                    <SocialIconContainer>
-                      {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
-                    </SocialIconContainer>
-                  </SocialAnchor>
-                </Tooltip>
-              ))}
-            </DxcFlex>
-          )}
-        </DxcFlex>
-        <ChildComponents>{children}</ChildComponents>
-        {mode === "default" && (
-          <BottomContainer>
-            <BottomLinks>
-              {bottomLinks?.map((link, index) => (
-                <span key={`bottom${index}${link.text}`}>
-                  <BottomLink href={link.href} tabIndex={tabIndex}>
-                    {link.text}
-                  </BottomLink>
-                </span>
-              ))}
-            </BottomLinks>
-            <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
-          </BottomContainer>
-        )}
-      </FooterContainer>
-    </ThemeProvider>
-  );
-};
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
   mode?: FooterPropsType["mode"];
 }>`
-  background-color: ${(props) => props.theme.backgroundColor};
+  background-color: var(--color-bg-neutral-strongest);
   box-sizing: border-box;
   display: flex;
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
-  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : "40px")};
+  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
+  min-height: ${(props) => (props?.mode === "default" ? "124px" : "40px")};
   width: 100%;
-  gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
-  @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.mode === "default" ? "24px 32px" : "12px 32px")};
-  }
+  gap: var(--spacing-gap-m);
+  padding: var(--spacing-padding-l) var(--spacing-padding-ml);
   @media (max-width: ${responsiveSizes.small}rem) {
-    padding: 20px;
     flex-direction: column;
   }
 `;
@@ -117,23 +40,21 @@ const BottomContainer = styled.div`
     align-items: center;
   }
 
-  border-top: ${(props) =>
-    `${props.theme.bottomLinksDividerThickness} ${props.theme.bottomLinksDividerStyle} ${props.theme.bottomLinksDividerColor}`};
-  margin-top: 16px;
+  border-top: var(--border-width-s) var(--border-style-default) var(--border-color-primary-medium);
+  margin-top: var(--spacing-gap-m);
 `;
 
 const ChildComponents = styled.div`
-  min-height: 16px;
+  min-height: var(--height-xxs);
   overflow: hidden;
 `;
 
 const Copyright = styled.div`
-  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
-  font-family: ${(props) => props.theme.copyrightFontFamily};
-  font-size: ${(props) => props.theme.copyrightFontSize};
-  font-style: ${(props) => props.theme.copyrightFontStyle};
-  font-weight: ${(props) => props.theme.copyrightFontWeight};
-  color: ${(props) => props.theme.copyrightFontColor};
+  padding-top: var(--spacing-padding-xs);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-s);
+  font-weight: var(--typography-label-regular);
+  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 40%;
@@ -148,34 +69,34 @@ const Copyright = styled.div`
 `;
 
 const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
-  width: ${(props) => props.theme.logoWidth};
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  width: auto;
 `;
 
 const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
-  width: ${(props) => props.theme.logoWidth};
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  width: auto;
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
-  border-radius: 4px;
+  border-radius: var(--border-radius-s);
 
   &:focus {
-    outline: 2px solid #0095ff;
-    outline-offset: 2px;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: var(--border-width-m);
   }
 `;
 
 const SocialIconContainer = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.socialLinksColor};
+  color: var(--color-fg-neutral-bright);
   overflow: hidden;
-  font-size: ${(props) => props.theme.socialLinksSize};
+  font-size: var(--height-s);
 
   svg {
-    height: ${(props) => props.theme.socialLinksSize};
-    width: ${(props) => props.theme.socialLinksSize};
+    height: var(--height-s);
+    width: 24px;
   }
 `;
 
@@ -183,8 +104,8 @@ const BottomLinks = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
-  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
-  color: #fff;
+  padding-top: var(--spacing-padding-xs);
+  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
@@ -196,22 +117,86 @@ const BottomLinks = styled.div`
 
   & > span:not(:first-child):before {
     content: "·";
-    padding: 0 0.5rem;
+    padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   }
 `;
 
 const BottomLink = styled.a`
-  text-decoration: ${(props) => props.theme.bottomLinksTextDecoration};
-  color: ${(props) => props.theme.bottomLinksFontColor};
-  font-family: ${(props) => props.theme.bottomLinksFontFamily};
-  font-size: ${(props) => props.theme.bottomLinksFontSize};
-  font-style: ${(props) => props.theme.bottomLinksFontStyle};
-  font-weight: ${(props) => props.theme.bottomLinksFontWeight};
-  border-radius: 2px;
+  text-decoration: none;
+  border-radius: var(--border-radius-xs);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  color: var(--color-fg-neutral-bright);
 
   &:focus {
-    outline: 2px solid #0095ff;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
 `;
+
+const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["logo"]) => {
+  if (logo) {
+    return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
+  } else {
+    return mode === "default" ? dxcLogo : dxcSmallLogo;
+  }
+};
+
+const DxcFooter = ({
+  bottomLinks,
+  children,
+  copyright,
+  logo,
+  margin,
+  mode = "default",
+  socialLinks,
+  tabIndex = 0,
+}: FooterPropsType): JSX.Element => {
+  const translatedLabels = useContext(HalstackLanguageContext);
+
+  const footerLogo = getLogoElement(mode, logo);
+
+  return (
+    <FooterContainer margin={margin} mode={mode}>
+      <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap">
+        <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
+        {mode === "default" && (
+          <DxcFlex gap="var(--spacing-gap-ml)">
+            {socialLinks?.map((link, index) => (
+              <Tooltip label={link.title} key={`social${index}${link.href}`}>
+                <SocialAnchor
+                  href={link.href}
+                  tabIndex={tabIndex}
+                  aria-label={link.title}
+                  key={`social${index}${link.href}`}
+                  index={index}
+                >
+                  <SocialIconContainer>
+                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                  </SocialIconContainer>
+                </SocialAnchor>
+              </Tooltip>
+            ))}
+          </DxcFlex>
+        )}
+      </DxcFlex>
+      <ChildComponents>{children}</ChildComponents>
+      {mode === "default" && (
+        <BottomContainer>
+          <BottomLinks>
+            {bottomLinks?.map((link, index) => (
+              <span key={`bottom${index}${link.text}`}>
+                <BottomLink href={link.href} tabIndex={tabIndex}>
+                  {link.text}
+                </BottomLink>
+              </span>
+            ))}
+          </BottomLinks>
+          <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+        </BottomContainer>
+      )}
+    </FooterContainer>
+  );
+};
 
 export default DxcFooter;
