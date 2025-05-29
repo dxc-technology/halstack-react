@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
 import { GridColumn, HierarchyGridRow } from "./types";
 
@@ -13,7 +13,7 @@ const columns: GridColumn[] = [
   },
   {
     key: "complete",
-    label: " % Complete",
+    label: "% Complete",
     resizable: true,
     sortable: true,
     draggable: true,
@@ -48,6 +48,154 @@ const expandableRows = [
   },
 ];
 
+const hierarchyRows: HierarchyGridRow[] = [
+  {
+    name: "Root Node 1",
+    value: "1",
+    id: "a",
+    childRows: [
+      {
+        name: "Child Node 1.1",
+        value: "1.1",
+        id: "aa",
+        childRows: [
+          {
+            name: "Grandchild Node 1.1.1",
+            value: "1.1.1",
+            id: "aaa",
+          },
+          {
+            name: "Grandchild Node 1.1.2",
+            value: "1.1.2",
+            id: "aab",
+          },
+        ],
+      },
+      {
+        name: "Child Node 1.2",
+        value: "1.2",
+        id: "ab",
+      },
+    ],
+  },
+  {
+    name: "Root Node 2",
+    value: "2",
+    id: "b",
+    childRows: [
+      {
+        name: "Child Node 2.1",
+        value: "2.1",
+        id: "ba",
+        childRows: [
+          {
+            name: "Grandchild Node 2.1.1",
+            value: "2.1.1",
+            id: "baa",
+          },
+        ],
+      },
+      {
+        name: "Child Node 2.2",
+        value: "2.2",
+        id: "bb",
+      },
+      {
+        name: "Child Node 2.3",
+        value: "2.3",
+        id: "bc",
+      },
+    ],
+  },
+  {
+    name: "Root Node 3",
+    value: "3",
+    id: "c",
+    childRows: [
+      {
+        name: "Child Node 3.1",
+        value: "3.1",
+        id: "cc",
+        childRows: [
+          {
+            name: "Grandchild Node 3.1.1",
+            value: "3.1.1",
+            id: "ccc",
+          },
+          {
+            name: "Grandchild Node 3.1.2",
+            value: "3.1.2",
+            id: "ccd",
+          },
+        ],
+      },
+      {
+        name: "Child Node 3.2",
+        value: "3.2",
+        id: "cd",
+      },
+    ],
+  },
+  {
+    name: "Root Node 4",
+    value: "4",
+    id: "d",
+    childRows: [
+      {
+        name: "Child Node 4.1",
+        value: "4.1",
+        id: "da",
+        childRows: [
+          {
+            name: "Grandchild Node 4.1.1",
+            value: "4.1.1",
+            id: "daa",
+          },
+        ],
+      },
+      {
+        name: "Child Node 4.2",
+        value: "4.2",
+        id: "dd",
+      },
+      {
+        name: "Child Node 4.3",
+        value: "4.3",
+        id: "de",
+      },
+    ],
+  },
+  {
+    name: "Root Node 5",
+    value: "5",
+    id: "d",
+    childRows: [
+      {
+        name: "Child Node 5.1",
+        value: "5.1",
+        id: "da",
+        childRows: [
+          {
+            name: "Grandchild Node 5.1.1",
+            value: "5.1.1",
+            id: "daa",
+          },
+        ],
+      },
+      {
+        name: "Child Node 5.2",
+        value: "5.2",
+        id: "dd",
+      },
+      {
+        name: "Child Node 5.3",
+        value: "5.3",
+        id: "de",
+      },
+    ],
+  },
+] as HierarchyGridRow[];
+
 describe("Data grid component tests", () => {
   beforeAll(() => {
     (global as any).CSS = {
@@ -55,24 +203,79 @@ describe("Data grid component tests", () => {
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
+
   test("Renders with correct content", async () => {
-    const { getByText, getAllByRole } = await render(
-      <DxcDataGrid columns={columns} rows={expandableRows} />
-    );
+    const { getByText, getAllByRole } = render(<DxcDataGrid columns={columns} rows={expandableRows} />);
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
   });
-  // test("Content is sorted correctly", async () => {
-  //   const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
-  //   expect(getByText("% Complete")).toBeTruthy();
-  //   const headerCell = screen.getAllByRole("columnheader")[1];
-  //   expect(getAllByRole("gridcell")[0].textContent).toBe("1");
-  //   expect(headerCell.textContent).toBe(" % Complete");
-  //   await fireEvent.click(headerCell);
-  //   expect(headerCell.getAttribute("aria-sort")).toBe("ascending");
-  //   expect(getByText("5")).toBeTruthy();
-  //   // await waitFor(() => expect(getAllByRole("gridcell")[0].textContent).toBe("4"));
-  //   //waitFor(() => expect(getAllByRole("gridcell").length).toBe(8));
-  // });
+
+  test("Renders hierarchy rows", () => {
+    const onSelectRows = jest.fn();
+    const selectedRows = new Set<number | string>();
+    const { getAllByRole } = render(
+      <DxcDataGrid
+        columns={columns}
+        rows={hierarchyRows}
+        uniqueRowId="id"
+        selectable
+        onSelectRows={onSelectRows}
+        selectedRows={selectedRows}
+      />
+    );
+    const rows = getAllByRole("row");
+    expect(rows.length).toBe(5);
+  });
+
+  test("Renders column headers", () => {
+    const { getByText } = render(<DxcDataGrid columns={columns} rows={expandableRows} />);
+    expect(getByText("ID")).toBeTruthy();
+    expect(getByText("% Complete")).toBeTruthy();
+  });
+
+  test("Expands and collapses a row to show custom content", async () => {
+    const { getAllByRole, getByText, queryByText } = render(
+      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
+    );
+    const buttons = getAllByRole("button");
+    buttons[0] && fireEvent.click(buttons[0]);
+    expect(getByText("Custom content 1")).toBeTruthy();
+    buttons[0] && fireEvent.click(buttons[0]);
+    expect(queryByText("Custom content 1")).not.toBeTruthy();
+  });
+
+  test("Sorting by column works as expected", async () => {
+    const { getAllByRole } = render(
+      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
+    );
+    const headers = getAllByRole("columnheader");
+    const sortableHeader = headers[1];
+
+    sortableHeader && fireEvent.click(sortableHeader);
+    expect(sortableHeader?.getAttribute("aria-sort")).toBe("ascending");
+    await waitFor(() => {
+      const cells = getAllByRole("gridcell");
+      expect(cells[1]?.textContent).toBe("1");
+    });
+    sortableHeader && fireEvent.click(sortableHeader);
+    expect(sortableHeader?.getAttribute("aria-sort")).toBe("descending");
+    await waitFor(() => {
+      const cells = getAllByRole("gridcell");
+      expect(cells[1]?.textContent).toBe("5");
+    });
+  });
+
+  test("Expands multiple rows at once", () => {
+    const { getAllByRole, getByText } = render(
+      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
+    );
+
+    const buttons = getAllByRole("button");
+    buttons[0] && fireEvent.click(buttons[0]);
+    buttons[1] && fireEvent.click(buttons[1]);
+
+    expect(getByText("Custom content 1")).toBeTruthy();
+    expect(getByText("Custom content 2")).toBeTruthy();
+  });
 });
