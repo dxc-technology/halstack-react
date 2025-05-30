@@ -414,17 +414,20 @@ const DxcDataGrid = ({
         summaryRowHeight={colHeight}
         className="fill-grid"
       />
-      {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
-        <DxcPaginator
-          totalItems={totalItems ?? rows.length}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={itemsPerPageOptions}
-          itemsPerPageFunction={itemsPerPageFunction}
-          currentPage={page}
-          showGoToPage={showGoToPage}
-          onPageChange={goToPage}
-        />
-      )}
+
+      {showPaginator &&
+        (itemsPerPageOptions?.some((itemsPerPage) => (totalItems ?? rows.length) > itemsPerPage) ||
+          (totalItems ?? rows.length) > itemsPerPage) && (
+          <DxcPaginator
+            totalItems={totalItems ?? rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
     </DataGridContainer>
   );
 };
