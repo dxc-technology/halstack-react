@@ -64,45 +64,30 @@ export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
  * @param {ExpandableGridRow} row - The row object to expand.
  * @param {ExpandableGridRow[]} rows - The current list of all rows (as rendered).
  * @param {string} uniqueRowId - Unique identifier key used for each row.
- * @param {Function} setRowsToRender - State setter to update the rendered rows.
  */
-export const expandRow = (
-  row: ExpandableGridRow,
-  rows: ExpandableGridRow[],
-  uniqueRowId: string,
-  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => {
+export const expandRow = (row: ExpandableGridRow, rows: ExpandableGridRow[], uniqueRowId: string) => {
   const rowIndex = rows.findIndex((r) => r === row);
-  setRowsToRender((currentRows) => {
-    const newRows = [...currentRows];
-    addRow(newRows, rowIndex + 1, {
-      isExpandedChildContent: true,
-      [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-      expandedChildContent: row.expandedContent,
-      triggerRowKey: rowKeyGetter(row, uniqueRowId),
-      expandedContentHeight: row.expandedContentHeight,
-    });
-    return newRows;
+  const newRows = [...rows];
+  addRow(newRows, rowIndex + 1, {
+    isExpandedChildContent: true,
+    [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
+    expandedChildContent: row.expandedContent,
+    triggerRowKey: rowKeyGetter(row, uniqueRowId),
+    expandedContentHeight: row.expandedContentHeight,
   });
+  return newRows;
 };
 
 /**
  * Collapses a given row by removing its expanded child row.
  * @param {ExpandableGridRow} row - The row object to collapse.
  * @param {ExpandableGridRow[]} rows - The current list of all rows (as rendered).
- * @param {Function} setRowsToRender - State setter to update the rendered rows.
  */
-export const collapseRow = (
-  row: ExpandableGridRow,
-  rows: ExpandableGridRow[],
-  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => {
+export const collapseRow = (row: ExpandableGridRow, rows: ExpandableGridRow[]) => {
   const rowIndex = rows.findIndex((r) => r === row);
-  setRowsToRender((currentRows) => {
-    const newRows = [...currentRows];
-    deleteRow(newRows, rowIndex + 1);
-    return newRows;
-  });
+  const newRows = [...rows];
+  deleteRow(newRows, rowIndex + 1);
+  return newRows;
 };
 
 /**
@@ -126,9 +111,9 @@ export const renderExpandableTrigger = (
     onClick={() => {
       row.contentIsExpanded = !row.contentIsExpanded;
       if (row.contentIsExpanded) {
-        expandRow(row, rows, uniqueRowId, setRowsToRender);
+        setRowsToRender((currentRows) => expandRow(row, [...currentRows], uniqueRowId));
       } else {
-        collapseRow(row, rows, setRowsToRender);
+        setRowsToRender((currentRows) => collapseRow(row, [...currentRows]));
       }
     }}
     disabled={!rows.some((row) => uniqueRowId in row)}

@@ -291,17 +291,19 @@ const DxcDataGrid = ({
   }, [columnsToRender.length]);
 
   useEffect(() => {
+    const finalRows = [...rows];
     if (expandable) {
-      rows
+      finalRows
         .filter((row) => {
           const rowId = rowKeyGetter(row, uniqueRowId);
           return row.contentIsExpanded && !rows.some((r) => r[uniqueRowId] === `${rowId}_expanded`);
         })
         .forEach((row) => {
-          expandRow(row, rows, uniqueRowId, setRowsToRender);
+          expandRow(row, finalRows, uniqueRowId);
         });
     }
-  }, []);
+    setRowsToRender(finalRows);
+  }, [rows]);
 
   const reorderedColumns = useMemo(
     () =>
