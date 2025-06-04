@@ -788,6 +788,9 @@ const DataGridControlled = () => {
             setRowsControlled(expandableRows.slice(0, n));
           }}
           totalItems={expandableRows.length}
+          // onGridRowsChange={(row) => {
+          //   console.log(`Modified row: ${row}`);
+          // }}
         />
       </ExampleContainer>
     </>
