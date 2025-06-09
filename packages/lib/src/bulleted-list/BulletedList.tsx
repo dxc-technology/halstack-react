@@ -18,6 +18,7 @@ const Bullet = styled.div`
   align-items: center;
   align-self: flex-start;
   display: flex;
+  height: var(--height-s);
 `;
 
 const GeneralContent = styled.div`
@@ -28,7 +29,8 @@ const GeneralContent = styled.div`
 `;
 
 const Icon = styled.div`
-  align-content: center;
+  display: flex;
+  align-items: center;
   font-size: var(--height-xxs);
   height: var(--height-s);
   width: auto;
@@ -55,7 +57,7 @@ const Square = styled.div`
 const Circle = styled.div`
   border-color: var(--color-fg-neutral-dark);
   border-radius: 50%;
-  border: 1px solid;
+  border: var(--border-width-s) var(--border-style-default);
   height: 4px;
   width: 4px;
 `;
@@ -72,11 +74,9 @@ const ListItem = styled.li`
   display: flex;
   font-family: var(--typography-font-family);
   font-size: var(--typography-body-m);
-  font-style: normal;
   font-weight: var(--typography-body-regular);
-  line-height: normal;
   list-style: none;
-  margin: 0px;
+  margin: var(--spacing-padding-none);
   padding: var(--spacing-padding-none);
 `;
 
