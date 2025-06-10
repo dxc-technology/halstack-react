@@ -6,12 +6,8 @@ import { ReactNode } from "react";
 
 const ApplicationLayoutPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/application-layout" },
-    { label: "Usage", path: "/components/application-layout/usage" },
-    {
-      label: "Specifications",
-      path: "/components/application-layout/specifications",
-    },
+    { label: "Overview", path: "/components/application-layout" },
+    { label: "Code", path: "/components/application-layout/code" },
   ];
 
   return (
@@ -20,9 +16,10 @@ const ApplicationLayoutPageHeading = ({ children }: { children: ReactNode }) => 
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Application Layout" />
           <DxcParagraph>
-            The application layout provides a base UI wrapper for any application built with Halstack.
+            The Application Layout is the foundational UI wrapper for any application built with Halstack. It ensures
+            structural consistency and integrates key layout.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
