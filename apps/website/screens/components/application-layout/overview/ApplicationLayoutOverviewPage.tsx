@@ -8,6 +8,7 @@ import layoutGrid from "./images/layout_grid.png";
 import layoutBreakpoints from "./images/layout_breakpoints.png";
 import layoutMargins from "./images/layout_margins.png";
 import Link from "next/link";
+import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -62,7 +63,9 @@ const sections = [
           component placement and spacing. This geometric backbone ensures visual harmony by standardizing measurements,
           alignments, and spatial relationships across every interface.
         </DxcParagraph>
-        <Image src={layoutGrid} alt="Halstack's 8px grid" />
+        <Figure caption="Halstack's 8px grid">
+          <Image src={layoutGrid} alt="Halstack's 8px grid" />
+        </Figure>
       </>
     ),
   },
@@ -80,10 +83,58 @@ const sections = [
           <DxcBulletedList.Item>Analysis of current device resolution trends</DxcBulletedList.Item>
           <DxcBulletedList.Item>Overview patterns across mobile, tablet, and desktop</DxcBulletedList.Item>
         </DxcBulletedList>
-        <Image
-          src={layoutBreakpoints}
-          alt="Breakpoint thresholds derived from analysis of global device resolution trends."
-        />
+        <Figure caption="Breakpoint thresholds derived from analysis of global device resolution trends.">
+          <Image
+            src={layoutBreakpoints}
+            alt="Breakpoint thresholds derived from analysis of global device resolution trends."
+          />
+        </Figure>
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Breakpoint</th>
+              <th>px</th>
+              <th>rem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Code>xsmall</Code>
+              </td>
+              <td>320</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>
+                <Code>small</Code>
+              </td>
+              <td>480</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>
+                <Code>medium</Code>
+              </td>
+              <td>720</td>
+              <td>45</td>
+            </tr>
+            <tr>
+              <td>
+                <Code>large</Code>
+              </td>
+              <td>1056</td>
+              <td>66</td>
+            </tr>
+            <tr>
+              <td>
+                <Code>xlarge</Code>
+              </td>
+              <td>1440</td>
+              <td>90</td>
+            </tr>
+          </tbody>
+        </DxcTable>
       </>
     ),
   },
