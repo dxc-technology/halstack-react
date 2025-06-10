@@ -16,8 +16,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Application Layout is the base scaffolding of any application built in Halstack, serving as the structural
-          and organizational framework for all UI components.
+          The <strong>Application Layout</strong> is the base scaffolding of any application built in Halstack, serving
+          as the structural and organizational framework for all UI components.
         </DxcParagraph>
         <DxcParagraph>
           The following layout components are designed to work together, enabling flexible and consistent UI structures:
