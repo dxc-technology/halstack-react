@@ -282,6 +282,22 @@ const sections = [
             <td>Number of total items.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                loadChildren
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{`(triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>`}</TableCode>
+            </td>
+            <td>
+              Function called whenever a cell with children (<Code>HierarchyGridRow</Code>) is expanded. Returns the
+              children array.
+            </td>
+            <td>-</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

@@ -68,7 +68,7 @@ export type ExpandableRows = {
    */
   uniqueRowId: string;
   /**
-   * Function called whenever a cell with children is expanded.
+   * Function called whenever a cell with children is expanded. Returns the children array.
    */
   loadChildren?: never;
 };
@@ -86,7 +86,7 @@ export type HierarchyRows = {
   /**
    * Function called whenever a cell with children is expanded. Returns the children array
    */
-  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>;
+  loadChildren?: (triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>;
 };
 
 export type SelectableGridProps =
@@ -211,7 +211,7 @@ export type BasicGridProps = {
    */
   expandable?: false;
   /**
-   * Function called whenever a cell with children is expanded.
+   * Function called whenever a cell with children is expanded. Returns the children array.
    */
   loadChildren?: never;
 };
