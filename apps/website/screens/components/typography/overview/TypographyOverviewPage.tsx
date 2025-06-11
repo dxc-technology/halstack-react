@@ -112,15 +112,15 @@ const sections = [
   },
 ];
 
-const TypographyUsagePage = () => {
+const TypographyOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/typography/usage/TypographyUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/typography/overview/TypographyOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default TypographyUsagePage;
+export default TypographyOverviewPage;
