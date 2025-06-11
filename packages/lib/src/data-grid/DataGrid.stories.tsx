@@ -444,6 +444,29 @@ const childRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
+const childRowsLazy: HierarchyGridRow[] = [
+  {
+    name: "Root Node 1 Lazy",
+    value: "1",
+    id: "lazy-a",
+  },
+  {
+    name: "Root Node 2 Lazy",
+    value: "2",
+    id: "lazy-b",
+  },
+  {
+    name: "Root Node 3 Lazy",
+    value: "3",
+    id: "lazy-c",
+  },
+  {
+    name: "Root Node 4 Lazy",
+    value: "4",
+    id: "lazy-d",
+  },
+] as HierarchyGridRow[];
+
 const childRowsPaginated: HierarchyGridRow[] = [
   {
     name: "Paginated Node 1",
@@ -729,6 +752,31 @@ const DataGridControlled = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
+        <Title title="DataGrid with loadChildren function" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRowsLazy}
+          uniqueRowId="id"
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={setSelectedRows}
+          loadChildren={(triggerRow) => {
+            return [
+              {
+                name: `${triggerRow.name} Child 1`,
+                value: triggerRow.value,
+                id: `${triggerRow.id}-child-1`,
+              },
+              {
+                name: `${triggerRow.name} Child 2`,
+                value: triggerRow.value,
+                id: `${triggerRow.id}-child-2`,
+              },
+            ] as HierarchyGridRow[];
+          }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
@@ -997,6 +1045,15 @@ export const Chromatic: Story = {
 
 export const Controlled: Story = {
   render: DataGridControlled,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText("Root Node 1 Lazy"));
+    await userEvent.click(canvas.getByText("Root Node 2 Lazy"));
+    await userEvent.click(canvas.getByText("Root Node 1 Lazy Child 1"));
+    await userEvent.click(canvas.getByText("Root Node 1 Lazy Child 2"));
+    await userEvent.click(canvas.getByText("Root Node 2 Lazy Child 1"));
+    await userEvent.click(canvas.getByText("Root Node 2 Lazy Child 2"));
+  },
 };
 
 export const CustomSort: Story = {
