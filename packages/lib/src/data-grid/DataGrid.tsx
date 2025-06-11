@@ -166,6 +166,7 @@ const DxcDataGrid = ({
   itemsPerPage = 5,
   itemsPerPageOptions,
   itemsPerPageFunction,
+  loadChildren,
   onSort,
   onPageChange,
   totalItems,
@@ -234,7 +235,7 @@ const DxcDataGrid = ({
             if ((row as HierarchyGridRow).childRows?.length) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender, loadChildren)}
                 </HierarchyContainer>
               );
             }

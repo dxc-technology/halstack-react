@@ -112,6 +112,7 @@ export const renderExpandableTrigger = (
  * @param {string} uniqueRowId - Unique identifier for each row.
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
+ * @param {Function} loadChildren - Function called whenever a cell with children is expanded. Returns the children array
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 export const renderHierarchyTrigger = (
@@ -119,57 +120,61 @@ export const renderHierarchyTrigger = (
   triggerRow: HierarchyGridRow,
   uniqueRowId: string,
   columnKey: string,
-  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => (
-  <button
-    type="button"
-    disabled={!rows.some((row) => uniqueRowId in row)}
-    onClick={() => {
-      let newRowsToRender = [...rows];
-      if (!triggerRow.visibleChildren) {
-        const rowIndex = rows.findIndex((rowToRender) => triggerRow === rowToRender);
-        triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-          childRow.rowLevel =
-            triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-          childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-          addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-        });
-      } else {
-        // The children of the row that is being collapsed are added to an array
-        const rowsToRemove: HierarchyGridRow[] = [
-          ...rows.filter(
-            (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
-          ),
-        ];
-        // The children are checked if any of them has any other children of their own
-        const rowsToCheck = [...rowsToRemove];
-        while (rowsToCheck.length > 0) {
-          const currentRow = rowsToCheck.pop();
-          const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
+  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
+  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>
+) => {
+  return (
+    <button
+      type="button"
+      disabled={!rows.some((row) => uniqueRowId in row)}
+      onClick={async () => {
+        let newRowsToRender = [...rows];
+        if (!triggerRow.visibleChildren) {
+          const rowIndex = rows.findIndex((row) => triggerRow === row);
+          const loadedChildren = loadChildren ? await loadChildren(triggerRow) : (triggerRow.childRows ?? []);
+          loadedChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+            childRow.rowLevel =
+              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+          });
+        } else {
+          // The children of the row that is being collapsed are added to an array
+          const rowsToRemove: HierarchyGridRow[] = [
+            ...rows.filter(
+              (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
+            ),
+          ];
+          // The children are checked if any of them has any other children of their own
+          const rowsToCheck = [...rowsToRemove];
+          while (rowsToCheck.length > 0) {
+            const currentRow = rowsToCheck.pop();
+            const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
 
-          rowsToRemove.push(...childRows);
-          rowsToCheck.push(...childRows);
+            rowsToRemove.push(...childRows);
+            rowsToCheck.push(...childRows);
+          }
+          newRowsToRender = rows.filter(
+            (row) =>
+              !rowsToRemove
+                .map((rowToRemove) => {
+                  if (rowToRemove.visibleChildren) {
+                    rowToRemove.visibleChildren = false;
+                  }
+                  return rowKeyGetter(rowToRemove, uniqueRowId);
+                })
+                .includes(rowKeyGetter(row, uniqueRowId))
+          );
         }
-        newRowsToRender = rows.filter(
-          (row) =>
-            !rowsToRemove
-              .map((rowToRemove) => {
-                if (rowToRemove.visibleChildren) {
-                  rowToRemove.visibleChildren = false;
-                }
-                return rowKeyGetter(rowToRemove, uniqueRowId);
-              })
-              .includes(rowKeyGetter(row, uniqueRowId))
-        );
-      }
-      triggerRow.visibleChildren = !triggerRow.visibleChildren;
-      setRowsToRender(newRowsToRender);
-    }}
-  >
-    <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-    <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
-  </button>
-);
+        triggerRow.visibleChildren = !triggerRow.visibleChildren;
+        setRowsToRender(newRowsToRender);
+      }}
+    >
+      <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
+      <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
+    </button>
+  );
+};
 
 /**
  * Renders a checkbox for row selection.

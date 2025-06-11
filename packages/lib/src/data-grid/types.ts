@@ -67,6 +67,10 @@ export type ExpandableRows = {
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
   uniqueRowId: string;
+  /**
+   * Function called whenever a cell with children is expanded.
+   */
+  loadChildren?: never;
 };
 
 export type HierarchyRows = {
@@ -79,6 +83,10 @@ export type HierarchyRows = {
    * Whether the rows can expand or not.
    */
   expandable?: false;
+  /**
+   * Function called whenever a cell with children is expanded. Returns the children array
+   */
+  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>;
 };
 
 export type SelectableGridProps =
@@ -202,6 +210,10 @@ export type BasicGridProps = {
    * Whether the rows can expand or not.
    */
   expandable?: false;
+  /**
+   * Function called whenever a cell with children is expanded.
+   */
+  loadChildren?: never;
 };
 
 type Props = CommonProps &
