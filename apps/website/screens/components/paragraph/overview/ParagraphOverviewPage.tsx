@@ -14,7 +14,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           It is designed to render blocks of text with predefined typography styles, including consistent{" "}
-          <strong>font-size</strong>,<strong>font-weight</strong>, and <strong>color</strong>. It displays content as
+          <strong>font-size</strong>, <strong>font-weight</strong> and <strong>color</strong>. It displays content as
           text blocks separated by line breaks and follows the visual language of the design system.
         </DxcParagraph>
         <DxcParagraph>
