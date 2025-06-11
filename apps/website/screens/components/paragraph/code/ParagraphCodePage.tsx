@@ -50,15 +50,13 @@ const sections = [
   },
 ];
 
-const ParagraphCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paragraph/code/ParagraphCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ParagraphCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paragraph/code/ParagraphCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ParagraphCodePage;
