@@ -46,7 +46,6 @@ const BottomContainer = styled.div`
 
 const ChildComponents = styled.div`
   min-height: var(--height-xxs);
-  overflow: hidden;
   color: var(--color-fg-neutral-bright);
 `;
 
