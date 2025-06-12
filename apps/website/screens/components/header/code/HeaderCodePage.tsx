@@ -4,6 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const logoTypeString = `{
   href?: string;
@@ -38,7 +39,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>logo</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                logo
+              </DxcFlex>
+            </td>
             <td>
               <td>
                 <TableCode>{"Logo"}</TableCode>
