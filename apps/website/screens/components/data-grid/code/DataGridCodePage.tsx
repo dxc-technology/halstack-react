@@ -183,6 +183,14 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>onPageChange</td>
+            <td>
+              <TableCode>{`(page: number) => void`}</TableCode>
+            </td>
+            <td>Function called whenever the current page is changed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>onSelectRows</td>
             <td>
               <TableCode>{`(selectedRows: Set<number | string>) => void`}</TableCode>
@@ -202,14 +210,6 @@ const sections = [
               Function called whenever a column is sorted. Receives the sorted column and direction, or `undefined` if
               no sorting is applied.
             </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onPageChange</td>
-            <td>
-              <TableCode>{`(page: number) => void`}</TableCode>
-            </td>
-            <td>Function called whenever the current page is changed.</td>
             <td>-</td>
           </tr>
           <tr>
