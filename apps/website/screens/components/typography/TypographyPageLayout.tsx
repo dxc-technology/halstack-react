@@ -1,14 +1,13 @@
 import PageHeading from "@/common/PageHeading";
-import { DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcAlert, DxcParagraph } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import { ReactNode } from "react";
 
 const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/typography" },
-    { label: "Usage", path: "/components/typography/usage" },
-    { label: "Specifications", path: "/components/typography/specifications" },
+    { label: "Overview", path: "/components/typography" },
+    { label: "Code", path: "/components/typography/code" },
   ];
 
   return (
@@ -16,6 +15,10 @@ const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Typography" />
+          <DxcParagraph>
+            Typography component is a primitive. This means that using this component, you can create any typography
+            variant that is included in the Halstack Design System.
+          </DxcParagraph>
           <DxcAlert
             title="Usage"
             semantic="warning"
@@ -24,7 +27,7 @@ const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
             }}
             closable={false}
           />
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
