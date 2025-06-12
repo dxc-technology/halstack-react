@@ -72,13 +72,13 @@ const sections = [
             vertical space.
           </DxcBulletedList.Item>
         </DxcBulletedList>
+        <Figure caption="Footer variants">
+          <Image src={variants} alt="Application layout design specifications" />
+        </Figure>
         <DxcParagraph>
           Choosing between these variants helps tailor the footer to a wide range of contexts, whether prioritizing
           simplicity, providing extended navigation, or optimizing for space efficiency.
         </DxcParagraph>
-        <Figure caption="Footer variants">
-          <Image src={variants} alt="Application layout design specifications" />
-        </Figure>
       </>
     ),
   },

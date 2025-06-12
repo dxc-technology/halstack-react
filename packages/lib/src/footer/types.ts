@@ -58,7 +58,7 @@ type FooterPropsType = {
    */
   copyright?: string;
   /**
-   * Logo to be displayed inside the header
+   * Logo to be displayed inside the footer
    */
   logo?: Logo;
   /**
