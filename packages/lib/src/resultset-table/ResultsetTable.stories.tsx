@@ -150,6 +150,18 @@ const rowsSortable = [
   ],
 ];
 
+const rowsSortableHuge = Array.from({ length: 250000 }, (_, i) =>
+  rowsSortable.map((row) =>
+    row.map((cell) => {
+      const newVal = `${cell.sortValue}-${i + 1}`;
+      return {
+        displayValue: newVal,
+        sortValue: newVal,
+      };
+    })
+  )
+).flat();
+
 const rowsSortableMissingSortValues = [
   [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
   [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
@@ -381,6 +393,13 @@ const ResultsetActionsCellDropdown = () => (
   </ExampleContainer>
 );
 
+const ResultsetVirtualized = () => (
+  <ExampleContainer>
+    <Title title="Virtualized table" theme="light" level={4} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableHuge} itemsPerPage={100000} height={"500px"} />
+  </ExampleContainer>
+);
+
 type Story = StoryObj<typeof DxcResultsetTable>;
 
 export const Chromatic: Story = {
@@ -436,4 +455,8 @@ export const DropdownAction: Story = {
     const dropdown = canvas.getAllByRole("button")[5];
     dropdown && userEvent.click(dropdown);
   },
+};
+
+export const Virtualization: Story = {
+  render: ResultsetVirtualized,
 };

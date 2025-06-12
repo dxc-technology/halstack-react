@@ -75,7 +75,7 @@ const code = `() => {
         columns={columns}
         rows={rows}
         hidePaginator={true}
-      ></DxcResultsetTable>
+      />
     </DxcInset>
   );
 }`;
