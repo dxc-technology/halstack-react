@@ -1,8 +1,8 @@
 import { DxcDataGrid, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const code = `() => {
-  const columns = [
+  const columns = useMemo(() => [
     {
       key: "name",
       label: "Label",
@@ -14,9 +14,9 @@ const code = `() => {
       alignment: "right",
       summaryKey: "total"
     },
-  ];
-  
-  const rows = [
+  ], []);
+
+  const rows = useMemo(() => [
     {
         name: "Root Node 1",
         value: "1",
@@ -75,7 +75,7 @@ const code = `() => {
             },
         ],
     },
-  ];
+  ], []);
 
   const [selectedRows, setSelectedRows] = useState(new Set());
   return (
@@ -96,6 +96,7 @@ const scope = {
   DxcDataGrid,
   DxcInset,
   useState,
+  useMemo,
 };
 
 export default { code, scope };
