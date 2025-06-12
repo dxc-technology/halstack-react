@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useRef } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -7,10 +7,11 @@ import { getGroupSelectionType, groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
 import CheckboxContext from "../checkbox/CheckboxContext";
+import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 
 const ListboxContainer = styled.div`
   box-sizing: border-box;
-  max-height: 304px;
+  height: 304px;
   padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   background-color: var(--color-bg-neutral-lightest);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
@@ -21,8 +22,9 @@ const ListboxContainer = styled.div`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-  overflow-y: auto;
-  ${scrollbarStyles}
+  /* overflow-y: auto; */
+  /* ${scrollbarStyles} */
+  /* TODO: ADD SCROLLBARSTYLES TO SELECT AND RESULTSETTABLE */
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -66,97 +68,102 @@ const Listbox = ({
   visualFocusIndex,
 }: ListboxProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
-  const listboxRef = useRef<HTMLDivElement>(null);
+  const virtuosoRef = useRef<VirtuosoHandle>(null);
   let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 
-  const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
-    if (multiple && enableSelectAll) {
-      const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
-      globalMappingIndex++;
+  const isSearchEmpty = searchable && (options.length === 0 || !groupsHaveOptions(options));
+  const isSingleSelectOptional = optional && !multiple;
+  const isMultipleSelectWithSelectAll = multiple && enableSelectAll;
 
-      return (
-        <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
-          <ListOption
-            id={groupId}
-            isLastOption={lastOptionIndex === globalMappingIndex}
-            isSelected={groupSelectionType === "checked"}
-            isSelectAllOption
-            key={groupId}
-            multiple={true}
-            onClick={() => handleGroupOnClick(option)}
-            option={{
-              label: option.label,
-              value: "",
-            }}
-            visualFocused={visualFocusIndex === globalMappingIndex}
-          />
-        </CheckboxContext.Provider>
-      );
-    } else
-      return (
-        <GroupLabel id={groupId} role="presentation">
-          {option.label}
-        </GroupLabel>
-      );
+  const hasHeader = isSearchEmpty || isSingleSelectOptional || isMultipleSelectWithSelectAll;
+
+  const hasGroupedOptions = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType =>
+    "options" in option;
+
+  const mapGroupOptionFunc = (option: ListOptionGroupType, mapIndex: number) => {
+    const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
+      if (isMultipleSelectWithSelectAll) {
+        const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
+        globalMappingIndex++;
+        return (
+          <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
+            <ListOption
+              id={groupId}
+              isLastOption={lastOptionIndex === globalMappingIndex}
+              isSelected={groupSelectionType === "checked"}
+              isSelectAllOption
+              key={groupId}
+              multiple
+              onClick={() => handleGroupOnClick(option)}
+              option={{ label: option.label, value: "" }}
+              visualFocused={globalMappingIndex === visualFocusIndex}
+            />
+          </CheckboxContext.Provider>
+        );
+      } else {
+        return (
+          <GroupLabel id={groupId} role="presentation">
+            {option.label}
+          </GroupLabel>
+        );
+      }
+    };
+    const groupId = `${id}-group-${mapIndex}`;
+    return (
+      option.options.length > 0 && (
+        <ul aria-labelledby={groupId} key={groupId} role="group" style={{ padding: 0, margin: 0 }}>
+          {getGroupOption(groupId, option)}
+          {option.options.map((singleOption, childIndex) => {
+            const optionId = `${id}-option-${mapIndex}-${childIndex}`;
+            globalMappingIndex++;
+            return (
+              <ListOption
+                id={optionId}
+                isGroupedOption
+                isLastOption={lastOptionIndex === globalMappingIndex}
+                isSelected={
+                  multiple
+                    ? (currentValue as string[]).includes(singleOption.value)
+                    : currentValue === singleOption.value
+                }
+                key={optionId}
+                multiple={multiple}
+                onClick={handleOptionOnClick}
+                option={singleOption}
+                visualFocused={globalMappingIndex === visualFocusIndex}
+              />
+            );
+          })}
+        </ul>
+      )
+    );
   };
 
-  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
-    if ("options" in option) {
-      const groupId = `${id}-group-${mapIndex}`;
-
-      return (
-        option.options.length > 0 && (
-          <ul aria-labelledby={groupId} key={groupId} role="group" style={{ padding: 0, margin: 0 }}>
-            {getGroupOption(groupId, option)}
-            {option.options.map((singleOption) => {
-              globalMappingIndex++;
-              const optionId = `${id}-option-${globalMappingIndex}`;
-              return (
-                <ListOption
-                  id={optionId}
-                  isGroupedOption
-                  isLastOption={lastOptionIndex === globalMappingIndex}
-                  isSelected={
-                    multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
-                  }
-                  key={optionId}
-                  multiple={multiple}
-                  onClick={handleOptionOnClick}
-                  option={singleOption}
-                  visualFocused={visualFocusIndex === globalMappingIndex}
-                />
-              );
-            })}
-          </ul>
-        )
-      );
-    } else {
-      globalMappingIndex++;
-      const optionId = `${id}-option-${globalMappingIndex}`;
-      return (
-        <ListOption
-          id={optionId}
-          isLastOption={lastOptionIndex === globalMappingIndex}
-          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
-          key={optionId}
-          multiple={multiple}
-          onClick={handleOptionOnClick}
-          option={option}
-          visualFocused={visualFocusIndex === globalMappingIndex}
-        />
-      );
-    }
+  const mapOptionFunc = (option: ListOptionType, mapIndex: number) => {
+    const optionId = `${id}-option-${mapIndex}`;
+    return (
+      <ListOption
+        id={optionId}
+        isLastOption={lastOptionIndex === mapIndex}
+        isSelected={multiple ? (currentValue as string[]).includes(option.value) : currentValue === option.value}
+        key={optionId}
+        multiple={multiple}
+        onClick={handleOptionOnClick}
+        option={option}
+        visualFocused={mapIndex === visualFocusIndex}
+      />
+    );
   };
 
   const getFirstItem = () => {
-    if (searchable && (options.length === 0 || !groupsHaveOptions(options)))
+    if (isSearchEmpty) {
       return (
         <OptionsSystemMessage>
           <DxcIcon icon="search_off" />
           {translatedLabels.select.noMatchesErrorMessage}
         </OptionsSystemMessage>
       );
-    else if (optional && !multiple)
+    } else if (isSingleSelectOptional) {
       return (
         <ListOption
           id={`${id}-option-${0}`}
@@ -169,7 +176,7 @@ const Listbox = ({
           visualFocused={visualFocusIndex === 0}
         />
       );
-    else if (multiple && enableSelectAll) {
+    } else if (isMultipleSelectWithSelectAll) {
       return (
         <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
           <ListOption
@@ -178,7 +185,7 @@ const Listbox = ({
             isSelected={selectionType === "checked"}
             isSelectAllOption
             key={`${id}-option-${optionalItem.value}`}
-            multiple={true}
+            multiple
             onClick={handleSelectAllOnClick}
             option={{
               label: translatedLabels.select.selectAllLabel,
@@ -189,24 +196,34 @@ const Listbox = ({
         </CheckboxContext.Provider>
       );
     }
+    return null;
   };
 
   useLayoutEffect(() => {
-    if (currentValue && !multiple) {
-      const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
-      listEl?.scrollTo?.({
-        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
-      });
+    if (!multiple && currentValue && virtuosoRef.current) {
+      // TODO: Investigate logic for grouped options
+      const selectedIndex = options.findIndex(({ value }) => value === currentValue);
+      if (selectedIndex !== -1) {
+        setTimeout(() => {
+          virtuosoRef?.current?.scrollToIndex({
+            index: selectedIndex,
+            align: "center",
+            behavior: "auto",
+          });
+        }, 1);
+      }
     }
   }, [currentValue, multiple]);
 
   useLayoutEffect(() => {
-    const visualFocusedOptionEl = listboxRef.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({
-      block: "nearest",
-      inline: "start",
-    });
+    // TODO: Investigate logic for grouped options
+    if (visualFocusIndex >= 0 && virtuosoRef.current) {
+      virtuosoRef.current.scrollToIndex({
+        index: visualFocusIndex,
+        align: "center",
+        behavior: "auto",
+      });
+    }
   }, [visualFocusIndex]);
 
   return (
@@ -220,12 +237,23 @@ const Listbox = ({
       onMouseDown={(event) => {
         event.preventDefault();
       }}
-      ref={listboxRef}
       role="listbox"
       style={styles}
     >
-      {getFirstItem()}
-      {options.map(mapOptionFunc)}
+      <Virtuoso
+        ref={virtuosoRef}
+        style={{ height: "100%" }}
+        data={options}
+        itemContent={(index, option) => {
+          const adjustedIndex = hasHeader ? index + 1 : index;
+          return hasGroupedOptions(option)
+            ? mapGroupOptionFunc(option, adjustedIndex)
+            : mapOptionFunc(option, adjustedIndex);
+        }}
+        components={{
+          Header: () => getFirstItem(),
+        }}
+      />
     </ListboxContainer>
   );
 };
