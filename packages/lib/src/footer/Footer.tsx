@@ -21,7 +21,13 @@ const FooterContainer = styled.footer<{
   min-height: ${(props) => (props?.mode === "default" ? "124px" : "40px")};
   width: 100%;
   gap: var(--spacing-gap-m);
-  padding: var(--spacing-padding-l) var(--spacing-padding-ml);
+  padding: ${(props) =>
+    props?.mode === "default"
+      ? "var(--spacing-padding-m) var(--spacing-padding-xl)"
+      : "var(--spacing-padding-s) var(--spacing-padding-xl)"};
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    padding: var(--spacing-padding-l) var(--spacing-padding-ml)
+  }
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;
   }
