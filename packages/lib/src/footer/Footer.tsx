@@ -50,7 +50,7 @@ const ChildComponents = styled.div`
 `;
 
 const Copyright = styled.div`
-  padding-top: var(--spacing-padding-xs);
+  margin-top: var(--spacing-padding-xs);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
@@ -104,7 +104,7 @@ const BottomLinks = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
-  padding-top: var(--spacing-padding-xs);
+  margin-top: var(--spacing-padding-xs);
   color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
