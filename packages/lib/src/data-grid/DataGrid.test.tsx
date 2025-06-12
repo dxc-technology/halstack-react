@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
-import { GridColumn } from "./types";
+import { GridColumn, HierarchyGridRow } from "./types";
 
 Object.defineProperty(window, "getComputedStyle", {
   value: () => ({
@@ -205,6 +205,34 @@ const hierarchyRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
+const hierarchyRowsLazy: HierarchyGridRow[] = [
+  {
+    name: "Root Node 1 Lazy",
+    value: "1",
+    id: "lazy-a",
+  },
+  {
+    name: "Root Node 2 Lazy",
+    value: "2",
+    id: "lazy-b",
+  },
+  {
+    name: "Root Node 3 Lazy",
+    value: "3",
+    id: "lazy-c",
+  },
+  {
+    name: "Root Node 4 Lazy",
+    value: "4",
+    id: "lazy-d",
+  },
+  {
+    name: "Root Node 5 Lazy",
+    value: "5",
+    id: "lazy-e",
+  },
+] as HierarchyGridRow[];
+
 describe("Data grid component tests", () => {
   beforeAll(() => {
     (global as any).CSS = {
@@ -235,6 +263,38 @@ describe("Data grid component tests", () => {
     );
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
+  });
+
+  test("Triggers loadChildren when expanding hierarchy row", async () => {
+    const onSelectRows = jest.fn();
+    const selectedRows = new Set<number | string>();
+
+    const mockLoadedChildren = [
+      { id: "child-1", name: "Child 1", value: "Child 1" },
+      { id: "child-2", name: "Child 2", value: "Child 2" },
+    ];
+
+    const loadChildrenMock = jest.fn().mockResolvedValue(mockLoadedChildren);
+
+    const { getAllByRole } = render(
+      <DxcDataGrid
+        columns={columns}
+        rows={hierarchyRowsLazy}
+        uniqueRowId="id"
+        selectable
+        onSelectRows={onSelectRows}
+        selectedRows={selectedRows}
+        loadChildren={loadChildrenMock}
+      />
+    );
+
+    expect(getAllByRole("row").length).toBe(5);
+
+    const buttons = getAllByRole("button");
+
+    buttons[0] && fireEvent.click(buttons[0]);
+
+    expect(loadChildrenMock).toHaveBeenCalledWith(expect.objectContaining({ id: "lazy-a" }));
   });
 
   test("Renders column headers", () => {
