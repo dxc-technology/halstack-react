@@ -47,6 +47,17 @@ const SidenavGroup = styled.div`
   }
 `;
 
+const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-ml);
+  &:last-child {
+    hr {
+      display: none;
+    }
+  }
+`;
+
 const SidenavGroupTitle = styled.span`
   box-sizing: border-box;
   display: flex;
@@ -150,12 +161,12 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
 const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <>
+  <SectionContainer>
     <DxcFlex direction="column">{children}</DxcFlex>
     <DxcInset horizontal="var(--spacing-padding-ml)">
       <DxcDivider />
     </DxcInset>
-  </>
+  </SectionContainer>
 );
 
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
