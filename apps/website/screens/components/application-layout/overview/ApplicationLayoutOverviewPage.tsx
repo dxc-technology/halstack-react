@@ -34,7 +34,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>
-              <Link href="/components/flex" passHref legacyBehavior>
+              <Link href="/components/bleed" passHref legacyBehavior>
                 <DxcLink>Bleed</DxcLink>
               </Link>
               :
@@ -43,7 +43,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>
-              <Link href="/components/flex" passHref legacyBehavior>
+              <Link href="/components/inset" passHref legacyBehavior>
                 <DxcLink>Inset</DxcLink>
               </Link>
               :
