@@ -18,25 +18,17 @@ const ApplicationLayoutPropsTable = () => (
     </thead>
     <tbody>
       <tr>
-        <td>visibilityToggleLabel</td>
         <td>
-          <TableCode>string</TableCode>
+          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+            <StatusBadge status="required" />
+            children
+          </DxcFlex>
         </td>
-        <td>Text to be placed next to the hamburger button that toggles the visibility of the sidenav.</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>header</td>
         <td>
           <TableCode>React.ReactNode</TableCode>
         </td>
         <td>
-          Header of the application layout shown at the top of the screen. It is optional and if it is not specified,
-          the default header will be shown. Please check the Header documentation{" "}
-          <Link href="/components/header" passHref legacyBehavior>
-            <DxcLink>here</DxcLink>
-          </Link>
-          .
+          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
         </td>
         <td>-</td>
       </tr>
@@ -49,6 +41,21 @@ const ApplicationLayoutPropsTable = () => (
           Footer of the application layout shown at the bottom of the screen. It is optional and if it is not specified,
           the default header will be shown. Please check the Footer documentation{" "}
           <Link href="/components/footer" passHref legacyBehavior>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
+        </td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>header</td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
+        <td>
+          Header of the application layout shown at the top of the screen. It is optional and if it is not specified,
+          the default header will be shown. Please check the Header documentation{" "}
+          <Link href="/components/header" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
           .
@@ -70,18 +77,11 @@ const ApplicationLayoutPropsTable = () => (
         <td>-</td>
       </tr>
       <tr>
+        <td>visibilityToggleLabel</td>
         <td>
-          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-            <StatusBadge status="required" />
-            children
-          </DxcFlex>
+          <TableCode>string</TableCode>
         </td>
-        <td>
-          <TableCode>React.ReactNode</TableCode>
-        </td>
-        <td>
-          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
-        </td>
+        <td>Text to be placed next to the hamburger button that toggles the visibility of the sidenav.</td>
         <td>-</td>
       </tr>
     </tbody>
@@ -172,15 +172,13 @@ const sections = [
   },
 ];
 
-const ApplicationLayoutCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/application-layout/code/ApplicationLayoutCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ApplicationLayoutCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/application-layout/code/ApplicationLayoutCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ApplicationLayoutCodePage;

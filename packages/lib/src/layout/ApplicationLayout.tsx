@@ -45,9 +45,9 @@ const VisibilityToggle = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 4px 16px;
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-m);
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--color-bg-neutral-light);
   user-select: none;
   z-index: 2;
 `;
@@ -55,30 +55,27 @@ const VisibilityToggle = styled.div`
 const HamburgerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--spacing-gap-s);
   border: 0px solid transparent;
-  border-radius: 2px;
-  padding: 12px 4px;
+  border-radius: var(--border-radius-xs);
+  padding: var(--spacing-gap-none) var(--spacing-gap-none);
   background-color: transparent;
-  box-shadow: 0 0 0 2px transparent;
-  font-family:
-    Open Sans,
-    sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: #000;
+  font-family: var(--typography-font-family);
+  font-weight: var(--typography-label-semibold);
+  font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
   cursor: pointer;
 
   :active {
-    background-color: #cccccc;
+    background-color: var(--color-bg-neutral-lightest);
   }
   :focus,
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px #0095ff;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
   span::before {
-    font-size: 20px;
+    font-size: var(--height-xs);
   }
 `;
 
@@ -110,7 +107,7 @@ const MainContainer = styled.div`
 
 const MainContentContainer = styled.main`
   flex: 1;
-  background-color: #fff;
+  background-color: var(--color-bg-neutral-lightest);
 `;
 
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
