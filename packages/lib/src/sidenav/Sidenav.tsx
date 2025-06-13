@@ -13,6 +13,7 @@ import SidenavPropsType, {
 } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
 import DxcDivider from "../divider/Divider";
+import DxcInset from "../inset/Inset";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;
@@ -55,6 +56,7 @@ const SidenavGroupTitle = styled.span`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-semibold);
+  color: var(--color-fg-neutral-dark);
   span::before {
     font-size: var(--height-xxs);
   }
@@ -150,7 +152,9 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitl
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <>
     <DxcFlex direction="column">{children}</DxcFlex>
-    <DxcDivider />
+    <DxcInset horizontal="var(--spacing-padding-ml)">
+      <DxcDivider />
+    </DxcInset>
   </>
 );
 
