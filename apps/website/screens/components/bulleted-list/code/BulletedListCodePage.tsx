@@ -23,14 +23,19 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>type</td>
             <td>
-              <TableCode>'disc' | 'circle' | 'square' | 'number' | 'icon'</TableCode>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
             </td>
-            <td>Defines the style of the bullet point in the list.</td>
             <td>
-              <Code>'disc'</Code>
+              <TableCode>React.ReactNode</TableCode>
             </td>
+            <td>
+              Contains one or more <Code>DxcBulletedList.Item</Code>.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>icon</td>
@@ -48,19 +53,14 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>type</td>
             <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
+              <TableCode>'disc' | 'circle' | 'square' | 'number' | 'icon'</TableCode>
             </td>
+            <td>Defines the style of the bullet point in the list.</td>
             <td>
-              <TableCode>React.ReactNode</TableCode>
+              <Code>'disc'</Code>
             </td>
-            <td>
-              Contains one or more <Code>DxcBulletedList.Item</Code>.
-            </td>
-            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -117,15 +117,13 @@ const sections = [
   },
 ];
 
-const BulletedListCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bulleted-list/code/BulletedListCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const BulletedListCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bulleted-list/code/BulletedListCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default BulletedListCodePage;
