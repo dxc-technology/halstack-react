@@ -5,30 +5,9 @@ import { ReactNode, SetStateAction } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { AdvancedTheme } from "../common/variables";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
-
-/**
- * Function to overwrite the checkbox theme based on a passed theme object.
- * @param {DeepPartial<AdvancedTheme>} theme - Theme object with dataGrid properties.
- * @returns {object} New theme object with customized checkbox styles.
- */
-const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
-  const newTheme = {
-    checkbox: {
-      backgroundColorChecked: theme?.dataGrid?.headerCheckboxBackgroundColorChecked,
-      hoverBackgroundColorChecked: theme?.dataGrid?.headerCheckboxHoverBackgroundColorChecked,
-      borderColor: theme?.dataGrid?.headerCheckboxBorderColor,
-      hoverBorderColor: theme?.dataGrid?.headerCheckboxHoverBorderColor,
-      checkColor: theme?.dataGrid?.headerCheckboxCheckColor,
-      focusColor: theme?.dataGrid?.focusColor,
-    },
-  };
-
-  return newTheme;
-};
 
 /**
  * Converts grid columns into react-data-grid column format.
@@ -234,7 +213,6 @@ export const renderCheckbox = (
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
  * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
- * @param {DeepPartial<AdvancedTheme>} colorsTheme - Custom theme colors for the checkbox.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for the header checkbox.
  */
@@ -242,36 +220,33 @@ export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
   selectedRows: Set<string | number>,
-  colorsTheme: DeepPartial<AdvancedTheme>,
   onSelectRows: (_selected: Set<string | number>) => void
 ) => (
-  <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
-    <DxcCheckbox
-      checked={rows.length > 0 && !rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
-      onChange={(checked) => {
-        const updatedSelection = new Set(selectedRows);
+  <DxcCheckbox
+    checked={rows.length > 0 && !rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+    onChange={(checked) => {
+      const updatedSelection = new Set(selectedRows);
 
-        if (checked) {
-          rows.forEach((row) => {
-            updatedSelection.add(rowKeyGetter(row, uniqueRowId));
-            if (row.childRows && Array.isArray(row.childRows)) {
-              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
-            }
-          });
-        } else {
-          rows.forEach((row) => {
-            updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
-            if (row.childRows && Array.isArray(row.childRows)) {
-              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
-            }
-          });
-        }
+      if (checked) {
+        rows.forEach((row) => {
+          updatedSelection.add(rowKeyGetter(row, uniqueRowId));
+          if (row.childRows && Array.isArray(row.childRows)) {
+            getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+          }
+        });
+      } else {
+        rows.forEach((row) => {
+          updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
+          if (row.childRows && Array.isArray(row.childRows)) {
+            getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+          }
+        });
+      }
 
-        onSelectRows(updatedSelection);
-      }}
-      disabled={rows.length === 0 || !rows.some((row) => uniqueRowId in row)}
-    />
-  </HalstackProvider>
+      onSelectRows(updatedSelection);
+    }}
+    disabled={rows.length === 0 || !rows.some((row) => uniqueRowId in row)}
+  />
 );
 
 /**

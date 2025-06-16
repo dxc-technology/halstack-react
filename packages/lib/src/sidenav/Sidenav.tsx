@@ -1,11 +1,9 @@
 import { forwardRef, MouseEvent, useContext, useEffect, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcBleed from "../bleed/Bleed";
-import CoreTokens from "../common/coreTokens";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 import { GroupContext, GroupContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import SidenavPropsType, {
   SidenavGroupPropsType,
@@ -13,35 +11,162 @@ import SidenavPropsType, {
   SidenavSectionPropsType,
   SidenavTitlePropsType,
 } from "./types";
+import { scrollbarStyles } from "../styles/scroll";
+import DxcDivider from "../divider/Divider";
+import DxcInset from "../inset/Inset";
+
+const SidenavContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  @media (max-width: ${responsiveSizes.large}rem) {
+    width: 100vw;
+  }
+  padding: var(--spacing-padding-xl) var(--spacing-padding-none);
+  background-color: var(--color-bg-neutral-light);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  ${scrollbarStyles}
+`;
+
+const SidenavTitle = styled.div`
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-padding-xs) var(--spacing-padding-m);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-xl);
+  color: var(--color-fg-neutral-stronger);
+  font-weight: var(--typography-label-semibold);
+`;
+
+const SidenavGroup = styled.div`
+  a {
+    padding: var(--spacing-padding-xs) var(--spacing-padding-xxl);
+  }
+`;
+
+const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-ml);
+  &:last-child {
+    hr {
+      display: none;
+    }
+  }
+`;
+
+const SidenavGroupTitle = styled.span`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+  color: var(--color-fg-neutral-dark);
+  span::before {
+    font-size: var(--height-xxs);
+  }
+  svg {
+    height: var(--height-xxs);
+    width: 16px;
+  }
+`;
+
+const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+  cursor: pointer;
+
+  ${(props) =>
+    props.selectedGroup
+      ? `color: var(--color-fg-neutral-bright); background-color: var(--color-bg-neutral-stronger);`
+      : `color: var(--color-fg-neutral-stronger); background-color: transparent;`}
+
+  &:focus, &:focus-visible {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+  &:hover,
+  &:active {
+    background-color: ${(props) =>
+      props.selectedGroup ? "var(--color-bg-neutral-strongest)" : "var(--color-bg-neutral-medium)"};
+  }
+  span::before {
+    font-size: var(--height-xxs);
+  }
+  svg {
+    height: var(--height-xxs);
+    width: 16px;
+  }
+`;
+
+const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  text-decoration: none;
+  cursor: pointer;
+
+  ${(props) =>
+    props.selected
+      ? `color: var(--color-fg-neutral-bright); background-color: var(--color-bg-neutral-stronger);`
+      : `color: var(--color-fg-neutral-stronger); background-color: transparent;`}
+
+  &:focus, &:focus-visible {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+  &:hover,
+  &:active {
+    background-color: ${(props) =>
+      props.selected ? "var(--color-bg-neutral-strongest)" : "var(--color-bg-neutral-medium)"};
+  }
+  span::before {
+    font-size: var(--height-xxs);
+  }
+  svg {
+    height: var(--height-xxs);
+    width: 16px;
+  }
+`;
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.sidenav}>
-      <SidenavContainer>
-        {title}
-        <DxcFlex direction="column" gap="1rem">
-          {children}
-        </DxcFlex>
-      </SidenavContainer>
-    </ThemeProvider>
+    <SidenavContainer>
+      {title}
+      <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+        {children}
+      </DxcFlex>
+    </SidenavContainer>
   );
 };
 
-const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
-  <DxcBleed horizontal="1rem">
-    <SidenavTitle>{children}</SidenavTitle>
-  </DxcBleed>
-);
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <>
-    <DxcBleed horizontal="1rem">
-      <DxcFlex direction="column">{children}</DxcFlex>
-    </DxcBleed>
-    <Divider />
-  </>
+  <SectionContainer>
+    <DxcFlex direction="column">{children}</DxcFlex>
+    <DxcInset horizontal="var(--spacing-padding-ml)">
+      <DxcDivider />
+    </DxcInset>
+  </SectionContainer>
 );
 
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
@@ -57,7 +182,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
             onClick={() => setCollapsed(!collapsed)}
             selectedGroup={collapsed && isSelected}
           >
-            <DxcFlex alignItems="center" gap="0.5rem">
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               {title}
             </DxcFlex>
@@ -103,7 +228,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         onClick={handleClick}
         {...otherProps}
       >
-        <DxcFlex alignItems="center" gap="0.5rem">
+        <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
           {children}
         </DxcFlex>
@@ -112,168 +237,6 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     );
   }
 );
-
-const SidenavContainer = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  width: 280px;
-  @media (max-width: ${responsiveSizes.large}rem) {
-    width: 100vw;
-  }
-  padding: 2rem 1rem;
-  background-color: ${(props) => props.theme.backgroundColor};
-
-  overflow-y: auto;
-  overflow-x: hidden;
-  ::-webkit-scrollbar {
-    width: 2px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollBarTrackColor};
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.scrollBarThumbColor};
-    border-radius: 3px;
-  }
-`;
-
-const SidenavTitle = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1.2rem;
-  font-family: ${(props) => props.theme.titleFontFamily};
-  font-style: ${(props) => props.theme.titleFontStyle};
-  font-weight: ${(props) => props.theme.titleFontWeight};
-  font-size: ${(props) => props.theme.titleFontSize};
-  color: ${(props) => props.theme.titleFontColor};
-  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
-  text-transform: ${(props) => props.theme.titleFontTextTransform};
-`;
-
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: ${CoreTokens.color_grey_400};
-
-  &:last-child {
-    display: none;
-  }
-`;
-
-const SidenavGroup = styled.div`
-  a {
-    padding: 0.5rem 1.2rem 0.5rem 2.25rem;
-  }
-`;
-
-const SidenavGroupTitle = styled.span`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.2rem;
-  font-family: ${(props) => props.theme.groupTitleFontFamily};
-  font-style: ${(props) => props.theme.groupTitleFontStyle};
-  font-weight: ${(props) => props.theme.groupTitleFontWeight};
-  font-size: ${(props) => props.theme.groupTitleFontSize};
-  span::before {
-    font-size: 16px;
-  }
-  svg {
-    height: 16px;
-    width: 16px;
-  }
-`;
-
-const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
-  all: unset;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 1.2rem;
-  font-family: ${(props) => props.theme.groupTitleFontFamily};
-  font-style: ${(props) => props.theme.groupTitleFontStyle};
-  font-weight: ${(props) => props.theme.groupTitleFontWeight};
-  font-size: ${(props) => props.theme.groupTitleFontSize};
-  cursor: pointer;
-
-  ${(props) =>
-    props.selectedGroup
-      ? `color: ${props.theme.groupTitleSelectedFontColor}; background-color: ${props.theme.groupTitleSelectedBackgroundColor};`
-      : `color: ${props.theme.groupTitleFontColor}; background-color: transparent;`}
-
-  &:focus, &:focus-visible {
-    outline: 2px solid ${(props) => props.theme.linkFocusColor};
-    outline-offset: -2px;
-  }
-  &:hover {
-    ${(props) =>
-      props.selectedGroup
-        ? `color: ${props.theme.groupTitleSelectedHoverFontColor}; background-color: ${props.theme.groupTitleSelectedHoverBackgroundColor};`
-        : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
-  }
-  &:active {
-    color: #fff;
-    background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
-  }
-  span::before {
-    font-size: 16px;
-  }
-  svg {
-    height: 16px;
-    width: 16px;
-  }
-`;
-
-const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.5rem 1.2rem;
-  box-shadow: 0 0 0 2px transparent;
-  font-family: ${(props) => props.theme.linkFontFamily};
-  font-style: ${(props) => props.theme.linkFontStyle};
-  font-weight: ${(props) => props.theme.linkFontWeight};
-  font-size: ${(props) => props.theme.linkFontSize};
-  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
-  text-transform: ${(props) => props.theme.linkFontTextTransform};
-  text-decoration: ${(props) => props.theme.linkTextDecoration};
-  cursor: pointer;
-
-  ${(props) =>
-    props.selected
-      ? `color: ${props.theme.linkSelectedFontColor}; background-color: ${props.theme.linkSelectedBackgroundColor};`
-      : `color: ${props.theme.linkFontColor}; background-color: transparent;`}
-
-  &:focus, &:focus-visible {
-    outline: 2px solid ${(props) => props.theme.linkFocusColor};
-    outline-offset: -2px;
-  }
-  &:hover {
-    ${(props) =>
-      props.selected
-        ? `color: ${props.theme.linkSelectedHoverFontColor}; background-color: ${props.theme.linkSelectedHoverBackgroundColor};`
-        : `color: ${props.theme.linkFontColor}; background-color: ${props.theme.linkHoverBackgroundColor};`}
-  }
-  &:active {
-    color: #fff;
-    background-color: ${(props) => (props.selected ? "#333" : "#4d4d4d")};
-    outline: 2px solid #0095ff;
-    outline-offset: -2px;
-  }
-  span::before {
-    font-size: 16px;
-  }
-  svg {
-    height: 16px;
-    width: 16px;
-  }
-`;
 
 DxcSidenav.Section = Section;
 DxcSidenav.Group = Group;
