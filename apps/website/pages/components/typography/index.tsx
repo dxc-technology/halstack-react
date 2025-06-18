@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import TypographyPageLayout from "screens/components/typography/TypographyPageLayout";
-import TypographyCodePage from "screens/components/typography/code/TypographyCodePage";
+import TypographyOverviewPage from "screens/components/typography/overview/TypographyOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Typography — Halstack Design System</title>
-      </Head>
-      <TypographyCodePage />
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Typography — Halstack Design System</title>
+    </Head>
+    <TypographyOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TypographyPageLayout>{page}</TypographyPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TypographyPageLayout>{page}</TypographyPageLayout>;
 
 export default Index;

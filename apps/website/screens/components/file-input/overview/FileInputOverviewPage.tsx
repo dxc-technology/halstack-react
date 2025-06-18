@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
-import anatomy from "./images/fileInput_anatomy.png";
+import anatomy from "./images/file_input_anatomy.png";
 import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 
