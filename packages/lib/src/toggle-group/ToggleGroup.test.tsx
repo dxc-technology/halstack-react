@@ -2,22 +2,15 @@ import { fireEvent, render } from "@testing-library/react";
 import DxcToggleGroup from "./ToggleGroup";
 
 const options = [
-  {
-    value: 1,
-    label: "Amazon",
-  },
-  {
-    value: 2,
-    label: "Ebay",
-  },
-  {
-    value: 3,
-    label: "Apple",
-  },
-  {
-    value: 4,
-    label: "Google",
-  },
+  { value: 1, label: "Amazon" },
+  { value: 2, label: "Ebay" },
+  { value: 3, label: "Apple" },
+  { value: 4, label: "Google" },
+];
+
+const optionsWithDisabled = [
+  { value: 1, label: "Amazon" },
+  { value: 2, label: "Ebay", disabled: true },
 ];
 
 describe("Toggle group component tests", () => {
@@ -92,5 +85,69 @@ describe("Toggle group component tests", () => {
     const { getByRole } = render(<DxcToggleGroup options={options} orientation="vertical" />);
     const toggleGroup = getByRole("toolbar");
     expect(toggleGroup.getAttribute("aria-orientation")).toBe("vertical");
+  });
+  test("Keyboard 'Enter' triggers onChange", () => {
+    const onChange = jest.fn();
+    const { getByText } = render(<DxcToggleGroup options={options} onChange={onChange} />);
+    const option = getByText("Amazon");
+    option.focus();
+    fireEvent.keyDown(option, { key: "Enter" });
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+  test("Keyboard 'Space' triggers onChange", () => {
+    const onChange = jest.fn();
+    const { getByText } = render(<DxcToggleGroup options={options} onChange={onChange} />);
+    const option = getByText("Amazon");
+    option.focus();
+    fireEvent.keyDown(option, { key: " " });
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+  test("Clicking a disabled button does not call onChange", () => {
+    const onChange = jest.fn();
+    const { getByText } = render(<DxcToggleGroup options={optionsWithDisabled} onChange={onChange} />);
+    const disabledOption = getByText("Ebay");
+    fireEvent.click(disabledOption);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+  test("Button only renders icon if label is missing", () => {
+    const icon = (
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+      </svg>
+    );
+    const iconOnlyOption = [{ value: 1, icon: icon, title: "Icon only" }];
+    const { container, queryByText } = render(<DxcToggleGroup options={iconOnlyOption} />);
+    expect(container.querySelector("svg")).toBeTruthy();
+    expect(queryByText("Icon only")).toBeFalsy();
+  });
+  test("Disabled buttons have tabIndex -1", () => {
+    const { getAllByRole } = render(<DxcToggleGroup options={optionsWithDisabled} />);
+    const buttons = getAllByRole("button");
+    expect(buttons[0]?.getAttribute("tabindex")).toBe("0");
+    expect(buttons[1]?.getAttribute("tabindex")).toBe("-1");
+  });
+  test("Removes selected value when multiple is true and value is controlled", () => {
+    const handleChange = jest.fn();
+    const options = [
+      { value: 1, label: "Amazon" },
+      { value: 2, label: "Ebay" },
+    ];
+    const { getByRole } = render(<DxcToggleGroup options={options} value={[1, 2]} multiple onChange={handleChange} />);
+
+    fireEvent.click(getByRole("button", { name: "Ebay" }));
+    expect(handleChange).toHaveBeenCalledWith([1]);
+  });
+
+  test("Adds value when multiple is true and value is controlled", () => {
+    const handleChange = jest.fn();
+    const options = [
+      { value: 1, label: "Amazon" },
+      { value: 2, label: "Ebay" },
+    ];
+    const { getByRole } = render(<DxcToggleGroup options={options} value={[1]} multiple onChange={handleChange} />);
+
+    fireEvent.click(getByRole("button", { name: "Ebay" }));
+    expect(handleChange).toHaveBeenCalledWith([1, 2]);
   });
 });
