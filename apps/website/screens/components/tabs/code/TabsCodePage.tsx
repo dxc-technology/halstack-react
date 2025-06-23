@@ -349,23 +349,6 @@ const sections = [
       },
     ],
   },
-  {
-    title: "Examples (deprecated)",
-    subSections: [
-      {
-        title: "Controlled",
-        content: <Example example={controlledDeprecated} defaultIsVisible />,
-      },
-      {
-        title: "Uncontrolled",
-        content: <Example example={uncontrolledDeprecated} defaultIsVisible />,
-      },
-      {
-        title: "Icons and notifications",
-        content: <Example example={iconsDeprecated} defaultIsVisible />,
-      },
-    ],
-  },
 ];
 
 const TabsCodePage = () => (

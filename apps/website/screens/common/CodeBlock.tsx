@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { DxcButton, DxcContainer, DxcFlex } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const PreformattedText = styled.pre`
   background-color: var(--color-bg-neutral-lighter);

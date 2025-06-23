@@ -1,5 +1,5 @@
 import { MouseEvent, useId, useMemo, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import SpinnerPropsType from "./types";
 import { TooltipWrapper } from "../tooltip/Tooltip";

@@ -1,5 +1,5 @@
 import { memo, useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
@@ -69,7 +69,9 @@ const Suggestions = ({
   return (
     <SuggestionsContainer style={styles}>
       {isSearching ? (
-        <SuggestionsSystemMessage aria-live="polite">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage aria-live="polite">
+          {translatedLabels.textInput.searchingMessage}
+        </SuggestionsSystemMessage>
       ) : searchHasErrors ? (
         <SuggestionsErrorMessage aria-live="assertive" role="alert">
           <DxcIcon icon="filled_error" />

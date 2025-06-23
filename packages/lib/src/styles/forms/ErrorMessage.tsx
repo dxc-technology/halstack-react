@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcIcon from "../../icon/Icon";
 
 const ErrorMessageContainer = styled.div`
@@ -9,7 +9,7 @@ const ErrorMessageContainer = styled.div`
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
   margin-top: var(--spacing-gap-xs);
-  
+
   /* Error icon */
   > span[role="img"] {
     font-size: var(--height-xxs);

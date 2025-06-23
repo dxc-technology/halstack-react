@@ -1,15 +1,20 @@
 import { createPortal } from "react-dom";
-import styled, { createGlobalStyle } from "styled-components";
+import { Global, css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import FocusLock from "../utils/FocusLock";
 import { ModalAlertWrapperProps } from "./types";
 import { useEffect } from "react";
 
-const BodyStyle = createGlobalStyle`
-  body {
-    overflow: hidden;
-  }
-`;
+const BodyStyle = () => (
+  <Global
+    styles={css`
+      body {
+        overflow: hidden;
+      }
+    `}
+  />
+);
 
 const Modal = styled.div`
   position: fixed;

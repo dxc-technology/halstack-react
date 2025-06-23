@@ -1,5 +1,5 @@
 import { ReactElement, useContext, useId, cloneElement, useMemo } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import HalstackContext from "../HalstackContext";
 import { AccordionItemProps } from "./types";
 import DxcIcon from "../icon/Icon";

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 /**
  * Styled component used in the examples of the layout components:

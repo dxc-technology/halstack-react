@@ -1,5 +1,5 @@
 import { forwardRef, MouseEvent, useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcBleed from "../bleed/Bleed";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";

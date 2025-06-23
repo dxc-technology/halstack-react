@@ -9,11 +9,10 @@ import {
   useRef,
   useState,
 } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import TabsContext from "./TabsContext";
 import DxcTab, { sharedTabStyles } from "./Tab";
 import TabsPropsType, { TabProps } from "./types";
-import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
@@ -207,7 +206,7 @@ const DxcTabs = ({
       });
   }, []);
 
-  return children ? (
+  return (
     <>
       <TabsContainer margin={margin}>
         <Underline />
@@ -250,19 +249,6 @@ const DxcTabs = ({
         isValidElement(child) && child.props.tabId === activeTabId ? child.props.children : null
       )}
     </>
-  ) : (
-    tabs != null && (
-      <DxcTabsLegacy
-        activeTabIndex={activeTabIndex}
-        defaultActiveTabIndex={defaultActiveTabIndex}
-        iconPosition={iconPosition}
-        margin={margin}
-        onTabClick={onTabClick}
-        onTabHover={onTabHover}
-        tabIndex={tabIndex}
-        tabs={tabs}
-      />
-    )
   );
 };
 

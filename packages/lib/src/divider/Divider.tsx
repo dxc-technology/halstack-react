@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DividerPropsType from "./types";
 
 const StyledDivider = styled.hr<DividerPropsType>`
