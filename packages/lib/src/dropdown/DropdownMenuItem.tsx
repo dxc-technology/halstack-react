@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DropdownMenuItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 

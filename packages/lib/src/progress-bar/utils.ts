@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from "@emotion/react";
 
 export const textColorStyles = (overlay = false) => css`
   color: ${overlay ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)"};

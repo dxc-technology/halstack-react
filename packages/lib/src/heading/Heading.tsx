@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import HeadingPropsType from "./types";
 import { getHeadingSize, getHeadingWeight } from "./utils";

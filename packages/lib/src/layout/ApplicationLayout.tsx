@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";

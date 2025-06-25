@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import GroupItem from "./GroupItem";
 import SingleItem from "./SingleItem";
 import { MenuItemProps } from "./types";

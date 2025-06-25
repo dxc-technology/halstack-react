@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
-import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import HalstackContext from "../HalstackContext";
@@ -249,73 +248,71 @@ const DropdownListStates = () => {
           <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
         </div>
       </ExampleContainer>
-      <ThemeProvider theme={colorsTheme.dropdown}>
-        <Title title="Option states" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered option" theme="light" level={4} />
-          <DropdownMenu
-            id="x1"
-            dropdownTriggerId="dtx1"
-            iconsPosition="before"
-            visualFocusIndex={-1}
-            menuItemOnClick={() => {}}
-            onKeyDown={() => {}}
-            options={optionWithIcon}
-            styles={{ width: 240 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Active option" theme="light" level={4} />
-          <DropdownMenu
-            id="x2"
-            dropdownTriggerId="dtx2"
-            iconsPosition="before"
-            visualFocusIndex={-1}
-            menuItemOnClick={() => {}}
-            onKeyDown={() => {}}
-            options={optionWithIcon}
-            styles={{ width: 240 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Focused option" theme="light" level={4} />
-          <DropdownMenu
-            id="x3"
-            dropdownTriggerId="dtx3"
-            iconsPosition="before"
-            visualFocusIndex={0}
-            menuItemOnClick={() => {}}
-            onKeyDown={() => {}}
-            options={options}
-            styles={{ width: 240 }}
-          />
-        </ExampleContainer>
-        <Title title="Icons" theme="light" level={3} />
-        <ExampleContainer>
-          <Title title="Before" theme="light" level={4} />
-          <DropdownMenu
-            id="x4"
-            dropdownTriggerId="dtx4"
-            iconsPosition="before"
-            visualFocusIndex={-1}
-            menuItemOnClick={() => {}}
-            onKeyDown={() => {}}
-            options={optionsIcon}
-            styles={{ width: 240 }}
-          />
-          <Title title="After" theme="light" level={4} />
-          <DropdownMenu
-            id="x5"
-            dropdownTriggerId="dtx5"
-            iconsPosition="after"
-            visualFocusIndex={-1}
-            menuItemOnClick={() => {}}
-            onKeyDown={() => {}}
-            options={optionsIcon}
-            styles={{ width: 240 }}
-          />
-        </ExampleContainer>
-      </ThemeProvider>
+      <Title title="Option states" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered option" theme="light" level={4} />
+        <DropdownMenu
+          id="x1"
+          dropdownTriggerId="dtx1"
+          iconsPosition="before"
+          visualFocusIndex={-1}
+          menuItemOnClick={() => {}}
+          onKeyDown={() => {}}
+          options={optionWithIcon}
+          styles={{ width: 240 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Active option" theme="light" level={4} />
+        <DropdownMenu
+          id="x2"
+          dropdownTriggerId="dtx2"
+          iconsPosition="before"
+          visualFocusIndex={-1}
+          menuItemOnClick={() => {}}
+          onKeyDown={() => {}}
+          options={optionWithIcon}
+          styles={{ width: 240 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Focused option" theme="light" level={4} />
+        <DropdownMenu
+          id="x3"
+          dropdownTriggerId="dtx3"
+          iconsPosition="before"
+          visualFocusIndex={0}
+          menuItemOnClick={() => {}}
+          onKeyDown={() => {}}
+          options={options}
+          styles={{ width: 240 }}
+        />
+      </ExampleContainer>
+      <Title title="Icons" theme="light" level={3} />
+      <ExampleContainer>
+        <Title title="Before" theme="light" level={4} />
+        <DropdownMenu
+          id="x4"
+          dropdownTriggerId="dtx4"
+          iconsPosition="before"
+          visualFocusIndex={-1}
+          menuItemOnClick={() => {}}
+          onKeyDown={() => {}}
+          options={optionsIcon}
+          styles={{ width: 240 }}
+        />
+        <Title title="After" theme="light" level={4} />
+        <DropdownMenu
+          id="x5"
+          dropdownTriggerId="dtx5"
+          iconsPosition="after"
+          visualFocusIndex={-1}
+          menuItemOnClick={() => {}}
+          onKeyDown={() => {}}
+          options={optionsIcon}
+          styles={{ width: 240 }}
+        />
+      </ExampleContainer>
     </>
   );
 };

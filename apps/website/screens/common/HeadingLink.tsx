@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import slugify from "slugify";
 import { DxcBleed, DxcHeading, DxcTooltip } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../common/variables";

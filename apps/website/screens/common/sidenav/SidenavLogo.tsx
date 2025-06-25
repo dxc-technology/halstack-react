@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
 import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";

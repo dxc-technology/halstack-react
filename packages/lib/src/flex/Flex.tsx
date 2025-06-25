@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import FlexPropsType, { StyledProps } from "./types";
 
 const Flex = styled.div<StyledProps>`
@@ -19,16 +19,7 @@ const Flex = styled.div<StyledProps>`
   `}
 `;
 
-const DxcFlex = ({
-  basis,
-  direction,
-  gap,
-  grow,
-  order,
-  shrink,
-  wrap,
-  ...props
-}: FlexPropsType) => (
+const DxcFlex = ({ basis, direction, gap, grow, order, shrink, wrap, ...props }: FlexPropsType) => (
   <Flex
     $basis={basis}
     $direction={direction}

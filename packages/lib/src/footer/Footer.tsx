@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
@@ -26,7 +26,7 @@ const FooterContainer = styled.footer<{
       ? "var(--spacing-padding-m) var(--spacing-padding-xl)"
       : "var(--spacing-padding-s) var(--spacing-padding-xl)"};
   @media (max-width: ${responsiveSizes.medium}rem) {
-    padding: var(--spacing-padding-l) var(--spacing-padding-ml)
+    padding: var(--spacing-padding-l) var(--spacing-padding-ml);
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;

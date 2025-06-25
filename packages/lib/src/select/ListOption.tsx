@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";

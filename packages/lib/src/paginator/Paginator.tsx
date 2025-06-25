@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import HalstackContext from "../HalstackContext";

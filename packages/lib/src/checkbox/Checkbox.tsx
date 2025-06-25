@@ -1,5 +1,5 @@
 import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
 import { calculateWidth, icons, spaces } from "./utils";

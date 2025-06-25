@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useMemo, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
 import NumberInputContext from "./NumberInputContext";

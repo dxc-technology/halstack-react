@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import CardPropsType from "./types";
 
@@ -7,6 +7,7 @@ const Card = styled.div<{
   hasAction: boolean;
   margin: CardPropsType["margin"];
   shadowDepth: 0 | 1 | 2;
+  href?: string;
 }>`
   display: flex;
   cursor: ${({ hasAction }) => (hasAction ? "pointer" : "unset")};
@@ -101,8 +102,8 @@ const DxcCard = ({
       onMouseLeave={() => changeIsHovered(false)}
       onClick={onClick}
       tabIndex={onClick || linkHref ? tabIndex : -1}
-      as={linkHref && "a"}
-      href={linkHref}
+      as={linkHref ? "a" : undefined}
+      href={linkHref ? linkHref : undefined}
       shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
     >
       <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>

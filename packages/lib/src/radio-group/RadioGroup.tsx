@@ -1,5 +1,5 @@
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useContext, useId, useMemo, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import RadioInput from "./RadioInput";
 import RadioGroupPropsType, { RefType } from "./types";

@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";

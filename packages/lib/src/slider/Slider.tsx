@@ -1,11 +1,12 @@
 import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import SliderPropsType, { RefType } from "./types";
 import { calculateWidth, roundUp, stepPrecision } from "./utils";
 import DxcNumberInput from "../number-input/NumberInput";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
+import { css } from "@emotion/react";
 
 const SliderContainer = styled.div<{
   margin: SliderPropsType["margin"];
@@ -213,11 +214,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
             {label}
           </Label>
         )}
-        {helperText && (
-          <HelperText disabled={disabled}>
-            {helperText}
-          </HelperText>
-        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
         <MainContainer showInput={showInput}>
           <LimitsValueGrid showLimitsValues={showLimitsValues}>
             {showLimitsValues && <LimitLabel disabled={disabled}>{minLabel}</LimitLabel>}

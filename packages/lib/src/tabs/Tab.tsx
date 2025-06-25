@@ -1,5 +1,5 @@
 import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";

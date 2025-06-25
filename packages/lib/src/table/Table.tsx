@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";

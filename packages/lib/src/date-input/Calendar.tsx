@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
 import { useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 

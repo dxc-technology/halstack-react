@@ -1,5 +1,5 @@
 import { memo, MouseEvent, useContext, useId, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";

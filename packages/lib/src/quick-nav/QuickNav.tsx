@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import slugify from "slugify";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcHeading from "../heading/Heading";
 import { HalstackLanguageContext } from "../HalstackContext";
 import QuickNavTypes from "./types";

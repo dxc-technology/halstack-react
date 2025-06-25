@@ -1,6 +1,6 @@
 import { useToast } from "@dxc-technology/halstack-react";
 import { ReactNode, useState, useEffect } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes } from "./variables";
 
 const MainContainer = styled.div`

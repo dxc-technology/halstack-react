@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
 import {

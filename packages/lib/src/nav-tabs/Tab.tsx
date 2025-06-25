@@ -1,5 +1,5 @@
 import { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";

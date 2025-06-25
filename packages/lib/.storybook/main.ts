@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import react from "@vitejs/plugin-react";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -17,6 +18,20 @@ const config: StorybookConfig = {
   },
   typescript: {
     reactDocgen: "react-docgen-typescript",
+  },
+  async viteFinal(config) {
+    config.plugins = config.plugins || [];
+
+    config.plugins.push(
+      react({
+        jsxImportSource: "@emotion/react",
+        babel: {
+          plugins: ["@emotion/babel-plugin"],
+        },
+      })
+    );
+
+    return config;
   },
 };
 

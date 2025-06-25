@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { useState, useId, useEffect, useCallback, useContext } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";

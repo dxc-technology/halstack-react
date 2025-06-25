@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import StatusLightPropsType from "./types";
 
 const getModeColor = (mode: Required<StatusLightPropsType>["mode"]) => {
