@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import react from "@vitejs/plugin-react";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -17,6 +18,21 @@ const config: StorybookConfig = {
   },
   typescript: {
     reactDocgen: "react-docgen-typescript",
+  },
+  async viteFinal(config) {
+    config.plugins = config.plugins || [];
+
+    // Inject Emotion support into the Vite build via @vitejs/plugin-react
+    config.plugins.push(
+      react({
+        jsxImportSource: "@emotion/react",         // Enables css/ styled props
+        babel: {
+          plugins: ["@emotion/babel-plugin"],     // Enables component selectors
+        },
+      })
+    );
+
+    return config;
   },
 };
 
