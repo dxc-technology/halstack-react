@@ -22,12 +22,11 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     config.plugins = config.plugins || [];
 
-    // Inject Emotion support into the Vite build via @vitejs/plugin-react
     config.plugins.push(
       react({
-        jsxImportSource: "@emotion/react",         // Enables css/ styled props
+        jsxImportSource: "@emotion/react",
         babel: {
-          plugins: ["@emotion/babel-plugin"],     // Enables component selectors
+          plugins: ["@emotion/babel-plugin"],
         },
       })
     );
