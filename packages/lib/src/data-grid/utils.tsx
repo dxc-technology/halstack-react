@@ -67,15 +67,13 @@ export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
  */
 export const expandRow = (row: ExpandableGridRow, rows: ExpandableGridRow[], uniqueRowId: string) => {
   const rowIndex = rows.findIndex((r) => r === row);
-  const newRows = [...rows];
-  addRow(newRows, rowIndex + 1, {
+  addRow(rows, rowIndex + 1, {
     isExpandedChildContent: true,
     [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
     expandedChildContent: row.expandedContent,
     triggerRowKey: rowKeyGetter(row, uniqueRowId),
     expandedContentHeight: row.expandedContentHeight,
   });
-  return newRows;
 };
 
 /**
