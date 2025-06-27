@@ -15,33 +15,27 @@ const ApplicationLayoutContainer = styled.div<{
   isSidenavVisible: boolean;
   hasSidenav: boolean;
 }>`
-  position: absolute;
-  top: 64px;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  overflow: hidden;
 
   @media (max-width: ${responsiveSizes.large}rem) {
-    ${(props) => props.hasSidenav && "top: 116px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
 `;
 
 const HeaderContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: fit-content;
   z-index: 3;
 `;
 
 const VisibilityToggle = styled.div`
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -81,16 +75,18 @@ const HamburgerTrigger = styled.button`
 
 const BodyContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
 const SidenavContainer = styled.div`
-  position: sticky;
-  top: 64px;
-  display: flex;
-  height: calc(100vh - 64px);
+  width: fit-content;
+  min-width: 280px;
+  height: 100%;
   z-index: 1;
+  position: sticky;
+  overflow: auto;
 
   @media (max-width: ${responsiveSizes.large}rem) {
     position: absolute;
@@ -101,16 +97,26 @@ const SidenavContainer = styled.div`
 
 const MainContainer = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+`;
+
+const FooterContainer = styled.div`
+  height: fit-content;
   width: 100%;
 `;
 
 const MainContentContainer = styled.main`
-  flex: 1;
-  background-color: var(--color-bg-neutral-lightest);
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 `;
 
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
 
 const DxcApplicationLayout = ({
   visibilityToggleLabel = "",
@@ -136,20 +142,25 @@ const DxcApplicationLayout = ({
 
   return (
     <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
-      <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
-      {sidenav && isResponsive && (
-        <VisibilityToggle>
-          <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
-            <HamburgerTrigger
-              onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
-            >
-              <DxcIcon icon="Menu" />
-              {visibilityToggleLabel}
-            </HamburgerTrigger>
-          </Tooltip>
-        </VisibilityToggle>
-      )}
+      <HeaderContainer>
+        {header ?? <DxcHeader underlined />}
+        {sidenav && isResponsive && (
+          <VisibilityToggle>
+            <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
+              <HamburgerTrigger
+                onClick={handleSidenavVisibility}
+                aria-label={
+                  visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle
+                }
+              >
+                <DxcIcon icon="Menu" />
+                {visibilityToggleLabel}
+              </HamburgerTrigger>
+            </Tooltip>
+          </VisibilityToggle>
+        )}
+      </HeaderContainer>
+
       <BodyContainer>
         <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
           {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
@@ -157,14 +168,18 @@ const DxcApplicationLayout = ({
           )}
         </SidenavContextProvider>
         <MainContainer>
-          <MainContentContainer>{findChildType(children, Main)}</MainContentContainer>
-          {footer ?? (
-            <DxcFooter
-              copyright={`© DXC Technology ${year}. All rights reserved.`}
-              bottomLinks={bottomLinks}
-              socialLinks={socialLinks}
-            />
-          )}
+          <MainContentContainer>
+            {findChildType(children, Main)}
+            <FooterContainer>
+              {footer ?? (
+                <DxcFooter
+                  copyright={`© DXC Technology ${year}. All rights reserved.`}
+                  bottomLinks={bottomLinks}
+                  socialLinks={socialLinks}
+                />
+              )}
+            </FooterContainer>
+          </MainContentContainer>
         </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
