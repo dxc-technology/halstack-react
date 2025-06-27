@@ -109,7 +109,11 @@ export const renderExpandableTrigger = (
     onClick={() => {
       row.contentIsExpanded = !row.contentIsExpanded;
       if (row.contentIsExpanded) {
-        setRowsToRender((currentRows) => expandRow(row, [...currentRows], uniqueRowId));
+        setRowsToRender((currentRows) => {
+          const finalRows = [...currentRows];
+          expandRow(row, finalRows, uniqueRowId);
+          return finalRows;
+        });
       } else {
         setRowsToRender((currentRows) => collapseRow(row, [...currentRows]));
       }
