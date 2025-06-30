@@ -166,6 +166,7 @@ const DxcDataGrid = ({
   itemsPerPage = 5,
   itemsPerPageOptions,
   itemsPerPageFunction,
+  loadChildren,
   onSort,
   onPageChange,
   totalItems,
@@ -224,17 +225,28 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+    if (
+      !expandable &&
+      (rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) || loadChildren) &&
+      uniqueRowId
+    ) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
         expectedColumns[0] = {
           ...expectedColumns[0]!,
           renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
+            if ((row as HierarchyGridRow).childRows?.length || loadChildren) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                  {renderHierarchyTrigger(
+                    rowsToRender,
+                    row,
+                    uniqueRowId,
+                    firstColumnKey,
+                    setRowsToRender,
+                    loadChildren
+                  )}
                 </HierarchyContainer>
               );
             }
