@@ -18,6 +18,7 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
+  expandRow,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
@@ -171,7 +172,7 @@ const DxcDataGrid = ({
   totalItems,
   defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
+  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
 
@@ -292,20 +293,14 @@ const DxcDataGrid = ({
   useEffect(() => {
     const finalRows = [...rows];
     if (expandable) {
-      rows.forEach((row, index) => {
-        if (
-          row.contentIsExpanded &&
-          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
-        ) {
-          addRow(finalRows, index + 1, {
-            isExpandedChildContent: row.contentIsExpanded,
-            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-            expandedChildContent: row.expandedContent,
-            triggerRowKey: rowKeyGetter(row, uniqueRowId),
-            expandedContentHeight: row.expandedContentHeight,
-          });
-        }
-      });
+      finalRows
+        .filter((row) => {
+          const rowId = rowKeyGetter(row, uniqueRowId);
+          return row.contentIsExpanded && !rows.some((r) => r[uniqueRowId] === `${rowId}_expanded`);
+        })
+        .forEach((row) => {
+          expandRow(row, finalRows, uniqueRowId);
+        });
     }
     setRowsToRender(finalRows);
   }, [rows]);
