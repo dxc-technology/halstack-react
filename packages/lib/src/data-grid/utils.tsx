@@ -113,6 +113,7 @@ export const renderExpandableTrigger = (
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
  * @param {Function} loadChildren - Function called whenever a cell with children is expanded. Returns the children array
+ * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 export const renderHierarchyTrigger = (
@@ -121,7 +122,8 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
-  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>
+  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>,
+  selectedRows?: Set<string | number>
 ) => {
   return (
     <button
@@ -131,8 +133,16 @@ export const renderHierarchyTrigger = (
         let newRowsToRender = [...rows];
         if (!triggerRow.visibleChildren) {
           const rowIndex = rows.findIndex((row) => triggerRow === row);
-          const loadedChildren = loadChildren ? await loadChildren(triggerRow) : (triggerRow.childRows ?? []);
-          loadedChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+          if (loadChildren) {
+            const dynamicChildren = await loadChildren(triggerRow);
+            triggerRow.childRows = dynamicChildren;
+            if (selectedRows.has(rowKeyGetter(triggerRow, uniqueRowId))) {
+              dynamicChildren.forEach((child) => {
+                selectedRows.add(rowKeyGetter(child, uniqueRowId));
+              });
+            }
+          }
+          triggerRow.childRows.forEach((childRow: HierarchyGridRow, index: number) => {
             childRow.rowLevel =
               triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
             childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
@@ -191,27 +201,29 @@ export const renderCheckbox = (
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   onSelectRows: (_selected: Set<string | number>) => void
-) => (
-  <DxcCheckbox
-    checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
-    onChange={(checked) => {
-      const selected = new Set(selectedRows);
-      if (checked) {
-        selected.add(rowKeyGetter(row, uniqueRowId));
-      } else {
-        selected.delete(rowKeyGetter(row, uniqueRowId));
-      }
-      if (row.childRows && Array.isArray(row.childRows)) {
-        getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-      }
-      if (row.parentKey) {
-        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-      }
-      onSelectRows(selected);
-    }}
-    disabled={!rows.some((row) => uniqueRowId in row)}
-  />
-);
+) => {
+  return (
+    <DxcCheckbox
+      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+      onChange={(checked) => {
+        const selected = new Set(selectedRows);
+        if (checked) {
+          selected.add(rowKeyGetter(row, uniqueRowId));
+        } else {
+          selected.delete(rowKeyGetter(row, uniqueRowId));
+        }
+        if (row.childRows && Array.isArray(row.childRows)) {
+          getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+        }
+        if (row.parentKey) {
+          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+        }
+        onSelectRows(selected);
+      }}
+      disabled={!rows.some((row) => uniqueRowId in row)}
+    />
+  );
+};
 
 /**
  * Renders a header checkbox that controls the selection of all rows.

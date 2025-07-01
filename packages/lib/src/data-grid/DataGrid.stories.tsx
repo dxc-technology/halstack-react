@@ -838,6 +838,36 @@ const DataGridControlled = () => {
           totalItems={expandableRows.length}
         />
       </ExampleContainer>
+      <ExampleContainer>
+        <Title title="DataGrid with loadChildren function" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRowsLazy}
+          uniqueRowId="id"
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={setSelectedRows}
+          loadChildren={(triggerRow) => {
+            console.log("loadChildren");
+            return new Promise<HierarchyGridRow[]>((resolve) => {
+              setTimeout(() => {
+                resolve([
+                  {
+                    name: `${triggerRow.name} Child 1`,
+                    value: triggerRow.value,
+                    id: `${triggerRow.id}-child-1`,
+                  },
+                  {
+                    name: `${triggerRow.name} Child 2`,
+                    value: triggerRow.value,
+                    id: `${triggerRow.id}-child-2`,
+                  },
+                ]);
+              }, 5000);
+            });
+          }}
+        />
+      </ExampleContainer>
     </>
   );
 };

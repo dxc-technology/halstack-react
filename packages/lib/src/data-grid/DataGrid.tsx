@@ -245,7 +245,8 @@ const DxcDataGrid = ({
                     uniqueRowId,
                     firstColumnKey,
                     setRowsToRender,
-                    loadChildren
+                    loadChildren,
+                    selectedRows
                   )}
                 </HierarchyContainer>
               );
