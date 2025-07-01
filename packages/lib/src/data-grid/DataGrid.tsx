@@ -152,6 +152,11 @@ const ActionContainer = styled.div`
   width: 100%;
 `;
 
+const HeaderCheckbox = styled(ActionContainer)`
+  --color-fg-secondary-medium: var(--color-absolutes-white);
+  --color-fg-secondary-strong: var(--color-grey-100);
+`;
+
 const DxcDataGrid = ({
   columns,
   rows,
@@ -267,9 +272,9 @@ const DxcDataGrid = ({
             return null;
           },
           renderHeaderCell: () => (
-            <ActionContainer id="small_action">
+            <HeaderCheckbox id="small_action">
               {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
-            </ActionContainer>
+            </HeaderCheckbox>
           ),
         },
         ...expectedColumns,
