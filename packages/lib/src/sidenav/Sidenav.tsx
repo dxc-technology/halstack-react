@@ -20,6 +20,7 @@ const SidenavContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 280px;
+  height: 100%;
   @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
   }
