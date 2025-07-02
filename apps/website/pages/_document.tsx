@@ -1,13 +1,13 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
-import createEmotionCache from "./utilities/createEmotionCache"; // You'll create this
 import React from "react";
+import createCache from "@emotion/cache";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
     const originalRenderPage = ctx.renderPage;
 
-    const cache = createEmotionCache();
+    const cache = createCache({ key: "css", prepend: true });
     const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () =>
