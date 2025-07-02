@@ -5,9 +5,9 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import controlled from "./examples-new/controlled";
-import uncontrolled from "./examples-new/uncontrolled";
-import icons from "./examples-new/icons";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
+import icons from "./examples/icons";
 
 const sections = [
   {
