@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { SubMenuProps } from "./types";
 
 const SubMenuContainer = styled.ul`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DxcInset } from "..";
 import DxcDivider from "../divider/Divider";
 import SubMenu from "./SubMenu";

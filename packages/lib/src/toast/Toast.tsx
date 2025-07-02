@@ -1,5 +1,6 @@
 import { memo, useContext, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";

@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import TypographyPropsTypes from "./types";
 import TypographyContext from "./TypographyContext";
 

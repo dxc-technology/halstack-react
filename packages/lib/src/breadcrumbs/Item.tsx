@@ -1,5 +1,5 @@
 import { useRef, MouseEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { ItemPropsType } from "./types";
 
 const ListItem = styled.li<{ isCurrentPage?: ItemPropsType["isCurrentPage"] }>`
@@ -38,7 +38,7 @@ const Link = styled.a`
 
 const Text = styled.span`
   border: var(--border-width-s) var(--border-style-default) transparent;
-  
+
   &:hover {
     border-bottom-color: var(--color-fg-neutral-dark);
   }

@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from "@emotion/react";
 
 export const inputStylesByState = (disabled: boolean, error: boolean, readOnly: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lighter)` : `transparent`};
