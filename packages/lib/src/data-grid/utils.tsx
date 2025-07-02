@@ -136,13 +136,13 @@ export const renderHierarchyTrigger = (
           if (loadChildren) {
             const dynamicChildren = await loadChildren(triggerRow);
             triggerRow.childRows = dynamicChildren;
-            if (selectedRows.has(rowKeyGetter(triggerRow, uniqueRowId))) {
+            if (selectedRows?.has(rowKeyGetter(triggerRow, uniqueRowId))) {
               dynamicChildren.forEach((child) => {
                 selectedRows.add(rowKeyGetter(child, uniqueRowId));
               });
             }
           }
-          triggerRow.childRows.forEach((childRow: HierarchyGridRow, index: number) => {
+          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
             childRow.rowLevel =
               triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
             childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
