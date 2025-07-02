@@ -33,6 +33,9 @@ const GridRowTypeString = `{
 
 const HierarchyGridRowTypeString = `GridRow & {
   childRows?: HierarchyGridRow[] | GridRow[];
+  loadChildren?: (
+    triggerRow: HierarchyGridRow
+  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
 }`;
 
 const ExpandableGridRowTypeString = `GridRow & {

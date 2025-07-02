@@ -2,7 +2,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn, GridRow, HierarchyGridRow } from "./types";
 import { isValidElement, useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
@@ -444,26 +444,51 @@ const childRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
+const loadChildren = (triggerRow: HierarchyGridRow) => {
+  return new Promise<HierarchyGridRow[]>((resolve) => {
+    setTimeout(() => {
+      resolve([
+        {
+          name: `${triggerRow.name} Child 1`,
+          value: triggerRow.value,
+          id: `${triggerRow.id}-child-1`,
+          loadChildren,
+        },
+        {
+          name: `${triggerRow.name} Child 2`,
+          value: triggerRow.value,
+          id: `${triggerRow.id}-child-2`,
+          loadChildren,
+        },
+      ]);
+    }, 5000);
+  });
+};
+
 const childRowsLazy: HierarchyGridRow[] = [
   {
     name: "Root Node 1 Lazy",
     value: "1",
     id: "lazy-a",
+    loadChildren,
   },
   {
     name: "Root Node 2 Lazy",
     value: "2",
     id: "lazy-b",
+    loadChildren,
   },
   {
     name: "Root Node 3 Lazy",
     value: "3",
     id: "lazy-c",
+    loadChildren,
   },
   {
     name: "Root Node 4 Lazy",
     value: "4",
     id: "lazy-d",
+    loadChildren,
   },
 ] as HierarchyGridRow[];
 
@@ -760,20 +785,6 @@ const DataGridControlled = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          loadChildren={(triggerRow) => {
-            return [
-              {
-                name: `${triggerRow.name} Child 1`,
-                value: triggerRow.value,
-                id: `${triggerRow.id}-child-1`,
-              },
-              {
-                name: `${triggerRow.name} Child 2`,
-                value: triggerRow.value,
-                id: `${triggerRow.id}-child-2`,
-              },
-            ] as HierarchyGridRow[];
-          }}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -847,25 +858,6 @@ const DataGridControlled = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          loadChildren={(triggerRow) => {
-            console.log("loadChildren");
-            return new Promise<HierarchyGridRow[]>((resolve) => {
-              setTimeout(() => {
-                resolve([
-                  {
-                    name: `${triggerRow.name} Child 1`,
-                    value: triggerRow.value,
-                    id: `${triggerRow.id}-child-1`,
-                  },
-                  {
-                    name: `${triggerRow.name} Child 2`,
-                    value: triggerRow.value,
-                    id: `${triggerRow.id}-child-2`,
-                  },
-                ]);
-              }, 5000);
-            });
-          }}
         />
       </ExampleContainer>
     </>

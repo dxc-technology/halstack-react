@@ -44,11 +44,21 @@ export type GridRow = {
   /**
    * List of rows that will be rendered in each cell based on the key in each column.
    */
-  [key: string]: ReactNode | undefined;
+  [key: string]: ReactNode | Function | undefined;
 };
 
 export type HierarchyGridRow = GridRow & {
+  /**
+   * Array of child rows nested under this row, enabling hierarchical (tree-like) structures.
+   * These child rows will be displayed when the parent row is expanded.
+   */
   childRows?: HierarchyGridRow[] | GridRow[];
+  /**
+   * Function called whenever a cell with children is expanded. Returns the children array
+   */
+  loadChildren?: (
+    triggerRow: HierarchyGridRow
+  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
 };
 
 export type ExpandableGridRow = GridRow & {
@@ -67,10 +77,6 @@ export type ExpandableRows = {
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
   uniqueRowId: string;
-  /**
-   * Function called whenever a cell with children is expanded. Returns the children array.
-   */
-  loadChildren?: never;
 };
 
 export type HierarchyRows = {
@@ -83,10 +89,6 @@ export type HierarchyRows = {
    * Whether the rows can expand or not.
    */
   expandable?: false;
-  /**
-   * Function called whenever a cell with children is expanded. Returns the children array
-   */
-  loadChildren?: (triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>;
 };
 
 export type SelectableGridProps =
@@ -210,10 +212,6 @@ export type BasicGridProps = {
    * Whether the rows can expand or not.
    */
   expandable?: false;
-  /**
-   * Function called whenever a cell with children is expanded. Returns the children array.
-   */
-  loadChildren?: never;
 };
 
 type Props = CommonProps &
