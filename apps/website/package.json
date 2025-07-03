@@ -10,7 +10,9 @@
   "dependencies": {
     "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.14.0",
     "@radix-ui/react-popover": "^1.0.7",
     "cross-env": "^7.0.3",
