@@ -29,13 +29,13 @@ export const convertToRDGColumns = (
   renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
     <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
-      {row[gridColumn.key] as ReactNode}
+      {row[gridColumn.key]}
     </div>
   ),
   renderSummaryCell: () =>
     gridColumn.summaryKey ? (
       <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
-        {summaryRow?.[gridColumn.summaryKey] as ReactNode}
+        {summaryRow?.[gridColumn.summaryKey]}
       </div>
     ) : undefined,
 });
@@ -242,7 +242,9 @@ export const renderHierarchyTrigger = (
       ) : (
         <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
       )}
-      <span className="ellipsis-cell">{triggerRow[columnKey] as ReactNode}</span>
+      <span className="ellipsis-cell">
+        {triggerRow[columnKey]}
+      </span>
     </button>
   );
 };
@@ -277,7 +279,7 @@ export const renderCheckbox = (
           getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
         }
         if (row.parentKey) {
-          getParentSelectedState(rows, row.parentKey as ReactNode, uniqueRowId, selected, checked);
+          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
         }
         onSelectRows(selected);
       }}
@@ -394,7 +396,7 @@ export const sortRows = (
 
       if (sortValueA && sortValueB) {
         const sortFn = sortFunctions?.find(({ column }) => column === sort.columnKey)?.sortFn;
-        newCompResult = compareRows(sortValueA as ReactNode, sortValueB as ReactNode, sortFn);
+        newCompResult = compareRows(sortValueA, sortValueB, sortFn);
       }
 
       if (newCompResult !== 0) {
@@ -579,7 +581,7 @@ export const getParentSelectedState = (
 
   // Recursively check the parent's parent if necessary
   if (parentRow.parentKey) {
-    getParentSelectedState(rowList, parentRow.parentKey as ReactNode, uniqueRowId, selectedRows, checkedStateToMatch);
+    getParentSelectedState(rowList, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
   }
 };
 
@@ -648,7 +650,7 @@ export const getPaginatedNodes = (
         (rowToPaginate.contentIsExpanded &&
           row?.triggerRowKey === rowToPaginate[uniqueRowId] &&
           row?.isExpandedChildContent) ||
-        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId] as ReactNode))
+        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
     )
   );
 };

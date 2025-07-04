@@ -461,7 +461,7 @@ const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
             id: `${triggerRow.id}-child-2`,
             childrenTrigger,
           },
-        ] as HierarchyGridRow[]);
+        ] as unknown as HierarchyGridRow[]);
       }, 5000);
     });
   } else {
@@ -494,7 +494,7 @@ const childRowsLazy = [
     id: "lazy-d",
     childrenTrigger,
   },
-];
+] as unknown as HierarchyGridRow[];
 
 const childRowsPaginated = [
   {

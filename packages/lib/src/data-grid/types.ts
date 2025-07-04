@@ -44,7 +44,7 @@ export type GridRow = {
   /**
    * List of rows that will be rendered in each cell based on the key in each column.
    */
-  [key: string]: ReactNode | Function | undefined;
+  [key: string]: ReactNode | undefined;
 };
 
 export type HierarchyGridRow = GridRow & {
@@ -54,12 +54,24 @@ export type HierarchyGridRow = GridRow & {
    */
   childRows?: HierarchyGridRow[] | GridRow[];
   /**
-   * Function called whenever a cell with children is expanded or collapsed. Returns the children array.
+   * Function called whenever a cell with children is expanded or collapsed. Returns the children array
    */
   childrenTrigger?: (
     open?: boolean,
     triggerRow?: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
+  /**
+   * Indicates the level of nesting for this row in the hierarchy.
+   */
+  rowLevel?: number;
+  /**
+   * Reference to the parent row's unique identifier.
+   */
+  parentKey?: ReactNode;
+  /**
+   * Indicates whether child rows are currently visible.
+   */
+  visibleChildren?: boolean;
 };
 
 export type ExpandableGridRow = GridRow & {
