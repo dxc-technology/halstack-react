@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -25,6 +25,7 @@ const clientSideEmotionCache = createCache({ key: "css", prepend: true });
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
+  const [renderContent, setRenderContent] = useState(false);
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
   const filteredLinks = useMemo(() => {
@@ -40,11 +41,17 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     return filtered;
   }, [filter]);
 
+  useEffect(() => {
+    setRenderContent(true);
+  }, []);
+
   const matchPaths = (linkPath: string) => {
     const desiredPaths = [linkPath, `${linkPath}/code`];
     const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
     return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
   };
+
+  if (!renderContent) return null;
 
   return (
     <CacheProvider value={clientSideEmotionCache}>
