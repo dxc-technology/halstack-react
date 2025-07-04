@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, ReactNode } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "styled-components";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -211,7 +211,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return (row.expandedChildContent as ReactNode) || null;
             }
             // if row has expandable content
             return (
@@ -227,10 +227,10 @@ const DxcDataGrid = ({
     const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
       return (
         (Array.isArray(row.childRows) && row.childRows.length > 0) ||
-        typeof (row as HierarchyGridRow).loadChildren === "function"
+        typeof (row as HierarchyGridRow).childrenTrigger === "function"
       );
     };
-    if (!expandable && rows.some((row) => rowHasHierarchy) && uniqueRowId) {
+    if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
@@ -246,7 +246,7 @@ const DxcDataGrid = ({
                     uniqueRowId,
                     firstColumnKey,
                     setRowsToRender,
-                    row.loadChildren,
+                    row.childrenTrigger,
                     selectedRows
                   )}
                 </HierarchyContainer>
@@ -254,7 +254,7 @@ const DxcDataGrid = ({
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
+                {row[firstColumnKey] as ReactNode}
               </HierarchyContainer>
             );
           },

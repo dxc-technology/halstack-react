@@ -205,11 +205,19 @@ const hierarchyRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
+const loadedChildrenMock = [
+  { id: "child-1", name: "Child 1", value: "Child 1" },
+  { id: "child-2", name: "Child 2", value: "Child 2" },
+];
+
+const childrenTriggerMock = jest.fn().mockResolvedValue(loadedChildrenMock);
+
 const hierarchyRowsLazy: HierarchyGridRow[] = [
   {
     name: "Root Node 1 Lazy",
     value: "1",
     id: "lazy-a",
+    childrenTrigger: () => childrenTriggerMock,
   },
   {
     name: "Root Node 2 Lazy",
@@ -265,16 +273,9 @@ describe("Data grid component tests", () => {
     expect(rows.length).toBe(5);
   });
 
-  test("Triggers loadChildren when expanding hierarchy row", async () => {
+  test("Triggers childrenTrigger when expanding hierarchy row", async () => {
     const onSelectRows = jest.fn();
     const selectedRows = new Set<number | string>();
-
-    const mockLoadedChildren = [
-      { id: "child-1", name: "Child 1", value: "Child 1" },
-      { id: "child-2", name: "Child 2", value: "Child 2" },
-    ];
-
-    const loadChildrenMock = jest.fn().mockResolvedValue(mockLoadedChildren);
 
     const { getAllByRole } = render(
       <DxcDataGrid
@@ -284,7 +285,6 @@ describe("Data grid component tests", () => {
         selectable
         onSelectRows={onSelectRows}
         selectedRows={selectedRows}
-        loadChildren={loadChildrenMock}
       />
     );
 
@@ -294,7 +294,7 @@ describe("Data grid component tests", () => {
 
     buttons[0] && fireEvent.click(buttons[0]);
 
-    expect(loadChildrenMock).toHaveBeenCalledWith(expect.objectContaining({ id: "lazy-a" }));
+    expect(childrenTriggerMock).toHaveBeenCalledWith(expect.objectContaining({ id: "lazy-a" }));
   });
 
   test("Renders column headers", () => {

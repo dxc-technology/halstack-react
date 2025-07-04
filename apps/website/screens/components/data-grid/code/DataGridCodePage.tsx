@@ -33,7 +33,8 @@ const GridRowTypeString = `{
 
 const HierarchyGridRowTypeString = `GridRow & {
   childRows?: HierarchyGridRow[] | GridRow[];
-  loadChildren?: (
+  childrenTrigger?: (
+    open: boolean,
     triggerRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
 }`;
@@ -165,11 +166,11 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
-                loadChildren
+                childrenTrigger
               </DxcFlex>
             </td>
             <td>
-              <TableCode>{`(triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>`}</TableCode>
+              <TableCode>{`(open: boolean, triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>`}</TableCode>
             </td>
             <td>
               Function called whenever a cell with children (<Code>HierarchyGridRow</Code>) is expanded. Returns the

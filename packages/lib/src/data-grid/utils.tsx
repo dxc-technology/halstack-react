@@ -5,7 +5,6 @@ import { ReactNode, SetStateAction, useState } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import DxcSpinner from "../spinner/Spinner";
@@ -30,13 +29,13 @@ export const convertToRDGColumns = (
   renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
     <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
-      {row[gridColumn.key]}
+      {row[gridColumn.key] as ReactNode}
     </div>
   ),
   renderSummaryCell: () =>
     gridColumn.summaryKey ? (
       <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
-        {summaryRow?.[gridColumn.summaryKey]}
+        {summaryRow?.[gridColumn.summaryKey] as ReactNode}
       </div>
     ) : undefined,
 });
@@ -113,7 +112,7 @@ export const renderExpandableTrigger = (
  * @param {string} uniqueRowId - Unique identifier for each row.
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
- * @param {Function} loadChildren - Function called whenever a cell with children is expanded. Returns the children array
+ * @param {Function} childrenTrigger - Function called whenever a cell with children is expanded or collapsed. Returns the children array
  * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
@@ -123,71 +122,127 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
-  loadChildren?: (expandChildren: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>,
+  childrenTrigger?: (
+    _open: boolean,
+    _selectedRow: HierarchyGridRow
+  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>,
   selectedRows?: Set<string | number>
 ) => {
   const [loading, setLoading] = useState(false);
   const onClick = async () => {
     if (loading) return; // Prevent double clicks while loading
     setLoading(true);
-    let newRowsToRender = [...rows];
+
     if (!triggerRow.visibleChildren) {
-      const rowIndex = rows.findIndex((row) => triggerRow === row);
-      if (loadChildren) {
-        const dynamicChildren = await loadChildren(triggerRow);
-        triggerRow.childRows = dynamicChildren;
-        if (selectedRows?.has(rowKeyGetter(triggerRow, uniqueRowId))) {
-          dynamicChildren.forEach((child) => {
-            selectedRows.add(rowKeyGetter(child, uniqueRowId));
+      if (childrenTrigger) {
+        try {
+          const dynamicChildren = await childrenTrigger(true, triggerRow);
+          triggerRow.childRows = dynamicChildren;
+
+          if (selectedRows?.has(rowKeyGetter(triggerRow, uniqueRowId))) {
+            dynamicChildren.forEach((child) => {
+              selectedRows.add(rowKeyGetter(child, uniqueRowId));
+            });
+          }
+
+          setRowsToRender((currentRows) => {
+            const newRowsToRender = [...currentRows];
+            const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+
+            dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+              childRow.rowLevel =
+                triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+              childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+              addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+            });
+
+            return newRowsToRender;
           });
+        } catch (error) {
+          console.error("Error loading children:", error);
+        }
+      } else if (triggerRow.childRows) {
+        setRowsToRender((currentRows) => {
+          const newRowsToRender = [...currentRows];
+          const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+
+          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+            childRow.rowLevel =
+              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+          });
+
+          return newRowsToRender;
+        });
+      }
+    } else {
+      setRowsToRender((currentRows) => {
+        const rowsToRemove: HierarchyGridRow[] = [
+          ...currentRows.filter(
+            (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
+          ),
+        ];
+
+        const rowsToCheck = [...rowsToRemove];
+        while (rowsToCheck.length > 0) {
+          const currentRow = rowsToCheck.pop();
+          const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
+
+          rowsToRemove.push(...childRows);
+          rowsToCheck.push(...childRows);
+        }
+
+        const newRowsToRender = currentRows.filter(
+          (row) =>
+            !rowsToRemove
+              .map((rowToRemove) => {
+                if (rowToRemove.visibleChildren) {
+                  rowToRemove.visibleChildren = false;
+                }
+                return rowKeyGetter(rowToRemove, uniqueRowId);
+              })
+              .includes(rowKeyGetter(row, uniqueRowId))
+        );
+
+        return newRowsToRender;
+      });
+
+      if (childrenTrigger) {
+        try {
+          const dynamicChildren = await childrenTrigger(false, triggerRow);
+          if (dynamicChildren.length > 0) {
+            const parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+            const enrichedChildren = dynamicChildren.map((child) => ({
+              ...child,
+              parentKey,
+            }));
+
+            setRowsToRender((prevRows) => {
+              const index = prevRows.findIndex((row) => rowKeyGetter(row, uniqueRowId) === parentKey);
+              const before = prevRows.slice(0, index + 1);
+              const after = prevRows.slice(index + 1);
+
+              return [...before, ...enrichedChildren, ...after];
+            });
+          }
+        } catch (error) {
+          console.error("Error loading children:", error);
         }
       }
-      triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-        childRow.rowLevel =
-          triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-        childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-        addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-      });
-    } else {
-      // The children of the row that is being collapsed are added to an array
-      const rowsToRemove: HierarchyGridRow[] = [
-        ...rows.filter(
-          (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
-        ),
-      ];
-      // The children are checked if any of them has any other children of their own
-      const rowsToCheck = [...rowsToRemove];
-      while (rowsToCheck.length > 0) {
-        const currentRow = rowsToCheck.pop();
-        const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
-
-        rowsToRemove.push(...childRows);
-        rowsToCheck.push(...childRows);
-      }
-      newRowsToRender = rows.filter(
-        (row) =>
-          !rowsToRemove
-            .map((rowToRemove) => {
-              if (rowToRemove.visibleChildren) {
-                rowToRemove.visibleChildren = false;
-              }
-              return rowKeyGetter(rowToRemove, uniqueRowId);
-            })
-            .includes(rowKeyGetter(row, uniqueRowId))
-      );
     }
+
     triggerRow.visibleChildren = !triggerRow.visibleChildren;
-    setRowsToRender(newRowsToRender);
     setLoading(false);
   };
   return (
     <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={onClick}>
       {loading ? (
-        <DxcSpinner mode="small"/> 
+        <DxcSpinner mode="small" />
       ) : (
         <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
       )}
-      <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
+      <span className="ellipsis-cell">{triggerRow[columnKey] as ReactNode}</span>
     </button>
   );
 };
@@ -222,7 +277,7 @@ export const renderCheckbox = (
           getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
         }
         if (row.parentKey) {
-          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+          getParentSelectedState(rows, row.parentKey as ReactNode, uniqueRowId, selected, checked);
         }
         onSelectRows(selected);
       }}
@@ -339,7 +394,7 @@ export const sortRows = (
 
       if (sortValueA && sortValueB) {
         const sortFn = sortFunctions?.find(({ column }) => column === sort.columnKey)?.sortFn;
-        newCompResult = compareRows(sortValueA, sortValueB, sortFn);
+        newCompResult = compareRows(sortValueA as ReactNode, sortValueB as ReactNode, sortFn);
       }
 
       if (newCompResult !== 0) {
@@ -524,7 +579,7 @@ export const getParentSelectedState = (
 
   // Recursively check the parent's parent if necessary
   if (parentRow.parentKey) {
-    getParentSelectedState(rowList, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
+    getParentSelectedState(rowList, parentRow.parentKey as ReactNode, uniqueRowId, selectedRows, checkedStateToMatch);
   }
 };
 
@@ -593,7 +648,7 @@ export const getPaginatedNodes = (
         (rowToPaginate.contentIsExpanded &&
           row?.triggerRowKey === rowToPaginate[uniqueRowId] &&
           row?.isExpandedChildContent) ||
-        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
+        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId] as ReactNode))
     )
   );
 };

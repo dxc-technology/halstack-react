@@ -54,10 +54,11 @@ export type HierarchyGridRow = GridRow & {
    */
   childRows?: HierarchyGridRow[] | GridRow[];
   /**
-   * Function called whenever a cell with children is expanded. Returns the children array
+   * Function called whenever a cell with children is expanded or collapsed. Returns the children array.
    */
-  loadChildren?: (
-    triggerRow: HierarchyGridRow
+  childrenTrigger?: (
+    open?: boolean,
+    triggerRow?: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
 };
 
