@@ -36,7 +36,7 @@ const tabs = (margin?: Space | Margin) => (
     <DxcTabs.Tab label="Tab 4">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5">
+    <DxcTabs.Tab label="Tab 5" defaultActive>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 6">

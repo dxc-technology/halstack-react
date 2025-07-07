@@ -90,17 +90,7 @@ const ScrollableTabsList = styled.div<{
   height: ${({ iconPosition }) => (iconPosition === "top" ? "72px" : "var(--height-xxl)")};
 `;
 
-const DxcTabs = ({
-  activeTabIndex,
-  children,
-  defaultActiveTabIndex,
-  iconPosition = "left",
-  margin,
-  onTabClick,
-  onTabHover,
-  tabIndex = 0,
-  tabs,
-}: TabsPropsType) => {
+const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: TabsPropsType) => {
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
@@ -199,7 +189,12 @@ const DxcTabs = ({
     if (refTabList.current)
       setTotalTabsWidth(() => {
         let total = 0;
-        refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab) => {
+        refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
+          if (tab.ariaSelected === "true") {
+            console.log(-total);
+            setTranslateScroll(-total);
+            if (index) setScrollLeftEnabled(true);
+          }
           total += (tab as HTMLElement).offsetWidth;
         });
         return total;
