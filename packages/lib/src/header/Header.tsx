@@ -1,5 +1,5 @@
 import { ComponentProps, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";

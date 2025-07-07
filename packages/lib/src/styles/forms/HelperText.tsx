@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const HelperText = styled.span<{ disabled: boolean, hasMargin?: boolean }>`
+const HelperText = styled.span<{ disabled: boolean; hasMargin?: boolean }>`
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);

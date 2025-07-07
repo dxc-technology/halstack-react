@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import { ReactNode } from "react";
 

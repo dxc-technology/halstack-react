@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, ReactNode } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
 import {
@@ -18,6 +18,7 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
+  expandRow,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
@@ -151,6 +152,11 @@ const ActionContainer = styled.div`
   width: 100%;
 `;
 
+const HeaderCheckbox = styled(ActionContainer)`
+  --color-fg-secondary-medium: var(--color-absolutes-white);
+  --color-fg-secondary-strong: var(--color-grey-100);
+`;
+
 const DxcDataGrid = ({
   columns,
   rows,
@@ -171,7 +177,7 @@ const DxcDataGrid = ({
   totalItems,
   defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
+  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
 
@@ -280,9 +286,9 @@ const DxcDataGrid = ({
             return null;
           },
           renderHeaderCell: () => (
-            <ActionContainer id="small_action">
+            <HeaderCheckbox id="small_action">
               {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
-            </ActionContainer>
+            </HeaderCheckbox>
           ),
         },
         ...expectedColumns,
@@ -306,20 +312,14 @@ const DxcDataGrid = ({
   useEffect(() => {
     const finalRows = [...rows];
     if (expandable) {
-      rows.forEach((row, index) => {
-        if (
-          row.contentIsExpanded &&
-          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
-        ) {
-          addRow(finalRows, index + 1, {
-            isExpandedChildContent: row.contentIsExpanded,
-            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-            expandedChildContent: row.expandedContent,
-            triggerRowKey: rowKeyGetter(row, uniqueRowId),
-            expandedContentHeight: row.expandedContentHeight,
-          });
-        }
-      });
+      finalRows
+        .filter((row) => {
+          const rowId = rowKeyGetter(row, uniqueRowId);
+          return row.contentIsExpanded && !rows.some((r) => r[uniqueRowId] === `${rowId}_expanded`);
+        })
+        .forEach((row) => {
+          expandRow(row, finalRows, uniqueRowId);
+        });
     }
     setRowsToRender(finalRows);
   }, [rows]);
@@ -428,17 +428,20 @@ const DxcDataGrid = ({
         summaryRowHeight={colHeight}
         className="fill-grid"
       />
-      {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
-        <DxcPaginator
-          totalItems={totalItems ?? rows.length}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={itemsPerPageOptions}
-          itemsPerPageFunction={itemsPerPageFunction}
-          currentPage={page}
-          showGoToPage={showGoToPage}
-          onPageChange={goToPage}
-        />
-      )}
+
+      {showPaginator &&
+        (itemsPerPageOptions?.some((itemsPerPage) => (totalItems ?? rows.length) > itemsPerPage) ||
+          (totalItems ?? rows.length) > itemsPerPage) && (
+          <DxcPaginator
+            totalItems={totalItems ?? rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
     </DataGridContainer>
   );
 };
