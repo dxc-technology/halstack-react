@@ -191,7 +191,6 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         let total = 0;
         refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
           if (tab.ariaSelected === "true") {
-            console.log(-total);
             setTranslateScroll(-total);
             if (index) setScrollLeftEnabled(true);
           }
