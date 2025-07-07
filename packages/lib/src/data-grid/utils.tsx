@@ -269,7 +269,7 @@ export const renderHierarchyTrigger = (
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for selecting the row.
  */
@@ -307,7 +307,7 @@ export const renderCheckbox = (
  * Renders a header checkbox that controls the selection of all rows.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for the header checkbox.
  */
@@ -534,13 +534,13 @@ export const rowFinderBasedOnId = (
  * Recursively selects or deselects children rows based on the checked state.
  * @param {HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
  * @param {string} uniqueRowId - Key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checked - Boolean indicating whether the rows should be selected (true) or deselected (false).
  */
 export const getChildrenSelection = (
   rowList: HierarchyGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
+  selectedRows: Set<string | number>,
   checked: boolean
 ) => {
   rowList.forEach((row) => {
@@ -562,14 +562,14 @@ export const getChildrenSelection = (
  * @param {ReactNode} uniqueRowKeyValue Unique value of the selected row
  * @param {ReactNode} parentKeyValue Unique value of the parent Row
  * @param {string} uniqueRowId Key where the unique value is located
- * @param {Set<ReactNode>} changedRows
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checkedStateToMatch
  */
 export const getParentSelectedState = (
   rowList: HierarchyGridRow[],
   parentKeyValue: ReactNode,
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
+  selectedRows: Set<string | number>,
   checkedStateToMatch: boolean
 ) => {
   if (!rowList.some((row) => uniqueRowId in row)) {
