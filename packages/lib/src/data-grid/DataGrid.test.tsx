@@ -217,7 +217,7 @@ const hierarchyRowsLazy: HierarchyGridRow[] = [
     name: "Root Node 1 Lazy",
     value: "1",
     id: "lazy-a",
-    childrenTrigger: () => childrenTriggerMock,
+    childrenTrigger: childrenTriggerMock,
   },
   {
     name: "Root Node 2 Lazy",
@@ -294,7 +294,7 @@ describe("Data grid component tests", () => {
 
     buttons[0] && fireEvent.click(buttons[0]);
 
-    expect(childrenTriggerMock).toHaveBeenCalledWith(expect.objectContaining({ id: "lazy-a" }));
+    expect(childrenTriggerMock).toHaveBeenCalledWith(true, expect.objectContaining({ id: "lazy-a" }));
   });
 
   test("Renders column headers", () => {
