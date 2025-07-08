@@ -252,8 +252,9 @@ const DxcDataGrid = ({
                     uniqueRowId,
                     firstColumnKey,
                     setRowsToRender,
-                    row.childrenTrigger,
-                    selectedRows
+                    row.childrenTrigger
+                    // TODO: remove
+                    // selectedRows
                   )}
                 </HierarchyContainer>
               );

@@ -122,6 +122,8 @@ export const renderExpandableTrigger = (
   />
 );
 
+// TODO: REMOVE COMMENTED CODE (LEAVING IT JUST IN CASE IT IS NEEDED WHILE REVIEWING)
+
 /**
  * Renders a trigger for hierarchical row expansion in the grid.
  * @param {HierarchyGridRow[]} rows - List of all hierarchy grid rows.
@@ -130,7 +132,7 @@ export const renderExpandableTrigger = (
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
  * @param {Function} childrenTrigger - Function called whenever a cell with children is expanded or collapsed. Returns the children array
- * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
+//  * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 export const renderHierarchyTrigger = (
@@ -143,7 +145,7 @@ export const renderHierarchyTrigger = (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>,
-  selectedRows?: Set<string | number>
+  // selectedRows?: Set<string | number>
 ) => {
   const [loading, setLoading] = useState(false);
   const onClick = async () => {
@@ -156,11 +158,17 @@ export const renderHierarchyTrigger = (
           const dynamicChildren = await childrenTrigger(true, triggerRow);
           triggerRow.childRows = dynamicChildren;
 
-          if (selectedRows?.has(rowKeyGetter(triggerRow, uniqueRowId))) {
-            dynamicChildren.forEach((child) => {
-              selectedRows.add(rowKeyGetter(child, uniqueRowId));
-            });
-          }
+          // TODO: REMOVED, NOW THE LOGIC IS HANDLED INSIDE RENDERCHECKBOX
+          // TODO: I HAVE LEFT IT FOR NOW BECAUSE I AM WORRIED ABOUT THE BEHAVIOR
+          // TODO: WHEN THERE ARE MULTIPLE HIERARCHY LEVELS EXPANDED AT ONCE
+          // TODO (AS RENDERCHECKBOX ONLY CHECKS DIRECT PARENT, AND HAVING A RECURSIVE CHECK
+          // TODO: SEEMS OVERKILL)
+          // 
+          // if (selectedRows?.has(rowKeyGetter(triggerRow, uniqueRowId))) {
+          //   dynamicChildren.forEach((child) => {
+          //     selectedRows.add(rowKeyGetter(child, uniqueRowId));
+          //   });
+          // }
 
           setRowsToRender((currentRows) => {
             const newRowsToRender = [...currentRows];
@@ -282,7 +290,7 @@ export const renderCheckbox = (
 ) => {
   return (
     <DxcCheckbox
-      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId)) || selectedRows.has(row.parentKey as string | number)}
       onChange={(checked) => {
         const selected = new Set(selectedRows);
         if (checked) {

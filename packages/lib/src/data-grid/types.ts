@@ -67,7 +67,7 @@ export type HierarchyGridRow = GridRow & {
   /**
    * Reference to the parent row's unique identifier.
    */
-  parentKey?: ReactNode;
+  parentKey?: string | number;
   /**
    * Indicates whether child rows are currently visible.
    */
