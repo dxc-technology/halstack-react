@@ -266,7 +266,7 @@ const Scroll = () => (
       <Title title="Only label" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
-    {/* <ExampleContainer pseudoState="pseudo-hover">
+    <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
@@ -277,7 +277,7 @@ const Scroll = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived tabs" theme="light" level={4} />
       {tabs()}
-    </ExampleContainer> */}
+    </ExampleContainer>
   </>
 );
 
