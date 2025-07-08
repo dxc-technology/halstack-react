@@ -81,11 +81,8 @@ const TabsContent = styled.div`
 const ScrollableTabsList = styled.div<{
   enabled: boolean;
   iconPosition: TabsPropsType["iconPosition"];
-  translateScroll: number;
 }>`
   display: flex;
-  ${({ enabled, translateScroll }) =>
-    enabled ? `transform: translateX(${translateScroll}px)` : "transform: translateX(0px)"};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   height: ${({ iconPosition }) => (iconPosition === "top" ? "72px" : "var(--height-xxl)")};
 `;
@@ -107,12 +104,11 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
 
     return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });
-  const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [scrollRightEnabled, setScrollRightEnabled] = useState(true);
-  const [translateScroll, setTranslateScroll] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
+  const refTabListContainer = useRef<HTMLDivElement | null>(null);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
   const viewWidth = useWidth(refTabList.current);
@@ -128,36 +124,32 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
     };
   }, [activeTabId, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
 
-  const scrollLeft = () => {
-    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
-    let moveX = 0;
-    if (countClick <= offsetHeight) {
-      moveX = 0;
-      setScrollLeftEnabled(false);
-      setScrollRightEnabled(true);
-    } else {
-      moveX = countClick - offsetHeight * 2;
-      setScrollRightEnabled(true);
-      setScrollLeftEnabled(true);
+  const scrollLimitCheck = () => {
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft -= 100;
+      if (refTabListContainer.current.scrollLeft <= 0) setScrollLeftEnabled(false);
+      else setScrollLeftEnabled(true);
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft += 100;
+      if (refTabListContainer.current.scrollLeft >= refTabListContainer.current.offsetWidth)
+        setScrollRightEnabled(false);
+      else setScrollRightEnabled(true);
+    }
+  };
+
+  const scrollLeft = () => {
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft -= 100;
+      scrollLimitCheck();
+    }
   };
 
   const scrollRight = () => {
-    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
-    let moveX = 0;
-    if (countClick + offsetHeight >= totalTabsWidth) {
-      moveX = totalTabsWidth - offsetHeight;
-      setScrollRightEnabled(false);
-      setScrollLeftEnabled(true);
-    } else {
-      moveX = countClick + offsetHeight * 2;
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(true);
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft += 100;
+      scrollLimitCheck();
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -169,11 +161,13 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
       case "ArrowLeft":
         event.preventDefault();
         setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        scrollLimitCheck();
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
         setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        scrollLimitCheck();
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
@@ -215,14 +209,13 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
               <DxcIcon icon="keyboard_arrow_left" />
             </ScrollIndicatorButton>
           )}
-          <TabsContent>
+          <TabsContent ref={refTabListContainer}>
             <ScrollableTabsList
               enabled={viewWidth < totalTabsWidth}
               iconPosition={iconPosition}
               onKeyDown={handleOnKeyDown}
               ref={refTabList}
               role="tablist"
-              translateScroll={translateScroll}
             >
               <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
             </ScrollableTabsList>
