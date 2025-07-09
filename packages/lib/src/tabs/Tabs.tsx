@@ -125,16 +125,15 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   }, [activeTabId, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
 
   const scrollLimitCheck = () => {
-    if (refTabListContainer.current) {
-      refTabListContainer.current.scrollLeft -= 100;
-      if (refTabListContainer.current.scrollLeft <= 0) setScrollLeftEnabled(false);
-      else setScrollLeftEnabled(true);
-    }
-    if (refTabListContainer.current) {
-      refTabListContainer.current.scrollLeft += 100;
-      if (refTabListContainer.current.scrollLeft >= refTabListContainer.current.offsetWidth)
-        setScrollRightEnabled(false);
-      else setScrollRightEnabled(true);
+    const container = refTabListContainer.current;
+    if (container) {
+      const currentScroll = container.scrollLeft;
+      const scrollingLength = container.scrollWidth - container.offsetWidth;
+      const startingScroll = currentScroll <= 1;
+      const endScroll = currentScroll >= scrollingLength - 1;
+
+      setScrollLeftEnabled(!startingScroll);
+      setScrollRightEnabled(!endScroll);
     }
   };
 
@@ -156,18 +155,20 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
     const activeTab = childrenArray.findIndex(
       (child: ReactElement) => (child.props.label ?? child.props.tabId) === activeTabId
     );
+    let index;
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
-        scrollLimitCheck();
+        index = getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex);
+        setInnerFocusIndex(index);
+
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
-        scrollLimitCheck();
+        index = getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex);
+        setInnerFocusIndex(index);
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
@@ -177,6 +178,9 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
       default:
         break;
     }
+    setTimeout(() => {
+      scrollLimitCheck();
+    }, 0);
   };
 
   useLayoutEffect(() => {
