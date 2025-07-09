@@ -1,5 +1,5 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from "react";
-import styled from "styled-components";
+import { useContext, useLayoutEffect, useRef } from "react";
+import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";

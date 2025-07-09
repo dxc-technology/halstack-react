@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";

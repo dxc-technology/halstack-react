@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import { useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content } from "@radix-ui/react-tooltip";

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -15,39 +15,33 @@ const ApplicationLayoutContainer = styled.div<{
   isSidenavVisible: boolean;
   hasSidenav: boolean;
 }>`
-  position: absolute;
-  top: 64px;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  overflow: hidden;
 
   @media (max-width: ${responsiveSizes.large}rem) {
-    ${(props) => props.hasSidenav && "top: 116px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
 `;
 
 const HeaderContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: fit-content;
   z-index: 3;
 `;
 
 const VisibilityToggle = styled.div`
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 4px 16px;
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-m);
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--color-bg-neutral-light);
   user-select: none;
   z-index: 2;
 `;
@@ -55,45 +49,44 @@ const VisibilityToggle = styled.div`
 const HamburgerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--spacing-gap-s);
   border: 0px solid transparent;
-  border-radius: 2px;
-  padding: 12px 4px;
+  border-radius: var(--border-radius-xs);
+  padding: var(--spacing-gap-none) var(--spacing-gap-none);
   background-color: transparent;
-  box-shadow: 0 0 0 2px transparent;
-  font-family:
-    Open Sans,
-    sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: #000;
+  font-family: var(--typography-font-family);
+  font-weight: var(--typography-label-semibold);
+  font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
   cursor: pointer;
 
   :active {
-    background-color: #cccccc;
+    background-color: var(--color-bg-neutral-lightest);
   }
   :focus,
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px #0095ff;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
   span::before {
-    font-size: 20px;
+    font-size: var(--height-xs);
   }
 `;
 
 const BodyContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
 const SidenavContainer = styled.div`
-  position: sticky;
-  top: 64px;
-  display: flex;
-  height: calc(100vh - 64px);
+  width: fit-content;
+  min-width: 280px;
+  height: 100%;
   z-index: 1;
+  position: sticky;
+  overflow: auto;
 
   @media (max-width: ${responsiveSizes.large}rem) {
     position: absolute;
@@ -104,16 +97,26 @@ const SidenavContainer = styled.div`
 
 const MainContainer = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+`;
+
+const FooterContainer = styled.div`
+  height: fit-content;
   width: 100%;
 `;
 
 const MainContentContainer = styled.main`
-  flex: 1;
-  background-color: #fff;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 `;
 
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
 
 const DxcApplicationLayout = ({
   visibilityToggleLabel = "",
@@ -139,20 +142,25 @@ const DxcApplicationLayout = ({
 
   return (
     <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
-      <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
-      {sidenav && isResponsive && (
-        <VisibilityToggle>
-          <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
-            <HamburgerTrigger
-              onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
-            >
-              <DxcIcon icon="Menu" />
-              {visibilityToggleLabel}
-            </HamburgerTrigger>
-          </Tooltip>
-        </VisibilityToggle>
-      )}
+      <HeaderContainer>
+        {header ?? <DxcHeader underlined />}
+        {sidenav && isResponsive && (
+          <VisibilityToggle>
+            <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
+              <HamburgerTrigger
+                onClick={handleSidenavVisibility}
+                aria-label={
+                  visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle
+                }
+              >
+                <DxcIcon icon="Menu" />
+                {visibilityToggleLabel}
+              </HamburgerTrigger>
+            </Tooltip>
+          </VisibilityToggle>
+        )}
+      </HeaderContainer>
+
       <BodyContainer>
         <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
           {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
@@ -160,14 +168,18 @@ const DxcApplicationLayout = ({
           )}
         </SidenavContextProvider>
         <MainContainer>
-          <MainContentContainer>{findChildType(children, Main)}</MainContentContainer>
-          {footer ?? (
-            <DxcFooter
-              copyright={`© DXC Technology ${year}. All rights reserved.`}
-              bottomLinks={bottomLinks}
-              socialLinks={socialLinks}
-            />
-          )}
+          <MainContentContainer>
+            {findChildType(children, Main)}
+            <FooterContainer>
+              {footer ?? (
+                <DxcFooter
+                  copyright={`© DXC Technology ${year}. All rights reserved.`}
+                  bottomLinks={bottomLinks}
+                  socialLinks={socialLinks}
+                />
+              )}
+            </FooterContainer>
+          </MainContentContainer>
         </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>

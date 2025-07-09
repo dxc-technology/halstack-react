@@ -60,6 +60,35 @@ export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
 );
 
 /**
+ * Expands a given row by inserting a new child row with the expanded content.
+ * @param {ExpandableGridRow} row - The row object to expand.
+ * @param {ExpandableGridRow[]} rows - The current list of all rows (as rendered).
+ * @param {string} uniqueRowId - Unique identifier key used for each row.
+ */
+export const expandRow = (row: ExpandableGridRow, rows: ExpandableGridRow[], uniqueRowId: string) => {
+  const rowIndex = rows.findIndex((r) => r === row);
+  addRow(rows, rowIndex + 1, {
+    isExpandedChildContent: true,
+    [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
+    expandedChildContent: row.expandedContent,
+    triggerRowKey: rowKeyGetter(row, uniqueRowId),
+    expandedContentHeight: row.expandedContentHeight,
+  });
+};
+
+/**
+ * Collapses a given row by removing its expanded child row.
+ * @param {ExpandableGridRow} row - The row object to collapse.
+ * @param {ExpandableGridRow[]} rows - The current list of all rows (as rendered).
+ */
+export const collapseRow = (row: ExpandableGridRow, rows: ExpandableGridRow[]) => {
+  const rowIndex = rows.findIndex((r) => r === row);
+  const newRows = [...rows];
+  deleteRow(newRows, rowIndex + 1);
+  return newRows;
+};
+
+/**
  * Renders an expandable trigger icon that toggles row expansion.
  * @param {ExpandableGridRow} row - Row object that can be expanded or collapsed.
  * @param {ExpandableGridRow[]} rows - List of all rows.
@@ -80,25 +109,13 @@ export const renderExpandableTrigger = (
     onClick={() => {
       row.contentIsExpanded = !row.contentIsExpanded;
       if (row.contentIsExpanded) {
-        const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
         setRowsToRender((currentRows) => {
-          const newRows = [...currentRows];
-          addRow(newRows, rowIndex + 1, {
-            isExpandedChildContent: row.contentIsExpanded,
-            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-            expandedChildContent: row.expandedContent,
-            triggerRowKey: rowKeyGetter(row, uniqueRowId),
-            expandedContentHeight: row.expandedContentHeight,
-          });
-          return newRows;
+          const finalRows = [...currentRows];
+          expandRow(row, finalRows, uniqueRowId);
+          return finalRows;
         });
       } else {
-        const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
-        setRowsToRender((currentRows) => {
-          const newRows = [...currentRows];
-          deleteRow(newRows, rowIndex + 1);
-          return newRows;
-        });
+        setRowsToRender((currentRows) => collapseRow(row, [...currentRows]));
       }
     }}
     disabled={!rows.some((row) => uniqueRowId in row)}
@@ -136,11 +153,9 @@ export const renderHierarchyTrigger = (
         });
       } else {
         // The children of the row that is being collapsed are added to an array
-        const rowsToRemove: HierarchyGridRow[] = [
-          ...rows.filter(
-            (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
-          ),
-        ];
+        const rowsToRemove: HierarchyGridRow[] = rows.filter(
+          (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
+        );
         // The children are checked if any of them has any other children of their own
         const rowsToCheck = [...rowsToRemove];
         while (rowsToCheck.length > 0) {

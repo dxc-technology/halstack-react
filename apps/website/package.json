@@ -10,9 +10,13 @@
   "dependencies": {
     "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.14.0",
     "@radix-ui/react-popover": "^1.0.7",
     "cross-env": "^7.0.3",
-    "next": "14.2.26",
+    "next": "^14.2.30",
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-color": "^2.19.3",
@@ -21,8 +25,7 @@
     "react-live": "^4.1.7",
     "react-markdown": "^8.0.7",
     "sharp": "^0.33.3",
-    "slugify": "^1.6.5",
-    "styled-components": "^5.3.3"
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "@dxc-technology/typescript-config": "*",
@@ -30,7 +33,6 @@
     "@types/react": "^18",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18",
-    "@types/styled-components": "5.1.29",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "typescript": "^5.6.3"

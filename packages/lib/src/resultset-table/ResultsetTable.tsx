@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -150,18 +150,19 @@ const DxcResultsetTable = ({
           ))}
         </tbody>
       </DxcTable>
-      {!hidePaginator && rows.length > itemsPerPage && (
-        <DxcPaginator
-          currentPage={page}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageFunction={itemsPerPageFunction}
-          itemsPerPageOptions={itemsPerPageOptions}
-          onPageChange={goToPage}
-          showGoToPage={showGoToPage}
-          tabIndex={tabIndex}
-          totalItems={rows.length}
-        />
-      )}
+      {!hidePaginator &&
+        (itemsPerPageOptions?.some((itemsPerPage) => rows.length > itemsPerPage) || rows.length > itemsPerPage) && (
+          <DxcPaginator
+            currentPage={page}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageFunction={itemsPerPageFunction}
+            itemsPerPageOptions={itemsPerPageOptions}
+            onPageChange={goToPage}
+            showGoToPage={showGoToPage}
+            tabIndex={tabIndex}
+            totalItems={rows.length}
+          />
+        )}
     </ResultsetTableContainer>
   );
 };
