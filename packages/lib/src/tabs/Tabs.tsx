@@ -189,7 +189,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
       setTotalTabsWidth(() => {
         let total = 0;
         refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
-          if (tab.ariaSelected === "true" && viewWidth < totalTabsWidth) {
+          if (tab.ariaSelected === "true" && viewWidth && viewWidth < totalTabsWidth) {
             setInnerFocusIndex(index);
           }
           total += (tab as HTMLElement).offsetWidth;
