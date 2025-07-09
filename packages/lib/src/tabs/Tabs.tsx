@@ -4,6 +4,7 @@ import {
   KeyboardEvent,
   ReactElement,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -183,20 +184,20 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
     }, 0);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (refTabList.current)
       setTotalTabsWidth(() => {
         let total = 0;
         refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
           if (tab.ariaSelected === "true") {
             setInnerFocusIndex(index);
-            if (index) setScrollLeftEnabled(true);
           }
           total += (tab as HTMLElement).offsetWidth;
         });
         return total;
       });
-  }, []);
+    scrollLimitCheck();
+  }, [viewWidth]);
 
   return (
     <>
