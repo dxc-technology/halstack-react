@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useRef } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -69,157 +69,156 @@ const Listbox = ({
 }: ListboxProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const virtuosoRef = useRef<VirtuosoHandle>(null);
-  let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 
   const isSearchEmpty = searchable && (options.length === 0 || !groupsHaveOptions(options));
   const isSingleSelectOptional = optional && !multiple;
   const isMultipleSelectWithSelectAll = multiple && enableSelectAll;
 
-  const hasHeader = isSearchEmpty || isSingleSelectOptional || isMultipleSelectWithSelectAll;
+  type FlattenedItem =
+    | { type: "selectAll"; id?: never }
+    | { type: "optionalItem"; id?: never }
+    | { type: "groupLabel"; label: string; id: string }
+    | { type: "groupHeader"; group: ListOptionGroupType; id: string }
+    | { type: "option"; option: ListOptionType; id: string; isGroupedOption?: boolean };
 
-  const hasGroupedOptions = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType =>
-    "options" in option;
+  const flattenedOptions: FlattenedItem[] = [];
 
-  const mapGroupOptionFunc = (option: ListOptionGroupType, mapIndex: number) => {
-    const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
-      if (isMultipleSelectWithSelectAll) {
-        const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
-        globalMappingIndex++;
+  if (!isSearchEmpty) {
+    if (isSingleSelectOptional) {
+      flattenedOptions.push({ type: "optionalItem" });
+    } else if (isMultipleSelectWithSelectAll) {
+      flattenedOptions.push({ type: "selectAll" });
+    }
+  }
+
+  options.forEach((opt, groupIndex) => {
+    if ("options" in opt) {
+      const groupId = `${id}-group-${groupIndex}`;
+      if (opt.options.length === 0) return;
+
+      if (multiple && enableSelectAll) {
+        flattenedOptions.push({ type: "groupHeader", group: opt, id: groupId });
+      } else {
+        flattenedOptions.push({ type: "groupLabel", label: opt.label, id: groupId });
+      }
+
+      opt.options.forEach((child, childIndex) => {
+        const optionId = `${id}-option-${groupIndex}-${childIndex}`;
+        flattenedOptions.push({
+          type: "option",
+          option: child,
+          id: optionId,
+          isGroupedOption: true,
+        });
+      });
+    } else {
+      const optionId = `${id}-option-${groupIndex}`;
+      flattenedOptions.push({
+        type: "option",
+        option: opt,
+        id: optionId,
+      });
+    }
+  });
+
+  const renderItem = (index: number) => {
+    const item = flattenedOptions[index];
+    switch (item?.type) {
+      case "selectAll":
         return (
-          <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
+          <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
             <ListOption
-              id={groupId}
-              isLastOption={lastOptionIndex === globalMappingIndex}
-              isSelected={groupSelectionType === "checked"}
+              id={`${id}-option-0`}
+              isLastOption={lastOptionIndex === 0}
+              isSelected={selectionType === "checked"}
               isSelectAllOption
-              key={groupId}
+              key={`${id}-select-all`}
               multiple
-              onClick={() => handleGroupOnClick(option)}
-              option={{ label: option.label, value: "" }}
-              visualFocused={globalMappingIndex === visualFocusIndex}
+              onClick={handleSelectAllOnClick}
+              option={{ label: translatedLabels.select.selectAllLabel, value: "" }}
+              visualFocused={getGlobalIndex(visualFocusIndex) === index}
             />
           </CheckboxContext.Provider>
         );
-      } else {
+
+      case "optionalItem":
         return (
-          <GroupLabel id={groupId} role="presentation">
-            {option.label}
+          <ListOption
+            id={`${id}-option-0`}
+            isLastOption={lastOptionIndex === 0}
+            isSelected={currentValue === optionalItem.value}
+            key={`${id}-optional`}
+            multiple={false}
+            onClick={handleOptionOnClick}
+            option={optionalItem}
+            visualFocused={getGlobalIndex(visualFocusIndex) === index}
+          />
+        );
+
+      case "groupLabel":
+        return (
+          <GroupLabel id={item.id} role="presentation" key={item.id}>
+            {item.label}
           </GroupLabel>
         );
+
+      case "groupHeader": {
+        const groupSelectionType = getGroupSelectionType(item.group.options, currentValue as string[]);
+        return (
+          <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }} key={item.id}>
+            <ListOption
+              id={item.id}
+              isLastOption={false}
+              isSelected={groupSelectionType === "checked"}
+              isSelectAllOption
+              multiple
+              onClick={() => handleGroupOnClick(item.group)}
+              option={{ label: item.group.label, value: "" }}
+              visualFocused={getGlobalIndex(visualFocusIndex) === index}
+            />
+            <></>
+          </CheckboxContext.Provider>
+        );
       }
-    };
-    const groupId = `${id}-group-${mapIndex}`;
-    return (
-      option.options.length > 0 && (
-        <ul aria-labelledby={groupId} key={groupId} role="group" style={{ padding: 0, margin: 0 }}>
-          {getGroupOption(groupId, option)}
-          {option.options.map((singleOption, childIndex) => {
-            const optionId = `${id}-option-${mapIndex}-${childIndex}`;
-            globalMappingIndex++;
-            return (
-              <ListOption
-                id={optionId}
-                isGroupedOption
-                isLastOption={lastOptionIndex === globalMappingIndex}
-                isSelected={
-                  multiple
-                    ? (currentValue as string[]).includes(singleOption.value)
-                    : currentValue === singleOption.value
-                }
-                key={optionId}
-                multiple={multiple}
-                onClick={handleOptionOnClick}
-                option={singleOption}
-                visualFocused={globalMappingIndex === visualFocusIndex}
-              />
-            );
-          })}
-        </ul>
-      )
-    );
-  };
 
-  const mapOptionFunc = (option: ListOptionType, mapIndex: number) => {
-    const optionId = `${id}-option-${mapIndex}`;
-    return (
-      <ListOption
-        id={optionId}
-        isLastOption={lastOptionIndex === mapIndex}
-        isSelected={multiple ? (currentValue as string[]).includes(option.value) : currentValue === option.value}
-        key={optionId}
-        multiple={multiple}
-        onClick={handleOptionOnClick}
-        option={option}
-        visualFocused={mapIndex === visualFocusIndex}
-      />
-    );
-  };
-
-  const getFirstItem = () => {
-    if (isSearchEmpty) {
-      return (
-        <OptionsSystemMessage>
-          <DxcIcon icon="search_off" />
-          {translatedLabels.select.noMatchesErrorMessage}
-        </OptionsSystemMessage>
-      );
-    } else if (isSingleSelectOptional) {
-      return (
-        <ListOption
-          id={`${id}-option-${0}`}
-          isLastOption={lastOptionIndex === 0}
-          isSelected={currentValue === optionalItem.value}
-          key={`${id}-option-${optionalItem.value}`}
-          multiple={false}
-          onClick={handleOptionOnClick}
-          option={optionalItem}
-          visualFocused={visualFocusIndex === 0}
-        />
-      );
-    } else if (isMultipleSelectWithSelectAll) {
-      return (
-        <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+      case "option":
+        return (
           <ListOption
-            id={`${id}-option-${0}`}
-            isLastOption={lastOptionIndex === 0}
-            isSelected={selectionType === "checked"}
-            isSelectAllOption
-            key={`${id}-option-${optionalItem.value}`}
-            multiple
-            onClick={handleSelectAllOnClick}
-            option={{
-              label: translatedLabels.select.selectAllLabel,
-              value: "",
-            }}
-            visualFocused={visualFocusIndex === 0}
+            id={item.id}
+            isGroupedOption={item.isGroupedOption}
+            isLastOption={lastOptionIndex === index}
+            isSelected={
+              multiple ? (currentValue as string[]).includes(item.option.value) : currentValue === item.option.value
+            }
+            key={item.id}
+            multiple={multiple}
+            onClick={handleOptionOnClick}
+            option={item.option}
+            visualFocused={getGlobalIndex(visualFocusIndex) === index}
           />
-        </CheckboxContext.Provider>
-      );
+        );
+
+      default:
+        return null;
     }
-    return null;
+  };
+
+  const getGlobalIndex = (index: number) => {
+    const focusableOptions = flattenedOptions.filter((item) => item.type !== "groupLabel");
+    if (focusableOptions[index]) {
+      const actualIndex = flattenedOptions.findIndex((option) => {
+        return option.type === focusableOptions[index]?.type && option.id === focusableOptions[index]?.id;
+      });
+      return actualIndex;
+    }
+    return -1;
   };
 
   useLayoutEffect(() => {
-    if (!multiple && currentValue && virtuosoRef.current) {
-      // TODO: Investigate logic for grouped options
-      const selectedIndex = options.findIndex(({ value }) => value === currentValue);
-      if (selectedIndex !== -1) {
-        setTimeout(() => {
-          virtuosoRef?.current?.scrollToIndex({
-            index: selectedIndex,
-            align: "center",
-            behavior: "auto",
-          });
-        }, 1);
-      }
-    }
-  }, [currentValue, multiple]);
-
-  useLayoutEffect(() => {
-    // TODO: Investigate logic for grouped options
+    const globalIndex = getGlobalIndex(visualFocusIndex);
     if (visualFocusIndex >= 0 && virtuosoRef.current) {
       virtuosoRef.current.scrollToIndex({
-        index: visualFocusIndex,
+        index: globalIndex,
         align: "center",
         behavior: "auto",
       });
@@ -243,15 +242,27 @@ const Listbox = ({
       <Virtuoso
         ref={virtuosoRef}
         style={{ height: "100%" }}
-        data={options}
-        itemContent={(index, option) => {
-          const adjustedIndex = hasHeader ? index + 1 : index;
-          return hasGroupedOptions(option)
-            ? mapGroupOptionFunc(option, adjustedIndex)
-            : mapOptionFunc(option, adjustedIndex);
-        }}
+        totalCount={flattenedOptions.length}
+        initialTopMostItemIndex={
+          !multiple && currentValue
+            ? {
+                index:
+                  flattenedOptions.findIndex((item) => item.type === "option" && item.option.value === currentValue) ??
+                  0,
+                align: "center",
+                behavior: "auto",
+              }
+            : 0
+        }
+        itemContent={(index) => renderItem(index)}
         components={{
-          Header: () => getFirstItem(),
+          Header: () =>
+            isSearchEmpty ? (
+              <OptionsSystemMessage>
+                <DxcIcon icon="search_off" />
+                {translatedLabels.select.noMatchesErrorMessage}
+              </OptionsSystemMessage>
+            ) : null,
         }}
       />
     </ListboxContainer>
