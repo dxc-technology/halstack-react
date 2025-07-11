@@ -1504,6 +1504,10 @@ export const defaultTranslatedComponentLabels = {
       `${minNumberOfItems} to ${maxNumberOfItems} of ${totalItems}`,
     goToPageText: "Go to page:",
     pageOfText: (pageNumber: number, totalPagesNumber: number) => `Page: ${pageNumber} of ${totalPagesNumber}`,
+    firstResultsTitle: "First results",
+    previousResultsTitle: "Previous results",
+    nextResultsTitle: "Next results",
+    lastResultsTitle: "Last results",
   },
   passwordInput: {
     inputShowPasswordTitle: "Show password",
@@ -1519,7 +1523,7 @@ export const defaultTranslatedComponentLabels = {
     actionClearSelectionTitle: "Clear selection",
     actionClearSearchTitle: "Clear search",
     noMatchesErrorMessage: "No matches found",
-    selectAllLabel: "Select all"
+    selectAllLabel: "Select all",
   },
   tabs: {
     scrollLeft: "Scroll left",
