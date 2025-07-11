@@ -32,6 +32,13 @@ const single_options = [
   { label: "Option 04", value: "4" },
 ];
 
+const single_options_virtualized = [
+  ...Array.from({ length: 100 }, (_, i) => ({
+    label: `Option ${String(i + 1).padStart(2, "0")}`,
+    value: `${i + 1}`,
+  })),
+];
+
 const group_options = [
   {
     label: "Group 001",
@@ -356,6 +363,8 @@ const Select = () => (
         margin={{ top: "xxlarge" }}
       />
     </ExampleContainer>
+    <Title title="Virtualized" theme="light" level={4} />
+    <DxcSelect label="Virtualized" options={single_options_virtualized} />
   </>
 );
 
