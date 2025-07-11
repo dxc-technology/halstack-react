@@ -112,6 +112,16 @@ const Listbox = ({
     }
   });
 
+  const getGlobalIndex = (index: number) => {
+    const focusableOptions = flattenedOptions.filter((item) => item.type !== "groupLabel");
+    if (focusableOptions[index]) {
+      const actualIndex = flattenedOptions.findIndex((option) => {
+        return option.type === focusableOptions[index]?.type && option.id === focusableOptions[index]?.id;
+      });
+      return actualIndex;
+    }
+    return -1;
+  };
 
   useLayoutEffect(() => {
     const globalIndex = getGlobalIndex(visualFocusIndex);
@@ -123,17 +133,6 @@ const Listbox = ({
       });
     }
   }, [visualFocusIndex]);
-  
-  const getGlobalIndex = (index: number) => {
-    const focusableOptions = flattenedOptions.filter((item) => item.type !== "groupLabel");
-    if (focusableOptions[index]) {
-      const actualIndex = flattenedOptions.findIndex((option) => {
-        return option.type === focusableOptions[index]?.type && option.id === focusableOptions[index]?.id;
-      });
-      return actualIndex;
-    }
-    return -1;
-  };
 
   const renderItem = (index: number) => {
     const item = flattenedOptions[index];
