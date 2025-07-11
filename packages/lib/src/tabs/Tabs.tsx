@@ -4,6 +4,7 @@ import {
   KeyboardEvent,
   ReactElement,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -81,26 +82,13 @@ const TabsContent = styled.div`
 const ScrollableTabsList = styled.div<{
   enabled: boolean;
   iconPosition: TabsPropsType["iconPosition"];
-  translateScroll: number;
 }>`
   display: flex;
-  ${({ enabled, translateScroll }) =>
-    enabled ? `transform: translateX(${translateScroll}px)` : "transform: translateX(0px)"};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   height: ${({ iconPosition }) => (iconPosition === "top" ? "72px" : "var(--height-xxl)")};
 `;
 
-const DxcTabs = ({
-  activeTabIndex,
-  children,
-  defaultActiveTabIndex,
-  iconPosition = "left",
-  margin,
-  onTabClick,
-  onTabHover,
-  tabIndex = 0,
-  tabs,
-}: TabsPropsType) => {
+const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: TabsPropsType) => {
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
@@ -117,12 +105,11 @@ const DxcTabs = ({
 
     return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
   });
-  const [countClick, setCountClick] = useState(0);
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [scrollRightEnabled, setScrollRightEnabled] = useState(true);
-  const [translateScroll, setTranslateScroll] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
+  const refTabListContainer = useRef<HTMLDivElement | null>(null);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
   const viewWidth = useWidth(refTabList.current);
@@ -138,52 +125,51 @@ const DxcTabs = ({
     };
   }, [activeTabId, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
 
-  const scrollLeft = () => {
-    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
-    let moveX = 0;
-    if (countClick <= offsetHeight) {
-      moveX = 0;
-      setScrollLeftEnabled(false);
-      setScrollRightEnabled(true);
-    } else {
-      moveX = countClick - offsetHeight * 2;
-      setScrollRightEnabled(true);
-      setScrollLeftEnabled(true);
+  const scrollLimitCheck = () => {
+    const container = refTabListContainer.current;
+    if (container) {
+      const currentScroll = container.scrollLeft;
+      const scrollingLength = container.scrollWidth - container.offsetWidth;
+      const startingScroll = currentScroll <= 1;
+      const endScroll = currentScroll >= scrollingLength - 1;
+
+      setScrollLeftEnabled(!startingScroll);
+      setScrollRightEnabled(!endScroll);
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
+  };
+
+  const scrollLeft = () => {
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft -= 100;
+      scrollLimitCheck();
+    }
   };
 
   const scrollRight = () => {
-    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
-    let moveX = 0;
-    if (countClick + offsetHeight >= totalTabsWidth) {
-      moveX = totalTabsWidth - offsetHeight;
-      setScrollRightEnabled(false);
-      setScrollLeftEnabled(true);
-    } else {
-      moveX = countClick + offsetHeight * 2;
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(true);
+    if (refTabListContainer.current) {
+      refTabListContainer.current.scrollLeft += 100;
+      scrollLimitCheck();
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const activeTab = childrenArray.findIndex(
       (child: ReactElement) => (child.props.label ?? child.props.tabId) === activeTabId
     );
+    let index;
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        index = getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex);
+        setInnerFocusIndex(index);
+
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        index = getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex);
+        setInnerFocusIndex(index);
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
@@ -193,18 +179,25 @@ const DxcTabs = ({
       default:
         break;
     }
+    setTimeout(() => {
+      scrollLimitCheck();
+    }, 0);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (refTabList.current)
       setTotalTabsWidth(() => {
         let total = 0;
-        refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab) => {
+        refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
+          if (tab.ariaSelected === "true" && viewWidth && viewWidth < totalTabsWidth) {
+            setInnerFocusIndex(index);
+          }
           total += (tab as HTMLElement).offsetWidth;
         });
         return total;
       });
-  }, []);
+    scrollLimitCheck();
+  }, [viewWidth, totalTabsWidth]);
 
   return (
     <>
@@ -221,14 +214,13 @@ const DxcTabs = ({
               <DxcIcon icon="keyboard_arrow_left" />
             </ScrollIndicatorButton>
           )}
-          <TabsContent>
+          <TabsContent ref={refTabListContainer}>
             <ScrollableTabsList
               enabled={viewWidth < totalTabsWidth}
               iconPosition={iconPosition}
               onKeyDown={handleOnKeyDown}
               ref={refTabList}
               role="tablist"
-              translateScroll={translateScroll}
             >
               <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
             </ScrollableTabsList>
