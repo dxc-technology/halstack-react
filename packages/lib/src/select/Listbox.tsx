@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from "react";
+import { useContext, useLayoutEffect, useRef, forwardRef } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -227,8 +227,6 @@ const Listbox = ({
 
   return (
     <ListboxContainer
-      aria-labelledby={ariaLabelledBy}
-      aria-multiselectable={multiple}
       id={id}
       onClick={(event) => {
         event.stopPropagation();
@@ -236,7 +234,6 @@ const Listbox = ({
       onMouseDown={(event) => {
         event.preventDefault();
       }}
-      role="listbox"
       style={styles}
     >
       <Virtuoso
@@ -256,6 +253,9 @@ const Listbox = ({
         }
         itemContent={(index) => renderItem(index)}
         components={{
+          List: forwardRef((props, ref) => (
+            <div ref={ref} role="listbox" aria-labelledby={ariaLabelledBy} aria-multiselectable={multiple} {...props} />
+          )),
           Header: () =>
             isSearchEmpty ? (
               <OptionsSystemMessage>
