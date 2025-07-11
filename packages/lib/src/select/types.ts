@@ -215,4 +215,11 @@ export type ListboxProps = {
  */
 export type RefType = HTMLDivElement;
 
-export default Props;
+export type FlattenedItem =
+  | { type: "selectAll"; id?: never }
+  | { type: "optionalItem"; id?: never }
+  | { type: "groupLabel"; label: string; id: string }
+  | { type: "groupHeader"; group: ListOptionGroupType; id: string }
+  | { type: "option"; option: ListOptionType; id: string; isGroupedOption?: boolean };
+
+  export default Props;

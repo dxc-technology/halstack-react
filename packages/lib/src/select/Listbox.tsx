@@ -4,7 +4,7 @@ import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
 import { getGroupSelectionType, groupsHaveOptions } from "./utils";
-import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
+import { FlattenedItem, ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
 import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
@@ -74,13 +74,6 @@ const Listbox = ({
   const isSingleSelectOptional = optional && !multiple;
   const isMultipleSelectWithSelectAll = multiple && enableSelectAll;
 
-  type FlattenedItem =
-    | { type: "selectAll"; id?: never }
-    | { type: "optionalItem"; id?: never }
-    | { type: "groupLabel"; label: string; id: string }
-    | { type: "groupHeader"; group: ListOptionGroupType; id: string }
-    | { type: "option"; option: ListOptionType; id: string; isGroupedOption?: boolean };
-
   const flattenedOptions: FlattenedItem[] = [];
 
   if (!isSearchEmpty) {
@@ -103,23 +96,44 @@ const Listbox = ({
       }
 
       opt.options.forEach((child, childIndex) => {
-        const optionId = `${id}-option-${groupIndex}-${childIndex}`;
         flattenedOptions.push({
           type: "option",
           option: child,
-          id: optionId,
+          id: `${id}-option-${groupIndex}-${childIndex}`,
           isGroupedOption: true,
         });
       });
     } else {
-      const optionId = `${id}-option-${groupIndex}`;
       flattenedOptions.push({
         type: "option",
         option: opt,
-        id: optionId,
+        id: `${id}-option-${groupIndex}`,
       });
     }
   });
+
+
+  useLayoutEffect(() => {
+    const globalIndex = getGlobalIndex(visualFocusIndex);
+    if (visualFocusIndex >= 0 && virtuosoRef.current) {
+      virtuosoRef.current.scrollToIndex({
+        index: globalIndex,
+        align: "center",
+        behavior: "auto",
+      });
+    }
+  }, [visualFocusIndex]);
+  
+  const getGlobalIndex = (index: number) => {
+    const focusableOptions = flattenedOptions.filter((item) => item.type !== "groupLabel");
+    if (focusableOptions[index]) {
+      const actualIndex = flattenedOptions.findIndex((option) => {
+        return option.type === focusableOptions[index]?.type && option.id === focusableOptions[index]?.id;
+      });
+      return actualIndex;
+    }
+    return -1;
+  };
 
   const renderItem = (index: number) => {
     const item = flattenedOptions[index];
@@ -202,28 +216,6 @@ const Listbox = ({
         return null;
     }
   };
-
-  const getGlobalIndex = (index: number) => {
-    const focusableOptions = flattenedOptions.filter((item) => item.type !== "groupLabel");
-    if (focusableOptions[index]) {
-      const actualIndex = flattenedOptions.findIndex((option) => {
-        return option.type === focusableOptions[index]?.type && option.id === focusableOptions[index]?.id;
-      });
-      return actualIndex;
-    }
-    return -1;
-  };
-
-  useLayoutEffect(() => {
-    const globalIndex = getGlobalIndex(visualFocusIndex);
-    if (visualFocusIndex >= 0 && virtuosoRef.current) {
-      virtuosoRef.current.scrollToIndex({
-        index: globalIndex,
-        align: "center",
-        behavior: "auto",
-      });
-    }
-  }, [visualFocusIndex]);
 
   return (
     <ListboxContainer
