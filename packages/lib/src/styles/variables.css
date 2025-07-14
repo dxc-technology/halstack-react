@@ -1,5 +1,37 @@
 :root {
-  /* _Core */
+  /**************/
+  /** POSITION **/
+  /**************/
+
+  /* Application Layout */
+  --z-app-layout-header: 100;
+  --z-app-layout-sidenav: 110;
+
+  /* Header */
+  --z-header-overlay: 200;
+  --z-header-menu: 210;
+
+  /* UI components */
+  --z-date-input: 300;
+  --z-dropdown: 310;
+
+  /* Modals and overlays */
+  --z-spinner-overlay: 400;
+  --z-progressbar-overlay: 410;
+  --z-dialog: 420;
+  --z-alert: 430;
+
+  /* Notifications */
+  --z-toast: 500;
+
+  /* Tooltip (topmost) */
+  --z-tooltip: 600;
+
+  /************/
+  /** TOKENS **/
+  /************/
+
+  /* Core tokens */
   --color-absolutes-black: #000000;
   --color-absolutes-white: #ffffff;
   --color-alpha-100-a: #ebebeb1a;
@@ -122,7 +154,7 @@
   --line-style-dashed: dashed;
   --line-style-solid: solid;
 
-  /* Alias */
+  /* Alias tokens */
   --border-color-error-light: var(--color-red-300);
   --border-color-error-medium: var(--color-red-600);
   --border-color-error-strong: var(--color-red-700);
