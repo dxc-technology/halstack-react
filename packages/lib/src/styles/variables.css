@@ -14,6 +14,8 @@
   /* UI components */
   --z-date-input: 300;
   --z-dropdown: 310;
+  --z-textinput: 320;
+  --z-select: 330;
 
   /* Modals and overlays */
   --z-spinner-overlay: 400;
