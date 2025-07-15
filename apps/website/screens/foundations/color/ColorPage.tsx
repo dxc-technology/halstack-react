@@ -4,11 +4,11 @@ import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import coreColorTokens from "./images/core_color_tokens.png";
 import neutralColors from "./images/neutral_colors.png";
 import alphaColors from "./images/alpha_colors.png";
 import primaryColor from "./images/primary_color.png";
 import secondaryColor from "./images/secondary_color.png";
+import tertiaryColor from "./images/tertiary_color.png";
 import semanticColors from "./images/semantic_colors.png";
 import PageHeading from "@/common/PageHeading";
 
@@ -79,15 +79,10 @@ const sections = [
   {
     title: "Core color tokens",
     content: (
-      <>
-        <DxcParagraph>
-          Colors are <strong>categorized by purpose</strong> (primary, secondary, neutral and semantic) and are extended
-          through tonal ranges to offer clarity, depth, and hierarchy in UI design.
-        </DxcParagraph>
-        <Figure caption="Core color tokens">
-          <Image src={coreColorTokens} alt="Core color tokens" />
-        </Figure>
-      </>
+      <DxcParagraph>
+        Colors are <strong>categorized by purpose</strong> (primary, secondary, neutral and semantic) and are extended
+        through tonal ranges to offer clarity, depth, and hierarchy in UI design.
+      </DxcParagraph>
     ),
     subSections: [
       {
@@ -162,6 +157,22 @@ const sections = [
         ),
       },
       {
+        title: "Tertiary color",
+        content: (
+          <>
+            <DxcParagraph>
+              The tertiary color is an identity-supporting color that{" "}
+              <strong>complements both the primary and secondary</strong> colors. It reinforces the overall visual
+              language and helps highlight less prominent elements without drawing attention away from core actions.
+            </DxcParagraph>
+
+            <Figure caption="Tertiary color">
+              <Image src={tertiaryColor} alt="Tertiary color" />
+            </Figure>
+          </>
+        ),
+      },
+      {
         title: "Semantic colors",
         content: (
           <>
@@ -194,55 +205,55 @@ const sections = [
           </>
         ),
       },
-      {
-        title: "Best practices",
-        content: (
-          <>
+    ],
+  },
+  {
+    title: "Best practices",
+    content: (
+      <>
+        <DxcParagraph>
+          To ensure color is used effectively, inclusively, and consistently across all user interfaces, follow these
+          best practices:
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <strong>Don't rely solely on color to communicate information</strong>
             <DxcParagraph>
-              To ensure color is used effectively, inclusively, and consistently across all user interfaces, follow
-              these best practices:
+              Use color in combination with text labels, icons, or patterns. Some users may be color-blind, have limited
+              color perception, or interpret colors differently based on cultural context. Always pair color with an
+              additional visual cue to convey meaning.
             </DxcParagraph>
-            <DxcBulletedList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Ensure sufficient contrast for accessibility</strong>
+            <DxcParagraph>
+              Text and interactive elements must meet minimum contrast requirements to remain legible for all users.
+              Follow these WCAG 2.1 guidelines:
+            </DxcParagraph>
+            <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
-                <strong>Don't rely solely on color to communicate information</strong>
-                <DxcParagraph>
-                  Use color in combination with text labels, icons, or patterns. Some users may be color-blind, have
-                  limited color perception, or interpret colors differently based on cultural context. Always pair color
-                  with an additional visual cue to convey meaning.
-                </DxcParagraph>
+                Use a <strong>contrast ratio of at least 4.5:1</strong> for normal body text.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Ensure sufficient contrast for accessibility</strong>
-                <DxcParagraph>
-                  Text and interactive elements must meet minimum contrast requirements to remain legible for all users.
-                  Follow these WCAG 2.1 guidelines:
-                </DxcParagraph>
-                <DxcBulletedList type="circle">
-                  <DxcBulletedList.Item>
-                    Use a <strong>contrast ratio of at least 4.5:1</strong> for normal body text.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    Use a <strong>contrast ratio of at least 3:1</strong> for large text (18pt or 14pt bold) and
-                    essential graphical objects (such as icons conveying meaning).
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Maintain a limited core palette</strong>
-                <DxcParagraph>
-                  Avoid excessive use of colors. Stick to the defined palette to strengthen visual harmony and brand
-                  recognition. Introduce neutral tones to balance visual weight and focus user attention appropriately.
-                </DxcParagraph>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Use tonal scales for depth and hierarchy</strong>
-                <DxcParagraph>Leverage color ramps to create spatial relationships and support elevation.</DxcParagraph>
+                Use a <strong>contrast ratio of at least 3:1</strong> for large text (18pt or 14pt bold) and essential
+                graphical objects (such as icons conveying meaning).
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </>
-        ),
-      },
-    ],
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Maintain a limited core palette</strong>
+            <DxcParagraph>
+              Avoid excessive use of colors. Stick to the defined palette to strengthen visual harmony and brand
+              recognition. Introduce neutral tones to balance visual weight and focus user attention appropriately.
+            </DxcParagraph>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Use tonal scales for depth and hierarchy</strong>
+            <DxcParagraph>Leverage color ramps to create spatial relationships and support elevation.</DxcParagraph>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
 ];
 
