@@ -7,6 +7,7 @@ import DxcFlex from "../flex/Flex";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
+import { waitFor } from "@testing-library/react";
 
 export default {
   title: "Select",
@@ -786,6 +787,7 @@ export const ListboxOptionWithEllipsisTooltip: Story = {
   render: TooltipOption,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
   },
