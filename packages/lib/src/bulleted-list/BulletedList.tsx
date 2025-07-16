@@ -82,44 +82,40 @@ const ListItem = styled.li`
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
 
-const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <ListContainer>
-      <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
-        {Children.map(children, (child, index) => (
-          <ListItem>
-            <GeneralContent>
-              {type === "number" ? (
-                <Number>
-                  <DxcTypography color={colorsTheme.bulletedList.fontColor}>{index + 1}.</DxcTypography>
-                </Number>
-              ) : type === "square" ? (
-                <Bullet>
-                  <Square />
-                </Bullet>
-              ) : type === "circle" ? (
-                <Bullet>
-                  <Circle />
-                </Bullet>
-              ) : type === "icon" ? (
-                <Bullet>
-                  <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
-                </Bullet>
-              ) : (
-                <Bullet>
-                  <Disc />
-                </Bullet>
-              )}
-              <DxcTypography color={colorsTheme.bulletedList.fontColor}>{child}</DxcTypography>
-            </GeneralContent>
-          </ListItem>
-        ))}
-      </DxcFlex>
-    </ListContainer>
-  );
-};
+const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => (
+  <ListContainer>
+    <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
+      {Children.map(children, (child, index) => (
+        <ListItem>
+          <GeneralContent>
+            {type === "number" ? (
+              <Number>
+                <DxcTypography>{index + 1}.</DxcTypography>
+              </Number>
+            ) : type === "square" ? (
+              <Bullet>
+                <Square />
+              </Bullet>
+            ) : type === "circle" ? (
+              <Bullet>
+                <Circle />
+              </Bullet>
+            ) : type === "icon" ? (
+              <Bullet>
+                <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+              </Bullet>
+            ) : (
+              <Bullet>
+                <Disc />
+              </Bullet>
+            )}
+            <DxcTypography>{child}</DxcTypography>
+          </GeneralContent>
+        </ListItem>
+      ))}
+    </DxcFlex>
+  </ListContainer>
+);
 
 DxcBulletedList.Item = BulletedListItem;
 
