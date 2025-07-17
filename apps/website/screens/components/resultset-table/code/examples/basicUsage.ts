@@ -52,7 +52,7 @@ const code = `() => {
       <DxcResultsetTable
         columns={columns}
         rows={rows}
-      ></DxcResultsetTable>
+      />
     </DxcInset>
   );
 }`;
