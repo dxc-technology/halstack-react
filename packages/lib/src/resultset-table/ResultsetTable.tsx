@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState, forwardRef } from "react";
-import styled from "styled-components";
+import { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import styled from "@emotion/styled";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
 import ResultsetTablePropsType, { Column } from "./types";

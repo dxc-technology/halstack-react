@@ -1,17 +1,22 @@
 import { useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
+import { css, Global } from "@emotion/react";
 
-const BodyStyle = createGlobalStyle`
-  body {
-    overflow: hidden;
-  }
-`;
+const BodyStyle = () => (
+  <Global
+    styles={css`
+      body {
+        overflow: hidden;
+      }
+    `}
+  />
+);
 
 const DialogContainer = styled.div`
   position: fixed;

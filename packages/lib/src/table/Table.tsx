@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionsCellPropsType } from "./types";

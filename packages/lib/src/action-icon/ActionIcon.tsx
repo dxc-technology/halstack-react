@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import ActionIconPropsTypes, { RefType } from "./types";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 

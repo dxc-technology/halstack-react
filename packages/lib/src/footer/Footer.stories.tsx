@@ -8,6 +8,7 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
 import { Meta, StoryObj } from "@storybook/react";
+import DxcLink from "../link/Link";
 
 const social = [
   {
@@ -145,25 +146,25 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
+        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
+          Linkedin
+        </DxcLink>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
+        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
+          Linkedin
+        </DxcLink>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
+        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
+          Linkedin
+        </DxcLink>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
@@ -199,9 +200,9 @@ const Footer = () => (
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-          <div>
-            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-          </div>
+          <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
+            Linkedin
+          </DxcLink>
         </DxcFooter>
       </HalstackProvider>
     </ExampleContainer>

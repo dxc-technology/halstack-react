@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";

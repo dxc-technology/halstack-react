@@ -1,5 +1,5 @@
 import { forwardRef, KeyboardEvent, useContext, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -17,7 +17,7 @@ const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
-    
+
 const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]) =>
   disabled
     ? checked

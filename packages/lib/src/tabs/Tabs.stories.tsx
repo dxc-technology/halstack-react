@@ -24,25 +24,25 @@ const iconSVG = (
 
 const tabs = (margin?: Space | Margin) => (
   <DxcTabs margin={margin}>
-    <DxcTabs.Tab label="Tab 1" tabId="Tab 1" title="test tooltip">
+    <DxcTabs.Tab label="Tab 1" title="test tooltip">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2">
+    <DxcTabs.Tab label="Tab 2">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3" disabled>
+    <DxcTabs.Tab label="Tab 3" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 4" label="Tab 4">
+    <DxcTabs.Tab label="Tab 4">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 5" label="Tab 5">
+    <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 6" label="Tab 6">
+    <DxcTabs.Tab label="Tab 6">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 7" label="Tab 7">
+    <DxcTabs.Tab label="Tab 7">
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -50,13 +50,13 @@ const tabs = (margin?: Space | Margin) => (
 
 const disabledTabs = (
   <DxcTabs>
-    <DxcTabs.Tab tabId="Tab 1" label="Tab 1" disabled>
+    <DxcTabs.Tab label="Tab 1" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2" disabled>
+    <DxcTabs.Tab label="Tab 2" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3" disabled>
+    <DxcTabs.Tab label="Tab 3" disabled>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -64,13 +64,13 @@ const disabledTabs = (
 
 const firstDisabledTabs = (
   <DxcTabs>
-    <DxcTabs.Tab tabId="Tab 1" label="Tab 1" disabled>
+    <DxcTabs.Tab label="Tab 1" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2" disabled>
+    <DxcTabs.Tab label="Tab 2" disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3">
+    <DxcTabs.Tab label="Tab 3">
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -78,25 +78,25 @@ const firstDisabledTabs = (
 
 const tabsNotification = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab tabId="Tab 1" label="Tab 1" notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2" notificationNumber={5}>
+    <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3" notificationNumber={100} disabled>
+    <DxcTabs.Tab label="Tab 3" notificationNumber={100} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 4" label="Tab 4" notificationNumber={200}>
+    <DxcTabs.Tab label="Tab 4" notificationNumber={200}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 5" label="Tab 5">
+    <DxcTabs.Tab label="Tab 5">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 6" label="Tab 6">
+    <DxcTabs.Tab label="Tab 6">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 7" label="Tab 7">
+    <DxcTabs.Tab label="Tab 7">
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -104,25 +104,51 @@ const tabsNotification = (iconPosition?: "top" | "left") => (
 
 const tabsIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab tabId="Tab 1" label="Tab 1" icon={iconSVG}>
+    <DxcTabs.Tab tabId="Tab 1" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2" icon={iconSVG}>
+    <DxcTabs.Tab tabId="Tab 2" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3" icon={iconSVG} disabled>
+    <DxcTabs.Tab tabId="Tab 3" icon={iconSVG} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 4" label="Tab 4">
+    <DxcTabs.Tab tabId="Tab 4" icon="filled_star">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 5" label="Tab 5" icon="mail">
+    <DxcTabs.Tab tabId="Tab 5" icon="mail">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 6" label="Tab 6" icon="mail">
+    <DxcTabs.Tab tabId="Tab 6" icon="mail">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 7" label="Tab 7" icon="mail">
+    <DxcTabs.Tab tabId="Tab 7" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+  </DxcTabs>
+);
+
+const tabsIconLabel = (iconPosition?: "top" | "left") => (
+  <DxcTabs iconPosition={iconPosition}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 2" icon={iconSVG}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 4" icon="filled_star">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 5" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 6" icon="mail">
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab 7" icon="mail">
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -130,25 +156,25 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab tabId="Tab 1" label="Tab 1" icon={iconSVG} notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 2" label="Tab 2" icon={iconSVG} notificationNumber={5}>
+    <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 3" label="Tab 3" icon={iconSVG} notificationNumber={100} disabled>
+    <DxcTabs.Tab label="Tab 3" icon={iconSVG} notificationNumber={100} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 4" label="Tab 4" icon={iconSVG} notificationNumber={200}>
+    <DxcTabs.Tab label="Tab 4" icon={iconSVG} notificationNumber={200}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 5" label="Tab 5" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 5" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 6" label="Tab 6" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 6" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab tabId="Tab 7" label="Tab 7" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 7" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -187,10 +213,12 @@ const Tabs = () => (
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
       {tabsIcon()}
+      {tabsIconLabel()}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
       {tabsIcon("top")}
+      {tabsIconLabel("top")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
@@ -253,6 +281,36 @@ const Scroll = () => (
   </>
 );
 
+const ResponsiveFocused = () => (
+  <>
+    <ExampleContainer>
+      <DxcTabs>
+        <DxcTabs.Tab label="Tab 1" title="test tooltip">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 2">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 3" disabled>
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 4">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 6">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 7" defaultActive>
+          <></>
+        </DxcTabs.Tab>
+      </DxcTabs>
+    </ExampleContainer>
+  </>
+);
+
 type Story = StoryObj<typeof DxcTabs>;
 
 export const Chromatic: Story = {
@@ -266,6 +324,16 @@ export const Chromatic: Story = {
 
 export const ScrollableTabs: Story = {
   render: Scroll,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375], delay: 5000 },
+  },
+};
+
+export const ResponsiveFocusedTabs: Story = {
+  render: ResponsiveFocused,
   parameters: {
     viewport: {
       defaultViewport: "iphonex",
