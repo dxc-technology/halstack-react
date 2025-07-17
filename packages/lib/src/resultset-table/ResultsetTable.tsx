@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import { useEffect, useMemo, useRef, useState, forwardRef } from "react";
 import styled from "@emotion/styled";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -135,43 +135,44 @@ const DxcResultsetTable = ({
       />
     ) : null;
 
-  return height ? (
+  return (
     <>
-      <TableVirtuoso
-        data={filteredResultset}
-        components={{
-          Scroller: forwardRef<HTMLDivElement>((props, ref) => <TableContainer margin={margin} {...props} ref={ref} />),
-          Table: (props) => <Table mode={mode} {...props} />,
-          TableRow: (props) => <tr {...props} />,
-        }}
-        fixedHeaderContent={renderHeaderRow}
-        itemContent={(_index, row) => (
-          <>
-            {row.cells.map((cellContent, cellIndex) => (
-              <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
-            ))}
-          </>
-        )}
-        style={{ height }}
-      />
-      {renderPaginator()}
-    </>
-  ) : (
-    <>
-      <TableContainer margin={margin}>
-        <DxcTable mode={mode}>
-          <thead>{renderHeaderRow()}</thead>
-          <tbody>
-            {filteredResultset.map((row) => (
-              <tr key={`resultSetTableCell_${row.id}`}>
-                {row.cells.map((cellContent, cellIndex) => (
-                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </DxcTable>
-      </TableContainer>
+      {height ? (
+        <TableVirtuoso
+          data={filteredResultset}
+          components={{
+            Scroller: forwardRef<HTMLDivElement>((props, ref) => (
+              <TableContainer margin={margin} {...props} ref={ref} />
+            )),
+            Table: (props) => <Table mode={mode} {...props} />,
+            TableRow: (props) => <tr {...props} />,
+          }}
+          fixedHeaderContent={renderHeaderRow}
+          itemContent={(_index, row) => (
+            <>
+              {row.cells.map((cellContent, cellIndex) => (
+                <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
+              ))}
+            </>
+          )}
+          style={{ height }}
+        />
+      ) : (
+        <TableContainer margin={margin}>
+          <DxcTable mode={mode}>
+            <thead>{renderHeaderRow()}</thead>
+            <tbody>
+              {filteredResultset.map((row) => (
+                <tr key={`resultSetTableCell_${row.id}`}>
+                  {row.cells.map((cellContent, cellIndex) => (
+                    <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </DxcTable>
+        </TableContainer>
+      )}
       {renderPaginator()}
     </>
   );
