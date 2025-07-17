@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ColorPage from "screens/principles/color/ColorPage";
+import ColorPage from "screens/foundations/color/ColorPage";
 
 const Color = () => (
   <>
