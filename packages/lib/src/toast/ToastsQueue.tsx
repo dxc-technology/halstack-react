@@ -13,7 +13,7 @@ const ToastsQueue = styled.section`
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 2147483647;
+  z-index: var(--z-toast);
   display: flex;
   flex-direction: column;
   align-items: flex-end;

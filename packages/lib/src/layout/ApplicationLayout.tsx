@@ -32,7 +32,7 @@ const ApplicationLayoutContainer = styled.div<{
 const HeaderContainer = styled.div`
   width: 100%;
   height: fit-content;
-  z-index: 3;
+  z-index: var(--z-app-layout-header);
 `;
 
 const VisibilityToggle = styled.div`
@@ -43,7 +43,7 @@ const VisibilityToggle = styled.div`
   width: 100%;
   background-color: var(--color-bg-neutral-light);
   user-select: none;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const HamburgerTrigger = styled.button`
@@ -84,7 +84,7 @@ const SidenavContainer = styled.div`
   width: fit-content;
   min-width: 280px;
   height: 100%;
-  z-index: 1;
+  z-index: var(--z-app-layout-sidenav);
   position: sticky;
   overflow: auto;
 

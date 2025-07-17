@@ -601,7 +601,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 event.preventDefault();
               }}
               sideOffset={4}
-              style={{ zIndex: "2147483647" }}
+              style={{ zIndex: "var(--z-dropdown)" }}
             >
               <Listbox
                 ariaLabelledBy={labelId}

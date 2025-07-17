@@ -15,7 +15,7 @@ const DropdownMenuContainer = styled.ul`
     var(--shadow-dark);
   outline: none;
   overflow-y: auto;
-  z-index: 2147483647;
+  z-index: var(--z-dropdown);
   ${scrollbarStyles}
 `;
 

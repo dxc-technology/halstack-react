@@ -120,7 +120,7 @@ const YearPickerComponent = () => (
 const DatePickerButtonStates = () => (
   <>
     <ExampleContainer>
-      <Title title="Show date picker over another element with z-index 0" theme="light" level={4} />
+      <Title title="Show date picker over another element with a certain z-index" theme="light" level={4} />
       <div
         style={{
           display: "flex",
@@ -133,7 +133,7 @@ const DatePickerButtonStates = () => (
           border: "1px solid black",
           borderRadius: "4px",
           overflow: "auto",
-          zIndex: "1300",
+          zIndex: "130",
           position: "relative",
         }}
       >
