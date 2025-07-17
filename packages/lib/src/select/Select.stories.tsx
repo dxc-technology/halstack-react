@@ -34,7 +34,7 @@ const single_options = [
 ];
 
 const single_options_virtualized = [
-  ...Array.from({ length: 100 }, (_, i) => ({
+  ...Array.from({ length: 10000 }, (_, i) => ({
     label: `Option ${String(i + 1).padStart(2, "0")}`,
     value: `${i + 1}`,
   })),
@@ -364,9 +364,14 @@ const Select = () => (
         margin={{ top: "xxlarge" }}
       />
     </ExampleContainer>
-    <Title title="Virtualized" theme="light" level={4} />
-    <DxcSelect label="Virtualized" options={single_options_virtualized} />
   </>
+);
+
+const VirtualizedSelect = () => (
+  <ExampleContainer>
+    <Title title="Virtualized" theme="light" level={4} />
+    <DxcSelect label="Virtualized" options={single_options_virtualized} height="300px" />
+  </ExampleContainer>
 );
 
 const SelectListbox = () => (
@@ -711,6 +716,10 @@ export const Chromatic: Story = {
     const combobox = canvas.getAllByRole("combobox")[24];
     combobox && (await userEvent.click(combobox));
   },
+};
+
+export const Virtualization: Story = {
+  render: VirtualizedSelect,
 };
 
 export const ListboxStates: Story = {

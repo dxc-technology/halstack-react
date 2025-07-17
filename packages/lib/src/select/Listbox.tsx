@@ -9,9 +9,12 @@ import { scrollbarStyles } from "../styles/scroll";
 import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 
-const ListboxContainer = styled.div`
+const ListboxContainer = styled.div<{
+  height?: ListboxProps["height"];
+}>`
   box-sizing: border-box;
-  height: 304px;
+  max-height: 304px;
+  height: ${(props) => (props.height ? props.height : undefined)};
   padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   background-color: var(--color-bg-neutral-lightest);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
@@ -22,9 +25,8 @@ const ListboxContainer = styled.div`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-  /* overflow-y: auto; */
-  /* ${scrollbarStyles} */
-  /* TODO: ADD SCROLLBARSTYLES TO SELECT AND RESULTSETTABLE */
+  overflow-y: auto;
+  ${scrollbarStyles}
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -49,13 +51,14 @@ const GroupLabel = styled.li`
   font-weight: var(--typography-label-semibold);
 `;
 
-const Listbox = ({
+const VirtualizedListbox = ({
   ariaLabelledBy,
   currentValue,
   enableSelectAll,
   handleOptionOnClick,
   handleGroupOnClick,
   handleSelectAllOnClick,
+  height,
   id,
   lastOptionIndex,
   multiple,
@@ -218,6 +221,7 @@ const Listbox = ({
 
   return (
     <ListboxContainer
+      height={height}
       id={id}
       onClick={(event) => {
         event.stopPropagation();
@@ -245,7 +249,14 @@ const Listbox = ({
         itemContent={(index) => renderItem(index)}
         components={{
           List: forwardRef((props, ref) => (
-            <div ref={ref} role="listbox" aria-labelledby={ariaLabelledBy} aria-multiselectable={multiple} {...props} />
+            <div
+              ref={ref}
+              role="listbox"
+              aria-labelledby={ariaLabelledBy}
+              aria-multiselectable={multiple}
+              id={id}
+              {...props}
+            />
           )),
           Header: () =>
             isSearchEmpty ? (
@@ -258,6 +269,193 @@ const Listbox = ({
       />
     </ListboxContainer>
   );
+};
+
+const NonVirtualizedListbox = ({
+  ariaLabelledBy,
+  currentValue,
+  enableSelectAll,
+  handleOptionOnClick,
+  handleGroupOnClick,
+  handleSelectAllOnClick,
+  id,
+  lastOptionIndex,
+  multiple,
+  optional,
+  optionalItem,
+  options,
+  searchable,
+  selectionType,
+  styles,
+  visualFocusIndex,
+}: ListboxProps) => {
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const listboxRef = useRef<HTMLDivElement>(null);
+  let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
+
+  const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
+    if (multiple && enableSelectAll) {
+      const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
+      globalMappingIndex++;
+
+      return (
+        <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
+          <ListOption
+            id={groupId}
+            isLastOption={lastOptionIndex === globalMappingIndex}
+            isSelected={groupSelectionType === "checked"}
+            isSelectAllOption
+            key={groupId}
+            multiple={true}
+            onClick={() => handleGroupOnClick(option)}
+            option={{
+              label: option.label,
+              value: "",
+            }}
+            visualFocused={visualFocusIndex === globalMappingIndex}
+          />
+        </CheckboxContext.Provider>
+      );
+    } else
+      return (
+        <GroupLabel id={groupId} role="presentation">
+          {option.label}
+        </GroupLabel>
+      );
+  };
+
+  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
+    if ("options" in option) {
+      const groupId = `${id}-group-${mapIndex}`;
+
+      return (
+        option.options.length > 0 && (
+          <ul aria-labelledby={groupId} key={groupId} role="group" style={{ padding: 0, margin: 0 }}>
+            {getGroupOption(groupId, option)}
+            {option.options.map((singleOption) => {
+              globalMappingIndex++;
+              const optionId = `${id}-option-${globalMappingIndex}`;
+              return (
+                <ListOption
+                  id={optionId}
+                  isGroupedOption
+                  isLastOption={lastOptionIndex === globalMappingIndex}
+                  isSelected={
+                    multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
+                  }
+                  key={optionId}
+                  multiple={multiple}
+                  onClick={handleOptionOnClick}
+                  option={singleOption}
+                  visualFocused={visualFocusIndex === globalMappingIndex}
+                />
+              );
+            })}
+          </ul>
+        )
+      );
+    } else {
+      globalMappingIndex++;
+      const optionId = `${id}-option-${globalMappingIndex}`;
+      return (
+        <ListOption
+          id={optionId}
+          isLastOption={lastOptionIndex === globalMappingIndex}
+          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+          key={optionId}
+          multiple={multiple}
+          onClick={handleOptionOnClick}
+          option={option}
+          visualFocused={visualFocusIndex === globalMappingIndex}
+        />
+      );
+    }
+  };
+
+  const getFirstItem = () => {
+    if (searchable && (options.length === 0 || !groupsHaveOptions(options)))
+      return (
+        <OptionsSystemMessage>
+          <DxcIcon icon="search_off" />
+          {translatedLabels.select.noMatchesErrorMessage}
+        </OptionsSystemMessage>
+      );
+    else if (optional && !multiple)
+      return (
+        <ListOption
+          id={`${id}-option-${0}`}
+          isLastOption={lastOptionIndex === 0}
+          isSelected={currentValue === optionalItem.value}
+          key={`${id}-option-${optionalItem.value}`}
+          multiple={false}
+          onClick={handleOptionOnClick}
+          option={optionalItem}
+          visualFocused={visualFocusIndex === 0}
+        />
+      );
+    else if (multiple && enableSelectAll) {
+      return (
+        <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+          <ListOption
+            id={`${id}-option-${0}`}
+            isLastOption={lastOptionIndex === 0}
+            isSelected={selectionType === "checked"}
+            isSelectAllOption
+            key={`${id}-option-${optionalItem.value}`}
+            multiple={true}
+            onClick={handleSelectAllOnClick}
+            option={{
+              label: translatedLabels.select.selectAllLabel,
+              value: "",
+            }}
+            visualFocused={visualFocusIndex === 0}
+          />
+        </CheckboxContext.Provider>
+      );
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (currentValue && !multiple) {
+      const listEl = listboxRef?.current;
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
+      listEl?.scrollTo?.({
+        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+      });
+    }
+  }, [currentValue, multiple]);
+
+  useLayoutEffect(() => {
+    const visualFocusedOptionEl = listboxRef.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
+  }, [visualFocusIndex]);
+
+  return (
+    <ListboxContainer
+      aria-labelledby={ariaLabelledBy}
+      aria-multiselectable={multiple}
+      id={id}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+      onMouseDown={(event) => {
+        event.preventDefault();
+      }}
+      ref={listboxRef}
+      role="listbox"
+      style={styles}
+    >
+      {getFirstItem()}
+      {options.map(mapOptionFunc)}
+    </ListboxContainer>
+  );
+};
+
+const Listbox = ({ ...props }: ListboxProps) => {
+  return props.height ? <VirtualizedListbox {...props} /> : <NonVirtualizedListbox {...props} />;
 };
 
 export default Listbox;

@@ -179,6 +179,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       disabled = false,
       enableSelectAll = false,
       error,
+      height,
       helperText,
       label,
       margin,
@@ -611,6 +612,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 handleOptionOnClick={handleOptionOnClick}
                 handleGroupOnClick={handleSelectAllGroup}
                 handleSelectAllOnClick={handleSelectAllOnClick}
+                height={height}
                 id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}

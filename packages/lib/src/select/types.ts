@@ -50,6 +50,11 @@ type CommonProps = {
    */
   options: ListOptionType[] | ListOptionGroupType[];
   /**
+   * A fixed height must be set to enable virtualization.
+   * If no height is provided, the select will automatically adjust to the height of its content, and virtualization will not be applied.
+   */
+  height?: string;
+  /**
    * Helper text to be placed above the select.
    */
   helperText?: string;
@@ -198,6 +203,7 @@ export type ListboxProps = {
   handleGroupOnClick: (group: ListOptionGroupType) => void;
   handleOptionOnClick: (option: ListOptionType) => void;
   handleSelectAllOnClick: () => void;
+  height?: string;
   id: string;
   lastOptionIndex: number;
   multiple: boolean;
