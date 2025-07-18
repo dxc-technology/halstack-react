@@ -4,12 +4,12 @@ import Title from "../../.storybook/components/Title";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcQuickNav from "./QuickNav";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Quick Nav",
   component: DxcQuickNav,
-} as Meta<typeof DxcQuickNav>;
+} satisfies Meta<typeof DxcQuickNav>;
 
 const defaultLinks = [
   {

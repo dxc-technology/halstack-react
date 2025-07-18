@@ -4,13 +4,13 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
-import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Button",
   component: DxcButton,
-} as Meta<typeof DxcButton>;
+} satisfies Meta<typeof DxcButton>;
 
 const facebookIcon = (
   <svg

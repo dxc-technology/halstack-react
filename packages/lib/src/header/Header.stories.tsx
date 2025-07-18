@@ -1,5 +1,5 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { userEvent, waitFor, within } from "@storybook/test";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import { userEvent, waitFor, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -8,7 +8,7 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import DxcHeader from "./Header";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Header",
@@ -26,7 +26,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof DxcHeader>;
+} satisfies Meta<typeof DxcHeader>;
 
 const options: any = [
   {

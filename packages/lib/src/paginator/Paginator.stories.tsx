@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcPaginator from "./Paginator";
@@ -6,7 +6,7 @@ import DxcPaginator from "./Paginator";
 export default {
   title: "Paginator",
   component: DxcPaginator,
-} as Meta<typeof DxcPaginator>;
+} satisfies Meta<typeof DxcPaginator>;
 
 const Paginator = () => (
   <>

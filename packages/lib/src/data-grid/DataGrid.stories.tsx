@@ -6,10 +6,10 @@ import { GridColumn, HierarchyGridRow } from "./types";
 import { isValidElement, useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { isKeyOfRow } from "./utils";
 
 export default {
@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-} as Meta<typeof DxcDataGrid>;
+} satisfies Meta<typeof DxcDataGrid>;
 
 const actions: ActionsCellPropsType["actions"] = [
   {

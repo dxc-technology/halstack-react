@@ -1,14 +1,15 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
+
 export default {
   title: "Text Input",
   component: DxcTextInput,
-} as Meta<typeof DxcTextInput>;
+} satisfies Meta<typeof DxcTextInput>;
 
 const action = {
   onClick: () => {},

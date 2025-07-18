@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "File Input",
   component: DxcFileInput,
-} as Meta<typeof DxcFileInput>;
+} satisfies Meta<typeof DxcFileInput>;
 
 const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 

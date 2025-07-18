@@ -1,4 +1,4 @@
-import { fireEvent, userEvent, within } from "@storybook/test";
+import { fireEvent, userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -6,7 +6,7 @@ import { disabledRules } from "../../test/accessibility/rules/specific/select/di
 import DxcFlex from "../flex/Flex";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Select",
@@ -21,7 +21,7 @@ export default {
       },
     },
   },
-} as Meta<typeof DxcSelect>;
+} satisfies Meta<typeof DxcSelect>;
 
 const one_option = [{ label: "Option 01", value: "1" }];
 

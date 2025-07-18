@@ -1,4 +1,4 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -6,13 +6,13 @@ import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { Meta, StoryObj } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Toast",
   component: DxcToast,
-} as Meta<typeof DxcToast>;
+} satisfies Meta<typeof DxcToast>;
 
 const action = {
   label: "Action",

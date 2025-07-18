@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { fireEvent, screen, userEvent, within } from "@storybook/test";
+import { fireEvent, screen, userEvent, within } from "storybook/test";
 import dayjs from "dayjs";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -10,7 +10,7 @@ import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Date Input",
@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-} as Meta<typeof DxcDateInput>;
+} satisfies Meta<typeof DxcDateInput>;
 
 const DateInputChromatic = () => (
   <>

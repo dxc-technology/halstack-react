@@ -2,12 +2,12 @@ import DxcIcon from "./Icon";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcTypography from "../typography/Typography";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Icon",
   component: DxcIcon,
-} as Meta<typeof DxcIcon>;
+} satisfies Meta<typeof DxcIcon>;
 
 const Icon = () => (
   <>

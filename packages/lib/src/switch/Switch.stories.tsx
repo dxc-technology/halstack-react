@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} as Meta<typeof DxcSwitch>;
+} satisfies Meta<typeof DxcSwitch>;
 
 const Switch = () => (
   <>

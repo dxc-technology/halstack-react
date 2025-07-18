@@ -1,17 +1,15 @@
-import { useContext } from "react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import HalstackContext from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
-} as Meta<typeof DxcDropdown>;
+} satisfies Meta<typeof DxcDropdown>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">

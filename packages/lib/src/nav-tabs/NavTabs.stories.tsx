@@ -1,5 +1,5 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { Meta, StoryObj } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcContainer from "../container/Container";
@@ -13,7 +13,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof DxcNavTabs>;
+} satisfies Meta<typeof DxcNavTabs>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">

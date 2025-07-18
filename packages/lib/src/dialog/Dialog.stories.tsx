@@ -1,5 +1,5 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { userEvent } from "@storybook/test";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import { userEvent } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcAlert from "../alert/Alert";
@@ -10,7 +10,7 @@ import DxcInset from "../inset/Inset";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Dialog",
@@ -20,7 +20,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof DxcDialog>;
+} satisfies Meta<typeof DxcDialog>;
 
 const customViewports = {
   resizedScreen: {

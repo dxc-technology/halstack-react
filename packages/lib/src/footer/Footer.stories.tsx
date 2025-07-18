@@ -1,4 +1,4 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -7,8 +7,23 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcLink from "../link/Link";
+
+export default {
+  title: "Footer",
+  component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
+} satisfies Meta<typeof DxcFooter>;
 
 const social = [
   {
@@ -107,21 +122,6 @@ const bottom = [
     text: "Facebook",
   },
 ];
-
-export default {
-  title: "Footer",
-  component: DxcFooter,
-  parameters: {
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
-        ],
-      },
-    },
-  },
-} as Meta<typeof DxcFooter>;
 
 const opinionatedTheme = {
   footer: {

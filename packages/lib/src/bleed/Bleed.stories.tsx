@@ -1,14 +1,14 @@
 import Title from "../../.storybook/components/Title";
 import DxcBleed from "./Bleed";
 import DxcFlex from "../flex/Flex";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcContainer from "../container/Container";
 import { ReactNode } from "react";
 
 export default {
   title: "Bleed",
   component: DxcBleed,
-} as Meta<typeof DxcBleed>;
+} satisfies Meta<typeof DxcBleed>;
 
 const Container = ({ children }: { children: ReactNode }) => (
   <DxcContainer background={{ color: "var(--color-bg-primary-lighter)" }} margin="var(--spacing-padding-xxl)">

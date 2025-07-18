@@ -1,10 +1,10 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
 import DxcTable from "./Table";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Table",
@@ -19,7 +19,7 @@ export default {
       },
     },
   },
-} as Meta<typeof DxcTable>;
+} satisfies Meta<typeof DxcTable>;
 
 const actions = [
   {

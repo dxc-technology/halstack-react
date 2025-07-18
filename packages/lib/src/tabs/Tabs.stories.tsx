@@ -1,10 +1,10 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Tabs",
@@ -14,7 +14,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof DxcTabs>;
+} satisfies Meta<typeof DxcTabs>;
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">

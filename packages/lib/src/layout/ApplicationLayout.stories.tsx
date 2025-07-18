@@ -1,8 +1,8 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
-import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Application Layout",
@@ -12,7 +12,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof DxcApplicationLayout>;
+} satisfies Meta<typeof DxcApplicationLayout>;
 
 const ApplicationLayout = () => (
   <>

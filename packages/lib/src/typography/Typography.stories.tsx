@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTypography from "./Typography";
@@ -6,7 +6,7 @@ import DxcTypography from "./Typography";
 export default {
   title: "Typography",
   component: DxcTypography,
-} as Meta<typeof DxcTypography>;
+} satisfies Meta<typeof DxcTypography>;
 
 const Typography = () => (
   <>
