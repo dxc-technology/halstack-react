@@ -1,16 +1,16 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";
 import DxcSidenav from "./Sidenav";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
-} as Meta<typeof DxcSidenav>;
+} satisfies Meta<typeof DxcSidenav>;
 
 const iconSVG = (
   <svg

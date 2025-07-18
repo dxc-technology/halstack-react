@@ -1,15 +1,15 @@
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcActionIcon from "./ActionIcon";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
 import DxcInset from "../inset/Inset";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Action Icon ",
   component: DxcActionIcon,
-} as Meta<typeof DxcActionIcon>;
+} satisfies Meta<typeof DxcActionIcon>;
 
 const iconSVG = (
   <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">

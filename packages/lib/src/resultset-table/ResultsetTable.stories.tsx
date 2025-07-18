@@ -1,11 +1,11 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import DxcResultsetTable from "./ResultsetTable";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Resultset Table",
@@ -14,13 +14,13 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
         ],
       },
     },
   },
-} as Meta<typeof DxcResultsetTable>;
+} satisfies Meta<typeof DxcResultsetTable>;
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">

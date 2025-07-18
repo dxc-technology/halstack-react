@@ -1,20 +1,14 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Tabs",
   component: DxcTabs,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof DxcTabs>;
+} satisfies Meta<typeof DxcTabs>;
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
@@ -325,19 +319,19 @@ export const Chromatic: Story = {
 export const ScrollableTabs: Story = {
   render: Scroll,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 
 export const ResponsiveFocusedTabs: Story = {
   render: ResponsiveFocused,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

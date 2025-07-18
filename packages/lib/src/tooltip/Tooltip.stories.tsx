@@ -1,16 +1,16 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "./Tooltip";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Tooltip",
   component: DxcTooltip,
-} as Meta<typeof DxcTooltip>;
+} satisfies Meta<typeof DxcTooltip>;
 
 const Tooltip = () => (
   <>

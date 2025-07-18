@@ -41,7 +41,6 @@ jobs:
       - name: Run Storybook Tests
         run: |
           cd packages/lib
-          npx playwright install --with-deps
-          npm run storybook:accessibility:ci
+          npm run storybook:accessibility
         env:
           TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
