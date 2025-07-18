@@ -278,10 +278,7 @@ export const FullScreenToast: Story = {
 export const MobileScreenToast: Story = {
   render: ToastsQueue,
   play: playFunc,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "iphonex",
-    },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

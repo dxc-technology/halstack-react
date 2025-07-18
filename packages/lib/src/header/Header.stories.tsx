@@ -17,13 +17,10 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
           ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
         ],
       },
-    },
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
     },
   },
 } satisfies Meta<typeof DxcHeader>;
@@ -185,20 +182,20 @@ export const CustomLogo: Story = {
 export const ResponsiveHeader: Story = {
   render: Responsive,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 
 export const ResponsiveHeaderFocus: Story = {
   render: RespHeaderFocus,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -209,10 +206,10 @@ export const ResponsiveHeaderFocus: Story = {
 export const ResponsiveHeaderHover: Story = {
   render: RespHeaderHover,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -223,10 +220,10 @@ export const ResponsiveHeaderHover: Story = {
 export const ResponsiveHeaderMenuMobile: Story = {
   render: RespHeaderMenuMobile,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -238,10 +235,10 @@ export const ResponsiveHeaderMenuMobile: Story = {
 export const ResponsiveHeaderMenuTablet: Story = {
   render: RespHeaderMenuTablet,
   parameters: {
-    viewport: {
-      defaultViewport: "pixelxl",
-    },
     chromatic: { viewports: [720] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -253,10 +250,10 @@ export const ResponsiveHeaderMenuTablet: Story = {
 export const ResponsiveHeaderTooltip: Story = {
   render: RespHeaderMenuMobile,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

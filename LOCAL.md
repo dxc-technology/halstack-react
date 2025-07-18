@@ -59,7 +59,6 @@ Here is a list of the most common commands you will use:
 - `turbo lint` - Run the linter.
 - `turbo storybook` - Start the Storybook server.
 - `turbo storybook:accessibility` - Run the accessibility tests on Storybook.
-- `turbo storybook:accessibility:ci` - Run the accessibility tests on Storybook in CI mode.
 - `turbo storybook:build` - Build the Storybook.
 - `turbo storybook:deploy` - Deploy the Storybook to GitHub Pages.
 - `turbo test` - Run the tests.

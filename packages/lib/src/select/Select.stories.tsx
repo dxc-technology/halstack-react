@@ -1,4 +1,4 @@
-import { fireEvent, userEvent, within } from "storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -15,8 +15,8 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
         ],
       },
     },

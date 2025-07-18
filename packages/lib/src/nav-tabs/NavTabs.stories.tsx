@@ -1,4 +1,3 @@
-import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -8,11 +7,6 @@ import DxcNavTabs from "./NavTabs";
 export default {
   title: "Nav Tabs",
   component: DxcNavTabs,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
 } satisfies Meta<typeof DxcNavTabs>;
 
 const iconSVG = (
@@ -238,9 +232,9 @@ export const Chromatic: Story = {
 export const ScrollableNavTabs: Story = {
   render: Scroll,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

@@ -5,14 +5,18 @@ import react from "@vitejs/plugin-react";
 
 const require = createRequire(import.meta.url);
 
+const getAbsolutePath = (value: string) => dirname(require.resolve(join(value, "package.json")));
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("storybook-addon-pseudo-states"),
-    getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@chromatic-com/storybook"),
-    getAbsolutePath("@storybook/addon-docs")
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-vitest"),
+    getAbsolutePath("@vitest/coverage-v8"),
+    getAbsolutePath("storybook-addon-pseudo-states"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
@@ -38,7 +42,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
-}
