@@ -788,7 +788,10 @@ const DataGridControlled = () => {
           uniqueRowId="id"
           selectable
           selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
+          onSelectRows={(selectedRows) => {
+            console.log("SELECTEDROWS", selectedRows);
+            return setSelectedRows(selectedRows);
+          }}
         />
       </ExampleContainer>
       <ExampleContainer>

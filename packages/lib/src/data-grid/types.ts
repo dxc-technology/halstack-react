@@ -61,6 +61,10 @@ export type HierarchyGridRow = GridRow & {
     triggerRow?: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
   /**
+   * Indicates whether child rows are currently being loaded.
+   */
+  loadingChildren?: boolean;
+  /**
    * Indicates the level of nesting for this row in the hierarchy.
    */
   rowLevel?: number;
