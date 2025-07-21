@@ -345,6 +345,6 @@ export const MenuTooltip: Story = {
   render: TooltipTitle,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByRole("button"));
+    await userEvent.hover(await canvas.findByRole("button"));
   },
 };

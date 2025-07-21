@@ -226,7 +226,7 @@ export const Chromatic: Story = {
     const canvas = within(canvasElement);
     const firstDateInput = canvas.getAllByRole("combobox")[0];
     firstDateInput != null && (await userEvent.click(firstDateInput));
-    await fireEvent.click(screen.getByText("April 1905"));
+    await fireEvent.click(await screen.findByText("April 1905"));
   },
 };
 
@@ -234,8 +234,8 @@ export const YearPickerChromatic: Story = {
   render: YearPickerComponent,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole("combobox"));
-    await fireEvent.click(screen.getByText("April 1905"));
+    await userEvent.click(await canvas.findByRole("combobox"));
+    await fireEvent.click(await screen.findByText("April 1905"));
   },
 };
 

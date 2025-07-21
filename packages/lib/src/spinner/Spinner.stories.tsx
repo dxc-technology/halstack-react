@@ -121,8 +121,8 @@ export const Chromatic: Story = {
   render: Spinner,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText("Loading a full screen..."));
-    await userEvent.hover(canvas.getByText("Loading a full screen..."));
+    await userEvent.hover(await canvas.findByText("Loading a full screen..."));
+    await userEvent.hover(await canvas.findByText("Loading a full screen..."));
   },
 };
 export const SpinnerOverlay: Story = {

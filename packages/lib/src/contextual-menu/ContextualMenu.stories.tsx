@@ -234,7 +234,7 @@ export const ContextualMenuTooltip: Story = {
   render: ItemWithEllipsis,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
-    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+    await userEvent.hover(await canvas.findByText("Item with a very long label that should be truncated"));
+    await userEvent.hover(await canvas.findByText("Item with a very long label that should be truncated"));
   },
 };

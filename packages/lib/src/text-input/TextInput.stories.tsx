@@ -356,7 +356,7 @@ export const AutosuggestListboxStates: Story = {
   render: AutosuggestListbox,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };

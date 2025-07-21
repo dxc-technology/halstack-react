@@ -228,7 +228,7 @@ export const ResponsiveHeaderMenuMobile: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(canvas.getByText("Menu"));
+    await userEvent.click(await canvas.findByText("Menu"));
   },
 };
 
@@ -243,7 +243,7 @@ export const ResponsiveHeaderMenuTablet: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(canvas.getByText("Menu"));
+    await userEvent.click(await canvas.findByText("Menu"));
   },
 };
 
@@ -258,7 +258,7 @@ export const ResponsiveHeaderTooltip: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(canvas.getByText("Menu"));
+    await userEvent.click(await canvas.findByText("Menu"));
     const closeButton = canvas.getAllByRole("button")[1];
     closeButton != null && (await userEvent.hover(closeButton));
   },

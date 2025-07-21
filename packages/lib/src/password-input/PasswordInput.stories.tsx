@@ -110,7 +110,7 @@ export const ShowPassword: Story = {
   render: PasswordInteraction,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const passwordBtn = canvas.getByRole("button");
+    const passwordBtn = await canvas.findByRole("button");
     await userEvent.click(passwordBtn);
   },
 };

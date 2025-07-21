@@ -259,9 +259,9 @@ const ToastsQueue = () => (
 
 const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByText("Show default toast"));
-  await userEvent.click(canvas.getByText("Show info toast"));
-  await userEvent.click(canvas.getByText("Show success toast"));
+  await userEvent.click(await canvas.findByText("Show default toast"));
+  await userEvent.click(await canvas.findByText("Show info toast"));
+  await userEvent.click(await canvas.findByText("Show success toast"));
 };
 
 type Story = StoryObj<typeof DxcToast>;

@@ -532,8 +532,8 @@ type Story = StoryObj<typeof DxcFileInput>;
 //   render: EllipsisError,
 //   play: async ({ canvasElement }) => {
 //     const canvas = within(canvasElement);
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
 //   },
 // };
 

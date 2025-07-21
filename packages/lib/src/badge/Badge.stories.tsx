@@ -244,7 +244,7 @@ export const BadgeTooltip: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const div = canvas.getByText("Tooltip label");
+    const div = await canvas.findByText("Tooltip label");
     await userEvent.hover(div);
   },
 };
@@ -253,7 +253,7 @@ export const NestedBadgeTooltip: Story = {
   render: NestedTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const div = canvas.getByText("Tooltip label");
+    const div = await canvas.findByText("Tooltip label");
     await userEvent.hover(div);
   },
 };

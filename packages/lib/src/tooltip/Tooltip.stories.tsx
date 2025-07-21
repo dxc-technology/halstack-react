@@ -81,7 +81,7 @@ export const Chromatic: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
@@ -90,7 +90,7 @@ export const LargeTextTooltip: Story = {
   render: LargeTextWithinTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
@@ -99,7 +99,7 @@ export const TooltipPositionTop: Story = {
   render: TopTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
@@ -108,7 +108,7 @@ export const TooltipPositionLeft: Story = {
   render: LeftTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
@@ -117,7 +117,7 @@ export const TooltipPositionRight: Story = {
   render: RightTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
