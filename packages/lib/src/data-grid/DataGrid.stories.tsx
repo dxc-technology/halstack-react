@@ -1064,10 +1064,6 @@ export const Controlled: Story = {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Root Node 1 Lazy"));
     await userEvent.click(canvas.getByText("Root Node 2 Lazy"));
-    // await userEvent.click(canvas.getByText("Root Node 1 Lazy Child 1"));
-    // await userEvent.click(canvas.getByText("Root Node 1 Lazy Child 2"));
-    // await userEvent.click(canvas.getByText("Root Node 2 Lazy Child 1"));
-    // await userEvent.click(canvas.getByText("Root Node 2 Lazy Child 2"));
   },
 };
 
