@@ -33,7 +33,6 @@ const utilitiesLinks: LinkDetails[] = [
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Color", path: "/principles/color" },
   { label: "Data visualization", path: "/principles/data-visualization" },
   { label: "Iconography", path: "/principles/iconography" },
   { label: "Layout", path: "/principles/layout" },
@@ -42,11 +41,14 @@ const principlesLinks: LinkDetails[] = [
   { label: "Typography", path: "/principles/typography" },
 ];
 
+const foundationsLinks: LinkDetails[] = [{ label: "Color", path: "/foundations/color" }];
+
 const componentsLinks = componentsList as LinkDetails[];
 
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },
   { label: "Principles", links: principlesLinks },
+  { label: "Foundations", links: foundationsLinks },
   { label: "Utilities", links: utilitiesLinks },
   { label: "Components", links: componentsLinks },
 ];
@@ -66,8 +68,10 @@ const getCurrentLinkIndex = (links: LinkDetails[], currentPath: string) => {
 export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const links = LinksSections.flatMap((section) => section.links);
   const currentLinkIndex = getCurrentLinkIndex(links, currentPath);
-  return currentLinkIndex === -1 ? {} : {
-    nextLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
-    previousLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
-  };
+  return currentLinkIndex === -1
+    ? {}
+    : {
+        nextLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
+        previousLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
+      };
 };
