@@ -326,6 +326,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
           </Popover.Trigger>
           <Popover.Portal>
             <StyledPopoverContent
+              aria-label="Date picker"
               sideOffset={sideOffset}
               align="end"
               aria-modal

@@ -5,10 +5,22 @@ import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof DxcDropdown>;
 
 const iconSVG = (

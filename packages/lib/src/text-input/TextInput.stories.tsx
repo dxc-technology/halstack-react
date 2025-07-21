@@ -5,10 +5,22 @@ import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/text-input/disabledRules";
 
 export default {
   title: "Text Input",
   component: DxcTextInput,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof DxcTextInput>;
 
 const action = {
