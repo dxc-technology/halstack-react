@@ -15,7 +15,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-vitest"),
     getAbsolutePath("@vitest/coverage-v8"),
-    getAbsolutePath("storybook-addon-performance"),
+    // getAbsolutePath("storybook-addon-performance"),
     getAbsolutePath("storybook-addon-pseudo-states"),
   ],
   framework: {

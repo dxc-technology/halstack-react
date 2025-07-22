@@ -237,7 +237,7 @@ export const ResponsiveHeaderMenuTablet: Story = {
     chromatic: { viewports: [720] },
   },
   globals: {
-    viewport: { value: "iphonex", isRotated: false },
+    viewport: { value: "pixelxl", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -258,7 +258,7 @@ export const ResponsiveHeaderTooltip: Story = {
     const canvas = within(canvasElement);
     await waitFor(() => canvas.findByText("Menu"));
     await userEvent.click(await canvas.findByText("Menu"));
-    const closeButton = canvas.getAllByRole("button")[1];
+    const closeButton = (await canvas.findAllByRole("button"))[1];
     closeButton != null && (await userEvent.hover(closeButton));
   },
 };

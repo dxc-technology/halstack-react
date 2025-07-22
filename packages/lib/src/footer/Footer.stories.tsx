@@ -228,7 +228,7 @@ export const FooterTooltipFirst: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[0];
+    const link = (await canvas.findAllByRole("link"))[0];
     link != null && (await userEvent.hover(link));
   },
 };
@@ -237,7 +237,7 @@ export const FooterTooltipSecond: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[1];
+    const link = (await canvas.findAllByRole("link"))[1];
     link != null && (await userEvent.hover(link));
   },
 };

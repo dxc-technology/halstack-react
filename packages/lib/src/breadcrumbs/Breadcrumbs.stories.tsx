@@ -158,7 +158,7 @@ export const Chromatic: Story = {
   render: Breadcrumbs,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dropdowns = canvas.getAllByRole("button");
+    const dropdowns = await canvas.findAllByRole("button");
     dropdowns[2] != null && (await userEvent.click(dropdowns[2]));
   },
 };

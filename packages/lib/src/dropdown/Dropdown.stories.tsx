@@ -338,7 +338,7 @@ export const Chromatic: Story = {
   render: Dropdown,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const buttonList = canvas.getAllByRole("button");
+    const buttonList = await canvas.findAllByRole("button");
     const lastButton = buttonList[buttonList.length - 1];
     lastButton != null && (await userEvent.click(lastButton));
   },
@@ -348,7 +348,7 @@ export const MenuStates: Story = {
   render: DropdownListStates,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dropdownTrigger = canvas.getAllByRole("button")[0];
+    const dropdownTrigger = (await canvas.findAllByRole("button"))[0];
     dropdownTrigger != null && (await userEvent.click(dropdownTrigger));
   },
 };

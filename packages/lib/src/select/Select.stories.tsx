@@ -698,7 +698,7 @@ export const Chromatic: Story = {
   render: Select,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[24];
+    const combobox = (await canvas.findAllByRole("combobox"))[24];
     combobox && (await userEvent.click(combobox));
   },
 };
@@ -732,7 +732,7 @@ export const MultipleSearchableWithValue: Story = {
   render: MultipleSearchable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[0];
+    const combobox = (await canvas.findAllByRole("combobox"))[0];
     combobox && (await userEvent.click(combobox));
   },
 };
@@ -750,7 +750,7 @@ export const MultipleOptionsDisplayed: Story = {
   render: MultipleSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[0];
+    const combobox = (await canvas.findAllByRole("combobox"))[0];
     combobox && (await userEvent.click(combobox));
   },
 };

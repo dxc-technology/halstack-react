@@ -224,7 +224,7 @@ export const Chromatic: Story = {
   render: DateInputChromatic,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const firstDateInput = canvas.getAllByRole("combobox")[0];
+    const firstDateInput = (await canvas.findAllByRole("combobox"))[0];
     firstDateInput != null && (await userEvent.click(firstDateInput));
     await fireEvent.click(await screen.findByText("April 1905"));
   },
@@ -243,7 +243,7 @@ export const DatePickerStates: Story = {
   render: DatePickerButtonStates,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dateBtn = canvas.getAllByRole("combobox")[0];
+    const dateBtn = (await canvas.findAllByRole("combobox"))[0];
     dateBtn != null && (await userEvent.click(dateBtn));
   },
 };
@@ -260,7 +260,7 @@ export const DatePickerTooltipPrevious: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const previousMonthButton = canvas.getAllByRole("button")[0];
+    const previousMonthButton = (await canvas.findAllByRole("button"))[0];
     previousMonthButton != null && (await userEvent.hover(previousMonthButton));
   },
 };
@@ -269,7 +269,7 @@ export const DatePickerTooltipAfter: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const afterMonthButton = canvas.getAllByRole("button")[2];
+    const afterMonthButton = (await canvas.findAllByRole("button"))[2];
     afterMonthButton != null && (await userEvent.hover(afterMonthButton));
   },
 };
