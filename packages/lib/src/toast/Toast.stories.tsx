@@ -6,7 +6,6 @@ import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {

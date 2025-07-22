@@ -3,7 +3,7 @@ import "../src/styles/variables.css";
 
 import type { Preview } from "@storybook/react-vite";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
-import { INITIAL_VIEWPORTS } from "storybook/internal/viewport";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 const preview: Preview = {
   parameters: {

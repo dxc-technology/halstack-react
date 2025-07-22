@@ -1,6 +1,5 @@
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcLink from "./Link";
 import { Meta, StoryObj } from "@storybook/react-vite";
 

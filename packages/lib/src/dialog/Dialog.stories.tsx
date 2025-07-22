@@ -1,4 +1,3 @@
-import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import { userEvent } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
