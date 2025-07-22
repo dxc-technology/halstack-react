@@ -22,9 +22,9 @@ const sections = [
     content: (
       <DxcParagraph>
         Icons are visual elements that can serve different purposes depending on their context. In Halstack, icons are
-        used not only to <strong>represent ideas, objects, or actions</strong>, but also to support the user’s journey
+        used not only to <strong>represent ideas, objects, or actions</strong>, but also to support the user's journey
         through the interface. They <strong>help guide attention</strong>, reinforce meaning, and visually enhance
-        actions ro sections within an application.
+        actions or sections within an application.
       </DxcParagraph>
     ),
     subSections: [
@@ -33,7 +33,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              At Halstack, we’ve chosen to adopt the Material Icons library, specifically the <strong>outline</strong>{" "}
+              At Halstack, we've chosen to adopt the Material Icons library, specifically the <strong>outline</strong>{" "}
               and <strong>filled</strong> variants, as our standard icon set. While we did not create these icons
               ourselves, there are strong reasons behind this decision that align with the goals of our design system:
             </DxcParagraph>
@@ -45,7 +45,7 @@ const sections = [
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Scalability</strong>: with hundreds of pre-designed icons available and frequent updates,
-                Material Icons scale easily with product needs: whether we’re designing simple interfaces or more
+                Material Icons scale easily with product needs: whether we're designing simple interfaces or more
                 complex workflows.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
@@ -100,7 +100,7 @@ const sections = [
             <strong>Feedback / Status</strong>
             <DxcParagraph>
               Icons that indicate the state of a system or user feedback (e.g., <Code>error</Code>, <Code>warning</Code>
-              , <Code>info</Code>,<Code>check_circle_outline</Code>).
+              , <Code>info</Code>, <Code>check_circle_outline</Code>).
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -111,7 +111,7 @@ const sections = [
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Comunication</strong>
+            <strong>Communication</strong>
             <DxcParagraph>
               Icons used in messaging, comments, or user contact interfaces (e.g., <Code>chat</Code>, <Code>email</Code>
               , <Code>notifications</Code>).
@@ -182,7 +182,7 @@ const sections = [
           <>
             <DxcParagraph>
               The <strong>outline</strong> icons are characterized by their lightweight, hollow appearance with thin
-              strokes and open shapes. They offer a modern, minimalist aesthetic that aligns well with Halstack’s clean
+              strokes and open shapes. They offer a modern, minimalist aesthetic that aligns well with Halstack's clean
               UI philosophy.
             </DxcParagraph>
             <DxcParagraph>
@@ -261,7 +261,7 @@ const sections = [
               includes:
             </DxcParagraph>
             <DxcBulletedList type="circle">
-              <DxcBulletedList.Item>Defining the icon’s intended meaning and use.</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Defining the icon's intended meaning and use.</DxcBulletedList.Item>
               <DxcBulletedList.Item>Designing or sourcing the visual asset.</DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 Testing the icon within its intended context to ensure clarity and accessibility.
@@ -294,7 +294,7 @@ const sections = [
           <DxcFlex direction="column" gap="2rem">
             <DxcParagraph>
               In the first figure, we can see how the custom icon is{" "}
-              <strong>colorful, highly detailed and visually complex</strong>. This doesn’t match the{" "}
+              <strong>colorful, highly detailed and visually complex</strong>. This doesn't match the{" "}
               <strong>monochromatic, simplified geometry</strong> of the Material Icons, as you can see on the same
               example. Therefore, this custom icon introduces a visual “noise” that could potentially break the
               consistency of the interface. While it may be visually appealing on its own, this custom icon feels out of
@@ -378,7 +378,7 @@ const sections = [
             </DxcGrid>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Don’t rely on icons alone to convey meaning</strong>
+            <strong>Don't rely on icons alone to convey meaning</strong>
             <DxcGrid templateColumns={["1fr", "1.5fr"]} gap="4rem">
               <DxcFlex direction="column">
                 <DxcBulletedList>
@@ -519,10 +519,10 @@ const sections = [
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Don’t use icons without clear purpose</strong>
+            <strong>Don't use icons without clear purpose</strong>
             <DxcParagraph>
               Every icon should add value and support comprehension. Avoid using icons just for decoration: if it
-              doesn’t clarify, reinforce, or simplify an interaction, it’s better to leave it out. Also avoid overly
+              doesn't clarify, reinforce, or simplify an interaction, it's better to leave it out. Also avoid overly
               abstract or ambiguous icons. Clarity is more important than cleverness.
             </DxcParagraph>
           </DxcBulletedList.Item>
