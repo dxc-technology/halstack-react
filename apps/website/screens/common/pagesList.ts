@@ -41,7 +41,10 @@ const principlesLinks: LinkDetails[] = [
   { label: "Typography", path: "/principles/typography" },
 ];
 
-const foundationsLinks: LinkDetails[] = [{ label: "Color", path: "/foundations/color" }];
+const foundationsLinks: LinkDetails[] = [
+  { label: "Color", path: "/foundations/color" },
+  { label: "Iconography", path: "/foundations/iconography" },
+];
 
 const componentsLinks = componentsList as LinkDetails[];
 
