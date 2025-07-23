@@ -5,7 +5,6 @@ import { ReactNode, SetStateAction } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 

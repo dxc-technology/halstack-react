@@ -1,4 +1,4 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -6,13 +6,12 @@ import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Toast",
   component: DxcToast,
-} as Meta<typeof DxcToast>;
+} satisfies Meta<typeof DxcToast>;
 
 const action = {
   label: "Action",
@@ -259,9 +258,9 @@ const ToastsQueue = () => (
 
 const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByText("Show default toast"));
-  await userEvent.click(canvas.getByText("Show info toast"));
-  await userEvent.click(canvas.getByText("Show success toast"));
+  await userEvent.click(await canvas.findByText("Show default toast"));
+  await userEvent.click(await canvas.findByText("Show info toast"));
+  await userEvent.click(await canvas.findByText("Show success toast"));
 };
 
 type Story = StoryObj<typeof DxcToast>;
@@ -278,10 +277,7 @@ export const FullScreenToast: Story = {
 export const MobileScreenToast: Story = {
   render: ToastsQueue,
   play: playFunc,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "iphonex",
-    },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

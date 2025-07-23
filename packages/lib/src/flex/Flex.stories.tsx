@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./Flex";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Flex",
   component: DxcFlex,
-} as Meta<typeof DxcFlex>;
+} satisfies Meta<typeof DxcFlex>;
 
 const Container = styled.div<{ height?: string }>`
   display: flex;

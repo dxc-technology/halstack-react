@@ -151,7 +151,7 @@ const Listbox = ({
   const getFirstItem = () => {
     if (searchable && (options.length === 0 || !groupsHaveOptions(options)))
       return (
-        <OptionsSystemMessage>
+        <OptionsSystemMessage role="option">
           <DxcIcon icon="search_off" />
           {translatedLabels.select.noMatchesErrorMessage}
         </OptionsSystemMessage>
