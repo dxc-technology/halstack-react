@@ -43,6 +43,7 @@ const principlesLinks: LinkDetails[] = [
 
 const foundationsLinks: LinkDetails[] = [
   { label: "Color", path: "/foundations/color" },
+  { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
 ];
 
