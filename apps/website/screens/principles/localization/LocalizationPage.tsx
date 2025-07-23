@@ -455,6 +455,30 @@ const sections = [
                   with those parameters.
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <Code>firstResultsTitle</Code>
+                </td>
+                <td>First results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>previousResultsTitle</Code>
+                </td>
+                <td>Previous results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>nextResultsTitle</Code>
+                </td>
+                <td>Next results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>lastResultsTitle</Code>
+                </td>
+                <td>Last results</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),

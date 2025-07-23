@@ -418,7 +418,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             <Popover.Portal>
               <Popover.Content
                 sideOffset={4}
-                style={{ zIndex: "2147483647" }}
+                style={{ zIndex: "310" }}
                 onOpenAutoFocus={(event) => {
                   // Avoid select to lose focus when the list is opened
                   event.preventDefault();

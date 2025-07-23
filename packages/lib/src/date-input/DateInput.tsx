@@ -341,7 +341,7 @@ const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
 `;
 
 const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483647;
+  z-index: 300;
   &:focus-visible {
     outline: none;
   }

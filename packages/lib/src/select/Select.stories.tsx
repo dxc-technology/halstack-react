@@ -416,7 +416,7 @@ const SelectListbox = () => {
             border: "1px solid black",
             borderRadius: "4px",
             overflow: "auto",
-            zIndex: "1300",
+            zIndex: "130",
           }}
         >
           <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />
@@ -690,7 +690,7 @@ export const OpinionatedTheme: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[2];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 
@@ -724,7 +724,7 @@ export const MultipleSearchableWithValue: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 
@@ -751,7 +751,7 @@ export const MultipleOptionsDisplayed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 

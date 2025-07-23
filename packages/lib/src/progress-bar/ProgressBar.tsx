@@ -21,7 +21,7 @@ const Overlay = styled.div<{
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 1300;`
+      z-index: 410;`
       : `background-color: transparent;`}
   display: flex;
   flex-wrap: wrap;
@@ -46,7 +46,7 @@ const MainContainer = styled.div<{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  z-index: ${(props) => (props.overlay ? "100" : "0")};
+  z-index: ${(props) => (props.overlay ? "1" : "0")};
 `;
 
 const ProgressBarLabel = styled.div<{

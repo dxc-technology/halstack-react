@@ -551,7 +551,7 @@
     "logoHeight": "40px",
     "logoWidth": "auto",
     "menuBackgroundColor": "#ffffff",
-    "menuZindex": "2000",
+    "menuZindex": "210",
     "menuTabletWidth": "60vw",
     "menuMobileWidth": "100vw",
     "minHeight": "64px",

@@ -63,7 +63,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(1);
               }}
-              title="First results"
+              title={translatedLabels.paginator.firstResultsTitle}
             />
           )}
           {onPageChange && (
@@ -75,7 +75,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage - 1);
               }}
-              title="Previous results"
+              title={translatedLabels.paginator.previousResultsTitle}
             />
           )}
           {showGoToPage ? (

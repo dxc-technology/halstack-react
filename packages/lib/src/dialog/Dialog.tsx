@@ -20,7 +20,7 @@ const DialogContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  z-index: 2147483647;
+  z-index: 420;
 `;
 
 const Overlay = styled.div`
@@ -40,7 +40,6 @@ const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   ${(props) => props.closable && "min-height: 72px;"}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
-  z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 92%;

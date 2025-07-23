@@ -17,7 +17,7 @@ const Modal = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  z-index: 2147483647;
+  z-index: 430;
 `;
 
 const Overlay = styled.div`
@@ -32,7 +32,6 @@ const ModalAlertContainer = styled.div`
   box-sizing: border-box;
   max-width: 80%;
   min-width: 696px;
-  z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 92%;

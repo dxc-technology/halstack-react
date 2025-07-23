@@ -90,7 +90,7 @@ const DXCSpinner = styled.div<{
   left: ${(props) => (props.mode === "overlay" ? 0 : "")};
   justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
   align-items: ${(props) => (props.mode === "overlay" ? "center" : "")};
-  z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
+  z-index: ${(props) => (props.mode === "overlay" ? 400 : "")};
 
   margin: ${(props) =>
     props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};

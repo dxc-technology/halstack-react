@@ -12,7 +12,7 @@ const TooltipTriggerContainer = styled.div`
 `;
 
 const StyledTooltipContent = styled(Content)`
-  z-index: 2147483647;
+  z-index: 600;
 
   animation-duration: 0.2s;
   animation-timing-function: ease-out;

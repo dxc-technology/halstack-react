@@ -34,7 +34,7 @@ const HeaderContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 3;
+  z-index: 100;
 `;
 
 const VisibilityToggle = styled.div`
@@ -49,7 +49,7 @@ const VisibilityToggle = styled.div`
   width: 100%;
   background-color: #f2f2f2;
   user-select: none;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const HamburgerTrigger = styled.button`
@@ -93,7 +93,7 @@ const SidenavContainer = styled.div`
   top: 64px;
   display: flex;
   height: calc(100vh - 64px);
-  z-index: 1;
+  z-index: 110;
 
   @media (max-width: ${responsiveSizes.large}rem) {
     position: absolute;
