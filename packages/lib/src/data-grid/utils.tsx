@@ -612,10 +612,10 @@ const getParentSelectedState = (
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
  * @param {string} uniqueRowId - Unique identifier for each row.
- * @param {string} columnKey - Key of  Function called whenever a cell with children is expanded or collapsed. Returns the children array
+ * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Set<string | number>} selectedRows - Set of selected rows.
- * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @param {boolean} checked - Whether the box has been checked or unchecked
+ * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 const handleCheckboxUpdate = (

@@ -170,11 +170,12 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>{`(open: boolean, triggerRow: HierarchyGridRow) => HierarchyGridRow[] | Promise<HierarchyGridRow[]>`}</TableCode>
+              <TableCode>{`(open: boolean, triggerRow: HierarchyGridRow) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>`}</TableCode>
             </td>
             <td>
-              Function called whenever a cell with children (<Code>HierarchyGridRow</Code>) is expanded. Returns the
-              children array.
+              Function called whenever a cell with children (<Code>HierarchyGridRow</Code>) is expanded or collapsed
+              (based on the value of <Code>open</Code>). Returns (or resolves to) the array of child rows nested under
+              this row to display when expanded.
             </td>
             <td>-</td>
           </tr>

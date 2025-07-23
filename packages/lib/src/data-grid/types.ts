@@ -54,7 +54,8 @@ export type HierarchyGridRow = GridRow & {
    */
   childRows?: HierarchyGridRow[] | GridRow[];
   /**
-   * Function called whenever a cell with children is expanded or collapsed. Returns the children array
+   * Function called when a row with children is expanded or collapsed (based on the value of `open`). 
+   * Returns (or resolves to) the array of child rows nested under this row to display when expanded.
    */
   childrenTrigger?: (
     open?: boolean,
