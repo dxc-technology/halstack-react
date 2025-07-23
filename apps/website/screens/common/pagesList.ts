@@ -37,7 +37,6 @@ const principlesLinks: LinkDetails[] = [
   { label: "Iconography", path: "/principles/iconography" },
   { label: "Layout", path: "/principles/layout" },
   { label: "Localization", path: "/principles/localization" },
-  { label: "Spacing", path: "/principles/spacing" },
   { label: "Typography", path: "/principles/typography" },
 ];
 
@@ -45,6 +44,7 @@ const foundationsLinks: LinkDetails[] = [
   { label: "Color", path: "/foundations/color" },
   { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
+  { label: "Spacing", path: "/foundations/spacing" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
