@@ -141,7 +141,7 @@ const DxcResultsetTable = ({
                     mode={mode}
                     aria-label={column.isSortable ? "Sort column" : undefined}
                   >
-                    <span>{column.displayValue}</span>
+                    {column.displayValue}
                     {column.isSortable && (
                       <SortIcon>
                         {sortColumnIndex === index
@@ -214,7 +214,7 @@ const HeaderContainer = styled.span<{
         ? "flex-end"
         : "flex-start"};
   gap: ${CoreTokens.spacing_8};
-  width: fit-content;
+  width: auto;
   border: 1px solid transparent;
   border-radius: 2px;
   cursor: ${(props) => (props.isSortable ? "pointer" : "default")};
