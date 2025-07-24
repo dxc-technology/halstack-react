@@ -130,8 +130,6 @@ export const renderExpandableTrigger = (
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
  * @param {Function} childrenTrigger - Function called whenever a cell with children is expanded or collapsed. Returns the children array
- * @param {Set<string | number>} selectedRows - Set of selected rows.
- * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 export const renderHierarchyTrigger = (
@@ -144,7 +142,6 @@ export const renderHierarchyTrigger = (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>,
-  selectedRows?: Set<string | number>
 ) => {
   const [loading, setLoading] = useState(false);
   const onClick = async () => {
