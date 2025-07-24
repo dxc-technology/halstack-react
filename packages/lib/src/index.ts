@@ -39,6 +39,7 @@ export { default as DxcSelect } from "./select/Select";
 export { default as DxcSlider } from "./slider/Slider";
 export { default as DxcSpinner } from "./spinner/Spinner";
 export { default as DxcStatusLight } from "./status-light/StatusLight";
+export { default as DxcStatusLightV2 } from "./status-light-v2/StatusLightV2";
 export { default as DxcSwitch } from "./switch/Switch";
 export { default as DxcTable } from "./table/Table";
 export { default as DxcTabs } from "./tabs/Tabs";
