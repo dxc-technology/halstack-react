@@ -144,26 +144,15 @@ export const renderHierarchyTrigger = (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>,
-  selectedRows?: Set<string | number>,
-  onSelectRows?: (_selected: Set<string | number>) => void
+  selectedRows?: Set<string | number>
 ) => {
   const [loading, setLoading] = useState(false);
   const onClick = async () => {
     if (loading) return; // Prevent double clicks while loading
-    setLoading(true);
-    if (selectedRows) {
-      triggerRow.loadingChildren = true;
-      handleCheckboxUpdate(
-        rows,
-        triggerRow,
-        uniqueRowId,
-        selectedRows,
-        selectedRows.has(rowKeyGetter(triggerRow, uniqueRowId)),
-        onSelectRows
-      );
-    }
     if (!triggerRow.visibleChildren) {
       if (childrenTrigger) {
+        setLoading(true);
+        triggerRow.loadingChildren = true;
         try {
           const dynamicChildren = await childrenTrigger(true, triggerRow);
           triggerRow.childRows = dynamicChildren;
@@ -178,22 +167,12 @@ export const renderHierarchyTrigger = (
               childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
               addRow(newRowsToRender, rowIndex + 1 + index, childRow);
             });
-
-            if (selectedRows) {
-              handleCheckboxUpdate(
-                rows,
-                triggerRow,
-                uniqueRowId,
-                selectedRows,
-                selectedRows.has(rowKeyGetter(triggerRow, uniqueRowId)),
-                onSelectRows
-              );
-            }
-
             return newRowsToRender;
           });
         } catch (error) {
           console.error("Error loading children:", error);
+        } finally {
+          setLoading(false);
         }
       } else if (triggerRow.childRows) {
         setRowsToRender((currentRows) => {
@@ -217,7 +196,6 @@ export const renderHierarchyTrigger = (
           (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
         );
         // The children are checked if any of them has any other children of their own
-
         const rowsToCheck = [...rowsToRemove];
         while (rowsToCheck.length > 0) {
           const currentRow = rowsToCheck.pop();
@@ -241,34 +219,9 @@ export const renderHierarchyTrigger = (
 
         return newRowsToRender;
       });
-
-      if (childrenTrigger) {
-        try {
-          const dynamicChildren = await childrenTrigger(false, triggerRow);
-          if (dynamicChildren.length > 0) {
-            const parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-            const enrichedChildren = dynamicChildren.map((child) => ({
-              ...child,
-              parentKey,
-            }));
-
-            setRowsToRender((prevRows) => {
-              const index = prevRows.findIndex((row) => rowKeyGetter(row, uniqueRowId) === parentKey);
-              const before = prevRows.slice(0, index + 1);
-              const after = prevRows.slice(index + 1);
-
-              return [...before, ...enrichedChildren, ...after];
-            });
-          }
-        } catch (error) {
-          console.error("Error loading children:", error);
-        }
-      }
     }
 
     triggerRow.visibleChildren = !triggerRow.visibleChildren;
-    triggerRow.loadingChildren = false;
-    setLoading(false);
   };
   return (
     <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={onClick}>
@@ -298,14 +251,22 @@ export const renderCheckbox = (
   selectedRows: Set<string | number>,
   onSelectRows: (_selected: Set<string | number>) => void
 ) => {
-  console.log("ROW", row);
+  const checked = selectedRows.has(rowKeyGetter(row, uniqueRowId));
+  // Checks if update is needed when child rows data has completed loading
+  if (row.loadingChildren && row.childRows) {
+    handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows, true);
+    row.loadingChildren = false;
+  }
   return (
     <DxcCheckbox
-      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+      checked={checked}
       onChange={(checked) => {
         handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows);
       }}
-      disabled={!rows.some((row) => uniqueRowId in row) || !!row.loadingChildren}
+      disabled={
+        // row.loadingChildren ||
+        !rows.some((row) => uniqueRowId in row)
+      }
     />
   );
 };
@@ -543,22 +504,26 @@ export const rowFinderBasedOnId = (
  * @param {string} uniqueRowId - Key used to uniquely identify each row.
  * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checked - Boolean indicating whether the rows should be selected (true) or deselected (false).
+ * @param {boolean} expandingChildren - Defines children are being expanded or not, used to avoid removing children that were previously set when expanding an unset parent
  */
 const getChildrenSelection = (
   rowList: HierarchyGridRow[],
   uniqueRowId: string,
   selectedRows: Set<string | number>,
-  checked: boolean
+  checked: boolean,
+  hierarchyValidation?: boolean
 ) => {
   rowList.forEach((row) => {
     if (row.childRows) {
       // Recursively select/deselect child rows
-      getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked);
+      getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked, hierarchyValidation);
     }
     if (checked) {
       selectedRows.add(rowKeyGetter(row, uniqueRowId));
     } else {
-      selectedRows.delete(rowKeyGetter(row, uniqueRowId));
+      if (!hierarchyValidation) {
+        selectedRows.delete(rowKeyGetter(row, uniqueRowId));
+      }
     }
   });
 };
@@ -624,19 +589,29 @@ const handleCheckboxUpdate = (
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   checked: boolean,
-  onSelectRows?: (_selected: Set<string | number>) => void
+  onSelectRows?: (_selected: Set<string | number>) => void,
+  hierarchyValidation?: boolean
 ) => {
   const selected = new Set(selectedRows);
-  if (checked) {
-    selected.add(rowKeyGetter(row, uniqueRowId));
+  if (hierarchyValidation) {
+    if (checked) {
+      selected.add(rowKeyGetter(row, uniqueRowId));
+    }
+    if (row.childRows && Array.isArray(row.childRows)) {
+      getChildrenSelection(row.childRows, uniqueRowId, selected, checked, hierarchyValidation);
+    }
   } else {
-    selected.delete(rowKeyGetter(row, uniqueRowId));
-  }
-  if (row.childRows && Array.isArray(row.childRows)) {
-    getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-  }
-  if (row.parentKey) {
-    getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+    if (checked) {
+      selected.add(rowKeyGetter(row, uniqueRowId));
+    } else {
+      selected.delete(rowKeyGetter(row, uniqueRowId));
+    }
+    if (row.childRows && Array.isArray(row.childRows)) {
+      getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+    }
+    if (row.parentKey) {
+      getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+    }
   }
   onSelectRows?.(selected);
 };
