@@ -1,254 +1,261 @@
-import { MouseEvent, useId, useMemo, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 import { spaces } from "../common/variables";
 import SpinnerPropsType from "./types";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+
+// Keyframes for indeterminate spinner rotation
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+// Calculate stroke dash offset for determinate progress
+const getStrokeDashOffset = (progress: number, circumference: number) => {
+  return circumference - (progress / 100) * circumference;
+};
+
+// Size configuration based on Figma design
+const getSizeConfig = (size: Required<SpinnerPropsType>["size"]) => {
+  switch (size) {
+    case "small":
+      return {
+        diameter: 16,
+        strokeWidth: 2,
+        fontSize: "var(--typography-body-s)",
+        containerSize: "20px",
+      };
+    case "medium":
+      return {
+        diameter: 140,
+        strokeWidth: 8,
+        fontSize: "var(--typography-body-m)",
+        containerSize: "140px",
+      };
+    case "large":
+      return {
+        diameter: 180,
+        strokeWidth: 10,
+        fontSize: "var(--typography-body-l)",
+        containerSize: "180px",
+      };
+  }
+};
 
 const SpinnerContainer = styled.div<{
+  overlay: SpinnerPropsType["overlay"];
   margin: SpinnerPropsType["margin"];
-  mode: SpinnerPropsType["mode"];
 }>`
-  ${({ mode }) =>
-    mode === "overlay" &&
+  display: ${({ overlay }) => (overlay ? "flex" : "inline-flex")};
+  align-items: center;
+  justify-content: center;
+  ${({ overlay }) =>
+    overlay &&
     `
       position: fixed;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       height: 100%;
       z-index: var(--z-spinner-overlay);
-    `};
-
-  margin: ${(props) =>
-    props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
-  margin-top: ${(props) =>
-    props.mode !== "overlay"
-      ? props.margin && typeof props.margin === "object" && props.margin.top
-        ? spaces[props.margin.top]
-        : ""
-      : ""};
-  margin-right: ${(props) =>
-    props.mode !== "overlay"
-      ? props.margin && typeof props.margin === "object" && props.margin.right
-        ? spaces[props.margin.right]
-        : ""
-      : ""};
-  margin-bottom: ${(props) =>
-    props.mode !== "overlay"
-      ? props.margin && typeof props.margin === "object" && props.margin.bottom
-        ? spaces[props.margin.bottom]
-        : ""
-      : ""};
-  margin-left: ${(props) =>
-    props.mode !== "overlay"
-      ? props.margin && typeof props.margin === "object" && props.margin.left
-        ? spaces[props.margin.left]
-        : ""
-      : ""};
-`;
-
-const MainContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: ${({ mode }) => (mode === "small" ? "16px" : "140px")};
-  width: ${({ mode }) => (mode === "small" ? "16px" : "140px")};
-
-  @keyframes spinner-svg {
-    0% {
-      transform: rotateZ(0deg);
-    }
-    100% {
-      transform: rotateZ(360deg);
-    }
-  }
-  @keyframes svg-circle-large {
-    0% {
-      stroke-dashoffset: 400;
-      transform: rotate(0);
-    }
-    50% {
-      stroke-dashoffset: 75;
-      transform: rotate(45deg);
-    }
-    100% {
-      stroke-dashoffset: 400;
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes svg-circle-small {
-    0% {
-      stroke-dashoffset: 35;
-      transform: rotate(0);
-    }
-    50% {
-      stroke-dashoffset: 8;
-      transform: rotate(45deg);
-    }
-    100% {
-      stroke-dashoffset: 35;
-      transform: rotate(360deg);
-    }
-  }
+    `}
+  ${({ margin }) =>
+    margin &&
+    (typeof margin !== "object"
+      ? `margin: ${spaces[margin]};`
+      : `
+          ${margin.top ? `margin-top: ${spaces[margin.top]};` : ""}
+          ${margin.right ? `margin-right: ${spaces[margin.right]};` : ""}
+          ${margin.bottom ? `margin-bottom: ${spaces[margin.bottom]};` : ""}
+          ${margin.left ? `margin-left: ${spaces[margin.left]};` : ""}
+        `)}
 `;
 
 const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  height: 100%;
   background-color: var(--color-bg-alpha-medium);
+  height: 100%;
+  inset: 0;
+  position: fixed;
 `;
 
-const SVGTotalTrack = styled.svg`
-  position: absolute;
-  height: inherit;
-  width: inherit;
-`;
-
-const TotalTrack = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
-  animation: none;
-  fill: transparent;
-  stroke: var(--color-bg-neutral-lightest);
-  stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
-  stroke-linecap: initial;
-  stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};
-  transform-origin: 50% 50%;
-  vector-effect: non-scaling-stroke;
-`;
-
-const Spinner = styled.div`
-  position: relative;
-  height: inherit;
-  width: inherit;
-`;
-
-const SVGSpinner = styled.svg<{ determined: boolean }>`
-  height: inherit;
-  width: inherit;
-  transform: rotate(-90deg);
-  top: 0;
-  left: 0;
-  transform-origin: center;
-  overflow: visible;
-  animation: ${({ determined }) => !determined && "1.4s linear infinite both spinner-svg"};
-`;
-
-const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) =>
-  value != null && value >= 0 && value <= 100 ? strokeDashArray * (1 - value / 100) : 0;
-
-const CircleSpinner = styled.circle<{
-  determined: boolean;
-  inheritColor: SpinnerPropsType["inheritColor"];
-  value: SpinnerPropsType["value"];
+const SpinnerWrapper = styled.div<{
+  size: Required<SpinnerPropsType>["size"];
+  overlay: SpinnerPropsType["overlay"];
 }>`
-  fill: transparent;
-  stroke-linecap: initial;
-  vector-effect: non-scaling-stroke;
-  animation: ${(props) =>
-    props.determined
-      ? "none"
-      : props.mode !== "small"
-        ? "1.4s ease-in-out infinite both svg-circle-large"
-        : "1.4s ease-in-out infinite both svg-circle-small"};
-  stroke: ${({ inheritColor, mode }) =>
-    inheritColor
-      ? "currentColor"
-      : mode === "overlay"
-        ? "var(--color-fg-primary-medium)"
-        : "var(--color-fg-primary-strong)"};
-  transform-origin: ${({ determined }) => (!determined ? "50% 50%" : "")};
-  stroke-dasharray: ${({ mode }) => (mode !== "small" ? "409" : "38")};
-  stroke-width: ${({ mode }) => (mode !== "small" ? "8.5px" : "2px")};
-  stroke-dashoffset: ${({ determined, mode, value }) =>
-    determined ? (mode !== "small" ? determinateValue(value, 409) : determinateValue(value, 38)) : ""};
+  position: relative;
+  width: ${({ size }) => getSizeConfig(size).containerSize};
+  height: ${({ size }) => getSizeConfig(size).containerSize};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: ${({ size }) => (size === "small" ? "0" : "var(--spacing-gap-xs)")};
+  ${({ overlay, size }) =>
+    overlay && size !== "small"
+      ? `
+          background-color: var(--color-bg-neutral-lightest);
+          border-radius: var(--border-radius-l);
+          padding: var(--spacing-padding-m);
+          box-shadow: var(--shadow-depth-2);
+        `
+      : ""}
 `;
 
-const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
-  position: absolute;
-  display: grid;
-  gap: var(--spacing-gap-none, 0px);
-  place-items: center;
-  width: 116px;
-  color: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-m);
-  font-weight: var(--typography-helper-text-regular);
+const CircularProgress = styled.svg<{
+  size: Required<SpinnerPropsType>["size"];
+  mode: Required<SpinnerPropsType>["mode"];
+}>`
+  width: ${({ size }) => getSizeConfig(size).containerSize};
+  height: ${({ size }) => getSizeConfig(size).containerSize};
+  transform: rotate(-90deg);
+`;
 
-  > span {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  > strong {
-    font-weight: var(--typography-helper-text-semibold);
-  }
+const Track = styled.circle<{
+  size: Required<SpinnerPropsType>["size"];
+  overlay: SpinnerPropsType["overlay"];
+}>`
+  fill: none;
+  stroke: ${({ overlay }) =>
+    overlay ? "var(--color-bg-neutral-medium)" : "var(--color-bg-neutral-light)"};
+  stroke-width: ${({ size }) => getSizeConfig(size).strokeWidth};
+`;
+
+const Progress = styled.circle<{
+  size: Required<SpinnerPropsType>["size"];
+  mode: Required<SpinnerPropsType>["mode"];
+  overlay: SpinnerPropsType["overlay"];
+  circumference: number;
+  progress: number;
+}>`
+  fill: none;
+  stroke: ${({ overlay }) =>
+    overlay ? "var(--color-fg-primary-medium)" : "var(--color-fg-primary-strong)"};
+  stroke-width: ${({ size }) => getSizeConfig(size).strokeWidth};
+  stroke-linecap: round;
+  stroke-dasharray: ${({ circumference }) => circumference};
+  stroke-dashoffset: ${({ progress, circumference, mode }) =>
+    mode === "determinate" ? getStrokeDashOffset(progress, circumference) : 0};
+  
+  ${({ mode, circumference }) =>
+    mode === "indeterminate"
+      ? `
+          stroke-dasharray: ${circumference * 0.25} ${circumference * 0.75};
+          animation: ${spin} 2s linear infinite;
+          transform-origin: center;
+        `
+      : `
+          transition: stroke-dashoffset 0.3s ease-in-out;
+        `}
+`;
+
+const ContentContainer = styled.div<{
+  size: Required<SpinnerPropsType>["size"];
+  overlay: SpinnerPropsType["overlay"];
+}>`
+  ${({ size }) => (size === "small" ? "display: none;" : "")}
+  position: ${({ size }) => (size === "small" ? "absolute" : "static")};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--spacing-gap-xs);
+  width: ${({ size }) => (size === "small" ? "100%" : "auto")};
+  color: ${({ overlay }) =>
+    overlay ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)"};
+`;
+
+const Label = styled.span<{
+  size: Required<SpinnerPropsType>["size"];
+  overlay: SpinnerPropsType["overlay"];
+}>`
+  font-family: var(--typography-font-family);
+  font-size: ${({ size }) => getSizeConfig(size).fontSize};
+  font-weight: var(--typography-body-regular);
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 116px;
+`;
+
+const Value = styled.span<{
+  size: Required<SpinnerPropsType>["size"];
+  overlay: SpinnerPropsType["overlay"];
+}>`
+  font-family: var(--typography-font-family);
+  font-size: ${({ size }) => getSizeConfig(size).fontSize};
+  font-weight: var(--typography-body-semibold);
+  line-height: 1;
 `;
 
 const DxcSpinner = ({
-  ariaLabel = "Spinner",
-  inheritColor = false,
-  label,
-  margin,
-  mode = "large",
-  showValue,
+  label = "Loading...",
+  showValue = false,
   value,
+  size = "medium",
+  mode = value !== undefined ? "determinate" : "indeterminate",
+  overlay = false,
+  margin,
+  ariaLabel,
+  ...props
 }: SpinnerPropsType) => {
-  const labelId = useId();
-  const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
-  const [hasTooltip, setHasTooltip] = useState(false);
-
-  const handleLabelOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
-    const text = event.currentTarget;
-    setHasTooltip(text.scrollWidth > text.clientWidth);
-  };
+  const sizeConfig = getSizeConfig(size);
+  const radius = (sizeConfig.diameter - sizeConfig.strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const progressValue = value !== undefined ? Math.min(Math.max(value, 0), 100) : 0;
+  const id = useId();
 
   return (
-    <SpinnerContainer margin={margin} mode={mode}>
-      <MainContainer mode={mode}>
-        {mode === "overlay" && <Overlay />}
-        <SVGTotalTrack viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
-          <TotalTrack
-            cx={mode === "small" ? "8" : "70"}
-            cy={mode === "small" ? "8" : "70"}
-            mode={mode}
-            r={mode === "small" ? "6" : "65"}
-          />
-        </SVGTotalTrack>
-        <Spinner
-          aria-label={!label || mode === "small" ? ariaLabel : undefined}
-          aria-labelledby={label && mode !== "small" ? labelId : undefined}
-          aria-valuemax={determined ? 100 : undefined}
-          aria-valuemin={determined ? 0 : undefined}
-          aria-valuenow={determined && showValue ? value : undefined}
-          role={determined ? "progressbar" : "status"}
+    <SpinnerContainer overlay={overlay} margin={margin}>
+      {overlay && <Overlay />}
+      <SpinnerWrapper size={size} overlay={overlay}>
+        <CircularProgress
+          size={size}
+          mode={mode}
+          role="progressbar"
+          aria-label={ariaLabel || (mode === "determinate" ? `Loading ${progressValue}%` : "Loading")}
+          aria-valuenow={mode === "determinate" ? progressValue : undefined}
+          aria-valuemin={mode === "determinate" ? 0 : undefined}
+          aria-valuemax={mode === "determinate" ? 100 : undefined}
+          aria-describedby={label ? `${id}-label` : undefined}
         >
-          <SVGSpinner determined={determined} viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
-            <CircleSpinner
-              cx={mode === "small" ? "8" : "70"}
-              cy={mode === "small" ? "8" : "70"}
-              determined={determined}
-              inheritColor={inheritColor}
-              mode={mode}
-              r={mode === "small" ? "6" : "65"}
-              value={value}
-            />
-          </SVGSpinner>
-        </Spinner>
-        {mode !== "small" && (
-          <TooltipWrapper condition={hasTooltip} label={label}>
-            <Labels mode={mode}>
-              {label && (
-                <span id={labelId} onMouseEnter={handleLabelOnMouseEnter}>
-                  {label}
-                </span>
-              )}
-              {(value || value === 0) && showValue && <strong>{value}%</strong>}
-            </Labels>
-          </TooltipWrapper>
+          <Track
+            cx={sizeConfig.diameter / 2}
+            cy={sizeConfig.diameter / 2}
+            r={radius}
+            size={size}
+            overlay={overlay}
+          />
+          <Progress
+            cx={sizeConfig.diameter / 2}
+            cy={sizeConfig.diameter / 2}
+            r={radius}
+            size={size}
+            mode={mode}
+            overlay={overlay}
+            circumference={circumference}
+            progress={progressValue}
+          />
+        </CircularProgress>
+        
+        {size !== "small" && (
+          <ContentContainer size={size} overlay={overlay}>
+            {label && (
+              <Label id={`${id}-label`} size={size} overlay={overlay}>
+                {label}
+              </Label>
+            )}
+            {showValue && mode === "determinate" && (
+              <Value size={size} overlay={overlay}>
+                {progressValue}%
+              </Value>
+            )}
+          </ContentContainer>
         )}
-      </MainContainer>
+      </SpinnerWrapper>
     </SpinnerContainer>
   );
 };

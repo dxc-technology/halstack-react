@@ -1,37 +1,47 @@
-import { Margin, Space } from "../common/utils";
+import { Space } from "../common/utils";
+
+type Size = "small" | "medium" | "large";
+type Mode = "indeterminate" | "determinate";
 
 type Props = {
   /**
-   * Specifies a string to be used as the name for the spinner element when no `label` is provided or the `mode` is set to small.
-   */
-  ariaLabel?: string;
-  /**
-   * If true, the color is inherited from the closest parent with a defined color. This allows users to adapt the spinner 
-   * to the semantic color of the use case in which it is used.
-   */
-  inheritColor?: boolean;
-  /**
-   * Text to be placed inside the spinner.
+   * Text to be placed next to the spinner.
    */
   label?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
-   */
-  margin?: Space | Margin;
-  /**
-   * Available modes of the spinner.
-   */
-  mode?: "large" | "small" | "overlay";
-  /**
-   * If true, the value is displayed inside the spinner..
+   * If true, the progress value is displayed next to the label.
    */
   showValue?: boolean;
   /**
-   * The value of the progress indicator. If it's received the
-   * component is determinate, otherwise is indeterminate.
+   * The value of the progress indicator (0-100). If provided, the component 
+   * will render as determinate, otherwise as indeterminate.
    */
   value?: number;
+  /**
+   * Size of the spinner.
+   */
+  size?: Size;
+  /**
+   * Mode of the spinner. If value is provided, it will be determinate automatically.
+   */
+  mode?: Mode;
+  /**
+   * If true, the spinner will be displayed as an overlay modal.
+   */
+  overlay?: boolean;
+  /**
+   * Size of the margin to be applied to the component.
+   */
+  margin?: Space | {
+    top?: Space;
+    bottom?: Space;
+    left?: Space;
+    right?: Space;
+  };
+  /**
+   * Specifies a string to be used as the aria-label for the spinner element.
+   */
+  ariaLabel?: string;
 };
 
 export default Props;
