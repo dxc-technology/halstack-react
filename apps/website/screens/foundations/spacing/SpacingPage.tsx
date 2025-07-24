@@ -206,7 +206,7 @@ const sections = [
                 Internal padding for tight UI elements like badges, icon buttons, or dense table cells.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Narrow gaps between repeating elements.</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Padding inside input fields and controls</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Padding inside input fields and controls.</DxcBulletedList.Item>
               <DxcBulletedList.Item>Vertical separation of elements within compact cards.</DxcBulletedList.Item>
               <DxcBulletedList.Item>Offset between a trigger element and its overlay.</DxcBulletedList.Item>
             </DxcBulletedList>
