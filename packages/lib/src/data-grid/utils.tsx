@@ -517,6 +517,7 @@ const getChildrenSelection = (
     if (row.childRows) {
       // Recursively select/deselect child rows
       getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked, hierarchyValidation);
+      getParentSelectedState(row.childRows, rowKeyGetter(row, uniqueRowId), uniqueRowId, selectedRows, checked);
     }
     if (checked) {
       selectedRows.add(rowKeyGetter(row, uniqueRowId));
