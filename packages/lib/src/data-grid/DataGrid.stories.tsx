@@ -2,7 +2,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn, GridRow, HierarchyGridRow } from "./types";
 import { isValidElement, useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
@@ -325,7 +325,7 @@ const childcolumns: GridColumn[] = [
   },
 ];
 
-const childRows: HierarchyGridRow[] = [
+const childRows = [
   {
     name: "Root Node 1",
     value: "1",
@@ -444,7 +444,59 @@ const childRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
-const childRowsPaginated: HierarchyGridRow[] = [
+const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
+  if (open) {
+    return new Promise<HierarchyGridRow[]>((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            name: `${triggerRow.name} Child 1`,
+            value: triggerRow.value,
+            id: `${triggerRow.id}-child-1`,
+            childrenTrigger,
+          },
+          {
+            name: `${triggerRow.name} Child 2`,
+            value: triggerRow.value,
+            id: `${triggerRow.id}-child-2`,
+            childrenTrigger,
+          },
+        ] as unknown as HierarchyGridRow[]);
+      }, 5000);
+    });
+  } else {
+    return [] as HierarchyGridRow[];
+  }
+};
+
+const childRowsLazy = [
+  {
+    name: "Root Node 1 Lazy",
+    value: "1",
+    id: "lazy-a",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 2 Lazy",
+    value: "2",
+    id: "lazy-b",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 3 Lazy",
+    value: "3",
+    id: "lazy-c",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 4 Lazy",
+    value: "4",
+    id: "lazy-d",
+    childrenTrigger,
+  },
+] as unknown as HierarchyGridRow[];
+
+const childRowsPaginated = [
   {
     name: "Paginated Node 1",
     value: "1",
@@ -729,6 +781,20 @@ const DataGridControlled = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
+        <Title title="DataGrid with childrenTrigger function" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRowsLazy}
+          uniqueRowId="id"
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={(selectedRows) => {
+            console.log("SELECTEDROWS", selectedRows);
+            return setSelectedRows(selectedRows);
+          }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
@@ -997,6 +1063,11 @@ export const Chromatic: Story = {
 
 export const Controlled: Story = {
   render: DataGridControlled,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText("Root Node 1 Lazy"));
+    await userEvent.click(canvas.getByText("Root Node 2 Lazy"));
+  },
 };
 
 export const CustomSort: Story = {

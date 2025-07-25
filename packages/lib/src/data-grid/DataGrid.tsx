@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, ReactNode } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -217,7 +217,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return (row.expandedChildContent as ReactNode) || null;
             }
             // if row has expandable content
             return (
@@ -230,23 +230,36 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+    const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
+      return (
+        (Array.isArray(row.childRows) && row.childRows.length > 0) ||
+        typeof (row as HierarchyGridRow).childrenTrigger === "function"
+      );
+    };
+    if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
         expectedColumns[0] = {
           ...expectedColumns[0]!,
           renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
+            if (rowHasHierarchy(row)) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                  {renderHierarchyTrigger(
+                    rowsToRender,
+                    row,
+                    uniqueRowId,
+                    firstColumnKey,
+                    setRowsToRender,
+                    row.childrenTrigger,
+                  )}
                 </HierarchyContainer>
               );
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
+                {row[firstColumnKey] as ReactNode}
               </HierarchyContainer>
             );
           },
