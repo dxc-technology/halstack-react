@@ -517,7 +517,6 @@ const getChildrenSelection = (
     if (row.childRows) {
       // Recursively select/deselect child rows
       getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked, hierarchyValidation);
-      getParentSelectedState(row.childRows, rowKeyGetter(row, uniqueRowId), uniqueRowId, selectedRows, checked);
     }
     if (checked) {
       selectedRows.add(rowKeyGetter(row, uniqueRowId));
@@ -594,25 +593,16 @@ const handleCheckboxUpdate = (
   hierarchyValidation?: boolean
 ) => {
   const selected = new Set(selectedRows);
-  if (hierarchyValidation) {
-    if (checked) {
-      selected.add(rowKeyGetter(row, uniqueRowId));
-    }
-    if (row.childRows && Array.isArray(row.childRows)) {
-      getChildrenSelection(row.childRows, uniqueRowId, selected, checked, hierarchyValidation);
-    }
-  } else {
-    if (checked) {
-      selected.add(rowKeyGetter(row, uniqueRowId));
-    } else {
-      selected.delete(rowKeyGetter(row, uniqueRowId));
-    }
-    if (row.childRows && Array.isArray(row.childRows)) {
-      getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-    }
-    if (row.parentKey) {
-      getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-    }
+  if (checked) {
+    selected.add(rowKeyGetter(row, uniqueRowId));
+  } else if (!hierarchyValidation) {
+    selected.delete(rowKeyGetter(row, uniqueRowId));
+  }
+  if (row.childRows && Array.isArray(row.childRows)) {
+    getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+  }
+  if (row.parentKey) {
+    getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
   }
   onSelectRows?.(selected);
 };
