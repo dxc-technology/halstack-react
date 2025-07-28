@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcHeading from "./Heading";
@@ -6,7 +6,7 @@ import DxcHeading from "./Heading";
 export default {
   title: "Heading",
   component: DxcHeading,
-} as Meta<typeof DxcHeading>;
+} satisfies Meta<typeof DxcHeading>;
 
 const Heading = () => (
   <>

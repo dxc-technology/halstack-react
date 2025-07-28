@@ -1,14 +1,14 @@
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./../flex/Flex";
 import DxcInset from "./Inset";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcContainer from "../container/Container";
 import { ReactNode } from "react";
 
 export default {
   title: "Inset",
   component: DxcInset,
-} as Meta<typeof DxcInset>;
+} satisfies Meta<typeof DxcInset>;
 
 const Container = ({ children }: { children: ReactNode }) => (
   <DxcContainer background={{ color: "var(--color-bg-primary-lighter)" }} margin="var(--spacing-padding-xxl)">

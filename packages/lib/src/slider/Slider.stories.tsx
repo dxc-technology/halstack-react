@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcSlider from "./Slider";
@@ -6,7 +6,7 @@ import DxcSlider from "./Slider";
 export default {
   title: "Slider",
   component: DxcSlider,
-} as Meta<typeof DxcSlider>;
+} satisfies Meta<typeof DxcSlider>;
 
 const labelFormat = (value: number) => `${value}E100000000000000000000000`;
 
