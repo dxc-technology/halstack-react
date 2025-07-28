@@ -1062,7 +1062,7 @@ export const Chromatic: Story = {
 };
 
 export const Controlled: Story = {
-  render: DataGridControlled,
+  render: () => <DataGridControlled />,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   // play: async ({ canvasElement }) => {
   //   const canvas = within(canvasElement);
@@ -1078,11 +1078,11 @@ export const CustomSort: Story = {
 };
 
 export const Paginator: Story = {
-  render: DataGridPaginator,
+  render: () => <DataGridPaginator />,
 };
 
 export const DataGridSortedWithChildren: Story = {
-  render: DataGridSortedChildren,
+  render: () => <DataGridSortedChildren />,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   // play: async ({ canvasElement }) => {
   // const canvas = within(canvasElement);
@@ -1112,7 +1112,7 @@ export const DataGridSortedWithChildren: Story = {
 };
 
 export const DataGridSortedExpanded: Story = {
-  render: DataGridSortedExpandable,
+  render: () => <DataGridSortedExpandable />,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   // play: async ({ canvasElement }) => {
   // const canvas = within(canvasElement);
@@ -1140,7 +1140,7 @@ export const DataGridSortedExpanded: Story = {
 };
 
 export const UnknownUniqueId: Story = {
-  render: DataGridUnknownUniqueRowId,
+  render: () => <DataGridUnknownUniqueRowId />,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   // play: async ({ canvasElement }) => {
   //   const canvas = within(canvasElement);
