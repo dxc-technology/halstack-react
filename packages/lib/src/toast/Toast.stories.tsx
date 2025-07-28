@@ -7,6 +7,9 @@ import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import DxcDialog from "../dialog/Dialog";
+import DxcInset from "../inset/Inset";
+import { screen } from "@testing-library/react";
 
 export default {
   title: "Toast",
@@ -263,6 +266,64 @@ const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   await userEvent.click(await canvas.findByText("Show success toast"));
 };
 
+const ToastAboveDialog = () => {
+  const toast = useToast();
+
+  return (
+    <ExampleContainer>
+      <Title title="Screen placement" />
+      <DxcDialog>
+        <DxcInset space="var(--spacing-padding-l)">
+          <DxcFlex gap="var(--spacing-gap-ml)" direction="column">
+            <DxcButton
+              label="Show default toast"
+              onClick={() => {
+                toast.default({ message: "This is a simple placed toast." });
+              }}
+            />
+            <DxcButton
+              label="Show info toast"
+              onClick={() => {
+                toast.info({
+                  message:
+                    "This is a very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+                  action: actionIcon,
+                });
+              }}
+            />
+            <DxcButton
+              label="Show success toast"
+              onClick={() => {
+                toast.success({
+                  message:
+                    "This is another very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+                  action: action,
+                });
+              }}
+            />
+          </DxcFlex>
+        </DxcInset>
+      </DxcDialog>
+    </ExampleContainer>
+  );
+};
+
+const ToastsQueueAboveDialog = () => (
+  <DxcToastsQueue>
+    <ToastAboveDialog />
+  </DxcToastsQueue>
+);
+
+const playFuncDialog = async () => {
+  const showDefaultButton = await screen.findByText("Show default toast");
+  const showInfoButton = await screen.findByText("Show info toast");
+  const showSuccessButton = await screen.findByText("Show success toast");
+
+  await userEvent.click(showDefaultButton);
+  await userEvent.click(showInfoButton);
+  await userEvent.click(showSuccessButton);
+};
+
 type Story = StoryObj<typeof DxcToast>;
 
 export const Chromatic: Story = {
@@ -280,4 +341,9 @@ export const MobileScreenToast: Story = {
   globals: {
     viewport: { value: "iphonex", isRotated: false },
   },
+};
+
+export const AboveDialogToast: Story = {
+  render: ToastsQueueAboveDialog,
+  play: playFuncDialog,
 };

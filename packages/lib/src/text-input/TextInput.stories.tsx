@@ -255,7 +255,7 @@ const AutosuggestListbox = () => (
             border: "1px solid black",
             borderRadius: "4px",
             overflow: "auto",
-            zIndex: "1300",
+            zIndex: "130",
             position: "relative",
           }}
         >

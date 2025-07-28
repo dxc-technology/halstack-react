@@ -17,7 +17,7 @@ const SpinnerContainer = styled.div<{
       align-items: center;
       justify-content: center;
       height: 100%;
-      z-index: 2147483647;
+      z-index: var(--z-spinner-overlay);
     `};
 
   margin: ${(props) =>

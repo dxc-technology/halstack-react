@@ -471,7 +471,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     event.preventDefault();
                   }}
                   sideOffset={4}
-                  style={{ zIndex: "2147483647" }}
+                  style={{ zIndex: "var(--z-textinput)" }}
                 >
                   <Suggestions
                     highlightedSuggestions={typeof suggestions !== "function"}
