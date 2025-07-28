@@ -10,6 +10,7 @@ import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+import virtualized from "./examples/virtualized";
 
 const optionsType = `{ 
     label: string;
@@ -88,6 +89,24 @@ const sections = [
               both the appearance and the space for the error message would not be modified.
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                height
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A fixed height must be set to enable virtualization. If no height is provided, the select will
+              automatically adjust to the height of its content, and virtualization will not be applied.
+            </td>
+            <td>
+              <td>-</td>
+            </td>
           </tr>
           <tr>
             <td>helperText</td>
@@ -310,6 +329,10 @@ const sections = [
       {
         title: "Uncontrolled",
         content: <Example example={uncontrolled} defaultIsVisible />,
+      },
+      {
+        title: "Virtualized",
+        content: <Example example={virtualized} defaultIsVisible />,
       },
       {
         title: "Error handling",
