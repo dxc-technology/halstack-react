@@ -381,7 +381,7 @@ const SelectListbox = () => (
           border: "1px solid black",
           borderRadius: "4px",
           overflow: "auto",
-          zIndex: "1300",
+          zIndex: "130",
         }}
       >
         <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />

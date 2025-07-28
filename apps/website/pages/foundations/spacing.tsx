@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SpacingPage from "screens/principles/spacing/SpacingPage";
+import SpacingPage from "screens/foundations/spacing/SpacingPage";
 
 const Spacing = () => (
   <>
