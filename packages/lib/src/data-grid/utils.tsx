@@ -599,7 +599,7 @@ const handleCheckboxUpdate = (
     selected.delete(rowKeyGetter(row, uniqueRowId));
   }
   if (row.childRows && Array.isArray(row.childRows)) {
-    getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+    getChildrenSelection(row.childRows, uniqueRowId, selected, checked, hierarchyValidation);
   }
   if (row.parentKey) {
     getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
