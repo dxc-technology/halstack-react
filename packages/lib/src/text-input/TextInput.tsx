@@ -12,7 +12,7 @@ import {
   useState,
   WheelEvent,
 } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -441,7 +441,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled} hasMargin>{helperText}</HelperText>}
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
+        )}
         <AutosuggestWrapper
           condition={hasSuggestions(suggestions)}
           wrapper={(children) => (
@@ -466,7 +470,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     event.preventDefault();
                   }}
                   sideOffset={4}
-                  style={{ zIndex: "2147483647" }}
+                  style={{ zIndex: "var(--z-textinput)" }}
                 >
                   <Suggestions
                     highlightedSuggestions={typeof suggestions !== "function"}

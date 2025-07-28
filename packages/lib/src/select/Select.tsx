@@ -12,7 +12,7 @@ import {
   useRef,
   useState,
 } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
@@ -601,7 +601,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 event.preventDefault();
               }}
               sideOffset={4}
-              style={{ zIndex: "2147483647" }}
+              style={{ zIndex: "var(--z-dropdown)" }}
             >
               <Listbox
                 ariaLabelledBy={labelId}

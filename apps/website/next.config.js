@@ -25,5 +25,6 @@ module.exports = {
     "@cloudscape-design/components",
     "@cloudscape-design/component-toolkit",
     "@cloudscape-design/theming-runtime",
+    "react-data-grid",
   ],
 };

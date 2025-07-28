@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";
@@ -21,7 +21,7 @@ const ProgressBarContainer = styled.div<{
       align-items: center;
       justify-content: center;
       height: 100%;
-      z-index: 1300;
+      z-index: var(--z-progressbar-overlay);
     `}
 `;
 
@@ -48,7 +48,7 @@ const MainContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: flex;
   flex-direction: column;
-  z-index: ${(props) => (props.overlay ? "100" : "0")};
+  z-index: ${(props) => (props.overlay ? "1" : "0")};
   gap: var(--spacing-gap-s);
 `;
 

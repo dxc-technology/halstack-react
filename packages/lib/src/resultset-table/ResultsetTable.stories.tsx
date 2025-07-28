@@ -1,5 +1,5 @@
 import { userEvent, within } from "@storybook/test";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, ReactNode } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
 import {
@@ -18,41 +18,11 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
+  expandRow,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
-import HalstackContext from "../HalstackContext";
-
-const ActionContainer = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  width: 100%;
-`;
-
-const HierarchyContainer = styled.div<{
-  level: number;
-}>`
-  padding-left: ${(props) => `calc(${props.theme.dataPaddingLeft} * ${props.level})`};
-  button {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0px;
-    border: 0px;
-    width: 100%;
-    height: ${(props) => props.theme.dataRowHeight}px;
-    background: transparent;
-    text-align: left;
-    font-size: ${(props) => props.theme.dataFontSize};
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-`;
+import { scrollbarStyles } from "../styles/scroll";
 
 const DataGridContainer = styled.div<{
   paginatorRendered: boolean;
@@ -60,64 +30,46 @@ const DataGridContainer = styled.div<{
   width: 100%;
   height: ${(props) => (props.paginatorRendered ? `calc(100% - 50px)` : `100%`)};
   .rdg {
-    border-radius: 4px;
+    border-radius: var(--border-radius-s);
     height: 100%;
     border: 0px;
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.scrollBarThumbColor};
-      border-radius: 6px;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.scrollBarTrackColor};
-      border-radius: 6px;
-    }
+    ${scrollbarStyles}
   }
-  .rdg-cell:has(> #action) {
+  .rdg-cell:has(> #small_action) {
     padding: 0px;
   }
   .rdg-cell {
     display: grid;
     align-items: center;
     width: 100%;
-    padding: 0px ${(props) => props.theme.dataPaddingRight} 0 ${(props) => props.theme.dataPaddingLeft};
-    font-family: ${(props) => props.theme.dataFontFamily};
-    font-size: ${(props) => props.theme.dataFontSize};
-    font-style: ${(props) => props.theme.dataFontStyle};
-    font-weight: ${(props) => props.theme.dataFontWeight};
-    color: ${(props) => props.theme.dataFontColor};
-    text-transform: ${(props) => props.theme.dataFontTextTransform};
-    line-height: ${(props) => props.theme.dataTextLineHeight};
-    border-bottom: ${(props) =>
-      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    border-right: ${(props) =>
-      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    background-color: ${(props) => props.theme.dataBackgroundColor};
-    outline-color: ${(props) => props.theme.focusColor} !important;
+    padding: 0px var(--spacing-padding-xs);
+    font-family: var(--typography-font-family);
+    font-size: var(--typography-label-m);
+    font-weight: var(--typography-label-regular);
+    color: var(--color-fg-neutral-dark);
+    border-bottom: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lightest);
+    border-right: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lightest);
+    background-color: var(--color-bg-neutral-lightest);
+
+    &[aria-selected="true"] {
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    }
     .rdg-text-editor:focus {
       border-color: transparent;
-      background-color: transparent;
-      color: ${(props) => props.theme.dataFontColor};
+      background-color: var(--color-bg-neutral-lightest);
+      color: var(--color-fg-neutral-dark);
     }
   }
   .rdg-header-row {
-    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
-    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+    border-top-left-radius: var(--border-radius-s);
+    border-top-right-radius: var(--border-radius-s);
     .rdg-cell {
-      font-family: ${(props) => props.theme.headerFontFamily};
-      font-size: ${(props) => props.theme.headerFontSize};
-      font-style: ${(props) => props.theme.headerFontStyle};
-      font-weight: ${(props) => props.theme.headerFontWeight};
-      color: ${(props) => props.theme.headerFontColor};
-      text-transform: ${(props) => props.theme.headerFontTextTransform};
-      padding: 0px ${(props) => props.theme.headerPaddingRight} 0 ${(props) => props.theme.headerPaddingLeft};
-      line-height: ${(props) => props.theme.headerTextLineHeight};
-      background-color: ${(props) => props.theme.headerBackgroundColor};
+      font-weight: var(--font-weight-bold);
+      color: var(--color-fg-neutral-bright);
+      padding: 0px var(--spacing-padding-xs);
+      background-color: var(--color-bg-primary-strong);
       .sortIconContainer {
-        margin-left: 0.5rem;
+        margin-left: var(--spacing-gap-s);
         display: flex;
         height: 100%;
         align-items: center;
@@ -130,10 +82,10 @@ const DataGridContainer = styled.div<{
     }
   }
   .rdg-summary-row {
-    background-color: #fafafa;
+    background-color: var(--color-bg-neutral-lighter);
     .rdg-cell {
       border: 0px;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
     }
   }
   .ellipsis-cell {
@@ -168,6 +120,43 @@ const DataGridContainer = styled.div<{
   }
 `;
 
+const HierarchyContainer = styled.div<{
+  level: number;
+}>`
+  padding-left: ${(props) => `calc(var(--spacing-gap-s) * ${props.level})`};
+  button {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--spacing-gap-s);
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+    height: var(--height-l);
+    background-color: var(--color-bg-neutral-lightest);
+    font-family: var(--typography-font-family);
+    font-size: var(--typography-label-m);
+    font-weight: var(--typography-label-regular);
+    color: var(--color-fg-neutral-dark);
+    text-align: left;
+    cursor: pointer;
+  }
+`;
+
+const ActionContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--height-s);
+  width: 100%;
+`;
+
+const HeaderCheckbox = styled(ActionContainer)`
+  --color-fg-secondary-medium: var(--color-absolutes-white);
+  --color-fg-secondary-strong: var(--color-grey-100);
+`;
+
 const DxcDataGrid = ({
   columns,
   rows,
@@ -188,9 +177,9 @@ const DxcDataGrid = ({
   totalItems,
   defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
-  const colorsTheme = useContext(HalstackContext);
+  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
+  const [colHeight, setColHeight] = useState(36);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
@@ -228,11 +217,11 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return (row.expandedChildContent as ReactNode) || null;
             }
             // if row has expandable content
             return (
-              <ActionContainer id="action">
+              <ActionContainer id="small_action">
                 {row.expandedContent && renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
               </ActionContainer>
             );
@@ -241,23 +230,36 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+    const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
+      return (
+        (Array.isArray(row.childRows) && row.childRows.length > 0) ||
+        typeof (row as HierarchyGridRow).childrenTrigger === "function"
+      );
+    };
+    if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
         expectedColumns[0] = {
           ...expectedColumns[0]!,
           renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
+            if (rowHasHierarchy(row)) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                  {renderHierarchyTrigger(
+                    rowsToRender,
+                    row,
+                    uniqueRowId,
+                    firstColumnKey,
+                    setRowsToRender,
+                    row.childrenTrigger,
+                  )}
                 </HierarchyContainer>
               );
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
+                {row[firstColumnKey] as ReactNode}
               </HierarchyContainer>
             );
           },
@@ -275,7 +277,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (!row.isExpandedChildContent) {
               return (
-                <ActionContainer id="action">
+                <ActionContainer id="small_action">
                   {renderCheckbox(rows, row, uniqueRowId, selectedRows, onSelectRows)}
                 </ActionContainer>
               );
@@ -283,9 +285,9 @@ const DxcDataGrid = ({
             return null;
           },
           renderHeaderCell: () => (
-            <ActionContainer id="action">
-              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
-            </ActionContainer>
+            <HeaderCheckbox id="small_action">
+              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
+            </HeaderCheckbox>
           ),
         },
         ...expectedColumns,
@@ -298,26 +300,25 @@ const DxcDataGrid = ({
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
 
   useEffect(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    if (rootStyles) setColHeight(parseFloat(rootStyles.getPropertyValue("--height-l")));
+  }, []);
+
+  useEffect(() => {
     setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
   }, [columnsToRender.length]);
 
   useEffect(() => {
     const finalRows = [...rows];
     if (expandable) {
-      rows.forEach((row, index) => {
-        if (
-          row.contentIsExpanded &&
-          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
-        ) {
-          addRow(finalRows, index + 1, {
-            isExpandedChildContent: row.contentIsExpanded,
-            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-            expandedChildContent: row.expandedContent,
-            triggerRowKey: rowKeyGetter(row, uniqueRowId),
-            expandedContentHeight: row.expandedContentHeight,
-          });
-        }
-      });
+      finalRows
+        .filter((row) => {
+          const rowId = rowKeyGetter(row, uniqueRowId);
+          return row.contentIsExpanded && !rows.some((r) => r[uniqueRowId] === `${rowId}_expanded`);
+        })
+        .forEach((row) => {
+          expandRow(row, finalRows, uniqueRowId);
+        });
     }
     setRowsToRender(finalRows);
   }, [rows]);
@@ -405,29 +406,31 @@ const DxcDataGrid = ({
   }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
-        <DataGrid
-          columns={reorderedColumns}
-          rows={filteredRows}
-          onColumnsReorder={onColumnsReorder}
-          onRowsChange={onRowsChange}
-          renderers={{ renderSortStatus }}
-          sortColumns={sortColumns}
-          onSortColumnsChange={handleSortChange}
-          rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
-          rowHeight={(row) =>
-            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
-              ? row.expandedContentHeight
-              : (colorsTheme.dataGrid?.dataRowHeight ?? 0)
-          }
-          selectedRows={selectedRows}
-          bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
-          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
-          className="fill-grid"
-        />
-        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
+    <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
+      <DataGrid
+        columns={reorderedColumns}
+        rows={filteredRows}
+        onColumnsReorder={onColumnsReorder}
+        onRowsChange={onRowsChange}
+        renderers={{ renderSortStatus }}
+        sortColumns={sortColumns}
+        onSortColumnsChange={handleSortChange}
+        rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
+        rowHeight={(row) =>
+          row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
+            ? row.expandedContentHeight
+            : (colHeight ?? 0)
+        }
+        selectedRows={selectedRows}
+        bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
+        headerRowHeight={colHeight}
+        summaryRowHeight={colHeight}
+        className="fill-grid"
+      />
+
+      {showPaginator &&
+        (itemsPerPageOptions?.some((itemsPerPage) => (totalItems ?? rows.length) > itemsPerPage) ||
+          (totalItems ?? rows.length) > itemsPerPage) && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
@@ -438,8 +441,7 @@ const DxcDataGrid = ({
             onPageChange={goToPage}
           />
         )}
-      </DataGridContainer>
-    </ThemeProvider>
+    </DataGridContainer>
   );
 };
 

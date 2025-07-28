@@ -1,5 +1,5 @@
 import { forwardRef, memo } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
@@ -15,15 +15,12 @@ const DropdownMenuContainer = styled.ul`
     var(--shadow-dark);
   outline: none;
   overflow-y: auto;
-  z-index: 2147483647;
+  z-index: var(--z-dropdown);
   ${scrollbarStyles}
 `;
 
 const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
-  (
-    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
-    ref
-  ) => (
+  ({ id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles }, ref) => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
         // Prevent the onBlur event from closing menu when clicking on the menu since

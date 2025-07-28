@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
 import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
@@ -13,7 +13,7 @@ const ToastsQueue = styled.section`
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 2147483647;
+  z-index: var(--z-toast);
   display: flex;
   flex-direction: column;
   align-items: flex-end;

@@ -1,5 +1,5 @@
 import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -94,7 +94,7 @@ const Underline = styled.span<{ active: boolean }>`
 
 const DxcTab = forwardRef(
   (
-    { active, disabled, icon, label, notificationNumber, onClick, onHover, title, tabId }: TabProps,
+    { active, disabled, icon, label, notificationNumber, onClick, onHover, title, tabId = label }: TabProps,
     ref: Ref<HTMLButtonElement>
   ) => {
     const {
@@ -124,7 +124,7 @@ const DxcTab = forwardRef(
     }, [focusedTabId, tabId]);
 
     useEffect(() => {
-      if (active) setActiveTabId?.(tabId);
+      if (active) setActiveTabId?.(tabId ?? "");
     }, [active, tabId, setActiveTabId]);
 
     return (
@@ -135,7 +135,9 @@ const DxcTab = forwardRef(
           hasLabelAndIcon={Boolean(icon && label)}
           iconPosition={iconPosition}
           onClick={() => {
-            if (!isControlled) setActiveTabId?.(tabId);
+            if (!isControlled) {
+              setActiveTabId?.(tabId ?? "");
+            }
             onClick?.();
           }}
           onKeyDown={handleOnKeyDown}
@@ -153,10 +155,11 @@ const DxcTab = forwardRef(
           role="tab"
           tabIndex={activeTabId === label && !disabled ? tabIndex : -1}
           type="button"
+          aria-label={label ?? tabId ?? "tab"}
         >
           <LabelIconContainer iconPosition={iconPosition}>
             {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
-            <Label>{label}</Label>
+            {label && <Label>{label}</Label>}
           </LabelIconContainer>
           {!disabled && notificationNumber && (
             <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>

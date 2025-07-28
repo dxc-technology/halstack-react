@@ -1,4 +1,3 @@
-import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
@@ -177,48 +176,42 @@ const ContextualMenu = () => (
   </>
 );
 
-const Single = () => {
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <ThemeProvider theme={colorsTheme.contextualMenu}>
-      <DxcContainer width="300px">
-        <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
-          <Title title="Default" theme="light" level={3} />
-          <ExampleContainer>
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-          <Title title="Focus" theme="light" level={3} />
-          <ExampleContainer pseudoState="pseudo-focus">
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-          <Title title="Hover" theme="light" level={3} />
-          <ExampleContainer pseudoState="pseudo-hover">
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-          <Title title="Active" theme="light" level={3} />
-          <ExampleContainer pseudoState="pseudo-active">
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-        </ContextualMenuContext.Provider>
-        <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
-          <Title title="Selected" theme="light" level={3} />
-          <ExampleContainer>
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-          <Title title="Selected hover" theme="light" level={3} />
-          <ExampleContainer pseudoState="pseudo-hover">
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-          <Title title="Selected active" theme="light" level={3} />
-          <ExampleContainer pseudoState="pseudo-active">
-            <SingleItem {...items[0]!} id={0} depthLevel={0} />
-          </ExampleContainer>
-        </ContextualMenuContext.Provider>
-      </DxcContainer>
-    </ThemeProvider>
-  );
-};
+const Single = () => (
+  <DxcContainer width="300px">
+    <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
+      <Title title="Default" theme="light" level={3} />
+      <ExampleContainer>
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+      <Title title="Focus" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-focus">
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+      <Title title="Hover" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+      <Title title="Active" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-active">
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+    </ContextualMenuContext.Provider>
+    <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
+      <Title title="Selected" theme="light" level={3} />
+      <ExampleContainer>
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+      <Title title="Selected hover" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+      <Title title="Selected active" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-active">
+        <SingleItem {...items[0]!} id={0} depthLevel={0} />
+      </ExampleContainer>
+    </ContextualMenuContext.Provider>
+  </DxcContainer>
+);
 
 const ItemWithEllipsis = () => (
   <ExampleContainer expanded>
