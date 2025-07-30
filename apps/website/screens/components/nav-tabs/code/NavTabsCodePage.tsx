@@ -5,7 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
-import routerLinkV6 from "./examples/routerLinkV6";
+import routerLink6 from "./examples/routerLink6";
 import nextLink from "./examples/nextLink";
 import icons from "./examples/icons";
 import Code, { TableCode } from "@/common/Code";
@@ -140,6 +140,19 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    onClick
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>{"() => void"}</TableCode>
+                </td>
+                <td>This function will be called when the user clicks on this tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
                 <td>notificationNumber</td>
                 <td>
                   <TableCode>boolean | number</TableCode>
@@ -226,7 +239,7 @@ const sections = [
                   </DxcLink>
                   .
                 </DxcParagraph>
-                <Example example={routerLinkV6} defaultIsVisible />
+                <Example example={routerLink6} defaultIsVisible />
               </>
             ),
           },

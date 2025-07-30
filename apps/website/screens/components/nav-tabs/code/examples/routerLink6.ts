@@ -1,35 +1,26 @@
 import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 type routerProps = {
-  replace: string;
-  state: string;
-  target: string;
+  replace?: string;
+  state?: string;
+  target?: string;
 };
 
-const useHref = (to: string) => {
-  console.log(to);
+const useLinkClickHandler = (to: string, { replace, state, target }: routerProps = {}) => {
+  return (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log("Mock navigation to:", to, { replace, state, target });
+  };
 };
-
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {};
 
 const code = `() => {
   const CustomTab = React.forwardRef(
     ({ onClick, replace = false, state, target, to, ...rest }, ref) => {
-      let href = useHref(to);
-      let handleClick = useLinkClickHandler(to, {
-        replace,
-        state,
-        target,
-      });
+      const handleClick = useLinkClickHandler(to, { replace, state, target });
       return (
         <DxcNavTabs.Tab
           {...rest}
-          href={href}
-          onClick={(event) => {
-            if (!event.defaultPrevented) {
-              handleClick(event);
-            }
-          }}
+          onClick={handleClick}
           ref={ref}
           target={target}
         />
@@ -53,7 +44,6 @@ const code = `() => {
 const scope = {
   DxcNavTabs,
   DxcInset,
-  useHref,
   useLinkClickHandler,
 };
 
