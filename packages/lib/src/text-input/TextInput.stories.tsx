@@ -145,10 +145,6 @@ const TextInput = () => (
       <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="left" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Alignment center" theme="light" level={4} />
-      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="center" />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="Alignment right" theme="light" level={4} />
       <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="right" />
     </ExampleContainer>

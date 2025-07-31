@@ -22,7 +22,7 @@ type Props = {
   /**
    * Sets the alignment inside the input.
    */
-  alignment?: "left" | "right" | "center";
+  alignment?: "left" | "right";
   /**
    * Text to be placed above the input. This label will be used as the aria-label attribute of the list of suggestions.
    */

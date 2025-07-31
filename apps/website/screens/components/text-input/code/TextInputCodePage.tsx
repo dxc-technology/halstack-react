@@ -40,7 +40,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>'left' | 'center' | 'right'</TableCode>
+              <TableCode>'left' | 'right'</TableCode>
             </td>
             <td>
               Sets <Code>text-align</Code> CSS property inside the input. See{" "}
