@@ -13,7 +13,7 @@ module.exports = {
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-proposal-nullish-coalescing-operator",
     "@babel/plugin-transform-runtime",
-    "@emotion",
+    ["@emotion", { sourceMap: true, autoLabel: "dev-only", labelFormat: "[local]" }],
   ],
   ignore: ["**/*.stories.jsx", "**/*.stories.tsx", "**/*.d.ts"],
 };
