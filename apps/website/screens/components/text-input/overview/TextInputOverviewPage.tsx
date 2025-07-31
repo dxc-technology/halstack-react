@@ -254,6 +254,11 @@ const sections = [
               <strong>Support various states consistently:</strong> reflect focus, disabled, error, and read-only states
               with distinct, accessible visual cues.
             </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Apply appropiate alignment:</strong> It is recommended to use left alignment in general, except
+              when there is a specific need for right alignment, such as in currency inputs or numeric fields, generally
+              using a suffix.
+            </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
       },
