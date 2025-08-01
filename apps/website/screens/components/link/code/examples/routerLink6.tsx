@@ -4,36 +4,24 @@ const useHref = (to: string) => {
   console.log(to);
 };
 
-type routerProps = {
-  replace: string;
-  state: string;
-  target: string;
+const useNavigate = () => {
+  return (to: string, options?: { replace?: boolean; state?: any }) => {
+    console.log(`Use navigate mock function called "${to}"`, options);
+  };
 };
-
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {
-  console.log("useClickHandler");
-};
-
 const code = `() => {
   const CustomLink = React.forwardRef(
-    ({ onClick, replace = false, state, target, to, ...rest }, ref) => {
-      let href = useHref(to);
-      let handleClick = () => (useLinkClickHandler(to, {
-        replace,
-        state,
-        target,
-      }));
+    ({ children, to, replace = false, state, ...rest }, ref) => {
+      const navigate = useNavigate();
+
+      const handleClick = () => {
+        navigate(to, { replace, state });
+      };
 
       return (
-        <DxcLink
-          {...rest}
-          href={href}
-          onClick={(event) => {
-            handleClick(event);
-          }}
-          ref={ref}
-          target={target}
-        />
+        <DxcLink {...rest} onClick={handleClick} ref={ref}>
+          {children}
+        </DxcLink>
       );
     }
   );
@@ -51,7 +39,7 @@ const code = `() => {
 const scope = {
   DxcLink,
   useHref,
-  useLinkClickHandler,
+  useNavigate,
   DxcInset,
 };
 

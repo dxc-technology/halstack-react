@@ -86,7 +86,16 @@ const Underline = styled.span<{ active: TabProps["active"] }>`
 
 const Tab = forwardRef(
   (
-    { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
+    {
+      active = false,
+      children,
+      disabled = false,
+      href,
+      icon,
+      onClick,
+      notificationNumber = false,
+      ...otherProps
+    }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ) => {
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
@@ -116,9 +125,13 @@ const Tab = forwardRef(
       <TabContainer>
         <DxcInset space="var(--spacing-padding-xs)">
           <TabLink
-            href={!disabled ? href : undefined}
+            aria-disabled={disabled}
+            aria-selected={active}
             disabled={disabled}
+            href={!disabled ? href : undefined}
             iconPosition={iconPosition}
+            onClick={onClick}
+            onKeyDown={handleOnKeyDown}
             ref={(anchorRef: HTMLAnchorElement) => {
               tabRef.current = anchorRef;
               if (ref) {
@@ -126,11 +139,8 @@ const Tab = forwardRef(
                 else innerRef.current = anchorRef;
               }
             }}
-            onKeyDown={handleOnKeyDown}
-            tabIndex={active ? tabIndex : -1}
             role="tab"
-            aria-selected={active}
-            aria-disabled={disabled}
+            tabIndex={active ? tabIndex : -1}
             {...otherProps}
           >
             {icon && (
