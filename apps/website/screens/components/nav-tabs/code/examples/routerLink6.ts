@@ -6,28 +6,30 @@ type routerProps = {
   target?: string;
 };
 
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps = {}) => {
-  return (event: React.MouseEvent) => {
-    event.preventDefault();
-    console.log("Mock navigation to:", to, { replace, state, target });
+const useNavigate = () => {
+  return (to: string, options?: { replace?: boolean; state?: any }) => {
+    console.log(`Use navigate mock function called "${to}"`, options);
   };
 };
 
 const code = `() => {
   const CustomTab = React.forwardRef(
-    ({ onClick, replace = false, state, target, to, ...rest }, ref) => {
-      const handleClick = useLinkClickHandler(to, { replace, state, target });
+    ({ children, to, replace = false, state, ...rest }, ref) => {
+      const navigate = useNavigate();
+
+      const handleClick = () => {
+        navigate(to, { replace, state });
+      };
+
       return (
         <DxcNavTabs.Tab
           {...rest}
           onClick={handleClick}
           ref={ref}
-          target={target}
         />
       );
     }
   );
-
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcNavTabs>
@@ -44,7 +46,7 @@ const code = `() => {
 const scope = {
   DxcNavTabs,
   DxcInset,
-  useLinkClickHandler,
+  useNavigate,
 };
 
 export default { code, scope };
