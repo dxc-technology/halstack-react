@@ -61,4 +61,4 @@ jobs:
           npx playwright install --with-deps
           npm run test-storybook
         env:
-          TARGET_URL: "${{ needs.chromatic-deployment.outputs.storybook-url }}"
+          SB_URL: "${{ needs.chromatic-deployment.outputs.storybook-url }}"
