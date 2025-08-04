@@ -6,6 +6,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import DxcResultsetTable from "./ResultsetTable";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Resultset Table",
@@ -29,15 +30,86 @@ const deleteIcon = (
   </svg>
 );
 
-const columns = [{ displayValue: "Id" }, { displayValue: "Name" }, { displayValue: "City" }];
-
+const columns = [
+  {
+    displayValue: (
+      <DxcFlex grow={1} justifyContent="flex-end">
+        Id
+      </DxcFlex>
+    ),
+  },
+  {
+    displayValue: "Name",
+  },
+  { displayValue: "City" },
+];
 const rows = [
-  [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
-  [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
-  [{ displayValue: "003" }, { displayValue: "Lana" }, { displayValue: "Amsterdam" }],
-  [{ displayValue: "004" }, { displayValue: "Rick" }, { displayValue: "London" }],
-  [{ displayValue: "005" }, { displayValue: "Mark" }, { displayValue: "Miami" }],
-  [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Peter" },
+    { displayValue: "Miami" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Louis" },
+    { displayValue: "London" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          003
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Lana" },
+    { displayValue: "Amsterdam" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          004
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Rick" },
+    { displayValue: "London" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          005
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Mark" },
+    { displayValue: "Miami" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          006
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Cris" },
+    { displayValue: "Paris" },
+  ],
 ];
 
 const actions = [
@@ -81,21 +153,42 @@ const actions = [
 
 const rowsIcon = [
   [
-    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+      sortValue: "001",
+    },
     { displayValue: "Peter" },
     {
       displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis" },
     {
       displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
-    { displayValue: "003", sortValue: "003" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          003
+        </DxcFlex>
+      ),
+      sortValue: "003",
+    },
     { displayValue: "Mark" },
     {
       displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
@@ -104,8 +197,18 @@ const rowsIcon = [
 ];
 
 const columnsSortable = [
-  { displayValue: "Id", isSortable: true },
-  { displayValue: "Name", isSortable: true },
+  {
+    displayValue: (
+      <DxcFlex grow={1} justifyContent="flex-end">
+        Id
+      </DxcFlex>
+    ),
+    isSortable: true,
+  },
+  {
+    displayValue: "Name",
+    isSortable: true,
+  },
   { displayValue: "City", isSortable: false },
 ];
 
@@ -116,12 +219,26 @@ const longValues = [
     { displayValue: "Miami: The city that never sleeps", sortValue: "Miami" },
   ],
   [
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
   ],
   [
-    { displayValue: "003", sortValue: "003" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          003
+        </DxcFlex>
+      ),
+      sortValue: "003",
+    },
     { displayValue: "Aida", sortValue: "Aida" },
     { displayValue: "Wroclaw", sortValue: "Wroclaw" },
   ],
@@ -129,37 +246,99 @@ const longValues = [
 
 const rowsSortable = [
   [
-    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+      sortValue: "001",
+    },
     { displayValue: "Peter", sortValue: "Peter" },
     { displayValue: "Miami", sortValue: "Miami" },
   ],
   [
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
   ],
   [
-    { displayValue: "003", sortValue: "003" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          003
+        </DxcFlex>
+      ),
+      sortValue: "003",
+    },
     { displayValue: "Aida", sortValue: "Aida" },
     { displayValue: "Wroclaw", sortValue: "Wroclaw" },
   ],
   [
-    { displayValue: "004", sortValue: "004" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          004
+        </DxcFlex>
+      ),
+      sortValue: "004",
+    },
     { displayValue: "Lana", sortValue: "Lana" },
     { displayValue: "Amsterdam", sortValue: "Amsterdam" },
   ],
 ];
 
 const rowsSortableMissingSortValues = [
-  [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
-  [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
   [
-    { displayValue: "003", sortValue: "003" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Peter" },
+    { displayValue: "Miami" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+    },
+    { displayValue: "Louis" },
+    { displayValue: "London" },
+  ],
+  [
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          003
+        </DxcFlex>
+      ),
+      sortValue: "003",
+    },
     { displayValue: "Aida", sortValue: "Aida" },
     { displayValue: "Wroclaw", sortValue: "Wroclaw" },
   ],
   [
-    { displayValue: "004", sortValue: "004" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          004
+        </DxcFlex>
+      ),
+      sortValue: "004",
+    },
     { displayValue: "Lana", sortValue: "Lana" },
     { displayValue: "Amsterdam", sortValue: "Amsterdam" },
   ],
@@ -190,67 +369,193 @@ const longColumns = [
 
 const longRows = [
   [
-    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+      sortValue: "001",
+    },
     { displayValue: "Peter", sortValue: "Peter" },
     { displayValue: "Miami", sortValue: "Miami" },
-    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+      sortValue: "001",
+    },
     { displayValue: "Peter", sortValue: "Peter" },
     { displayValue: "Miami", sortValue: "Miami" },
     { displayValue: "Miami", sortValue: "Miami" },
-    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          001
+        </DxcFlex>
+      ),
+      sortValue: "001",
+    },
     { displayValue: "Peter", sortValue: "Peter" },
     { displayValue: "Miami", sortValue: "Miami" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
     { displayValue: "London", sortValue: "London" },
   ],
   [
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
     { displayValue: "London", sortValue: "London" },
   ],
   [
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: (
+        <DxcFlex grow={1} justifyContent="flex-end">
+          002
+        </DxcFlex>
+      ),
+      sortValue: "002",
+    },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
     { displayValue: "London", sortValue: "London" },

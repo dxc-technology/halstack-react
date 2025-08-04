@@ -15,12 +15,6 @@ const DataGridPageHeading = ({ children }: { children: ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Data Grid" />
-          <DxcAlert
-            title="Issues"
-            semantic="warning"
-            message={{ text: "There are known styling issues with sortable columns when used in a NextJS app." }}
-            closable={false}
-          />
           <DxcParagraph>
             The datagrid component is used to display and manage large sets of data in a tabular format, allowing users
             to sort, filter, and interact with the data efficiently.
