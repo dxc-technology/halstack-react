@@ -42,6 +42,7 @@ const principlesLinks: LinkDetails[] = [
 
 const foundationsLinks: LinkDetails[] = [
   { label: "Color", path: "/foundations/color" },
+  { label: "Elevation", path: "/foundations/elevation" },
   { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
   { label: "Spacing", path: "/foundations/spacing" },
