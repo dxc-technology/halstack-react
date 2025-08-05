@@ -1,10 +1,5 @@
 import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
-
-type routerProps = {
-  replace?: string;
-  state?: string;
-  target?: string;
-};
+import { forwardRef } from "react";
 
 const useNavigate = () => {
   return (to: string, options?: { replace?: boolean; state?: any }) => {
@@ -13,7 +8,7 @@ const useNavigate = () => {
 };
 
 const code = `() => {
-  const CustomTab = React.forwardRef(
+  const CustomTab = forwardRef(
     ({ children, to, replace = false, state, ...rest }, ref) => {
       const navigate = useNavigate();
 
@@ -26,7 +21,9 @@ const code = `() => {
           {...rest}
           onClick={handleClick}
           ref={ref}
-        />
+        >
+          {children}
+        </DxcNavTabs.Tab>
       );
     }
   );
@@ -44,8 +41,9 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNavTabs,
   DxcInset,
+  DxcNavTabs,
+  forwardRef,
   useNavigate,
 };
 

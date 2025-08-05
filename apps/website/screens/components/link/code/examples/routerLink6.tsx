@@ -1,4 +1,5 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
+import { forwardRef } from "react";
 
 const useHref = (to: string) => {
   console.log(to);
@@ -10,7 +11,7 @@ const useNavigate = () => {
   };
 };
 const code = `() => {
-  const CustomLink = React.forwardRef(
+  const CustomLink = forwardRef(
     ({ children, to, replace = false, state, ...rest }, ref) => {
       const navigate = useNavigate();
 
@@ -37,10 +38,11 @@ const code = `() => {
 }`;
 
 const scope = {
+  DxcInset,
   DxcLink,
+  forwardRef,
   useHref,
   useNavigate,
-  DxcInset,
 };
 
 export default { code, scope };
