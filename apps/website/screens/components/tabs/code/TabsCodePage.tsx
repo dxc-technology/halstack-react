@@ -182,7 +182,7 @@ const sections = [
                 <td>
                   <TableCode>{"() => void"}</TableCode>
                 </td>
-                <td>This function will be called when the user clicks on this tab.</td>
+                <td>This function will be called when the user clicks on this tab. This feature is mostly recommended for compatibility with third-party routing APIs.</td>
                 <td>-</td>
               </tr>
               <tr>
