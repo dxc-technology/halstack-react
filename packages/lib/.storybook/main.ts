@@ -27,6 +27,11 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript",
   },
   async viteFinal(config) {
+    // Workaround to prevent error when using hooks (https://github.com/storybookjs/storybook/issues/32049)
+    config.optimizeDeps = {
+      include: [...(config.optimizeDeps?.include || []), "react/jsx-dev-runtime"],
+    };
+    
     config.plugins = config.plugins || [];
 
     config.plugins.push(
