@@ -104,7 +104,7 @@ const Tab = forwardRef(
     useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      if (focusedLabel === children.toString()) {
+      if (focusedLabel === children?.toString()) {
         tabRef?.current?.focus();
       }
     }, [children, focusedLabel]);
