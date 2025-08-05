@@ -27,23 +27,31 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript",
   },
   async viteFinal(config) {
-    // Workaround to prevent error when using hooks (https://github.com/storybookjs/storybook/issues/32049)
-    config.optimizeDeps = {
-      include: [...(config.optimizeDeps?.include || []), "react/jsx-dev-runtime"],
-    };
-    
-    config.plugins = config.plugins || [];
+    const { mergeConfig } = await import("vite");
 
-    config.plugins.push(
-      react({
-        jsxImportSource: "@emotion/react",
-        babel: {
-          plugins: ["@emotion/babel-plugin"],
-        },
-      })
-    );
-
-    return config;
+    return mergeConfig(config, {
+      // Workaround to prevent error when using hooks (https://github.com/storybookjs/storybook/issues/32049)
+      // optimizeDeps: {
+      //   include: [
+      //     "react",
+      //     "react-dom",
+      //     "@emotion/react",
+      //     "react/jsx-runtime",
+      //     "react/jsx-dev-runtime",
+      //     "@emotion/react",
+      //     "@emotion/styled",
+      //   ],
+      //   exclude: ["@storybook/react"],
+      // },
+      plugins: [
+        react({
+          jsxImportSource: "@emotion/react",
+          babel: {
+            plugins: ["@emotion/babel-plugin"],
+          },
+        }),
+      ],
+    });
   },
 };
 
