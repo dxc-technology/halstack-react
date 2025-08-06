@@ -1,17 +1,14 @@
-import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 import { forwardRef } from "react";
-
-const useHref = (to: string) => {
-  console.log(to);
-};
 
 const useNavigate = () => {
   return (to: string, options?: { replace?: boolean; state?: any }) => {
     console.log(`Use navigate mock function called "${to}"`, options);
   };
 };
+
 const code = `() => {
-  const CustomLink = forwardRef(
+  const CustomTab = forwardRef(
     ({ children, to, replace = false, state, ...rest }, ref) => {
       const navigate = useNavigate();
 
@@ -20,28 +17,33 @@ const code = `() => {
       };
 
       return (
-        <DxcLink {...rest} onClick={handleClick} ref={ref}>
+        <DxcNavTabs.Tab
+          {...rest}
+          onClick={handleClick}
+          ref={ref}
+        >
           {children}
-        </DxcLink>
+        </DxcNavTabs.Tab>
       );
     }
   );
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      This is a text with a
-      <CustomLink to="/components/link" component={DxcLink}>
-        React Router v6+
-      </CustomLink>{" "}
-      link.
+      <DxcNavTabs>
+        <CustomTab active to="/components/nav-tabs/">
+          Tab 1
+        </CustomTab>
+        <CustomTab to="/components/nav-tabs/">Tab 2</CustomTab>
+        <CustomTab to="/components/nav-tabs/">Tab 3</CustomTab>
+      </DxcNavTabs>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcInset,
-  DxcLink,
+  DxcNavTabs,
   forwardRef,
-  useHref,
   useNavigate,
 };
 

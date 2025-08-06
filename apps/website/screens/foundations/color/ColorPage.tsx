@@ -11,6 +11,7 @@ import secondaryColor from "./images/secondary_color.png";
 import tertiaryColor from "./images/tertiary_color.png";
 import semanticColors from "./images/semantic_colors.png";
 import PageHeading from "@/common/PageHeading";
+import Link from "next/link";
 
 const sections = [
   {
@@ -31,9 +32,9 @@ const sections = [
         <DxcParagraph>
           The color system <strong>ensures optimal contrast ratios for readability and accessibility</strong>, aligning
           with{" "}
-          <DxcLink href="https://www.w3.org/WAI/perspective-videos/contrast/" newWindow>
-            WCAG 2.1
-          </DxcLink>
+          <Link href="https://www.w3.org/WAI/perspective-videos/contrast/" passHref legacyBehavior>
+            <DxcLink newWindow>WCAG 2.1</DxcLink>
+          </Link>
           standards. Token naming follows a semantic structure to promote clarity in implementation and usage.
         </DxcParagraph>
         <DxcParagraph>
