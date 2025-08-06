@@ -10,7 +10,7 @@ import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
-import createCache from "@emotion/cache";
+import createCache, { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 
 type NextPageWithLayout = NextPage & {
@@ -18,7 +18,7 @@ type NextPageWithLayout = NextPage & {
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-  emotionCache?: ReturnType<typeof createCache>;
+  emotionCache?: EmotionCache;
 };
 
 const clientSideEmotionCache = createCache({ key: "css", prepend: true });
