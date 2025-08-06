@@ -4,6 +4,10 @@ import "../src/styles/variables.css";
 import type { Preview } from "@storybook/react-vite";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
 import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+
+const emotionCache = createCache({ key: "css", prepend: true });
 
 const preview: Preview = {
   parameters: {
@@ -25,6 +29,13 @@ const preview: Preview = {
       options: INITIAL_VIEWPORTS,
     },
   },
+  decorators: [
+    (Story) => (
+      <CacheProvider value={emotionCache}>
+        <Story />
+      </CacheProvider>
+    ),
+  ],
 };
 
 export default preview;

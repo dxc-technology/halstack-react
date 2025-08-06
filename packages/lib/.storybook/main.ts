@@ -35,13 +35,11 @@ const config: StorybookConfig = {
       //   include: [
       //     "react",
       //     "react-dom",
-      //     "@emotion/react",
       //     "react/jsx-runtime",
       //     "react/jsx-dev-runtime",
       //     "@emotion/react",
       //     "@emotion/styled",
       //   ],
-      //   exclude: ["@storybook/react"],
       // },
       plugins: [
         react({
