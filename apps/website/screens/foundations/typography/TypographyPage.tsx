@@ -300,43 +300,13 @@ const sections = [
               <tbody>
                 <tr>
                   <td>
-                    <Code>typography/heading/xxl</Code>
+                    <Code>typography/heading/xs</Code>
                   </td>
                   <td>
-                    <Code>font/size/40</Code>
+                    <Code>font/size/12</Code>
                   </td>
                   <td>Light / Regular / Semibold</td>
-                  <td>H1</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/heading/xl</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/32</Code>
-                  </td>
-                  <td>Light / Regular / Semibold</td>
-                  <td>H2</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/heading/l</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/24</Code>
-                  </td>
-                  <td>Light / Regular / Semibold</td>
-                  <td>H3</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/heading/m</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/20</Code>
-                  </td>
-                  <td>Light / Regular / Semibold</td>
-                  <td>H4</td>
+                  <td>H6</td>
                 </tr>
                 <tr>
                   <td>
@@ -350,13 +320,43 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>typography/heading/xs</Code>
+                    <Code>typography/heading/m</Code>
                   </td>
                   <td>
-                    <Code>font/size/12</Code>
+                    <Code>font/size/20</Code>
                   </td>
                   <td>Light / Regular / Semibold</td>
-                  <td>H6</td>
+                  <td>H4</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/heading/l</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/24</Code>
+                  </td>
+                  <td>Light / Regular / Semibold</td>
+                  <td>H3</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/heading/xl</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/32</Code>
+                  </td>
+                  <td>Light / Regular / Semibold</td>
+                  <td>H2</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/heading/xxl</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/40</Code>
+                  </td>
+                  <td>Light / Regular / Semibold</td>
+                  <td>H1</td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -384,37 +384,10 @@ const sections = [
               <tbody>
                 <tr>
                   <td>
-                    <Code>typography/body/xxl</Code>
+                    <Code>typography/body/xs</Code>
                   </td>
                   <td>
-                    <Code>font/size/24</Code>
-                  </td>
-                  <td>Regular</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/body/xl</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/20</Code>
-                  </td>
-                  <td>Regular</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/body/l</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/18</Code>
-                  </td>
-                  <td>Regular</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>typography/body/m</Code>
-                  </td>
-                  <td>
-                    <Code>font/size/16</Code>
+                    <Code>font/size/12</Code>
                   </td>
                   <td>Regular</td>
                 </tr>
@@ -429,10 +402,37 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>typography/body/xs</Code>
+                    <Code>typography/body/m</Code>
                   </td>
                   <td>
-                    <Code>font/size/12</Code>
+                    <Code>font/size/16</Code>
+                  </td>
+                  <td>Regular</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/body/l</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/18</Code>
+                  </td>
+                  <td>Regular</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/body/xl</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/20</Code>
+                  </td>
+                  <td>Regular</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>typography/body/xxl</Code>
+                  </td>
+                  <td>
+                    <Code>font/size/24</Code>
                   </td>
                   <td>Regular</td>
                 </tr>
@@ -462,13 +462,13 @@ const sections = [
               <tbody>
                 <tr>
                   <td>
-                    <Code>typography/helper-text/l</Code>
+                    <Code>typography/helper-text/s</Code>
                   </td>
                   <td>
-                    <Code>font/size/16</Code>
+                    <Code>font/size/12</Code>
                   </td>
-                  <td>Light</td>
-                  <td>Italic</td>
+                  <td>Regular</td>
+                  <td>-</td>
                 </tr>
                 <tr>
                   <td>
@@ -482,13 +482,13 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>typography/helper-text/s</Code>
+                    <Code>typography/helper-text/l</Code>
                   </td>
                   <td>
-                    <Code>font/size/12</Code>
+                    <Code>font/size/16</Code>
                   </td>
-                  <td>Regular</td>
-                  <td>-</td>
+                  <td>Light</td>
+                  <td>Italic</td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -514,16 +514,9 @@ const sections = [
               </thead>
               <tbody>
                 <tr>
-                  <td>XL</td>
+                  <td>S</td>
                   <td>
-                    <Code>font/size/24</Code>
-                  </td>
-                  <td>Bold</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>
-                    <Code>font/size/20</Code>
+                    <Code>font/size/14</Code>
                   </td>
                   <td>Bold</td>
                 </tr>
@@ -535,9 +528,16 @@ const sections = [
                   <td>Bold</td>
                 </tr>
                 <tr>
-                  <td>S</td>
+                  <td>L</td>
                   <td>
-                    <Code>font/size/14</Code>
+                    <Code>font/size/20</Code>
+                  </td>
+                  <td>Bold</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>
+                    <Code>font/size/24</Code>
                   </td>
                   <td>Bold</td>
                 </tr>
@@ -565,16 +565,9 @@ const sections = [
               </thead>
               <tbody>
                 <tr>
-                  <td>XL</td>
+                  <td>S</td>
                   <td>
-                    <Code>font/size/20</Code>
-                  </td>
-                  <td>Regular / Semibold</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>
-                    <Code>font/size/16</Code>
+                    <Code>font/size/12</Code>
                   </td>
                   <td>Regular / Semibold</td>
                 </tr>
@@ -586,9 +579,16 @@ const sections = [
                   <td>Regular / Semibold</td>
                 </tr>
                 <tr>
-                  <td>S</td>
+                  <td>L</td>
                   <td>
-                    <Code>font/size/12</Code>
+                    <Code>font/size/16</Code>
+                  </td>
+                  <td>Regular / Semibold</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>
+                    <Code>font/size/20</Code>
                   </td>
                   <td>Regular / Semibold</td>
                 </tr>
