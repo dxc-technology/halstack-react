@@ -165,7 +165,7 @@ const sections = [
                   <td>
                     <Code>font/style/lightitalic</Code>
                   </td>
-                  <td>Italic</td>
+                  <td>italic</td>
                   <td>Applied selectively for helper text where subtle emphasis is needed.</td>
                 </tr>
               </tbody>
