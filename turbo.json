@@ -16,8 +16,7 @@
       "dependsOn": ["^lint"]
     },
     "storybook": {},
-    "storybook:accessibility": {},
-    "storybook:accessibility:ci": {},
+    "test-storybook": {},
     "test": {},
     "test:accessibility": {},
     "test:watch": {

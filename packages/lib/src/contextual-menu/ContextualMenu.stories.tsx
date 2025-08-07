@@ -4,16 +4,14 @@ import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
-import { Meta, StoryObj } from "@storybook/react";
-import { useContext } from "react";
-import HalstackContext from "../HalstackContext";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Contextual Menu",
   component: DxcContextualMenu,
-} as Meta<typeof DxcContextualMenu>;
+} satisfies Meta<typeof DxcContextualMenu>;
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 
@@ -236,7 +234,7 @@ export const ContextualMenuTooltip: Story = {
   render: ItemWithEllipsis,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
-    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+    await userEvent.hover(await canvas.findByText("Item with a very long label that should be truncated"));
+    await userEvent.hover(await canvas.findByText("Item with a very long label that should be truncated"));
   },
 };

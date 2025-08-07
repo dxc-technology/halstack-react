@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcStatusLight from "./StatusLight";
@@ -7,7 +7,7 @@ import DxcContainer from "../container/Container";
 export default {
   title: "Status Light",
   component: DxcStatusLight,
-} as Meta<typeof DxcStatusLight>;
+} satisfies Meta<typeof DxcStatusLight>;
 
 const StatusLight = () => (
   <>
