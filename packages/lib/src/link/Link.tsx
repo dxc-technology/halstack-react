@@ -1,5 +1,5 @@
 import { forwardRef, Ref } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import { LinkProps } from "./types";
@@ -37,7 +37,6 @@ const Link = styled.a<{
     !inheritColor && !disabled && "&:visited { color: var(--color-fg-primary-strong); }"};
   &:focus {
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: var(--border-width-m);
     ${({ disabled }) => disabled && "outline: none"}
   }
 `;
@@ -50,6 +49,7 @@ const LinkContent = styled.span<{
   align-items: center;
   ${({ iconPosition }) => iconPosition === "before" && "flex-direction: row-reverse;"}
   gap: var(--spacing-gap-xs);
+  padding: var(--spacing-padding-xxxs);
 
   &:hover {
     color: var(--color-fg-secondary-stronger);

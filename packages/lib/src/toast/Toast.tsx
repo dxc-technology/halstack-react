@@ -1,5 +1,6 @@
-import { memo, useContext, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { memo, useContext, useState, useRef, useEffect } from "react";
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
@@ -51,6 +52,10 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 100%;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const ContentContainer = styled.div<{ loading: ToastPropsType["loading"]; semantic: ToastPropsType["semantic"] }>`
@@ -87,24 +92,69 @@ const DxcToast = ({
   semantic,
 }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
+  const toastRef = useRef<HTMLOutputElement>(null);
+  const previouslyFocusedElement = useRef<HTMLElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  const clearClosingAnimationTimer = useTimeout(
-    () => {
-      setIsClosing(true);
-    },
-    loading ? undefined : duration - 300
-  );
+  // Timeouts
+  const clearClosingAnimationTimer = useTimeout(() => setIsClosing(true), loading ? undefined : duration - 300);
 
-  const clearTimer = useTimeout(
-    () => {
-      onClear();
-    },
-    loading ? undefined : duration
-  );
+  const clearTimer = useTimeout(() => onClear(), loading ? undefined : duration);
+
+  useEffect(() => {
+    previouslyFocusedElement.current = document.activeElement as HTMLElement;
+
+    toastRef.current?.focus();
+
+    return () => {
+      previouslyFocusedElement.current?.focus?.();
+    };
+  }, []);
+
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLOutputElement>) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+
+      const focusableElements = toastRef.current?.querySelectorAll<HTMLElement>(
+        'button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusableElements || focusableElements.length === 0) return;
+
+      const firstElement = focusableElements?.[0];
+      const lastElement = focusableElements?.[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      const elementsArray = Array.from(focusableElements);
+
+      if (!event.shiftKey) {
+        if (activeElement === lastElement) {
+          previouslyFocusedElement.current?.focus?.();
+        } else {
+          const currentIndex = elementsArray.indexOf(activeElement as HTMLElement);
+          const nextElement = focusableElements[currentIndex + 1];
+          nextElement?.focus();
+        }
+      } else {
+        if (activeElement === firstElement) {
+          previouslyFocusedElement.current?.focus?.();
+        } else {
+          const currentIndex = elementsArray.indexOf(activeElement as HTMLElement);
+          const prevElement = focusableElements[currentIndex - 1];
+          prevElement?.focus();
+        }
+      }
+    }
+  };
 
   return (
-    <Toast isClosing={isClosing} role="status" semantic={semantic}>
+    <Toast
+      onKeyDown={handleOnKeyDown}
+      isClosing={isClosing}
+      role="status"
+      semantic={semantic}
+      tabIndex={-1}
+      ref={toastRef}
+    >
       <ContentContainer loading={loading} semantic={semantic}>
         <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>

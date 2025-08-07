@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./Flex";
 import { Meta, StoryObj } from "@storybook/react";

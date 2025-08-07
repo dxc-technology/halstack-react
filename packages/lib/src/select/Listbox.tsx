@@ -1,11 +1,12 @@
 import { useContext, useLayoutEffect, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
-import { groupsHaveOptions } from "./utils";
+import { getGroupSelectionType, groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
+import CheckboxContext from "../checkbox/CheckboxContext";
 
 const ListboxContainer = styled.div`
   box-sizing: border-box;
@@ -49,7 +50,10 @@ const GroupLabel = styled.li`
 const Listbox = ({
   ariaLabelledBy,
   currentValue,
+  enableSelectAll,
   handleOptionOnClick,
+  handleGroupOnClick,
+  handleSelectAllOnClick,
   id,
   lastOptionIndex,
   multiple,
@@ -57,31 +61,61 @@ const Listbox = ({
   optionalItem,
   options,
   searchable,
+  selectionType,
   styles,
   visualFocusIndex,
 }: ListboxProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLDivElement>(null);
+  let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 
-  let globalIndex = optional && !multiple ? 0 : -1;
+  const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
+    if (multiple && enableSelectAll) {
+      const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
+      globalMappingIndex++;
+
+      return (
+        <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
+          <ListOption
+            id={groupId}
+            isLastOption={lastOptionIndex === globalMappingIndex}
+            isSelected={groupSelectionType === "checked"}
+            isSelectAllOption
+            key={groupId}
+            multiple={true}
+            onClick={() => handleGroupOnClick(option)}
+            option={{
+              label: option.label,
+              value: "",
+            }}
+            visualFocused={visualFocusIndex === globalMappingIndex}
+          />
+        </CheckboxContext.Provider>
+      );
+    } else
+      return (
+        <GroupLabel id={groupId} role="presentation">
+          {option.label}
+        </GroupLabel>
+      );
+  };
 
   const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
-    const groupId = `${id}-group-${mapIndex}`;
     if ("options" in option) {
+      const groupId = `${id}-group-${mapIndex}`;
+
       return (
         option.options.length > 0 && (
-          <ul key={groupId} aria-labelledby={groupId} role="group" style={{ padding: 0, margin: 0 }}>
-            <GroupLabel id={groupId} role="presentation">
-              {option.label}
-            </GroupLabel>
+          <ul aria-labelledby={groupId} key={groupId} role="group" style={{ padding: 0, margin: 0 }}>
+            {getGroupOption(groupId, option)}
             {option.options.map((singleOption) => {
-              globalIndex++;
-              const optionId = `${id}-option-${globalIndex}`;
+              globalMappingIndex++;
+              const optionId = `${id}-option-${globalMappingIndex}`;
               return (
                 <ListOption
                   id={optionId}
                   isGroupedOption
-                  isLastOption={lastOptionIndex === globalIndex}
+                  isLastOption={lastOptionIndex === globalMappingIndex}
                   isSelected={
                     multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
                   }
@@ -89,7 +123,7 @@ const Listbox = ({
                   multiple={multiple}
                   onClick={handleOptionOnClick}
                   option={singleOption}
-                  visualFocused={visualFocusIndex === globalIndex}
+                  visualFocused={visualFocusIndex === globalMappingIndex}
                 />
               );
             })}
@@ -97,19 +131,62 @@ const Listbox = ({
         )
       );
     } else {
-      globalIndex++;
-      const optionId = `${id}-option-${globalIndex}`;
+      globalMappingIndex++;
+      const optionId = `${id}-option-${globalMappingIndex}`;
       return (
         <ListOption
           id={optionId}
-          isLastOption={lastOptionIndex === globalIndex}
+          isLastOption={lastOptionIndex === globalMappingIndex}
           isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
           key={optionId}
           multiple={multiple}
           onClick={handleOptionOnClick}
           option={option}
-          visualFocused={visualFocusIndex === globalIndex}
+          visualFocused={visualFocusIndex === globalMappingIndex}
         />
+      );
+    }
+  };
+
+  const getFirstItem = () => {
+    if (searchable && (options.length === 0 || !groupsHaveOptions(options)))
+      return (
+        <OptionsSystemMessage>
+          <DxcIcon icon="search_off" />
+          {translatedLabels.select.noMatchesErrorMessage}
+        </OptionsSystemMessage>
+      );
+    else if (optional && !multiple)
+      return (
+        <ListOption
+          id={`${id}-option-${0}`}
+          isLastOption={lastOptionIndex === 0}
+          isSelected={currentValue === optionalItem.value}
+          key={`${id}-option-${optionalItem.value}`}
+          multiple={false}
+          onClick={handleOptionOnClick}
+          option={optionalItem}
+          visualFocused={visualFocusIndex === 0}
+        />
+      );
+    else if (multiple && enableSelectAll) {
+      return (
+        <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+          <ListOption
+            id={`${id}-option-${0}`}
+            isLastOption={lastOptionIndex === 0}
+            isSelected={selectionType === "checked"}
+            isSelectAllOption
+            key={`${id}-option-${optionalItem.value}`}
+            multiple={true}
+            onClick={handleSelectAllOnClick}
+            option={{
+              label: translatedLabels.select.selectAllLabel,
+              value: "",
+            }}
+            visualFocused={visualFocusIndex === 0}
+          />
+        </CheckboxContext.Provider>
       );
     }
   };
@@ -147,26 +224,7 @@ const Listbox = ({
       role="listbox"
       style={styles}
     >
-      {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
-        <OptionsSystemMessage>
-          <DxcIcon icon="search_off" />
-          {translatedLabels.select.noMatchesErrorMessage}
-        </OptionsSystemMessage>
-      ) : (
-        optional &&
-        !multiple && (
-          <ListOption
-            id={`${id}-option-${0}`}
-            isLastOption={lastOptionIndex === 0}
-            isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
-            key={`${id}-option-${optionalItem.value}`}
-            multiple={multiple}
-            onClick={handleOptionOnClick}
-            option={optionalItem}
-            visualFocused={visualFocusIndex === 0}
-          />
-        )
-      )}
+      {getFirstItem()}
       {options.map(mapOptionFunc)}
     </ListboxContainer>
   );

@@ -6,18 +6,19 @@ import { ReactNode } from "react";
 
 const ParagraphPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/paragraph" },
-    { label: "Usage", path: "/components/paragraph/usage" },
-    { label: "Specifications", path: "/components/paragraph/specifications" },
+    { label: "Overview", path: "/components/paragraph" },
+    { label: "Code", path: "/components/paragraph/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Paragraph" />
-          <DxcParagraph>Paragraph is a block of text.</DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <DxcParagraph>
+            A text container component designed for displaying blocks of body content in a consistent, readable format.
+          </DxcParagraph>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

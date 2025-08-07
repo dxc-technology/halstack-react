@@ -1,41 +1,42 @@
 import { forwardRef } from "react";
 import ActionIconPropsTypes, { RefType } from "./types";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const ActionIcon = styled.button`
   all: unset;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  display: grid;
+  place-items: center;
   border-radius: var(--border-radius-xs);
   height: var(--height-s);
   width: 24px;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  color: var(--color-fg-neutral-dark);
+  cursor: pointer;
 
-  ${(props) =>
-    !props.disabled &&
-    `
-      &:focus,
-      &:focus-visible {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      }
-      &:hover {
-        background-color: var(--color-bg-alpha-light);
-      }
-    `}
+  /* Icon sizing */
   font-size: var(--height-xxs);
   > svg {
     height: var(--height-xxs);
     width: 16px;
   }
+
+  &:disabled {
+    color: var(--color-fg-neutral-medium);
+    cursor: not-allowed;
+  }
+  &:focus:enabled,
+  &:focus-visible:enabled {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+  &:hover:enabled {
+    background-color: var(--color-bg-alpha-light);
+  }
 `;
 
 export default forwardRef<RefType, ActionIconPropsTypes>(
-  ({ disabled = false, title, icon, onClick, tabIndex }, ref) => (
+  ({ disabled = false, icon, onClick, tabIndex, title }, ref) => (
     <Tooltip label={title}>
       <ActionIcon
         aria-label={title}

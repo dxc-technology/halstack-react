@@ -1,19 +1,9 @@
-import styled from "styled-components";
-
-const DxcIcon = ({ icon }: { icon: string }): JSX.Element => (
-  <IconContainer
-    role="img"
-    filled={icon.startsWith("filled_")}
-    icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
-    aria-hidden="true"
-  />
-);
+import styled from "@emotion/styled";
 
 const IconContainer = styled.span<{
   icon: string;
   filled: boolean;
 }>`
-  @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1");
   font-family: "Material Symbols Outlined";
   font-weight: normal;
   font-style: normal;
@@ -34,4 +24,13 @@ const IconContainer = styled.span<{
   }
 `;
 
-export default DxcIcon;
+export default function DxcIcon({ icon }: { icon: string }) {
+  return (
+    <IconContainer
+      aria-hidden="true"
+      filled={icon.startsWith("filled_")}
+      icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
+      role="img"
+    />
+  );
+}

@@ -1,4 +1,3 @@
-// packages/lib/src/components/badge/DxcBadge.tsx
 import BadgePropsType from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 import DxcIcon from "../icon/Icon";

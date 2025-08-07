@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import HalstackContext from "../HalstackContext";
 import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 
@@ -110,7 +109,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(1);
               }}
-              title="First results"
+              title={translatedLabels.paginator.firstResultsTitle}
               size={{ height: "medium" }}
             />
 
@@ -122,7 +121,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage - 1);
               }}
-              title="Previous results"
+              title={translatedLabels.paginator.previousResultsTitle}
               size={{ height: "medium" }}
             />
           </ButtonsContainer>
@@ -158,7 +157,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage + 1);
               }}
-              title="Next results"
+              title={translatedLabels.paginator.nextResultsTitle}
               size={{ height: "medium" }}
             />
             <DxcButton
@@ -169,7 +168,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(totalPages);
               }}
-              title="Last results"
+              title={translatedLabels.paginator.lastResultsTitle}
               size={{ height: "medium" }}
             />
           </ButtonsContainer>

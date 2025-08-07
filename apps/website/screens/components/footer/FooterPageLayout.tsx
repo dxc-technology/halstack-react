@@ -7,22 +7,18 @@ import { ReactNode } from "react";
 
 const FooterPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/footer" },
-    { label: "Usage", path: "/components/footer/usage" },
-    { label: "Specifications", path: "/components/footer/specifications" },
+    { label: "Overview", path: "/components/footer" },
+    { label: "Code", path: "/components/footer/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Footer" />
           <DxcParagraph>
-            Footers are a secondary element in a web page because they usually appear at the bottom and it is the last
-            thing that the user interacts with. But the presence of the footer must be designed in every application and
-            be part of it (consumer or back-office) as it is a key layout element to the overall experience. It is a
-            choice of the designer to either leave the footer visible by default or push it down, depending on the use
-            case.
+            The footer is a UI component placed at the bottom of the page, providing informational context, secondary
+            navigation, and legal or support links.
           </DxcParagraph>
           <DxcParagraph>
             The footer is part of the application layout, so it can only be used inside of it. Please check the{" "}
@@ -31,7 +27,7 @@ const FooterPageHeading = ({ children }: { children: ReactNode }) => {
             </Link>{" "}
             documentation.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

@@ -29,6 +29,7 @@ const cellTypeString = `{
   displayValue: React.ReactNode; 
   sortValue?: string | number | Date; 
 }[]`;
+
 const columnTypeString = `{ 
   displayValue: React.ReactNode; 
   isSortable?: boolean; 
@@ -78,30 +79,55 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                rows
+                <StatusBadge status="new" />
+                hidePaginator
               </DxcFlex>
             </td>
             <td>
-              <TableCode>Row[]</TableCode>
-              <p>
-                being <Code>Row</Code> a <Code>Cell[]</Code> and being <Code>Cell</Code> an object with the following
-                properties:
-              </p>
-              <ExtendedTableCode>{cellTypeString}</ExtendedTableCode>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, paginator will not be displayed.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>itemsPerPage</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of items per page.</td>
+            <td>
+              <TableCode>5</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>itemsPerPageFunction</td>
+            <td>
+              <TableCode>{"(value: number) => void"}</TableCode>
             </td>
             <td>
-              An array of objects representing the rows of the table, you will have as many objects as columns in the
-              table. Each row is a set of cells that have the following properties:
-              <ul>
-                <li>
-                  <b>displayValue</b>: Value to be displayed in the cell.
-                </li>
-                <li>
-                  <b>sortValue</b>: Value to be used when sorting the table by that column. If not indicated
-                  displayValue will be used for sorting.
-                </li>
-              </ul>
+              This function will be called when the user selects an item per page option. The value selected will be
+              passed as a parameter.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageOptions</td>
+            <td>
+              <TableCode>number[]</TableCode>
+            </td>
+            <td>An array of numbers representing the items per page options.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -133,17 +159,32 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                hidePaginator
+                <StatusBadge status="required" />
+                rows
               </DxcFlex>
             </td>
             <td>
-              <TableCode>boolean</TableCode>
+              <TableCode>Row[]</TableCode>
+              <p>
+                being <Code>Row</Code> a <Code>Cell[]</Code> and being <Code>Cell</Code> an object with the following
+                properties:
+              </p>
+              <ExtendedTableCode>{cellTypeString}</ExtendedTableCode>
             </td>
-            <td>If true, paginator will not be displayed.</td>
             <td>
-              <TableCode>false</TableCode>
+              An array of objects representing the rows of the table, you will have as many objects as columns in the
+              table. Each row is a set of cells that have the following properties:
+              <ul>
+                <li>
+                  <b>displayValue</b>: Value to be displayed in the cell.
+                </li>
+                <li>
+                  <b>sortValue</b>: Value to be used when sorting the table by that column. If not indicated
+                  displayValue will be used for sorting.
+                </li>
+              </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>showGoToPage</td>
@@ -154,46 +195,6 @@ const sections = [
             <td>
               <TableCode>true</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>itemsPerPage</td>
-            <td>
-              <TableCode>number</TableCode>
-            </td>
-            <td>Number of items per page.</td>
-            <td>
-              <TableCode>5</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>itemsPerPageOptions</td>
-            <td>
-              <TableCode>number[]</TableCode>
-            </td>
-            <td>An array of numbers representing the items per page options.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>itemsPerPageFunction</td>
-            <td>
-              <TableCode>{"(value: number) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user selects an item per page option. The value selected will be
-              passed as a parameter.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -290,15 +291,13 @@ const sections = [
   },
 ];
 
-const ResultsetTableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ResultsetTableCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ResultsetTableCodePage;

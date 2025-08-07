@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section, { SectionType } from "./Section";
 import { responsiveSizes } from "../common/variables";

@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
-import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
@@ -142,7 +139,16 @@ const TextInput = () => (
         action={action}
       />
     </ExampleContainer>
-    <Title title="Anatomy" theme="light" level={2} />{" "}
+    <Title title="Alignment" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Alignment left" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="left" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Alignment right" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="right" />
+    </ExampleContainer>
+    <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Complete example" theme="light" level={4} />
       <DxcTextInput
@@ -245,7 +251,7 @@ const AutosuggestListbox = () => (
             border: "1px solid black",
             borderRadius: "4px",
             overflow: "auto",
-            zIndex: "1300",
+            zIndex: "130",
             position: "relative",
           }}
         >

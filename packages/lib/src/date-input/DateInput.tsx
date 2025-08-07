@@ -12,7 +12,7 @@ import {
   KeyboardEvent,
 } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "@emotion/styled";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
@@ -81,7 +81,7 @@ const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
 `;
 
 const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483647;
+  z-index: var(--z-date-input);
   &:focus-visible {
     outline: none;
   }
@@ -150,7 +150,6 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
@@ -287,62 +286,58 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     }, [isOpen, disabled, calendarId]);
 
     return (
-      <ThemeProvider theme={colorsTheme}>
-        <DateInputContainer margin={margin} size={size} ref={ref}>
-          {label && (
-            <Label
-              htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
+      <DateInputContainer margin={margin} size={size} ref={ref}>
+        {label && (
+          <Label
+            htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
+            disabled={disabled}
+            hasHelperText={!!helperText}
+          >
+            {label}{" "}
+            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        <Popover.Root open={isOpen}>
+          <Popover.Trigger asChild aria-controls={undefined}>
+            <DxcTextInput
+              name={name}
+              defaultValue={defaultValue}
+              value={value ?? innerValue}
+              placeholder={placeholder ? format.toUpperCase() : undefined}
+              action={{
+                onClick: openCalendar,
+                icon: "filled_calendar_today",
+                title: "Select date",
+              }}
+              clearable={clearable}
               disabled={disabled}
-              hasHelperText={!!helperText}
+              readOnly={readOnly}
+              optional={optional}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              error={error}
+              autocomplete={autocomplete}
+              size={size}
+              tabIndex={tabIndex}
+              ref={dateRef}
+              ariaLabel={ariaLabel}
+            />
+          </Popover.Trigger>
+          <Popover.Portal>
+            <StyledPopoverContent
+              sideOffset={sideOffset}
+              align="end"
+              aria-modal
+              onBlur={handleDatePickerOnBlur}
+              onKeyDown={handleDatePickerEscKeydown}
+              ref={popoverContentRef}
             >
-              {label}{" "}
-              {optional && (
-                <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
-              )}
-            </Label>
-          )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined}>
-              <DxcTextInput
-                name={name}
-                defaultValue={defaultValue}
-                value={value ?? innerValue}
-                placeholder={placeholder ? format.toUpperCase() : undefined}
-                action={{
-                  onClick: openCalendar,
-                  icon: "filled_calendar_today",
-                  title: "Select date",
-                }}
-                clearable={clearable}
-                disabled={disabled}
-                readOnly={readOnly}
-                optional={optional}
-                onChange={handleOnChange}
-                onBlur={handleOnBlur}
-                error={error}
-                autocomplete={autocomplete}
-                size={size}
-                tabIndex={tabIndex}
-                ref={dateRef}
-                ariaLabel={ariaLabel}
-              />
-            </Popover.Trigger>
-            <Popover.Portal>
-              <StyledPopoverContent
-                sideOffset={sideOffset}
-                align="end"
-                aria-modal
-                onBlur={handleDatePickerOnBlur}
-                onKeyDown={handleDatePickerEscKeydown}
-                ref={popoverContentRef}
-              >
-                <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
-              </StyledPopoverContent>
-            </Popover.Portal>
-          </Popover.Root>
-        </DateInputContainer>
-      </ThemeProvider>
+              <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+            </StyledPopoverContent>
+          </Popover.Portal>
+        </Popover.Root>
+      </DateInputContainer>
     );
   }
 );

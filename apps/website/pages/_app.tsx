@@ -10,15 +10,20 @@ import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
+import createCache, { EmotionCache } from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+  emotionCache?: EmotionCache;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+const clientSideEmotionCache = createCache({ key: "css", prepend: true });
+
+export default function App({ Component, pageProps, emotionCache = clientSideEmotionCache }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
@@ -43,7 +48,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   };
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
@@ -96,6 +101,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           </DxcToastsQueue>
         </DxcApplicationLayout.Main>
       </DxcApplicationLayout>
-    </>
+    </CacheProvider>
   );
 }

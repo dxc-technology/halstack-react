@@ -455,6 +455,30 @@ const sections = [
                   with those parameters.
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <Code>firstResultsTitle</Code>
+                </td>
+                <td>First results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>previousResultsTitle</Code>
+                </td>
+                <td>Previous results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>nextResultsTitle</Code>
+                </td>
+                <td>Next results</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>lastResultsTitle</Code>
+                </td>
+                <td>Last results</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -541,12 +565,6 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>noMatchesErrorMessage</Code>
-                </td>
-                <td>No matches found</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>actionClearSelectionTitle</Code>
                 </td>
                 <td>Clear selection</td>
@@ -556,6 +574,18 @@ const sections = [
                   <Code>actionClearSearchTitle</Code>
                 </td>
                 <td>Clear search</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>noMatchesErrorMessage</Code>
+                </td>
+                <td>No matches found</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>selectAllLabel</Code>
+                </td>
+                <td>Select all</td>
               </tr>
             </tbody>
           </DxcTable>
