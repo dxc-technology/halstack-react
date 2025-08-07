@@ -38,7 +38,7 @@ const sections = [
         <DxcTable>
           <thead>
             <tr>
-              <th>Core token</th>
+              <th>Token</th>
               <th>X position</th>
               <th>Y position</th>
               <th>Blur</th>
@@ -47,16 +47,6 @@ const sections = [
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <Code>shadow-000</Code>
-              </td>
-              <td>0px</td>
-              <td>0px</td>
-              <td>0px</td>
-              <td>0px</td>
-              <td>-</td>
-            </tr>
             <tr>
               <td>
                 <Code>shadow-100</Code>
@@ -122,10 +112,6 @@ const sections = [
           some typical use cases per shadow level:
         </DxcParagraph>
         <DxcBulletedList>
-          <DxcBulletedList.Item>
-            <strong>shadow-000</strong>: used for flat elements that don’t require elevation or when elevation is
-            managed through other properties (like background color or spacing).
-          </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>shadow-100</strong>: creates subtle separation from the background without drawing too much
             attention, such us small UI elements like buttons, input fields, or lightweight cards.
