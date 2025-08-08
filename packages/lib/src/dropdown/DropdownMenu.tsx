@@ -11,8 +11,7 @@ const DropdownMenuContainer = styled.ul`
   margin: 0;
   background-color: var(--color-bg-neutral-lightest);
   border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread)
-    var(--shadow-dark);
+  box-shadow: var(--shadow-100);
   outline: none;
   overflow-y: auto;
   z-index: var(--z-dropdown);

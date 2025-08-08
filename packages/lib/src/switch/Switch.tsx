@@ -104,8 +104,7 @@ const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: Swit
     height: var(--height-s);
     background-color: var(--color-fg-neutral-bright);
     border-radius: 50%;
-    box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur)
-      var(--shadow-low-spread) var(--shadow-dark);
+    box-shadow: var(--shadow-100);
     transform: ${({ checked }) => checked && "translateX(20px)"};
     transition: transform 0.2s ease-in-out; /* Thumb transform transition */
   }

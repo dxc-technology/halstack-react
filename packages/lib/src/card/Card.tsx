@@ -26,11 +26,7 @@ const Card = styled.div<{
     }`}
   border-radius: var(--border-radius-s);
   box-shadow: ${({ shadowDepth }) =>
-    shadowDepth === 1
-      ? "var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark)"
-      : shadowDepth === 2
-        ? "var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread) var(--shadow-light)"
-        : "none"};
+    shadowDepth === 1 ? "var(--shadow-100)" : shadowDepth === 2 ? "var(--shadow-200)" : "none"};
 `;
 
 const CardContainer = styled.div<{

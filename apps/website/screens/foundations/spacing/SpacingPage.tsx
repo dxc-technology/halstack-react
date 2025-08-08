@@ -309,7 +309,7 @@ export default function SpacingPage() {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/SpacingPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/spacing/SpacingPage.tsx" />
     </DxcFlex>
   );
 }
