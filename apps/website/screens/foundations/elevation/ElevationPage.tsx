@@ -114,7 +114,7 @@ const sections = [
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <strong>shadow-100</strong>: creates subtle separation from the background without drawing too much
-            attention, such us small UI elements like buttons, input fields, or lightweight cards.
+            attention, such as small UI elements like buttons, input fields, or lightweight cards.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>shadow-200</strong>: signals a slight lift and draws more attention than shadow-100, especially
