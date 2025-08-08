@@ -1,4 +1,4 @@
-export const coreTokens = {
+export const coreTokens: Record<string, string | number> = {
   /**************/
   /** POSITION **/
   /**************/
@@ -155,7 +155,7 @@ export const coreTokens = {
   "--line-style-solid": "solid",
 };
 
-export const aliasTokens = {
+export const aliasTokens: Record<string, string | number> = {
   "--border-color-error-light": "var(--color-error-300)",
   "--border-color-error-medium": "var(--color-error-600)",
   "--border-color-error-strong": "var(--color-error-700)",

@@ -125,7 +125,7 @@ const Button = () => {
     <>
       <>
         <Title title="Default" theme="light" level={2} />
-        <HalstackProvider newTheme={newTheme}>
+        <HalstackProvider opinionatedTheme={newTheme}>
           <Title title="Small" theme="light" level={2} />
           <Title title="Primary" theme="light" level={3} />
           <DxcFlex>
