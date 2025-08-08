@@ -20,7 +20,8 @@ const columnsTypeString = `{
   label: string;
   resizable?: boolean;
   sortable?: boolean;
-  sortFn?: (a: ReactNode, b: ReactNode) => number;
+  sortFn?: (a: ReactNode, b: ReactNode) => 
+            number;
   draggable?: boolean;
   textEditable?: boolean;
   summaryKey?: string;
@@ -36,7 +37,8 @@ const HierarchyGridRowTypeString = `GridRow & {
   childrenTrigger?: (
     open: boolean,
     triggerRow: HierarchyGridRow
-  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
+  ) => (HierarchyGridRow[] | GridRow[]) 
+   | Promise<HierarchyGridRow[] | GridRow[]>;
 }`;
 
 const ExpandableGridRowTypeString = `GridRow & {
@@ -45,7 +47,7 @@ const ExpandableGridRowTypeString = `GridRow & {
   contentIsExpanded?: boolean;
 }`;
 
-const actionsType = `{
+const actionsTypeString = `{
   icon: string | SVG;
   title: string;
   onClick: () => void;
@@ -58,6 +60,10 @@ const actionsType = `{
   tabIndex?: number;
   options: Option[];
 }[]`;
+
+const childrenTriggerTypeString = `(open: boolean, triggerRow: HierarchyGridRow) => 
+(HierarchyGridRow[] | GridRow[]) 
+| Promise<HierarchyGridRow[] | GridRow[]>`;
 
 const sections = [
   {
@@ -170,7 +176,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>{`(open: boolean, triggerRow: HierarchyGridRow) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>`}</TableCode>
+              <ExtendedTableCode>{childrenTriggerTypeString}</ExtendedTableCode>
             </td>
             <td>
               Function called whenever a cell with children (<Code>HierarchyGridRow</Code>) is expanded or collapsed
@@ -336,7 +342,7 @@ const sections = [
                   </DxcFlex>
                 </td>
                 <td>
-                  <ExtendedTableCode>{actionsType}</ExtendedTableCode>
+                  <ExtendedTableCode>{actionsTypeString}</ExtendedTableCode>
                 </td>
                 <td>
                   <p>

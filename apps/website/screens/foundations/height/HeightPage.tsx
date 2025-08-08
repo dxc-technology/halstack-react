@@ -164,7 +164,7 @@ export default function HeightPage() {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Color" />
+          <DxcHeading level={1} text="Height" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
