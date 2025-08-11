@@ -38,30 +38,41 @@ type HalstackProviderPropsType = {
   opinionatedTheme: ThemeType;
 };
 
-const HalstackThemed = styled.div<{ theme: ThemeType }>`
-  ${(props) => css`
-    ${Object.keys(props.theme).length ? Object.entries(props.theme).map(([key, val]) => `${key}: ${val};`) : coreTokens}
-    ${aliasTokens}
-  `}
+const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
+  ${(props) => {
+    if (props.coreTheme)
+      return css`
+        ${Object.keys(props.coreTheme).length
+          ? Object.entries(props.coreTheme).map(([key, val]) => `${key}: ${val};`)
+          : coreTokens}
+        ${aliasTokens}
+      `;
+    else {
+      return css`
+        ${coreTokens}
+        ${aliasTokens}
+      `;
+    }
+  }}
 `;
 
-const createTheme = (opinionatedTheme: ThemeType = {}) => {
-  const vars: ThemeType = {};
+const createCoreTheme = (opinionatedTheme: ThemeType = {}) => {
+  const newTheme: ThemeType = {};
   Object.entries(coreTokens).forEach(([key, value]) => {
-    vars[key] = opinionatedTheme[key] ?? value;
+    newTheme[key] = opinionatedTheme[key] ?? value;
   });
-  return vars;
+  return newTheme;
 };
 
 const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProviderPropsType): JSX.Element => {
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : null), [labels]);
-  const parsedTheme = useMemo(() => {
-    const theme = createTheme(opinionatedTheme);
+  const parsedCoreTheme = useMemo(() => {
+    const theme = createCoreTheme(opinionatedTheme);
     return theme;
   }, [opinionatedTheme]);
 
   return (
-    <HalstackThemed theme={parsedTheme}>
+    <HalstackThemed coreTheme={parsedCoreTheme}>
       {parsedLabels ? (
         <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
       ) : (
