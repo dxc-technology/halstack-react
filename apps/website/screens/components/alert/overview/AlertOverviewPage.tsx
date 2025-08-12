@@ -298,6 +298,26 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          All types of alerts (banner, dialog, inline) follow the spacing margins of the application.
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Be sure to consider content length when designing for smaller screen sizes.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Alerts grow vertically to display the full content.</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Know the type of screen sizes you will be designing for and consider messaging length for these as well (ex.
+            be concise when designing for mobile in consideration of limited screen space).
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     subSections: [
       {

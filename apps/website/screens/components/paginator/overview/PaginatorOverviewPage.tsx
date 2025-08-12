@@ -97,6 +97,17 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <DxcParagraph>
+        Selecting the right type of paginator is important – particularly for applications that may be displayed in
+        smaller screen sizes. Configurations with a simple navigation can go a long way towards reducing cognitive load
+        and visual clutter (ex. simply show what page the user is on or limit interactive elements to the page selection
+        dropdown for navigation).
+      </DxcParagraph>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList type="number">

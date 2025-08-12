@@ -259,6 +259,31 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          Both fixed and fluid spacing behaviors play an important role in determining the placement of components when
+          adjusting screen sizes.
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <strong>Fixed spacing</strong> can affect an application in ways such as when a minimum width is reached,
+            scrollbars can appear on the application or screen elements can stop adjusting based on available space.
+            This approach can be used for more structured layouts where it is important to maintain a fixed structure in
+            order to display information properly.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Fluid spacing</strong> is often more suited to smaller screens where elements have more flexibility
+            to move around the screen. This can be seen in examples such as reducing the number of columns in a form
+            from two columns into just one or the form of components that follow a line-breaking behavior allowing for a
+            more vertical flowing approach to component layouts.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <>

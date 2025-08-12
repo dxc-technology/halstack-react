@@ -4,11 +4,13 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import navTabsAnatomy from "./images/navTabs_anatomy.png";
+import responsiveNavTabs from "./images/navTabs_responsive.png";
 import Link from "next/link";
 import Example from "@/common/example/Example";
 import icons_top from "./examples/icons_top";
 import icons_left from "./examples/icons_left";
 import badges from "./examples/badges";
+import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -145,6 +147,19 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          The size of the Nav tabs display is directly related to the size of the parent component (ex. flex or
+          container). When screen sizes are adjusted to smaller resolutions, with the decrease in screen width, a
+          scrollable variant is activated if the minimum width is exceeded for the Nav tabs component.{" "}
+        </DxcParagraph>
+        <Image src={responsiveNavTabs} alt="Responsive nav tabs" />
+      </>
+    ),
   },
   {
     title: "Best practices",

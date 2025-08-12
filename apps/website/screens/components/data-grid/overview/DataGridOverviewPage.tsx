@@ -4,6 +4,9 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/datagrid-anatomy.png";
+import reducedDataGrid from "./images/datagrid_reduced.png";
+import fullWidthDataGrid from "./images/datagrid_fullWidth.png";
+import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -196,6 +199,41 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          The datagrid’s size adjusts based on the default behavior of its parent component (ex. container, flexbox,
+          grid).
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            When placing a datagrid inside a parent component, adjusting the parent component’s width also
+            correspondingly adjusts datagrid width up to a certain extent. A datagrid’s minimum width based on the
+            content of the column headers and the number of columns it has.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Using the overflow property of the parent container allows scrollbars to appear to provide for horizontal
+            and vertical adjustments. Careful planning for structuring large datagrids (such as using a combination of
+            managing column counts, using expandable content, or even resizeable columns) can help minimize over
+            reliance on scrollbars to display a lot of information.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            For smaller screen sizes, managing information density becomes even more important because of limited space.
+            Leveraging features such as allowing for expandable rows or managing the number of columns during initial
+            display can go a long way towards maintaining a clean and manageable datagrid.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Figure caption="Full width data grid">
+          <Image src={fullWidthDataGrid} alt="Full width data grid" />
+        </Figure>
+        <Figure caption="Reduced data grid">
+          <Image src={reducedDataGrid} alt="Reduced data grid" />
+        </Figure>
+      </>
+    ),
   },
   {
     title: "Best practices",
