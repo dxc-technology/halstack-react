@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -8,6 +8,7 @@ import Example from "@/common/example/Example";
 import basicExample from "./examples/basicExample";
 import nestedExample from "./examples/nestedExample";
 import placement from "./images/accordion_placement.png";
+import Link from "next/link";
 
 const sections = [
   {
@@ -188,6 +189,20 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          Documented already under{" "}
+          <Link href="/components/accordion/#using-accordions-mobile" passHref legacyBehavior>
+            <DxcLink>Mobile</DxcLink>
+          </Link>{" "}
+          section.
+        </DxcParagraph>
+      </>
+    ),
   },
   {
     title: "Best practices",

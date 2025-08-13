@@ -4,7 +4,10 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import anatomy from "./images/resultset_table_anatomy.png";
+import resultsetTableOverflow from "./images/resultset_table_overflow.png";
+import resultsetTableResponsive from "./images/resultset_table_responsive.png";
 import Image from "@/common/Image";
+import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -128,6 +131,35 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          Changes to the screen size affects tables based on the default behavior of their parent components (ex.
+          container, flexbox, grid).
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            When placing a table inside a container component that adjusts based on screen width, the table’s width also
+            correspondingly adjusts up to a certain minimum value based on its content and the number of columns.
+            <Image src={resultsetTableResponsive} alt="Resultset table overflow" />
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Using the overflow property of the container (to account for both horizontal and vertical adjustments) is
+            one way to preserve the size of the display of the table while using scrollbars for the adjustments needed
+            in place of continuous resizing.
+            <Image src={resultsetTableOverflow} alt="Resultset table responsive" />
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Consider using the reduced mode for tables that are information dense and need to minimize the spacing in
+            between table cells. This can help accommodate more information as the screen size is reduced up to a
+            certain extent.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
   {
     title: "Best practices",

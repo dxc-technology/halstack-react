@@ -154,6 +154,28 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          The size of the Wizard display is directly related to the size of the parent component (ex. flex or
+          container).
+        </DxcParagraph>
+        <DxcParagraph>There are two options for displaying the Wizard for more compact widths:</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <strong>Compact variant</strong>: The default (or preferred ) responsive execution reduces the wizard to
+            just the numbered steps for more compact screens.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Scrollable full-text Wizard</strong>: makes use of the parent container to create a horizontally
+            scrollable box that allows users to see the full numbers and text.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList>

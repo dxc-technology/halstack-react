@@ -66,9 +66,9 @@ const sections = [
             <strong>Image placement:</strong> cards support placing the image either on the left or the right side of
             the layout. The image should maintain a fixed ratio and size for visual harmony. By default, the component
             provides layout options where the image can appear on the left or right side of the content. However,
-            alternative layouts —such as vertical image placements — can be achieved by placing the image directly within
-            the custom content area. This allows for more flexibility while still adhering to spacing and alignment
-            guidelines.
+            alternative layouts —such as vertical image placements — can be achieved by placing the image directly
+            within the custom content area. This allows for more flexibility while still adhering to spacing and
+            alignment guidelines.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Text content:</strong> titles, descriptions, metadata, or status labels are typically placed in the
@@ -84,6 +84,22 @@ const sections = [
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <Image src={example} alt="Card's example" />
+      </>
+    ),
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          The card component can automatically adjust to the size of its parent component (ex. container, flexbox,
+          grid). Consider using the compact variants of the card if you are planning to accommodate smaller screen sizes
+          to minimize the space it occupies.
+        </DxcParagraph>
+        <DxcParagraph>
+          Note also that the width of a card can be fixed, to avoid changing how the contents inside are displayed, when
+          needed.
+        </DxcParagraph>
       </>
     ),
   },

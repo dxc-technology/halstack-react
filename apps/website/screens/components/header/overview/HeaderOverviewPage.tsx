@@ -6,6 +6,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import anatomy from "./images/header_anatomy.png";
 import responsive from "./images/header_responsive.png";
+import responsiveDetails from "./images/header_responsive_details.png";
 import variants from "./images/header_variants.png";
 
 const sections = [
@@ -78,7 +79,7 @@ const sections = [
     ),
   },
   {
-    title: "Responsive version for mobile and tablet",
+    title: "Responsive version",
     content: (
       <>
         <DxcParagraph>
@@ -87,8 +88,13 @@ const sections = [
           maintain the core structure and visual hierarchy of the desktop version, ensuring a consistent and intuitive
           user experience across all devices.
         </DxcParagraph>
+        <Image src={responsive} alt="Header menu responsive version" />
+        <DxcParagraph>
+          The behavior of the more compact header follows the standard expandable menu button with all header links
+          displayed once the icon is clicked.
+        </DxcParagraph>
         <Figure caption="Header menu responsive version">
-          <Image src={responsive} alt="Header menu responsive version" />
+          <Image src={responsiveDetails} alt="Header menu responsive version" />
         </Figure>
       </>
     ),

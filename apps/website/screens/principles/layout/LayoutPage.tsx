@@ -237,6 +237,40 @@ const sections = [
       },
     ],
   },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          Understanding and implementing the appropriate grid, breakpoint, and column/margin/gutter specifications all
+          contribute to how the application adjusts to different screen sizes. While these higher-level components
+          determine the overall responsive behavior of the application, adjustments can also be made at a smaller
+          component level within the layout.
+        </DxcParagraph>
+        <DxcParagraph>Here are some important considerations when designing for responsiveness:</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Consider the actual device/screen use cases. If the application is designed exclusively for desktop,
+            consider what the minimum resolution is, then plan accordingly.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            For applications that are focused on supporting tablet or mobile designs, make sure to design for and test
+            the application across all expected screens sizes and orientations. Please refer to{" "}
+            <Link href="/principles/layout/#layout-basics-breakpoints" passHref legacyBehavior>
+              <DxcLink>Breakpoints</DxcLink>
+            </Link>{" "}
+            section. Consider the density of screen elements, the structure (ex. number of columns), and even the actual
+            components needed (ex. when to use different types and variations of tables and data grids).
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            There are also cases where mobile is the default resolution for the application. In this case consider how
+            the application’s contents grows based on changing screen sizes (such as all the different sizes of mobile
+            and tablet devices).
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
 ];
 
 export default function LayoutPage() {
