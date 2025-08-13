@@ -11,7 +11,7 @@ export default defineConfig({
       filter: /\.[jt]sx?$/,
     }),
   ],
-  external: ["react", "react-dom"],
+  external: ["react", "react-data-grid", "react-dom", "@emotion/react", "@emotion/styled"],
   format: ["cjs", "esm"],
   injectStyle: true,
   splitting: false,

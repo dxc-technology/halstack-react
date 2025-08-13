@@ -1,17 +1,27 @@
-import { useContext } from "react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import HalstackContext from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
-} as Meta<typeof DxcDropdown>;
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+        ],
+      },
+    },
+  },
+} satisfies Meta<typeof DxcDropdown>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -328,7 +338,7 @@ export const Chromatic: Story = {
   render: Dropdown,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const buttonList = canvas.getAllByRole("button");
+    const buttonList = await canvas.findAllByRole("button");
     const lastButton = buttonList[buttonList.length - 1];
     lastButton != null && (await userEvent.click(lastButton));
   },
@@ -338,7 +348,7 @@ export const MenuStates: Story = {
   render: DropdownListStates,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dropdownTrigger = canvas.getAllByRole("button")[0];
+    const dropdownTrigger = (await canvas.findAllByRole("button"))[0];
     dropdownTrigger != null && (await userEvent.click(dropdownTrigger));
   },
 };
@@ -347,6 +357,6 @@ export const MenuTooltip: Story = {
   render: TooltipTitle,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByRole("button"));
+    await userEvent.hover(await canvas.findByRole("button"));
   },
 };

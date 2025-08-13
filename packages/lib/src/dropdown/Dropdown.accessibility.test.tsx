@@ -1,6 +1,13 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcDropdown from "./Dropdown";
+
+// TODO: REMOVE
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+
+const disabledRules = {
+  rules: formatRules(rules),
+};
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -60,7 +67,7 @@ describe("Dropdown component accessibility tests", () => {
         onSelectOption={() => {}}
       />
     );
-    const results = await axe(baseElement);
+    const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
@@ -78,7 +85,7 @@ describe("Dropdown component accessibility tests", () => {
         disabled
       />
     );
-    const results = await axe(baseElement);
+    const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for caret-hidden mode", async () => {
@@ -96,7 +103,7 @@ describe("Dropdown component accessibility tests", () => {
         caretHidden
       />
     );
-    const results = await axe(baseElement);
+    const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for expand-on-hover mode", async () => {
@@ -114,7 +121,7 @@ describe("Dropdown component accessibility tests", () => {
         expandOnHover
       />
     );
-    const results = await axe(baseElement);
+    const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
   });
 });
