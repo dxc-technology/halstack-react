@@ -13,7 +13,7 @@ const code = `() => {
           width: "var(--border-width-s)"
         }}
         borderRadius="var(--border-radius-s)"
-        boxShadow="var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread) var(--shadow-light)"
+        boxShadow="var(--shadow-200)"
         boxSizing="border-box"
         maxHeight="304px"
         overflow={{ x: "hidden", y: "auto" }}

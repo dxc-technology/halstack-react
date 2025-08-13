@@ -12,8 +12,7 @@ const YearPickerContainer = styled.div`
   overflow-y: scroll;
   width: 292px;
   height: 312px;
-  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
-    var(--shadow-light);
+  box-shadow: var(--shadow-200);
 `;
 
 const YearPickerButton = styled.button<{
