@@ -4,7 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import navTabsAnatomy from "./images/navTabs_anatomy.png";
-import responsiveNavTabs from "./images/navTabs_responsive.png";
+import responsiveNavTabs from "./images/navtabs_responsive.png";
 import Link from "next/link";
 import Example from "@/common/example/Example";
 import icons_top from "./examples/icons_top";
