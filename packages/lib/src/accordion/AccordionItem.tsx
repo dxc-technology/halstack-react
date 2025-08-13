@@ -12,8 +12,7 @@ const AccordionContainer = styled.div`
   flex-direction: column;
   background-color: var(--color-bg-neutral-lightest);
   border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
-    var(--shadow-light);
+  box-shadow: var(--shadow-200);
   min-width: 280px;
   width: 100%;
 `;
