@@ -131,12 +131,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The sidenav can be adjusted to minimize its display for smaller resolutions, thus providing more space to
-              display the application content. We recommend using a breakpoint of 720px to trigger the more compact view
-              for tablet and mobile resolutions.
-            </DxcParagraph>
-            <DxcParagraph>
-              In the compact view, the sidenav is collapsed into a single row at the top of the page with an expandable
+              In smaller screens, the sidenav is collapsed into a single row at the top of the page with an expandable
               icon to show the full list of sidenav content when triggered.
             </DxcParagraph>
             <Image src={responsive} alt="Responsive sidenav" />

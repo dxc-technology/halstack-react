@@ -153,11 +153,9 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The size of the Nav tabs display is directly related to the size of the parent component (ex. flex or
-          container). When screen sizes are adjusted to smaller resolutions, with the decrease in screen width, a
-          scrollable variant is activated if the minimum width is exceeded for the Nav tabs component.{" "}
+          The size of the navigation tabs adjusts according to the container. On smaller screen resolutions, if the
+          content exceeds the available space, a scroll bar will appear.
         </DxcParagraph>
-        <Image src={responsiveNavTabs} alt="Responsive nav tabs" />
       </>
     ),
   },

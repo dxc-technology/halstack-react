@@ -263,21 +263,19 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Both fixed and fluid spacing behaviors play an important role in determining the placement of components when
+          Both fixed and fluid spacing behaviors play a key role in determining the placement of components when
           adjusting screen sizes.
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Fixed spacing</strong> can affect an application in ways such as when a minimum width is reached,
-            scrollbars can appear on the application or screen elements can stop adjusting based on available space.
-            This approach can be used for more structured layouts where it is important to maintain a fixed structure in
-            order to display information properly.
+            <strong>Fixed spacing</strong> can make parts of the application stop resizing or show scrollbars when the
+            screen gets too small. This is useful for layouts that need to stay structured so information is displayed
+            correctly.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Fluid spacing</strong> is often more suited to smaller screens where elements have more flexibility
-            to move around the screen. This can be seen in examples such as reducing the number of columns in a form
-            from two columns into just one or the form of components that follow a line-breaking behavior allowing for a
-            more vertical flowing approach to component layouts.
+            <strong>Fluid spacing</strong> works better in smaller screens, letting elements move around as needed. For
+            example, a form might switch from two columns to one, or components might wrap to the next line, creating a
+            more vertical, flowing layout.”
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>

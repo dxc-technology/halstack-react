@@ -174,20 +174,6 @@ const sections = [
           </>
         ),
       },
-      {
-        title: "Mobile",
-        content: (
-          <>
-            <DxcParagraph>
-              In small devices, extremely long pages are detrimental to the user experience. Collapsing information
-              minimises excessive scrolling and gives an overview of the structure and content available on the page.
-            </DxcParagraph>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>In mobile use 100% of the available screen width</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </>
-        ),
-      },
     ],
   },
   {
@@ -195,12 +181,12 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Documented already under{" "}
-          <Link href="/components/accordion/#using-accordions-mobile" passHref legacyBehavior>
-            <DxcLink>Mobile</DxcLink>
-          </Link>{" "}
-          section.
+          In small devices, extremely long pages are detrimental to the user experience. Collapsing information
+          minimises excessive scrolling and gives an overview of the structure and content available on the page.
         </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>In mobile use 100% of the available screen width</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },

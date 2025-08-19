@@ -204,10 +204,7 @@ const sections = [
     title: "Responsive behavior",
     content: (
       <>
-        <DxcParagraph>
-          The datagrid’s size adjusts based on the default behavior of its parent component (ex. container, flexbox,
-          grid).
-        </DxcParagraph>
+        <DxcParagraph>The datagrid’s size adjusts to the available space.</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
             When placing a datagrid inside a parent component, adjusting the parent component’s width also
@@ -215,10 +212,10 @@ const sections = [
             content of the column headers and the number of columns it has.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Using the overflow property of the parent container allows scrollbars to appear to provide for horizontal
-            and vertical adjustments. Careful planning for structuring large datagrids (such as using a combination of
-            managing column counts, using expandable content, or even resizeable columns) can help minimize over
-            reliance on scrollbars to display a lot of information.
+            The Datagrid will adjust its own scroll based on the content and the avalaible space. Careful planning for
+            structuring large datagrids (such as using a combination of managing column counts, using expandable
+            content, or even resizeable columns) can help minimize over reliance on scrollbars to display a lot of
+            information.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             For smaller screen sizes, managing information density becomes even more important because of limited space.
@@ -226,12 +223,6 @@ const sections = [
             display can go a long way towards maintaining a clean and manageable datagrid.
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <Figure caption="Full width data grid">
-          <Image src={fullWidthDataGrid} alt="Full width data grid" />
-        </Figure>
-        <Figure caption="Reduced data grid">
-          <Image src={reducedDataGrid} alt="Reduced data grid" />
-        </Figure>
       </>
     ),
   },

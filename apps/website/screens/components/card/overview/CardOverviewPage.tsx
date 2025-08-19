@@ -83,7 +83,7 @@ const sections = [
             card should be easy to scan and act upon.
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <Image src={example} alt="Card's example" />
+        {/* <Image src={example} alt="Card's example" /> */}
       </>
     ),
   },
@@ -91,15 +91,7 @@ const sections = [
     title: "Responsive behavior",
     content: (
       <>
-        <DxcParagraph>
-          The card component can automatically adjust to the size of its parent component (ex. container, flexbox,
-          grid). Consider using the compact variants of the card if you are planning to accommodate smaller screen sizes
-          to minimize the space it occupies.
-        </DxcParagraph>
-        <DxcParagraph>
-          Note also that the width of a card can be fixed, to avoid changing how the contents inside are displayed, when
-          needed.
-        </DxcParagraph>
+        <DxcParagraph>The card component will adjust to the size of its parent container.</DxcParagraph>
       </>
     ),
   },
