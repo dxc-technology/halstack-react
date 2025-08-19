@@ -5,9 +5,10 @@ import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { getFilePreview, isFileIncluded } from "./utils";
+import { getFilePreview, isFileIncluded, isRequired } from "./utils";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
+import ErrorMessage from "../styles/forms/ErrorMessage";
 
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
@@ -124,8 +125,10 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     ref
   ): JSX.Element => {
     const [isDragging, setIsDragging] = useState(false);
+    const [inputError, setInputError] = useState<string | undefined>(undefined);
     const [files, setFiles] = useState<FileData[]>([]);
     const fileInputId = `file-input-${useId()}`;
+    const errorId = `error-${fileInputId}`;
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
@@ -173,6 +176,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
           const fileIndex = filesCopy.indexOf(fileToRemove);
           filesCopy.splice(fileIndex, 1);
           callbackFile?.(filesCopy);
+          validateIsRequired(filesCopy);
         }
       },
       [files, callbackFile]
@@ -204,6 +208,14 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       if (filesObject.length > 0) {
         const filesArray = Array.from(filesObject);
         addFile(filesArray);
+      }
+    };
+
+    const validateIsRequired = (files: FileData[]) => {
+      if (isRequired(files, optional)) {
+        setInputError(translatedLabels.formFields.requiredValueErrorMessage);
+      } else {
+        setInputError(undefined);
       }
     };
 
@@ -247,6 +259,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             />
             <DxcButton
               mode="secondary"
+              semantic={inputError ? "error" : "default"}
               label={
                 buttonLabel ??
                 (multiple
@@ -299,11 +312,13 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             >
               <DxcButton
                 mode="secondary"
+                semantic={inputError ? "error" : "default"}
                 label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                 onClick={handleClick}
                 disabled={disabled}
                 size={{ width: "fitContent", height: "medium" }}
               />
+
               {mode === "dropzone" ? (
                 <DropzoneLabel disabled={disabled}>
                   {dropAreaLabel ??
@@ -339,6 +354,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             )}
           </Container>
         )}
+        {!disabled && inputError && <ErrorMessage error={inputError} id={errorId} />}
       </FileInputContainer>
     );
   }
