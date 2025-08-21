@@ -25,5 +25,3 @@ export const isFileIncluded = (file: FileData, fileList: FileData[]) => {
       webkitRelativePath === file.file.webkitRelativePath
   );
 };
-
-export const isRequired = (value: FileData[], optional: boolean) => value.length === 0 && !optional;

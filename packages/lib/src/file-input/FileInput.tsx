@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { getFilePreview, isFileIncluded, isRequired } from "./utils";
+import { getFilePreview, isFileIncluded } from "./utils";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 
