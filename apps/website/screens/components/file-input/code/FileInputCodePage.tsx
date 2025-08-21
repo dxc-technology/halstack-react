@@ -51,7 +51,9 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>{"(files: { file: File, error?: string, preview?: string }[]) => void"}</TableCode>
+              <TableCode>
+                {"(val: {files: { file: File, error?: string, preview?: string }[], error?: string}) => void"}
+              </TableCode>
             </td>
             <td>
               This function will be called when the user adds or deletes a file. That is, when the file input's inner
@@ -156,11 +158,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>
-              If true, the input will be optional, showing '(Optional)' next to the label. Otherwise, the field will be
-              considered required and an error will be passed as a parameter to the <TableCode>onBlur</TableCode> and{" "}
-              <TableCode>onChange</TableCode> functions when it has not been filled.
-            </td>
+            <td>If true, the input will be optional, showing '(Optional)' next to the label.</td>
             <td>
               <TableCode>false</TableCode>
             </td>
