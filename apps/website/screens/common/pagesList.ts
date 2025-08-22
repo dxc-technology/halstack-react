@@ -43,6 +43,7 @@ const foundationsLinks: LinkDetails[] = [
   { label: "Elevation", path: "/foundations/elevation" },
   { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
+  { label: "Layout", path: "/foundations/layout" },
   { label: "Spacing", path: "/foundations/spacing" },
   { label: "Typography", path: "/foundations/typography" },
 ];
