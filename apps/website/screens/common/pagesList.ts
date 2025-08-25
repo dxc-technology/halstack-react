@@ -45,6 +45,7 @@ const foundationsLinks: LinkDetails[] = [
   { label: "Iconography", path: "/foundations/iconography" },
   { label: "Spacing", path: "/foundations/spacing" },
   { label: "Typography", path: "/foundations/typography" },
+  { label: "Tokens", path: "/foundations/tokens" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
