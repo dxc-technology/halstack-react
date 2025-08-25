@@ -189,7 +189,7 @@ const sections = [
                 reassures users and reinforces positive outcomes.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Orange - Warning</strong>: Used for cautionary messages or potential risks that don’t block
+                <strong>Orange - Warning</strong>: Used for cautionary messages or potential risks that don't block
                 progress but may require attention.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>

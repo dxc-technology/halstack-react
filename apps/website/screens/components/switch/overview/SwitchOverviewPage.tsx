@@ -108,13 +108,19 @@ const sections = [
               <td>
                 <strong>Label before</strong>
               </td>
-              <td>Improves clarity by describing the setting being controlled. This is the default and recommended position.</td>
+              <td>
+                Improves clarity by describing the setting being controlled. This is the default and recommended
+                position.
+              </td>
             </tr>
             <tr>
               <td>
                 <strong>Label after</strong>
               </td>
-              <td>Useful in minimalist interfaces or when the switch’s current state needs to be highlighted. Recommended only for specific use cases.</td>
+              <td>
+                Useful in minimalist interfaces or when the switch's current state needs to be highlighted. Recommended
+                only for specific use cases.
+              </td>
             </tr>
           </tbody>
         </DxcTable>

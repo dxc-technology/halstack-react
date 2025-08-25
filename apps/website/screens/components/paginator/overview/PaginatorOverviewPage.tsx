@@ -72,7 +72,7 @@ const sections = [
           <>
             <DxcParagraph>
               Our paginator component offers different configurations to accommodate various use cases. Take the time to
-              explore these options and identify the best fit for your specific needs—whether it’s simple navigation,
+              explore these options and identify the best fit for your specific needs—whether it's simple navigation,
               dynamic content loading, or more advanced pagination controls. Choosing the right configuration ensures a
               seamless experience for users.
             </DxcParagraph>
@@ -95,6 +95,17 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <DxcParagraph>
+        Selecting the right type of paginator is important - particularly for applications that may be displayed in
+        smaller screen sizes. Configurations with a simple navigation can go a long way towards reducing cognitive load
+        and visual clutter (ex. simply show what page the user is on or limit interactive elements to the page selection
+        dropdown for navigation).
+      </DxcParagraph>
+    ),
   },
   {
     title: "Best practices",

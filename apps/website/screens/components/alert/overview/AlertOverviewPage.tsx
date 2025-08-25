@@ -53,20 +53,24 @@ const sections = [
             it easy for users to grasp its importance at a glance.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Description:</strong> the detailed text within the alert that provides context or additional
-            information about the message, ensuring clarity for the user.
+            <strong>Pagination:</strong> a navigation element that allows users to browse multiple alerts within the
+            same container, useful for managing sequential or grouped notifications.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Divider:</strong> a subtle separator that visually organizes the alert's content, enhancing
             readability and distinguishing the pagination element from the closable action.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Pagination:</strong> a navigation element that allows users to browse multiple alerts within the
-            same container, useful for managing sequential or grouped notifications.
+            <strong>Close action:</strong> an interactive button placed next to the pagination (if there's any) that
+            allows the user to dismiss the alert.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Actions:</strong> interactive buttons placed within the alert that enable users to take relevant
             actions in response to the message, such as dismissing, acknowledging, or navigating to further details.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Description:</strong> the detailed text within the alert that provides context or additional
+            information about the message, ensuring clarity for the user.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -296,6 +300,23 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Be sure to consider content length when designing for smaller screen sizes.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Alerts grow vertically to display the full content.</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Keep in mind the screen size where the alert will appear, and take into account the length of the
+            description it contains.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
   {
     title: "Best practices",
