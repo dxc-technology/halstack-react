@@ -89,7 +89,7 @@ const sections = [
               Each column is separated by a <strong>gutter</strong>, and the overall layout is framed by{" "}
               <strong>margins</strong> on both sides to ensure content doesn't touch the edges of the viewport.
             </DxcParagraph>
-            <Image src={layoutStructure} alt="12 columns grid structure" />
+            <Image src={layoutStructure} alt="12-column grid structure" />
             <DxcBulletedList type="number">
               <DxcBulletedList.Item>Margin</DxcBulletedList.Item>
               <DxcBulletedList.Item>Column</DxcBulletedList.Item>
@@ -128,7 +128,7 @@ const sections = [
                   Halstack, their size is defined using our{" "}
                   <Link href={"/foundations/spacing"} passHref legacyBehavior>
                     <DxcLink>spacing tokens</DxcLink>
-                  </Link>{" "}
+                  </Link>
                   , ensuring consistent alignment and rhythm across all layouts. Gutters remain fixed within a given
                   breakpoint but adjust proportionally as the layout changes.
                 </DxcParagraph>
@@ -159,7 +159,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          GBreakpoints are specific viewport widths at which the layout adapts to provide an optimal experience across
+          Breakpoints are specific viewport widths at which the layout adapts to provide an optimal experience across
           devices. They determine how many columns are displayed, how margins and gutters scale, and how content is
           arranged. Breakpoints are chosen to ensure readability, usability, and consistency, allowing designs to
           fluidly adjust from small to large screens.
@@ -333,7 +333,7 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>Primary task flows (forms, tables, dashboards, content areas)</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Inline navigation for subssections</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Inline navigation for subsections</DxcBulletedList.Item>
               <DxcBulletedList.Item>Supporting components such as breadcrumbs, tabs, or filters</DxcBulletedList.Item>
             </DxcBulletedList>
           </>
