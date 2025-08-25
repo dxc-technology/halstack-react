@@ -20,11 +20,11 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Typography plays a critical role in structuring the user’s experience through the visual impact it has on the
+          Typography plays a critical role in structuring the user's experience through the visual impact it has on the
           interface content.
         </DxcParagraph>
         <DxcParagraph>
-          It <strong>defines what is the first noticeable piece of information or data</strong> based on the font’s
+          It <strong>defines what is the first noticeable piece of information or data</strong> based on the font's
           shape, size, color, or type, and it <strong>highlights some pieces of text over others</strong>.
         </DxcParagraph>
         <DxcParagraph>

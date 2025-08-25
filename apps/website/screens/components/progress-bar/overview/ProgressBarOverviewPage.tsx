@@ -115,7 +115,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Use the right variant:</strong> use determinate when the completion percentage is known (e.g., file
-            uploads, task completion). Use indeterminate when the system can’t predict the time or progress (e.g.,
+            uploads, task completion). Use indeterminate when the system can't predict the time or progress (e.g.,
             loading content, waiting for server responses).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

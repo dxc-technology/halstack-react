@@ -255,7 +255,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             For applications that are focused on supporting tablet or mobile designs, make sure to design for and test
-            the application across all expected screens sizes and orientations. Please refer to{" "}
+            the application across all expected screen sizes and orientations. Please refer to{" "}
             <Link href="/principles/layout/#layout-basics-breakpoints" passHref legacyBehavior>
               <DxcLink>Breakpoints</DxcLink>
             </Link>{" "}
@@ -264,7 +264,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             There are also cases where mobile is the default resolution for the application. In this case consider how
-            the application’s contents grows based on changing screen sizes (such as all the different sizes of mobile
+            the application's contents grows based on changing screen sizes (such as all the different sizes of mobile
             and tablet devices).
           </DxcBulletedList.Item>
         </DxcBulletedList>

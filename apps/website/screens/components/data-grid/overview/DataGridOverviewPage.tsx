@@ -204,11 +204,11 @@ const sections = [
     title: "Responsive behavior",
     content: (
       <>
-        <DxcParagraph>The datagrid’s size adjusts to the available space.</DxcParagraph>
+        <DxcParagraph>The datagrid's size adjusts to the available space.</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            When placing a datagrid inside a parent component, adjusting the parent component’s width also
-            correspondingly adjusts datagrid width up to a certain extent. A datagrid’s minimum width based on the
+            When placing a datagrid inside a parent component, adjusting the parent component's width also
+            correspondingly adjusts datagrid width up to a certain extent. A datagrid's minimum width based on the
             content of the column headers and the number of columns it has.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

@@ -7,7 +7,6 @@ import anatomy from "./images/resultset_table_anatomy.png";
 import resultsetTableOverflow from "./images/resultset_table_overflow.png";
 import resultsetTableResponsive from "./images/resultset_table_responsive.png";
 import Image from "@/common/Image";
-import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -142,7 +141,7 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            When placing a table inside a container component that adjusts based on screen width, the table’s width also
+            When placing a table inside a container component that adjusts based on screen width, the table's width also
             correspondingly adjusts up to a certain minimum value based on its content and the number of columns.
             <Image src={resultsetTableResponsive} alt="Resultset table overflow" />
           </DxcBulletedList.Item>

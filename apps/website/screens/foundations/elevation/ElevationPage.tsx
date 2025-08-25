@@ -143,7 +143,7 @@ const sections = [
           hierarchy and component behavior.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Don’t overlay too much</strong>: avoid stacking multiple shadows or using high-intensity shadows on
+          <strong>Don't overlay too much</strong>: avoid stacking multiple shadows or using high-intensity shadows on
           too many components, as this leads to visual clutter.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>

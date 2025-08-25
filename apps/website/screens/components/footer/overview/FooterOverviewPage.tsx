@@ -33,7 +33,7 @@ const sections = [
             reinforce company recognition across all pages.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Social icons:</strong> A set of clickable icons linking to the company’s social media platforms
+            <strong>Social icons:</strong> A set of clickable icons linking to the company's social media platforms
             (e.g., LinkedIn, Facebook). Placed on the right side for easy visibility and access.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
