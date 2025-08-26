@@ -19,8 +19,9 @@ const sections = [
           while maintaining flexibility where customization is needed.
         </DxcParagraph>
         <DxcParagraph>
-          In Halstack, tokens define core attributes like <strong>colors, typography, spacing,</strong> and more—serving
-          as the foundation for scalable, themeable, and reusable component styling.
+          In Halstack, tokens define core attributes like <strong>colors</strong>, <strong>typography</strong>,{" "}
+          <strong>spacing</strong>, and more—serving as the foundation for scalable, themeable, and reusable component
+          styling.
         </DxcParagraph>
         <DxcParagraph>
           Tokens allow product teams to build faster, with greater consistency and confidence.
@@ -43,7 +44,7 @@ const sections = [
         <DxcParagraph>
           When Halstack was first established, its token structure followed a two-tier model:{" "}
           <strong>primitive tokens</strong> (the raw foundational values) and <strong>component tokens</strong> (styles
-          applied at the component level.) The intermediate <strong>alias layer</strong>—commonly used to connect
+          appliedWIP at the component level.) The intermediate <strong>alias layer</strong>—commonly used to connect
           foundations to components—was missing.
         </DxcParagraph>
         <DxcParagraph>
@@ -63,15 +64,15 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Inconsistent styles:</strong> Components with similar behaviors (e.g., hover states) often used
+                <strong>Inconsistent styles</strong>: Components with similar behaviors (e.g., hover states) often used
                 unrelated token values.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Difficult maintenance:</strong>Without a systematic link between primitives and components,
+                <strong>Difficult maintenance</strong>:Without a systematic link between primitives and components,
                 updating or theming became unpredictable.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Limited reusability:</strong> Repeated values were not abstracted into tokens, forcing
+                <strong>Limited reusability</strong>: Repeated values were not abstracted into tokens, forcing
                 duplication and increasing the chance of drift.
               </DxcBulletedList.Item>
             </DxcBulletedList>
@@ -83,17 +84,17 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The refactor aims to create a <strong>three-tier token architecture:</strong>
+              The refactor aims to create a <strong>three-tier token architecture</strong>:
             </DxcParagraph>
             <DxcBulletedList type="number">
               <DxcBulletedList.Item>
-                <strong>Core:</strong> The raw values.
+                <strong>Core</strong>: The raw values.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Alias:</strong> Contextual tokens that translate foundations into semantic meanings.
+                <strong>Alias</strong>: Contextual tokens that translate foundations into semantic meanings.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Component:</strong> Tokens applied to specific UI components, referencing aliases rather than
+                <strong>Component</strong>: Tokens applied to specific UI components, referencing aliases rather than
                 hardcoded values.
               </DxcBulletedList.Item>
             </DxcBulletedList>
@@ -103,7 +104,7 @@ const sections = [
               structured, semantic tokens that ensure consistency and scalability.
             </DxcParagraph>
             <DxcParagraph>
-              The next step is to extend this work into the <strong>Component layer,</strong> where tokens will be
+              The next step is to extend this work into the <strong>Component layer</strong>, where tokens will be
               defined specifically for UI components by referencing existing Alias tokens. This will allow us to
               standardize pattern across all Halstack components and give product teams even greater flexibility when
               theming. <u>We expect to begin working on this layer in the coming months.</u>
@@ -154,8 +155,8 @@ const sections = [
                 - Defines border widths, radius, and styles for consistent corner and edge treatment.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <Link href="/foundations/shadow" passHref legacyBehavior>
-                  <DxcLink>Shadow</DxcLink>
+                <Link href="/foundations/elevation" passHref legacyBehavior>
+                  <DxcLink>Elevation</DxcLink>
                 </Link>
                 - Standardized elevation styles for depth and hierarchy in UI elements.
               </DxcBulletedList.Item>
@@ -184,9 +185,9 @@ const sections = [
             <DxcParagraph>
               By separating raw values from their semantic role, we not only enable easy theming and quick adjustments
               without touching the foundational values, but also establish clear <strong>usage expectations</strong>:
-              whether a token should be applied as a <strong>background (bg), foreground (fg),</strong> or{" "}
-              <strong>border</strong> element. This reduces ambiguity and ensures that tokens are applied consistently
-              across components and interfaces.
+              whether a token should be applied as a <strong>background (bg)</strong>, <strong>foreground (fg)</strong>,
+              or <strong>border</strong> element. This reduces ambiguity and ensures that tokens are applied
+              consistently across components and interfaces.
             </DxcParagraph>
           </>
         ),
@@ -228,22 +229,22 @@ const sections = [
           strategies.
         </DxcParagraph>
         <DxcParagraph>
-          With the new token architecture, our goal is to <strong>continue supporting both levels of theming,</strong>{" "}
+          With the new token architecture, our goal is to <strong>continue supporting both levels of theming</strong>,{" "}
           even though the underlying structure that makes them possible will change. This ensures that product teams can
           rely on the same flexibility they know today, while also benefiting from a more scalable and consistent
           system.
         </DxcParagraph>
         <DxcParagraph>
-          By aligning this strategy with our <strong>token architecture:</strong>
+          By aligning this strategy with our <strong>token architecture</strong>:
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              With the <strong>Core layer</strong>, we can already enable <strong>opinionated theming,</strong> exposing
+              With the <strong>Core layer</strong>, we can already enable <strong>opinionated theming</strong>, exposing
               tokens like colors, spacing, or typography in a way that is safe and predictable.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              To unlock <strong>Advanced theming,</strong> we will rely on the upcoming{" "}
-              <strong>Component layer,</strong> which will allow deeper overrides at the component-token level. This
-              work is still in progress and will be rolled out in the coming months.
+              To unlock <strong>Advanced theming</strong>, we will rely on the upcoming <strong>Component layer</strong>
+              , which will allow deeper overrides at the component-token level. This work is still in progress and will
+              be rolled out in the coming months.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         </DxcParagraph>
@@ -251,7 +252,7 @@ const sections = [
           This structured approach ensures that theming in Halstack is <strong>flexible but safe</strong>—giving teams
           the ability to adapt components to their needs while still protecting those{" "}
           <strong>design decisions that are critical for accessibility</strong> such as maintaining proper{" "}
-          <strong>contrast ratios,</strong> minimum font sizes, and spacing values. In this way, we preserve both{" "}
+          <strong>contrast ratios</strong>, minimum font sizes, and spacing values. In this way, we preserve both{" "}
           <strong>brand flexibility</strong> and <strong>usability standards</strong> across all products.
         </DxcParagraph>
       </>
@@ -277,7 +278,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              In Halstack, tokens are <strong>defined and maintained as Variables in Figma.</strong> These variables
+              In Halstack, tokens are <strong>defined and maintained as Variables in Figma</strong>. These variables
               represent values like colors, spacing, typography, and more, and are applied directly in the design of{" "}
               <Link href="" passHref legacyBehavior>
                 <DxcLink>components</DxcLink>
@@ -291,10 +292,7 @@ const sections = [
         title: "Tokens in Development",
         content: (
           <>
-            <DxcParagraph>
-              Once validated in Figma, tokens can be <strong>exported as structured JSON files,</strong> which makes
-              them consumable by development teams. .....
-            </DxcParagraph>
+            <DxcParagraph>Work in Progress.</DxcParagraph>
           </>
         ),
       },
