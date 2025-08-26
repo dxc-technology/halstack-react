@@ -149,10 +149,7 @@ const sections = [
                 - A consistent set of spacing values to control layout and component padding/margins.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <Link href="/foundations/border" passHref legacyBehavior>
-                  <DxcLink>Border</DxcLink>
-                </Link>{" "}
-                - Defines border widths, radius, and styles for consistent corner and edge treatment.
+                Border - Defines border widths, radius, and styles for consistent corner and edge treatment.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <Link href="/foundations/elevation" passHref legacyBehavior>
