@@ -1,5 +1,5 @@
 import Head from "next/head";
-import LayoutPage from "screens/principles/layout/LayoutPage";
+import LayoutPage from "screens/foundations/layout/Layout";
 
 const Layout = () => (
   <>
