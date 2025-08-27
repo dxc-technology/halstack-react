@@ -131,11 +131,8 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              On mobile and tablet screens, the sidenav becomes an{" "}
-              <strong>overlay panel that can be toggled open or closed</strong>. This responsive version ensures that
-              navigation remains accessible without occupying valuable screen space. Users can open the sidenav using a
-              dedicated menu icon, and close it either by interacting with the backdrop or selecting a navigation
-              option. This enhances usability and maintains focus on content in smaller viewports.
+              In smaller screens, the sidenav is collapsed into a single row at the top of the page with an expandable
+              icon to show the full list of sidenav content when triggered.
             </DxcParagraph>
             <Image src={responsive} alt="Responsive sidenav" />
           </>

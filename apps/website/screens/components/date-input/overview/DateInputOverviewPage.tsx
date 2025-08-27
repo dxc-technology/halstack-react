@@ -216,7 +216,7 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              Match the date format to the user’s regional settings (DD/MM/YYYY or MM/DD/YYYY), and consider using
+              Match the date format to the user's regional settings (DD/MM/YYYY or MM/DD/YYYY), and consider using
               placeholder text to guide formatting.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
