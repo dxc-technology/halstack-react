@@ -12,7 +12,7 @@ const customViewports = {
   resizedScreen: {
     name: "Custom viewport",
     styles: {
-      width: "481px",
+      width: "400px",
       height: "1600px",
     },
   },
@@ -82,6 +82,6 @@ export const ResponsivePaginator: Story = {
   render: Paginator,
   parameters: {
     viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
-    chromatic: { viewports: [481] },
+    chromatic: { viewports: [400] },
   },
 };

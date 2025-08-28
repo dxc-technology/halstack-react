@@ -1,10 +1,66 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
+import useWidth from "../utils/useWidth";
+
+const DxcPaginatorContainer = styled.div<{ width: number }>`
+  display: flex;
+  justify-content: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "center" : "flex-end")};
+  flex-wrap: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "wrap" : "nowrap")};
+  gap: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "var(--spacing-gap-s)" : "0")};
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  background-color: var(--color-bg-neutral-lighter);
+  color: var(--color-fg-neutral-dark);
+  padding: var(--spacing-padding-xs) var(--spacing-padding-xl);
+`;
+
+const ItemsPerPageContainer = styled.span<{ width: number }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  margin-right: ${({ width }) =>
+    width && width <= Number(responsiveSizes.medium) * 16 ? "0" : "var(--spacing-gap-ml)"};
+`;
+
+const SelectContainer = styled.div`
+  min-width: 6.25rem;
+`;
+
+const TotalItemsContainer = styled.span<{ width: number }>`
+  margin-right: ${({ width }) =>
+    width && width <= Number(responsiveSizes.medium) * 16 ? "0" : "var(--spacing-gap-xxl)"};
+`;
+
+const GoToPageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-ml);
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  flex-shrink: 0;
+`;
+
+const PageToSelectContainer = styled.span<{ width: number }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+`;
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -27,147 +83,18 @@ const DxcPaginator = ({
 
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  const DxcPaginatorContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    min-height: 48px;
-    box-sizing: border-box;
-    font-family: var(--typography-font-family);
-    font-size: var(--typography-label-m);
-    font-weight: var(--typography-label-regular);
-    background-color: var(--color-bg-neutral-lighter);
-    color: var(--color-fg-neutral-dark);
-    padding: var(--spacing-padding-xs) var(--spacing-padding-xl);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const width = useWidth(containerRef.current);
 
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      justify-content: center;
-      flex-direction: column;
-      row-gap: var(--spacing-gap-s);
-      column-gap: var(--spacing-gap-l);
-      padding: var(--spacing-padding-s) var(--spacing-padding-l);
-    }
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      padding: var(--spacing-padding-xs) var(--spacing-padding-s);
-      row-gap: var(--spacing-gap-xs);
-    }
-
-    @media (max-width: ${responsiveSizes.xsmall}rem) {
-      padding: var(--spacing-padding-xs);
-    }
-  `;
-
-  const ItemsPerPageContainer = styled.span`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-    margin-right: var(--spacing-gap-ml);
-
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      width: 100%;
-      justify-content: center;
-      margin-right: 0;
-      order: 1;
-      gap: var(--spacing-gap-s);
-      text-align: center;
-    }
-  `;
-
-  const SelectContainer = styled.div`
-    min-width: 6.25rem;
-
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      min-width: 5rem;
-    }
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      min-width: 4rem;
-      width: 100%;
-      max-width: 60px;
-    }
-  `;
-
-  const TotalItemsContainer = styled.span`
-    margin-right: var(--spacing-gap-xxl);
-
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      margin-right: 0;
-      order: 2;
-      text-align: center;
-    }
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      margin-bottom: var(--spacing-gap-xs);
-    }
-  `;
-
-  const GoToPageContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-ml);
-
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      max-width: 100%;
-      gap: var(--spacing-gap-l);
-      order: 3;
-    }
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      flex-wrap: wrap;
-      justify-content: space-around;
-      width: 100%;
-    }
-
-    @media (max-width: ${responsiveSizes.xsmall}rem) {
-      gap: var(--spacing-gap-xs);
-    }
-  `;
-
-  const ButtonsContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-    flex-shrink: 0;
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      gap: var(--spacing-gap-xs);
-      justify-content: center;
-    }
-
-    @media (max-width: ${responsiveSizes.xsmall}rem) {
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-  `;
-
-  const PageToSelectContainer = styled.span`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-    flex-shrink: 0;
-
-    @media (max-width: ${responsiveSizes.medium}rem) {
-      justify-content: center;
-      margin-right: 0;
-      gap: var(--spacing-gap-s);
-      text-align: center;
-    }
-
-    @media (max-width: ${responsiveSizes.small}rem) {
-      width: 100%;
-      order: -1;
-      gap: var(--spacing-gap-xs);
-      width: 100%;
-      margin-bottom: var(--spacing-gap-s);
-    }
-  `;
+  const [refAquired, setRefAquired] = useState(false);
+  useEffect(() => {
+    setRefAquired(true);
+  }, []);
 
   return (
-    <DxcPaginatorContainer>
+    <DxcPaginatorContainer ref={containerRef} width={width}>
       {itemsPerPageOptions && (
-        <ItemsPerPageContainer>
+        <ItemsPerPageContainer width={width}>
           <span>{translatedLabels.paginator.itemsPerPageText}</span>
           <SelectContainer>
             <DxcSelect
@@ -185,7 +112,7 @@ const DxcPaginator = ({
           </SelectContainer>
         </ItemsPerPageContainer>
       )}
-      <TotalItemsContainer>
+      <TotalItemsContainer width={width}>
         {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
       </TotalItemsContainer>
       <GoToPageContainer>
@@ -217,8 +144,8 @@ const DxcPaginator = ({
           </ButtonsContainer>
         )}
         {showGoToPage ? (
-          <PageToSelectContainer>
-            <span>{translatedLabels.paginator.goToPageText} </span>
+          <PageToSelectContainer width={width}>
+            {width >= Number(responsiveSizes.small) * 16 && <span>{translatedLabels.paginator.goToPageText}</span>}
             <SelectContainer>
               <DxcSelect
                 options={Array.from(Array(totalPages), (e, num) => ({
