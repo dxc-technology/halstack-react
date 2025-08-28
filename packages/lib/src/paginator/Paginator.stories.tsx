@@ -8,6 +8,16 @@ export default {
   component: DxcPaginator,
 } as Meta<typeof DxcPaginator>;
 
+const customViewports = {
+  resizedScreen: {
+    name: "Custom viewport",
+    styles: {
+      width: "481px",
+      height: "1600px",
+    },
+  },
+};
+
 const Paginator = () => (
   <>
     <ExampleContainer>
@@ -66,4 +76,12 @@ type Story = StoryObj<typeof DxcPaginator>;
 
 export const Chromatic: Story = {
   render: Paginator,
+};
+
+export const ResponsivePaginator: Story = {
+  render: Paginator,
+  parameters: {
+    viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
+    chromatic: { viewports: [481] },
+  },
 };
