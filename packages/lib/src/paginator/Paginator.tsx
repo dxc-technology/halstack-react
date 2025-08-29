@@ -83,7 +83,9 @@ const DxcPaginator = ({
 
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  const [containerRef, width] = useWidth<HTMLDivElement>();
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const width = useWidth(containerRef);
+  console.log(containerRef, width);
 
   return (
     <DxcPaginatorContainer ref={containerRef} width={width}>

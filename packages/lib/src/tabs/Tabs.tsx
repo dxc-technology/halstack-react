@@ -112,7 +112,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   const refTabListContainer = useRef<HTMLDivElement | null>(null);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
-  const viewWidth = useWidth(refTabList.current);
+  const viewWidth = useWidth(refTabList);
   const contextValue = useMemo(() => {
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {

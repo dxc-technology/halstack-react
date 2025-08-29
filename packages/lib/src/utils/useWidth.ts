@@ -1,34 +1,33 @@
-import { useCallback, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 /**
  * Custom hook to get the width of an element and keep it updated when it changes.
  * @param target
  * @returns
  */
-const useWidth = <T extends Element>() => {
+const useWidth = <T extends Element>(ref: React.RefObject<T>) => {
   const [width, setWidth] = useState(0);
-  const observerRef = useRef<ResizeObserver | null>(null);
 
-  const ref = useCallback((target: T | null) => {
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-      observerRef.current = null;
-    }
+  useLayoutEffect(() => {
+    const target = ref?.current;
 
-    if (target) {
+    if (target != null) {
       setWidth(target.getBoundingClientRect().width);
 
       const triggerObserver = new ResizeObserver((entries) => {
         const rect = entries[0]?.target.getBoundingClientRect();
-        if (rect) setWidth(rect.width);
+        if (rect) {
+          setWidth(rect.width);
+        }
       });
-
       triggerObserver.observe(target);
-      observerRef.current = triggerObserver;
+      return () => {
+        triggerObserver.unobserve(target);
+      };
     }
-  }, []);
+  }, [ref]);
 
-  return [ref, width] as const;
+  return width;
 };
 
 export default useWidth;
