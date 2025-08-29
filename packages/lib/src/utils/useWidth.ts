@@ -25,7 +25,7 @@ const useWidth = <T extends Element>(ref: React.RefObject<T>) => {
         triggerObserver.unobserve(target);
       };
     }
-  }, [ref]);
+  }, []);
 
   return width;
 };

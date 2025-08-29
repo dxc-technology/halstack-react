@@ -85,7 +85,6 @@ const DxcPaginator = ({
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const width = useWidth(containerRef);
-  console.log(containerRef, width);
 
   return (
     <DxcPaginatorContainer ref={containerRef} width={width}>
@@ -141,7 +140,7 @@ const DxcPaginator = ({
         )}
         {showGoToPage ? (
           <PageToSelectContainer width={width}>
-            {!onPageChange && width >= Number(responsiveSizes.small) * 16 && (
+            {(width >= Number(responsiveSizes.small) * 16 || !onPageChange) && (
               <span>{translatedLabels.paginator.goToPageText}</span>
             )}
             <SelectContainer>
