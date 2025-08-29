@@ -83,13 +83,7 @@ const DxcPaginator = ({
 
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const width = useWidth(containerRef.current);
-
-  const [refAquired, setRefAquired] = useState(false);
-  useEffect(() => {
-    setRefAquired(true);
-  }, []);
+  const [containerRef, width] = useWidth<HTMLDivElement>();
 
   return (
     <DxcPaginatorContainer ref={containerRef} width={width}>
@@ -145,7 +139,9 @@ const DxcPaginator = ({
         )}
         {showGoToPage ? (
           <PageToSelectContainer width={width}>
-            {width >= Number(responsiveSizes.small) * 16 && <span>{translatedLabels.paginator.goToPageText}</span>}
+            {!onPageChange && width >= Number(responsiveSizes.small) * 16 && (
+              <span>{translatedLabels.paginator.goToPageText}</span>
+            )}
             <SelectContainer>
               <DxcSelect
                 options={Array.from(Array(totalPages), (e, num) => ({
