@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
@@ -6,12 +6,13 @@ import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
 import useWidth from "../utils/useWidth";
+import { isMobile } from "./utils";
 
 const DxcPaginatorContainer = styled.div<{ width: number }>`
   display: flex;
-  justify-content: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "center" : "flex-end")};
-  flex-wrap: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "wrap" : "nowrap")};
-  gap: ${({ width }) => (width && width <= Number(responsiveSizes.medium) * 16 ? "var(--spacing-gap-s)" : "0")};
+  justify-content: ${({ width }) => (isMobile(width) ? "center" : "flex-end")};
+  flex-wrap: ${({ width }) => (isMobile(width) ? "wrap" : "nowrap")};
+  gap: ${({ width }) => (isMobile(width) ? "var(--spacing-gap-s)" : "0")};
   align-items: center;
   width: 100%;
   min-height: 48px;
@@ -28,8 +29,7 @@ const ItemsPerPageContainer = styled.span<{ width: number }>`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-s);
-  margin-right: ${({ width }) =>
-    width && width <= Number(responsiveSizes.medium) * 16 ? "0" : "var(--spacing-gap-ml)"};
+  margin-right: ${({ width }) => (isMobile(width) ? "0" : "var(--spacing-gap-ml)")};
 `;
 
 const SelectContainer = styled.div`
@@ -37,8 +37,7 @@ const SelectContainer = styled.div`
 `;
 
 const TotalItemsContainer = styled.span<{ width: number }>`
-  margin-right: ${({ width }) =>
-    width && width <= Number(responsiveSizes.medium) * 16 ? "0" : "var(--spacing-gap-xxl)"};
+  margin-right: ${({ width }) => (isMobile(width) ? "0" : "var(--spacing-gap-xxl)")};
 `;
 
 const GoToPageContainer = styled.div`
