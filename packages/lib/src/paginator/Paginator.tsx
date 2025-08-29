@@ -6,13 +6,13 @@ import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
 import useWidth from "../utils/useWidth";
-import { isMobile } from "./utils";
+import { isResponsive } from "./utils";
 
 const DxcPaginatorContainer = styled.div<{ width: number }>`
   display: flex;
-  justify-content: ${({ width }) => (isMobile(width) ? "center" : "flex-end")};
-  flex-wrap: ${({ width }) => (isMobile(width) ? "wrap" : "nowrap")};
-  gap: ${({ width }) => (isMobile(width) ? "var(--spacing-gap-s)" : "0")};
+  justify-content: ${({ width }) => (isResponsive(width) ? "center" : "flex-end")};
+  flex-wrap: ${({ width }) => (isResponsive(width) ? "wrap" : "nowrap")};
+  gap: ${({ width }) => (isResponsive(width) ? "var(--spacing-gap-s)" : "0")};
   align-items: center;
   width: 100%;
   min-height: 48px;
@@ -29,7 +29,7 @@ const ItemsPerPageContainer = styled.span<{ width: number }>`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-s);
-  margin-right: ${({ width }) => (isMobile(width) ? "0" : "var(--spacing-gap-ml)")};
+  margin-right: ${({ width }) => (isResponsive(width) ? "0" : "var(--spacing-gap-ml)")};
 `;
 
 const SelectContainer = styled.div`
@@ -37,7 +37,7 @@ const SelectContainer = styled.div`
 `;
 
 const TotalItemsContainer = styled.span<{ width: number }>`
-  margin-right: ${({ width }) => (isMobile(width) ? "0" : "var(--spacing-gap-xxl)")};
+  margin-right: ${({ width }) => (isResponsive(width) ? "0" : "var(--spacing-gap-xxl)")};
 `;
 
 const GoToPageContainer = styled.div`
