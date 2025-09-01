@@ -147,6 +147,17 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          The size of the navigation tabs adjusts according to the container. On smaller screen resolutions, if the
+          content exceeds the available space, a scroll bar will appear.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <>

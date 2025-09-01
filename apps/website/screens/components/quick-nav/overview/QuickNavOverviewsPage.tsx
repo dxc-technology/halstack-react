@@ -44,6 +44,21 @@ const sections = [
     ),
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          When designing applications that contain a quick nav for smaller screens, make sure to set a minimum width for
+          the main content so that the quick nav does not overwhelm the main content.
+        </DxcParagraph>
+        <DxcParagraph>
+          Also consider hiding this component once a specific breakpoint has been reached to allow users to focus on the
+          primary content.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList>
