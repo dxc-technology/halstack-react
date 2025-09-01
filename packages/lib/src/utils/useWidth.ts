@@ -2,13 +2,15 @@ import { useLayoutEffect, useState } from "react";
 
 /**
  * Custom hook to get the width of an element and keep it updated when it changes.
- * @param target 
- * @returns 
+ * @param target
+ * @returns
  */
-const useWidth = <T extends Element>(target: T | null) => {
+const useWidth = <T extends Element>(ref: React.RefObject<T>) => {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
+    const target = ref?.current;
+
     if (target != null) {
       setWidth(target.getBoundingClientRect().width);
 
@@ -23,7 +25,7 @@ const useWidth = <T extends Element>(target: T | null) => {
         triggerObserver.unobserve(target);
       };
     }
-  }, [target]);
+  }, []);
 
   return width;
 };
