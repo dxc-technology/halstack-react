@@ -9,6 +9,7 @@ const OptionItem = styled.li<{
   visualFocused: OptionProps["visualFocused"];
   selected: OptionProps["isSelected"];
 }>`
+  list-style: none;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
   ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
