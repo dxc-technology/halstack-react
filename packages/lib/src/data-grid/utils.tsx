@@ -1,13 +1,13 @@
 // TODO: Remove eslint disable
 /* eslint-disable no-param-reassign */
 
-import { ReactNode, SetStateAction } from "react";
+import { ReactNode, SetStateAction, useState } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
+import DxcSpinner from "../spinner/Spinner";
 
 /**
  * Converts grid columns into react-data-grid column format.
@@ -129,6 +129,7 @@ export const renderExpandableTrigger = (
  * @param {string} uniqueRowId - Unique identifier for each row.
  * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
  * @param {Function} setRowsToRender - Function to update the rows being rendered.
+ * @param {Function} childrenTrigger - Function called whenever a cell with children is expanded or collapsed. Returns the children array
  * @returns {JSX.Element} Button that toggles visibility of child rows.
  */
 export const renderHierarchyTrigger = (
@@ -136,22 +137,60 @@ export const renderHierarchyTrigger = (
   triggerRow: HierarchyGridRow,
   uniqueRowId: string,
   columnKey: string,
-  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => (
-  <button
-    type="button"
-    disabled={!rows.some((row) => uniqueRowId in row)}
-    onClick={() => {
-      let newRowsToRender = [...rows];
-      if (!triggerRow.visibleChildren) {
-        const rowIndex = rows.findIndex((rowToRender) => triggerRow === rowToRender);
-        triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-          childRow.rowLevel =
-            triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-          childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-          addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
+  childrenTrigger?: (
+    _open: boolean,
+    _selectedRow: HierarchyGridRow
+  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>
+) => {
+  const [loading, setLoading] = useState(false);
+  const onClick = async () => {
+    if (loading) return; // Prevent double clicks while loading
+    if (!triggerRow.visibleChildren) {
+      if (childrenTrigger) {
+        setLoading(true);
+        triggerRow.loadingChildren = true;
+        try {
+          const dynamicChildren = await childrenTrigger(true, triggerRow);
+          triggerRow.childRows = dynamicChildren;
+
+          setRowsToRender((currentRows) => {
+            const newRowsToRender = [...currentRows];
+            // Prevents adding children if the triggerRow has been removed
+            if (newRowsToRender.some((row) => rowKeyGetter(row, uniqueRowId) === triggerRow[uniqueRowId])) {
+              const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+
+              dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+                childRow.rowLevel =
+                  triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+                childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+                addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+              });
+            }
+            return newRowsToRender;
+          });
+        } catch (error) {
+          console.error("Error loading children:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else if (triggerRow.childRows) {
+        setRowsToRender((currentRows) => {
+          const newRowsToRender = [...currentRows];
+          const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+
+          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+            childRow.rowLevel =
+              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+          });
+
+          return newRowsToRender;
         });
-      } else {
+      }
+    } else {
+      setRowsToRender((currentRows) => {
         // The children of the row that is being collapsed are added to an array
         const rowsToRemove: HierarchyGridRow[] = rows.filter(
           (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
@@ -165,7 +204,8 @@ export const renderHierarchyTrigger = (
           rowsToRemove.push(...childRows);
           rowsToCheck.push(...childRows);
         }
-        newRowsToRender = rows.filter(
+
+        const newRowsToRender = currentRows.filter(
           (row) =>
             !rowsToRemove
               .map((rowToRemove) => {
@@ -176,22 +216,31 @@ export const renderHierarchyTrigger = (
               })
               .includes(rowKeyGetter(row, uniqueRowId))
         );
-      }
-      triggerRow.visibleChildren = !triggerRow.visibleChildren;
-      setRowsToRender(newRowsToRender);
-    }}
-  >
-    <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-    <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
-  </button>
-);
+
+        return newRowsToRender;
+      });
+    }
+
+    triggerRow.visibleChildren = !triggerRow.visibleChildren;
+  };
+  return (
+    <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={onClick}>
+      {loading ? (
+        <DxcSpinner mode="small" />
+      ) : (
+        <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
+      )}
+      <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
+    </button>
+  );
+};
 
 /**
  * Renders a checkbox for row selection.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for selecting the row.
  */
@@ -201,33 +250,32 @@ export const renderCheckbox = (
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   onSelectRows: (_selected: Set<string | number>) => void
-) => (
-  <DxcCheckbox
-    checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
-    onChange={(checked) => {
-      const selected = new Set(selectedRows);
-      if (checked) {
-        selected.add(rowKeyGetter(row, uniqueRowId));
-      } else {
-        selected.delete(rowKeyGetter(row, uniqueRowId));
+) => {
+  const checked = selectedRows.has(rowKeyGetter(row, uniqueRowId));
+  // Checks if update is needed when child rows data has completed loading
+  if (row.loadingChildren && row.childRows) {
+    handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows, true);
+    row.loadingChildren = false;
+  }
+  return (
+    <DxcCheckbox
+      checked={checked}
+      onChange={(checked) => {
+        handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows);
+      }}
+      disabled={
+        // row.loadingChildren ||
+        !rows.some((row) => uniqueRowId in row)
       }
-      if (row.childRows && Array.isArray(row.childRows)) {
-        getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-      }
-      if (row.parentKey) {
-        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-      }
-      onSelectRows(selected);
-    }}
-    disabled={!rows.some((row) => uniqueRowId in row)}
-  />
-);
+    />
+  );
+};
 
 /**
  * Renders a header checkbox that controls the selection of all rows.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for the header checkbox.
  */
@@ -454,24 +502,28 @@ export const rowFinderBasedOnId = (
  * Recursively selects or deselects children rows based on the checked state.
  * @param {HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
  * @param {string} uniqueRowId - Key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set of selected rows.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checked - Boolean indicating whether the rows should be selected (true) or deselected (false).
+ * @param {boolean} expandingChildren - Defines children are being expanded or not, used to avoid removing children that were previously set when expanding an unset parent
  */
-export const getChildrenSelection = (
+const getChildrenSelection = (
   rowList: HierarchyGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
-  checked: boolean
+  selectedRows: Set<string | number>,
+  checked: boolean,
+  hierarchyValidation?: boolean
 ) => {
   rowList.forEach((row) => {
     if (row.childRows) {
       // Recursively select/deselect child rows
-      getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked);
+      getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked, hierarchyValidation);
     }
     if (checked) {
       selectedRows.add(rowKeyGetter(row, uniqueRowId));
     } else {
-      selectedRows.delete(rowKeyGetter(row, uniqueRowId));
+      if (!hierarchyValidation) {
+        selectedRows.delete(rowKeyGetter(row, uniqueRowId));
+      }
     }
   });
 };
@@ -482,14 +534,14 @@ export const getChildrenSelection = (
  * @param {ReactNode} uniqueRowKeyValue Unique value of the selected row
  * @param {ReactNode} parentKeyValue Unique value of the parent Row
  * @param {string} uniqueRowId Key where the unique value is located
- * @param {Set<ReactNode>} changedRows
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checkedStateToMatch
  */
-export const getParentSelectedState = (
+const getParentSelectedState = (
   rowList: HierarchyGridRow[],
   parentKeyValue: ReactNode,
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
+  selectedRows: Set<string | number>,
   checkedStateToMatch: boolean
 ) => {
   if (!rowList.some((row) => uniqueRowId in row)) {
@@ -518,6 +570,41 @@ export const getParentSelectedState = (
   if (parentRow.parentKey) {
     getParentSelectedState(rowList, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
   }
+};
+
+/**
+ * Updates the rows when the checkbox state changes
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
+ * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
+ * @param {string} uniqueRowId - Unique identifier for each row.
+ * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
+ * @param {Set<string | number>} selectedRows - Set of selected rows.
+ * @param {boolean} checked - Whether the box has been checked or unchecked
+ * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
+ * @returns {JSX.Element} Button that toggles visibility of child rows.
+ */
+const handleCheckboxUpdate = (
+  rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
+  row: GridRow | HierarchyGridRow | ExpandableGridRow,
+  uniqueRowId: string,
+  selectedRows: Set<string | number>,
+  checked: boolean,
+  onSelectRows?: (_selected: Set<string | number>) => void,
+  hierarchyValidation?: boolean
+) => {
+  const selected = new Set(selectedRows);
+  if (checked) {
+    selected.add(rowKeyGetter(row, uniqueRowId));
+  } else if (!hierarchyValidation) {
+    selected.delete(rowKeyGetter(row, uniqueRowId));
+  }
+  if (row.childRows && Array.isArray(row.childRows)) {
+    getChildrenSelection(row.childRows, uniqueRowId, selected, checked, hierarchyValidation);
+  }
+  if (row.parentKey) {
+    getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+  }
+  onSelectRows?.(selected);
 };
 
 /**

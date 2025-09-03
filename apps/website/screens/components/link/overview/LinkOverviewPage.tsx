@@ -26,10 +26,10 @@ const sections = [
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Icon:</strong> an optional visual element that can be used to represent more graphically the purpose
-            of the link. It can be placed before or after the link it’s representing.
+            of the link. It can be placed before or after the link it's representing.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label:</strong> displays the textual content of the link, conveying where exactly it’s going to
+            <strong>Label:</strong> displays the textual content of the link, conveying where exactly it's going to
             navigate the component.
           </DxcBulletedList.Item>
         </DxcBulletedList>
