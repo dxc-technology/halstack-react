@@ -276,7 +276,7 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Label optional fields clearly:</strong> when the select field is optional, ensure a placeholder option
-          is available to indicate that the field can be left empty. If it’s required, provide an error message when
+          is available to indicate that the field can be left empty. If it's required, provide an error message when
           left unselected.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>

@@ -105,7 +105,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
   (
     {
       mode = "file",
-      label = "",
+      label,
       buttonLabel,
       dropAreaLabel,
       helperText = "",
@@ -119,6 +119,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       value,
       margin,
       tabIndex = 0,
+      optional = false,
     },
     ref
   ): JSX.Element => {
@@ -226,10 +227,12 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
 
     return (
       <FileInputContainer margin={margin} ref={ref}>
-        <Label htmlFor={fileInputId} disabled={disabled}>
-          {label}
-        </Label>
-        <HelperText disabled={disabled}>{helperText}</HelperText>
+        {label && (
+          <Label disabled={disabled} hasMargin={!helperText} htmlFor={fileInputId}>
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
         {mode === "file" ? (
           <FileContainer singleFileMode={!multiple && files.length === 1}>
             <ValueInput
@@ -240,6 +243,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               onChange={selectFiles}
               disabled={disabled}
               readOnly
+              required={!optional}
             />
             <DxcButton
               mode="secondary"
@@ -282,6 +286,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               onChange={selectFiles}
               disabled={disabled}
               readOnly
+              required={!optional}
             />
             <DragDropArea
               isDragging={isDragging}

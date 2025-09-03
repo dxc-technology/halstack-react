@@ -107,7 +107,7 @@ const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 2000;
+  z-index: var(--z-header-menu);
 
   @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
     width: 60vw;
@@ -152,7 +152,7 @@ const Overlay = styled.div<{ hasVisibility: boolean }>`
     ${(props) => !props.hasVisibility && "display: none"};
   }
 
-  z-index: 1600;
+  z-index: var(--z-header-overlay);
 `;
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (

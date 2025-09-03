@@ -134,7 +134,7 @@ const DxcDropdown = ({
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
-  const width = useWidth(triggerRef.current);
+  const width = useWidth(triggerRef);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);

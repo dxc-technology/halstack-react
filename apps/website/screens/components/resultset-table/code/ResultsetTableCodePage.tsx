@@ -111,21 +111,6 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                rows
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, paginator will not be displayed.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>itemsPerPage</td>
             <td>
               <TableCode>number</TableCode>

@@ -34,14 +34,19 @@ const utilitiesLinks: LinkDetails[] = [
 
 const principlesLinks: LinkDetails[] = [
   { label: "Data visualization", path: "/principles/data-visualization" },
-  { label: "Iconography", path: "/principles/iconography" },
-  { label: "Layout", path: "/principles/layout" },
   { label: "Localization", path: "/principles/localization" },
-  { label: "Spacing", path: "/principles/spacing" },
-  { label: "Typography", path: "/principles/typography" },
 ];
 
-const foundationsLinks: LinkDetails[] = [{ label: "Color", path: "/foundations/color" }];
+const foundationsLinks: LinkDetails[] = [
+  { label: "Color", path: "/foundations/color" },
+  { label: "Elevation", path: "/foundations/elevation" },
+  { label: "Height", path: "/foundations/height" },
+  { label: "Iconography", path: "/foundations/iconography" },
+  { label: "Layout", path: "/foundations/layout" },
+  { label: "Spacing", path: "/foundations/spacing" },
+  { label: "Tokens", path: "/foundations/tokens" },
+  { label: "Typography", path: "/foundations/typography" },
+];
 
 const componentsLinks = componentsList as LinkDetails[];
 

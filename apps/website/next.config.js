@@ -13,6 +13,9 @@ module.exports = {
     return config;
   },
   reactStrictMode: true,
+  compiler: {
+    emotion: true,
+  },
   assetPrefix:
     process.env.NODE_ENV === "production"
       ? `/halstack/${process.env.NEXT_PUBLIC_SITE_VERSION?.split(".")[0]}`
@@ -25,6 +28,5 @@ module.exports = {
     "@cloudscape-design/components",
     "@cloudscape-design/component-toolkit",
     "@cloudscape-design/theming-runtime",
-    "react-data-grid",
   ],
 };

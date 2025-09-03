@@ -211,7 +211,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
-    const width = useWidth(selectRef.current);
+    const width = useWidth(selectRef);
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
@@ -601,7 +601,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 event.preventDefault();
               }}
               sideOffset={4}
-              style={{ zIndex: "2147483647" }}
+              style={{ zIndex: "var(--z-dropdown)" }}
             >
               <Listbox
                 ariaLabelledBy={labelId}

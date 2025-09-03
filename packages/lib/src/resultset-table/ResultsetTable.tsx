@@ -16,7 +16,7 @@ const SortingHeader = styled.span<{
   align-items: center;
   gap: var(--spacing-gap-s);
   height: var(--height-s);
-  width: fit-content;
+  width: auto;
 
   ${({ isSortable }) =>
     isSortable
