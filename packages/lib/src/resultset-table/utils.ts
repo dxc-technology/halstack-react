@@ -1,23 +1,23 @@
 import { ReactNode } from "react";
-import { getMargin } from "../common/utils";
-import ResultsetTablePropsType, { Row } from "./types";
+import { Row } from "./types";
 
 export const assignIdsToRows = (resultset: Row[]) =>
   resultset.length > 0
     ? resultset.map((row, index) => ({
-      cells: row,
-      id: `row_${index}`,
-    }))
+        cells: row,
+        id: `row_${index}`,
+      }))
     : [];
-
-export const calculateWidth = (margin: ResultsetTablePropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 export const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
-export const getMaxItemsPerPageIndex = (minItemsPerPageIndex: number, itemsPerPage: number, resultset: Row[], page: number) =>
-  minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
+export const getMaxItemsPerPageIndex = (
+  minItemsPerPageIndex: number,
+  itemsPerPage: number,
+  resultset: Row[],
+  page: number
+) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
 export const isDateType = (value: ReactNode | Date): boolean => value instanceof Date;
 
