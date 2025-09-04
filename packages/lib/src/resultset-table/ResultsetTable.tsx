@@ -112,7 +112,7 @@ const DxcResultsetTable = ({
               role={column.isSortable ? "button" : undefined}
               tabIndex={column.isSortable ? tabIndex : -1}
             >
-              <span>{column.displayValue}</span>
+              {column.displayValue}
               {column.isSortable && <DxcIcon icon={getSortIcon(isSortedColumn, sortOrder)} />}
             </SortingHeader>
           </th>
