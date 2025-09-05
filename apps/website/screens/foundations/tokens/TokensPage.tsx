@@ -33,14 +33,6 @@ const sections = [
     title: "From 2-layer to 3-layer token architecture",
     content: (
       <>
-        <DxcAlert
-          title="Work in Progress"
-          semantic="warning"
-          message={{
-            text: "The Component layer is still under development. While Core and Alias tokens are already available and in use, the Component tokens will be progressively defined and documented over the coming months.",
-          }}
-          closable={false}
-        />
         <DxcParagraph>
           When Halstack was first established, its token structure followed a two-tier model:{" "}
           <strong>primitive tokens</strong> (the raw foundational values) and <strong>component tokens</strong> (styles
@@ -193,6 +185,21 @@ const sections = [
         title: "Component",
         content: (
           <>
+            <DxcAlert
+              title="Work in Progress"
+              semantic="warning"
+              message={{
+                text: (
+                  <DxcParagraph>
+                    The Component layer is still under development. While <strong>Core</strong> and{" "}
+                    <strong>Alias</strong> tokens are already available and in use, the{" "}
+                    <strong>Component tokens</strong> will be progressively defined and documented over the coming
+                    months.
+                  </DxcParagraph>
+                ),
+              }}
+              closable={false}
+            />
             <DxcParagraph>
               <strong>Component tokens</strong> define the styling for each component in Halstack, referencing{" "}
               <strong>Alias tokens</strong> rather than hardcoded values.
@@ -235,9 +242,11 @@ const sections = [
           By aligning this strategy with our <strong>token architecture</strong>:
           <DxcBulletedList>
             <DxcBulletedList.Item>
+              {/* TODO: ADD LINK FOR OPINIONATED THEME */}
               With the <strong>Core layer</strong>, we can already enable <strong>opinionated theming</strong>, exposing
               tokens like colors, spacing, or typography in a way that is safe and predictable.
             </DxcBulletedList.Item>
+            {/* TODO: ADD LINK FOR ADVANCED THEME */}
             <DxcBulletedList.Item>
               To unlock <strong>Advanced theming</strong>, we will rely on the upcoming <strong>Component layer</strong>
               , which will allow deeper overrides at the component-token level. This work is still in progress and will
@@ -260,7 +269,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Design tokens in Halstack are created in{" "}
+          Design tokens in Halstack are created in {/* TODO: ADD CORRECT LINK */}
           <Link href="" passHref legacyBehavior>
             <DxcLink>Figma</DxcLink>
           </Link>
@@ -277,6 +286,7 @@ const sections = [
             <DxcParagraph>
               In Halstack, tokens are <strong>defined and maintained as Variables in Figma</strong>. These variables
               represent values like colors, spacing, typography, and more, and are applied directly in the design of{" "}
+              {/* TODO: ADD CORRECT LINK */}
               <Link href="" passHref legacyBehavior>
                 <DxcLink>components</DxcLink>
               </Link>{" "}
@@ -289,7 +299,11 @@ const sections = [
         title: "Tokens in Development",
         content: (
           <>
-            <DxcParagraph>Work in Progress.</DxcParagraph>
+            <DxcParagraph>
+              Once validated in Figma, tokens can be exported as structured JSON files, which makes them consumable by
+              development teams.
+            </DxcParagraph>
+            <DxcAlert title="Work in Progress" semantic="warning" closable={false} />
           </>
         ),
       },
