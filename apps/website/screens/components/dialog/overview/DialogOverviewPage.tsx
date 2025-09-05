@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Dialog's anatomy" />
+        <Image src={anatomy} alt="Dialog anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Title:</strong> displays the main heading of the dialog, providing users with a clear and immediate
@@ -35,7 +35,7 @@ const sections = [
             alignment, spacing, and responsiveness.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Close action:</strong> an optional button, usually represented by an “X” icon, allowing users to
+            <strong>Close action:</strong> an optional button, usually represented by an "X" icon, allowing users to
             dismiss the dialog without completing an action.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

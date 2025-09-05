@@ -26,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Chip's anatomy" />
+        <Image src={anatomy} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Prefix</strong> <em>(Optional)</em>: the prefix can be an icon or an action icon that provides
@@ -179,7 +179,7 @@ const sections = [
                 should complement each other to enhance usability.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong>—avoid using
+                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid using
                 two icons of the same type.
               </DxcBulletedList.Item>
             </DxcBulletedList>

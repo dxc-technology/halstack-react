@@ -36,7 +36,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Image's anatomy" />
+        <Image src={anatomy} alt="Image anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Image:</strong> a visual element used to illustrate content, provide context, or support

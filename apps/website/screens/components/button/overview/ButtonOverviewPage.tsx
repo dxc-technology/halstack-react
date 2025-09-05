@@ -36,7 +36,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Button's anatomy" />
+        <Image src={anatomy} alt="Button anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the interactive/clickable area of the button.
@@ -159,7 +159,7 @@ const sections = [
               </td>
               <td>
                 Neutral action with no specific context. Typically used for general actions. Shown in the brand's
-                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.”.
+                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.".
               </td>
             </tr>
             <tr>
@@ -170,7 +170,7 @@ const sections = [
               </td>
               <td>
                 Indicates a destructive action or highlights a critical issue. Styled in red. Use for actions like
-                "Delete", "Remove" or "Cancel Subscription.”.
+                "Delete", "Remove" or "Cancel Subscription.".
               </td>
             </tr>
             <tr>
@@ -181,7 +181,7 @@ const sections = [
               </td>
               <td>
                 Provides additional information or context. Shown in blue, the brand's secondary color. Use for actions
-                like "More Info", "Details" or "Learn More.”.
+                like "More Info", "Details" or "Learn More.".
               </td>
             </tr>
             <tr>
@@ -192,7 +192,7 @@ const sections = [
               </td>
               <td>
                 Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
-                "Confirm", "Complete" or "Approve.”.
+                "Confirm", "Complete" or "Approve.".
               </td>
             </tr>
             <tr>
@@ -203,7 +203,7 @@ const sections = [
               </td>
               <td>
                 Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
-                "Warning" or "Attention Needed.”.
+                "Warning" or "Attention Needed.".
               </td>
             </tr>
           </tbody>
@@ -357,7 +357,7 @@ const sections = [
               avoid confusion. For example, always use "Submit" for form submissions.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Sentence case:</strong> Use sentence-style capitalization—only capitalize the first word. This
+              <strong>Sentence case:</strong> Use sentence-style capitalization — only capitalize the first word. This
               improves readability and looks more approachable.
             </DxcBulletedList.Item>
           </DxcBulletedList>

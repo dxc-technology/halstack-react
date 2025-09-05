@@ -26,8 +26,8 @@ const sections = [
       <>
         <DxcParagraph>
           Halstack's Alert component is designed to provide clear and accessible feedback to users, ensuring important
-          messages stand out within an interface. It supports different variants—info, success, warning, and
-          error—allowing teams to communicate various levels of urgency effectively. With options for dismissibility and
+          messages stand out within an interface. It supports different variants — info, success, warning, and
+          error — allowing teams to communicate various levels of urgency effectively. With options for dismissibility and
           customizable content, it adapts to different use cases while maintaining consistency. Its structured design
           enhances readability and ensures a non-intrusive yet noticeable presence.
         </DxcParagraph>
@@ -38,7 +38,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Alert's anatomy" />
+        <Image src={anatomy} alt="Alert anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all elements of the alert, defining its size,

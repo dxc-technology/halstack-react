@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Breadcrumbs's anatomy" />
+        <Image src={anatomy} alt="Breadcrumbs anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Unvisited item:</strong> these are links that represent the navigational path taken by the user but
@@ -93,7 +93,7 @@ const sections = [
           common UI patterns and user expectations.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Avoid using breadcrumbs as a replacement for primary navigation—they are meant to complement it, not replace
+          Avoid using breadcrumbs as a replacement for primary navigation — they are meant to complement it, not replace
           menus or sidebars.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>

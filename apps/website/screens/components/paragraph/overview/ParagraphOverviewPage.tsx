@@ -39,7 +39,7 @@ const sections = [
           Use Paragraphs to group related sentences and divide longer content into manageable, readable chunks.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Avoid using Paragraph as a layout or structural element—it is intended strictly for text content.
+          Avoid using Paragraph as a layout or structural element — it is intended strictly for text content.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),

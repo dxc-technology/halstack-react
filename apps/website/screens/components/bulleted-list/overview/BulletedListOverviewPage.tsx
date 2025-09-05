@@ -30,7 +30,7 @@ const sections = [
           message={{
             text: (
               <DxcParagraph>
-                Disclaimer - This component is not a 1-to-1 replacement of the <Code>ul</Code> <Code>ol</Code> native
+                Disclaimer — This component is not a 1-to-1 replacement of the <Code>ul</Code> <Code>ol</Code> native
                 tags. These native tags have many different use-cases and the Bulleted List only covers one of them:
                 listing text items within a document.
               </DxcParagraph>
@@ -45,7 +45,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Bulleted list's anatomy" />
+        <Image src={anatomy} alt="Bulleted list anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Bullet point:</strong> a small visual marker placed before each list item. It provides visual

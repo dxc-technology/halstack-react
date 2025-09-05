@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Header's anatomy" />
+        <Image src={anatomy} alt="Header anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> a layout structure that wraps all Header elements, ensuring consistent
@@ -89,8 +89,8 @@ const sections = [
           across all platforms.
         </DxcParagraph>
         <DxcParagraph>
-          “On smaller screens, the header content is replaced by a button. Triggering this button opens a menu that
-          displays custom content.”
+          "On smaller screens, the header content is replaced by a button. Triggering this button opens a menu that
+          displays custom content."
         </DxcParagraph>
       </>
     ),

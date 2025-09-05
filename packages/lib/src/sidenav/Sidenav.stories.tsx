@@ -1,7 +1,6 @@
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";
 import DxcSidenav from "./Sidenav";
@@ -108,41 +107,6 @@ const SideNav = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
       </DxcSidenav>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSidenav title={<TitleComponent />}>
-          <DxcSidenav.Section>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
-              vitae lacinia libero.
-            </p>
-          </DxcSidenav.Section>
-          <DxcSidenav.Section>
-            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-            <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            </DxcSidenav.Group>
-          </DxcSidenav.Section>
-          <DxcSidenav.Section>
-            <DxcSidenav.Group collapsable={true} title="Section Group" icon={iconSVG}>
-              <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
-            </DxcSidenav.Group>
-            <DxcSidenav.Link icon={iconSVG}>Single Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-            <DxcSidenav.Group collapsable={false} title="Section Group">
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            </DxcSidenav.Group>
-          </DxcSidenav.Section>
-        </DxcSidenav>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );

@@ -87,7 +87,7 @@ export default function HalstackProviderPage() {
           <DxcHeading level={1} text="Halstack Provider" />
           <DxcParagraph>
             Halstack Provider is the context provider used for a whole application or an isolated group of components,
-            which defines the custom theme and/or translation labels.
+            which defines the translation labels.
           </DxcParagraph>
         </DxcFlex>
       </PageHeading>

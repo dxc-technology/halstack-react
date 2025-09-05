@@ -27,7 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Datagrid's anatomy" />
+        <Image src={anatomy} alt="Datagrid anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header row:</strong> it's the top section of the datagrid that displays the column titles and can
@@ -310,7 +310,7 @@ const DataGridOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/data-grid/overview/DataGridOverviewPage.tsx" />
     </DxcFlex>

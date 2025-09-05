@@ -27,7 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Select's anatomy" />
+        <Image src={anatomy} alt="Select anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Selection indicator (multiple):</strong> a visual marker, typically a checkmark, that shows which

@@ -80,7 +80,7 @@ const TextInput = () => (
       <DxcTextInput disabled placeholder="Name" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled - Complete example" theme="light" level={4} />
+      <Title title="Disabled — Complete example" theme="light" level={4} />
       <DxcTextInput
         label="Disabled"
         helperText="Help text"

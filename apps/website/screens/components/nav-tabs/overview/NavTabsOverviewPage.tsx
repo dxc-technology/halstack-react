@@ -73,7 +73,7 @@ const sections = [
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Use the <strong>top position</strong> when the tabs are displayed in a horizontal layout and you want to
-                emphasize the icon as a key visual cue—ideal for dashboards or mobile-first interfaces where vertical
+                emphasize the icon as a key visual cue — ideal for dashboards or mobile-first interfaces where vertical
                 stacking feels more natural.
                 <Example example={icons_top} defaultIsVisible={false} />
               </DxcBulletedList.Item>
@@ -99,7 +99,7 @@ const sections = [
               content updates related to that tab. These badges are typically displayed as small counters and serve as a
               visual prompt to <strong>draw the user's attention</strong> to something that requires their interaction
               or awareness. Use notification badges sparingly and only when there is a clear need to highlight important
-              changes—such as unread messages, pending actions or system alerts—to avoid visual noise and ensure they
+              changes — such as unread messages, pending actions or system alerts — to avoid visual noise and ensure they
               retain their impact.
             </DxcParagraph>
             <Example example={badges} defaultIsVisible={false} />
@@ -171,7 +171,7 @@ const sections = [
             especially on smaller viewports.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Ensure that tabs <strong>follow a logical order</strong>—based on frequency of use, workflow, or user
+            Ensure that tabs <strong>follow a logical order</strong> — based on frequency of use, workflow, or user
             priority.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

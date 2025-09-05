@@ -147,14 +147,14 @@ const sections = [
           <DxcBulletedList>
             <DxcBulletedList.Item>
               <DxcLink newWindow href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships">
-                SC 1.3.1 - Info and relationships:
+                SC 1.3.1 — Info and relationships:
               </DxcLink>{" "}
               Information, structure, and relationships conveyed through presentation can be programmatically determined
               or are available in text.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               <DxcLink newWindow href="https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html">
-                SC 2.4.6 - Headings and Labels:
+                SC 2.4.6 — Headings and Labels:
               </DxcLink>{" "}
               Headings and labels describe the topic or purpose.
             </DxcBulletedList.Item>

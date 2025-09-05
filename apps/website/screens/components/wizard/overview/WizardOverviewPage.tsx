@@ -29,7 +29,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Wizard's anatomy" />
+        <Image src={anatomy} alt="Wizard anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Step:</strong> represents an individual stage in the wizard navigation. Each step corresponds to a

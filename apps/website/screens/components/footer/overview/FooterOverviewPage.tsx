@@ -22,7 +22,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Footer's anatomy" />
+        <Image src={anatomy} alt="Footer anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> The outer wrapper that defines the overall layout, padding, and alignment of all

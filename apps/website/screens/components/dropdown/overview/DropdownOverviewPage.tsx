@@ -25,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Dropdown's anatomy" />
+        <Image src={anatomy} alt="Dropdown anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Dropdown:</strong> the main container that triggers the list of options when clicked, allowing users
@@ -94,7 +94,7 @@ const sections = [
               consistency with other components in our Design System, such as buttons and selects, which follow the same
               behavior.
             </DxcParagraph>
-            <Example example={iconUsage}></Example>
+            <Example example={iconUsage} />
           </>
         ),
       },
@@ -106,10 +106,10 @@ const sections = [
       <DxcBulletedList>
         <DxcBulletedList.Item>
           <strong>User clear and concise labels:</strong> ensure dropdown labels are descriptive and easily understood,
-          helping users quickly grasp their choices. Avoid vague terms like "Select an option.”
+          helping users quickly grasp their choices. Avoid vague terms like "Select an option."
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Prioritize logical ordering:</strong> arrange options in a meaningful order—alphabetically for lists,
+          <strong>Prioritize logical ordering:</strong> arrange options in a meaningful order — alphabetically for lists,
           by frequency of use for common selections, or categorically when grouping similar items.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>

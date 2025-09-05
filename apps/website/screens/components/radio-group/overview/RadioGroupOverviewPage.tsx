@@ -26,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Radio group's anatomy" />
+        <Image src={anatomy} alt="Radio group anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: the main heading for the radio group. It clearly communicates

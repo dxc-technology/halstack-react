@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Divider's anatomy" />
+        <Image src={anatomy} alt="Divider anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Divider:</strong> a thin, horizontal or vertical rule that visually separates content sections.

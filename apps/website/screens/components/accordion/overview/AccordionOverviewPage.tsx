@@ -25,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Accordion's anatomy" />
+        <Image src={anatomy} alt="Accordion anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header:</strong> serves as the trigger for expanding or collapsing the section. It acts as a summary
@@ -224,7 +224,7 @@ const sections = [
               Each accordion header must include a clear, concise title that describes the content inside.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Use a sublabel only when additional context is necessary —it should not overpower the title.
+              Use a sublabel only when additional context is necessary — it should not overpower the title.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Avoid hiding essential or primary information inside an accordion panel.

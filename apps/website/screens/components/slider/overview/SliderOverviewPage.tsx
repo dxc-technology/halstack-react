@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Slider's anatomy" />
+        <Image src={anatomy} alt="Slider anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label:</strong> describes the purpose of the slider (e.g., "Select coverage amount").

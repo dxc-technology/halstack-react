@@ -275,7 +275,7 @@ const Scroll = () => (
       {tabs()}
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived tabs" theme="light" level={4} />
+      <Title title="Active tabs" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
   </>

@@ -22,7 +22,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Card's anatomy" />
+        <Image src={anatomy} alt="Card anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the main structural wrapper that ensures padding, spacing, and alignment across
@@ -66,7 +66,7 @@ const sections = [
             <strong>Image placement:</strong> cards support placing the image either on the left or the right side of
             the layout. The image should maintain a fixed ratio and size for visual harmony. By default, the component
             provides layout options where the image can appear on the left or right side of the content. However,
-            alternative layouts —such as vertical image placements — can be achieved by placing the image directly
+            alternative layouts — such as vertical image placements — can be achieved by placing the image directly
             within the custom content area. This allows for more flexibility while still adhering to spacing and
             alignment guidelines.
           </DxcBulletedList.Item>

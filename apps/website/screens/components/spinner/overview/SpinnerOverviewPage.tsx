@@ -26,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Spinner's anatomy" />
+        <Image src={anatomy} alt="Spinner anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label:</strong> provides a textual description of the loading process, enhancing accessibility and

@@ -22,7 +22,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={linkAnatomy} alt="Link's anatomy" />
+        <Image src={linkAnatomy} alt="Link anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Icon:</strong> an optional visual element that can be used to represent more graphically the purpose

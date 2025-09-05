@@ -23,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Progress bar's anatomy" />
+        <Image src={anatomy} alt="Progress bar anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: text element that describes the purpose or context of the

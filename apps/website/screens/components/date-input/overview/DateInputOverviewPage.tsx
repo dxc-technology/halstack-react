@@ -25,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Date input's anatomy" />
+        <Image src={anatomy} alt="Date input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
@@ -223,7 +223,7 @@ const sections = [
               Provide clear feedback if the user types an invalid date manually.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Avoid using text inputs with custom formatting masks in place of the date input component—this can confuse
+              Avoid using text inputs with custom formatting masks in place of the date input component — this can confuse
               users and complicate validation.
             </DxcBulletedList.Item>
           </DxcBulletedList>

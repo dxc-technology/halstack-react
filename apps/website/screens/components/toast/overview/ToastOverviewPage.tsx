@@ -28,7 +28,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Toast's anatomy" />
+        <Image src={anatomy} alt="Toast anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all elements of the toast, defining its size,
@@ -173,7 +173,7 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Displays general information or updates. (i.e. New message received. Check inbox. - New update
+                Displays general information or updates. (i.e. New message received. Check inbox. New update
                 available. Download now.)
               </td>
             </tr>
@@ -184,7 +184,7 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Indicates successful completion of an action. (i.e. Operation successful. Changes saved. - Profile
+                Indicates successful completion of an action. (i.e. Operation successful. Changes saved.Profile
                 updated successfully.)
               </td>
             </tr>

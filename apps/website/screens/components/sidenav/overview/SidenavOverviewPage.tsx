@@ -25,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Sidenav's anatomy" />
+        <Image src={anatomy} alt="Sidenav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Title:</strong> the main label displayed at the top of the sidenav, typically used to indicate the

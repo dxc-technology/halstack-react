@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Table's anatomy" />
+        <Image src={anatomy} alt="Table anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header row:</strong> defines the label for each column and helps users understand the structure and

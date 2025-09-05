@@ -23,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Tooltip's anatomy" />
+        <Image src={anatomy} alt="Tooltip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> it's the structure that holds the component's content. It appears near the

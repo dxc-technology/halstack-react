@@ -169,7 +169,7 @@ const sections = [
           <strong>Keep tab labels short & clear:</strong> use concise, descriptive labels (1-2 words) that clearly
           indicate the content. Avoid using generic or ambiguous labels like "Info" or "More." Instead, choose specific
           terms that reflect the content, such as "Account Details" for user-related settings or "Billing" for payment
-          information and prioritize readability—avoid using all caps unless necessary.
+          information and prioritize readability — avoid using all caps unless necessary.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Managing the number of tabs effectively:</strong> while not a strict rule, keeping the number of tabs

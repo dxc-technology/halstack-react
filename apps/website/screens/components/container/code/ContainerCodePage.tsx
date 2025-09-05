@@ -2,7 +2,6 @@ import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halsta
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusBadge from "@/common/StatusBadge";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";

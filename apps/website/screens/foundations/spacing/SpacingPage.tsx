@@ -19,7 +19,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           We use a <strong>scale-based spacing system</strong> derived from a base unit of <Code>4px</Code>. All
-          spacing—margins, padding, and element gaps—is applied using these defined increments. This promotes
+          spacing — margins, padding, and element gaps — is applied using these defined increments. This promotes
           consistency across UI layouts and helps ensure design and code stay aligned.
         </DxcParagraph>
         <DxcParagraph>
@@ -184,7 +184,7 @@ const sections = [
     content: (
       <DxcParagraph>
         Our spacing system is built around tokens that represent consistent pixel values. We can group these into small,
-        medium, and large ranges to guide their application in different UI contexts—from tight, compact interfaces to
+        medium, and large ranges to guide their application in different UI contexts — from tight, compact interfaces to
         broad layout structures.
       </DxcParagraph>
     ),
@@ -275,7 +275,7 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Fluid spacing</strong> works better in smaller screens, letting elements move around as needed. For
             example, a form might switch from two columns to one, or components might wrap to the next line, creating a
-            more vertical, flowing layout.”
+            more vertical, flowing layout."
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>

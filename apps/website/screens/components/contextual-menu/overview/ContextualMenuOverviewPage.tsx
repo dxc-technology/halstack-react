@@ -22,7 +22,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Contextual menu's anatomy" />
+        <Image src={anatomy} alt="Contextual menu anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Section title:</strong> a label that groups related menu items within a contextual menu, enhancing

@@ -27,7 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Checkbox's anatomy" />
+        <Image src={anatomy} alt="Checkbox anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Checkbox input:</strong> the interactive element that allows users to toggle between checked,

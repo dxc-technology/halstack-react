@@ -26,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Status light's anatomy" />
+        <Image src={anatomy} alt="Status light anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Status light:</strong> the core visual element of a status light, designed as a dot for clarity and

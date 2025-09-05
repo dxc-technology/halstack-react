@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="ResultsetTable's anatomy" />
+        <Image src={anatomy} alt="ResultsetTable anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header row:</strong> displays the column titles and defines the data categories for the table. It
