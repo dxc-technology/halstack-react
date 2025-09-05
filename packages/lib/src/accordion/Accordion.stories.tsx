@@ -68,7 +68,7 @@ const Accordion = () => (
     <ExampleContainer>
       <Title title="Label and assistive text" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546">
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref — 1236554546">
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -79,7 +79,7 @@ const Accordion = () => (
     <ExampleContainer>
       <Title title="Label, subLabel and assistive text" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref — 1236554546">
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -115,7 +115,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
-          assistiveText="Ref - 1236554546"
+          assistiveText="Ref — 1236554546"
           icon="heart_plus"
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -131,7 +131,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
-          assistiveText="Ref - 1236554546"
+          assistiveText="Ref — 1236554546"
           badge={{ position: "before", element: <DxcBadge label="Enterprise" icon="home" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -191,7 +191,7 @@ const Accordion = () => (
     <ExampleContainer>
       <Title title="Smaller icon" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={smallIcon}>
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref — 1236554546" icon={smallIcon}>
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -202,7 +202,7 @@ const Accordion = () => (
     <ExampleContainer>
       <Title title="Bigger icon (SVG)" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={facebookIcon}>
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref — 1236554546" icon={facebookIcon}>
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -365,7 +365,7 @@ const Accordion = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref — 1236554546">
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -376,7 +376,7 @@ const Accordion = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref — 1236554546">
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -387,7 +387,7 @@ const Accordion = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
       <DxcAccordion>
-        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref — 1236554546">
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -401,7 +401,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Assure Claims"
           subLabel="Jan, 09 2025"
-          assistiveText="Ref - 1236554546"
+          assistiveText="Ref — 1236554546"
           icon="heart_plus"
           disabled
         >

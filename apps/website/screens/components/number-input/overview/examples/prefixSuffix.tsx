@@ -5,7 +5,7 @@ const code = `() => {
       <DxcInset space="2rem">
         <DxcFlex direction="column" gap="2rem" alignItems="center">
           <DxcNumberInput label="Introduce a quantity" prefix="USD" />
-          <DxcNumberInput label="Introduce a quantity" suffix="EUR"/>
+          <DxcNumberInput label="Introduce a quantity" suffix="EUR" />
         </DxcFlex>
       </DxcInset>
     );

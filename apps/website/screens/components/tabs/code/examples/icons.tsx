@@ -23,7 +23,7 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcTabs>
-        <DxcTabs.Tab tabId="Mobile" icon={mobileIcon} notificationNumber={true}>
+        <DxcTabs.Tab tabId="Mobile" icon={mobileIcon} notificationNumber>
           <></>
         </DxcTabs.Tab>
         <DxcTabs.Tab tabId="Ethernet" icon="settings_ethernet" notificationNumber={2} disabled>

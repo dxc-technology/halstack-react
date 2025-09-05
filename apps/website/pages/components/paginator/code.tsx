@@ -6,7 +6,7 @@ import PaginatorCodePage from "screens/components/paginator/code/PaginatorCodePa
 const Code = () => (
   <>
     <Head>
-      <title>Paginator Code — Halstack Design System</title>
+      <title>Paginator code — Halstack Design System</title>
     </Head>
     <PaginatorCodePage />
   </>

@@ -18,7 +18,7 @@ const code = `() => {
         onChange={onChange}
         minValue={0}
         maxValue={100}
-        showLimitsValues={true}
+        showLimitsValues
         labelFormatCallback={labelFormat}
       />
     </DxcInset>

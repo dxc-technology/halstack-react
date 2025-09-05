@@ -167,7 +167,7 @@ const CircleSpinner = styled.circle<{
 const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   position: absolute;
   display: grid;
-  gap: var(--spacing-gap-none, 0px);
+  gap: var(--spacing-gap-none);
   place-items: center;
   width: 116px;
   color: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};

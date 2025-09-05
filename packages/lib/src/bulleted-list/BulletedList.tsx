@@ -4,7 +4,6 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 
 const ListContainer = styled.div`
   ul,

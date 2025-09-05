@@ -50,7 +50,7 @@ const code = `() => {
           <DxcAccordion.AccordionItem
             badge={{ position: "after", element: <DxcBadge label="Enterprise" icon="filled_stars" color="yellow" /> }}
             label="Life Policy"
-            subLabel="Ref - 1236554546"
+            subLabel="Ref — 1236554546"
           >
             <DxcInset space="var(--spacing-padding-l)">
               Details
@@ -62,7 +62,7 @@ const code = `() => {
             badge={{ position: "before", element: <DxcBadge label="Enterprise" icon="filled_stars" /> }}
             label="Life Policy"
             statusLight={<DxcStatusLight label="Active" mode="success" />}
-            subLabel="Ref - 1236554546"
+            subLabel="Ref — 1236554546"
           >
             <DxcInset space="var(--spacing-padding-l)">
               Details

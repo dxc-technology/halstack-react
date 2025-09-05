@@ -15,7 +15,7 @@ import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";

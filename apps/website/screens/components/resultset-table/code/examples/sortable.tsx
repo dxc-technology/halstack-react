@@ -37,7 +37,7 @@ const code = `() => {
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcResultsetTable columns={columns} rows={rows}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} />
     </DxcInset>
   );
 }`;

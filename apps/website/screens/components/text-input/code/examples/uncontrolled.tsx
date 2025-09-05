@@ -17,7 +17,7 @@ const code = `() => {
           defaultValue="Harris"
           ref={inputRef}
         />
-        <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
+        <DxcButton label="Submit" onClick={handleSubmit} />
       </DxcFlex>
     </DxcInset>
   );

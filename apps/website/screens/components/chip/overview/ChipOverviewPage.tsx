@@ -1,5 +1,4 @@
 import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/chip-anatomy.png";
@@ -26,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Chip's anatomy" />
+        <Image src={anatomy} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Prefix</strong> <em>(Optional)</em>: the prefix can be an icon or an action icon that provides
@@ -179,7 +178,7 @@ const sections = [
                 should complement each other to enhance usability.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong>—avoid using
+                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid using
                 two icons of the same type.
               </DxcBulletedList.Item>
             </DxcBulletedList>
@@ -205,9 +204,7 @@ const sections = [
 
 const ChipOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/chip/overview/ChipOverviewPage.tsx" />
   </DxcFlex>
 );

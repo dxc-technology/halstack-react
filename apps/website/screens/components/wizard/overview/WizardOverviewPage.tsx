@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import description from "./examples/description";
@@ -29,7 +28,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Wizard's anatomy" />
+        <Image src={anatomy} alt="Wizard anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Step:</strong> represents an individual stage in the wizard navigation. Each step corresponds to a
@@ -188,9 +187,7 @@ const sections = [
 
 const WizardOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/overview/WizardOverviewPage.tsx" />
   </DxcFlex>
 );

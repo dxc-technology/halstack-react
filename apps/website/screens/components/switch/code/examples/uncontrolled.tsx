@@ -14,7 +14,7 @@ const code = `() => {
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcSwitch
           label="Bluetooth"
-          defaultChecked={true}
+          defaultChecked
           ref={switchRef}
           value="Bluetooth"
         />

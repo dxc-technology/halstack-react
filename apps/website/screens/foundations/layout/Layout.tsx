@@ -3,7 +3,6 @@ import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import layoutStructure from "./images/layoutStructure.png";
 import anatomyColumns from "./images/anatomyColumns.jpg";
@@ -406,18 +405,16 @@ const sections = [
   },
 ];
 
-export default function LayoutPage() {
-  return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Layout" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/layout/LayoutPage.tsx" />
-    </DxcFlex>
-  );
-}
+const LayoutPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Layout" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/layout/LayoutPage.tsx" />
+  </DxcFlex>
+);
+
+export default LayoutPage;

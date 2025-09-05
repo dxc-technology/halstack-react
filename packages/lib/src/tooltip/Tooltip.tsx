@@ -112,7 +112,7 @@ export const Tooltip = ({
   const hasTooltip = useContext(TooltipContext);
 
   return (
-    <TooltipContext.Provider value={true}>
+    <TooltipContext.Provider value>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
           <Root>

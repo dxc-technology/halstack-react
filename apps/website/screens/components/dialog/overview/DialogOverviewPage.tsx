@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
@@ -24,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Dialog's anatomy" />
+        <Image src={anatomy} alt="Dialog anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Title:</strong> displays the main heading of the dialog, providing users with a clear and immediate
@@ -35,7 +34,7 @@ const sections = [
             alignment, spacing, and responsiveness.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Close action:</strong> an optional button, usually represented by an “X” icon, allowing users to
+            <strong>Close action:</strong> an optional button, usually represented by an "X" icon, allowing users to
             dismiss the dialog without completing an action.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -141,9 +140,7 @@ const sections = [
 
 const DialogOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dialog/overview/DialogOverviewPage.tsx" />
   </DxcFlex>
 );

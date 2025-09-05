@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/sidenav_anatomy.png";
@@ -25,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Sidenav's anatomy" />
+        <Image src={anatomy} alt="Sidenav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Title:</strong> the main label displayed at the top of the sidenav, typically used to indicate the
@@ -186,9 +185,7 @@ const sections = [
 const SidenavOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/sidenav/overview/SidenavOverviewPage.tsx" />
     </DxcFlex>
   );

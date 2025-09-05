@@ -20,7 +20,7 @@ const pathVersion =
       ? 0
       : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION.split(".")[0]!, 10);
 
-export default function MainContent({ children }: { children: ReactNode }) {
+const MainContent = ({ children }: { children: ReactNode }) => {
   const toast = useToast();
   const [latestRelease, setLatestRelease] = useState<number | null>(null);
 
@@ -56,4 +56,6 @@ export default function MainContent({ children }: { children: ReactNode }) {
   }, [latestRelease, toast]);
 
   return <MainContainer>{children}</MainContainer>;
-}
+};
+
+export default MainContent;

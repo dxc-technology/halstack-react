@@ -4,7 +4,6 @@ import building from "./examples/building";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import CodeBlock from "@/common/CodeBlock";
 import Code from "@/common/Code";
 
@@ -96,18 +95,16 @@ const sections = [
   },
 ];
 
-export default function InstallationPage() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Installation" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
-    </DxcFlex>
-  );
-}
+const InstallationPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Installation" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
+  </DxcFlex>
+);
+
+export default InstallationPage;

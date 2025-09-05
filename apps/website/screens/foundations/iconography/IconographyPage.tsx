@@ -2,7 +2,6 @@ import { DxcHeading, DxcParagraph, DxcFlex, DxcBulletedList, DxcGrid, DxcLink } 
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import iconsHalstack from "./images/icons_halstack.jpg";
@@ -296,7 +295,7 @@ const sections = [
               In the first figure, we can see how the custom icon is{" "}
               <strong>colorful, highly detailed and visually complex</strong>. This doesn't match the{" "}
               <strong>monochromatic, simplified geometry</strong> of the Material Icons, as you can see on the same
-              example. Therefore, this custom icon introduces a visual “noise” that could potentially break the
+              example. Therefore, this custom icon introduces a visual "noise" that could potentially break the
               consistency of the interface. While it may be visually appealing on its own, this custom icon feels out of
               place when using it alongside the rest of the system, and <strong>should always be avoided</strong>.
             </DxcParagraph>
@@ -422,7 +421,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Using icons in our components is simple—just set the relevant prop to a Material Symbol name. To display the
+          Using icons in our components is simple — just set the relevant prop to a Material Symbol name. To display the
           filled version, prefix the icon name with <Code>filled_</Code>.
         </DxcParagraph>
         <DxcParagraph>
@@ -478,13 +477,13 @@ const sections = [
             <DxcParagraph>Halstack commonly uses icons at these sizes:</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
-                <strong>16x16 px</strong> - for compact UI elements (e.g., small buttons, tags)
+                <strong>16x16 px</strong> — for compact UI elements (e.g., small buttons, tags)
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>20x20 px</strong> - for medium-sized interactions
+                <strong>20x20 px</strong> — for medium-sized interactions
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>24x24 px</strong> - default size, used in most components
+                <strong>24x24 px</strong> — default size, used in most components
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
@@ -561,18 +560,16 @@ const sections = [
   },
 ];
 
-export default function IconographyPage() {
-  return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Iconography" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/iconography/IconographyPage.tsx" />
-    </DxcFlex>
-  );
-}
+const IconographyPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Iconography" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/iconography/IconographyPage.tsx" />
+  </DxcFlex>
+);
+
+export default IconographyPage;

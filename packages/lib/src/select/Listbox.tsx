@@ -81,7 +81,7 @@ const Listbox = ({
             isSelected={groupSelectionType === "checked"}
             isSelectAllOption
             key={groupId}
-            multiple={true}
+            multiple
             onClick={() => handleGroupOnClick(option)}
             option={{
               label: option.label,
@@ -177,7 +177,7 @@ const Listbox = ({
             isSelected={selectionType === "checked"}
             isSelectAllOption
             key={`${id}-option-${optionalItem.value}`}
-            multiple={true}
+            multiple
             onClick={handleSelectAllOnClick}
             option={{
               label: translatedLabels.select.selectAllLabel,

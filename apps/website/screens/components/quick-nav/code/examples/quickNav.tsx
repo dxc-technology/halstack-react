@@ -22,7 +22,7 @@ const code = `() => {
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcQuickNav links={links}></DxcQuickNav>
+      <DxcQuickNav links={links} />
     </DxcInset>
   );
 }`;

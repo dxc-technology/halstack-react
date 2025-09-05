@@ -6,7 +6,7 @@ import DialogCodePage from "screens/components/dialog/code/DialogCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Dialog Code — Halstack Design System</title>
+      <title>Dialog code — Halstack Design System</title>
     </Head>
     <DialogCodePage />
   </>

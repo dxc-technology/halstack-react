@@ -54,7 +54,7 @@ const code = `() => {
           totalItems={27}
           itemsPerPage={items}
           itemsPerPageFunction={itemsPerPageClick}
-        ></DxcPaginator>
+        />
       </DxcInset>
     </HalstackProvider>
   );

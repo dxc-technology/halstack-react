@@ -1,7 +1,6 @@
 import { DxcTable, DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import nextLink from "./examples/nextLink";
 import basicUsage from "./examples/basicUsage";
@@ -239,9 +238,7 @@ const sections = [
 const LinkCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/link/code/LinkCodePage.tsx" />
     </DxcFlex>
   );

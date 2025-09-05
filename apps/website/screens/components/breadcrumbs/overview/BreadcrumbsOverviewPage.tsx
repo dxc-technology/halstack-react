@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import collapsed from "./examples/collapsed";
@@ -24,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Breadcrumbs's anatomy" />
+        <Image src={anatomy} alt="Breadcrumbs anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Unvisited item:</strong> these are links that represent the navigational path taken by the user but
@@ -93,7 +92,7 @@ const sections = [
           common UI patterns and user expectations.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Avoid using breadcrumbs as a replacement for primary navigation—they are meant to complement it, not replace
+          Avoid using breadcrumbs as a replacement for primary navigation — they are meant to complement it, not replace
           menus or sidebars.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
@@ -108,9 +107,7 @@ const sections = [
 
 const BreadcrumbsOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/breadcrumbs/overview/BreadcrumbsOverviewPage.tsx" />
   </DxcFlex>
 );

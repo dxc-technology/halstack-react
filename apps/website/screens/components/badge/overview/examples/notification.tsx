@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)">
-        <DxcBadge label={100} mode="notification" size="large"/>
+        <DxcBadge label={100} mode="notification" size="large" />
         <DxcBadge mode="notification" size="large" />
       </DxcFlex>
     </DxcInset>

@@ -26,7 +26,7 @@ const SidenavPageHeading = ({ children }: { children: ReactNode }) => {
             </Link>{" "}
             documentation.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

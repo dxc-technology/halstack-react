@@ -120,7 +120,6 @@ const Badge = () => (
         <DxcBadge color="green" label="Label" size="large" icon={icon} />
       </DxcFlex>
     </ExampleContainer>
-    <ExampleContainer></ExampleContainer>
     <Title title="Orange" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />

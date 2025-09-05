@@ -1,5 +1,4 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
@@ -27,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Checkbox's anatomy" />
+        <Image src={anatomy} alt="Checkbox anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Checkbox input:</strong> the interactive element that allows users to toggle between checked,
@@ -197,9 +196,7 @@ const sections = [
 
 const CheckboxInputOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/overview/CheckboxOverviewPage.tsx" />
   </DxcFlex>
 );

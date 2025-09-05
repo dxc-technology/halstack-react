@@ -28,7 +28,7 @@ const code = `() => {
             label: "Confirm details",
           },
         ]}
-      ></DxcWizard>
+      />
     </DxcInset>
   );
 }`;

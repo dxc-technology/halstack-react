@@ -15,13 +15,13 @@ const code = `() => {
           <DxcBadge label="Label" icon="info" />
         </DxcFlex>
         <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
-          <DxcBadge label="Label" color="green"/>
-          <DxcBadge label="Label" color="blue"/>
+          <DxcBadge label="Label" color="green" />
+          <DxcBadge label="Label" color="blue" />
           <DxcBadge label="Label" color="red" />
-          <DxcBadge label="Label" color="orange"/>
+          <DxcBadge label="Label" color="orange" />
           <DxcBadge label="Label" color="yellow" />
           <DxcBadge label="Label" color="purple" />
-          <DxcBadge label="Label"/>
+          <DxcBadge label="Label" />
         </DxcFlex>
       </DxcFlex>
     </DxcInset>

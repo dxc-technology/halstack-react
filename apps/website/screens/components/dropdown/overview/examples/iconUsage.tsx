@@ -27,7 +27,7 @@ const code = `() => {
           icon="filled_home"
           options={options}
           onSelectOption={selectOption}
-        ></DxcDropdown>
+        />
       </DxcFlex>
     </DxcInset>
   );

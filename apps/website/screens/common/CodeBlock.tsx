@@ -19,7 +19,7 @@ const Code = styled.code`
   word-wrap: break-word;
 `;
 
-export default function CodeBlock({ children }: { children: ReactNode }) {
+const CodeBlock = ({ children }: { children: ReactNode }) => {
   const [copyActionIsVisible, setCopyActionIsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -60,3 +60,5 @@ export default function CodeBlock({ children }: { children: ReactNode }) {
     </DxcFlex>
   );
 }
+
+export default CodeBlock

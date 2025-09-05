@@ -20,7 +20,7 @@ const LinkPageHeading = ({ children }: { children: ReactNode }) => {
             can appear independently, be embedded within text, or follow a section to provide additional information or
             actions.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
