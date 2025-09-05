@@ -1,7 +1,6 @@
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcBulletedList, DxcParagraph, DxcAlert } from "@dxc-technology/halstack-react";
 import anatomy from "./images/bulleted_list_anatomy.png";
 import Example from "@/common/example/Example";
@@ -164,9 +163,7 @@ const sections = [
 const BulletedListOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bulleted-list/overview/BulletedListOverviewPage.tsx" />
     </DxcFlex>
   );

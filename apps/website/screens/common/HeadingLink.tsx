@@ -55,7 +55,7 @@ type HeadingLinkProps = {
   navSubtitle?: string;
 };
 
-export default function HeadingLink({ children, level, as, navSubtitle }: HeadingLinkProps) {
+const HeadingLink = ({ children, level, as, navSubtitle }: HeadingLinkProps) => {
   const elementId = slugify(navSubtitle ?? children, { lower: true });
   return (
     <HeadingLinkContainer id={elementId}>
@@ -69,4 +69,6 @@ export default function HeadingLink({ children, level, as, navSubtitle }: Headin
       <DxcHeading text={children} level={level} as={as} />
     </HeadingLinkContainer>
   );
-}
+};
+
+export default HeadingLink;

@@ -1,7 +1,6 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import iconUsage from "./examples/iconUsage";
 import Image from "@/common/Image";
@@ -139,9 +138,7 @@ const sections = [
 
 const DropdownOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dropdown/overview/DropdownOverviewPage.tsx" />
   </DxcFlex>
 );

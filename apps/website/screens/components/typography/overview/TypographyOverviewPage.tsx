@@ -1,7 +1,6 @@
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcBulletedList, DxcLink, DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
@@ -115,9 +114,7 @@ const sections = [
 const TypographyOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/typography/overview/TypographyOverviewPage.tsx" />
     </DxcFlex>
   );

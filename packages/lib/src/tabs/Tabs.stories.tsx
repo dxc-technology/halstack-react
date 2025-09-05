@@ -78,7 +78,7 @@ const firstDisabledTabs = (
 
 const tabsNotification = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
@@ -156,7 +156,7 @@ const tabsIconLabel = (iconPosition?: "top" | "left") => (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>

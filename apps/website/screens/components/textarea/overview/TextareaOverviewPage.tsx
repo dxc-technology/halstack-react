@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/textarea_anatomy.png";
@@ -196,7 +195,7 @@ const sections = [
             Apply <Code>placeholder</Code> for hints, not instructions:
           </strong>{" "}
           use <Code>placeholder</Code> to provide example content or expected format (e.g., "Write your feedback
-          here…"). Avoid using it as a replacement for the label.
+          here..."). Avoid using it as a replacement for the label.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>
@@ -212,9 +211,7 @@ const sections = [
 
 const TextareaOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/textarea/overview/TextareaOverviewPage.tsx" />
   </DxcFlex>
 );

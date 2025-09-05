@@ -2,7 +2,6 @@ import { DxcHeading, DxcParagraph, DxcFlex, DxcBulletedList, DxcGrid, DxcLink } 
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import iconsHalstack from "./images/icons_halstack.jpg";
@@ -561,18 +560,16 @@ const sections = [
   },
 ];
 
-export default function IconographyPage() {
-  return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Iconography" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/iconography/IconographyPage.tsx" />
-    </DxcFlex>
-  );
-}
+const IconographyPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Iconography" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/iconography/IconographyPage.tsx" />
+  </DxcFlex>
+);
+
+export default IconographyPage;

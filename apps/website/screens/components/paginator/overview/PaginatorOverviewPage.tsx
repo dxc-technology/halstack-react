@@ -1,7 +1,6 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import paginatorAnatomy from "./images/paginator_anatomy.png";
 import Example from "@/common/example/Example";
@@ -160,9 +159,7 @@ const sections = [
 
 const PaginatorOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paginator/overview/PaginatorOverviewPage.tsx" />
   </DxcFlex>
 );

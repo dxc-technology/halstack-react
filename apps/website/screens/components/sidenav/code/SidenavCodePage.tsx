@@ -1,6 +1,5 @@
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusBadge from "@/common/StatusBadge";
 import Code, { TableCode } from "@/common/Code";
 import { DxcLink, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
@@ -345,9 +344,7 @@ const sections = [
 
 const SidenavCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/sidenav/code/SidenavCodePage.tsx" />
   </DxcFlex>
 );

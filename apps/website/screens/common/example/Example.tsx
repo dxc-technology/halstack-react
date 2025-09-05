@@ -48,7 +48,7 @@ type ExamplePropTypes = {
   };
 };
 
-export default function Example({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) {
+const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
   const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [liveCode, setLiveCode] = useState(example.code);
@@ -96,4 +96,6 @@ export default function Example({ actionsVisible = true, defaultIsVisible = fals
       </LiveProvider>
     </DxcFlex>
   );
-}
+};
+
+export default Example;

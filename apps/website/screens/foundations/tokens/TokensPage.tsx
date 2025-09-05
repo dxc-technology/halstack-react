@@ -3,7 +3,6 @@ import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import PageHeading from "@/common/PageHeading";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
@@ -297,20 +296,16 @@ const sections = [
   },
 ];
 
-export default function TokensPage() {
-  return (
-    <>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-        <PageHeading>
-          <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-            <DxcHeading level={1} text="Tokens" />
-          </DxcFlex>
-        </PageHeading>
-        <QuickNavContainerLayout>
-          <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
-        </QuickNavContainerLayout>
-        <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+const TokensPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Tokens" />
       </DxcFlex>
-    </>
-  );
-}
+    </PageHeading>
+    <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+  </DxcFlex>
+);
+
+export default TokensPage;

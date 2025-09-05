@@ -1,7 +1,6 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import determinateIndeterminate from "./examples/determinateIndeterminate";
@@ -207,7 +206,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Combine with descriptive labels when necessary:</strong> if the loading state might be unclear,
-            include a short label (e.g., "Loading data…" or "Processing request…") to provide context.
+            include a short label (e.g., "Loading data..." or "Processing request...") to provide context.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Optimize performance:</strong> if an operation takes longer than expected, consider showing an
@@ -221,9 +220,7 @@ const sections = [
 
 const SpinnerOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/overview/SpinnerOverviewPage.tsx" />
   </DxcFlex>
 );

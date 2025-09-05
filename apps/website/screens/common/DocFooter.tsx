@@ -3,7 +3,7 @@ import { DxcTypography, DxcLink, DxcFlex, DxcDivider } from "@dxc-technology/hal
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 
-export default function DocFooter({ githubLink }: { githubLink: string }) {
+const DocFooter = ({ githubLink }: { githubLink: string }) => {
   const { pathname } = useRouter();
   const { nextLink, previousLink } = getNavigationLinks(pathname);
 
@@ -46,4 +46,6 @@ export default function DocFooter({ githubLink }: { githubLink: string }) {
       </DxcFlex>
     </div>
   );
-}
+};
+
+export default DocFooter;

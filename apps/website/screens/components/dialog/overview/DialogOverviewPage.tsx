@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
@@ -141,9 +140,7 @@ const sections = [
 
 const DialogOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dialog/overview/DialogOverviewPage.tsx" />
   </DxcFlex>
 );

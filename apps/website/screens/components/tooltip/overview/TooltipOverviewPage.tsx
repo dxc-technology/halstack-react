@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import positions from "./images/tooltip_positions.png";
 import Image from "@/common/Image";
@@ -95,9 +94,7 @@ const sections = [
 
 const TooltipOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/tooltip/overview/TooltipOverviewPage.tsx" />
   </DxcFlex>
 );

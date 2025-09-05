@@ -3,7 +3,6 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcHeading, DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import translations from "./examples/translations";
@@ -655,18 +654,16 @@ const sections = [
   },
 ];
 
-export default function LocalizationPage() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Localization" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/localization/LocalizationPage.tsx" />
-    </DxcFlex>
-  );
-}
+const LocalizationPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Localization" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/localization/LocalizationPage.tsx" />
+  </DxcFlex>
+);
+
+export default LocalizationPage;

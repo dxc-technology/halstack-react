@@ -65,7 +65,7 @@ const SideNav = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Section Group" icon="filled_bottom_app_bar">
+          <DxcSidenav.Group collapsable title="Section Group" icon="filled_bottom_app_bar">
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
@@ -92,12 +92,12 @@ const SideNav = () => (
         </DxcSidenav.Section>
         <DxcSidenav.Section>
           <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Group collapsable title="Collapsable Group">
             <DxcSidenav.Link icon="filled_bottom_app_bar">Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Group collapsable title="Collapsable Group">
             <DxcSidenav.Link selected icon={iconSVG}>
               Group Link
             </DxcSidenav.Link>
@@ -117,7 +117,7 @@ const CollapsedGroupSidenav = () => (
       <Title title="Collapsed group with a selected link" theme="light" level={4} />
       <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
         <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Collapsed Group" icon={iconSVG}>
+          <DxcSidenav.Group collapsable title="Collapsed Group" icon={iconSVG}>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -125,11 +125,11 @@ const CollapsedGroupSidenav = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Collapsed Group">
+          <DxcSidenav.Group collapsable title="Collapsed Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Group collapsable={true} title="Section Group">
+          <DxcSidenav.Group collapsable title="Section Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -147,7 +147,7 @@ const HoveredGroupSidenav = () => (
       <DxcSidenav.Section>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Group collapsable={true} title="Collapsed Group">
+        <DxcSidenav.Group collapsable title="Collapsed Group">
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -155,18 +155,18 @@ const HoveredGroupSidenav = () => (
         </DxcSidenav.Group>
       </DxcSidenav.Section>
       <DxcSidenav.Section>
-        <DxcSidenav.Group collapsable={true} title="Not Collapsed Group">
+        <DxcSidenav.Group collapsable title="Not Collapsed Group">
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
         </DxcSidenav.Group>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Group collapsable={true} title="Collapsed Group">
+        <DxcSidenav.Group collapsable title="Collapsed Group">
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
         </DxcSidenav.Group>
-        <DxcSidenav.Group collapsable={true} title="Collapsed Group">
+        <DxcSidenav.Group collapsable title="Collapsed Group">
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -195,7 +195,7 @@ const ActiveGroupSidenav = () => (
         </DxcInset>
       </DxcSidenav.Section>
       <DxcSidenav.Section>
-        <DxcSidenav.Group collapsable={true} title="Collapsed Group">
+        <DxcSidenav.Group collapsable title="Collapsed Group">
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -203,7 +203,7 @@ const ActiveGroupSidenav = () => (
         </DxcSidenav.Group>
       </DxcSidenav.Section>
       <DxcSidenav.Section>
-        <DxcSidenav.Group collapsable={true} title="Not Collapsed Group">
+        <DxcSidenav.Group collapsable title="Not Collapsed Group">
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
         </DxcSidenav.Group>

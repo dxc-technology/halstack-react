@@ -3,7 +3,6 @@ import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import anatomy from "./images/header_anatomy.png";
 import responsive from "./images/header_responsive.png";
 import responsiveDetails from "./images/header_responsive_details.png";
@@ -130,9 +129,7 @@ const sections = [
 
 const HeaderOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/header/overview/HeaderOverviewPage.tsx" />
   </DxcFlex>
 );

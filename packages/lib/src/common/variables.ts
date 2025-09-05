@@ -1,3 +1,5 @@
+// TODO: Decide what do we do with this file with our new tokens strategy.
+
 export const spaces = {
   xxsmall: "0.25rem", //  spacing_4
   xsmall: "0.5rem", //  spacing_8
