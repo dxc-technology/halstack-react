@@ -10,12 +10,12 @@ type ImageProps = {
   height?: number;
 };
 
-const Image = (props: ImageProps) => {
-  <NextImage
-    style={props.width || props.height ? {} : { width: "100%", height: "auto" }}
-    {...props}
-    loader={customLoader}
-  />;
-};
-
-export default Image;
+export default function Image(props: ImageProps) {
+  return (
+    <NextImage
+      style={props.width || props.height ? {} : { width: "100%", height: "auto" }}
+      {...props}
+      loader={customLoader}
+    />
+  );
+}
