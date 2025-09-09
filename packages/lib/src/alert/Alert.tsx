@@ -141,7 +141,7 @@ export default function DxcAlert({
             {mode === "banner" ? (
               <Message mode={mode}>
                 <strong>{title}</strong>
-                {messages.length > 0 && <> - {messages[currentIndex]?.text}</>}
+                {messages.length > 0 && ` — ${messages[currentIndex]?.text}`}
               </Message>
             ) : (
               <Title id={`${id}-title`} mode={mode}>
