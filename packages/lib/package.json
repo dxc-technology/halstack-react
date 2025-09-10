@@ -22,7 +22,7 @@
     "lint": "eslint . --max-warnings 0",
     "prepublishOnly": "node ../../scripts/copy-readme.js",
     "storybook": "storybook dev -p 6006",
-    "test-storybook": "vitest --project=storybook --coverage",
+    "test-storybook": "vitest --project=storybook --coverage --run",
     "test": "jest --env=jsdom --config=./jest.config.js",
     "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.js",
     "test:watch": "jest --env=jsdom --config=./jest.config.js --watch"
