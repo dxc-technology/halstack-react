@@ -317,7 +317,7 @@ const rowsWithCheckbox = [
   [
     { displayValue: "001", sortValue: "001" },
     {
-      displayValue: <DxcCheckbox size="fillParent" defaultChecked={true} />,
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked />,
     },
     { displayValue: "Peter" },
     { displayValue: "Miami" },

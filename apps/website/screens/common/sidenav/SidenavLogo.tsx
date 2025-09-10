@@ -20,7 +20,7 @@ const Subtitle = styled.div`
   margin-left: var(--spacing-padding-s);
 `;
 
-export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?: string }) {
+const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
   const pathVersion = process.env.NEXT_PUBLIC_SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
@@ -40,4 +40,6 @@ export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?:
       />
     </DxcFlex>
   );
-}
+};
+
+export default SidenavLogo;

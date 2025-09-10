@@ -2,7 +2,6 @@ import { DxcHeading, DxcParagraph, DxcFlex, DxcLink, DxcBulletedList } from "@dx
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import HalstackMarkdownParser from "@/common/HalstackMarkdownParser";
 import Link from "next/link";
 import Code from "@/common/Code";
@@ -113,22 +112,19 @@ const getReleasesPageSections = (releases: Release[]) => {
   return [...sections, section];
 };
 
-export default function ReleasesPage({ releases }: { releases: Release[] }) {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Releases" />
-          <DxcParagraph>
-            Access all the major releases of the Halstack React library and see the changelog of every version
-            available.
-          </DxcParagraph>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
-    </DxcFlex>
-  );
-}
+const ReleasesPage = ({ releases }: { releases: Release[] }) => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Releases" />
+        <DxcParagraph>
+          Access all the major releases of the Halstack React library and see the changelog of every version available.
+        </DxcParagraph>
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
+  </DxcFlex>
+);
+
+export default ReleasesPage;

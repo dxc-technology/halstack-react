@@ -58,7 +58,7 @@ const NavTabs = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
-      <Title title="Actived tabs" theme="light" level={4} />
+      <Title title="Active tabs" theme="light" level={4} />
       <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active>
           Tab 1

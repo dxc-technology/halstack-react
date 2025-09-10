@@ -27,7 +27,7 @@ const customViewports = {
 };
 
 const Dialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="var(--spacing-padding-l)">
@@ -51,7 +51,7 @@ const Dialog = () => (
 );
 
 const DialogInput = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="var(--spacing-padding-l)">
@@ -79,7 +79,7 @@ const DialogInput = () => (
 );
 
 const DialogNoOverlay = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
       <DxcInset space="var(--spacing-padding-l)">
@@ -103,7 +103,7 @@ const DialogNoOverlay = () => (
 );
 
 const DialogCloseNoVisible = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog closable={false}>
       <DxcInset space="var(--spacing-padding-l)">
@@ -124,7 +124,7 @@ const DialogCloseNoVisible = () => (
 );
 
 const RespDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="var(--spacing-padding-l)">
@@ -145,7 +145,7 @@ const RespDialog = () => (
 );
 
 const ScrollingDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <>
       <DxcParagraph>
