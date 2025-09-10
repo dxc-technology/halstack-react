@@ -52,14 +52,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Storybook
-        run: |
-          cd packages/lib
-          npm run build-storybook -- --quiet
-
-      - name: Serve Storybook
-        run: npx http-server ./packages/lib/storybook-static -p 6006 &
-
       - name: Run Storybook Tests
         run: |
           cd packages/lib
