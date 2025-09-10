@@ -1064,13 +1064,13 @@ export const Chromatic: Story = {
 export const Controlled: Story = {
   render: DataGridControlled,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
-  // play: async ({ canvasElement }) => {
-  //   const canvas = within(canvasElement);
-  //   const node1 = await canvas.findByText("Root Node 1 Lazy");
-  //   await userEvent.click(node1);
-  //   const node2 = await canvas.findByText("Root Node 2 Lazy");
-  //   await userEvent.click(node2);
-  // },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const node1 = await canvas.findByText("Root Node 1 Lazy");
+    await userEvent.click(node1);
+    const node2 = await canvas.findByText("Root Node 2 Lazy");
+    await userEvent.click(node2);
+  },
 };
 
 export const CustomSort: Story = {
@@ -1084,67 +1084,67 @@ export const Paginator: Story = {
 export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
-  // play: async ({ canvasElement }) => {
-  // const canvas = within(canvasElement);
-  // const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
-  // checkbox0 && (await userEvent.click(checkbox0));
-  // await userEvent.click(await canvas.findByText("Root Node 1"));
-  // await userEvent.click(await canvas.findByText("Root Node 2"));
-  // await userEvent.click(await canvas.findByText("Child Node 1.1"));
-  // await userEvent.click(await canvas.findByText("Child Node 2.1"));
-  // let columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
-  // columnheader1 && (await userEvent.click(columnheader1));
-  // columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
-  // columnheader1 && (await userEvent.click(columnheader1));
-  // const checkbox5 = (await canvas.findAllByRole("checkbox"))[5];
-  // checkbox5 && (await userEvent.click(checkbox5));
-  // const checkbox13 = (await canvas.findAllByRole("checkbox"))[13];
-  // checkbox13 && (await userEvent.click(checkbox13));
-  // await userEvent.click(await canvas.findByText("Paginated Node 1"));
-  // await userEvent.click(await canvas.findByText("Paginated Node 2"));
-  // await userEvent.click(await canvas.findByText("Paginated Node 1.1"));
-  // await userEvent.click(await canvas.findByText("Paginated Node 2.1"));
-  // const columnheader4 = (await canvas.findAllByRole("columnheader"))[4];
-  // columnheader4 && (await userEvent.click(columnheader4));
-  // const checkbox18 = (await canvas.findAllByRole("checkbox"))[18];
-  // checkbox18 && (await userEvent.click(checkbox18));
-  // },
+  play: async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
+  checkbox0 && (await userEvent.click(checkbox0));
+  await userEvent.click(await canvas.findByText("Root Node 1"));
+  await userEvent.click(await canvas.findByText("Root Node 2"));
+  await userEvent.click(await canvas.findByText("Child Node 1.1"));
+  await userEvent.click(await canvas.findByText("Child Node 2.1"));
+  let columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
+  columnheader1 && (await userEvent.click(columnheader1));
+  columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
+  columnheader1 && (await userEvent.click(columnheader1));
+  const checkbox5 = (await canvas.findAllByRole("checkbox"))[5];
+  checkbox5 && (await userEvent.click(checkbox5));
+  const checkbox13 = (await canvas.findAllByRole("checkbox"))[13];
+  checkbox13 && (await userEvent.click(checkbox13));
+  await userEvent.click(await canvas.findByText("Paginated Node 1"));
+  await userEvent.click(await canvas.findByText("Paginated Node 2"));
+  await userEvent.click(await canvas.findByText("Paginated Node 1.1"));
+  await userEvent.click(await canvas.findByText("Paginated Node 2.1"));
+  const columnheader4 = (await canvas.findAllByRole("columnheader"))[4];
+  columnheader4 && (await userEvent.click(columnheader4));
+  const checkbox18 = (await canvas.findAllByRole("checkbox"))[18];
+  checkbox18 && (await userEvent.click(checkbox18));
+  },
 };
 
 export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
-  // play: async ({ canvasElement }) => {
-  // const canvas = within(canvasElement);
-  // const button0 = (await canvas.findAllByRole("button"))[0];
-  // button0 && (await userEvent.click(button0));
-  // const button1 = (await canvas.findAllByRole("button"))[1];
-  // button1 && (await userEvent.click(button1));
-  // const columnHeaders4 = (await canvas.findAllByRole("columnheader"))[4];
-  // columnHeaders4 && (await userEvent.click(columnHeaders4));
-  // const columnHeaders10 = (await canvas.findAllByRole("columnheader"))[10];
-  // columnHeaders10 && (await userEvent.click(columnHeaders10));
-  // const button16 = (await canvas.findAllByRole("button"))[16];
-  // button16 && (await userEvent.click(button16));
-  // const button43 = (await canvas.findAllByRole("button"))[43];
-  // button43 && (await userEvent.click(button43));
-  // const button36 = (await canvas.findAllByRole("button"))[36];
-  // button36 && (await userEvent.click(button36));
-  // const button37 = (await canvas.findAllByRole("button"))[37];
-  // button37 && (await userEvent.click(button37));
-  // const button9 = (await canvas.findAllByRole("button"))[9];
-  // button9 && (await userEvent.click(button9));
-  // const button10 = (await canvas.findAllByRole("button"))[10];
-  // button10 && (await userEvent.click(button10));
-  // },
+  play: async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button0 = (await canvas.findAllByRole("button"))[0];
+  button0 && (await userEvent.click(button0));
+  const button1 = (await canvas.findAllByRole("button"))[1];
+  button1 && (await userEvent.click(button1));
+  const columnHeaders4 = (await canvas.findAllByRole("columnheader"))[4];
+  columnHeaders4 && (await userEvent.click(columnHeaders4));
+  const columnHeaders10 = (await canvas.findAllByRole("columnheader"))[10];
+  columnHeaders10 && (await userEvent.click(columnHeaders10));
+  const button16 = (await canvas.findAllByRole("button"))[16];
+  button16 && (await userEvent.click(button16));
+  const button43 = (await canvas.findAllByRole("button"))[43];
+  button43 && (await userEvent.click(button43));
+  const button36 = (await canvas.findAllByRole("button"))[36];
+  button36 && (await userEvent.click(button36));
+  const button37 = (await canvas.findAllByRole("button"))[37];
+  button37 && (await userEvent.click(button37));
+  const button9 = (await canvas.findAllByRole("button"))[9];
+  button9 && (await userEvent.click(button9));
+  const button10 = (await canvas.findAllByRole("button"))[10];
+  button10 && (await userEvent.click(button10));
+  },
 };
 
 export const UnknownUniqueId: Story = {
   render: DataGridUnknownUniqueRowId,
   // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
-  // play: async ({ canvasElement }) => {
-  //   const canvas = within(canvasElement);
-  //   const editorCell = (await canvas.findAllByText("Task 1"))[0];
-  //   editorCell && (await userEvent.dblClick(editorCell));
-  // },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const editorCell = (await canvas.findAllByText("Task 1"))[0];
+    editorCell && (await userEvent.dblClick(editorCell));
+  },
 };

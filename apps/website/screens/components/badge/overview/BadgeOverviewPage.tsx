@@ -75,7 +75,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Designed mainly for data visualization interfaces, the contextual variant of the Badge component’s main
+              Designed mainly for data visualization interfaces, the contextual variant of the Badge component's main
               advantage lies in its ability to categorize content and represent specific information. It is
               intentionally non-interactive and may contain icons strategically chosen to enhance the conveyed
               information.

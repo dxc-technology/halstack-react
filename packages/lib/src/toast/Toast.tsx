@@ -40,8 +40,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   width: fit-content;
   border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).primaryColor};
   border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread)
-    var(--shadow-dark);
+  box-shadow: var(--shadow-100);
   display: inline-flex;
   gap: var(--spacing-gap-l);
   justify-content: space-between;

@@ -34,15 +34,17 @@ const utilitiesLinks: LinkDetails[] = [
 
 const principlesLinks: LinkDetails[] = [
   { label: "Data visualization", path: "/principles/data-visualization" },
-  { label: "Layout", path: "/principles/layout" },
   { label: "Localization", path: "/principles/localization" },
 ];
 
 const foundationsLinks: LinkDetails[] = [
   { label: "Color", path: "/foundations/color" },
+  { label: "Elevation", path: "/foundations/elevation" },
   { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
+  { label: "Layout", path: "/foundations/layout" },
   { label: "Spacing", path: "/foundations/spacing" },
+  { label: "Tokens", path: "/foundations/tokens" },
   { label: "Typography", path: "/foundations/typography" },
 ];
 
