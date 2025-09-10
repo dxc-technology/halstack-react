@@ -3,7 +3,6 @@ import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import PageHeading from "@/common/PageHeading";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
@@ -20,7 +19,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           In Halstack, tokens define core attributes like <strong>colors</strong>, <strong>typography</strong>,{" "}
-          <strong>spacing</strong>, and more—serving as the foundation for scalable, themeable, and reusable component
+          <strong>spacing</strong>, and more — serving as the foundation for scalable, themeable, and reusable component
           styling.
         </DxcParagraph>
         <DxcParagraph>
@@ -44,8 +43,8 @@ const sections = [
         <DxcParagraph>
           When Halstack was first established, its token structure followed a two-tier model:{" "}
           <strong>primitive tokens</strong> (the raw foundational values) and <strong>component tokens</strong> (styles
-          appliedWIP at the component level.) The intermediate <strong>alias layer</strong>—commonly used to connect
-          foundations to components—was missing.
+          appliedWIP at the component level.) The intermediate <strong>alias layer</strong> — commonly used to connect
+          foundations to components — was missing.
         </DxcParagraph>
         <DxcParagraph>
           Over time, this gap led to inconsistencies. Each component seemed to "speak its own language," with naming
@@ -131,37 +130,37 @@ const sections = [
               <DxcBulletedList.Item>
                 <Link href="/foundations/color" passHref legacyBehavior>
                   <DxcLink>Color</DxcLink>
-                </Link>
-                - Defines the base color palette, organized and measured using the OKLCH color space for accuracy and
+                </Link>{" "}
+                — Defines the base color palette, organized and measured using the OKLCH color space for accuracy and
                 accessibility.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <Link href="/foundations/typography" passHref legacyBehavior>
                   <DxcLink>Typography</DxcLink>
                 </Link>{" "}
-                - Sets font families, weights, sizes, and line-heights that serve as the system's typographic
+                — Sets font families, weights, sizes, and line-heights that serve as the system's typographic
                 foundation.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <Link href="/foundations/spacing" passHref legacyBehavior>
                   <DxcLink>Spacing</DxcLink>
                 </Link>{" "}
-                - A consistent set of spacing values to control layout and component padding/margins.
+                — A consistent set of spacing values to control layout and component padding/margins.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Border - Defines border widths, radius, and styles for consistent corner and edge treatment.
+                Border — Defines border widths, radius, and styles for consistent corner and edge treatment.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <Link href="/foundations/elevation" passHref legacyBehavior>
                   <DxcLink>Elevation</DxcLink>
-                </Link>
-                - Standardized elevation styles for depth and hierarchy in UI elements.
+                </Link>{" "}
+                — Standardized elevation styles for depth and hierarchy in UI elements.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <Link href="/foundations/height" passHref legacyBehavior>
                   <DxcLink>Height</DxcLink>
                 </Link>{" "}
-                - Predefined vertical dimensions for components and layouts.
+                — Predefined vertical dimensions for components and layouts.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
@@ -220,7 +219,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Until now, Halstack has supported <strong>two theming strategies</strong>—an{" "}
+          Until now, Halstack has supported <strong>two theming strategies</strong> — an{" "}
           <strong>opinionated approach</strong> with limited, safe customization, and an{" "}
           <strong>advanced approach</strong> with broader freedom. Several products have already benefited from these
           strategies.
@@ -246,7 +245,7 @@ const sections = [
           </DxcBulletedList>
         </DxcParagraph>
         <DxcParagraph>
-          This structured approach ensures that theming in Halstack is <strong>flexible but safe</strong>—giving teams
+          This structured approach ensures that theming in Halstack is <strong>flexible but safe</strong> — giving teams
           the ability to adapt components to their needs while still protecting those{" "}
           <strong>design decisions that are critical for accessibility</strong> such as maintaining proper{" "}
           <strong>contrast ratios</strong>, minimum font sizes, and spacing values. In this way, we preserve both{" "}
@@ -297,20 +296,16 @@ const sections = [
   },
 ];
 
-export default function TokensPage() {
-  return (
-    <>
-      <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-        <PageHeading>
-          <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-            <DxcHeading level={1} text="Tokens" />
-          </DxcFlex>
-        </PageHeading>
-        <QuickNavContainerLayout>
-          <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
-        </QuickNavContainerLayout>
-        <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+const TokensPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Tokens" />
       </DxcFlex>
-    </>
-  );
-}
+    </PageHeading>
+    <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+  </DxcFlex>
+);
+
+export default TokensPage;

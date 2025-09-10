@@ -168,13 +168,19 @@ const Table = () => (
         <DxcTable>
           <tr>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
           </tr>
           <tr>
@@ -266,13 +272,19 @@ const Table = () => (
         <DxcTable mode="reduced">
           <tr>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
           </tr>
           <tr>
