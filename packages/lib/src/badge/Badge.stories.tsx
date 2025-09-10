@@ -3,14 +3,14 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Badge",
   component: DxcBadge,
-} as Meta<typeof DxcBadge>;
+} satisfies Meta<typeof DxcBadge>;
 
 const icon = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -243,7 +243,7 @@ export const BadgeTooltip: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const div = canvas.getByText("Tooltip label");
+    const div = await canvas.findByText("Tooltip label");
     await userEvent.hover(div);
   },
 };
@@ -252,7 +252,7 @@ export const NestedBadgeTooltip: Story = {
   render: NestedTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const div = canvas.getByText("Tooltip label");
+    const div = await canvas.findByText("Tooltip label");
     await userEvent.hover(div);
   },
 };

@@ -1,7 +1,7 @@
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcBadge from "../badge/Badge";
 import DxcStatusLight from "../status-light/StatusLight";
 import DxcInset from "../inset/Inset";
@@ -9,7 +9,7 @@ import DxcInset from "../inset/Inset";
 export default {
   title: "Accordion",
   component: DxcAccordion,
-} as Meta<typeof DxcAccordion>;
+} satisfies Meta<typeof DxcAccordion>;
 
 const smallIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20">

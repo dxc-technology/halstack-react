@@ -592,6 +592,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content
+              aria-label="Select options"
               onCloseAutoFocus={(event) => {
                 // Avoid select to lose focus when the list is closed
                 event.preventDefault();
