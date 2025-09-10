@@ -1063,7 +1063,6 @@ export const Chromatic: Story = {
 
 export const Controlled: Story = {
   render: DataGridControlled,
-  // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const node1 = await canvas.findByText("Root Node 1 Lazy");
@@ -1083,7 +1082,6 @@ export const Paginator: Story = {
 
 export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
-  // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   play: async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
@@ -1113,7 +1111,6 @@ export const DataGridSortedWithChildren: Story = {
 
 export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
-  // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   play: async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const button0 = (await canvas.findAllByRole("button"))[0];
@@ -1141,7 +1138,6 @@ export const DataGridSortedExpanded: Story = {
 
 export const UnknownUniqueId: Story = {
   render: DataGridUnknownUniqueRowId,
-  // TODO: Fix this test, it is throwing an error: ResizeObserver loop limit exceeded
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const editorCell = (await canvas.findAllByText("Task 1"))[0];

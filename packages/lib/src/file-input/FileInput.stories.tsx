@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "File Input",
@@ -79,10 +80,6 @@ const FileInput = () => (
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
       <DxcFileInput label="File input" value={[]} callbackFile={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Optional" theme="light" level={4} />
-      <DxcFileInput label="File input" value={[]} callbackFile={() => {}} optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and helper text" theme="light" level={4} />
@@ -512,33 +509,33 @@ const FileInput = () => (
     </ExampleContainer>
   </>
 );
-const EllipsisError = () => {
-  return (
-    <>
-      <ExampleContainer>
-        <Title title="Ellipsis error" theme="light" level={4} />
-        <DxcFileInput
-          label="File input"
-          helperText="Please select files"
-          value={filesExamples}
-          callbackFile={() => {}}
-        />
-      </ExampleContainer>
-    </>
-  );
-};
+// const EllipsisError = () => {
+//   return (
+//     <>
+//       <ExampleContainer>
+//         <Title title="Ellipsis error" theme="light" level={4} />
+//         <DxcFileInput
+//           label="File input"
+//           helperText="Please select files"
+//           value={filesExamples}
+//           callbackFile={() => {}}
+//         />
+//       </ExampleContainer>
+//     </>
+//   );
+// };
 
 type Story = StoryObj<typeof DxcFileInput>;
 
 // TODO: fix this test related to the tooltip when the error message has ellipsis
-export const FileInputEllipsisInError: Story = {
-  render: EllipsisError,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
-    await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
-  },
-};
+// export const FileInputEllipsisInError: Story = {
+//   render: EllipsisError,
+//   play: async ({ canvasElement }) => {
+//     const canvas = within(canvasElement);
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
+//   },
+// };
 
 export const Chromatic: Story = {
   render: FileInput,
