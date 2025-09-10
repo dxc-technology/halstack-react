@@ -11,6 +11,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@emotion/react", "@emotion/styled"],
   },
+  resolve: {
+    dedupe: ["@emotion/react", "@emotion/styled"],
+  },
   test: {
     projects: [
       {
