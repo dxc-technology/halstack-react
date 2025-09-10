@@ -30,7 +30,7 @@ const config: StorybookConfig = {
     const { mergeConfig } = await import("vite");
 
     return mergeConfig(config, {
-      // Workaround to prevent error when using hooks (https://github.com/storybookjs/storybook/issues/32049)
+      // Workaround to prevent fail during first text execution (https://github.com/storybookjs/storybook/issues/32049)
       // optimizeDeps: {
       //   include: [
       //     "react",
