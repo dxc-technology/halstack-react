@@ -47,7 +47,7 @@ const sections = [
               have it as dependency of your project. Additionally, ensure that the <Code>styled-components</Code>{" "}
               library is also installed, as it is required by the Halstack components.
             </DxcParagraph>
-            <CodeBlock>{`npm i react react-dom styled-components`}</CodeBlock>
+            <CodeBlock>{`npm i react react-dom react-data-grid @emotion/react @emotion/styled`}</CodeBlock>
           </>
         ),
       },
