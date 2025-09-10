@@ -36,7 +36,7 @@ const code = `() => {
             label: "Confirm details",
           },
         ]}
-      ?>
+      >
     </DxcInset>
   );
 }`;

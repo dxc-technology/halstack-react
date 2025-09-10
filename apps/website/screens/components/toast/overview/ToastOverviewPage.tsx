@@ -172,8 +172,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Displays general information or updates. (i.e. New message received. Check inbox. New update
-                available. Download now.)
+                Displays general information or updates. (i.e. New message received. Check inbox. New update available.
+                Download now.)
               </td>
             </tr>
             <tr>
@@ -183,8 +183,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Indicates successful completion of an action. (i.e. Operation successful. Changes saved.Profile
-                updated successfully.)
+                Indicates successful completion of an action. (i.e. Operation successful. Changes saved. Profile updated
+                successfully.)
               </td>
             </tr>
             <tr>
