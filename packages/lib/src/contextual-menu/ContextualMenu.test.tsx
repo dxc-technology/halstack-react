@@ -31,7 +31,7 @@ const groups = [
 ];
 
 describe("Contextual menu component tests", () => {
-  test("Single - Renders with correct aria attributes", () => {
+  test("Single — Renders with correct aria attributes", () => {
     const { getAllByRole, getByRole } = render(<DxcContextualMenu items={items} />);
     expect(getAllByRole("menuitem").length).toBe(4);
     const actions = getAllByRole("button");
@@ -39,7 +39,7 @@ describe("Contextual menu component tests", () => {
     expect(actions[0]?.getAttribute("aria-pressed")).toBeTruthy();
     expect(getByRole("menu")).toBeTruthy();
   });
-  test("Single - An item can appear as selected by default by using the attribute selectedByDefault", () => {
+  test("Single — An item can appear as selected by default by using the attribute selectedByDefault", () => {
     const test = [
       {
         label: "Tested item",
@@ -50,7 +50,7 @@ describe("Contextual menu component tests", () => {
     const item = getByRole("button");
     expect(item.getAttribute("aria-pressed")).toBeTruthy();
   });
-  test("Group - Group items collapse when clicked", () => {
+  test("Group — Group items collapse when clicked", () => {
     const { queryByText, getByText } = render(<DxcContextualMenu items={groups} />);
     userEvent.click(getByText("Grouped Item 1"));
     expect(getByText("Item 1")).toBeTruthy();
@@ -63,7 +63,7 @@ describe("Contextual menu component tests", () => {
     expect(queryByText("Item 2")).toBeFalsy();
     expect(queryByText("Item 3")).toBeFalsy();
   });
-  test("Group - Renders with correct aria attributes", () => {
+  test("Group — Renders with correct aria attributes", () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
     group1 != null && userEvent.click(group1);
@@ -78,7 +78,7 @@ describe("Contextual menu component tests", () => {
     optionToBeClicked != null && userEvent.click(optionToBeClicked);
     expect(optionToBeClicked?.getAttribute("aria-pressed")).toBeTruthy();
   });
-  test("Group - A grouped item, selected by default, must be visible (expanded group) in the first render of the component", () => {
+  test("Group — A grouped item, selected by default, must be visible (expanded group) in the first render of the component", () => {
     const test = [
       {
         label: "Grouped item",
@@ -89,7 +89,7 @@ describe("Contextual menu component tests", () => {
     expect(getByText("Tested item")).toBeTruthy();
     expect(getAllByRole("button")[1]?.getAttribute("aria-pressed")).toBeTruthy();
   });
-  test("Group - Collapsed groups render as selected when containing a selected item", () => {
+  test("Group — Collapsed groups render as selected when containing a selected item", () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
     group1 != null && userEvent.click(group1);
@@ -105,7 +105,7 @@ describe("Contextual menu component tests", () => {
     group1 != null && userEvent.click(group1);
     expect(group1?.getAttribute("aria-pressed")).toBe("true");
   });
-  test("Sections - Renders with correct aria attributes", () => {
+  test("Sections — Renders with correct aria attributes", () => {
     const { getAllByRole, getByText } = render(<DxcContextualMenu items={sections} />);
     expect(getAllByRole("region").length).toBe(2);
     expect(getAllByRole("menuitem").length).toBe(6);

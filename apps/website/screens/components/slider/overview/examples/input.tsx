@@ -18,11 +18,11 @@ const code = `() => {
         helperText="Helper text"
         minValue={0}
         maxValue={100}
-        showLimitsValues={true}
+        showLimitsValues
         value={value}
-        showInput={true}
+        showInput
         step={5}
-        marks={true}
+        marks
         onChange={onChange}
         onDragEnd={onDragEnd}
         onChangeInput={onChangeInput}

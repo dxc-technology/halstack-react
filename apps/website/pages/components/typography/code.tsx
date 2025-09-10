@@ -6,7 +6,7 @@ import TypographyCodePage from "screens/components/typography/code/TypographyCod
 const Code = () => (
   <>
     <Head>
-      <title>Typography — Halstack Design System</title>
+      <title>Typography code — Halstack Design System</title>
     </Head>
     <TypographyCodePage />
   </>

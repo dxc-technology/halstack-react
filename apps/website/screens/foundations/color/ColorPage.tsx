@@ -3,7 +3,6 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import neutralColors from "./images/neutral_colors.png";
 import alphaColors from "./images/alpha_colors.png";
 import primaryColor from "./images/primary_color.png";
@@ -185,15 +184,15 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Green - Success</strong>: Communicates successful operations, confirmations, or valid states. It
+                <strong>Green — Success</strong>: Communicates successful operations, confirmations, or valid states. It
                 reassures users and reinforces positive outcomes.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Orange - Warning</strong>: Used for cautionary messages or potential risks that don't block
+                <strong>Orange — Warning</strong>: Used for cautionary messages or potential risks that don't block
                 progress but may require attention.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Red - Error</strong>: Indicates destructive actions, form validation errors, or system failures.
+                <strong>Red — Error</strong>: Indicates destructive actions, form validation errors, or system failures.
                 It draws immediate attention and signals that something needs user correction or caution.
               </DxcBulletedList.Item>
             </DxcBulletedList>
@@ -258,18 +257,16 @@ const sections = [
   },
 ];
 
-export default function ColorPage() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Color" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/color/ColorPage.tsx" />
-    </DxcFlex>
-  );
-}
+const ColorPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Color" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/color/ColorPage.tsx" />
+  </DxcFlex>
+);
+
+export default ColorPage;

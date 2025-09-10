@@ -49,5 +49,5 @@ export { default as DxcToggleGroup } from "./toggle-group/ToggleGroup";
 export { default as DxcTooltip } from "./tooltip/Tooltip";
 export { default as DxcTypography } from "./typography/Typography";
 export { default as DxcWizard } from "./wizard/Wizard";
-export { default as HalstackContext, HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
+export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";

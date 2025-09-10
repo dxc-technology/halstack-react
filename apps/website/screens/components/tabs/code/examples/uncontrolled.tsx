@@ -12,7 +12,8 @@ const code = `() => {
         </DxcTabs.Tab>
         <DxcTabs.Tab tabId="Contacts" label="Contacts">
           <></>
-        </DxcTabs.Tab></DxcTabs>
+        </DxcTabs.Tab>
+      </DxcTabs>
     </DxcInset>
   );
 }`;
