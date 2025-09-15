@@ -130,7 +130,7 @@ export default function DxcAvatar({
         role={onClick ? "button" : undefined}
         as={linkHref ? "a" : undefined}
         href={linkHref ? linkHref : undefined}
-        aria-label={label || title || "Avatar"}
+        aria-label={onClick && (label || title || "Avatar")}
       >
         <AvatarWrapper shape={shape} color={color} size={size}>
           <Overlay aria-hidden="true" />
