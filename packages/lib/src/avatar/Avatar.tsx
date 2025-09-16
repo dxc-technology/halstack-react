@@ -41,12 +41,12 @@ const AvatarContainer = styled.div<{
     &:focus > div:first-child {
       outline-style: solid;
       outline-width: ${getOutlineWidth(size)};
-      outline-color: var(--border-color-secondary-strong);
+      outline-color: var(--border-color-secondary-medium);
     }
     &:active > div:first-child {
       outline-style: solid;
       outline-width: ${getOutlineWidth(size)};
-      outline-color: var(--border-color-secondary-strong);
+      outline-color: var(--border-color-secondary-medium);
     }
     &:active > div:first-child > div:first-child {
       display: block;
