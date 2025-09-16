@@ -67,13 +67,22 @@ const iconSizeMap = {
   xxlarge: "52px",
 };
 
-const borderWithMap = {
+const outlineWidthMap = {
   xsmall: "var(--border-width-s)",
   small: "var(--border-width-s)",
   medium: "var(--border-width-s)",
-  large: "var(--border-width-default)",
-  xlarge: "var(--border-width-default)",
-  xxlarge: "var(--border-width-default)",
+  large: "var(--border-width-l)",
+  xlarge: "var(--border-width-l)",
+  xxlarge: "var(--border-width-l)",
+};
+
+const borderWidthMap = {
+  xsmall: "var(--border-width-s)",
+  small: "var(--border-width-s)",
+  medium: "var(--border-width-s)",
+  large: "var(--border-width-m)",
+  xlarge: "var(--border-width-m)",
+  xxlarge: "var(--border-width-m)",
 };
 
 const modeColorMap = {
@@ -104,7 +113,9 @@ export const getFontSize = (size: AvatarPropsType["size"]) => (size ? fontSizeMa
 
 export const getIconSize = (size: AvatarPropsType["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
 
-export const getBorderWidth = (size: AvatarPropsType["size"]) => (size ? borderWithMap[size] : "var(--border-width-s)");
+export const getBorderWidth = (size: AvatarPropsType["size"]) => (size ? borderWidthMap[size] : "var(--border-width-s)");
+
+export const getOutlineWidth = (size: AvatarPropsType["size"]) => (size ? outlineWidthMap[size] : "var(--border-width-m)");
 
 export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) =>
   mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";

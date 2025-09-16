@@ -13,6 +13,7 @@ import {
   getIconSize,
   getInitials,
   getModeColor,
+  getOutlineWidth,
   getSize,
 } from "./utils";
 
@@ -29,18 +30,23 @@ const AvatarContainer = styled.div<{
   height: ${({ size }) => getSize(size)};
   aspect-ratio: 1 / 1;
   text-decoration: none;
-  ${({ hasAction, disabled }) =>
-    !disabled && hasAction &&
+  ${({ hasAction, disabled, size }) =>
+    !disabled &&
+    hasAction &&
     `
     cursor: pointer;
     &:hover > div:first-child > div:first-child {
       display: block;
     }
     &:focus > div:first-child {
-      outline: 2px solid var(--border-color-secondary-medium);
+      outline-style: solid;
+      outline-width: ${getOutlineWidth(size)};
+      outline-color: var(--border-color-secondary-strong);
     }
     &:active > div:first-child {
-      outline: 2px solid var(--border-color-secondary-medium);
+      outline-style: solid;
+      outline-width: ${getOutlineWidth(size)};
+      outline-color: var(--border-color-secondary-strong);
     }
     &:active > div:first-child > div:first-child {
       display: block;
@@ -108,7 +114,8 @@ const StatusContainer = styled.div<{
   ${({ status }) => (status?.position === "top" ? "top: 0px;" : "bottom: 0px;")}
   width: 25%;
   height: 25%;
-  border: ${({ size }) => getBorderWidth(size)};
+  border-width: ${({ size }) => getBorderWidth(size)};
+  border-style: solid;
   border-color: var(--border-color-neutral-brighter);
   border-radius: 100%;
   background-color: ${({ status }) => getModeColor(status!.mode)};
