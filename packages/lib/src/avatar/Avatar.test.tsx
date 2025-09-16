@@ -1,12 +1,6 @@
 import "@testing-library/jest-dom";
-import { fireEvent, queryByTestId, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import DxcAvatar from "./Avatar";
-
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
 
 describe("Avatar component tests", () => {
   test("Avatar renders correctly", () => {
