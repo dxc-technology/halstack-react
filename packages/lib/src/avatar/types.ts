@@ -1,8 +1,8 @@
 import { SVG } from "../common/utils";
 
-export type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Shape = "circle" | "square";
-export type Color = "grey" | "blue" | "green" | "orange" | "red" | "yellow" | "purple";
+type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Shape = "circle" | "square";
+type Color = "grey" | "blue" | "green" | "orange" | "red" | "yellow" | "purple";
 interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
@@ -14,6 +14,10 @@ type Props = {
    */
   color?: Color;
   /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * Material Symbol name or SVG element as the icon that will be placed as avatar.
    */
   icon?: string | SVG;
@@ -22,18 +26,16 @@ type Props = {
    */
   imageSrc?: string;
   /**
-   * Full name of the user.
+   * Text label associated with the avatar.
    * Used to generate and display initials inside the avatar.
    */
   label?: string;
   /**
-   * If defined, the avatar will be displayed as an anchor, using this prop
-   * as "href".
+   * Page to be opened when the user clicks on the link.
    */
   linkHref?: string;
   /**
-   * This function will be called when the user clicks the avatar. This will enable all the button states, if
-   * not passed it will be treated as a readonly element.
+   * This function will be called when the user clicks the avatar. Makes it behave as a button.
    */
   onClick?: () => void;
   /**

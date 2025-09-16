@@ -123,6 +123,10 @@ const Avatar = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <DxcAvatar size="xxlarge" onClick={() => console.log()} />
     </ExampleContainer>
+    <Title title="Disabled" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcAvatar size="xxlarge" onClick={() => console.log()} disabled />
+    </ExampleContainer>
   </>
 );
 

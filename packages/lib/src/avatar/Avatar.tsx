@@ -19,7 +19,8 @@ import {
 const AvatarContainer = styled.div<{
   hasAction?: boolean;
   size: AvatarPropsType["size"];
-  href?: string;
+  href?: AvatarPropsType["linkHref"];
+  disabled?: AvatarPropsType["disabled"];
 }>`
   position: relative;
   display: flex;
@@ -28,8 +29,8 @@ const AvatarContainer = styled.div<{
   height: ${({ size }) => getSize(size)};
   aspect-ratio: 1 / 1;
   text-decoration: none;
-  ${({ hasAction }) =>
-    hasAction &&
+  ${({ hasAction, disabled }) =>
+    !disabled && hasAction &&
     `
     cursor: pointer;
     &:hover > div:first-child > div:first-child {
@@ -44,6 +45,15 @@ const AvatarContainer = styled.div<{
     &:active > div:first-child > div:first-child {
       display: block;
     }
+    `}
+  ${({ disabled }) =>
+    disabled &&
+    `
+      cursor: not-allowed;
+      & > div:first-child > div:first-child {
+        display: block;
+        background-color: rgba(255, 255, 255, 0.50);
+      }
     `}
 `;
 
@@ -106,6 +116,7 @@ const StatusContainer = styled.div<{
 
 export default function DxcAvatar({
   color = "grey",
+  disabled = false,
   icon = "person",
   imageSrc,
   label,
@@ -124,20 +135,21 @@ export default function DxcAvatar({
     <TooltipWrapper condition={!!title} label={title}>
       <AvatarContainer
         size={size}
-        onClick={onClick}
+        onClick={!disabled ? onClick : undefined}
         hasAction={!!onClick || !!linkHref}
-        tabIndex={onClick || linkHref ? tabIndex : undefined}
+        tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
         role={onClick ? "button" : undefined}
         as={linkHref ? "a" : undefined}
-        href={linkHref ? linkHref : undefined}
-        aria-label={onClick && (label || title || "Avatar")}
+        href={!disabled && linkHref ? linkHref : undefined}
+        aria-label={(onClick || linkHref) && (label || title || "Avatar")}
+        disabled={disabled}
       >
         <AvatarWrapper shape={shape} color={color} size={size}>
           <Overlay aria-hidden="true" />
           {imageSrc && !error ? (
             <DxcImage
               src={imageSrc}
-              alt={label || "Avatar"}
+              alt={label || title || "Avatar"}
               onError={() => setError(true)}
               width="100%"
               height="100%"
@@ -152,7 +164,7 @@ export default function DxcAvatar({
             </AvatarIcon>
           )}
         </AvatarWrapper>
-        {status && <StatusContainer data-testid="avatar-status" size={size} status={status} />}
+        {status && <StatusContainer role="status" size={size} status={status} />}
       </AvatarContainer>
     </TooltipWrapper>
   );

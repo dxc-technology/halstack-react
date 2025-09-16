@@ -31,121 +31,87 @@ const contextualColorMap = {
   },
 };
 
+const borderRadiusMap = {
+  xsmall: "var(--border-radius-xs)",
+  small: "var(--border-radius-s)",
+  medium: "var(--border-radius-m)",
+  large: "var(--border-radius-m)",
+  xlarge: "var(--border-radius-l)",
+  xxlarge: "var(--border-radius-l)",
+};
+
+const sizeMap = {
+  xsmall: "var(--height-s)",
+  small: "var(--height-m)",
+  medium: "var(--height-xl)",
+  large: "var(--height-xxxl)",
+  xlarge: "72px",
+  xxlarge: "80px",
+};
+
+const fontSizeMap = {
+  xsmall: "var(--typography-label-s)",
+  small: "var(--typography-label-m)",
+  medium: "var(--typography-label-l)",
+  large: "var(--typography-label-xl)",
+  xlarge: "32px",
+  xxlarge: "36px",
+};
+
+const iconSizeMap = {
+  xsmall: "var(--height-xxs)",
+  small: "var(--height-xs)",
+  medium: "var(--height-s)",
+  large: "var(--height-xl)",
+  xlarge: "var(--height-xxl)",
+  xxlarge: "52px",
+};
+
+const borderWithMap = {
+  xsmall: "var(--border-width-s)",
+  small: "var(--border-width-s)",
+  medium: "var(--border-width-s)",
+  large: "var(--border-width-default)",
+  xlarge: "var(--border-width-default)",
+  xxlarge: "var(--border-width-default)",
+};
+
+const modeColorMap = {
+  default: "var(--color-fg-neutral-strong)",
+  info: "var(--color-fg-secondary-medium)",
+  success: "var(--color-fg-success-medium)",
+  warning: "var(--color-fg-warning-strong)",
+  error: "var(--color-fg-error-medium)",
+};
+
 export const getColor = (color: AvatarPropsType["color"]) => (color ? contextualColorMap[color].text : undefined);
 export const getBackgroundColor = (color: AvatarPropsType["color"]) =>
   color ? contextualColorMap[color].background : undefined;
 
 export const getBorderRadius = (shape: AvatarPropsType["shape"], size: AvatarPropsType["size"]) => {
-  if (shape === "circle") return "100%";
-
-  switch (size) {
-    case "xsmall":
-      return "var(--border-radius-xs)";
-    case "small":
-      return "var(--border-radius-s)";
-    case "medium":
-      return "var(--border-radius-m)";
-    case "large":
-      return "var(--border-radius-m)";
-    case "xlarge":
-      return "var(--border-radius-l)";
-    case "xxlarge":
-      return "var(--border-radius-l)";
-    default:
-      return "var(--border-radius-m)";
+  if (shape === "circle") {
+    return "100%";
   }
+  if (shape === "square") {
+    return size ? borderRadiusMap[size] : "var(--border-radius-m)";
+  }
+  return "100%";
 };
 
-export const getSize = (size: AvatarPropsType["size"]) => {
-  switch (size) {
-    case "xsmall":
-      return "var(--height-s)";
-    case "small":
-      return "var(--height-m)";
-    case "medium":
-      return "var(--height-xl)";
-    case "large":
-      return "var(--height-xxxl)";
-    case "xlarge":
-      return "72px";
-    case "xxlarge":
-      return "80px";
-    default:
-      return "var(--height-xl)";
-  }
-};
+export const getSize = (size: AvatarPropsType["size"]) => (size ? sizeMap[size] : "var(--height-xl)");
 
-export const getFontSize = (size: AvatarPropsType["size"]) => {
-  switch (size) {
-    case "xsmall":
-      return "var(--typography-label-s)";
-    case "small":
-      return "var(--typography-label-m)";
-    case "medium":
-      return "var(--typography-label-l)";
-    case "large":
-      return "var(--typography-label-xl)";
-    case "xlarge":
-      return "32px";
-    case "xxlarge":
-      return "36px";
-    default:
-      return "var(--typography-label-l)";
-  }
-};
+export const getFontSize = (size: AvatarPropsType["size"]) => (size ? fontSizeMap[size] : "var(--typography-label-l)");
 
-export const getIconSize = (size: AvatarPropsType["size"]) => {
-  switch (size) {
-    case "xsmall":
-      return "var(--height-xxs)";
-    case "small":
-      return "var(--height-xs)";
-    case "medium":
-      return "var(--height-s)";
-    case "large":
-      return "var(--height-xl)";
-    case "xlarge":
-      return "var(--height-xxl)";
-    case "xxlarge":
-      return "52px";
-    default:
-      return "var(--height-s)";
-  }
-};
+export const getIconSize = (size: AvatarPropsType["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
 
-export const getBorderWidth = (size: AvatarPropsType["size"]) => {
-  switch (size) {
-    case "xsmall":
-    case "small":
-    case "medium":
-      return "1px solid";
-    case "large":
-    case "xlarge":
-    case "xxlarge":
-      return "2px solid";
-    default:
-      return "1px solid";
-  }
-};
+export const getBorderWidth = (size: AvatarPropsType["size"]) => (size ? borderWithMap[size] : "var(--border-width-s)");
 
-export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) => {
-  switch (mode) {
-    case "default":
-      return "var(--color-fg-neutral-strong);";
-    case "error":
-      return "var(--color-fg-error-medium)";
-    case "info":
-      return "var(--color-fg-secondary-medium)";
-    case "success":
-      return "var(--color-fg-success-medium)";
-    case "warning":
-      return "var(--color-fg-warning-strong)";
-  }
-};
+export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) =>
+  mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
 
 export const getInitials = (label?: string): string => {
   if (!label) return "";
-  const words = label.trim().split(/\s+/).filter(Boolean);
+  const words = label.trim().split(/\s+/);
   if (words.length >= 2) {
     const firstChar = words[0]?.[0] ?? "";
     const secondChar = words[1]?.[0] ?? "";

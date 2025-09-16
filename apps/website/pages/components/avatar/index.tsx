@@ -5,11 +5,13 @@ import AvatarOverviewPage from "screens/components/avatar/overview/AvatarOvervie
 
 const Index = () => {
   <>
-    <Head>Avatar - Halstack Design System</Head>
+    <Head>
+      <title>Avatar - Halstack Design System</title>
+    </Head>
     <AvatarOverviewPage />
   </>;
 };
 
-Index.getLayout = (page: ReactElement) => <AvatarPageLayout>{page}</AvatarPageLayout>
+Index.getLayout = (page: ReactElement) => <AvatarPageLayout>{page}</AvatarPageLayout>;
 
 export default Index;
