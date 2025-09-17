@@ -258,14 +258,20 @@ const Avatar = () => (
   <>
     <Title title="Default" theme="light" level={2} />
     <AvatarShapeContainer shape="circle" />
+  </>
+);
+
+const AvatarSquare = () => (
+  <>
     <Title title="Square" theme="light" level={2} />
     <AvatarShapeContainer shape="square" />
+  </>
+);
+
+const AvatarTooltip = () => (
+  <>
     <Title title="Tooltip" theme="light" level={2} />
-    <DxcAvatar
-      size="xlarge"
-      onClick={() => console.log("")}
-      title="Avatar tooltip"
-    />
+    <DxcAvatar size="xlarge" onClick={() => console.log("")} title="Avatar tooltip" />
   </>
 );
 
@@ -273,4 +279,12 @@ type Story = StoryObj<typeof DxcAvatar>;
 
 export const Chromatic: Story = {
   render: Avatar,
+};
+
+export const Square: Story = {
+  render: AvatarSquare,
+};
+
+export const Tooltip: Story = {
+  render: AvatarTooltip,
 };
