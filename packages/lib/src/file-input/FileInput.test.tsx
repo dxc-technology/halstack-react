@@ -2,7 +2,9 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcFileInput from "./FileInput";
 
-const file1 = new File(["file1"], "file1.png", { type: "image/png" });
+const file1 = new File([new Uint8Array([137, 80, 78, 71])], "file1.png", {
+  type: "image/png",
+});
 const file2 = new File(["file2"], "file2.txt", {
   type: "text/plain",
 });
@@ -17,6 +19,9 @@ const allFiles = [
 ];
 
 describe("FileInput component tests", () => {
+  beforeAll(() => {
+    global.URL.createObjectURL = jest.fn(() => "blob:mock-url");
+  });
   test("Renders with correct labels and helper text in file mode", () => {
     const callbackFile = jest.fn();
     const { getByText } = render(
@@ -208,7 +213,7 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE=",
+          preview: "blob:mock-url",
         },
         {
           error: "Error message",
@@ -307,7 +312,7 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE=",
+          preview: "blob:mock-url",
         },
         {
           error: "Error message",
@@ -334,6 +339,7 @@ describe("FileInput component tests", () => {
         maxSize={20000}
         value={allFiles}
         callbackFile={callbackFile}
+        showPreview
       />
     );
     await waitFor(() => {
@@ -343,7 +349,7 @@ describe("FileInput component tests", () => {
       const inputFile = getByLabelText("File input label");
       fireEvent.change(inputFile, { target: { files: [newFile] } });
       expect(callbackFile).toHaveBeenCalledWith([
-        { file: file1, preview: "data:image/png;base64,ZmlsZTE=" },
+        { file: file1, preview: "blob:mock-url" },
         {
           error: "Error message",
           file: file2,
