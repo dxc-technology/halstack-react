@@ -203,54 +203,37 @@ const AvatarImageContainer = ({ size, shape }: { size: AvatarPropsType["size"]; 
 
 const AvatarShapeContainer = ({ shape }: { shape?: AvatarPropsType["shape"] }) => (
   <>
-    <>
-      <Title title="Xsmall" theme="light" level={2} />
-      <AvatarColorsContainer size="xsmall" shape={shape} />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="xsmall" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="xsmall" shape={shape} />
-    </>
-    <>
-      <Title title="Small" theme="light" level={2} />
-      <AvatarColorsContainer size="small" />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="small" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="small" shape={shape} />
-    </>
-    <>
-      <Title title="Medium" theme="light" level={2} />
-      <AvatarColorsContainer size="medium" shape={shape} />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="medium" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="medium" shape={shape} />
-    </>
-    <>
-      <Title title="Large" theme="light" level={2} />
-      <AvatarColorsContainer size="large" shape={shape} />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="large" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="large" shape={shape} />
-    </>
-    <>
-      <Title title="Xlarge" theme="light" level={2} />
-      <AvatarColorsContainer size="xlarge" shape={shape} />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="xlarge" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="xlarge" shape={shape} />
-    </>
-    <>
-      <Title title="XXlarge" theme="light" level={2} />
-      <AvatarColorsContainer size="xxlarge" shape={shape} />
-      <Title title="Label" theme="light" level={3} />
-      <AvatarColorsContainer label="Avatar Component" size="xxlarge" shape={shape} />
-      <Title title="Image" theme="light" level={3} />
-      <AvatarImageContainer size="xxlarge" shape={shape} />
-    </>
+    <Title title="Xsmall" theme="light" level={2} />
+    <AvatarStatesContainer size="xsmall" shape={shape} color="blue" label="Avatar" />
+    <AvatarImageContainer size="xsmall" shape={shape} />
+
+    <Title title="Small" theme="light" level={2} />
+    <Title title="All Colors" theme="light" level={3} />
+    <AvatarColorsContainer size="small" shape={shape} />
+    <Title title="Label" theme="light" level={3} />
+    <AvatarColorsContainer size="small" shape={shape} label="Avatar Component" />
+    <Title title="Image" theme="light" level={3} />
+    <AvatarImageContainer size="small" shape={shape} />
+
+    <Title title="Medium" theme="light" level={2} />
+    <AvatarStatesContainer size="medium" shape={shape} color="blue" label="Avatar" />
+    <AvatarImageContainer size="medium" shape={shape} />
+
+    <Title title="Large" theme="light" level={2} />
+    <AvatarStatesContainer size="large" shape={shape} color="blue" label="Avatar" />
+    <AvatarImageContainer size="large" shape={shape} />
+
+    <Title title="Xlarge" theme="light" level={2} />
+    <Title title="All Colors" theme="light" level={3} />
+    <AvatarColorsContainer size="xlarge" shape={shape} />
+    <Title title="Label" theme="light" level={3} />
+    <AvatarColorsContainer size="xlarge" shape={shape} label="Avatar Component" />
+    <Title title="Image" theme="light" level={3} />
+    <AvatarImageContainer size="xlarge" shape={shape} />
+
+    <Title title="XXlarge" theme="light" level={2} />
+    <AvatarStatesContainer size="xxlarge" shape={shape} color="blue" label="Avatar" />
+    <AvatarImageContainer size="xxlarge" shape={shape} />
   </>
 );
 
@@ -268,7 +251,7 @@ const AvatarSquare = () => (
   </>
 );
 
-const AvatarTooltip = () => (
+const TooltipAvatar = () => (
   <>
     <Title title="Tooltip" theme="light" level={2} />
     <DxcAvatar size="xlarge" onClick={() => console.log("")} title="Avatar tooltip" />
@@ -281,10 +264,10 @@ export const Chromatic: Story = {
   render: Avatar,
 };
 
-export const Square: Story = {
+export const SquareAvatar: Story = {
   render: AvatarSquare,
 };
 
-export const Tooltip: Story = {
-  render: AvatarTooltip,
+export const AvatarTooltip: Story = {
+  render: TooltipAvatar,
 };
