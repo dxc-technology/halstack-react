@@ -104,7 +104,7 @@ const DxcDialog = ({
                 )}
               </FocusLock>
             ) : (
-              <div>
+              <>
                 {children}
                 {closable && (
                   <CloseIconActionContainer>
@@ -116,7 +116,7 @@ const DxcDialog = ({
                     />
                   </CloseIconActionContainer>
                 )}
-              </div>
+              </>
             )}
           </Dialog>
         </DialogContainer>,
