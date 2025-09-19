@@ -1,278 +1,231 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import Title from "../../.storybook/components/Title";
 import DxcAvatar from "./Avatar";
 import DxcFlex from "../flex/Flex";
-import AvatarPropsType from "./types";
-import { userEvent, within } from "@storybook/test";
+import Title from "../../.storybook/components/Title";
+import ExampleContainer, { PseudoState } from "../../.storybook/components/ExampleContainer";
+import AvatarPropsType, { Status } from "./types";
 
 export default {
   title: "Avatar",
   component: DxcAvatar,
 } as Meta<typeof DxcAvatar>;
 
-const AvatarStatusLine = ({
-  shape,
-  size,
-  color,
-  disabled,
-  label,
-  imageSrc,
-}: {
-  shape: AvatarPropsType["shape"];
-  size: AvatarPropsType["size"];
-  color: AvatarPropsType["color"];
-  disabled?: AvatarPropsType["disabled"];
-  label?: AvatarPropsType["label"];
-  imageSrc?: AvatarPropsType["imageSrc"];
-}) => (
-  <DxcFlex gap="var(--spacing-gap-l)">
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "default", position: "top" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "info", position: "top" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "success", position: "top" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "warning", position: "top" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "error", position: "top" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "default", position: "bottom" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "info", position: "bottom" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "success", position: "bottom" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "warning", position: "bottom" }}
-      disabled={disabled}
-    />
-    <DxcAvatar
-      label={label}
-      imageSrc={imageSrc}
-      size={size}
-      shape={shape}
-      color={color}
-      onClick={() => console.log("")}
-      status={{ mode: "error", position: "bottom" }}
-      disabled={disabled}
-    />
-  </DxcFlex>
-);
-
-const AvatarStatesContainer = ({
-  shape,
-  size,
-  color,
-  label,
-  imageSrc,
-}: {
-  shape: AvatarPropsType["shape"];
-  size: AvatarPropsType["size"];
-  color?: AvatarPropsType["color"];
-  label?: AvatarPropsType["label"];
-  imageSrc?: AvatarPropsType["imageSrc"];
-}) => (
-  <DxcFlex direction="column">
-    <ExampleContainer>
-      <AvatarStatusLine imageSrc={imageSrc} label={label} size={size} shape={shape} color={color} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <AvatarStatusLine imageSrc={imageSrc} label={label} size={size} shape={shape} color={color} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <AvatarStatusLine imageSrc={imageSrc} label={label} size={size} shape={shape} color={color} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <AvatarStatusLine imageSrc={imageSrc} label={label} size={size} shape={shape} color={color} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <AvatarStatusLine imageSrc={imageSrc} label={label} size={size} shape={shape} color={color} disabled />
-    </ExampleContainer>
-  </DxcFlex>
-);
-
-const AvatarColorsContainer = ({
-  size,
-  shape,
-  label,
-}: {
-  shape?: AvatarPropsType["shape"];
-  size: AvatarPropsType["size"];
-  label?: AvatarPropsType["label"];
-}) => (
-  <>
-    <Title title="Grey" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="grey" />
-    <Title title="Blue" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="blue" />
-    <Title title="Green" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="green" />
-    <Title title="Orange" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="orange" />
-    <Title title="Red" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="red" />
-    <Title title="Yellow" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="yellow" />
-    <Title title="Purple" theme="light" level={4} />
-    <AvatarStatesContainer label={label} size={size} shape={shape} color="purple" />
-  </>
-);
-
-const AvatarImageContainer = ({ size, shape }: { size: AvatarPropsType["size"]; shape?: AvatarPropsType["shape"] }) => (
-  <AvatarStatesContainer size={size} shape={shape} imageSrc="https://picsum.photos/id/1022/200/300" />
-);
-
-const AvatarShapeContainer = ({ shape }: { shape?: AvatarPropsType["shape"] }) => (
-  <>
-    <Title title="Xsmall" theme="light" level={2} />
-    <Title title="All Colors" theme="light" level={3} />
-    <AvatarColorsContainer size="xsmall" shape={shape} />
-    <Title title="Label" theme="light" level={3} />
-    <AvatarColorsContainer size="xsmall" shape={shape} label="Avatar Component" />
-    <Title title="Image" theme="light" level={3} />
-    <AvatarImageContainer size="xsmall" shape={shape} />
-
-    <Title title="Small" theme="light" level={2} />
-    <AvatarStatesContainer size="small" shape={shape} color="blue" />
-    <AvatarImageContainer size="small" shape={shape} />
-
-    <Title title="Medium" theme="light" level={2} />
-    <AvatarStatesContainer size="medium" shape={shape} color="blue" />
-    <AvatarImageContainer size="medium" shape={shape} />
-
-    <Title title="Large" theme="light" level={2} />
-    <Title title="All Colors" theme="light" level={3} />
-    <AvatarColorsContainer size="large" shape={shape} />
-    <Title title="Label" theme="light" level={3} />
-    <AvatarColorsContainer size="large" shape={shape} label="Avatar Component" />
-    <Title title="Image" theme="light" level={3} />
-    <AvatarImageContainer size="large" shape={shape} />
-
-    <Title title="Xlarge" theme="light" level={2} />
-    <AvatarStatesContainer size="xlarge" shape={shape} color="blue" />
-    <AvatarImageContainer size="xlarge" shape={shape} />
-
-    <Title title="XXlarge" theme="light" level={2} />
-    <AvatarStatesContainer size="xxlarge" shape={shape} color="blue" />
-    <AvatarImageContainer size="xxlarge" shape={shape} />
-  </>
-);
-
-const Avatar = () => (
-  <>
-    <Title title="Default" theme="light" level={2} />
-    <AvatarShapeContainer shape="circle" />
-  </>
-);
-
-const AvatarSquare = () => (
-  <>
-    <Title title="Square" theme="light" level={2} />
-    <AvatarShapeContainer shape="square" />
-  </>
-);
-
-const TooltipAvatar = () => (
-  <>
-    <Title title="Tooltip" theme="light" level={2} />
-    <DxcAvatar size="xlarge" onClick={() => console.log("")} title="Avatar tooltip" />
-  </>
-);
-
 type Story = StoryObj<typeof DxcAvatar>;
 
-export const Chromatic: Story = {
-  render: Avatar,
+type GroupingKey = "size" | "shape" | "color" | "statusPosition" | "statusMode" | "pseudoState";
+
+type AvatarRowProps = {
+  sizes?: AvatarPropsType["size"][];
+  shapes?: AvatarPropsType["shape"][];
+  colors?: AvatarPropsType["color"][];
+  label?: AvatarPropsType["label"];
+  icon?: AvatarPropsType["icon"];
+  imageSrc?: AvatarPropsType["imageSrc"];
+  statusModes?: Status["mode"][];
+  statusPositions?: Status["position"][];
+  pseudoStates?: (PseudoState | undefined)[];
+  groupBy?: GroupingKey[];
 };
 
-export const SquareAvatar: Story = {
-  render: AvatarSquare,
+const AvatarRow = ({
+  sizes = ["medium"],
+  shapes = ["circle"],
+  colors = ["grey"],
+  label,
+  icon,
+  imageSrc,
+  statusModes,
+  statusPositions = [],
+  pseudoStates = [],
+  groupBy = ["size"],
+}: AvatarRowProps) => {
+  const getValuesForKey = (key?: GroupingKey) => {
+    switch (key) {
+      case "size":
+        return sizes as string[];
+      case "shape":
+        return shapes as string[];
+      case "color":
+        return colors as string[];
+      case "statusPosition":
+        return statusPositions as string[];
+      case "statusMode":
+        return statusModes as string[];
+      case "pseudoState":
+        return pseudoStates;
+      default:
+        return [];
+    }
+  };
+
+  const renderGroup = (
+    level: number,
+    filters: {
+      size?: AvatarPropsType["size"];
+      shape?: AvatarPropsType["shape"];
+      color?: AvatarPropsType["color"];
+      statusMode?: Status["mode"];
+      statusPosition?: Status["position"];
+      pseudoState?: PseudoState;
+    }
+  ): JSX.Element | JSX.Element[] => {
+    // Base case: render avatars
+    if (level >= groupBy.length) {
+      const sizesToRender = filters.size ? [filters.size] : sizes;
+      const colorsToRender = filters.color ? [filters.color] : colors;
+      const shapesToRender = filters.shape ? [filters.shape] : shapes;
+      const positionsToRender = filters.statusPosition
+        ? [filters.statusPosition]
+        : statusPositions.length
+          ? statusPositions
+          : [undefined];
+      const modesToRender = filters.statusMode ? [filters.statusMode] : statusModes?.length ? statusModes : [undefined];
+
+      const pseudoStatesEnabled = !!filters.pseudoState;
+
+      return shapesToRender.map((shape) => (
+        <DxcFlex
+          key={`shape-${shape}-${String(filters.size ?? "all")}-${String(filters.color ?? "all")}`}
+          gap="var(--spacing-gap-l)"
+          wrap="wrap"
+        >
+          {sizesToRender.map((size) =>
+            colorsToRender.map((color) =>
+              positionsToRender.map((position) =>
+                modesToRender.map((mode) => (
+                  <ExampleContainer
+                    key={`${size}-${shape}-${color}-${mode}-${position ?? "none"}`}
+                    pseudoState={filters.pseudoState}
+                  >
+                    <DxcAvatar
+                      size={size}
+                      shape={shape}
+                      color={color}
+                      label={label}
+                      icon={icon}
+                      imageSrc={imageSrc}
+                      status={position && mode ? { position, mode: mode } : undefined}
+                      onClick={pseudoStatesEnabled ? () => console.log("") : undefined}
+                    />
+                  </ExampleContainer>
+                ))
+              )
+            )
+          )}
+        </DxcFlex>
+      ));
+    }
+
+    const key = groupBy[level];
+    const values = getValuesForKey(key);
+
+    return values.map((value) => {
+      const newFilters = { ...filters };
+      if (key === "size") newFilters.size = value as AvatarPropsType["size"];
+      else if (key === "shape") newFilters.shape = value as AvatarPropsType["shape"];
+      else if (key === "color") newFilters.color = value as AvatarPropsType["color"];
+      else if (key === "statusPosition") newFilters.statusPosition = value as Status["position"];
+      else if (key === "statusMode") newFilters.statusMode = value as Status["mode"];
+      else if (key === "pseudoState") newFilters.pseudoState = value as PseudoState;
+
+      return (
+        <div key={`${key}-${String(value)}`}>
+          <Title title={String(value)} theme="light" level={3 + level} />
+          {renderGroup(level + 1, newFilters)}
+        </div>
+      );
+    });
+  };
+
+  return <>{renderGroup(0, {})}</>;
 };
 
-export const AvatarTooltip: Story = {
-  render: TooltipAvatar,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByRole("button"));
-  },
+export const Shapes: Story = {
+  render: () => (
+    <>
+      <Title title="Shapes" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle", "square"]}
+        groupBy={["shape", "size"]}
+      />
+    </>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <>
+      <Title title="Colors" theme="light" level={2} />
+      <AvatarRow
+        sizes={["medium"]}
+        shapes={["circle"]}
+        colors={["grey", "blue", "green", "orange", "red", "yellow", "purple"]}
+        groupBy={["color"]}
+      />
+    </>
+  ),
+};
+
+export const Statuses: Story = {
+  render: () => (
+    <>
+      <Title title="Statuses" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        statusModes={["default", "info", "success", "warning", "error"]}
+        statusPositions={["top", "bottom"]}
+        groupBy={["statusPosition", "statusMode"]}
+      />
+    </>
+  ),
+};
+
+export const PseudoStates: Story = {
+  render: () => (
+    <>
+      <Title title="Pseudo states" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active"]}
+        groupBy={["pseudoState", "size"]}
+      />
+    </>
+  ),
+};
+
+export const Types: Story = {
+  render: () => (
+    <>
+      <Title title="Label" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        label="John Doe"
+        groupBy={["size"]}
+      />
+      <Title title="Image" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        imageSrc="https://picsum.photos/id/1022/200/300"
+        groupBy={["size"]}
+      />
+      <Title title="Icon (custom)" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        icon="settings"
+        groupBy={["size"]}
+      />
+      <Title title="Icon (default)" theme="light" level={2} />
+      <AvatarRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        groupBy={["size"]}
+      />
+    </>
+  ),
 };

@@ -3,7 +3,7 @@ import { SVG } from "../common/utils";
 type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Shape = "circle" | "square";
 type Color = "grey" | "blue" | "green" | "orange" | "red" | "yellow" | "purple";
-interface Status {
+export interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
 }
