@@ -223,6 +223,15 @@ const TextInput = () => (
         action={action}
       />
     </ExampleContainer>
+    <Title title="Alignment" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Alignment left" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="left" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Alignment right" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="right" />
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />

@@ -126,7 +126,9 @@ const InputContainer = styled.div<{
       : "cursor: not-allowed;"};
 `;
 
-const Input = styled.input`
+const Input = styled.input<{
+  alignment: TextInputPropsType["alignment"];
+}>`
   height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
@@ -143,6 +145,7 @@ const Input = styled.input`
   font-weight: ${(props) => props.theme.valueFontWeight};
   line-height: 1.5em;
   ${(props) => props.disabled && `cursor: not-allowed;`}
+  ${({ alignment }) => `text-align: ${alignment}`};
 
   ::placeholder {
     color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
@@ -202,6 +205,7 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
     {
+      alignment = "left",
       label,
       name = "",
       defaultValue = "",
@@ -609,6 +613,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
               <DxcFlex gap="0.25rem" alignItems="center" grow={1}>
                 <Input
+                  alignment={alignment}
                   id={inputId}
                   name={name}
                   value={value ?? innerValue}

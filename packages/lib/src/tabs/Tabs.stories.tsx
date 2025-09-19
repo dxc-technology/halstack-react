@@ -36,7 +36,7 @@ const tabs = (margin?: Space) => (
     <DxcTabs.Tab label="Tab 4">
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5">
+    <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 6">
@@ -322,6 +322,36 @@ const Scroll = () => (
   </>
 );
 
+const ResponsiveFocused = () => (
+  <>
+    <ExampleContainer>
+      <DxcTabs>
+        <DxcTabs.Tab label="Tab 1" title="test tooltip">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 2">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 3" disabled>
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 4">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 6">
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 7" defaultActive>
+          <></>
+        </DxcTabs.Tab>
+      </DxcTabs>
+    </ExampleContainer>
+  </>
+);
+
 type Story = StoryObj<typeof DxcTabs>;
 
 export const Chromatic: Story = {
@@ -330,6 +360,16 @@ export const Chromatic: Story = {
 
 export const ScrollableTabs: Story = {
   render: Scroll,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375], delay: 5000 },
+  },
+};
+
+export const ResponsiveFocusedTabs: Story = {
+  render: ResponsiveFocused,
   parameters: {
     viewport: {
       defaultViewport: "iphonex",

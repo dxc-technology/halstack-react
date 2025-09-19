@@ -48,7 +48,35 @@ export type GridRow = {
 };
 
 export type HierarchyGridRow = GridRow & {
+    /**
+   * Array of child rows nested under this row, enabling hierarchical (tree-like) structures.
+   * These child rows will be displayed when the parent row is expanded.
+   */
   childRows?: HierarchyGridRow[] | GridRow[];
+  /**
+   * Function called when a row with children is expanded or collapsed (based on the value of `open`). 
+   * Returns (or resolves to) the array of child rows nested under this row to display when expanded.
+   */
+  childrenTrigger?: (
+    open?: boolean,
+    triggerRow?: HierarchyGridRow
+  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
+  /**
+   * Indicates whether child rows are currently being loaded.
+   */
+  loadingChildren?: boolean;
+  /**
+   * Indicates the level of nesting for this row in the hierarchy.
+   */
+  rowLevel?: number;
+  /**
+   * Reference to the parent row's unique identifier.
+   */
+  parentKey?: string | number;
+  /**
+   * Indicates whether child rows are currently visible.
+   */
+  visibleChildren?: boolean;
 };
 
 export type ExpandableGridRow = GridRow & {

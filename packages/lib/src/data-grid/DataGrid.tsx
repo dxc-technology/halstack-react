@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled, { ThemeProvider } from "styled-components";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -18,6 +18,8 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
+  expandRow,
+  rowHasHierarchy,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
@@ -188,7 +190,7 @@ const DxcDataGrid = ({
   totalItems,
   defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
+  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(defaultPage);
 
@@ -228,7 +230,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return (row.expandedChildContent as ReactNode) || null;
             }
             // if row has expandable content
             return (
@@ -241,23 +243,31 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+
+    if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
         expectedColumns[0] = {
           ...expectedColumns[0]!,
           renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
+            if (rowHasHierarchy(row)) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                  {renderHierarchyTrigger(
+                    rowsToRender,
+                    row,
+                    uniqueRowId,
+                    firstColumnKey,
+                    setRowsToRender,
+                    row.childrenTrigger
+                  )}
                 </HierarchyContainer>
               );
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
+                {row[firstColumnKey] as ReactNode}
               </HierarchyContainer>
             );
           },
@@ -304,20 +314,14 @@ const DxcDataGrid = ({
   useEffect(() => {
     const finalRows = [...rows];
     if (expandable) {
-      rows.forEach((row, index) => {
-        if (
-          row.contentIsExpanded &&
-          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
-        ) {
-          addRow(finalRows, index + 1, {
-            isExpandedChildContent: row.contentIsExpanded,
-            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
-            expandedChildContent: row.expandedContent,
-            triggerRowKey: rowKeyGetter(row, uniqueRowId),
-            expandedContentHeight: row.expandedContentHeight,
-          });
-        }
-      });
+      finalRows
+        .filter((row) => {
+          const rowId = rowKeyGetter(row, uniqueRowId);
+          return row.contentIsExpanded && !rows.some((r) => r[uniqueRowId] === `${rowId}_expanded`);
+        })
+        .forEach((row) => {
+          expandRow(row, finalRows, uniqueRowId);
+        });
     }
     setRowsToRender(finalRows);
   }, [rows]);
@@ -427,17 +431,19 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
-          <DxcPaginator
-            totalItems={totalItems ?? rows.length}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageOptions={itemsPerPageOptions}
-            itemsPerPageFunction={itemsPerPageFunction}
-            currentPage={page}
-            showGoToPage={showGoToPage}
-            onPageChange={goToPage}
-          />
-        )}
+        {showPaginator &&
+          (itemsPerPageOptions?.some((itemsPerPage) => (totalItems ?? rows.length) > itemsPerPage) ||
+            (totalItems ?? rows.length) > itemsPerPage) && (
+            <DxcPaginator
+              totalItems={totalItems ?? rows.length}
+              itemsPerPage={itemsPerPage}
+              itemsPerPageOptions={itemsPerPageOptions}
+              itemsPerPageFunction={itemsPerPageFunction}
+              currentPage={page}
+              showGoToPage={showGoToPage}
+              onPageChange={goToPage}
+            />
+          )}
       </DataGridContainer>
     </ThemeProvider>
   );

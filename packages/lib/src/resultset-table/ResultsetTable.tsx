@@ -166,18 +166,19 @@ const DxcResultsetTable = ({
             ))}
           </tbody>
         </DxcTable>
-        {!hidePaginator && (
-          <DxcPaginator
-            totalItems={rows.length}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageOptions={itemsPerPageOptions}
-            itemsPerPageFunction={itemsPerPageFunction}
-            currentPage={page}
-            showGoToPage={showGoToPage}
-            onPageChange={goToPage}
-            tabIndex={tabIndex}
-          />
-        )}
+        {!hidePaginator &&
+          (itemsPerPageOptions?.some((itemsPerPage) => rows.length > itemsPerPage) || rows.length > itemsPerPage) && (
+            <DxcPaginator
+              totalItems={rows.length}
+              itemsPerPage={itemsPerPage}
+              itemsPerPageOptions={itemsPerPageOptions}
+              itemsPerPageFunction={itemsPerPageFunction}
+              currentPage={page}
+              showGoToPage={showGoToPage}
+              onPageChange={goToPage}
+              tabIndex={tabIndex}
+            />
+          )}
       </DxcResultsetTableContainer>
     </ThemeProvider>
   );

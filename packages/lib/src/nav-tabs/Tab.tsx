@@ -8,7 +8,16 @@ import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
-    { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
+    {
+      href,
+      active = false,
+      icon,
+      disabled = false,
+      onClick,
+      notificationNumber = false,
+      children,
+      ...otherProps
+    }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
@@ -37,14 +46,17 @@ const DxcTab = forwardRef(
     return (
       <TabContainer active={active}>
         <Tab
-          href={!disabled ? href : undefined}
+          aria-disabled={disabled}
+          aria-selected={active}
           disabled={disabled}
           active={active}
+          href={!disabled ? href : undefined}
           iconPosition={iconPosition}
+          onClick={onClick}
+          onKeyDown={handleOnKeyDown}
           hasIcon={icon != null}
           ref={(anchorRef: HTMLAnchorElement) => {
             tabRef.current = anchorRef;
-
             if (ref) {
               if (typeof ref === "function") {
                 ref(anchorRef);
@@ -53,11 +65,8 @@ const DxcTab = forwardRef(
               }
             }
           }}
-          onKeyDown={handleOnKeyDown}
           tabIndex={active ? tabIndex : -1}
           role="tab"
-          aria-selected={active}
-          aria-disabled={disabled}
           {...otherProps}
         >
           {icon && (

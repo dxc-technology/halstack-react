@@ -128,6 +128,19 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    onClick
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>{"() => void"}</TableCode>
+                </td>
+                <td>This function will be called when the user clicks on this tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
                 <td>notificationNumber</td>
                 <td>
                   <TableCode>boolean | number</TableCode>
@@ -210,20 +223,21 @@ const sections = [
             ),
           },
           {
-            title: "React router v6",
+            title: "React router v6+",
             content: (
               <>
                 <DxcParagraph>
                   In{" "}
                   <DxcLink
-                    href="https://github.com/remix-run/react-router/blob/main/docs/upgrading/v5.md#remove-link-component-prop"
+                    href="https://github.com/remix-run/react-router/blob/v6.0.0/docs/upgrading/v5.md#remove-link-component-prop"
                     newWindow
                   >
                     React Router v6
                   </DxcLink>{" "}
-                  the prop <Code>component</Code> is no longer available so it is necessary to use hooks provided by{" "}
-                  <DxcLink href="https://reactrouter.com/en/main/hooks/use-href" newWindow>
-                    React Router v6
+                  and higher, the prop <Code>component</Code> is no longer available so it is necessary to use hooks
+                  provided by the newer versions of{" "}
+                  <DxcLink href="https://reactrouter.com/api/hooks/useNavigate" newWindow>
+                    React Router
                   </DxcLink>
                   .
                 </DxcParagraph>

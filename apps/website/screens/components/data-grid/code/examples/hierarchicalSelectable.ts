@@ -2,7 +2,7 @@ import { DxcDataGrid, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const columns = [
+  const [columns] = useState([
     {
       key: "name",
       label: "Label",
@@ -14,9 +14,9 @@ const code = `() => {
       alignment: "right",
       summaryKey: "total"
     },
-  ];
+  ]);
   
-  const rows = [
+  const [rows] = useState([
     {
         name: "Root Node 1",
         value: "1",
@@ -75,7 +75,7 @@ const code = `() => {
             },
         ],
     },
-  ];
+  ]);
 
   const [selectedRows, setSelectedRows] = useState(new Set());
   return (

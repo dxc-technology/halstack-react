@@ -25,6 +25,10 @@ export type TabProps = {
    */
   icon?: string | SVG;
   /**
+   * This function will be called when the user clicks on this tab.
+   */
+  onClick?: () => void;
+  /**
    * If the value is 'true', an empty badge will appear.
    * If it is 'false', no badge will appear.
    * If a number is put it will be shown as the label of the notification

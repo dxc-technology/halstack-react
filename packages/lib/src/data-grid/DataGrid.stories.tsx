@@ -2,13 +2,13 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn, GridRow, HierarchyGridRow } from "./types";
 import { isValidElement, useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
-import { ActionsPropsType } from "../table/types";
+import { ActionsCellPropsType } from "../table/types";
 import { Meta, StoryObj } from "@storybook/react";
 import { isKeyOfRow } from "./utils";
 
@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof DxcDataGrid>;
 
-const actions: ActionsPropsType = [
+const actions: ActionsCellPropsType["actions"] = [
   {
     title: "icon",
     onClick: (value?) => {
@@ -151,7 +151,7 @@ const expandableRows = [
     complete: 46,
     priority: "High",
     issueType: "Bug",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
     contentIsExpanded: true,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
@@ -162,7 +162,7 @@ const expandableRows = [
     complete: 51,
     priority: "High",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -171,7 +171,7 @@ const expandableRows = [
     complete: 40,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -180,7 +180,7 @@ const expandableRows = [
     complete: 10,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -189,7 +189,7 @@ const expandableRows = [
     complete: 68,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -198,7 +198,7 @@ const expandableRows = [
     complete: 37,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -207,7 +207,7 @@ const expandableRows = [
     complete: 73,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -216,7 +216,7 @@ const expandableRows = [
     complete: 27,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -225,7 +225,7 @@ const expandableRows = [
     complete: 36,
     priority: "Critical",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
 ];
@@ -237,7 +237,7 @@ const expandableRowsPaginated = [
     complete: 46,
     priority: "High",
     issueType: "Bug",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
   },
   {
@@ -246,7 +246,7 @@ const expandableRowsPaginated = [
     complete: 51,
     priority: "High",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 33,
@@ -254,7 +254,7 @@ const expandableRowsPaginated = [
     complete: 40,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 44,
@@ -262,7 +262,7 @@ const expandableRowsPaginated = [
     complete: 10,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 55,
@@ -270,7 +270,7 @@ const expandableRowsPaginated = [
     complete: 68,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 66,
@@ -278,7 +278,7 @@ const expandableRowsPaginated = [
     complete: 37,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 77,
@@ -286,7 +286,7 @@ const expandableRowsPaginated = [
     complete: 73,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 88,
@@ -294,7 +294,7 @@ const expandableRowsPaginated = [
     complete: 27,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 99,
@@ -302,7 +302,7 @@ const expandableRowsPaginated = [
     complete: 36,
     priority: "Critical",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
 ];
 
@@ -325,7 +325,7 @@ const childcolumns: GridColumn[] = [
   },
 ];
 
-const childRows: HierarchyGridRow[] = [
+const childRows = [
   {
     name: "Root Node 1",
     value: "1",
@@ -444,7 +444,59 @@ const childRows: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
-const childRowsPaginated: HierarchyGridRow[] = [
+const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
+  if (open) {
+    return new Promise<HierarchyGridRow[]>((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            name: `${triggerRow.name} Child 1`,
+            value: triggerRow.value,
+            id: `${triggerRow.id}-child-1`,
+            childrenTrigger,
+          },
+          {
+            name: `${triggerRow.name} Child 2`,
+            value: triggerRow.value,
+            id: `${triggerRow.id}-child-2`,
+            childrenTrigger,
+          },
+        ] as unknown as HierarchyGridRow[]);
+      }, 5000);
+    });
+  } else {
+    return [] as HierarchyGridRow[];
+  }
+};
+
+const childRowsLazy = [
+  {
+    name: "Root Node 1 Lazy",
+    value: "1",
+    id: "lazy-a",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 2 Lazy",
+    value: "2",
+    id: "lazy-b",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 3 Lazy",
+    value: "3",
+    id: "lazy-c",
+    childrenTrigger,
+  },
+  {
+    name: "Root Node 4 Lazy",
+    value: "4",
+    id: "lazy-d",
+    childrenTrigger,
+  },
+] as unknown as HierarchyGridRow[];
+
+const childRowsPaginated = [
   {
     name: "Paginated Node 1",
     value: "1",
@@ -652,13 +704,6 @@ const customSortRows = [
 ];
 
 const DataGrid = () => {
-  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
-  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
-
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
       <ExampleContainer>
@@ -669,6 +714,34 @@ const DataGrid = () => {
         <Title title="Expandable" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Summary row" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          uniqueRowId="id"
+        />
+      </ExampleContainer>
+      {/* <ExampleContainer>
+        <Title title="Scrollable Data Grid" theme="light" level={4} />
+        <DxcContainer height="250px">
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        </DxcContainer>
+      </ExampleContainer> */}
+    </>
+  );
+};
+
+const DataGridControlled = () => {
+  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
+  const [page, setPage] = useState(0);
+
+  return (
+    <>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
         <DxcDataGrid
@@ -708,19 +781,18 @@ const DataGrid = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
+        <Title title="DataGrid with childrenTrigger function" theme="light" level={4} />
         <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
+          columns={childcolumns}
+          rows={childRowsLazy}
           uniqueRowId="id"
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={(selectedRows) => {
+            console.log("SELECTEDROWS", selectedRows);
+            return setSelectedRows(selectedRows);
+          }}
         />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
-        </DxcContainer>
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
@@ -940,38 +1012,14 @@ const DataGridUnknownUniqueRowId = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
 
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
   return (
     <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Expandable" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" expandable />
-      </ExampleContainer>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
           rows={expandableRows}
           uniqueRowId="error"
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Selectable & expandable" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          uniqueRowId="error"
-          expandable
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
@@ -993,21 +1041,6 @@ const DataGridUnknownUniqueRowId = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          uniqueRowId="error"
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="error" />
-        </DxcContainer>
-      </ExampleContainer>
-      <ExampleContainer>
         <Title title="Empty Data Grid" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
@@ -1018,57 +1051,6 @@ const DataGridUnknownUniqueRowId = () => {
           onSelectRows={setSelectedChildRows}
         />
       </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Controlled Rows" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={rowsControlled}
-          uniqueRowId="error"
-          showPaginator
-          onSort={(sortColumn) => {
-            if (sortColumn) {
-              const { columnKey, direction } = sortColumn;
-              console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => {
-                return currentRows.sort((a, b) => {
-                  if (isKeyOfRow(columnKey, a) && isKeyOfRow(columnKey, b)) {
-                    const valueA = a[columnKey];
-                    const valueB = b[columnKey];
-                    if (valueA != null && valueB != null) {
-                      if (direction === "ASC") {
-                        return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
-                      } else {
-                        return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
-                      }
-                    } else {
-                      return 0;
-                    }
-                  } else {
-                    return 0;
-                  }
-                });
-              });
-            } else {
-              console.log("Removed sorting criteria");
-              setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
-            }
-          }}
-          onPageChange={(page) => {
-            const internalPage = page - 1;
-            setPage(internalPage);
-            setRowsControlled(
-              expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
-            );
-          }}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={[5, 10]}
-          itemsPerPageFunction={(n) => {
-            setItemsPerPage(n);
-            setRowsControlled(expandableRows.slice(0, n));
-          }}
-          totalItems={expandableRows.length}
-        />
-      </ExampleContainer>
     </>
   );
 };
@@ -1077,6 +1059,15 @@ type Story = StoryObj<typeof DxcDataGrid>;
 
 export const Chromatic: Story = {
   render: DataGrid,
+};
+
+export const Controlled: Story = {
+  render: DataGridControlled,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText("Root Node 1 Lazy"));
+    await userEvent.click(canvas.getByText("Root Node 2 Lazy"));
+  },
 };
 
 export const CustomSort: Story = {

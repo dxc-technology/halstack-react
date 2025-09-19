@@ -10,6 +10,7 @@ import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
 import TableCode from "@/common/TableCode";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -25,6 +26,27 @@ const sections = [
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="1rem" alignItems="baseline">
+                <StatusBadge status="new" />
+                alignment
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'left' | 'right'</TableCode>
+            </td>
+            <td>
+              Sets <Code>text-align</Code> CSS property inside the input. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'left'</TableCode>
+            </td>
+          </tr>
           <tr>
             <td>defaultValue</td>
             <td>
