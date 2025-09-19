@@ -22,7 +22,7 @@ type AvatarRowProps = {
   icon?: AvatarPropsType["icon"];
   imageSrc?: AvatarPropsType["imageSrc"];
   statusModes?: Status["mode"][];
-  statusPositions?: Status["position"][];
+  statusPositions?: (Status["position"]| undefined)[];
   pseudoStates?: (PseudoState | undefined)[];
   groupBy?: GroupingKey[];
 };
@@ -172,10 +172,11 @@ export const Statuses: Story = {
       <Title title="Statuses" theme="light" level={2} />
       <AvatarRow
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        colors={["grey", "blue", "green", "orange", "red", "yellow", "purple"]}
         shapes={["circle"]}
         statusModes={["default", "info", "success", "warning", "error"]}
         statusPositions={["top", "bottom"]}
-        groupBy={["statusPosition", "statusMode"]}
+        groupBy={["statusPosition", "statusMode", "color"]}
       />
     </>
   ),
@@ -188,6 +189,8 @@ export const PseudoStates: Story = {
       <AvatarRow
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["circle"]}
+        statusModes={["success"]}
+        statusPositions={[undefined, "top", "bottom"]}
         pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active"]}
         groupBy={["pseudoState", "size"]}
       />

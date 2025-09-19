@@ -68,9 +68,9 @@ const iconSizeMap = {
 };
 
 const outlineWidthMap = {
-  xsmall: "var(--border-width-s)",
-  small: "var(--border-width-s)",
-  medium: "var(--border-width-s)",
+  xsmall: "var(--border-width-m)",
+  small: "var(--border-width-m)",
+  medium: "var(--border-width-m)",
   large: "var(--border-width-l)",
   xlarge: "var(--border-width-l)",
   xxlarge: "var(--border-width-l)",
