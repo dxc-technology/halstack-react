@@ -69,7 +69,6 @@ const AvatarRow = ({
       pseudoState?: PseudoState;
     }
   ): JSX.Element | JSX.Element[] => {
-    // Base case: render avatars
     if (level >= groupBy.length) {
       const sizesToRender = filters.size ? [filters.size] : sizes;
       const colorsToRender = filters.color ? [filters.color] : colors;
