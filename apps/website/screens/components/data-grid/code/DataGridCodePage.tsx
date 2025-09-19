@@ -171,7 +171,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+              <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
                 <StatusBadge status="new" />
                 childrenTrigger
               </DxcFlex>
@@ -337,7 +337,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                  <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
                     <StatusBadge status="required" />
                     actions
                   </DxcFlex>
