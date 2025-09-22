@@ -138,17 +138,18 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
+  loading?: boolean,
+  setLoading?: (_value: SetStateAction<boolean>) => void,
   childrenTrigger?: (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>
 ) => {
-  const [loading, setLoading] = useState(false);
   const onClick = async () => {
     if (loading) return; // Prevent double clicks while loading
     if (!triggerRow.visibleChildren) {
       if (childrenTrigger) {
-        setLoading(true);
+        setLoading?.(true);
         triggerRow.loadingChildren = true;
         try {
           const dynamicChildren = await childrenTrigger(true, triggerRow);
@@ -172,9 +173,9 @@ export const renderHierarchyTrigger = (
         } catch (error) {
           console.error("Error loading children:", error);
         } finally {
-          setLoading(false);
+          setLoading?.(false);
         }
-      } else if (triggerRow.childRows) {
+      } else if (triggerRow?.childRows) {
         setRowsToRender((currentRows) => {
           const newRowsToRender = [...currentRows];
           const rowIndex = currentRows.findIndex((row) => triggerRow === row);
