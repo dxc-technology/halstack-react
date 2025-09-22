@@ -1,4 +1,4 @@
-import { DxcSlider, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcSlider, DxcInset, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -19,7 +19,7 @@ const code = `() => {
         step={10}
         value={value}
       />
-      <span>Current value: {value}</span>
+      <DxcParagraph>Current value: {value}</DxcParagraph>
     </DxcInset>
   );
 }`;
@@ -28,6 +28,7 @@ const scope = {
   DxcSlider,
   DxcInset,
   DxcFlex,
+  DxcParagraph,
   useState,
 };
 
