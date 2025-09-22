@@ -180,6 +180,7 @@ const DxcDataGrid = ({
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
+  const [loadingChildren, setLoadingChildren] = useState(false);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
@@ -232,8 +233,8 @@ const DxcDataGrid = ({
     }
     const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
       return (
-        (Array.isArray(row.childRows) && row.childRows.length > 0) ||
-        typeof (row as HierarchyGridRow).childrenTrigger === "function"
+        (Array.isArray(row?.childRows) && row?.childRows?.length > 0) ||
+        typeof (row as HierarchyGridRow)?.childrenTrigger === "function"
       );
     };
     if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
@@ -252,7 +253,9 @@ const DxcDataGrid = ({
                     uniqueRowId,
                     firstColumnKey,
                     setRowsToRender,
-                    row.childrenTrigger,
+                    loadingChildren,
+                    setLoadingChildren,
+                    row.childrenTrigger
                   )}
                 </HierarchyContainer>
               );
