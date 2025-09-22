@@ -173,14 +173,14 @@ export const renderHierarchyTrigger = (
         } catch (error) {
           console.error("Error loading children:", error);
         } finally {
-          setLoading(false);
+          setLoading?.(false);
         }
       } else if (triggerRow?.childRows) {
         setRowsToRender((currentRows) => {
           const newRowsToRender = [...currentRows];
           const rowIndex = currentRows.findIndex((row) => triggerRow === row);
 
-          triggerRow?.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
             childRow.rowLevel =
               triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
             childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);

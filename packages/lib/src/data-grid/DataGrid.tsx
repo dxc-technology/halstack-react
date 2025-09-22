@@ -233,7 +233,7 @@ const DxcDataGrid = ({
     }
     const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
       return (
-        (Array.isArray(row?.childRows) && row?.childRows?.length > 0) ||
+        (Array.isArray(row.childRows) && row.childRows?.length > 0) ||
         typeof (row as HierarchyGridRow)?.childrenTrigger === "function"
       );
     };
