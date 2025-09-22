@@ -1,6 +1,6 @@
 name: Build and test
 
-on: pull_request
+on: push
 
 jobs:
   build:
@@ -16,6 +16,16 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+          role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+
       - name: Install dependencies
         run: npm install
 
@@ -27,3 +37,19 @@ jobs:
 
       - name: Test library accessibility
         run: npm run test:accessibility
+
+      - name: Install scripts dependencies
+        run: cd scripts && npm install
+
+      - name: Move RELEASE website to S3
+        run: node scripts/release-website.js 15.2.1
+        env:
+          TAG_NAME: 15.2.1
+
+      - name: Execute script version
+        run: node scripts/create-version.js 15.2.1
+
+      - name: Deploy version to S3 Bucket
+        run: |
+          aws s3 rm s3://design.system.components.catalog/guidelines/version --recursive
+          aws s3 cp ./catalog/version/ s3://design.system.components.catalog/guidelines/version --recursive
