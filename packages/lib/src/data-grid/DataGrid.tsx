@@ -180,7 +180,7 @@ const DxcDataGrid = ({
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
-  const [loadingChildren, setLoadingChildren] = useState(false);
+  const [loadingChildren, setLoadingChildren] = useState<(string | number)[]>([]);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
@@ -297,7 +297,18 @@ const DxcDataGrid = ({
       ];
     }
     return expectedColumns;
-  }, [selectable, expandable, columns, rowsToRender, onSelectRows, rows, summaryRow, uniqueRowId, selectedRows]);
+  }, [
+    selectable,
+    expandable,
+    columns,
+    rowsToRender,
+    onSelectRows,
+    rows,
+    summaryRow,
+    uniqueRowId,
+    selectedRows,
+    loadingChildren,
+  ]);
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
