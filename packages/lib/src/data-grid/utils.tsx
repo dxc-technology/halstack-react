@@ -138,58 +138,73 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
-  loading?: boolean,
-  setLoading?: (_value: SetStateAction<boolean>) => void,
+  loadingChildren?: (string | number)[],
+  setLoadingChildren?: (_value: SetStateAction<(string | number)[]>) => void,
   childrenTrigger?: (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>
 ) => {
-  const onClick = async () => {
-    if (loading) return; // Prevent double clicks while loading
-    if (!triggerRow.visibleChildren) {
-      if (childrenTrigger) {
-        setLoading?.(true);
-        triggerRow.loadingChildren = true;
-        try {
-          const dynamicChildren = await childrenTrigger(true, triggerRow);
-          triggerRow.childRows = dynamicChildren;
+  const isLoading = !!loadingChildren?.includes(rowKeyGetter(triggerRow, uniqueRowId));
+  const expandChildren = async () => {
+    if (childrenTrigger && !triggerRow.childRows?.length) {
+      setLoadingChildren?.((currentLoadingChildren) => [
+        ...currentLoadingChildren,
+        rowKeyGetter(triggerRow, uniqueRowId),
+      ]);
+      triggerRow.loadingChildren = true;
+      try {
+        const dynamicChildren = await childrenTrigger(true, triggerRow);
+        triggerRow.childRows = dynamicChildren;
 
-          setRowsToRender((currentRows) => {
-            const newRowsToRender = [...currentRows];
-            // Prevents adding children if the triggerRow has been removed
-            if (newRowsToRender.some((row) => rowKeyGetter(row, uniqueRowId) === triggerRow[uniqueRowId])) {
-              const rowIndex = currentRows.findIndex((row) => triggerRow === row);
-
-              dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
-                childRow.rowLevel =
-                  triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-                childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-                addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-              });
-            }
-            return newRowsToRender;
-          });
-        } catch (error) {
-          console.error("Error loading children:", error);
-        } finally {
-          setLoading?.(false);
-        }
-      } else if (triggerRow?.childRows) {
         setRowsToRender((currentRows) => {
           const newRowsToRender = [...currentRows];
-          const rowIndex = currentRows.findIndex((row) => triggerRow === row);
-
-          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-            childRow.rowLevel =
-              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-          });
-
+          if (newRowsToRender.some((row) => rowKeyGetter(row, uniqueRowId) === triggerRow[uniqueRowId])) {
+            const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+            dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+              childRow.rowLevel =
+                triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+              childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+              addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+            });
+          }
           return newRowsToRender;
         });
+      } catch (e) {
+        console.error("Error loading children:", e);
+      } finally {
+        setLoadingChildren?.((currentLoadingChildren) =>
+          currentLoadingChildren.filter((key) => key !== rowKeyGetter(triggerRow, uniqueRowId))
+        );
       }
+    } else if (triggerRow?.childRows) {
+      setRowsToRender((currentRows) => {
+        const newRowsToRender = [...currentRows];
+        const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+
+        triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+          childRow.rowLevel =
+            triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+          childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+          addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+        });
+
+        return newRowsToRender;
+      });
+    }
+  };
+  if (
+    triggerRow.visibleChildren &&
+    triggerRow.childRows?.length &&
+    !rows.some((row) => row.parentKey === rowKeyGetter(triggerRow, uniqueRowId))
+  ) {
+    expandChildren();
+  }
+  const onClick = async () => {
+    if (isLoading) return; // Prevent double clicks while loading
+    triggerRow.visibleChildren = !triggerRow.visibleChildren;
+    if (triggerRow.visibleChildren) {
+      await expandChildren();
     } else {
       setRowsToRender((currentRows) => {
         // The children of the row that is being collapsed are added to an array
@@ -221,12 +236,10 @@ export const renderHierarchyTrigger = (
         return newRowsToRender;
       });
     }
-
-    triggerRow.visibleChildren = !triggerRow.visibleChildren;
   };
   return (
     <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={onClick}>
-      {loading ? (
+      {isLoading ? (
         <DxcSpinner mode="small" />
       ) : (
         <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
@@ -264,10 +277,7 @@ export const renderCheckbox = (
       onChange={(checked) => {
         handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows);
       }}
-      disabled={
-        // row.loadingChildren ||
-        !rows.some((row) => uniqueRowId in row)
-      }
+      disabled={!rows.some((row) => uniqueRowId in row)}
     />
   );
 };
