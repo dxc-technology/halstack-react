@@ -39,6 +39,7 @@ const MainContainer = styled.div`
   @media (max-width: ${responsiveSizes.tablet}px) {
     grid-template-columns: minmax(0, 1fr);
   }
+  font-family: var(--typography-font-family);
 `;
 
 const QuickNavContainer = styled.div`
