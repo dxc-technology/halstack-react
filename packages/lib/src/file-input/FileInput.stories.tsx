@@ -1,12 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "File Input",
   component: DxcFileInput,
-} as Meta<typeof DxcFileInput>;
+} satisfies Meta<typeof DxcFileInput>;
 
 const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
@@ -79,10 +80,6 @@ const FileInput = () => (
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
       <DxcFileInput label="File input" value={[]} callbackFile={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Optional" theme="light" level={4} />
-      <DxcFileInput label="File input" value={[]} callbackFile={() => {}} optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and helper text" theme="light" level={4} />
@@ -535,8 +532,8 @@ type Story = StoryObj<typeof DxcFileInput>;
 //   render: EllipsisError,
 //   play: async ({ canvasElement }) => {
 //     const canvas = within(canvasElement);
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
 //   },
 // };
 

@@ -1,4 +1,4 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -6,8 +6,23 @@ import { disabledRules } from "../../test/accessibility/rules/specific/footer/di
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcLink from "../link/Link";
+
+export default {
+  title: "Footer",
+  component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+        ],
+      },
+    },
+  },
+} satisfies Meta<typeof DxcFooter>;
 
 const social = [
   {
@@ -107,21 +122,6 @@ const bottom = [
   },
 ];
 
-export default {
-  title: "Footer",
-  component: DxcFooter,
-  parameters: {
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
-        ],
-      },
-    },
-  },
-} as Meta<typeof DxcFooter>;
-
 const opinionatedTheme = {
   footer: {
     baseColor: "#000000",
@@ -217,7 +217,7 @@ export const FooterTooltipFirst: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[0];
+    const link = (await canvas.findAllByRole("link"))[0];
     link != null && (await userEvent.hover(link));
   },
 };
@@ -226,7 +226,7 @@ export const FooterTooltipSecond: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[1];
+    const link = (await canvas.findAllByRole("link"))[1];
     link != null && (await userEvent.hover(link));
   },
 };

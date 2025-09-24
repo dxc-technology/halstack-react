@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTextarea from "./Textarea";
@@ -6,7 +6,7 @@ import DxcTextarea from "./Textarea";
 export default {
   title: "Textarea",
   component: DxcTextarea,
-} as Meta<typeof DxcTextarea>;
+} satisfies Meta<typeof DxcTextarea>;
 
 const TextArea = () => (
   <>

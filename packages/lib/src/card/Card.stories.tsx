@@ -1,13 +1,13 @@
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcCard from "./Card";
-import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Card",
   component: DxcCard,
-} as Meta<typeof DxcCard>;
+} satisfies Meta<typeof DxcCard>;
 
 const Card = () => (
   <>
@@ -158,7 +158,7 @@ export const ActionCardStates: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.tab();
-    const card = canvas.getAllByText("Hovered default with action")[1];
+    const card = (await canvas.findAllByText("Hovered default with action"))[1];
     card != null && (await userEvent.hover(card));
   },
 };
@@ -167,7 +167,7 @@ export const Chromatic: Story = {
   render: Card,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const linkCards = canvas.getAllByRole("link");
+    const linkCards = await canvas.findAllByRole("link");
     linkCards[1] != null && linkCards[1].focus();
     linkCards[2] != null && (await userEvent.hover(linkCards[2]));
   },
