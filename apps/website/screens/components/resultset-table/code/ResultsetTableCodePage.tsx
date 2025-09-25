@@ -80,24 +80,6 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
-                virtualizedHeight
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              A fixed height must be set to enable virtualization. If no height is provided, the table will
-              automatically adjust to the height of its content, and virtualization will not be applied.
-            </td>
-            <td>
-              <td>-</td>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
                 hidePaginator
               </DxcFlex>
             </td>
@@ -224,6 +206,24 @@ const sections = [
             </td>
             <td>
               <TableCode>0</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                virtualizedHeight
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A fixed height must be set to enable virtualization. If no height is provided, the table will
+              automatically adjust to the height of its content, and virtualization will not be applied.
+            </td>
+            <td>
+              <td>-</td>
             </td>
           </tr>
         </tbody>

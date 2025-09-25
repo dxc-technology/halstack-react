@@ -34,7 +34,6 @@ const getSortIcon = (isSortedColumn: boolean, order: "ascending" | "descending")
 const DxcResultsetTable = ({
   columns,
   hidePaginator = false,
-  virtualizedHeight,
   itemsPerPage = 5,
   itemsPerPageFunction,
   itemsPerPageOptions,
@@ -43,6 +42,7 @@ const DxcResultsetTable = ({
   rows,
   showGoToPage = true,
   tabIndex = 0,
+  virtualizedHeight,
 }: ResultsetTablePropsType) => {
   const [page, setPage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
