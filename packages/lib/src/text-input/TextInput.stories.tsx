@@ -80,7 +80,7 @@ const TextInput = () => (
       <DxcTextInput disabled placeholder="Name" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled - Complete example" theme="light" level={4} />
+      <Title title="Disabled — Complete example" theme="light" level={4} />
       <DxcTextInput
         label="Disabled"
         helperText="Help text"
@@ -315,7 +315,7 @@ const AutosuggestListbox = () => (
           value="Afgh"
           suggestions={country}
           visualFocusIndex={-1}
-          highlightedSuggestions={true}
+          highlightedSuggestions
           searchHasErrors={false}
           isSearching={false}
           suggestionOnClick={() => {}}
@@ -330,7 +330,7 @@ const AutosuggestListbox = () => (
           suggestions={country}
           visualFocusIndex={-1}
           highlightedSuggestions={false}
-          searchHasErrors={true}
+          searchHasErrors
           isSearching={false}
           suggestionOnClick={() => {}}
           styles={{ width: 350 }}
@@ -345,7 +345,7 @@ const AutosuggestListbox = () => (
           visualFocusIndex={-1}
           highlightedSuggestions={false}
           searchHasErrors={false}
-          isSearching={true}
+          isSearching
           suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />

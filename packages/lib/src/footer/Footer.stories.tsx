@@ -3,7 +3,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
-import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
@@ -182,29 +181,19 @@ const Footer = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcFooter margin="xxsmall"></DxcFooter>
+      <DxcFooter margin="xxsmall" />
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcFooter margin="xsmall"></DxcFooter>
+      <DxcFooter margin="xsmall" />
       <Title title="Small margin" theme="light" level={4} />
-      <DxcFooter margin="small"></DxcFooter>
+      <DxcFooter margin="small" />
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcFooter margin="medium"></DxcFooter>
+      <DxcFooter margin="medium" />
       <Title title="Large margin" theme="light" level={4} />
-      <DxcFooter margin="large"></DxcFooter>
+      <DxcFooter margin="large" />
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcFooter margin="xlarge"></DxcFooter>
+      <DxcFooter margin="xlarge" />
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcFooter margin="xxlarge"></DxcFooter>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-          <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
-            Linkedin
-          </DxcLink>
-        </DxcFooter>
-      </HalstackProvider>
+      <DxcFooter margin="xxlarge" />
     </ExampleContainer>
   </>
 );
@@ -213,7 +202,7 @@ const Tooltip = () => {
   return (
     <ExampleContainer>
       <Title title="Default tooltip" theme="light" level={2} />
-      <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
+      <DxcFooter socialLinks={social.slice(0, 2)} />
     </ExampleContainer>
   );
 };

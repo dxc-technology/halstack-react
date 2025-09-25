@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph, DxcInset } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import continuous from "./examples/continuous";
@@ -24,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Slider's anatomy" />
+        <Image src={anatomy} alt="Slider anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label:</strong> describes the purpose of the slider (e.g., "Select coverage amount").
@@ -222,9 +221,7 @@ const sections = [
 
 const SliderOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/slider/overview/SliderOverviewPage.tsx" />
   </DxcFlex>
 );

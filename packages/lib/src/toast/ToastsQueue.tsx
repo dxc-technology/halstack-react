@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
-import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
 import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
@@ -17,8 +16,8 @@ const ToastsQueue = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: ${CoreTokens.spacing_8};
-  padding: ${CoreTokens.spacing_24};
+  gap: var(--spacing-gap-s);
+  padding: var(--spacing-padding-l);
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     align-items: center;

@@ -569,7 +569,7 @@ const SelectListbox = () => (
         options={options_material}
         visualFocusIndex={-1}
         lastOptionIndex={6}
-        multiple={true}
+        multiple
         optional={false}
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}

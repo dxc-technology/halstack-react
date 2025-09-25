@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { DxcNavTabs } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
-export default function TabsPageLayout({ tabs }: { tabs: { label: string; path: string }[] }) {
+const TabsPageLayout = ({ tabs }: { tabs: { label: string; path: string }[] }) => {
   const router = useRouter();
   return (
     <DxcNavTabs>
@@ -13,4 +13,6 @@ export default function TabsPageLayout({ tabs }: { tabs: { label: string; path: 
       ))}
     </DxcNavTabs>
   );
-}
+};
+
+export default TabsPageLayout;

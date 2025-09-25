@@ -7,7 +7,7 @@ const Code = () => {
   return (
     <>
       <Head>
-        <title>Chip Code — Halstack Design System</title>
+        <title>Chip code — Halstack Design System</title>
       </Head>
       <ChipCodePage />
     </>

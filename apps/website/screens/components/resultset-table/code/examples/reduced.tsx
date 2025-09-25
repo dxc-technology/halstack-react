@@ -75,7 +75,7 @@ const code = `() => {
         columns={columns}
         rows={rows}
         mode="reduced"
-      ></DxcResultsetTable>
+      />
     </DxcInset>
   );
 }`;

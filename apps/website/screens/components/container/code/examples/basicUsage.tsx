@@ -1,4 +1,4 @@
-import { DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -13,7 +13,7 @@ const code = `() => {
         padding="var(--spacing-padding-xs)"
         width="fit-content"
       >
-        Example text
+        <DxcParagraph>Example text</DxcParagraph>
       </DxcContainer>
     </DxcInset>
   );
@@ -22,6 +22,7 @@ const code = `() => {
 const scope = {
   DxcContainer,
   DxcInset,
+  DxcParagraph,
 };
 
 export default { code, scope };

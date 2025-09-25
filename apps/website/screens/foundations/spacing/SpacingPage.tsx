@@ -4,7 +4,6 @@ import Code from "@/common/Code";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import spacings from "./images/spacings.png";
 
 const sections = [
@@ -18,9 +17,9 @@ const sections = [
           creates cleaner, more coherent interfaces.
         </DxcParagraph>
         <DxcParagraph>
-          We use a <strong>scale-based spacing system</strong> derived from a base unit of <Code>4px</Code>. All
-          spacing—margins, padding, and element gaps—is applied using these defined increments. This promotes
-          consistency across UI layouts and helps ensure design and code stay aligned.
+          We use a <strong>scale-based spacing system</strong> derived from a base unit of <Code>4px</Code>. All spacing
+          — margins, padding, and element gaps — is applied using these defined increments. This promotes consistency
+          across UI layouts and helps ensure design and code stay aligned.
         </DxcParagraph>
         <DxcParagraph>
           We recommend using spacing tokens instead of hard-coded pixel values to maintain design consistency and
@@ -184,7 +183,7 @@ const sections = [
     content: (
       <DxcParagraph>
         Our spacing system is built around tokens that represent consistent pixel values. We can group these into small,
-        medium, and large ranges to guide their application in different UI contexts—from tight, compact interfaces to
+        medium, and large ranges to guide their application in different UI contexts — from tight, compact interfaces to
         broad layout structures.
       </DxcParagraph>
     ),
@@ -275,7 +274,7 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Fluid spacing</strong> works better in smaller screens, letting elements move around as needed. For
             example, a form might switch from two columns to one, or components might wrap to the next line, creating a
-            more vertical, flowing layout.”
+            more vertical, flowing layout."
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -321,18 +320,16 @@ const sections = [
   },
 ];
 
-export default function SpacingPage() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Spacing" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/spacing/SpacingPage.tsx" />
-    </DxcFlex>
-  );
-}
+const SpacingPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Spacing" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/spacing/SpacingPage.tsx" />
+  </DxcFlex>
+);
+
+export default SpacingPage;

@@ -64,6 +64,7 @@ const DxcDialog = ({
   onCloseClick,
   overlay = true,
   tabIndex = 0,
+  disableFocusLock = false,
 }: DialogPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
 
@@ -88,19 +89,35 @@ const DxcDialog = ({
         <DialogContainer>
           {overlay && <Overlay onClick={onBackgroundClick} />}
           <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
-            <FocusLock>
-              {children}
-              {closable && (
-                <CloseIconActionContainer>
-                  <DxcActionIcon
-                    icon="close"
-                    onClick={onCloseClick}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.dialog.closeIconAriaLabel}
-                  />
-                </CloseIconActionContainer>
-              )}
-            </FocusLock>
+            {!disableFocusLock ? (
+              <FocusLock>
+                {children}
+                {closable && (
+                  <CloseIconActionContainer>
+                    <DxcActionIcon
+                      icon="close"
+                      onClick={onCloseClick}
+                      tabIndex={tabIndex}
+                      title={translatedLabels.dialog.closeIconAriaLabel}
+                    />
+                  </CloseIconActionContainer>
+                )}
+              </FocusLock>
+            ) : (
+              <>
+                {children}
+                {closable && (
+                  <CloseIconActionContainer>
+                    <DxcActionIcon
+                      icon="close"
+                      onClick={onCloseClick}
+                      tabIndex={tabIndex}
+                      title={translatedLabels.dialog.closeIconAriaLabel}
+                    />
+                  </CloseIconActionContainer>
+                )}
+              </>
+            )}
           </Dialog>
         </DialogContainer>,
         document.body
