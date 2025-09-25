@@ -155,7 +155,7 @@ const DxcResultsetTable = ({
               ))}
             </>
           )}
-          style={{ virtualizedHeight }}
+          style={{ height: virtualizedHeight }}
         />
       ) : (
         <TableContainer margin={margin}>
