@@ -2,7 +2,6 @@ import { DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcFlex } from "@dx
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
@@ -159,6 +158,21 @@ const sections = [
     ],
   },
   {
+    title: "Supported Browsers",
+    content: (
+      <>
+        <DxcParagraph>
+          Our design system is optimized to work seamlessly on Firefox and browsers based on the Chromium engine (such
+          as Google Chrome, Microsoft Edge, Brave, and Opera).
+        </DxcParagraph>
+        <DxcParagraph>
+          Other browsers are not officially supported, which means some components or features may not behave as
+          expected. For the best experience, we recommend using one of the supported browsers.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "How to use this site",
     content: (
       <>
@@ -207,18 +221,16 @@ const sections = [
   },
 ];
 
-export default function IntroductionPage() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Introduction" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
-    </DxcFlex>
-  );
-}
+const IntroductionPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Introduction" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
+  </DxcFlex>
+);
+
+export default IntroductionPage;

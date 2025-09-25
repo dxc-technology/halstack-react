@@ -370,7 +370,7 @@ const Select = () => (
 const VirtualizedSelect = () => (
   <ExampleContainer>
     <Title title="Virtualized" theme="light" level={4} />
-    <DxcSelect label="Virtualized" options={single_options_virtualized} height="300px" />
+    <DxcSelect label="Virtualized" options={single_options_virtualized} virtualizedHeight="300px" />
   </ExampleContainer>
 );
 
@@ -569,7 +569,7 @@ const SelectListbox = () => (
         options={options_material}
         visualFocusIndex={-1}
         lastOptionIndex={6}
-        multiple={true}
+        multiple
         optional={false}
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
@@ -720,6 +720,11 @@ export const Chromatic: Story = {
 
 export const Virtualization: Story = {
   render: VirtualizedSelect,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole("combobox");
+    await userEvent.click(select);
+  },
 };
 
 export const ListboxStates: Story = {

@@ -7,8 +7,8 @@ describe("Spinner component accessibility tests", () => {
   it("Should not have basic accessibility issues for overlay mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50} showValue></DxcSpinner>
-        <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50}></DxcSpinner>
+        <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50} showValue />
+        <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50} />
       </DxcFlex>
     );
     const results = await axe(container);
@@ -17,8 +17,8 @@ describe("Spinner component accessibility tests", () => {
   it("Should not have basic accessibility issues for large mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcSpinner label="test-loading" margin="medium" mode="large" value={50} showValue></DxcSpinner>
-        <DxcSpinner label="test-loading" margin="medium" mode="large" value={50}></DxcSpinner>
+        <DxcSpinner label="test-loading" margin="medium" mode="large" value={50} showValue />
+        <DxcSpinner label="test-loading" margin="medium" mode="large" value={50} />
       </DxcFlex>
     );
     const results = await axe(container);
@@ -27,8 +27,8 @@ describe("Spinner component accessibility tests", () => {
   it("Should not have basic accessibility issues for small mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcSpinner label="test-loading" margin="medium" mode="small" value={50} showValue></DxcSpinner>
-        <DxcSpinner label="test-loading" margin="medium" mode="small" value={50}></DxcSpinner>
+        <DxcSpinner label="test-loading" margin="medium" mode="small" value={50} showValue />
+        <DxcSpinner label="test-loading" margin="medium" mode="small" value={50} />
       </DxcFlex>
     );
     const results = await axe(container);

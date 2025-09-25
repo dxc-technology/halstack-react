@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
@@ -26,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Status light's anatomy" />
+        <Image src={anatomy} alt="Status light anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Status light:</strong> the core visual element of a status light, designed as a dot for clarity and
@@ -127,9 +126,7 @@ const sections = [
 
 const StatusLightOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/status-light/overview/StatusLightOverviewPage.tsx" />
   </DxcFlex>
 );

@@ -12,15 +12,17 @@ const LogoContainer = styled.div`
 const Title = styled.div`
   color: var(--color-fg-primary-strong);
   font-size: var(--typography-title-l);
+  font-family: var(--typography-font-family);
 `;
 
 const Subtitle = styled.div`
   color: var(--color-fg-neutral-strongest);
   font-size: var(--typography-title-m);
   margin-left: var(--spacing-padding-s);
+  font-family: var(--typography-font-family);
 `;
 
-export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?: string }) {
+const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
   const pathVersion = process.env.NEXT_PUBLIC_SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
@@ -40,4 +42,6 @@ export default function SidenavLogo({ subtitle = "Design System" }: { subtitle?:
       />
     </DxcFlex>
   );
-}
+};
+
+export default SidenavLogo;

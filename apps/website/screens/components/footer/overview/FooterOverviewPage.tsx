@@ -1,7 +1,6 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import anatomy from "./images/footer_anatomy.png";
 import variants from "./images/footer_variants.png";
 import Image from "@/common/Image";
@@ -22,7 +21,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Footer's anatomy" />
+        <Image src={anatomy} alt="Footer anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> The outer wrapper that defines the overall layout, padding, and alignment of all
@@ -121,9 +120,7 @@ const sections = [
 
 const FooterOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/footer/overview/FooterOverviewPage.tsx" />
   </DxcFlex>
 );

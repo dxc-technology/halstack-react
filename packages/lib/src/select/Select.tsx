@@ -153,6 +153,7 @@ const SelectedOption = styled.span<{
   );
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
+  font-family: var(--typography-font-family);
   user-select: none;
   overflow: hidden;
   text-overflow: ellipsis;
