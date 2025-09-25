@@ -57,7 +57,7 @@ const VirtualizedListbox = ({
   handleOptionOnClick,
   handleGroupOnClick,
   handleSelectAllOnClick,
-  height,
+  virtualizedHeight,
   id,
   lastOptionIndex,
   multiple,
@@ -220,7 +220,7 @@ const VirtualizedListbox = ({
 
   return (
     <ListboxContainer
-      height={height}
+      height={virtualizedHeight}
       id={id}
       onClick={(event) => {
         event.stopPropagation();
@@ -454,7 +454,7 @@ const NonVirtualizedListbox = ({
 };
 
 const Listbox = ({ ...props }: ListboxProps) => {
-  return props.height ? <VirtualizedListbox {...props} /> : <NonVirtualizedListbox {...props} />;
+  return props.virtualizedHeight ? <VirtualizedListbox {...props} /> : <NonVirtualizedListbox {...props} />;
 };
 
 export default Listbox;
