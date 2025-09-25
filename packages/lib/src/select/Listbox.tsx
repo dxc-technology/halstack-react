@@ -57,7 +57,6 @@ const VirtualizedListbox = ({
   handleOptionOnClick,
   handleGroupOnClick,
   handleSelectAllOnClick,
-  virtualizedHeight,
   id,
   lastOptionIndex,
   multiple,
@@ -67,6 +66,7 @@ const VirtualizedListbox = ({
   searchable,
   selectionType,
   styles,
+  virtualizedHeight,
   visualFocusIndex,
 }: ListboxProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);

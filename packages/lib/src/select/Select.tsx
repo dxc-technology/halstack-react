@@ -179,7 +179,6 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       disabled = false,
       enableSelectAll = false,
       error,
-      virtualizedHeight,
       helperText,
       label,
       margin,
@@ -194,6 +193,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
       value,
+      virtualizedHeight,
     },
     ref
   ) => {
