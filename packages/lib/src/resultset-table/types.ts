@@ -35,7 +35,7 @@ type CommonProps = {
    * A fixed height must be set to enable virtualization.
    * If no height is provided, the table will automatically adjust to the height of its content, and virtualization will not be applied.
    */
-  height?: string;
+  virtualizedHeight?: string;
   /**
    * An array of objects representing the rows of the table, you will have
    * as many objects as columns in the table.

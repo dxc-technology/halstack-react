@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState, forwardRef } from "react";
+import { useEffect, useMemo, useRef, useState, forwardRef, HTMLAttributes, TableHTMLAttributes } from "react";
 import styled from "@emotion/styled";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
-import ResultsetTablePropsType, { Column } from "./types";
+import ResultsetTablePropsType, { Column, Row } from "./types";
 import { assignIdsToRows, getMinItemsPerPageIndex, getMaxItemsPerPageIndex, sortArray } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { TableVirtuoso } from "react-virtuoso";
@@ -34,7 +34,7 @@ const getSortIcon = (isSortedColumn: boolean, order: "ascending" | "descending")
 const DxcResultsetTable = ({
   columns,
   hidePaginator = false,
-  height,
+  virtualizedHeight,
   itemsPerPage = 5,
   itemsPerPageFunction,
   itemsPerPageOptions,
@@ -137,25 +137,25 @@ const DxcResultsetTable = ({
 
   return (
     <>
-      {height ? (
+      {virtualizedHeight ? (
         <TableVirtuoso
           data={filteredResultset}
           components={{
             Scroller: forwardRef<HTMLDivElement>((props, ref) => (
               <TableContainer margin={margin} {...props} ref={ref} />
             )),
-            Table: (props) => <Table mode={mode} {...props} />,
-            TableRow: (props) => <tr {...props} />,
+            Table: (props: TableHTMLAttributes<HTMLTableElement>) => <Table mode={mode} {...props} />,
+            TableRow: (props: HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />,
           }}
           fixedHeaderContent={renderHeaderRow}
-          itemContent={(_index, row) => (
+          itemContent={(_index: number, row: { id: string; cells: Row }) => (
             <>
               {row.cells.map((cellContent, cellIndex) => (
                 <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
               ))}
             </>
           )}
-          style={{ height }}
+          style={{ virtualizedHeight }}
         />
       ) : (
         <TableContainer margin={margin}>
