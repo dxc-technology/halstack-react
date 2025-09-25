@@ -701,7 +701,12 @@ const ResultsetActionsCellDropdown = () => (
 const ResultsetVirtualized = () => (
   <ExampleContainer>
     <Title title="Virtualized table" theme="light" level={4} />
-    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableHuge} itemsPerPage={100000} height={"500px"} />
+    <DxcResultsetTable
+      columns={columnsSortable}
+      rows={rowsSortableHuge}
+      itemsPerPage={100000}
+      virtualizedHeight={"500px"}
+    />
   </ExampleContainer>
 );
 
