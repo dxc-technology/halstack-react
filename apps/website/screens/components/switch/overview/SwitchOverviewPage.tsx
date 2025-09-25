@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import labelPosition from "./examples/labelPosition";
@@ -25,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Switch's anatomy" />
+        <Image src={anatomy} alt="Switch anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label:</strong> describes the setting or feature being toggled. Helps users understand the
@@ -200,7 +199,7 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Use clear, descriptive labels:</strong> labels should clarify the effect of toggling the switch. Use
-          positive, action-oriented phrasing when possible (e.g., “Enable sound”).
+          positive, action-oriented phrasing when possible (e.g., "Enable sound").
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Stack vertically for better scannability:</strong> when multiple switches are used together, stack
@@ -217,9 +216,7 @@ const sections = [
 
 const SwitchOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/switch/overview/SwitchOverviewPage.tsx" />
   </DxcFlex>
 );

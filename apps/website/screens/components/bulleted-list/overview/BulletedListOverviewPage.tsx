@@ -1,7 +1,6 @@
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcBulletedList, DxcParagraph, DxcAlert } from "@dxc-technology/halstack-react";
 import anatomy from "./images/bulleted_list_anatomy.png";
 import Example from "@/common/example/Example";
@@ -30,7 +29,7 @@ const sections = [
           message={{
             text: (
               <DxcParagraph>
-                Disclaimer - This component is not a 1-to-1 replacement of the <Code>ul</Code> <Code>ol</Code> native
+                Disclaimer — This component is not a 1-to-1 replacement of the <Code>ul</Code> <Code>ol</Code> native
                 tags. These native tags have many different use-cases and the Bulleted List only covers one of them:
                 listing text items within a document.
               </DxcParagraph>
@@ -45,7 +44,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Bulleted list's anatomy" />
+        <Image src={anatomy} alt="Bulleted list anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Bullet point:</strong> a small visual marker placed before each list item. It provides visual
@@ -164,9 +163,7 @@ const sections = [
 const BulletedListOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bulleted-list/overview/BulletedListOverviewPage.tsx" />
     </DxcFlex>
   );

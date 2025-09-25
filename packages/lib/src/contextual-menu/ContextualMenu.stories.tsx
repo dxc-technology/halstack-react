@@ -7,8 +7,6 @@ import SingleItem from "./SingleItem";
 import { userEvent, within } from "@storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
 import { Meta, StoryObj } from "@storybook/react";
-import { useContext } from "react";
-import HalstackContext from "../HalstackContext";
 
 export default {
   title: "Contextual Menu",
