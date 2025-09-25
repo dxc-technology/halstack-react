@@ -1,5 +1,5 @@
 import { Children, KeyboardEvent, useMemo, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import NavTabsPropsType from "./types";
 import Tab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
@@ -22,7 +22,6 @@ const Underline = styled.div`
 
 const DxcNavTabs = ({ iconPosition = "left", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
-
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
   );

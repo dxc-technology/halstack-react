@@ -1,13 +1,11 @@
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedTexts from "./examples/nestedTexts";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const sections = [
   {
@@ -24,6 +22,42 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>as</td>
+            <td>
+              <TableCode>
+                'a' | 'blockquote' | 'cite' | 'code' | 'div' | 'em' | 'figcaption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' |
+                'h6' | 'p' | 'pre' | 'small' | 'span' | 'strong'
+              </TableCode>
+            </td>
+            <td>Determines the HTML tag with which the text is to be rendered.</td>
+            <td>
+              <TableCode>'span'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Custom text.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>color</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Color of the text.</td>
+            <td>
+              <TableCode>var(--color-fg-neutral-dark)</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>display</td>
             <td>
               <TableCode>'inline' | 'block'</TableCode>
@@ -36,39 +70,27 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>color</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Color of the text.</td>
-            <td>
-              <TableCode>'#000000'</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>fontFamily</td>
             <td>
-              <TableCode>'Open Sans, sans-serif' | 'Source Code Pro, monospace'</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               Specifies the <Code>font-family</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>'Open Sans, sans-serif'</TableCode>
+              <TableCode>var(--typography-font-family)</TableCode>
             </td>
           </tr>
           <tr>
             <td>fontSize</td>
             <td>
-              <TableCode>
-                '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' | '2rem' | '3rem' | '3.75rem'
-              </TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               Specifies the <Code>font-size</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>'1rem'</TableCode>
+              <TableCode>var(--typography-body-m)</TableCode>
             </td>
           </tr>
           <tr>
@@ -86,37 +108,37 @@ const sections = [
           <tr>
             <td>fontWeight</td>
             <td>
-              <TableCode>'300' | '400' | '600' | '700'</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               Specifies the <Code>font-weight</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>'400'</TableCode>
+              <TableCode>var(--typography-body-regular)</TableCode>
             </td>
           </tr>
           <tr>
             <td>letterSpacing</td>
             <td>
-              <TableCode>'-0.025em' | '-0.0125em' | '0em' | '0.025em' | '0.05em' | '0.1em'</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               Specifies the <Code>letter-spacing</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>'0em'</TableCode>
+              <TableCode>var(--spacing-gap-none)</TableCode>
             </td>
           </tr>
           <tr>
             <td>lineHeight</td>
             <td>
-              <TableCode>'1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' | '2em'</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               Specifies the <Code>line-height</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>'1.5em'</TableCode>
+              <TableCode>var(--height-s)</TableCode>
             </td>
           </tr>
           <tr>
@@ -167,32 +189,6 @@ const sections = [
               <TableCode>'normal'</TableCode>
             </td>
           </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>Custom text.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>as</td>
-            <td>
-              <TableCode>
-                'a' | 'blockquote' | 'cite' | 'code' | 'div' | 'em' | 'figcaption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' |
-                'h6' | 'p' | 'pre' | 'small' | 'span' | 'strong'
-              </TableCode>
-            </td>
-            <td>Determines the HTML tag with which the text is to be rendered.</td>
-            <td>
-              <TableCode>'span'</TableCode>
-            </td>
-          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -212,15 +208,11 @@ const sections = [
   },
 ];
 
-const TypographyCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/typography/code/TypographyCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const TypographyCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/typography/code/TypographyCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default TypographyCodePage;

@@ -1,5 +1,5 @@
 import { forwardRef, useContext, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcTextInput from "../text-input/TextInput";
 import PasswordInputPropsType, { RefType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";

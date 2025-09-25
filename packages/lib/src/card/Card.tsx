@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import CardPropsType from "./types";
 
@@ -7,6 +7,7 @@ const Card = styled.div<{
   hasAction: boolean;
   margin: CardPropsType["margin"];
   shadowDepth: 0 | 1 | 2;
+  href?: string;
 }>`
   display: flex;
   cursor: ${({ hasAction }) => (hasAction ? "pointer" : "unset")};
@@ -25,11 +26,7 @@ const Card = styled.div<{
     }`}
   border-radius: var(--border-radius-s);
   box-shadow: ${({ shadowDepth }) =>
-    shadowDepth === 1
-      ? "var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark)"
-      : shadowDepth === 2
-        ? "var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread) var(--shadow-light)"
-        : "none"};
+    shadowDepth === 1 ? "var(--shadow-100)" : shadowDepth === 2 ? "var(--shadow-200)" : "none"};
 `;
 
 const CardContainer = styled.div<{
@@ -104,8 +101,8 @@ const DxcCard = ({
       onMouseLeave={() => changeIsHovered(false)}
       onClick={onClick}
       tabIndex={onClick || linkHref ? tabIndex : -1}
-      as={linkHref && "a"}
-      href={linkHref}
+      as={linkHref ? "a" : undefined}
+      href={linkHref ? linkHref : undefined}
       shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
     >
       <CardContainer hasAction={!!(onClick || linkHref)} imagePosition={imageSrc ? imagePosition : "none"}>

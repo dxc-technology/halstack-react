@@ -1,7 +1,6 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import contextual from "./examples/contextual";
@@ -125,9 +124,7 @@ const sections = [
 const BadgeCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/badge/code/BadgeCodePage.tsx" />
     </DxcFlex>
   );

@@ -5,6 +5,12 @@ import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import rules from "../../test/accessibility/rules/specific/header/disabledRules";
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 const disabledRules = {
   rules: formatRules(rules),
 };

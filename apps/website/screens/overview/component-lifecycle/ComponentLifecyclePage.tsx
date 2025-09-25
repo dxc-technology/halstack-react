@@ -1,7 +1,6 @@
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcBulletedList, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const sections = [
@@ -176,20 +175,16 @@ const sections = [
   },
 ];
 
-const ComponentLifecyclePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Component lifecycle"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/component-lifecycle/ComponentLifecyclePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ComponentLifecyclePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Component lifecycle" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/component-lifecycle/ComponentLifecyclePage.tsx" />
+  </DxcFlex>
+);
 
 export default ComponentLifecyclePage;

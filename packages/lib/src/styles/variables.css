@@ -1,5 +1,39 @@
 :root {
-  /* _Core */
+  /**************/
+  /** POSITION **/
+  /**************/
+
+  /* Application Layout */
+  --z-app-layout-header: 100;
+  --z-app-layout-sidenav: 110;
+
+  /* Header */
+  --z-header-overlay: 200;
+  --z-header-menu: 210;
+
+  /* UI components */
+  --z-dialog: 300;
+  --z-date-input: 310;
+  --z-dropdown: 320;
+  --z-textinput: 330;
+  --z-select: 340;
+
+  /* Modals and overlays */
+  --z-spinner-overlay: 400;
+  --z-progressbar-overlay: 410;
+  --z-alert: 430;
+
+  /* Notifications */
+  --z-toast: 500;
+
+  /* Tooltip (topmost) */
+  --z-tooltip: 600;
+
+  /************/
+  /** TOKENS **/
+  /************/
+
+  /* Core tokens */
   --color-absolutes-black: #000000;
   --color-absolutes-white: #ffffff;
   --color-alpha-100-a: #ebebeb1a;
@@ -122,7 +156,7 @@
   --line-style-dashed: dashed;
   --line-style-solid: solid;
 
-  /* Alias */
+  /* Alias tokens */
   --border-color-error-light: var(--color-red-300);
   --border-color-error-medium: var(--color-red-600);
   --border-color-error-strong: var(--color-red-700);
@@ -234,8 +268,6 @@
   --color-fg-warning-medium: var(--color-orange-500);
   --color-fg-warning-strong: var(--color-orange-600);
   --color-fg-warning-stronger: var(--color-orange-800);
-  --shadow-dark: var(--color-alpha-400-a);
-  --shadow-light: var(--color-alpha-300-a);
   --border-radius-none: var(--dimensions-0);
   --border-radius-xs: var(--dimensions-2);
   --border-radius-s: var(--dimensions-4);
@@ -255,22 +287,10 @@
   --height-xl: var(--dimensions-40);
   --height-xxl: var(--dimensions-48);
   --height-xxxl: var(--dimensions-56);
-  --shadow-high-spread: var(--dimensions-0);
-  --shadow-high-x-position: var(--dimensions-0);
-  --shadow-high-blur: var(--dimensions-24);
-  --shadow-high-y-position: var(--dimensions-24);
-  --shadow-higher-spread: var(--dimensions-0);
-  --shadow-higher-x-position: var(--dimensions-0);
-  --shadow-higher-blur: var(--dimensions-48);
-  --shadow-higher-y-position: var(--dimensions-48);
-  --shadow-low-spread: var(--dimensions-0);
-  --shadow-low-x-position: var(--dimensions-0);
-  --shadow-low-blur: var(--dimensions-2);
-  --shadow-low-y-position: var(--dimensions-2);
-  --shadow-mid-spread: var(--dimensions-0);
-  --shadow-mid-x-position: var(--dimensions-0);
-  --shadow-mid-blur: var(--dimensions-12);
-  --shadow-mid-y-position: var(--dimensions-12);
+  --shadow-100: var(--dimensions-0) var(--dimensions-2) var(--dimensions-2) var(--dimensions-0) var(--color-alpha-400-a);
+  --shadow-200: var(--dimensions-0) var(--dimensions-12) var(--dimensions-12) var(--dimensions-0) var(--color-alpha-300-a);
+  --shadow-300: var(--dimensions-0) var(--dimensions-24) var(--dimensions-24) var(--dimensions-0) var(--color-alpha-300-a);
+  --shadow-400: var(--dimensions-0) var(--dimensions-48) var(--dimensions-48) var(--dimensions-0) var(--color-alpha-300-a);
   --spacing-gap-none: var(--dimensions-0);
   --spacing-gap-xxs: var(--dimensions-2);
   --spacing-gap-xs: var(--dimensions-4);

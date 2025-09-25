@@ -1,13 +1,4 @@
-import styled from "styled-components";
-
-const DxcIcon = ({ icon }: { icon: string }): JSX.Element => (
-  <IconContainer
-    role="img"
-    filled={icon.startsWith("filled_")}
-    icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
-    aria-hidden="true"
-  />
-);
+import styled from "@emotion/styled";
 
 const IconContainer = styled.span<{
   icon: string;
@@ -34,4 +25,13 @@ const IconContainer = styled.span<{
   }
 `;
 
-export default DxcIcon;
+export default function DxcIcon({ icon }: { icon: string }) {
+  return (
+    <IconContainer
+      aria-hidden="true"
+      filled={icon.startsWith("filled_")}
+      icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
+      role="img"
+    />
+  );
+}

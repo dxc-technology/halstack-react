@@ -11,9 +11,9 @@ const SpinnerPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Spinner" />
           <DxcParagraph>
             Loading spinner is a waiting indicator in the user interface to communicate users an ongoing process.

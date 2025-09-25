@@ -2,15 +2,14 @@ import { DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcFlex } from "@dx
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
     title: "What Halstack is",
     content: (
       <DxcParagraph>
-        Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing
-        all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences
+        Halstack is an open source Design System built and maintained by DXC Technology with the purpose of providing
+        all the necessary tools for designing and implementing accessible, intuitive and consistent user experiences
         with Figma, UXPin and React.
       </DxcParagraph>
     ),
@@ -19,7 +18,7 @@ const sections = [
         title: "A tool for designers",
         content: (
           <DxcParagraph>
-            Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
+            Halstack's first goal is to provide product designers with pre-created designs for the most common use-cases
             they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel
             looking for a solution to these mundane problems, and can focus on adding business value. Also, by
             centralizing these efforts in a Design System team, we can pay the right amount of attention to aspects as
@@ -66,7 +65,7 @@ const sections = [
           <>
             <DxcParagraph>
               All the opinions provided by Halstack Design System always remain within the boundaries of the generalist
-              UI/UX Design domain. Halstack will not get into business-specific elements even if they are reusable. For
+              UI/UX design domain. Halstack will not get into business-specific elements even if they are reusable. For
               example, Halstack might provide guidelines on using forms within the context of digital applications.
               Still, it doesn't get into the specifics of designing a form for an insurance quote application.
             </DxcParagraph>
@@ -87,7 +86,7 @@ const sections = [
         title: "A replacement for the Product Design stage",
         content: (
           <DxcParagraph>
-            Halstack should always be considered as assistance to the Product Design process, but never as a
+            Halstack should always be considered as assistance to the product design process, but never as a
             replacement. Product Designers are still a fundamental piece of this process since they will need to add the
             business context, validate the patterns contemplated by the Design System, and contribute back to the design
             system when necessary.
@@ -159,6 +158,21 @@ const sections = [
     ],
   },
   {
+    title: "Supported Browsers",
+    content: (
+      <>
+        <DxcParagraph>
+          Our design system is optimized to work seamlessly on Firefox and browsers based on the Chromium engine (such
+          as Google Chrome, Microsoft Edge, Brave, and Opera).
+        </DxcParagraph>
+        <DxcParagraph>
+          Other browsers are not officially supported, which means some components or features may not behave as
+          expected. For the best experience, we recommend using one of the supported browsers.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "How to use this site",
     content: (
       <>
@@ -207,20 +221,16 @@ const sections = [
   },
 ];
 
-const Introduction = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Introduction"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
-    </DxcFlex>
-  );
-};
+const IntroductionPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Introduction" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/introduction/IntroductionPage.tsx" />
+  </DxcFlex>
+);
 
-export default Introduction;
+export default IntroductionPage;

@@ -11,12 +11,12 @@ describe("Header component tests", () => {
     });
   });
   test("Header renders with default logo", () => {
-    const { getByTitle } = render(<DxcHeader></DxcHeader>);
+    const { getByTitle } = render(<DxcHeader />);
     expect(getByTitle("DXC Logo")).toBeTruthy();
   });
   test("Call correct function on logo click", () => {
     const onClick = jest.fn();
-    const { getByTitle } = render(<DxcHeader onClick={onClick}></DxcHeader>);
+    const { getByTitle } = render(<DxcHeader onClick={onClick} />);
     const logo = getByTitle("DXC Logo");
     fireEvent.click(logo);
     expect(onClick).toHaveBeenCalled();
@@ -28,7 +28,7 @@ describe("Header component tests", () => {
       value: 1024,
     });
 
-    const { getByText } = render(<DxcHeader content={<p>header-child-text</p>}></DxcHeader>);
+    const { getByText } = render(<DxcHeader content={<p>header-child-text</p>} />);
     expect(getByText("header-child-text")).toBeTruthy();
   });
   test("Header renders menu button in mobile", () => {
@@ -42,7 +42,7 @@ describe("Header component tests", () => {
         matches: true,
       })),
     });
-    const { getByText } = render(<DxcHeader responsiveContent={() => <p>header-child-text</p>}></DxcHeader>);
+    const { getByText } = render(<DxcHeader responsiveContent={() => <p>header-child-text</p>} />);
     expect(getByText("Menu")).toBeTruthy();
   });
 });

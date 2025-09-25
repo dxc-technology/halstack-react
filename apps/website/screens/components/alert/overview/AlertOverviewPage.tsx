@@ -7,7 +7,6 @@ import {
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Image from "@/common/Image";
@@ -26,8 +25,8 @@ const sections = [
       <>
         <DxcParagraph>
           Halstack's Alert component is designed to provide clear and accessible feedback to users, ensuring important
-          messages stand out within an interface. It supports different variants—info, success, warning, and
-          error—allowing teams to communicate various levels of urgency effectively. With options for dismissibility and
+          messages stand out within an interface. It supports different variants — info, success, warning, and
+          error — allowing teams to communicate various levels of urgency effectively. With options for dismissibility and
           customizable content, it adapts to different use cases while maintaining consistency. Its structured design
           enhances readability and ensures a non-intrusive yet noticeable presence.
         </DxcParagraph>
@@ -38,7 +37,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Alert's anatomy" />
+        <Image src={anatomy} alt="Alert anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all elements of the alert, defining its size,
@@ -53,20 +52,24 @@ const sections = [
             it easy for users to grasp its importance at a glance.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Description:</strong> the detailed text within the alert that provides context or additional
-            information about the message, ensuring clarity for the user.
+            <strong>Pagination:</strong> a navigation element that allows users to browse multiple alerts within the
+            same container, useful for managing sequential or grouped notifications.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Divider:</strong> a subtle separator that visually organizes the alert's content, enhancing
             readability and distinguishing the pagination element from the closable action.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Pagination:</strong> a navigation element that allows users to browse multiple alerts within the
-            same container, useful for managing sequential or grouped notifications.
+            <strong>Close action:</strong> an interactive button placed next to the pagination (if there's any) that
+            allows the user to dismiss the alert.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Actions:</strong> interactive buttons placed within the alert that enable users to take relevant
             actions in response to the message, such as dismissing, acknowledging, or navigating to further details.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Description:</strong> the detailed text within the alert that provides context or additional
+            information about the message, ensuring clarity for the user.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -298,6 +301,23 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Be sure to consider content length when designing for smaller screen sizes.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Alerts grow vertically to display the full content.</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Keep in mind the screen size where the alert will appear, and take into account the length of the
+            description it contains.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     subSections: [
       {
@@ -465,9 +485,7 @@ const sections = [
 const AlertOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/overview/AlertOverviewPage.tsx" />
     </DxcFlex>
   );

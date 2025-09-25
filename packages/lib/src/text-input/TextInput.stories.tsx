@@ -81,7 +81,7 @@ const TextInput = () => (
       <DxcTextInput disabled placeholder="Name" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled - Complete example" theme="light" level={4} />
+      <Title title="Disabled — Complete example" theme="light" level={4} />
       <DxcTextInput
         label="Disabled"
         helperText="Help text"
@@ -140,7 +140,16 @@ const TextInput = () => (
         action={action}
       />
     </ExampleContainer>
-    <Title title="Anatomy" theme="light" level={2} />{" "}
+    <Title title="Alignment" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Alignment left" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="left" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Alignment right" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Aligned text" alignment="right" />
+    </ExampleContainer>
+    <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Complete example" theme="light" level={4} />
       <DxcTextInput
@@ -212,7 +221,7 @@ const TextInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1.5rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-l)">
         <DxcTextInput label="Text input" size="fillParent" />
         <DxcTextInput label="Text input" size="medium" />
         <DxcTextInput label="Text input" size="large" />
@@ -243,7 +252,7 @@ const AutosuggestListbox = () => (
             border: "1px solid black",
             borderRadius: "4px",
             overflow: "auto",
-            zIndex: "1300",
+            zIndex: "130",
             position: "relative",
           }}
         >

@@ -1,10 +1,9 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
-import anatomy from "./images/fileInput_anatomy.png";
+import anatomy from "./images/file_input_anatomy.png";
 import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 
@@ -16,7 +15,7 @@ const sections = [
         <DxcParagraph>
           The file input component is a key UI element for collecting <strong>digital files</strong> such as documents,
           images, videos or other media types. It plays a critical role in workflows where users must provide
-          supplemental information—like uploading resumes, profile pictures, supporting documents or media attachments.
+          supplemental information — like uploading resumes, profile pictures, supporting documents or media attachments.
         </DxcParagraph>
         <DxcParagraph>
           Unlike text or number inputs, file inputs trigger system-level dialogs and are limited in how their visual
@@ -28,7 +27,7 @@ const sections = [
         <DxcParagraph>
           Clear instructions, visual feedback and validation help users understand what types of files are accepted,
           whether multiple files are allowed, and if an upload was successful. Proper labeling and accessibility
-          support—including keyboard navigation and screen reader compatibility—are essential to providing an inclusive
+          support — including keyboard navigation and screen reader compatibility — are essential to providing an inclusive
           experience.
         </DxcParagraph>
         <DxcParagraph>
@@ -42,7 +41,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="File input's anatomy" />
+        <Image src={anatomy} alt="File input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
@@ -62,8 +61,8 @@ const sections = [
             zone and clickable area and should visually reflect interaction states such as focus, hover or error.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>File input button:</strong> instructional or informative text inside the drop area (e.g., “Select
-            files or drop files here”) that helps orient users and encourage interaction.
+            <strong>File input button:</strong> instructional or informative text inside the drop area (e.g., "Select
+            files or drop files here") that helps orient users and encourage interaction.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>File item container:</strong> displays the name of the file(s) selected or dropped.
@@ -219,7 +218,7 @@ const sections = [
                     <strong>Dropzone</strong>
                   </td>
                   <td>
-                    Choose the dropzone when the <strong>primary goal is file uploading</strong>—such as media galleries
+                    Choose the dropzone when the <strong>primary goal is file uploading</strong> — such as media galleries
                     or document submission tools. It provides a large, visually prominent area optimized for dragging
                     and dropping files.
                   </td>
@@ -238,8 +237,8 @@ const sections = [
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <strong>Always use clear labels:</strong> provide descriptive and specific labels that indicate the type of
-            file expected (e.g., “Upload profile picture” or “Attach supporting document”). Avoid generic terms like
-            “Upload.”
+            file expected (e.g., "Upload profile picture" or "Attach supporting document"). Avoid generic terms like
+            "Upload."
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Use helper text to guide users:</strong> add helper text below the label when users need more
@@ -270,9 +269,7 @@ const sections = [
 const FileInputOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/file-input/overview/FileInputOverviewPage.tsx" />
     </DxcFlex>
   );

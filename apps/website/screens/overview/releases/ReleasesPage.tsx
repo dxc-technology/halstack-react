@@ -2,7 +2,6 @@ import { DxcHeading, DxcParagraph, DxcFlex, DxcLink, DxcBulletedList } from "@dx
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import HalstackMarkdownParser from "@/common/HalstackMarkdownParser";
 import Link from "next/link";
 import Code from "@/common/Code";
@@ -28,6 +27,9 @@ const sections = [
       <>
         <DxcParagraph>Every major release of Halstack is collected below:</DxcParagraph>
         <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/halstack/15/overview/introduction/">Halstack 15</DxcLink>
+          </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/halstack/14/overview/introduction/">Halstack 14</DxcLink>
           </DxcBulletedList.Item>
@@ -110,21 +112,19 @@ const getReleasesPageSections = (releases: Release[]) => {
   return [...sections, section];
 };
 
-const Releases = ({ releases }: { releases: Release[] }) => (
+const ReleasesPage = ({ releases }: { releases: Release[] }) => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
-      <DxcFlex direction="column" gap="2rem">
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcHeading level={1} text="Releases" />
         <DxcParagraph>
           Access all the major releases of the Halstack React library and see the changelog of every version available.
         </DxcParagraph>
       </DxcFlex>
     </PageHeading>
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
   </DxcFlex>
 );
 
-export default Releases;
+export default ReleasesPage;

@@ -17,21 +17,21 @@ const bottom = [
 
 describe("Footer component tests", () => {
   test("Footer renders with default logo", () => {
-    const { getByTitle } = render(<DxcFooter></DxcFooter>);
+    const { getByTitle } = render(<DxcFooter />);
     expect(getByTitle("DXC Logo")).toBeTruthy();
   });
   test("Footer renders with social links", () => {
-    const { getByRole } = render(<DxcFooter socialLinks={social}></DxcFooter>);
+    const { getByRole } = render(<DxcFooter socialLinks={social} />);
     const socialIcon = getByRole("link");
     expect(socialIcon.getAttribute("href")).toBe("https://www.test.com/social");
   });
   test("Footer renders with bottom links", () => {
-    const { getByText } = render(<DxcFooter bottomLinks={bottom}></DxcFooter>);
+    const { getByText } = render(<DxcFooter bottomLinks={bottom} />);
     const link = getByText("bottom-link-text");
     expect(link.getAttribute("href")).toBe("https://www.test.com/bottom");
   });
   test("Footer renders with copyright text", () => {
-    const { getByText } = render(<DxcFooter copyright="test-copyright"></DxcFooter>);
+    const { getByText } = render(<DxcFooter copyright="test-copyright" />);
     expect(getByText("test-copyright")).toBeTruthy();
   });
   test("Footer renders with correct children", () => {

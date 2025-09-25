@@ -1,9 +1,7 @@
 import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import listbox from "./examples/listbox";
@@ -91,7 +89,7 @@ const sections = [
           <tr>
             <td>border</td>
             <td>
-              <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-s)" alignItems="baseline">
                 <ExtendedTableCode>{borderTypeString}</ExtendedTableCode>
                 <p>
                   being <Code>BorderProperties</Code> an object with the following properties:
@@ -433,9 +431,7 @@ const sections = [
 
 const ContainerCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/code/ContainerCodePage.tsx" />
   </DxcFlex>
 );

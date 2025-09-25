@@ -1,7 +1,6 @@
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcTable from "./Table";
-import { ActionCellsPropsType } from "./types";
 
 (global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -55,7 +54,7 @@ describe("Table component tests", () => {
   test("Table ActionsCell", async () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
-    const actions: ActionCellsPropsType["actions"] = [
+    const actions = [
       {
         title: "icon1",
         onClick: onSelectOption,

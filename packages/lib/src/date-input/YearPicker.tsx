@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useId, useState, memo, KeyboardEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { YearPickerPropsType } from "./types";
 
 const YearPickerContainer = styled.div`
@@ -12,8 +12,7 @@ const YearPickerContainer = styled.div`
   overflow-y: scroll;
   width: 292px;
   height: 312px;
-  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
-    var(--shadow-light);
+  box-shadow: var(--shadow-200);
 `;
 
 const YearPickerButton = styled.button<{
@@ -53,7 +52,7 @@ const YearPickerButton = styled.button<{
     color: var(--color-fg-neutral-dark);
   }
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default)  var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
   &:active {
     color: var(--color-fg-neutral-bright);

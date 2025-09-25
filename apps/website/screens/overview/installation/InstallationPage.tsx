@@ -4,7 +4,6 @@ import building from "./examples/building";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import CodeBlock from "@/common/CodeBlock";
 import Code from "@/common/Code";
 
@@ -45,10 +44,10 @@ const sections = [
           <>
             <DxcParagraph>
               As the name suggests, <Code>halstack-react</Code> is built on top of <Code>React</Code>, so make sure you
-              have it as dependency of your project. Additionally, ensure that the <Code>styled-components</Code>{" "}
+              have it as dependency of your project. Additionally, ensure that <Code>emotion</Code>{" "}
               library is also installed, as it is required by the Halstack components.
             </DxcParagraph>
-            <CodeBlock>{`npm i react react-dom styled-components`}</CodeBlock>
+            <CodeBlock>{`npm i react react-dom react-data-grid @emotion/react @emotion/styled`}</CodeBlock>
           </>
         ),
       },
@@ -96,18 +95,16 @@ const sections = [
   },
 ];
 
-export default function Installation() {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Installation"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
-    </DxcFlex>
-  );
-}
+const InstallationPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Installation" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/installation/InstallationPage.tsx" />
+  </DxcFlex>
+);
+
+export default InstallationPage;

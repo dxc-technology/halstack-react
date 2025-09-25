@@ -1,10 +1,15 @@
 import { DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import TableCode from "@/common/TableCode";
-import Code from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
+
+const logoTypeString = `{
+  href?: string;
+  src: string;
+  title?: string;
+}`;
 
 const sections = [
   {
@@ -21,16 +26,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>underlined</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>Whether a contrast line should appear at the bottom of the header.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>content</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
@@ -40,6 +35,41 @@ const sections = [
               the content, so we recommend the use of <Code>React.Fragment</Code> to be applied correctly. Otherwise,
               the styles can be modified.
             </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                logo
+              </DxcFlex>
+            </td>
+            <td>
+              <td>
+                <TableCode>{"Logo"}</TableCode>
+                <p>
+                  being <Code>Logo</Code> an object with the following properties:
+                </p>
+                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
+              </td>
+            </td>
+            <td>Logo to be displayed inside the header.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
+            </td>
+            <td>Size of the bottom margin to be applied to the header.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>This function will be called when the user clicks the header logo.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -54,22 +84,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onClick</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>This function will be called when the user clicks the header logo.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
-            </td>
-            <td>Size of the bottom margin to be applied to the header.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
@@ -77,6 +91,16 @@ const sections = [
             <td>Value of the tabindex for all interactive elements, except those inside the custom area.</td>
             <td>
               <TableCode>0</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>underlined</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Whether a contrast line should appear at the bottom of the header.</td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
         </tbody>
@@ -114,7 +138,7 @@ const sections = [
             title="Footer and header"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+          />
         ),
       },
     ],
@@ -124,9 +148,7 @@ const sections = [
 const HeaderCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/header/code/HeaderCodePage.tsx" />
     </DxcFlex>
   );

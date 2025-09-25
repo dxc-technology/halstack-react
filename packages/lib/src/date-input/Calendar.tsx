@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
 import { useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 
@@ -63,7 +63,7 @@ const DayCellButton = styled.button<{
   cursor: pointer;
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-regular, 400);
+  font-weight: var(--typography-label-regular);
   background-color: ${(props) => (props.selected ? "var(--color-bg-primary-strong);" : "transparent")};
   color: ${(props) =>
     props.selected

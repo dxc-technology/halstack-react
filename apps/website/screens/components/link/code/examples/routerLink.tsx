@@ -13,7 +13,7 @@ const RouterLink = ({ to, children }: routerProps) => {
 
 const code = `() => {
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       This is a text with a 
       <RouterLink to="/components/link" component={DxcLink}>React Router v5</RouterLink>
       {" "}link.

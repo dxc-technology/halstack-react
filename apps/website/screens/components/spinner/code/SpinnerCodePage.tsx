@@ -1,11 +1,10 @@
 import { DxcTable, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import overlay from "./examples/overlay";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import Code from "@/common/Code";
 
 const sections = [
@@ -122,9 +121,7 @@ const sections = [
 
 const SpinnerCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/code/SpinnerCodePage.tsx" />
   </DxcFlex>
 );

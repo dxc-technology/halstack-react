@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { useState, useId, useEffect, useCallback, useContext } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
@@ -136,13 +137,13 @@ const DxcAlert = ({
         semantic={semantic}
         mode={mode}
       >
-        <DxcFlex gap="0.75rem" alignItems="center">
+        <DxcFlex gap="var(--spacing-gap-m)" alignItems="center">
           <TitleContainer mode={mode} semantic={semantic}>
             {getIcon(semantic)}
             {mode === "banner" ? (
               <Message mode={mode}>
                 <strong>{title}</strong>
-                {messages.length > 0 && <> - {messages[currentIndex]?.text}</>}
+                {messages.length > 0 && <> — {messages[currentIndex]?.text}</>}
               </Message>
             ) : (
               <Title id={`${id}-title`} mode={mode}>
@@ -154,7 +155,7 @@ const DxcAlert = ({
             <Actions semantic={semantic} mode={mode} primaryAction={primaryAction} secondaryAction={secondaryAction} />
           )}
           {messages.length > 1 && (
-            <DxcFlex alignItems="center" gap="0.25rem">
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
               <DxcActionIcon
                 icon="chevron_left"
                 title={translatedLabels.alert.previousMessageActionTitle}
@@ -173,7 +174,7 @@ const DxcAlert = ({
             </DxcFlex>
           )}
           {closable && (
-            <DxcFlex gap="0.25rem">
+            <DxcFlex gap="var(--spacing-gap-xs)">
               {mode !== "modal" && <DxcDivider orientation="vertical" />}
               <DxcActionIcon
                 icon="close"

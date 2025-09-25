@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/date_input-anatomy.png";
 import clearContent from "./images/date_input-clearcontent.png";
@@ -25,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Date input's anatomy" />
+        <Image src={anatomy} alt="Date input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
@@ -216,14 +215,14 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              Match the date format to the user’s regional settings (DD/MM/YYYY or MM/DD/YYYY), and consider using
+              Match the date format to the user's regional settings (DD/MM/YYYY or MM/DD/YYYY), and consider using
               placeholder text to guide formatting.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Provide clear feedback if the user types an invalid date manually.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Avoid using text inputs with custom formatting masks in place of the date input component—this can confuse
+              Avoid using text inputs with custom formatting masks in place of the date input component — this can confuse
               users and complicate validation.
             </DxcBulletedList.Item>
           </DxcBulletedList>
@@ -279,9 +278,7 @@ const sections = [
 const DateInputOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/date-input/overview/DateInputOverviewPage.tsx" />
     </DxcFlex>
   );

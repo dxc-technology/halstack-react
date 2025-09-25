@@ -1,47 +1,37 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
+import { forwardRef } from "react";
 
 const useHref = (to: string) => {
   console.log(to);
 };
 
-type routerProps = {
-  replace: string;
-  state: string;
-  target: string;
-};
-
-const useLinkClickHandler = (_to: string, _routerProps: routerProps) => {
-  console.log("useClickHandler");
+const useNavigate = () => {
+  return (to: string, options?: { replace?: boolean; state?: any }) => {
+    console.log(`Use navigate mock function called "${to}"`, options);
+  };
 };
 
 const code = `() => {
-  const CustomLink = React.forwardRef(
-    ({ onClick, replace = false, state, target, to, ...rest }, ref) => {
-      let href = useHref(to);
-      let handleClick = () => (useLinkClickHandler(to, {
-        replace,
-        state,
-        target,
-      }));
+  const CustomLink = forwardRef(
+    ({ children, to, replace = false, state, ...rest }, ref) => {
+      const navigate = useNavigate();
+
+      const handleClick = () => {
+        navigate(to, { replace, state });
+      };
 
       return (
-        <DxcLink
-          {...rest}
-          href={href}
-          onClick={(event) => {
-            handleClick(event);
-          }}
-          ref={ref}
-          target={target}
-        />
+        <DxcLink {...rest} onClick={handleClick} ref={ref}>
+          {children}
+        </DxcLink>
       );
     }
   );
   return (
-    <DxcInset space="2rem">
+    <DxcInset space="var(--spacing-padding-xl)">
       This is a text with a
       <CustomLink to="/components/link" component={DxcLink}>
-        React Router v6
+        React Router v6+
       </CustomLink>{" "}
       link.
     </DxcInset>
@@ -49,10 +39,11 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcLink,
-  useHref,
-  useLinkClickHandler,
   DxcInset,
+  DxcLink,
+  forwardRef,
+  useHref,
+  useNavigate,
 };
 
 export default { code, scope };

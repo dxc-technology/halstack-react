@@ -1,6 +1,5 @@
 import { DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
@@ -9,9 +8,8 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
 import accordions from "./examples/accordions";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const sections = [
   {
@@ -29,7 +27,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 children
               </DxcFlex>
@@ -129,7 +127,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="new" />
                     badge
                   </DxcFlex>
@@ -142,7 +140,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     children
                   </DxcFlex>
@@ -180,7 +178,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     label
                   </DxcFlex>
@@ -193,7 +191,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="new" />
                     statusLight
                   </DxcFlex>
@@ -206,7 +204,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="new" />
                     subLabel
                   </DxcFlex>
@@ -266,15 +264,11 @@ const sections = [
   },
 ];
 
-const AccordionUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/code/AccordionCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const AccordionCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/code/AccordionCodePage.tsx" />
+  </DxcFlex>
+);
 
-export default AccordionUsagePage;
+export default AccordionCodePage;

@@ -1,7 +1,6 @@
 import { DxcParagraph, DxcFlex, DxcBulletedList } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import anatomy from "./images/contextual_menu_anatomy.png";
 
@@ -22,7 +21,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Contextual menu's anatomy" />
+        <Image src={anatomy} alt="Contextual menu anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Section title:</strong> a label that groups related menu items within a contextual menu, enhancing
@@ -72,8 +71,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Although visually similar, the Sidenav component and the contextual menu differ significantly in
-          functionality. Our Sidenav is designed to provide a consistent and persistent navigation structure throughout
+          Although visually similar, the sidenav component and the contextual menu differ significantly in
+          functionality. Our sidenav is designed to provide a consistent and persistent navigation structure throughout
           the application, allowing users to easily switch between different sections or pages within the app.
         </DxcParagraph>
         <DxcParagraph>
@@ -131,9 +130,7 @@ const sections = [
 
 const ContextualMenuOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/contextual-menu/overview/ContextualMenuOverviewPage.tsx" />
   </DxcFlex>
 );

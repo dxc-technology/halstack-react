@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import ImagePropsType from "./types";
 
@@ -8,7 +8,7 @@ const Figure = styled.figure`
   gap: var(--spacing-gap-s);
   width: fit-content;
   margin: 0;
-  padding: 0;
+  padding: var(--spacing-padding-none);
 `;
 
 const CaptionContainer = styled.figcaption`
@@ -47,11 +47,11 @@ export default function DxcImage({
       <img
         alt={alt}
         loading={lazyLoading ? "lazy" : undefined}
-        onLoad={onLoad}
         onError={onError}
+        onLoad={onLoad}
+        sizes={sizes}
         src={src}
         srcSet={srcSet}
-        sizes={sizes}
         style={{
           objectFit,
           objectPosition,

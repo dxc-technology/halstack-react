@@ -6,29 +6,20 @@ import { ReactNode } from "react";
 
 const DataGridPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/data-grid" },
-    { label: "Usage", path: "/components/data-grid/usage" },
-    { label: "Specifications", path: "/components/data-grid/specifications" },
+    { label: "Overview", path: "/components/data-grid" },
+    { label: "Code", path: "/components/data-grid/code" },
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Data Grid" />
-          <DxcAlert
-            title="Issues"
-            semantic="warning"
-            message={{ text: "There are known styling issues with sortable columns when used in a NextJS app." }}
-            closable={false}
-          />
           <DxcParagraph>
-            A data grid is a component designed to display large volumes in a structured and organized manner. It
-            structures data into rows and columns, making it easy for users to visualize, analyze, and interact with the
-            information. The data grid also improves user experience by providing features like sorting, filtering, and
-            editing.
+            The datagrid component is used to display and manage large sets of data in a tabular format, allowing users
+            to sort, filter, and interact with the data efficiently.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

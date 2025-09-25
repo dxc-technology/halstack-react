@@ -1,12 +1,10 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
 import overlay from "./examples/overlay";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {
@@ -114,9 +112,7 @@ const sections = [
 
 const ProgressBarCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/progress-bar/code/ProgressBarCodePage.tsx" />
   </DxcFlex>
 );

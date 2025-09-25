@@ -1,15 +1,13 @@
 import { DxcParagraph, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
-import routerLinkV6 from "./examples/routerLinkV6";
+import routerLink6 from "./examples/routerLink6";
 import nextLink from "./examples/nextLink";
 import icons from "./examples/icons";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
@@ -28,7 +26,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 children
               </DxcFlex>
@@ -96,7 +94,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     children
                   </DxcFlex>
@@ -138,6 +136,19 @@ const sections = [
                   replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
                   symbol name with <TableCode>"filled_"</TableCode>.
                 </td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    onClick
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>{"() => void"}</TableCode>
+                </td>
+                <td>This function will be called when the user clicks on this tab.</td>
                 <td>-</td>
               </tr>
               <tr>
@@ -210,24 +221,25 @@ const sections = [
             ),
           },
           {
-            title: "React router v6",
+            title: "React router v6+",
             content: (
               <>
                 <DxcParagraph>
                   In{" "}
                   <DxcLink
-                    href="https://github.com/remix-run/react-router/blob/main/docs/upgrading/v5.md#remove-link-component-prop"
+                    href="https://github.com/remix-run/react-router/blob/v6.0.0/docs/upgrading/v5.md#remove-link-component-prop"
                     newWindow
                   >
                     React Router v6
                   </DxcLink>{" "}
-                  the prop <Code>component</Code> is no longer available so it is necessary to use hooks provided by{" "}
-                  <DxcLink href="https://reactrouter.com/en/main/hooks/use-href" newWindow>
-                    React Router v6
+                  and higher, the prop <Code>component</Code> is no longer available so it is necessary to use hooks provided by the
+                  newer versions of{" "}
+                  <DxcLink href="https://reactrouter.com/api/hooks/useNavigate" newWindow>
+                    React Router
                   </DxcLink>
                   .
                 </DxcParagraph>
-                <Example example={routerLinkV6} defaultIsVisible />
+                <Example example={routerLink6} defaultIsVisible />
               </>
             ),
           },
@@ -265,9 +277,7 @@ const sections = [
 
 const NavTabsCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/nav-tabs/code/NavTabsCodePage.tsx" />
   </DxcFlex>
 );

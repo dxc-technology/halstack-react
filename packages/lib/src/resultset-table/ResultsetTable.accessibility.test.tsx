@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
-import { ActionCellsPropsType } from "../table/types";
 
 // TODO: REMOVE
 import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
@@ -24,7 +23,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
-const actions: ActionCellsPropsType["actions"] = [
+const actions = [
   {
     title: "icon",
     onClick: () => {},

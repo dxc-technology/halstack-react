@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./Flex";
 
@@ -38,7 +38,7 @@ const Flex = () => (
     </Container>
     <Title title="Direction column, wrap, justify content end, align items center and gap" level={4} />
     <Container>
-      <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="1.5rem">
+      <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="var(--spacing-gap-l)">
         <Placeholder />
         <Placeholder minWidth="100px" />
         <Placeholder />
@@ -48,7 +48,12 @@ const Flex = () => (
     </Container>
     <Title title="Wrap with align content space between, row and column gaps, and as a span" level={4} />
     <Container height="250px">
-      <DxcFlex wrap="wrap" alignContent="space-between" as="span" gap={{ rowGap: "0.5rem", columnGap: "1.5rem" }}>
+      <DxcFlex
+        wrap="wrap"
+        alignContent="space-between"
+        as="span"
+        gap={{ rowGap: "var(--spacing-gap-s)", columnGap: "var(--spacing-gap-l)" }}
+      >
         <Placeholder />
         <Placeholder />
         <Placeholder />

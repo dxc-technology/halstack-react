@@ -643,7 +643,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest uncontrolled - Suggestion selected by click", () => {
+  test("Autosuggest uncontrolled — Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
@@ -663,7 +663,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest controlled - Suggestion selected by click", () => {
+  test("Autosuggest controlled — Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" value="Andor" suggestions={countries} onChange={onChange} />
@@ -678,7 +678,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest - Pattern constraint", () => {
+  test("Autosuggest — Pattern constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole, getByText } = render(
@@ -711,7 +711,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
   });
 
-  test("Autosuggest - Length constraint", () => {
+  test("Autosuggest — Length constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByText, getByRole } = render(

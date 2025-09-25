@@ -1,12 +1,10 @@
 import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import reduced from "./examples/reduced";
 import Link from "next/link";
@@ -30,6 +28,7 @@ const cellTypeString = `{
   displayValue: React.ReactNode; 
   sortValue?: string | number | Date; 
 }[]`;
+
 const columnTypeString = `{ 
   displayValue: React.ReactNode; 
   isSortable?: boolean; 
@@ -51,7 +50,7 @@ const sections = [
         <tbody>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 columns
               </DxcFlex>
@@ -78,7 +77,87 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                hidePaginator
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, paginator will not be displayed.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>itemsPerPage</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of items per page.</td>
+            <td>
+              <TableCode>5</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>itemsPerPageFunction</td>
+            <td>
+              <TableCode>{"(value: number) => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user selects an item per page option. The value selected will be
+              passed as a parameter.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageOptions</td>
+            <td>
+              <TableCode>number[]</TableCode>
+            </td>
+            <td>An array of numbers representing the items per page options.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available table modes:
+              <ul>
+                <li>
+                  <b>default</b>: Default table size.
+                </li>
+                <li>
+                  <b>reduced</b>: More compact table with less spacing for high density information.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 rows
               </DxcFlex>
@@ -107,46 +186,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="new" />
-                mode
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>'default' | 'reduced'</TableCode>
-            </td>
-            <td>
-              The available table modes:
-              <ul>
-                <li>
-                  <b>default</b>: Default table size.
-                </li>
-                <li>
-                  <b>reduced</b>: More compact table with less spacing for high density information.
-                </li>
-              </ul>
-            </td>
-            <td>
-              <TableCode>'default'</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="new" />
-                hidePaginator
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, paginator will not be displayed.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>showGoToPage</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -155,46 +194,6 @@ const sections = [
             <td>
               <TableCode>true</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>itemsPerPage</td>
-            <td>
-              <TableCode>number</TableCode>
-            </td>
-            <td>Number of items per page.</td>
-            <td>
-              <TableCode>5</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>itemsPerPageOptions</td>
-            <td>
-              <TableCode>number[]</TableCode>
-            </td>
-            <td>An array of numbers representing the items per page options.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>itemsPerPageFunction</td>
-            <td>
-              <TableCode>{"(value: number) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user selects an item per page option. The value selected will be
-              passed as a parameter.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -235,7 +234,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                     <StatusBadge status="required" />
                     actions
                   </DxcFlex>
@@ -291,15 +290,11 @@ const sections = [
   },
 ];
 
-const ResultsetTableCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ResultsetTableCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ResultsetTableCodePage;

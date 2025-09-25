@@ -1,12 +1,10 @@
 import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
@@ -102,7 +100,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   onSelectOption
                 </DxcFlex>
@@ -118,7 +116,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                   <StatusBadge status="required" />
                   options
                 </DxcFlex>
@@ -225,9 +223,7 @@ const sections = [
 
 const DropdownCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dropdown/code/DropdownCodePage.tsx" />
   </DxcFlex>
 );

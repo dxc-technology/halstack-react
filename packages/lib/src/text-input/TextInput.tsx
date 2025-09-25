@@ -13,7 +13,7 @@ import {
   useState,
   WheelEvent,
 } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -67,7 +67,9 @@ const TextInput = styled.div<{
   ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
 `;
 
-const Input = styled.input`
+const Input = styled.input<{
+  alignment: TextInputPropsType["alignment"];
+}>`
   background: none;
   border: none;
   outline: none;
@@ -80,6 +82,7 @@ const Input = styled.input`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  ${({ alignment }) => `text-align: ${alignment}`};
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
@@ -106,6 +109,7 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
     {
+      alignment = "left",
       action,
       ariaLabel = "Text input",
       autocomplete = "off",
@@ -148,7 +152,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-    const width = useWidth(inputContainerRef.current);
+    const width = useWidth(inputContainerRef);
 
     const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
@@ -172,7 +176,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               event.preventDefault();
             }}
             sideOffset={4}
-            style={{ zIndex: "2147483647" }}
+            style={{ zIndex: "var(--z-textinput)" }}
           >
             <Suggestions
               highlightedSuggestions={typeof suggestions !== "function"}
@@ -504,6 +508,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               </Addon>
             )}
             <Input
+              alignment={alignment}
               aria-activedescendant={
                 hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
                   ? `suggestion-${visualFocusIndex}`

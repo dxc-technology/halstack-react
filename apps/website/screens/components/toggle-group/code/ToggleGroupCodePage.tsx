@@ -1,13 +1,11 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
 const optionTypeString = `{
   disabled?: boolean;
@@ -78,7 +76,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 options
               </DxcFlex>
@@ -148,9 +146,7 @@ const sections = [
 
 const ToggleGroupCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toggle-group/code/ToggleGroupCodePage.tsx" />
   </DxcFlex>
 );

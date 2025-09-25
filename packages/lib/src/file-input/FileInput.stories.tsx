@@ -81,6 +81,10 @@ const FileInput = () => (
       <DxcFileInput label="File input" value={[]} callbackFile={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Optional" theme="light" level={4} />
+      <DxcFileInput label="File input" value={[]} callbackFile={() => {}} optional />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With label and helper text" theme="light" level={4} />
       <DxcFileInput label="File input" helperText="Please select files" value={[]} callbackFile={() => {}} />
     </ExampleContainer>

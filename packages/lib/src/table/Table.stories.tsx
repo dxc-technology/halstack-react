@@ -4,9 +4,7 @@ import disabledRules from "../../test/accessibility/rules/specific/table/disable
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { HalstackProvider } from "../HalstackContext";
 import DxcTable from "./Table";
-import { ActionsPropsType } from "./types";
 
 export default {
   title: "Table",
@@ -26,28 +24,12 @@ export default {
   },
 } as Meta<typeof DxcTable>;
 
-const opinionatedTheme = {
-  table: {
-    baseColor: "#5f249f",
-    headerFontColor: "#ffffff",
-    cellFontColor: "#000000",
-  },
-};
-
-const advancedTheme = {
-  table: {
-    actionIconColor: "#1B75BB",
-    hoverActionIconColor: "#1B75BB",
-    activeActionIconColor: "#1B75BB",
-    focusActionIconColor: "#1B75BB",
-    hoverButtonBackgroundColor: "#cccccc",
-  },
-};
-
-const actions: ActionsPropsType = [
+const actions = [
   {
     title: "icon",
-    onClick: () => {},
+    onClick: (value?: string) => {
+      console.log(value);
+    },
     options: [
       {
         value: "1",
@@ -65,7 +47,9 @@ const actions: ActionsPropsType = [
   },
   {
     title: "icon",
-    onClick: () => {},
+    onClick: (value?: string) => {
+      console.log(value);
+    },
     options: [
       {
         value: "1",
@@ -84,7 +68,9 @@ const actions: ActionsPropsType = [
   {
     disabled: true,
     title: "icon",
-    onClick: () => {},
+    onClick: (value?: string) => {
+      console.log(value);
+    },
     options: [
       {
         value: "1",
@@ -118,43 +104,14 @@ const Table = () => (
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <DxcTable>
-        <tr>
-          <th>header 1</th>
-          <th>header 2</th>
-          <th>actions</th>
-        </tr>
-        <tr>
-          <td>cell 1</td>
-          <td>cell 2</td>
-          <td aria-label="actions">
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-        <tr>
-          <td>cell 4</td>
-          <td>cell 5</td>
-          <td aria-label="actions">
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-        <tr>
-          <td>cell 7</td>
-          <td>cell 8</td>
-          <td aria-label="actions">
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-      </DxcTable>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Custom actionsCell theme" theme="light" level={4} />
-      <HalstackProvider advancedTheme={advancedTheme}>
-        <DxcTable>
+        <thead>
           <tr>
             <th>header 1</th>
             <th>header 2</th>
             <th>actions</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>cell 1</td>
             <td>cell 2</td>
@@ -176,8 +133,43 @@ const Table = () => (
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
-        </DxcTable>
-      </HalstackProvider>
+        </tbody>
+      </DxcTable>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Custom actionsCell theme" theme="light" level={4} />
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>header 1</th>
+            <th>header 2</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>cell 1</td>
+            <td>cell 2</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+          <tr>
+            <td>cell 4</td>
+            <td>cell 5</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+          <tr>
+            <td>cell 7</td>
+            <td>cell 8</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+        </tbody>
+      </DxcTable>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With scrollbar" theme="light" level={4} />
@@ -193,13 +185,19 @@ const Table = () => (
         <DxcTable>
           <tr>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
           </tr>
           <tr>
@@ -297,13 +295,19 @@ const Table = () => (
         <DxcTable mode="reduced">
           <tr>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
             <th>
-              header<br></br>subheader
+              header
+              <br />
+              subheader
             </th>
           </tr>
           <tr>
@@ -556,77 +560,6 @@ const Table = () => (
           <td>Cell 9</td>
         </tr>
       </DxcTable>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTable>
-          <tr>
-            <th>
-              header<br></br>subheader
-            </th>
-            <th>
-              header<br></br>subheader
-            </th>
-            <th>
-              header<br></br>subheader
-            </th>
-          </tr>
-          <tr>
-            <td>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
-            </td>
-            <td>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
-            </td>
-            <td>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-          <tr>
-            <td>cell data</td>
-            <td>cell data</td>
-            <td>cell data</td>
-          </tr>
-        </DxcTable>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );

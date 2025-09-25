@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -254,6 +253,11 @@ const sections = [
               <strong>Support various states consistently:</strong> reflect focus, disabled, error, and read-only states
               with distinct, accessible visual cues.
             </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Apply appropiate alignment:</strong> It is recommended to use left alignment in general, except
+              when there is a specific need for right alignment, such as in currency inputs or numeric fields, generally
+              using a suffix.
+            </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
       },
@@ -325,9 +329,7 @@ const sections = [
 
 const TextInputOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/text-input/overview/TextInputOverviewPage.tsx" />
   </DxcFlex>
 );

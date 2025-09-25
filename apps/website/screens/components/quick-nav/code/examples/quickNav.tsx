@@ -1,0 +1,35 @@
+import { DxcInset, DxcQuickNav } from "@dxc-technology/halstack-react";
+
+const code = `() => {
+  const links = [
+    {
+      label: "Overview",
+    },
+    {
+      label: "Principles",
+      links: [
+        { label: "Color" },
+        { label: "Spacing" },
+        { label: "Typography" },
+        { label: "Layout" },
+        {
+          label: "Themes",
+          links: [{ label: "Light" }, { label: "Dark" }],
+        },
+      ],
+    },
+  ];
+
+  return (
+    <DxcInset space="var(--spacing-padding-xl)">
+      <DxcQuickNav links={links} />
+    </DxcInset>
+  );
+}`;
+
+const scope = {
+  DxcInset,
+  DxcQuickNav,
+};
+
+export default { code, scope };

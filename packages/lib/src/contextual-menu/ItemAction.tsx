@@ -1,5 +1,5 @@
 import { cloneElement, memo, MouseEvent, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";

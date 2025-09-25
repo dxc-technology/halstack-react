@@ -1,10 +1,14 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode from "@/common/TableCode";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+
+const logoTypeString = `{
+  href?: string;
+  src: string;
+  title?: string;
+}`;
 
 const sections = [
   {
@@ -21,8 +25,70 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>bottomLinks</td>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <TableCode>{"{ href: string; text: string; }[]"}</TableCode>
+            </td>
+            <td>
+              An array of objects representing the links that will be rendered at the bottom part of the footer. Each
+              object has the following properties:
+              <ul>
+                <li>
+                  <b>text</b>: Text for the link.
+                </li>
+                <li>
+                  <b>href</b>: URL of the page the link goes to.
+                </li>
+              </ul>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>The center section of the footer. Can be used to render custom content in this area.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>copyright</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>The text that will be displayed as copyright disclaimer.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                logo
+              </DxcFlex>
+            </td>
+            <td>
+              <td>
+                <TableCode>{"Logo"}</TableCode>
+                <p>
+                  being <Code>Logo</Code> an object with the following properties:
+                </p>
+                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
+              </td>
+            </td>
+            <td>Logo to be displayed inside the header.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
+            </td>
+            <td>Size of the top margin to be applied to the footer.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
                 mode
               </DxcFlex>
@@ -77,49 +143,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>bottomLinks</td>
-            <td>
-              <TableCode>{"{ href: string; text: string; }[]"}</TableCode>
-            </td>
-            <td>
-              An array of objects representing the links that will be rendered at the bottom part of the footer. Each
-              object has the following properties:
-              <ul>
-                <li>
-                  <b>text</b>: Text for the link.
-                </li>
-                <li>
-                  <b>href</b>: URL of the page the link goes to.
-                </li>
-              </ul>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>copyright</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>The text that will be displayed as copyright disclaimer.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The center section of the footer. Can be used to render custom content in this area.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
-            </td>
-            <td>Size of the top margin to be applied to the footer.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
@@ -153,7 +176,7 @@ const sections = [
             title="Footer and header"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+          />
         ),
       },
     ],
@@ -163,9 +186,7 @@ const sections = [
 const FooterCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/footer/code/FooterCodePage.tsx" />
     </DxcFlex>
   );

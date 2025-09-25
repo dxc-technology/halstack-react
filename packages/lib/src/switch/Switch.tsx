@@ -1,5 +1,5 @@
 import { forwardRef, KeyboardEvent, useContext, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -17,7 +17,7 @@ const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
-    
+
 const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]) =>
   disabled
     ? checked
@@ -104,8 +104,7 @@ const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: Swit
     height: var(--height-s);
     background-color: var(--color-fg-neutral-bright);
     border-radius: 50%;
-    box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur)
-      var(--shadow-low-spread) var(--shadow-dark);
+    box-shadow: var(--shadow-100);
     transform: ${({ checked }) => checked && "translateX(20px)"};
     transition: transform 0.2s ease-in-out; /* Thumb transform transition */
   }

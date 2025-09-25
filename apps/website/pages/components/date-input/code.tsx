@@ -7,7 +7,7 @@ const Code = () => {
   return (
     <>
       <Head>
-        <title>Date Input Code — Halstack Design System</title>
+        <title>Date Input code — Halstack Design System</title>
       </Head>
       <DateInputCodePage />
     </>

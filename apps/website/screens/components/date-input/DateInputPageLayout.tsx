@@ -11,9 +11,9 @@ const DateInputPageHeading = ({ children }: { children: ReactNode }) => {
   ];
 
   return (
-    <DxcFlex direction="column" gap="3rem">
+    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Date Input" />
           <DxcParagraph>Date inputs enable users to type or select a date in a predefined format.</DxcParagraph>
           <TabsPageHeading tabs={tabs} />

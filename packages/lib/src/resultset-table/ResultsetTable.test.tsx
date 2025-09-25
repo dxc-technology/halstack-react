@@ -1,7 +1,6 @@
 import { act, fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { ActionCellsPropsType } from "../table/types";
 import DxcResultsetTable from "./ResultsetTable";
 
 (global as any).globalThis = global;
@@ -512,7 +511,7 @@ describe("Resultset table component tests", () => {
   test("Resultset table with ActionsCell", () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
-    const actions: ActionCellsPropsType["actions"] = [
+    const actions = [
       {
         title: "icon1",
         onClick: onSelectOption,

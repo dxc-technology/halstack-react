@@ -1,13 +1,11 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import basicUsage from "./examples/basicUsage";
 import semantic from "./examples/semantic";
 import severalMessages from "./examples/severalMessages";
 import Example from "@/common/example/Example";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
-import Code from "@/common/Code";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
@@ -126,7 +124,7 @@ const sections = [
           </tr>
           <tr>
             <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
                 title
               </DxcFlex>
@@ -162,9 +160,7 @@ const sections = [
 
 const AlertCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/code/AlertCodePage.tsx" />
   </DxcFlex>
 );

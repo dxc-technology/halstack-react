@@ -1,11 +1,9 @@
 import { DxcParagraph, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
@@ -19,25 +17,17 @@ const ApplicationLayoutPropsTable = () => (
     </thead>
     <tbody>
       <tr>
-        <td>visibilityToggleLabel</td>
         <td>
-          <TableCode>string</TableCode>
+          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+            <StatusBadge status="required" />
+            children
+          </DxcFlex>
         </td>
-        <td>Text to be placed next to the hamburger button that toggles the visibility of the sidenav.</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>header</td>
         <td>
           <TableCode>React.ReactNode</TableCode>
         </td>
         <td>
-          Header of the application layout shown at the top of the screen. It is optional and if it is not specified,
-          the default header will be shown. Please check the Header documentation{" "}
-          <Link href="/components/header" passHref legacyBehavior>
-            <DxcLink>here</DxcLink>
-          </Link>
-          .
+          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
         </td>
         <td>-</td>
       </tr>
@@ -50,6 +40,21 @@ const ApplicationLayoutPropsTable = () => (
           Footer of the application layout shown at the bottom of the screen. It is optional and if it is not specified,
           the default header will be shown. Please check the Footer documentation{" "}
           <Link href="/components/footer" passHref legacyBehavior>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
+        </td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>header</td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
+        <td>
+          Header of the application layout shown at the top of the screen. It is optional and if it is not specified,
+          the default header will be shown. Please check the Header documentation{" "}
+          <Link href="/components/header" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
           .
@@ -71,18 +76,11 @@ const ApplicationLayoutPropsTable = () => (
         <td>-</td>
       </tr>
       <tr>
+        <td>visibilityToggleLabel</td>
         <td>
-          <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-            <StatusBadge status="required" />
-            children
-          </DxcFlex>
+          <TableCode>string</TableCode>
         </td>
-        <td>
-          <TableCode>React.ReactNode</TableCode>
-        </td>
-        <td>
-          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
-        </td>
+        <td>Text to be placed next to the hamburger button that toggles the visibility of the sidenav.</td>
         <td>-</td>
       </tr>
     </tbody>
@@ -130,7 +128,7 @@ const sections = [
             title="Basic usage"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+          />
         ),
       },
       {
@@ -148,7 +146,7 @@ const sections = [
             title="With sidenav"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+          />
         ),
       },
       {
@@ -166,22 +164,18 @@ const sections = [
             title="Custom footer and header"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+          />
         ),
       },
     ],
   },
 ];
 
-const ApplicationLayoutCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/application-layout/code/ApplicationLayoutCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ApplicationLayoutCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/application-layout/code/ApplicationLayoutCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ApplicationLayoutCodePage;

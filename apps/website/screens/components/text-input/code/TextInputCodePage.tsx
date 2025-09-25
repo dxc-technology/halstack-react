@@ -1,7 +1,5 @@
 import { DxcLink, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
@@ -9,7 +7,8 @@ import uncontrolled from "./examples/uncontrolled";
 import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
-import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
   icon?: string | (React.ReactNode 
@@ -33,13 +32,32 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                alignment
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'left' | 'right'</TableCode>
+            </td>
+            <td>
+              Sets <Code>text-align</Code> CSS property inside the input. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'left'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>action</td>
             <td>
               <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Action to be displayed on the right side of the input.
-            </td>
+            <td>Action to be displayed on the right side of the input.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -361,9 +379,7 @@ const sections = [
 
 const TextInputCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/text-input/code/TextInputCodePage.tsx" />
   </DxcFlex>
 );

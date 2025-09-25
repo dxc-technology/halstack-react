@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
@@ -10,7 +10,7 @@ const TooltipTriggerContainer = styled.div`
 `;
 
 const StyledTooltipContent = styled(Content)`
-  z-index: 2147483647;
+  z-index: var(--z-tooltip);
 
   animation-duration: 0.2s;
   animation-timing-function: ease-out;

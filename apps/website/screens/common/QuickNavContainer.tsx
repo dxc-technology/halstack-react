@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section, { SectionType } from "./Section";
 import { responsiveSizes } from "../common/variables";
 
 type QuickNavContainerTypes = {
-  title?: string;
   sections: SectionType[];
   startHeadingLevel?: 1 | 2 | 3 | 4 | 5;
+  title?: string;
 };
 
 type LinkType = {
@@ -29,25 +29,6 @@ const getSubSectionsLinks = (sections: SectionType[]) => {
   return linksList;
 };
 
-const DxcQuickNavContainer = ({ title = "On this page", sections, startHeadingLevel = 1 }: QuickNavContainerTypes): JSX.Element => (
-  <MainContainer>
-    <DxcGrid gap="var(--spacing-gap-xxl)" templateColumns={["minmax(0, 1fr)"]}>
-      {sections.map((section) => (
-        <Section
-          key={`section-${section.title}`}
-          title={section.title}
-          level={startHeadingLevel}
-          subSections={section.subSections}
-          content={section.content}
-        />
-      ))}
-    </DxcGrid>
-    <QuickNavContainer>
-      <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
-    </QuickNavContainer>
-  </MainContainer>
-);
-
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 800px 1fr;
@@ -58,6 +39,7 @@ const MainContainer = styled.div`
   @media (max-width: ${responsiveSizes.tablet}px) {
     grid-template-columns: minmax(0, 1fr);
   }
+  font-family: var(--typography-font-family);
 `;
 
 const QuickNavContainer = styled.div`
@@ -75,5 +57,24 @@ const QuickNavContainer = styled.div`
     max-height: calc(100vh - 112px);
   }
 `;
+
+const DxcQuickNavContainer = ({ sections, startHeadingLevel = 1, title = "On this page" }: QuickNavContainerTypes) => (
+  <MainContainer>
+    <DxcGrid gap="var(--spacing-gap-xxl)" templateColumns={["minmax(0, 1fr)"]}>
+      {sections.map((section) => (
+        <Section
+          key={`section-${section.title}`}
+          title={section.title}
+          level={startHeadingLevel}
+          subSections={section.subSections}
+          content={section.content}
+        />
+      ))}
+    </DxcGrid>
+    <QuickNavContainer>
+      <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
+    </QuickNavContainer>
+  </MainContainer>
+);
 
 export default DxcQuickNavContainer;

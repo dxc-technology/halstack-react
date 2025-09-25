@@ -1,5 +1,5 @@
 import { MouseEvent, useId, useMemo, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import SpinnerPropsType from "./types";
 import { TooltipWrapper } from "../tooltip/Tooltip";
@@ -17,7 +17,7 @@ const SpinnerContainer = styled.div<{
       align-items: center;
       justify-content: center;
       height: 100%;
-      z-index: 2147483647;
+      z-index: var(--z-spinner-overlay);
     `};
 
   margin: ${(props) =>
@@ -167,7 +167,7 @@ const CircleSpinner = styled.circle<{
 const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   position: absolute;
   display: grid;
-  gap: var(--spacing-gap-none, 0px);
+  gap: var(--spacing-gap-none);
   place-items: center;
   width: 116px;
   color: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};

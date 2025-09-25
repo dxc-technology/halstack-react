@@ -54,7 +54,7 @@ const Image = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Example image" theme="light" level={4} />
-      <DxcFlex gap="1rem">
+      <DxcFlex gap="var(--spacing-gap-ml)">
         <DxcImage
           alt="Camera pic"
           caption="Picture of a camera and the sunset."
@@ -97,8 +97,8 @@ const Image = () => (
         style={{
           display: "flex",
           width: "fit-content",
-          border: "1px solid #000",
-          padding: "0.5rem",
+          border: "var(--border-width-s) var(--border-style-default) var(--border-color-neutral-dark)",
+          padding: "var(--spacing-padding-xs)",
         }}
       >
         <DxcImage

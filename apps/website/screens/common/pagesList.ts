@@ -18,14 +18,13 @@ type NavigationLinks = {
   nextLink?: LinkDetails;
 };
 
-export const themeGeneratorLinks = ["/theme-generator/opinionated-theme/", "/theme-generator/advanced-theme/"];
-
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction" },
   { label: "Installation", path: "/overview/installation" },
   { label: "Component lifecycle", path: "/overview/component-lifecycle" },
   { label: "Releases", path: "/overview/releases" },
 ];
+
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack provider",
@@ -34,14 +33,19 @@ const utilitiesLinks: LinkDetails[] = [
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Color", path: "/principles/color" },
   { label: "Data visualization", path: "/principles/data-visualization" },
-  { label: "Iconography", path: "/principles/iconography" },
-  { label: "Layout", path: "/principles/layout" },
   { label: "Localization", path: "/principles/localization" },
-  { label: "Spacing", path: "/principles/spacing" },
-  { label: "Themes", path: "/principles/themes" },
-  { label: "Typography", path: "/principles/typography" },
+];
+
+const foundationsLinks: LinkDetails[] = [
+  { label: "Color", path: "/foundations/color" },
+  { label: "Elevation", path: "/foundations/elevation" },
+  { label: "Height", path: "/foundations/height" },
+  { label: "Iconography", path: "/foundations/iconography" },
+  { label: "Layout", path: "/foundations/layout" },
+  { label: "Spacing", path: "/foundations/spacing" },
+  { label: "Tokens", path: "/foundations/tokens" },
+  { label: "Typography", path: "/foundations/typography" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
@@ -49,6 +53,7 @@ const componentsLinks = componentsList as LinkDetails[];
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },
   { label: "Principles", links: principlesLinks },
+  { label: "Foundations", links: foundationsLinks },
   { label: "Utilities", links: utilitiesLinks },
   { label: "Components", links: componentsLinks },
 ];
@@ -68,9 +73,10 @@ const getCurrentLinkIndex = (links: LinkDetails[], currentPath: string) => {
 export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const links = LinksSections.flatMap((section) => section.links);
   const currentLinkIndex = getCurrentLinkIndex(links, currentPath);
-  if (currentLinkIndex === -1) return {};
-  return {
-    previousLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
-    nextLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
-  };
+  return currentLinkIndex === -1
+    ? {}
+    : {
+        nextLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
+        previousLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
+      };
 };

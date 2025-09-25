@@ -1,12 +1,10 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import TableCode from "@/common/TableCode";
-import Code from "@/common/Code";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {
@@ -195,9 +193,7 @@ const sections = [
 
 const CheckboxCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
   </DxcFlex>
 );

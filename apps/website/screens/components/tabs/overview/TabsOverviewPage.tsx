@@ -1,7 +1,6 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex, DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import defaultUsage from "./examples/default";
 import scrollableUsage from "./examples/scrollable";
@@ -78,14 +77,14 @@ const sections = [
                   <DxcBulletedList.Item>
                     <strong>Default tabs:</strong> used for main navigation, placed above the header, spanning 100% of
                     the screen width.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={defaultUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
                     <strong>Container tabs:</strong> Used for panel navigation, placed at the top of the panel, using
                     the full available width. Scrollable tabs are allowed when space is limited.
-                    <DxcInset top="1rem" bottom="1rem">
+                    <DxcInset vertical="var(--spacing-padding-m)">
                       <Example example={scrollableUsage} />
                     </DxcInset>
                   </DxcBulletedList.Item>
@@ -169,7 +168,7 @@ const sections = [
           <strong>Keep tab labels short & clear:</strong> use concise, descriptive labels (1-2 words) that clearly
           indicate the content. Avoid using generic or ambiguous labels like "Info" or "More." Instead, choose specific
           terms that reflect the content, such as "Account Details" for user-related settings or "Billing" for payment
-          information and prioritize readability—avoid using all caps unless necessary.
+          information and prioritize readability — avoid using all caps unless necessary.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Managing the number of tabs effectively:</strong> while not a strict rule, keeping the number of tabs
@@ -196,9 +195,7 @@ const sections = [
 
 const TabsOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/tabs/overview/TabsOverviewPage.tsx" />
   </DxcFlex>
 );

@@ -221,7 +221,6 @@ const optionsWithEllipsis = [
 
 const Select = () => (
   <>
-    <Title title="States" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <DxcSelect options={singleOptions} />
@@ -310,7 +309,7 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
-      <DxcFlex justifyContent="space-between" gap="1rem">
+      <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcSelect label="fillParent" size="fillParent" options={singleOptions} />
         <DxcSelect label="medium" size="medium" options={singleOptions} />
         <DxcSelect label="large" size="large" options={singleOptions} />
@@ -385,13 +384,11 @@ const SelectListbox = () => (
           border: "1px solid black",
           borderRadius: "4px",
           overflow: "auto",
-          zIndex: "1300",
+          zIndex: "130",
         }}
       >
         <DxcSelect label="Label" options={singleOptions} optional placeholder="Choose an option" />
-        <button type="button" style={{ zIndex: "1", width: "100px" }}>
-          Submit
-        </button>
+        <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
       </div>
     </ExampleContainer>
     <Title title="Listbox option states" theme="light" level={3} />
@@ -410,7 +407,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -428,7 +429,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -446,7 +451,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
@@ -464,7 +473,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -482,7 +495,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <Title title="Listbox with icons" theme="light" level={3} />
@@ -501,7 +518,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -519,7 +540,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -537,7 +562,11 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
+        handleSelectAllOnClick={() => {}}
+        handleGroupOnClick={() => {}}
         styles={{ width: 360 }}
+        enableSelectAll={false}
+        selectionType="unchecked"
       />
     </ExampleContainer>
   </>
@@ -627,7 +656,11 @@ const TooltipOption = () => (
       optionalItem={{ label: "Empty", value: "" }}
       searchable={false}
       handleOptionOnClick={() => {}}
+      handleSelectAllOnClick={() => {}}
+      handleGroupOnClick={() => {}}
+      selectionType="unchecked"
       styles={{ width: 360 }}
+      enableSelectAll={false}
     />
   </ExampleContainer>
 );
@@ -636,6 +669,21 @@ const TooltipClear = () => (
   <ExampleContainer expanded>
     <Title title="Clear action tooltip" theme="light" level={4} />
     <DxcSelect label="Label" options={singleOptions} multiple defaultValue={["1", "2", "3", "4"]} />
+  </ExampleContainer>
+);
+
+const SelectAll = () => (
+  <ExampleContainer>
+    <Title title="Select all with grouped options" theme="light" level={4} />
+    <DxcSelect
+      defaultValue={["1", "3", "4"]}
+      enableSelectAll
+      label="Select an option"
+      multiple
+      options={groupOptions}
+      placeholder="Select an available option"
+      searchable
+    />
   </ExampleContainer>
 );
 
@@ -747,5 +795,14 @@ export const SearchableClearActionTooltip: Story = {
     await userEvent.type(canvas.getByRole("combobox"), "r");
     const clearSelectionButton = canvas.getByRole("button");
     await userEvent.hover(clearSelectionButton);
+  },
+};
+
+export const SelectAllOptions: Story = {
+  render: SelectAll,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole("combobox");
+    await userEvent.click(select);
   },
 };

@@ -1,9 +1,65 @@
-import { useContext } from "react";
-import styled from "styled-components";
+import { useContext, useRef } from "react";
+import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import { HalstackLanguageContext } from "../HalstackContext";
 import PaginatorPropsType from "./types";
+import { HalstackLanguageContext } from "../HalstackContext";
+import { responsiveSizes } from "../common/variables";
+import useWidth from "../utils/useWidth";
+import { isResponsive } from "./utils";
+
+const DxcPaginatorContainer = styled.div<{ width: number }>`
+  display: flex;
+  justify-content: ${({ width }) => (isResponsive(width) ? "center" : "flex-end")};
+  flex-wrap: ${({ width }) => (isResponsive(width) ? "wrap" : "nowrap")};
+  gap: ${({ width }) => (isResponsive(width) ? "var(--spacing-gap-s)" : "0")};
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  background-color: var(--color-bg-neutral-lighter);
+  color: var(--color-fg-neutral-dark);
+  padding: var(--spacing-padding-xs) var(--spacing-padding-xl);
+`;
+
+const ItemsPerPageContainer = styled.span<{ width: number }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  margin-right: ${({ width }) => (isResponsive(width) ? "0" : "var(--spacing-gap-ml)")};
+`;
+
+const SelectContainer = styled.div`
+  min-width: 6.25rem;
+`;
+
+const TotalItemsContainer = styled.span<{ width: number }>`
+  margin-right: ${({ width }) => (isResponsive(width) ? "0" : "var(--spacing-gap-xxl)")};
+`;
+
+const GoToPageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-ml);
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  flex-shrink: 0;
+`;
+
+const PageToSelectContainer = styled.span<{ width: number }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+`;
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -26,58 +82,13 @@ const DxcPaginator = ({
 
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  const DxcPaginatorContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    min-height: 48px;
-    box-sizing: border-box;
-    font-family: var(--typography-font-family);
-    font-size: var(--typography-label-m);
-    font-weight: var(--typography-label-regular);
-    background-color: var(--color-bg-neutral-lighter);
-    color: var(--color-fg-neutral-dark);
-    padding: var(--spacing-padding-xs) var(--spacing-padding-xl);
-  `;
-
-  const ItemsPerPageContainer = styled.span`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-    margin-right: var(--spacing-gap-ml);
-  `;
-
-  const SelectContainer = styled.div`
-    min-width: 6.25rem;
-  `;
-
-  const TotalItemsContainer = styled.span`
-    margin-right: var(--spacing-gap-xxl);
-  `;
-
-  const GoToPageContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-ml);
-  `;
-
-  const ButtonsContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-  `;
-
-  const PageToSelectContainer = styled.span`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-gap-s);
-  `;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const width = useWidth(containerRef);
 
   return (
-    <DxcPaginatorContainer>
+    <DxcPaginatorContainer ref={containerRef} width={width}>
       {itemsPerPageOptions && (
-        <ItemsPerPageContainer>
+        <ItemsPerPageContainer width={width}>
           <span>{translatedLabels.paginator.itemsPerPageText}</span>
           <SelectContainer>
             <DxcSelect
@@ -95,7 +106,7 @@ const DxcPaginator = ({
           </SelectContainer>
         </ItemsPerPageContainer>
       )}
-      <TotalItemsContainer>
+      <TotalItemsContainer width={width}>
         {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
       </TotalItemsContainer>
       <GoToPageContainer>
@@ -109,7 +120,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(1);
               }}
-              title="First results"
+              title={translatedLabels.paginator.firstResultsTitle}
               size={{ height: "medium" }}
             />
 
@@ -121,14 +132,16 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage - 1);
               }}
-              title="Previous results"
+              title={translatedLabels.paginator.previousResultsTitle}
               size={{ height: "medium" }}
             />
           </ButtonsContainer>
         )}
         {showGoToPage ? (
-          <PageToSelectContainer>
-            <span>{translatedLabels.paginator.goToPageText} </span>
+          <PageToSelectContainer width={width}>
+            {(width >= Number(responsiveSizes.small) * 16 || !onPageChange) && (
+              <span>{translatedLabels.paginator.goToPageText}</span>
+            )}
             <SelectContainer>
               <DxcSelect
                 options={Array.from(Array(totalPages), (e, num) => ({
@@ -157,7 +170,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage + 1);
               }}
-              title="Next results"
+              title={translatedLabels.paginator.nextResultsTitle}
               size={{ height: "medium" }}
             />
             <DxcButton
@@ -168,7 +181,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(totalPages);
               }}
-              title="Last results"
+              title={translatedLabels.paginator.lastResultsTitle}
               size={{ height: "medium" }}
             />
           </ButtonsContainer>

@@ -1,11 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import MenuItem from "./MenuItem";
-import ContextualMenuPropsType, {
-  GroupItemWithId,
-  ItemWithId,
-  SectionWithId,
-} from "./types";
+import ContextualMenuPropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
 import Section from "./Section";
 import ContextualMenuContext from "./ContextualMenuContext";
 import scrollbarStyles from "../styles/scroll";

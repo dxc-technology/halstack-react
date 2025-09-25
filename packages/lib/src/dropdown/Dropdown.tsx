@@ -1,6 +1,6 @@
 import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState, useContext } from "react";
+import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -134,7 +134,7 @@ const DxcDropdown = ({
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
-  const width = useWidth(triggerRef.current);
+  const width = useWidth(triggerRef);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);
