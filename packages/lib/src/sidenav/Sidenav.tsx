@@ -10,7 +10,7 @@ import SidenavPropsType, {
   SidenavSectionPropsType,
   SidenavTitlePropsType,
 } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 

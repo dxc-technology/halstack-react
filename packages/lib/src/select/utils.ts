@@ -163,7 +163,7 @@ export const getSelectedOptionLabel = (
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);
 
 /**
  * Returns a determined string value depending on the amount of options selected:

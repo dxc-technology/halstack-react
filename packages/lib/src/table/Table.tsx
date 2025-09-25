@@ -4,7 +4,7 @@ import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionsCellPropsType } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 import { useEffect, useMemo } from "react";
 
 const calculateWidth = (margin: TablePropsType["margin"]) =>
