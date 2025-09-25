@@ -1,7 +1,6 @@
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcBulletedList, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const sections = [
@@ -39,7 +38,7 @@ const sections = [
           Use Paragraphs to group related sentences and divide longer content into manageable, readable chunks.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Avoid using Paragraph as a layout or structural element—it is intended strictly for text content.
+          Avoid using Paragraph as a layout or structural element — it is intended strictly for text content.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
@@ -80,9 +79,7 @@ const sections = [
 
 const ParagraphOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paragraph/overview/ParagraphOverviewPage.tsx" />
   </DxcFlex>
 );

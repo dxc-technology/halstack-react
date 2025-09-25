@@ -1,4 +1,4 @@
-import { DxcAccordion, DxcInset, DxcBadge, DxcStatusLight } from "@dxc-technology/halstack-react";
+import { DxcAccordion, DxcInset, DxcBadge, DxcStatusLight, DxcParagraph } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -11,7 +11,7 @@ const code = `() => {
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
-            Person information
+            <DxcParagraph>Person information</DxcParagraph>
           </DxcInset>
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
@@ -21,7 +21,7 @@ const code = `() => {
           defaultIsExpanded
         >
           <DxcInset space="var(--spacing-padding-l)">
-            Person creation information
+            <DxcParagraph>Person creation information</DxcParagraph>
           </DxcInset>
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
@@ -31,7 +31,7 @@ const code = `() => {
           defaultIsExpanded
         >
           <DxcInset space="var(--spacing-padding-l)">
-            Interactions information
+            <DxcParagraph>Interactions information</DxcParagraph>
           </DxcInset>
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
@@ -41,7 +41,7 @@ const code = `() => {
           badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
-            Deletion information
+            <DxcParagraph>Deletion information</DxcParagraph>
           </DxcInset>
         </DxcAccordion.AccordionItem>
       </DxcAccordion>
@@ -54,6 +54,7 @@ const scope = {
   DxcInset,
   DxcBadge,
   DxcStatusLight,
+  DxcParagraph,
   useState,
 };
 

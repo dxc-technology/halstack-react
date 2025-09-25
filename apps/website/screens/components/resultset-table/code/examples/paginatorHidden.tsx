@@ -74,7 +74,7 @@ const code = `() => {
       <DxcResultsetTable
         columns={columns}
         rows={rows}
-        hidePaginator={true}
+        hidePaginator
       />
     </DxcInset>
   );

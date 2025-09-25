@@ -33,17 +33,20 @@ export type TabIconProps = {
   icon: string | SVG;
 };
 
-export type TabProps = {
+type CommonTabProps = {
   defaultActive?: boolean;
   active?: boolean;
   title?: string;
-  tabId?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
   children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
-} & (TabLabelProps | TabIconProps);
+};
+
+export type TabProps =
+  | (CommonTabProps & { tabId: string; label?: string; icon?: string | SVG })
+  | (CommonTabProps & { tabId?: string; label: string; icon?: string | SVG });
 
 type TabsProps = {
   /**

@@ -57,7 +57,7 @@ const code = `() => {
           </div>
         </DxcFlex>
         <DxcInset space="var(--spacing-padding-xl)">
-          <DxcQuickNav links={links}></DxcQuickNav>
+          <DxcQuickNav links={links} />
         </DxcInset>
       </DxcFlex>
     </DxcInset>
