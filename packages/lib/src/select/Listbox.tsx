@@ -10,7 +10,7 @@ import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 
 const ListboxContainer = styled.div<{
-  height?: ListboxProps["height"];
+  height?: ListboxProps["virtualizedHeight"];
 }>`
   box-sizing: border-box;
   max-height: 304px;
