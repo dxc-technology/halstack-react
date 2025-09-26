@@ -90,24 +90,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                height
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              A fixed height must be set to enable virtualization. If no height is provided, the select will
-              automatically adjust to the height of its content, and virtualization will not be applied.
-            </td>
-            <td>
-              <td>-</td>
-            </td>
-          </tr>
-          <tr>
             <td>helperText</td>
             <td>
               <TableCode>string</TableCode>
@@ -313,6 +295,24 @@ const sections = [
               internally by the component.
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                virtualizedHeight
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A fixed height must be set to enable virtualization. If no height is provided, the select will
+              automatically adjust to the height of its content, and virtualization will not be applied.
+            </td>
+            <td>
+              <td>-</td>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

@@ -13,7 +13,7 @@ const code = `() => {
       <DxcSelect 
         label="Select a virtualized value" 
         options={options} 
-        height="300px" 
+        virtualizedHeight="300px" 
       />
     </DxcInset>
   );
