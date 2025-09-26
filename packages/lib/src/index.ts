@@ -4,6 +4,7 @@ import "./styles/variables.css";
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAlert } from "./alert/Alert";
 export { default as DxcApplicationLayout } from "./layout/ApplicationLayout";
+export { default as DxcAvatar } from "./avatar/Avatar";
 export { default as DxcBadge } from "./badge/Badge";
 export { default as DxcBleed } from "./bleed/Bleed";
 export { default as DxcBreadcrumbs } from "./breadcrumbs/Breadcrumbs";
