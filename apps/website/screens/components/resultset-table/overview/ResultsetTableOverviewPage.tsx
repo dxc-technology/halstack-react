@@ -114,8 +114,8 @@ const sections = [
           <DxcParagraph>
             For very large datasets, virtualization improves performance by rendering only the visible rows within the
             viewport, significantly reducing DOM load and enabling smooth scrolling. To enable virtualization, the{" "}
-            <Code>height</Code> prop must be set to a valid value on the resultset table. This defines the scrollable
-            area and allows the table to calculate which rows should be rendered dynamically.
+            <Code>virtualizedHeight</Code> prop must be set to a valid value on the resultset table. This defines the
+            scrollable area and allows the table to calculate which rows should be rendered dynamically.
           </DxcParagraph>
         ),
       },

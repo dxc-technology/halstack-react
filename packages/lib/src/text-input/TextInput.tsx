@@ -167,6 +167,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         </Popover.Trigger>
         <Popover.Portal>
           <Popover.Content
+            aria-label="Suggestions"
             onCloseAutoFocus={(event) => {
               // Avoid select to lose focus when the list is closed
               event.preventDefault();

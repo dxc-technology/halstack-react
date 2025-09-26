@@ -300,7 +300,7 @@ const DxcDropdown = ({
           </Popover.Trigger>
         </Tooltip>
         <Popover.Portal>
-          <Popover.Content asChild sideOffset={1}>
+          <Popover.Content aria-label="Dropdown options" asChild sideOffset={1}>
             <DropdownMenu
               id={menuId}
               dropdownTriggerId={triggerId}

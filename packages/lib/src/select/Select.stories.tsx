@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within, waitFor } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -33,6 +33,13 @@ const singleOptions = [
   { label: "Option 02", value: "2" },
   { label: "Option 03", value: "3" },
   { label: "Option 04", value: "4" },
+];
+
+const single_options_virtualized = [
+  ...Array.from({ length: 10000 }, (_, i) => ({
+    label: `Option ${String(i + 1).padStart(2, "0")}`,
+    value: `${i + 1}`,
+  })),
 ];
 
 const groupOptions = [
@@ -360,6 +367,13 @@ const Select = () => (
       />
     </ExampleContainer>
   </>
+);
+
+const VirtualizedSelect = () => (
+  <ExampleContainer>
+    <Title title="Virtualized" theme="light" level={4} />
+    <DxcSelect label="Virtualized" options={single_options_virtualized} virtualizedHeight="300px" />
+  </ExampleContainer>
 );
 
 const SelectListbox = () => (
@@ -700,6 +714,15 @@ export const Chromatic: Story = {
   },
 };
 
+export const Virtualization: Story = {
+  render: VirtualizedSelect,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole("combobox");
+    await userEvent.click(select);
+  },
+};
+
 export const ListboxStates: Story = {
   render: SelectListbox,
   play: async ({ canvasElement }) => {
@@ -774,6 +797,7 @@ export const ListboxOptionWithEllipsisTooltip: Story = {
   render: TooltipOption,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
   },
