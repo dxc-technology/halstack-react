@@ -58,7 +58,7 @@ describe("Toast component tests", () => {
       expect(getByText("This is a simple toast.")).toBeTruthy();
     });
   });
-  test("Toast disappears after the specified duration", async () => {
+  test("Toast disappears after the specified duration", () => {
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={4250}>
@@ -80,7 +80,7 @@ describe("Toast component tests", () => {
 
     jest.useRealTimers();
   });
-  test("If duration > 5000, the toast disappears at 5000ms", async () => {
+  test("If duration > 5000, the toast disappears at 5000ms", () => {
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={1000000}>
@@ -97,7 +97,7 @@ describe("Toast component tests", () => {
 
     jest.useRealTimers();
   });
-  test("If duration < 3000, the toast disappears at 3000ms", async () => {
+  test("If duration < 3000, the toast disappears at 3000ms", () => {
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={100}>
@@ -165,7 +165,7 @@ describe("Toast component tests", () => {
     const defaultBtn = getByText("Show toast");
 
     userEvent.click(infoBtn);
-    waitFor(() => {
+    await waitFor(() => {
       expect(getByText("This is an information toast.")).toBeTruthy();
     });
     for (let i = 0; i < 6; i++) {
@@ -176,7 +176,7 @@ describe("Toast component tests", () => {
       expect(getAllByText("This is a simple toast.").length).toBe(5);
     });
   });
-  test("Loading toast is never removed automatically", async () => {
+  test("Loading toast is never removed automatically", () => {
     jest.useFakeTimers();
     const { getByText } = render(
       <DxcToastsQueue>

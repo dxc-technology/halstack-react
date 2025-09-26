@@ -2,7 +2,6 @@ import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcPasswordInput from "./PasswordInput";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

@@ -114,7 +114,7 @@ describe("Wizard components tests", () => {
   });
 
   test("Controlled wizard function is called", () => {
-    const onClick = jest.fn((i) => i);
+    const onClick = jest.fn((_i: number) => {});
     const { getAllByRole } = render(
       <DxcWizard
         currentStep={0}

@@ -1,36 +1,15 @@
-const { resolve } = require("node:path");
+import reactInternal from "./react-internal.js";
+import onlyWarn from "eslint-plugin-only-warn";
+import vercelNext from "@vercel/style-guide/eslint/next";
 
-const project = resolve(process.cwd(), "tsconfig.json");
-
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
-  extends: [
-    "eslint:recommended",
-    "prettier",
-    require.resolve("@vercel/style-guide/eslint/next"),
-    "turbo",
-  ],
-  globals: {
-    React: true,
-    JSX: true,
+/** @type {import("eslint").Config[]} */
+export default [
+  ...reactInternal,
+  ...vercelNext,
+  {
+    plugins: { "only-warn": onlyWarn },
+    languageOptions: { globals: { React: true, JSX: true } },
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    linterOptions: { ignorePatterns: [".*.js", "node_modules/", "out/"] },
   },
-  env: {
-    node: true,
-    browser: true,
-  },
-  plugins: ["only-warn"],
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
-    },
-  },
-  ignorePatterns: [
-    // Ignore dotfiles
-    ".*.js",
-    "node_modules/",
-    "out/",
-  ],
-  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
-};
+];

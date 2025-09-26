@@ -36,9 +36,9 @@ describe("Checkbox component tests", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
   test("Read-only checkbox sends its value on submit", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ data: "checked" });
     });

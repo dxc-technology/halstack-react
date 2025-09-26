@@ -4,7 +4,6 @@ import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
 import "@testing-library/jest-dom"; // Needed for findByRole
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

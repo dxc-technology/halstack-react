@@ -1,19 +1,10 @@
 import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcNumberInput from "./NumberInput";
+import MockDOMRect from "../../test/mocks/domRectMock";
 
 // Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-  }),
-};
+global.DOMRect = MockDOMRect;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
@@ -36,7 +27,7 @@ describe("Number input component tests", () => {
     const number = getByLabelText("Number label") as HTMLInputElement;
     expect(number.disabled).toBeTruthy();
   });
-  test("Number input is read only and cannot be incremented or decremented using the actions", async () => {
+  test("Number input is read only and cannot be incremented or decremented using the actions", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number label" readOnly />);
     const number = getByLabelText("Number label") as HTMLInputElement;
     expect(number.readOnly).toBeTruthy();
@@ -125,7 +116,7 @@ describe("Number input component tests", () => {
     userEvent.type(number, "-1");
     fireEvent.blur(number);
   });
-  test("Cannot decrement the value if it is less than the min value", async () => {
+  test("Cannot decrement the value if it is less than the min value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
@@ -137,7 +128,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("1");
   });
-  test("Increment the value when it is less than the min value", async () => {
+  test("Increment the value when it is less than the min value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
@@ -169,7 +160,7 @@ describe("Number input component tests", () => {
       error: "Value must be less than or equal to 10.",
     });
   });
-  test("Cannot increment the value if it is greater than the max value", async () => {
+  test("Cannot increment the value if it is greater than the max value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "12");
@@ -181,7 +172,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("12");
   });
-  test("Decrement the value when it is greater than the max value", async () => {
+  test("Decrement the value when it is greater than the max value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "120");
@@ -193,7 +184,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("10");
   });
-  test("Increment and decrement the value with min and max values", async () => {
+  test("Increment and decrement the value with min and max values", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
@@ -222,7 +213,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("10");
   });
-  test("Increment and decrement the value with an integer step", async () => {
+  test("Increment and decrement the value with an integer step", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" step={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "10");
@@ -247,7 +238,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("10");
   });
-  test("Increment and decrement the value with a decimal step", async () => {
+  test("Increment and decrement the value with a decimal step", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" step={0.5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "-9");
@@ -274,7 +265,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("-10");
   });
-  test("Increment and decrement the value with min, max and step", async () => {
+  test("Increment and decrement the value with min, max and step", () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={5} max={20} step={8} onBlur={onBlur} />
@@ -316,7 +307,7 @@ describe("Number input component tests", () => {
       userEvent.click(decrement);
     }
   });
-  test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
+  test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={10} step={1} onBlur={onBlur} />
@@ -332,7 +323,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("2");
   });
-  test("Start incrementing from 0 when the min value is less than 0 and the max is 0", async () => {
+  test("Start incrementing from 0 when the min value is less than 0 and the max is 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={0} step={1} />
     );
@@ -347,7 +338,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("0");
   });
-  test("Start incrementing from the min value when it is bigger than 0", async () => {
+  test("Start incrementing from the min value when it is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
@@ -362,7 +353,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("2.5");
   });
-  test("Start incrementing from the max value when it is less than 0", async () => {
+  test("Start incrementing from the max value when it is less than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
@@ -377,7 +368,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("-1");
   });
-  test("Start decrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
+  test("Start decrementing from 0 when the min value is less than 0 and the max value is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={10} step={1} />
     );
@@ -388,7 +379,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("-1");
   });
-  test("Start decrementing from 0 when the min value is 0 and the max value is bigger than 0", async () => {
+  test("Start decrementing from 0 when the min value is 0 and the max value is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={0} max={10} step={1} />
     );
@@ -399,7 +390,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("0");
   });
-  test("Start decrementing from the min value when it is bigger than 0", async () => {
+  test("Start decrementing from the min value when it is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
@@ -414,7 +405,7 @@ describe("Number input component tests", () => {
     }
     expect(number.value).toBe("2");
   });
-  test("Start decrementing from the max value when it is less than 0", async () => {
+  test("Start decrementing from the max value when it is less than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
@@ -543,10 +534,10 @@ describe("Number input component tests", () => {
     const increment = getAllByRole("button")[1];
     expect(increment?.getAttribute("aria-label")).toBe("Increment value");
   });
-  test("Number input submits correct values inside a form and actions don't trigger the submit event", async () => {
-    const handlerOnSubmit = jest.fn((e) => {
+  test("Number input submits correct values inside a form and actions don't trigger the submit event", () => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ data: "0" });
     });

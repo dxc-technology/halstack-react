@@ -1,19 +1,10 @@
 import { act, fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcSelect from "./Select";
+import MockDOMRect from "../../test/mocks/domRectMock";
 
 // Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-  }),
-};
+global.DOMRect = MockDOMRect
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
@@ -207,9 +198,9 @@ describe("Select component tests", () => {
     expect(submitInput?.value).toBe("4,2,6,3");
   });
   test("Sends its value when submitted", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ options: "1,5,3" });
     });
@@ -286,9 +277,9 @@ describe("Select component tests", () => {
     expect(document.activeElement === select).toBeFalsy();
   });
   test("Disabled select — Doesn't send its value when submitted", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({});
     });
@@ -1384,9 +1375,13 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     userEvent.click(select);
     const selectAllOption = getByText("Select all");
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({ value: ["1", "2", "3", "4"] });
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
   test("Select all (groups) — 'Select all' option is included and (un)selects all the options available", () => {
@@ -1449,11 +1444,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     userEvent.click(select);
     const selectAllOption = getByText("Select all");
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({
       value: ["azul", "rojo", "rosa", "madrid", "oviedo", "sevilla", "miño", "duero", "tajo"],
     });
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
   });
   test("Select all options from a group — The header of a group is selectable and (un)selects all the options from its group", () => {

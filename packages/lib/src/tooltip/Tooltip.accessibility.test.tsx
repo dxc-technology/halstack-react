@@ -3,7 +3,6 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

@@ -1,7 +1,6 @@
 import { act, fireEvent, render } from "@testing-library/react";
 import DxcSlider from "./Slider";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

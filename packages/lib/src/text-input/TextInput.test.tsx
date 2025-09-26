@@ -1,19 +1,10 @@
 import { act, fireEvent, render, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcTextInput from "./TextInput";
+import MockDOMRect from "../../test/mocks/domRectMock";
 
 // Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-  }),
-};
+global.DOMRect = MockDOMRect;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
@@ -335,9 +326,9 @@ describe("TextInput component tests", () => {
   });
 
   test("Read-only text input sends its value on submit", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ data: "Text" });
     });
@@ -420,9 +411,9 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ data: "test" });
     });
@@ -643,7 +634,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest uncontrolled — Suggestion selected by click", async () => {
+  test("Autosuggest uncontrolled — Suggestion selected by click", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
@@ -663,7 +654,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest controlled — Suggestion selected by click", async () => {
+  test("Autosuggest controlled — Suggestion selected by click", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" value="Andor" suggestions={countries} onChange={onChange} />
@@ -678,7 +669,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest — Pattern constraint", async () => {
+  test("Autosuggest — Pattern constraint", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole, getByText } = render(
@@ -711,7 +702,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
   });
 
-  test("Autosuggest — Length constraint", async () => {
+  test("Autosuggest — Length constraint", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByText, getByRole } = render(
@@ -919,7 +910,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
 describe("TextInput component asynchronous autosuggest tests", () => {
   test("Autosuggest 'Searching...' message is shown", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -964,7 +955,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Autosuggest Esc key works while 'Searching...' message is shown", () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -994,7 +985,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Autosuggest Esc + arrow down working while 'Searching...' message is shown", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -1031,7 +1022,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Asynchronous uncontrolled autosuggest test", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -1056,7 +1047,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Asynchronous controlled autosuggest test", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -1082,7 +1073,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Asynchronous autosuggest closes the listbox after finishing no matches search", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(
@@ -1106,7 +1097,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
 
   test("Asynchronous autosuggest with no matches founded doesn't let the listbox to be opened", async () => {
     const callbackFunc = jest.fn(
-      (newValue) =>
+      (newValue: string) =>
         new Promise<string[]>((resolve) => {
           setTimeout(() => {
             resolve(

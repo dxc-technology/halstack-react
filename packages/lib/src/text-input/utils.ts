@@ -17,8 +17,22 @@ export const makeCancelable = (promise: Promise<string[]>) => {
   let hasCanceled_ = false;
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
-      (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
+      (val) => {
+        if (hasCanceled_) {
+          reject(new Error("Is canceled")); // always an Error
+        } else {
+          resolve(val);
+        }
+      },
+      (promiseError) => {
+        if (hasCanceled_) {
+          reject(new Error("Is canceled"));
+        } else if (promiseError instanceof Error) {
+          reject(promiseError);
+        } else {
+          reject(new Error(String(promiseError)));
+        }
+      }
     );
   });
   return {

@@ -2,7 +2,6 @@ import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcTable from "./Table";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
@@ -51,7 +50,7 @@ describe("Table component tests", () => {
     expect(getByText("cell-6")).toBeTruthy();
   });
 
-  test("Table ActionsCell", async () => {
+  test("Table ActionsCell", () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
     const actions = [

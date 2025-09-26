@@ -2,7 +2,6 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcPaginator from "./Paginator";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

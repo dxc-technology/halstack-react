@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcResultsetTable from "./ResultsetTable";
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

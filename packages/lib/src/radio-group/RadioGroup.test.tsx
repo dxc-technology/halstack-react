@@ -55,9 +55,9 @@ describe("Radio Group component tests", () => {
   });
 
   test("Sends its value when submitted", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ radiogroup: "5" });
     });
@@ -128,9 +128,9 @@ describe("Radio Group component tests", () => {
   });
 
   test("Disabled radio group doesn't send its value when submitted", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({});
     });
@@ -542,9 +542,9 @@ describe("Radio Group component tests", () => {
   });
 
   test("Read-only radio group sends its value on submit", () => {
-    const handlerOnSubmit = jest.fn((e) => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ radiogroup: "data" });
     });

@@ -454,7 +454,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             changeIsAutosuggestError(false);
             changeFilteredSuggestions(promiseResponse);
           })
-          .catch((err) => {
+          .catch((err: Error) => {
             if (err.message !== "Is canceled") {
               changeIsSearching(false);
               changeIsAutosuggestError(true);

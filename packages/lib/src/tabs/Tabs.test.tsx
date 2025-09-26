@@ -309,17 +309,23 @@ describe("Tabs component tests", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
     const { getAllByRole } = render(sampleTabsWithoutLabel(onTabClick));
     const tabs = getAllByRole("tab");
-    tabs[0] && fireEvent.click(tabs[0]);
+    if (tabs[0]) {
+      fireEvent.click(tabs[0]);
+    }
     expect(onTabClick[0]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[1] && fireEvent.click(tabs[1]);
+    if (tabs[1]) {
+      fireEvent.click(tabs[1]);
+    }
     expect(onTabClick[1]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[2] && fireEvent.click(tabs[2]);
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick[2]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");

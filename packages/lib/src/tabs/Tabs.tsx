@@ -3,9 +3,9 @@ import {
   isValidElement,
   KeyboardEvent,
   ReactElement,
+  ReactNode,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -89,25 +89,14 @@ const ScrollableTabsList = styled.div<{
 `;
 
 const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: TabsPropsType) => {
-  const childrenArray: ReactElement<TabProps>[] = useMemo(
-    () => Children.toArray(children) as ReactElement<TabProps>[],
-    [children]
-  );
-  const [activeTabId, setActiveTabId] = useState(() => {
-    const hasActiveChild = childrenArray.some(
-      (child) =>
-        isValidElement<TabProps>(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+  const isTabElement = (child: ReactNode): child is ReactElement<TabProps> => isValidElement<TabProps>(child);
+  const childrenArray = useMemo(() => Children.toArray(children).filter(isTabElement), [children]);
+  const [activeTabId, setActiveTabId] = useState<string>(() => {
+    const activeChild = childrenArray.find(
+      (child) => (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
-    const initialActiveTab = hasActiveChild
-      ? childrenArray.find(
-          (child) =>
-            isValidElement<TabProps>(child) &&
-            (child.props.active || child.props.defaultActive) &&
-            !child.props.disabled
-        )
-      : childrenArray.find((child) => isValidElement<TabProps>(child) && !child.props.disabled);
-
-    return isValidElement(initialActiveTab) ? (initialActiveTab.props.label ?? initialActiveTab.props.tabId) : "";
+    const initialTab = activeChild ?? childrenArray.find((child) => !child.props.disabled);
+    return initialTab?.props.label ?? initialTab?.props.tabId ?? "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
@@ -123,7 +112,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
       activeTabId: activeTabId,
       focusedTabId: isValidElement(focusedChild) ? (focusedChild.props.label ?? focusedChild.props.tabId) : "",
       iconPosition,
-      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
+      isControlled: childrenArray.some((child) => typeof child.props.active !== "undefined"),
       setActiveTabId: setActiveTabId,
       tabIndex,
     };
@@ -157,9 +146,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex(
-      (child: ReactElement) => (child.props.label ?? child.props.tabId) === activeTabId
-    );
+    const activeTab = childrenArray.findIndex((child) => (child.props.label ?? child.props.tabId) === activeTabId);
     let index;
     switch (event.key) {
       case "Left":
@@ -242,7 +229,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         </Tabs>
       </TabsContainer>
       {Children.map(children, (child) =>
-        isValidElement(child) && child.props.tabId === activeTabId ? child.props.children : null
+        isTabElement(child) && child.props.tabId === activeTabId ? child.props.children : null
       )}
     </>
   );

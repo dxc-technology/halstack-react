@@ -9,7 +9,6 @@ const disabledRules = {
   rules: formatRules(rules),
 };
 
-(global as any).globalThis = global;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
