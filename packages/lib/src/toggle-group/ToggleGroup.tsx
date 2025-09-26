@@ -86,7 +86,6 @@ export default function DxcToggleGroup({
         newSelectedOptions.splice(index, 1);
       } else newSelectedOptions.push(selectedOption);
     }
-    // TODO: Fix types
     onChange?.((multiple ? newSelectedOptions : selectedOption) as number & number[]);
   };
 
