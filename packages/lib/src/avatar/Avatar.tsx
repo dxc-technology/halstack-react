@@ -1,9 +1,7 @@
 import { useState } from "react";
-import AvatarPropsType from "./types";
 import styled from "@emotion/styled";
-import DxcImage from "../image/Image";
-import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { css } from "@emotion/react";
+import AvatarPropsType from "./types";
 import {
   getBackgroundColor,
   getBorderRadius,
@@ -16,6 +14,10 @@ import {
   getOutlineWidth,
   getSize,
 } from "./utils";
+import DxcTypography from "../typography/Typography";
+import DxcImage from "../image/Image";
+import DxcIcon from "../icon/Icon";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const AvatarContainer = styled.div<{
   hasAction?: boolean;
@@ -33,32 +35,32 @@ const AvatarContainer = styled.div<{
   ${({ hasAction, disabled, size }) =>
     !disabled &&
     hasAction &&
-    `
-    cursor: pointer;
-    &:hover > div:first-child > div:first-child {
-      display: block;
-    }
-    &:focus > div:first-child {
-      outline-style: solid;
-      outline-width: ${getOutlineWidth(size)};
-      outline-color: var(--border-color-secondary-medium);
-    }
-    &:active > div:first-child {
-      outline-style: solid;
-      outline-width: ${getOutlineWidth(size)};
-      outline-color: var(--border-color-secondary-medium);
-    }
-    &:active > div:first-child > div:first-child {
-      display: block;
-    }
+    css`
+      cursor: pointer;
+      &:hover > div:first-child > div:first-child {
+        display: block;
+      }
+      &:focus > div:first-child {
+        outline-style: solid;
+        outline-width: ${getOutlineWidth(size)};
+        outline-color: var(--border-color-secondary-medium);
+      }
+      &:active > div:first-child {
+        outline-style: solid;
+        outline-width: ${getOutlineWidth(size)};
+        outline-color: var(--border-color-secondary-medium);
+      }
+      &:active > div:first-child > div:first-child {
+        display: block;
+      }
     `}
   ${({ disabled }) =>
     disabled &&
-    `
+    css`
       cursor: not-allowed;
       & > div:first-child > div:first-child {
         display: block;
-        background-color: rgba(255, 255, 255, 0.50);
+        background-color: rgba(255, 255, 255, 0.5);
       }
     `}
 `;
@@ -88,15 +90,6 @@ const Overlay = styled.div`
   background-color: var(--color-alpha-400-a);
 `;
 
-const Initials = styled.div<{ size: AvatarPropsType["size"] }>`
-  color: inherit;
-  font-family: var(--typography-font-family);
-  font-style: normal;
-  font-weight: var(--typography-label-semibold);
-  font-size: ${({ size }) => getFontSize(size)};
-  line-height: normal;
-`;
-
 const AvatarIcon = styled.div<{ color: AvatarPropsType["color"]; size: AvatarPropsType["size"] }>`
   display: flex;
   justify-content: center;
@@ -121,7 +114,7 @@ const StatusContainer = styled.div<{
   background-color: ${({ status }) => getModeColor(status!.mode)};
 `;
 
-export default function DxcAvatar({
+const DxcAvatar = ({
   color = "grey",
   disabled = false,
   icon = "person",
@@ -134,7 +127,7 @@ export default function DxcAvatar({
   status,
   tabIndex = 0,
   title,
-}: AvatarPropsType) {
+}: AvatarPropsType) => {
   const [error, setError] = useState<boolean>(false);
   const initials = getInitials(label);
 
@@ -147,7 +140,7 @@ export default function DxcAvatar({
         tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
         role={onClick ? "button" : undefined}
         as={linkHref ? "a" : undefined}
-        href={!disabled && linkHref ? linkHref : undefined}
+        href={(!disabled && linkHref) || undefined}
         aria-label={(onClick || linkHref) && (label || title || "Avatar")}
         disabled={disabled}
       >
@@ -164,7 +157,17 @@ export default function DxcAvatar({
               objectPosition="center"
             />
           ) : initials.length > 0 ? (
-            <Initials size={size}>{initials}</Initials>
+            <DxcTypography
+              as="span"
+              fontFamily="var(--typography-font-family)"
+              fontSize={getFontSize(size)}
+              fontWeight="var(--typography-label-semibold)"
+              fontStyle="normal"
+              lineHeight="normal"
+              color="inherit"
+            >
+              {initials}
+            </DxcTypography>
           ) : (
             <AvatarIcon size={size} color={color}>
               {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
@@ -175,4 +178,6 @@ export default function DxcAvatar({
       </AvatarContainer>
     </TooltipWrapper>
   );
-}
+};
+
+export default DxcAvatar;
