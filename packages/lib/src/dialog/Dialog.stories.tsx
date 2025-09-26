@@ -1,5 +1,5 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { userEvent } from "@storybook/test";
+import { screen, userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcAlert from "../alert/Alert";
@@ -11,6 +11,10 @@ import DxcParagraph from "../paragraph/Paragraph";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
 import { Meta, StoryObj } from "@storybook/react";
+import DxcSelect from "../select/Select";
+import DxcDateInput from "../date-input/DateInput";
+import DxcDropdown from "../dropdown/Dropdown";
+import DxcTooltip from "../tooltip/Tooltip";
 
 export default {
   title: "Dialog",
@@ -310,6 +314,57 @@ const ScrollingDialog = () => (
   </ExampleContainer>
 );
 
+const DialogWithDateInput = () => (
+  <ExampleContainer expanded>
+    <DxcDialog>
+      <DxcDateInput defaultValue="03-12-1995" label="Date input" />
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const DialogWithDropdown = () => (
+  <ExampleContainer expanded>
+    <DxcDialog>
+      <DxcDropdown
+        label="Default"
+        options={[
+          { label: "Option 01", value: "1" },
+          { label: "Option 02", value: "2" },
+          { label: "Option 03", value: "3" },
+          { label: "Option 04", value: "4" },
+        ]}
+        onSelectOption={() => {}}
+      />
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const DialogWithSelect = () => (
+  <ExampleContainer expanded>
+    <DxcDialog>
+      <DxcSelect
+        label="Select an option"
+        options={[
+          { label: "Option 01", value: "1" },
+          { label: "Option 02", value: "2" },
+          { label: "Option 03", value: "3" },
+          { label: "Option 04", value: "4" },
+        ]}
+      />
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const DialogWithTooltip = () => (
+  <ExampleContainer expanded>
+    <DxcDialog>
+      <DxcTooltip label="Tooltip Test">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
 type Story = StoryObj<typeof DxcDialog>;
 
 export const DefaultDialog: Story = {
@@ -355,5 +410,37 @@ export const ScrollDialog: Story = {
     await userEvent.tab();
     await userEvent.tab();
     await userEvent.tab();
+  },
+};
+
+export const DateInputDialog: Story = {
+  render: DialogWithDateInput,
+  play: async () => {
+    const combobox = await screen.findByRole("combobox");
+    await userEvent.click(combobox);
+  },
+};
+
+export const DropdownDialog: Story = {
+  render: DialogWithDropdown,
+  play: async () => {
+    const buttons = await screen.findAllByRole("button");
+    buttons[0] && (await userEvent.click(buttons[0]));
+  },
+};
+
+export const SelectDialog: Story = {
+  render: DialogWithSelect,
+  play: async () => {
+    const combobox = await screen.findByRole("combobox");
+    await userEvent.click(combobox);
+  },
+};
+
+export const TooltipDialog: Story = {
+  render: DialogWithTooltip,
+  play: async () => {
+    const buttons = await screen.findAllByRole("button");
+    buttons[0] && (await userEvent.hover(buttons[0]));
   },
 };

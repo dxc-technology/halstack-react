@@ -12,12 +12,14 @@ const LogoContainer = styled.div`
 const Title = styled.div`
   color: var(--color-fg-primary-strong);
   font-size: var(--typography-title-l);
+  font-family: var(--typography-font-family);
 `;
 
 const Subtitle = styled.div`
   color: var(--color-fg-neutral-strongest);
   font-size: var(--typography-title-m);
   margin-left: var(--spacing-padding-s);
+  font-family: var(--typography-font-family);
 `;
 
 const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {

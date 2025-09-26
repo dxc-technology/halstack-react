@@ -9,6 +9,7 @@ import StatusBadge from "@/common/StatusBadge";
 import reduced from "./examples/reduced";
 import Link from "next/link";
 import paginatorHidden from "./examples/paginatorHidden";
+import virtualized from "./examples/virtualized";
 
 const actionsType = `{
   icon: string | SVG;
@@ -207,6 +208,24 @@ const sections = [
               <TableCode>0</TableCode>
             </td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                virtualizedHeight
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A fixed height must be set to enable virtualization. If no height is provided, the table will
+              automatically adjust to the height of its content, and virtualization will not be applied.
+            </td>
+            <td>
+              <td>-</td>
+            </td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -285,6 +304,10 @@ const sections = [
       {
         title: "No paginator",
         content: <Example example={paginatorHidden} defaultIsVisible />,
+      },
+      {
+        title: "Virtualized",
+        content: <Example example={virtualized} defaultIsVisible />,
       },
     ],
   },
