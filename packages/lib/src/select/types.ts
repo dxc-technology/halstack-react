@@ -34,45 +34,13 @@ export type ListOptionGroupType = {
 
 type CommonProps = {
   /**
-   * Text to be placed above the select.
+   * Specifies a string to be used as the name for the select element when no `label` is provided.
    */
-  label?: string;
-  /**
-   * Name attribute of the input element. This attribute will allow users
-   * to find the component's value during the submit event. In this event,
-   * the component's value will always be a regular string, for both single
-   * and multiple selection modes, being a single option value in the first case
-   * and more than one value when multiple selection is available, separated by commas.
-   */
-  name?: string;
-  /**
-   * An array of objects representing the selectable options.
-   */
-  options: ListOptionType[] | ListOptionGroupType[];
-  /**
-   * Helper text to be placed above the select.
-   */
-  helperText?: string;
-  /**
-   * Text to be put as placeholder of the select.
-   */
-  placeholder?: string;
+  ariaLabel?: string;
   /**
    * If true, the component will be disabled.
    */
   disabled?: boolean;
-  /**
-   * If true, the select will be optional, showing '(Optional)'
-   * next to the label and adding a default first option with an empty string as value,
-   * been the placeholder (if defined) its label. Otherwise, the field will be
-   * considered required and an error will be passed as a parameter to the
-   * OnBlur and onChange functions if an option wasn't selected.
-   */
-  optional?: boolean;
-  /**
-   * If true, enables search functionality.
-   */
-  searchable?: boolean;
   /**
    * If it is a defined value and also a truthy string, the component will
    * change its appearance, showing the error below the select component.
@@ -83,10 +51,46 @@ type CommonProps = {
    */
   error?: string;
   /**
+   * Helper text to be placed above the select.
+   */
+  helperText?: string;
+  /**
+   * Text to be placed above the select.
+   */
+  label?: string;
+  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
+  /**
+   * Name attribute of the input element. This attribute will allow users
+   * to find the component's value during the submit event. In this event,
+   * the component's value will always be a regular string, for both single
+   * and multiple selection modes, being a single option value in the first case
+   * and more than one value when multiple selection is available, separated by commas.
+   */
+  name?: string;
+  /**
+   * If true, the select will be optional, showing '(Optional)'
+   * next to the label and adding a default first option with an empty string as value,
+   * been the placeholder (if defined) its label. Otherwise, the field will be
+   * considered required and an error will be passed as a parameter to the
+   * OnBlur and onChange functions if an option wasn't selected.
+   */
+  optional?: boolean;
+  /**
+   * An array of objects representing the selectable options.
+   */
+  options: ListOptionType[] | ListOptionGroupType[];
+  /**
+   * Text to be put as placeholder of the select.
+   */
+  placeholder?: string;
+  /**
+   * If true, enables search functionality.
+   */
+  searchable?: boolean;
   /**
    * Size of the component.
    */
@@ -96,12 +100,17 @@ type CommonProps = {
    */
   tabIndex?: number;
   /**
-   * Specifies a string to be used as the name for the select element when no `label` is provided.
+   * A fixed height must be set to enable virtualization.
+   * If no height is provided, the select will automatically adjust to the height of its content, and virtualization will not be applied.
    */
-  ariaLabel?: string;
+  virtualizedHeight?: string;
 };
 
 type SingleSelect = CommonProps & {
+  /**
+   * Initial value of the select, only when it is uncontrolled.
+   */
+  defaultValue?: string;
   /**
    * Enables users to select multiple items from the list.
    */
@@ -113,14 +122,12 @@ type SingleSelect = CommonProps & {
    */
   multiple?: false;
   /**
-   * Initial value of the select, only when it is uncontrolled.
+   * This function will be called when the select loses the focus. An
+   * object including the value and the error (if the value
+   * selected is not valid) will be passed to this function. If there is no error,
+   * error will not be defined.
    */
-  defaultValue?: string;
-  /**
-   * Value of the select. If undefined, the component will be uncontrolled
-   * and the value will be managed internally by the component.
-   */
-  value?: string;
+  onBlur?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the user selects an option.
    * An object including the current value and the error (if the value entered is not valid)
@@ -128,15 +135,17 @@ type SingleSelect = CommonProps & {
    */
   onChange?: (val: { value: string; error?: string }) => void;
   /**
-   * This function will be called when the select loses the focus. An
-   * object including the value and the error (if the value
-   * selected is not valid) will be passed to this function. If there is no error,
-   * error will not be defined.
+   * Value of the select. If undefined, the component will be uncontrolled
+   * and the value will be managed internally by the component.
    */
-  onBlur?: (val: { value: string; error?: string }) => void;
+  value?: string;
 };
 
 type MultipleSelect = CommonProps & {
+  /**
+   * Initial value of the select, only when it is uncontrolled.
+   */
+  defaultValue?: string[];
   /**
    * Enables users to select multiple items from the list.
    */
@@ -148,14 +157,12 @@ type MultipleSelect = CommonProps & {
    */
   multiple: true;
   /**
-   * Initial value of the select, only when it is uncontrolled.
+   * This function will be called when the select loses the focus. An
+   * object including the selected values and the error (if the value
+   * selected is not valid) will be passed to this function. If there is no error,
+   * error will be null.
    */
-  defaultValue?: string[];
-  /**
-   * Value of the select. If undefined, the component will be uncontrolled
-   * and the value will be managed internally by the component.
-   */
-  value?: string[];
+  onBlur?: (val: { value: string[]; error?: string }) => void;
   /**
    * This function will be called when the user selects an option.
    * An object including the current selected values and the error (if the value entered is not valid)
@@ -163,12 +170,10 @@ type MultipleSelect = CommonProps & {
    */
   onChange?: (val: { value: string[]; error?: string }) => void;
   /**
-   * This function will be called when the select loses the focus. An
-   * object including the selected values and the error (if the value
-   * selected is not valid) will be passed to this function. If there is no error,
-   * error will be null.
+   * Value of the select. If undefined, the component will be uncontrolled
+   * and the value will be managed internally by the component.
    */
-  onBlur?: (val: { value: string[]; error?: string }) => void;
+  value?: string[];
 };
 
 type Props = SingleSelect | MultipleSelect;
@@ -207,6 +212,7 @@ export type ListboxProps = {
   searchable: boolean;
   selectionType: "checked" | "unchecked" | "indeterminate";
   styles: CSSProperties;
+  virtualizedHeight?: string;
   visualFocusIndex: number;
 };
 
@@ -214,5 +220,12 @@ export type ListboxProps = {
  * Reference to the select component.
  */
 export type RefType = HTMLDivElement;
+
+export type FlattenedItem =
+  | { type: "selectAll"; id?: never }
+  | { type: "optionalItem"; id?: never }
+  | { type: "groupLabel"; label: string; id: string }
+  | { type: "groupHeader"; group: ListOptionGroupType; id: string }
+  | { type: "option"; option: ListOptionType; id: string; isGroupedOption?: boolean };
 
 export default Props;
