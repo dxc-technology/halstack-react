@@ -56,7 +56,7 @@ describe("Breadcrumbs component tests", () => {
     expect(getByText("User Menu")).toBeTruthy();
     expect(getByText("Preferences")).toBeTruthy();
   });
-  test("If itemsBeforeCollapse value is below two, ignores it and renders a collapsed variant", async () => {
+  test("If itemsBeforeCollapse value is below two, ignores it and renders a collapsed variant", () => {
     const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={-1} />);
     expect(getByText("Home")).toBeTruthy();
     expect(getByRole("button")).toBeTruthy();

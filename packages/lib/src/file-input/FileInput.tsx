@@ -161,7 +161,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       const selectedFiles = e.target.files;
       if (selectedFiles) {
         const filesArray = Array.from(selectedFiles);
-        addFile(filesArray);
+        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
         e.target.value = "";
       }
     };
@@ -205,7 +205,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       const filesObject = e.dataTransfer.files;
       if (filesObject.length > 0) {
         const filesArray = Array.from(filesObject);
-        addFile(filesArray);
+        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
       }
     };
 
@@ -224,7 +224,9 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
           setFiles(valueFiles);
         }
       };
-      getFiles();
+      getFiles().catch((err) => {
+        console.error("Error fetching file previews:", err);
+      });
     }, [value]);
 
     return (

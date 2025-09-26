@@ -122,15 +122,6 @@ export default {
   },
 } as Meta<typeof DxcFooter>;
 
-const opinionatedTheme = {
-  footer: {
-    baseColor: "#000000",
-    fontColor: "#ffffff",
-    accentColor: "#0095ff",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-  },
-};
-
 const info = [
   { label: "Example Label", text: "Example" },
   { label: "Example Label", text: "Example" },

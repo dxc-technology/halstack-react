@@ -234,7 +234,7 @@ const DropdownListStates = () => (
           zIndex: "130",
         }}
       >
-        <DxcDropdown label="Select a platform" options={defaultOptions} onSelectOption={(option) => {}} size="medium" />
+        <DxcDropdown label="Select a platform" options={defaultOptions} onSelectOption={(_option) => {}} size="medium" />
         <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
       </div>
     </ExampleContainer>

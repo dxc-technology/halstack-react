@@ -210,7 +210,7 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
-  test("Menu key events — Arrow up, if focus is on the first menu item, moves focus to the last menu item.", async () => {
+  test("Menu key events — Arrow up, if focus is on the first menu item, moves focus to the last menu item.", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
@@ -233,7 +233,7 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
-  test("Menu key events — Arrow down moves the focus to the next menu item", async () => {
+  test("Menu key events — Arrow down moves the focus to the next menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
@@ -262,7 +262,7 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
-  test("Menu key events — Arrow down, if focus is on the last menu item, moves focus to the first menu item. ", () => {
+  test("Menu key events — Arrow down, if focus is on the last menu item, moves focus to the first menu item.", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
@@ -290,7 +290,7 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("1");
   });
-  test("Menu key events — Enter key selects the current focused item and closes the menu", async () => {
+  test("Menu key events — Enter key selects the current focused item and closes the menu", () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
@@ -306,7 +306,7 @@ describe("Dropdown component tests", () => {
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
   });
-  test("Menu key events — Esc closes the menu and sets focus on the menu button", async () => {
+  test("Menu key events — Esc closes the menu and sets focus on the menu button", () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
@@ -342,7 +342,7 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-  test("Menu key events — End moves the focus to the last menu item", async () => {
+  test("Menu key events — End moves the focus to the last menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
@@ -379,7 +379,7 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-  test("Menu key events — PageDown moves the focus to the last menu item", async () => {
+  test("Menu key events — PageDown moves the focus to the last menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
@@ -395,7 +395,7 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
-  test("Menu key events — Tab closes the menu and sets focus to the next element", async () => {
+  test("Menu key events — Tab closes the menu and sets focus to the next element", () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />

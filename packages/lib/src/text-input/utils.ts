@@ -19,7 +19,7 @@ export const makeCancelable = (promise: Promise<string[]>) => {
     promise.then(
       (val) => {
         if (hasCanceled_) {
-          reject(new Error("Is canceled")); // always an Error
+          reject(new Error("Is canceled"));
         } else {
           resolve(val);
         }

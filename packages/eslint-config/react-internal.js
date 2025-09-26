@@ -25,6 +25,6 @@ export default [
       },
     },
     files: ["**/*.{js,jsx,ts,tsx}"],
-    ignores: [".*.js", "node_modules/", "dist/"], // ✅ Flat-config syntax
+    ignores: [".*.js", "node_modules/", "dist/"],
   },
 ];

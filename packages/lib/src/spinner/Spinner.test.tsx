@@ -25,7 +25,7 @@ describe("Spinner component tests", () => {
     const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue />);
     expect(getByRole("progressbar")).toBeTruthy();
   });
-  test("Test spinner aria-label to be undefined", () => {
+  test("Spinner aria-label must be undefined for large size", () => {
     const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue />);
     const spinner = getByRole("progressbar");
     expect(spinner.getAttribute("aria-label")).toBeNull();

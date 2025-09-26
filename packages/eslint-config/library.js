@@ -28,15 +28,16 @@ export default [
     },
   },
   {
-    files: ["**/*.{stories}.{ts,tsx,js,jsx}", "setupJestAxe.[jt]s"],
+    files: ["**/*.{stories}.{ts,tsx,js,jsx}"],
     plugins: { storybook },
     rules: { ...storybook.configs.recommended.rules },
   },
   {
-    files: ["**/*.test.{ts,tsx,js,jsx}"],
+    files: ["**/*.test.{ts,tsx,js,jsx}", "setupJestAxe.[jt]s"],
     plugins: { jest },
     rules: {
       ...jest.configs.recommended.rules,
+      "jest/no-commented-out-tests": "off",
     },
     languageOptions: {
       globals: {

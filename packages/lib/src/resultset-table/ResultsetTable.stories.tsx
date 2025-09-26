@@ -747,7 +747,7 @@ export const DropdownAction: Story = {
     const canvas = within(canvasElement);
     const dropdown = canvas.getAllByRole("button")[5];
     if (dropdown) {
-      userEvent.click(dropdown);
+      await userEvent.click(dropdown);
     }
   },
 };

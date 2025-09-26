@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
-import { GridColumn, GridRow, HierarchyGridRow } from "./types";
+import { GridColumn, HierarchyGridRow } from "./types";
 import preview from "../../.storybook/preview";
 import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
@@ -450,15 +450,15 @@ const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
       setTimeout(() => {
         resolve([
           {
-            name: `${triggerRow.name} Child 1`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-1`,
+            name: `${triggerRow.name as string} Child 1`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-1`,
             childrenTrigger,
           },
           {
-            name: `${triggerRow.name} Child 2`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-2`,
+            name: `${triggerRow.name as string} Child 2`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-2`,
             childrenTrigger,
           },
         ] as unknown as HierarchyGridRow[]);
@@ -643,7 +643,7 @@ const customSortColumns: GridColumn[] = [
     summaryKey: "total",
     sortable: true,
     sortFn: (a, b) => {
-      if (isValidElement(a) && isValidElement(b)) {
+      if (isValidElement<{ label: string }>(a) && isValidElement<{ label: string }>(b)) {
         return a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0;
       }
       return 0;

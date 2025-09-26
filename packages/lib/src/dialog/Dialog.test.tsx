@@ -270,8 +270,8 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     userEvent.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);
-    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
-    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
   test("Focus travels correctly in a complex tab sequence", () => {

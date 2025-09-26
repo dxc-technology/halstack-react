@@ -4,7 +4,6 @@ declare module "esbuild-plugin-babel" {
   interface BabelPluginOptions {
     configFile?: string;
     filter?: RegExp;
-    // Puedes añadir otras opciones según lo que uses
   }
 
   function babel(options?: BabelPluginOptions): Plugin;

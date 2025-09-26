@@ -34,5 +34,5 @@ export const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?:
   items.some((item) => {
     if ("items" in item) return isGroupSelected(item.items, selectedItemId);
     else if (selectedItemId !== -1) return item.id === selectedItemId;
-    else return (item as ItemWithId).selectedByDefault;
+    else return item.selectedByDefault;
   });

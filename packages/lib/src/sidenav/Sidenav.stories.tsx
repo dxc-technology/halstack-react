@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";
 import DxcSidenav from "./Sidenav";
@@ -34,14 +33,6 @@ c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.11
     </g>
   </svg>
 );
-
-const TitleComponent = () => <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
-
-const opinionatedTheme = {
-  sidenav: {
-    baseColor: "#f2f2f2",
-  },
-};
 
 const SideNav = () => (
   <>
@@ -222,9 +213,9 @@ export const CollapsableGroup: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const collapsableGroups = canvas.getAllByText("Collapsed Group");
-    collapsableGroups.forEach((group) => {
-      userEvent.click(group);
-    });
+    for (const group of collapsableGroups) {
+      await userEvent.click(group);
+    }
   },
 };
 
@@ -233,9 +224,9 @@ export const CollapsedHoverGroup: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const collapsableGroups = canvas.getAllByText("Collapsed Group");
-    collapsableGroups.forEach((group) => {
-      userEvent.click(group);
-    });
+    for (const group of collapsableGroups) {
+      await userEvent.click(group);
+    }
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);
     });
@@ -248,7 +239,7 @@ export const CollapsedActiveGroup: Story = {
     const canvas = within(canvasElement);
     const collapsableGroups = canvas.getAllByText("Collapsed Group");
     if (collapsableGroups[0]) {
-      userEvent.click(collapsableGroups[0]);
+      await userEvent.click(collapsableGroups[0]);
     }
   },
 };

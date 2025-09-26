@@ -29,7 +29,7 @@ describe("Slider component tests", () => {
     expect(slider.getAttribute("aria-valuenow")).toBe("30");
     expect(input.value).toBe("30");
   });
-  test("Slider correct limit values", async () => {
+  test("Slider correct limit values", () => {
     const { getByRole, getByText } = render(
       <DxcSlider defaultValue={-30} minValue={-30} maxValue={125} showLimitsValues />
     );

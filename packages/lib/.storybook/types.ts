@@ -1,3 +1,5 @@
+import { Preview } from "@storybook/react";
+
 export interface ViewportStyles {
   height: number;
   width: number;
@@ -14,4 +16,32 @@ interface ViewportMap {
 export interface ViewportParameters {
   viewports: ViewportMap;
   defaultViewport: string;
+}
+
+interface A11yRule {
+  id: string;
+  enabled: boolean;
+}
+
+interface A11yParameters {
+  disable?: boolean;
+  config: {
+    rules: A11yRule[];
+  };
+  options?: Record<string, unknown>;
+}
+
+export interface StorybookParameters {
+  controls: {
+    matchers: {
+      color: RegExp;
+      date: RegExp;
+    };
+  };
+  a11y: A11yParameters;
+  viewport?: ViewportParameters;
+}
+
+export interface PreviewExtended extends Omit<Preview, "parameters"> {
+  parameters: StorybookParameters;
 }

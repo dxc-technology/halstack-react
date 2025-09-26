@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -18,7 +18,6 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
-  isHierarchyGridRow,
   expandRow,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
@@ -219,7 +218,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return (row.expandedChildContent as ReactNode) || null;
+              return row.expandedChildContent || null;
             }
             // if row has expandable content
             return (
@@ -263,7 +262,7 @@ const DxcDataGrid = ({
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey] as ReactNode}
+                {row[firstColumnKey]}
               </HierarchyContainer>
             );
           },

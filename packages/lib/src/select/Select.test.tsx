@@ -4,7 +4,7 @@ import DxcSelect from "./Select";
 import MockDOMRect from "../../test/mocks/domRectMock";
 
 // Mocking DOMRect for Radix Primitive Popover
-global.DOMRect = MockDOMRect
+global.DOMRect = MockDOMRect;
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
@@ -1399,11 +1399,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     userEvent.click(select);
     const selectAllOption = getByText("Select all");
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({
       value: ["azul", "rojo", "rosa", "madrid", "oviedo", "sevilla", "miño", "duero", "tajo"],
     });
-    selectAllOption && userEvent.click(selectAllOption);
+    if (selectAllOption) {
+      userEvent.click(selectAllOption);
+    }
     expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
   });
   test("Select all — Keyboard navigation is correct", () => {
@@ -1470,11 +1474,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     userEvent.click(select);
     const thirdGroupHeader = getByText("Ríos españoles");
-    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    if (thirdGroupHeader) {
+      userEvent.click(thirdGroupHeader);
+    }
     expect(onChange).toHaveBeenCalledWith({
       value: ["miño", "duero", "tajo"],
     });
-    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    if (thirdGroupHeader) {
+      userEvent.click(thirdGroupHeader);
+    }
     expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
   });
   test("Select all options from a group — The header of a group selects all the options when there's a partial selection", () => {
@@ -1493,11 +1501,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     userEvent.click(select);
     const thirdGroupHeader = getByText("Ríos españoles");
-    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    if (thirdGroupHeader) {
+      userEvent.click(thirdGroupHeader);
+    }
     expect(onChange).toHaveBeenCalledWith({
       value: ["miño", "duero", "tajo"],
     });
-    thirdGroupHeader && userEvent.click(thirdGroupHeader);
+    if (thirdGroupHeader) {
+      userEvent.click(thirdGroupHeader);
+    }
     expect(onChange).toHaveBeenCalledWith({ error: "This field is required. Please, enter a value.", value: [] });
   });
   test("Select all options from a group — Keyboard navigation is correct", () => {

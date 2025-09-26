@@ -2,7 +2,7 @@ import { render, waitFor, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
-import "@testing-library/jest-dom"; // Needed for findByRole
+import "@testing-library/jest-dom";
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),

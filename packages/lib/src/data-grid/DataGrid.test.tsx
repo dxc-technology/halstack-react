@@ -243,14 +243,15 @@ const hierarchyRowsLazy: HierarchyGridRow[] = [
 
 describe("Data grid component tests", () => {
   beforeAll(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
     (global as any).CSS = {
       escape: (str: string) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
 
-  test("Renders with correct content", async () => {
-    const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
+  test("Renders with correct content", () => {
+    const { getByText, getAllByRole } = render(<DxcDataGrid columns={columns} rows={expandableRows} />);
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
@@ -273,7 +274,7 @@ describe("Data grid component tests", () => {
     expect(rows.length).toBe(5);
   });
 
-  test("Triggers childrenTrigger when expanding hierarchy row", async () => {
+  test("Triggers childrenTrigger when expanding hierarchy row", () => {
     const onSelectRows = jest.fn();
     const selectedRows = new Set<number | string>();
 
@@ -292,7 +293,9 @@ describe("Data grid component tests", () => {
 
     const buttons = getAllByRole("button");
 
-    buttons[0] && fireEvent.click(buttons[0]);
+    if (buttons[0]) {
+      fireEvent.click(buttons[0]);
+    }
 
     expect(childrenTriggerMock).toHaveBeenCalledWith(true, expect.objectContaining({ id: "lazy-a" }));
   });
@@ -303,14 +306,18 @@ describe("Data grid component tests", () => {
     expect(getByText("% Complete")).toBeTruthy();
   });
 
-  test("Expands and collapses a row to show custom content", async () => {
+  test("Expands and collapses a row to show custom content", () => {
     const { getAllByRole, getByText, queryByText } = render(
       <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
     );
     const buttons = getAllByRole("button");
-    buttons[0] && fireEvent.click(buttons[0]);
+    if (buttons[0]) {
+      fireEvent.click(buttons[0]);
+    }
     expect(getByText("Custom content 1")).toBeTruthy();
-    buttons[0] && fireEvent.click(buttons[0]);
+    if (buttons[0]) {
+      fireEvent.click(buttons[0]);
+    }
     expect(queryByText("Custom content 1")).not.toBeTruthy();
   });
 
@@ -321,13 +328,17 @@ describe("Data grid component tests", () => {
     const headers = getAllByRole("columnheader");
     const sortableHeader = headers[1];
 
-    sortableHeader && fireEvent.click(sortableHeader);
+    if (sortableHeader) {
+      fireEvent.click(sortableHeader);
+    }
     expect(sortableHeader?.getAttribute("aria-sort")).toBe("ascending");
     await waitFor(() => {
       const cells = getAllByRole("gridcell");
       expect(cells[1]?.textContent).toBe("1");
     });
-    sortableHeader && fireEvent.click(sortableHeader);
+    if (sortableHeader) {
+      fireEvent.click(sortableHeader);
+    }
     expect(sortableHeader?.getAttribute("aria-sort")).toBe("descending");
     await waitFor(() => {
       const cells = getAllByRole("gridcell");
@@ -341,8 +352,12 @@ describe("Data grid component tests", () => {
     );
 
     const buttons = getAllByRole("button");
-    buttons[0] && fireEvent.click(buttons[0]);
-    buttons[1] && fireEvent.click(buttons[1]);
+    if (buttons[0]) {
+      fireEvent.click(buttons[0]);
+    }
+    if (buttons[1]) {
+      fireEvent.click(buttons[1]);
+    }
 
     expect(getByText("Custom content 1")).toBeTruthy();
     expect(getByText("Custom content 2")).toBeTruthy();

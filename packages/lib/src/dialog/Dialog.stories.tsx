@@ -425,7 +425,9 @@ export const DropdownDialog: Story = {
   render: DialogWithDropdown,
   play: async () => {
     const buttons = await screen.findAllByRole("button");
-    buttons[0] && (await userEvent.click(buttons[0]));
+    if (buttons[0]) {
+      await userEvent.click(buttons[0]);
+    }
   },
 };
 
@@ -441,6 +443,8 @@ export const TooltipDialog: Story = {
   render: DialogWithTooltip,
   play: async () => {
     const buttons = await screen.findAllByRole("button");
-    buttons[0] && (await userEvent.hover(buttons[0]));
+    if (buttons[0]) {
+      await userEvent.hover(buttons[0]);
+    }
   },
 };
