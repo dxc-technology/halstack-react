@@ -1,11 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import DxcBadge from "./Badge";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Badge",

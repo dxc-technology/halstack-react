@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const inputStylesByState = (disabled: boolean, error: boolean, readOnly: boolean) => css`
+const inputStylesByState = (disabled: boolean, error: boolean, readOnly: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lighter)` : `transparent`};
   border-radius: var(--border-radius-s);
   border: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"} var(--border-style-default)
@@ -27,3 +27,5 @@ export const inputStylesByState = (disabled: boolean, error: boolean, readOnly: 
     }`
     : "cursor: not-allowed;"};
 `;
+
+export default inputStylesByState;

@@ -129,8 +129,11 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
-      if (minSize && file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      else if (maxSize && file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+      if (minSize && file.size < minSize) {
+        return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+      } else if (maxSize && file.size > maxSize) {
+        return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+      }
     };
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
@@ -149,9 +152,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
 
     const addFile = async (selectedFiles: File[]) => {
-      const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0] as File]
-      );
+      const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.slice(0, 1));
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
     };
@@ -160,7 +161,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       const selectedFiles = e.target.files;
       if (selectedFiles) {
         const filesArray = Array.from(selectedFiles);
-        addFile(filesArray);
+        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
         e.target.value = "";
       }
     };
@@ -192,7 +193,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
     const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to children)
-      if (!e.currentTarget.contains(e.relatedTarget as HTMLDivElement)) {
+      const { relatedTarget } = e;
+      if (relatedTarget instanceof Node && !e.currentTarget.contains(relatedTarget)) {
         setIsDragging(false);
       }
     };
@@ -203,14 +205,14 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       const filesObject = e.dataTransfer.files;
       if (filesObject.length > 0) {
         const filesArray = Array.from(filesObject);
-        addFile(filesArray);
+        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
       }
     };
 
     useEffect(() => {
       const getFiles = async () => {
         if (value) {
-          const valueFiles = (await Promise.all(
+          const valueFiles = await Promise.all(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
@@ -218,11 +220,13 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               const preview = await getFilePreview(file.file);
               return { ...file, preview };
             })
-          )) as FileData[];
+          );
           setFiles(valueFiles);
         }
       };
-      getFiles();
+      getFiles().catch((err) => {
+        console.error("Error fetching file previews:", err);
+      });
     }, [value]);
 
     return (
@@ -343,5 +347,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     );
   }
 );
+
+DxcFileInput.displayName = "DxcFileInput";
 
 export default DxcFileInput;

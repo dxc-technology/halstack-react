@@ -35,7 +35,9 @@ describe("Contextual menu component tests", () => {
     const { getAllByRole, getByRole } = render(<DxcContextualMenu items={items} />);
     expect(getAllByRole("menuitem").length).toBe(4);
     const actions = getAllByRole("button");
-    actions[0] != null && userEvent.click(actions[0]);
+    if (actions[0] != null) {
+      userEvent.click(actions[0]);
+    }
     expect(actions[0]?.getAttribute("aria-pressed")).toBeTruthy();
     expect(getByRole("menu")).toBeTruthy();
   });
@@ -66,16 +68,24 @@ describe("Contextual menu component tests", () => {
   test("Group — Renders with correct aria attributes", () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
-    group1 != null && userEvent.click(group1);
+    if (group1 != null) {
+      userEvent.click(group1);
+    }
     expect(group1?.getAttribute("aria-expanded")).toBeTruthy();
     expect(group1?.getAttribute("aria-controls")).toBe(group1?.nextElementSibling?.id);
     const expandedGroupItem1 = getAllByRole("button")[2];
-    expandedGroupItem1 != null && userEvent.click(expandedGroupItem1);
+    if (expandedGroupItem1 != null) {
+      userEvent.click(expandedGroupItem1);
+    }
     const expandedGroupedItem2 = getAllByRole("button")[6];
-    expandedGroupedItem2 != null && userEvent.click(expandedGroupedItem2);
+    if (expandedGroupedItem2 != null) {
+      userEvent.click(expandedGroupedItem2);
+    }
     expect(getAllByRole("menuitem").length).toBe(10);
     const optionToBeClicked = getAllByRole("button")[4];
-    optionToBeClicked != null && userEvent.click(optionToBeClicked);
+    if (optionToBeClicked != null) {
+      userEvent.click(optionToBeClicked);
+    }
     expect(optionToBeClicked?.getAttribute("aria-pressed")).toBeTruthy();
   });
   test("Group — A grouped item, selected by default, must be visible (expanded group) in the first render of the component", () => {
@@ -92,17 +102,27 @@ describe("Contextual menu component tests", () => {
   test("Group — Collapsed groups render as selected when containing a selected item", () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
-    group1 != null && userEvent.click(group1);
+    if (group1 != null) {
+      userEvent.click(group1);
+    }
     const group2 = getAllByRole("button")[2];
-    group2 != null && userEvent.click(group2);
+    if (group2 != null) {
+      userEvent.click(group2);
+    }
     const item = getAllByRole("button")[3];
-    item != null && userEvent.click(item);
+    if (item != null) {
+      userEvent.click(item);
+    }
     expect(item?.getAttribute("aria-pressed")).toBeTruthy();
     expect(group1?.getAttribute("aria-pressed")).toBe("false");
     expect(group2?.getAttribute("aria-pressed")).toBe("false");
-    group2 != null && userEvent.click(group2);
+    if (group2 != null) {
+      userEvent.click(group2);
+    }
     expect(group2?.getAttribute("aria-pressed")).toBe("true");
-    group1 != null && userEvent.click(group1);
+    if (group1 != null) {
+      userEvent.click(group1);
+    }
     expect(group1?.getAttribute("aria-pressed")).toBe("true");
   });
   test("Sections — Renders with correct aria attributes", () => {
@@ -110,7 +130,9 @@ describe("Contextual menu component tests", () => {
     expect(getAllByRole("region").length).toBe(2);
     expect(getAllByRole("menuitem").length).toBe(6);
     const actions = getAllByRole("button");
-    actions[0] != null && userEvent.click(actions[0]);
+    if (actions[0] != null) {
+      userEvent.click(actions[0]);
+    }
     expect(actions[0]?.getAttribute("aria-pressed")).toBeTruthy();
     expect(getAllByRole("menu").length).toBe(2);
     expect(getAllByRole("region")[0]?.getAttribute("aria-labelledby")).toBe(getByText("Section title").id);

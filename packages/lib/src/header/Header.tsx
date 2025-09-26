@@ -1,14 +1,13 @@
-import { ComponentProps, useEffect, useRef, useState } from "react";
-import styled from "@emotion/styled";
+import { ComponentProps, useContext, useEffect, useRef, useState } from "react";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
 import HeaderPropsType, { Logo } from "./types";
 import DxcFlex from "../flex/Flex";
-import { useContext } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ActionIcon from "../action-icon/ActionIcon";
 import { dxcLogo } from "./Icons";
+import styled from "@emotion/styled";
 
 const HeaderDropdown = styled.div`
   display: flex;

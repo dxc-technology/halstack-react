@@ -1,15 +1,13 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcBreadcrumbs from "./Breadcrumbs";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
+import rules from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-
-  unobserve() {}
-
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const disabledRules = {
   rules: formatRules(rules),

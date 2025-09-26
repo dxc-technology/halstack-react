@@ -1,12 +1,12 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
-import { userEvent, within } from "@storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Contextual Menu",

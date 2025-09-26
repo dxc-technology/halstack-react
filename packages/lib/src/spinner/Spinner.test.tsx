@@ -25,13 +25,13 @@ describe("Spinner component tests", () => {
     const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue />);
     expect(getByRole("progressbar")).toBeTruthy();
   });
-  test("Test spinner aria-label to be undefined", () => {
+  test("Spinner aria-label must be undefined for large size", () => {
     const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue />);
     const spinner = getByRole("progressbar");
     expect(spinner.getAttribute("aria-label")).toBeNull();
     expect(spinner.getAttribute("aria-labelledby")).toBeTruthy();
   });
-  test("Test spinner aria-label to be applied correctly when mode is small", () => {
+  test("Spinner aria-label is applied correctly when mode is small", () => {
     const { getByRole } = render(
       <DxcSpinner label="test-loading" ariaLabel="Example aria label" value={75} mode="small" showValue />
     );

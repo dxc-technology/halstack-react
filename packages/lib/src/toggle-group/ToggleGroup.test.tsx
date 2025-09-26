@@ -27,7 +27,11 @@ describe("Toggle group component tests", () => {
     const { getByRole } = render(
       <DxcToggleGroup
         options={[
-          { value: 1, icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png", title: "Mute" },
+          {
+            value: 1,
+            icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png",
+            title: "Mute",
+          },
         ]}
       />
     );
@@ -51,10 +55,16 @@ describe("Toggle group component tests", () => {
     const onChange = jest.fn();
     const { getAllByRole } = render(<DxcToggleGroup options={options} onChange={onChange} multiple />);
     const toggleOptions = getAllByRole("button");
-    toggleOptions[0] && fireEvent.click(toggleOptions[0]);
+    if (toggleOptions[0]) {
+      fireEvent.click(toggleOptions[0]);
+    }
     expect(onChange).toHaveBeenCalledWith([1]);
-    toggleOptions[1] && fireEvent.click(toggleOptions[1]);
-    toggleOptions[3] && fireEvent.click(toggleOptions[3]);
+    if (toggleOptions[1]) {
+      fireEvent.click(toggleOptions[1]);
+    }
+    if (toggleOptions[3]) {
+      fireEvent.click(toggleOptions[3]);
+    }
     expect(onChange).toHaveBeenCalledWith([1, 2, 4]);
     expect(toggleOptions[0]?.getAttribute("aria-pressed")).toBe("true");
     expect(toggleOptions[1]?.getAttribute("aria-pressed")).toBe("true");

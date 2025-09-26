@@ -2,7 +2,7 @@ import { Children, useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import AccordionPropsType from "./types";
+import AccordionPropsType, { AccordionContextProps } from "./types";
 import AccordionContext from "./AccordionContext";
 import AccordionItem from "./AccordionItem";
 
@@ -19,7 +19,7 @@ const AccordionContainer = styled.div<{
   margin-bottom: ${({ margin }) =>
     margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
-  cursor: "pointer";
+  cursor: pointer;
 
   // first accordion
   > div:first-of-type:not(:only-of-type) {
@@ -57,22 +57,39 @@ const AccordionContainer = styled.div<{
   }
 `;
 
+const AccordionItemWithProvider = ({
+  child,
+  index,
+  contextValue,
+}: {
+  child: React.ReactElement;
+  index: number;
+  contextValue: Omit<AccordionContextProps, "index">;
+}) => {
+  const memoizedContext = useMemo(
+    () => ({ index, ...contextValue }),
+    [index, contextValue.activeIndex, contextValue.handlerActiveChange, contextValue.independent]
+  );
+
+  return <AccordionContext.Provider value={memoizedContext}>{child}</AccordionContext.Provider>;
+};
+
 const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
-  const { children, margin, onActiveChange } = props;
+  const { children, defaultIndexActive, independent, indexActive, margin, onActiveChange } = props;
 
   const [innerIndexActive, setInnerIndexActive] = useState(
-    props.independent
-      ? (props.defaultIndexActive ?? -1)
-      : Array.isArray(props.defaultIndexActive)
-        ? props.defaultIndexActive.filter((i) => i !== undefined)
+    independent
+      ? (defaultIndexActive ?? -1)
+      : Array.isArray(defaultIndexActive)
+        ? defaultIndexActive.filter((i) => i !== undefined)
         : []
   );
 
   const handlerActiveChange = useCallback(
     (index: number | number[]) => {
-      if (props.indexActive == null) {
+      if (indexActive == null) {
         setInnerIndexActive((prev) => {
-          if (props.independent) return typeof index === "number" ? (index === prev ? -1 : index) : prev;
+          if (independent) return typeof index === "number" ? (index === prev ? -1 : index) : prev;
           else {
             const prevArray = Array.isArray(prev) ? prev : [];
             return Array.isArray(index)
@@ -85,24 +102,27 @@ const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
       }
       onActiveChange?.(index as number & number[]);
     },
-    [props.indexActive, props.independent, onActiveChange, innerIndexActive]
+    [indexActive, independent, onActiveChange, innerIndexActive]
   );
 
   const contextValue = useMemo(
     () => ({
-      activeIndex: props.indexActive ?? innerIndexActive,
+      activeIndex: indexActive ?? innerIndexActive,
       handlerActiveChange,
-      independent: props.independent,
+      independent,
     }),
-    [props.indexActive, innerIndexActive, handlerActiveChange, props.independent]
+    [indexActive, innerIndexActive, handlerActiveChange, independent]
   );
 
   return (
     <AccordionContainer margin={margin}>
       {Children.map(children, (accordion, index) => (
-        <AccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
-          {accordion}
-        </AccordionContext.Provider>
+        <AccordionItemWithProvider
+          key={`accordion-${index}`}
+          child={accordion as React.ReactElement}
+          index={index}
+          contextValue={contextValue}
+        />
       ))}
     </AccordionContainer>
   );

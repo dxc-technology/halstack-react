@@ -2,16 +2,11 @@ import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcPasswordInput from "./PasswordInput";
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Password input component tests", () => {
   test("Password input renders with label and helper text", () => {
@@ -44,17 +39,19 @@ describe("Password input component tests", () => {
     expect(passwordInput.value).toBe("Pa$$w0rd");
   });
 
-  test("Clear password input value", async () => {
+  test("Clear password input value", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     const clearButton = getAllByRole("button")[0];
-    clearButton && await userEvent.click(clearButton);
+    if (clearButton) {
+      userEvent.click(clearButton);
+    }
     expect(passwordInput.value).toBe("");
   });
 
-  test("Non clearable password input has no clear icon", async () => {
+  test("Non clearable password input has no clear icon", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
@@ -63,24 +60,26 @@ describe("Password input component tests", () => {
     expect(buttons.length).toBe(1);
   });
 
-  test("Show/hide password input button works correctly", async () => {
+  test("Show/hide password input button works correctly", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     expect(passwordInput.type).toBe("password");
     const showButton = getAllByRole("button")[1];
-    showButton && await userEvent.click(showButton);
+    if (showButton) {
+      userEvent.click(showButton);
+    }
     expect(passwordInput.type).toBe("text");
   });
 
-  test("Password input has correct accessibility attributes", async () => {
+  test("Password input has correct accessibility attributes", () => {
     const { getByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const showButton = getByRole("button");
     expect(getByLabelText("Password input")).toBeTruthy();
     expect(showButton.getAttribute("aria-expanded")).toBe("false");
     expect(showButton.getAttribute("aria-label")).toBe("Show password");
-    await userEvent.click(showButton);
+    userEvent.click(showButton);
     expect(showButton.getAttribute("aria-expanded")).toBe("true");
     expect(showButton.getAttribute("aria-label")).toBe("Hide password");
   });

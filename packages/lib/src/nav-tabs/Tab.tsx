@@ -166,4 +166,6 @@ const Tab = forwardRef(
   }
 );
 
+Tab.displayName = "Tab";
+
 export default Tab;

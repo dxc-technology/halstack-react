@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
-import DxcBreadcrumbs from "./Breadcrumbs";
 import userEvent from "@testing-library/user-event";
+import DxcBreadcrumbs from "./Breadcrumbs";
 
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const items = [
   {
@@ -34,16 +34,16 @@ describe("Breadcrumbs component tests", () => {
     expect(breadcrumbs.getAttribute("aria-label")).toBe("example");
     expect(getByText("Dark Mode").parentElement?.getAttribute("aria-current")).toBe("page");
   });
-  test("Collapsed variant renders all the items inside the dropdown menu except the root and the current page", async () => {
+  test("Collapsed variant renders all the items inside the dropdown menu except the root and the current page", () => {
     const { queryByText, getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />);
     const dropdown = getByRole("button");
     expect(queryByText("User Menu")).toBeFalsy();
     expect(queryByText("Preferences")).toBeFalsy();
-    await userEvent.click(dropdown);
+    userEvent.click(dropdown);
     expect(getByText("User Menu")).toBeTruthy();
     expect(getByText("Preferences")).toBeTruthy();
   });
-  test("Collapsed variant, with show root set to false, renders all the items inside the dropdown menu except the current page", async () => {
+  test("Collapsed variant, with show root set to false, renders all the items inside the dropdown menu except the current page", () => {
     const { queryByText, getByText, getByRole } = render(
       <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} showRoot={false} />
     );
@@ -51,12 +51,12 @@ describe("Breadcrumbs component tests", () => {
     expect(queryByText("Home")).toBeFalsy();
     expect(queryByText("User Menu")).toBeFalsy();
     expect(queryByText("Preferences")).toBeFalsy();
-    await userEvent.click(dropdown);
+    userEvent.click(dropdown);
     expect(getByText("Home")).toBeTruthy();
     expect(getByText("User Menu")).toBeTruthy();
     expect(getByText("Preferences")).toBeTruthy();
   });
-  test("If itemsBeforeCollapse value is below two, ignores it and renders a collapsed variant", async () => {
+  test("If itemsBeforeCollapse value is below two, ignores it and renders a collapsed variant", () => {
     const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={-1} />);
     expect(getByText("Home")).toBeTruthy();
     expect(getByRole("button")).toBeTruthy();
@@ -76,7 +76,7 @@ describe("Breadcrumbs component tests", () => {
     userEvent.click(getByText("Home"));
     expect(onItemClick).toHaveBeenCalledWith("/home");
   });
-  test("The onClick prop from an item is properly called (collapsed)", async () => {
+  test("The onClick prop from an item is properly called (collapsed)", () => {
     const onItemClick = jest.fn();
     const { getByText, getByRole } = render(
       <DxcBreadcrumbs
@@ -89,8 +89,8 @@ describe("Breadcrumbs component tests", () => {
         itemsBeforeCollapse={2}
       />
     );
-    await userEvent.click(getByRole("button"));
-    await userEvent.click(getByText("Preferences"));
+    userEvent.click(getByRole("button"));
+    userEvent.click(getByText("Preferences"));
     expect(onItemClick).toHaveBeenCalledWith("/");
   });
 });

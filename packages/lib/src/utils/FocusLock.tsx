@@ -19,15 +19,15 @@ const focusableQuery = [
   `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
-const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
-  Array.prototype.slice
-    .call(container.querySelectorAll(focusableQuery))
-    .filter(
-      (element: HTMLElement) =>
-        element.getAttribute("aria-hidden") !== "true" &&
-        window.getComputedStyle(element).display !== "none" &&
-        window.getComputedStyle(element).visibility !== "hidden"
-    );
+const getFocusableElements = (container: HTMLElement): HTMLElement[] => {
+  const elements = Array.from(container.querySelectorAll<HTMLElement>(focusableQuery));
+  return elements.filter(
+    (element) =>
+      element.getAttribute("aria-hidden") !== "true" &&
+      window.getComputedStyle(element).display !== "none" &&
+      window.getComputedStyle(element).visibility !== "hidden"
+  );
+};
 
 /**
  * This function will try to focus the element and return true if it was able to receive the focus.
@@ -46,11 +46,12 @@ const attemptFocus = (element: HTMLElement): boolean => {
  * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
 const radixPortalContains = (activeElement: Node): boolean => {
-  const radixPortals = document.querySelectorAll("[data-radix-portal]");
-  const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
+  const radixPortals = Array.from(document.querySelectorAll<HTMLElement>("[data-radix-portal]"));
+  const radixPoppers = Array.from(document.querySelectorAll<HTMLElement>("[data-radix-popper-content-wrapper]"));
+
   return (
-    Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement)) ||
-    Array.prototype.slice.call(radixPoppers).some((popper) => popper.contains(activeElement))
+    radixPortals.some((portal) => portal.contains(activeElement)) ||
+    radixPoppers.some((popper) => popper.contains(activeElement))
   );
 };
 
@@ -67,7 +68,9 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
       setFocusableElements(getFocusableElements(ref.current));
 
       const observer = new MutationObserver(() => {
-        if (ref.current != null) setFocusableElements(getFocusableElements(ref.current));
+        if (ref.current != null) {
+          setFocusableElements(getFocusableElements(ref.current));
+        }
       });
       observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
@@ -94,8 +97,11 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
 
   const focusFirst = useCallback(() => {
     if (focusableElements != null) {
-      if (focusableElements.length === 0) childrenContainerRef.current?.focus();
-      else if (focusableElements.length > 0) focusableElements.some((element) => attemptFocus(element));
+      if (focusableElements.length === 0) {
+        childrenContainerRef.current?.focus();
+      } else if (focusableElements.length > 0) {
+        focusableElements.some((element) => attemptFocus(element));
+      }
     }
   }, [focusableElements]);
 
@@ -107,7 +113,9 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   };
 
   const focusLock = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && focusableElements?.length === 0) event.preventDefault();
+    if (event.key === "Tab" && focusableElements?.length === 0) {
+      event.preventDefault();
+    }
   };
 
   useEffect(() => {
@@ -130,8 +138,9 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
           container?.previousElementSibling?.contains(target) ||
           radixPortalContains(target)
         )
-      )
+      ) {
         focusFirst();
+      }
     };
 
     document.addEventListener("focusout", focusGuardHandler);

@@ -1,10 +1,10 @@
+import { useId } from "react";
 import styled from "@emotion/styled";
 import { DxcInset } from "..";
 import DxcDivider from "../divider/Divider";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
-import { useId } from "react";
 
 const SectionContainer = styled.section`
   display: grid;
@@ -27,8 +27,8 @@ export default function Section({ index, length, section }: SectionProps) {
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
-        {section.items.map((item, index) => (
-          <MenuItem item={item} key={`${item.label}-${index}`} />
+        {section.items.map((item, i) => (
+          <MenuItem item={item} key={`${item.label}-${i}`} />
         ))}
       </SubMenu>
       {index !== length - 1 && (

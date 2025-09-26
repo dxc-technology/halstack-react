@@ -272,4 +272,6 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
   }
 );
 
+DxcSlider.displayName = "DxcSlider";
+
 export default DxcSlider;

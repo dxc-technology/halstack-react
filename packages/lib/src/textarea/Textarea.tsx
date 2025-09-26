@@ -4,11 +4,11 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import Label from "../styles/forms/Label";
 import HelperText from "../styles/forms/HelperText";
-import { inputStylesByState } from "../styles/forms/inputStylesByState";
+import inputStylesByState from "../styles/forms/inputStylesByState";
 
 const sizes = {
   small: "240px",
@@ -197,5 +197,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     );
   }
 );
+
+DxcTextarea.displayName = "DxcTextarea";
 
 export default DxcTextarea;

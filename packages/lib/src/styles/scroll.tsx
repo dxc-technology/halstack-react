@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const scrollbarStyles = css`
+const scrollbarStyles = css`
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -14,3 +14,5 @@ export const scrollbarStyles = css`
     border-radius: var(--border-radius-s);
   }
 `;
+
+export default scrollbarStyles;

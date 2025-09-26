@@ -23,7 +23,7 @@ type Props = {
   underlined?: boolean;
   /**
    * Content shown in the header. Take into account that the component applies styles
-   * for the first child in the content, so we recommend the use of React.Fragment
+   * for the first child in the content, so we recommend the use of Fragment
    * to be applied correctly. Otherwise, the styles can be modified.
    */
   content?: ReactNode;

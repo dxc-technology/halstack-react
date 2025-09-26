@@ -63,7 +63,7 @@ const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
   overflow: hidden;
 `;
 
-export default memo(function ItemAction({ badge, collapseIcon, depthLevel, icon, label, ...props }: ItemActionProps) {
+const ItemAction = memo(({ badge, collapseIcon, depthLevel, icon, label, ...props }: ItemActionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge, { size: "small" });
 
@@ -88,3 +88,7 @@ export default memo(function ItemAction({ badge, collapseIcon, depthLevel, icon,
     </TooltipWrapper>
   );
 });
+
+ItemAction.displayName = "ItemAction";
+
+export default ItemAction;

@@ -17,4 +17,6 @@ const ToastIcon = memo(
   }
 );
 
+ToastIcon.displayName = "ToastIcon";
+
 export default ToastIcon;

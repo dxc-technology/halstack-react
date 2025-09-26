@@ -21,20 +21,24 @@ const sections = [
     title: "Props",
     content: (
       <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-        <tr>
-          <td>labels</td>
-          <td>
-            <TableCode>TranslatedLabels</TableCode>
-          </td>
-          <td>Object with a given structure, specified below, for defining translations.</td>
-          <td>-</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>labels</td>
+            <td>
+              <TableCode>TranslatedLabels</TableCode>
+            </td>
+            <td>Object with a given structure, specified below, for defining translations.</td>
+            <td>-</td>
+          </tr>
+        </tbody>
       </DxcTable>
     ),
   },

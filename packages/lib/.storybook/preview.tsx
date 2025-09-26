@@ -1,8 +1,8 @@
-import type { Preview } from "@storybook/react";
-import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
+import disabledRules from "../test/accessibility/rules/common/disabledRules";
 import "../src/styles/variables.css";
+import { PreviewExtended } from "./types";
 
-const preview: Preview = {
+const preview: PreviewExtended = {
   parameters: {
     controls: {
       matchers: {

@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
-import { Meta, StoryObj } from "@storybook/react/*";
-import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Tabs",

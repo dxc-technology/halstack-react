@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable, DxcImage } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";

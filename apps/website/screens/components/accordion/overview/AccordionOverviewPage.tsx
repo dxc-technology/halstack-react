@@ -139,7 +139,7 @@ const sections = [
               <DxcBulletedList.Item>
                 <strong>Single-open behavior</strong>
                 <DxcParagraph>
-                  Some implementations restrict the accordion to allow only one section to be open at a time. When a
+                  Some implementations restrict the accordion to allow only one section to be open at a time. When a
                   user expands a new section, the previously expanded section collapses automatically. This pattern is
                   suitable when:
                 </DxcParagraph>

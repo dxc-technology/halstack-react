@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState, memo, useId } from "react";
+import { useContext, useMemo, useState, useId } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
@@ -35,4 +35,4 @@ export default function GroupItem({ items, ...props }: GroupItemProps) {
       )}
     </>
   );
-};
+}

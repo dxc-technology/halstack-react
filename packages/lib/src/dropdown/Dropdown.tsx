@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState, useContext } from "react";
+import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -145,7 +145,9 @@ const DxcDropdown = ({
   };
   const handleMenuItemOnClick = useCallback(
     (value?: string) => {
-      if (value) onSelectOption(value);
+      if (value) {
+        onSelectOption(value);
+      }
       handleOnCloseMenu();
       triggerRef.current?.focus();
     },

@@ -63,7 +63,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     );
 
     useEffect(() => {
-      const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
+      const input = numberInputRef.current?.getElementsByTagName("input")[0];
       const preventDefault = (event: WheelEvent) => {
         event.preventDefault();
       };
@@ -103,5 +103,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     );
   }
 );
+
+DxcNumberInput.displayName = "DxcNumberInput";
 
 export default DxcNumberInput;

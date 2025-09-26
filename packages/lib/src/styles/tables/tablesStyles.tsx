@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import TablePropsType from "../../table/types";
-import { scrollbarStyles } from "../scroll";
+import scrollbarStyles from "../scroll";
 import { calculateWidth } from "../../table/utils";
 import { spaces } from "../../common/variables";
 

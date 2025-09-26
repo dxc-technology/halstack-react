@@ -102,7 +102,7 @@ export const getSelectedOption = (
   optional: boolean,
   optionalItem: ListOptionType
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
+  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
@@ -135,12 +135,14 @@ export const getSelectedOption = (
           groupIndex++;
           return false;
         });
+        return false;
       } else if (option.value === value) {
         selectedOption = option;
         singleSelectionIndex = optional ? index + 1 : index;
         return true;
+      } else {
+        return false;
       }
-      return false;
     });
   }
 
@@ -153,12 +155,15 @@ export const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-export const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+export const getSelectedOptionLabel = (
+  placeholder: string,
+  selectedOption: ListOptionType | ListOptionType[] | null
+) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);
 
 /**
  * Returns a determined string value depending on the amount of options selected:

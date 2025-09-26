@@ -35,13 +35,14 @@ const Container = styled.div<StyledProps>`
   ${({ border }) => {
     let styles = "";
     if (border != null) {
-      switch (true) {
-        case "width" in border:
-          styles += border.width ? `border-width: ${border.width};` : "";
-        case "style" in border:
-          styles += border.style ? `border-style: ${border.style};` : "";
-        case "color" in border:
-          styles += border.color ? `border-color: ${border.color};` : "";
+      if ("width" in border) {
+        styles += border.width ? `border-width: ${border.width};` : "";
+      }
+      if ("style" in border) {
+        styles += border.style ? `border-style: ${border.style};` : "";
+      }
+      if ("color" in border) {
+        styles += border.color ? `border-color: ${border.color};` : "";
       }
     }
     return styles;
@@ -49,15 +50,17 @@ const Container = styled.div<StyledProps>`
   ${({ border }) => {
     let styles = "";
     if (border != null) {
-      switch (true) {
-        case "top" in border:
-          styles += border.top ? getBorderStyles("top", border.top) : "";
-        case "right" in border:
-          styles += border.right ? getBorderStyles("right", border.right) : "";
-        case "left" in border:
-          styles += border.left ? getBorderStyles("left", border.left) : "";
-        case "bottom" in border:
-          styles += border.bottom ? getBorderStyles("bottom", border.bottom) : "";
+      if ("top" in border) {
+        styles += border.top ? getBorderStyles("top", border.top) : "";
+      }
+      if ("right" in border) {
+        styles += border.right ? getBorderStyles("right", border.right) : "";
+      }
+      if ("left" in border) {
+        styles += border.left ? getBorderStyles("left", border.left) : "";
+      }
+      if ("bottom" in border) {
+        styles += border.bottom ? getBorderStyles("bottom", border.bottom) : "";
       }
     }
     return styles;

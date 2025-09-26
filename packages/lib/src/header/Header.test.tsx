@@ -23,13 +23,19 @@ describe("Header component tests", () => {
   });
   test("Header renders with correct children", () => {
     // We need to force the offsetWidth value
-    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 1024 });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 1024,
+    });
 
     const { getByText } = render(<DxcHeader content={<p>header-child-text</p>} />);
     expect(getByText("header-child-text")).toBeTruthy();
   });
   test("Header renders menu button in mobile", () => {
-    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 425 });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 425,
+    });
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: jest.fn().mockImplementation(() => ({

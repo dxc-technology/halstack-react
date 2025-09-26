@@ -1,4 +1,4 @@
-import { ReactNode, SVGProps } from "react";
+import { ReactNode } from "react";
 import { SVG } from "../common/utils";
 
 export type NavTabsContextProps = {

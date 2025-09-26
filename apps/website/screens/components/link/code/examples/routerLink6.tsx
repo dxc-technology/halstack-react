@@ -10,6 +10,7 @@ const useNavigate = () => {
     console.log(`Use navigate mock function called "${to}"`, options);
   };
 };
+
 const code = `() => {
   const CustomLink = forwardRef(
     ({ children, to, replace = false, state, ...rest }, ref) => {

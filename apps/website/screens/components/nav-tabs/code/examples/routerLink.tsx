@@ -6,7 +6,7 @@ type routerProps = {
   children: string;
 };
 
-const RouterLink = ({ to, component, children, ...other }: routerProps) => {
+const RouterLink = ({ to, component: _component, children, ...other }: routerProps) => {
   return (
     <DxcNavTabs.Tab {...other} href={to}>
       {children}

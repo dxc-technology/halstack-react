@@ -29,12 +29,12 @@ export default function getSemantic(semantic: ToastPropsType["semantic"]) {
   }
 }
 
+const idExists = (id: string, toasts: QueuedToast[]) => toasts.some((toast) => toast.id === id);
+
 export function generateUniqueToastId(toasts: QueuedToast[]) {
   let id = "";
-  let exists = true;
-  while (exists) {
+  do {
     id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    exists = toasts.some((toast) => toast.id === id);
-  }
+  } while (idExists(id, toasts));
   return id;
-};
+}

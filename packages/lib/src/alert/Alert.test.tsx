@@ -2,11 +2,11 @@ import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
 import DxcAlert from "./Alert";
 
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const messages = [
   { text: "Message 1", onClose: () => {} },
@@ -48,11 +48,11 @@ describe("Alert component tests", () => {
   test("Inline alert calls correctly the function onClose of several messages", () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
-    const messages = [
+    const onCloseMessages = [
       { text: "Message 1", onClose: onClose1 },
       { text: "Message 2", onClose: onClose2 },
     ];
-    const { getByRole } = render(<DxcAlert title="Info" message={messages} />);
+    const { getByRole } = render(<DxcAlert title="Info" message={onCloseMessages} />);
     const closeButton = getByRole("button", { name: "Close message" });
     const nextButton = getByRole("button", { name: "Next message" });
     fireEvent.click(closeButton);
@@ -70,7 +70,7 @@ describe("Alert component tests", () => {
   });
   test("Alert with several messages closes properly each one", () => {
     const { getByRole, getByText } = render(<DxcAlert title="Info" message={messages} />);
-    let closeButton = getByRole("button", { name: "Close message" });
+    const closeButton = getByRole("button", { name: "Close message" });
     const nextButton = getByRole("button", { name: "Next message" });
     expect(getByText("1 of 4")).toBeTruthy();
     expect(getByText("Message 1")).toBeTruthy();
