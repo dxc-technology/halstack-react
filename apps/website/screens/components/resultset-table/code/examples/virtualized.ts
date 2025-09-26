@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcResultsetTable columns={columns} rows={rows} height="500px" itemsPerPage={10000}/>
+      <DxcResultsetTable columns={columns} rows={rows} virtualizedHeight="500px" itemsPerPage={10000}/>
     </DxcInset>
   );
 }`;
