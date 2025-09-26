@@ -43,7 +43,7 @@ const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   border-radius: 4px;
   background-color: var(--color-bg-neutral-lightest);
   ${(props) => props.closable && "min-height: 72px;"}
-  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark);
+  box-shadow: var(--shadow-100);
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 92%;
@@ -64,6 +64,7 @@ const DxcDialog = ({
   onCloseClick,
   overlay = true,
   tabIndex = 0,
+  disableFocusLock = false,
 }: DialogPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
 
@@ -88,19 +89,35 @@ const DxcDialog = ({
         <DialogContainer>
           {overlay && <Overlay onClick={onBackgroundClick} />}
           <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
-            <FocusLock>
-              {children}
-              {closable && (
-                <CloseIconActionContainer>
-                  <DxcActionIcon
-                    icon="close"
-                    onClick={onCloseClick}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.dialog.closeIconAriaLabel}
-                  />
-                </CloseIconActionContainer>
-              )}
-            </FocusLock>
+            {!disableFocusLock ? (
+              <FocusLock>
+                {children}
+                {closable && (
+                  <CloseIconActionContainer>
+                    <DxcActionIcon
+                      icon="close"
+                      onClick={onCloseClick}
+                      tabIndex={tabIndex}
+                      title={translatedLabels.dialog.closeIconAriaLabel}
+                    />
+                  </CloseIconActionContainer>
+                )}
+              </FocusLock>
+            ) : (
+              <>
+                {children}
+                {closable && (
+                  <CloseIconActionContainer>
+                    <DxcActionIcon
+                      icon="close"
+                      onClick={onCloseClick}
+                      tabIndex={tabIndex}
+                      title={translatedLabels.dialog.closeIconAriaLabel}
+                    />
+                  </CloseIconActionContainer>
+                )}
+              </>
+            )}
           </Dialog>
         </DialogContainer>,
         document.body

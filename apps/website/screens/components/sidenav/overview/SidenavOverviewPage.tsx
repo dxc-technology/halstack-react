@@ -1,6 +1,5 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/sidenav_anatomy.png";
@@ -25,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Sidenav's anatomy" />
+        <Image src={anatomy} alt="Sidenav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Title:</strong> the main label displayed at the top of the sidenav, typically used to indicate the
@@ -131,11 +130,8 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              On mobile and tablet screens, the sidenav becomes an{" "}
-              <strong>overlay panel that can be toggled open or closed</strong>. This responsive version ensures that
-              navigation remains accessible without occupying valuable screen space. Users can open the sidenav using a
-              dedicated menu icon, and close it either by interacting with the backdrop or selecting a navigation
-              option. This enhances usability and maintains focus on content in smaller viewports.
+              In smaller screens, the sidenav is collapsed into a single row at the top of the page with an expandable
+              icon to show the full list of sidenav content when triggered.
             </DxcParagraph>
             <Image src={responsive} alt="Responsive sidenav" />
           </>
@@ -189,9 +185,7 @@ const sections = [
 const SidenavOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/sidenav/overview/SidenavOverviewPage.tsx" />
     </DxcFlex>
   );

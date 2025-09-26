@@ -1,5 +1,4 @@
 import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
@@ -10,6 +9,7 @@ import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+import virtualized from "./examples/virtualized";
 
 const optionsType = `{ 
     label: string;
@@ -296,6 +296,24 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                virtualizedHeight
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A fixed height must be set to enable virtualization. If no height is provided, the select will
+              automatically adjust to the height of its content, and virtualization will not be applied.
+            </td>
+            <td>
+              <td>-</td>
+            </td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -310,6 +328,10 @@ const sections = [
       {
         title: "Uncontrolled",
         content: <Example example={uncontrolled} defaultIsVisible />,
+      },
+      {
+        title: "Virtualized",
+        content: <Example example={virtualized} defaultIsVisible />,
       },
       {
         title: "Error handling",
@@ -329,9 +351,7 @@ const sections = [
 
 const SelectCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/select/code/SelectCodePage.tsx" />
   </DxcFlex>
 );

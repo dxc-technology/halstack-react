@@ -1,17 +1,16 @@
 import { createContext, ReactNode, useMemo } from "react";
-import { AdvancedTheme, componentTokens, TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
+import { TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
 
 /**
- * This type is used to allow partial themes and labels objects to be passed to the HalstackProvider.
+ * This type is used to allow labels objects to be passed to the HalstackProvider.
  * This is an extension of the already existing Partial type, which only allows one level of partiality.
  */
 export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
-const HalstackContext = createContext<AdvancedTheme>(componentTokens);
 const HalstackLanguageContext = createContext<TranslatedLabels>(defaultTranslatedComponentLabels);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
@@ -82,4 +81,4 @@ const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProvid
   );
 };
 
-export { HalstackContext as default, HalstackProvider, HalstackLanguageContext };
+export { HalstackProvider, HalstackLanguageContext };

@@ -1,6 +1,5 @@
-import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcAlert, DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code, { TableCode } from "@/common/Code";
@@ -82,144 +81,159 @@ const sections = [
       {
         title: "Props",
         content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>active</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>Whether the tab is active or not.</td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>Contains the component to be rendered when this tab is active.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>defaultActive</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>Whether the tab is active or not by default, but mantaining the uncontrolled behaviour.</td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>disabled</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>Whether the tab is disabled or not.</td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>icon</td>
-                <td>
-                  <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-                </td>
-                <td>
-                  <DxcLink newWindow href="https://fonts.google.com/icons">
-                    Material Symbol
-                  </DxcLink>{" "}
-                  name or SVG element as the icon that will be displayed in the tab. When using Material Symbols,
-                  replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-                  symbol name with <TableCode>"filled_"</TableCode>. The icon or the label, either of which must have a
-                  valid value.
-                </td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    label
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Tab label text. The icon or the label, either of which must have a valid value.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>notificationNumber</td>
-                <td>
-                  <TableCode>boolean | number</TableCode>
-                </td>
-                <td>
-                  If true, an empty badge will appear. If false or if the tab is disabled, no badge will appear. If a
-                  number is specified, the component will display a badge with the value as its label. Take into account
-                  that if that number is greater than 99, it will appear as <TableCode>+99</TableCode> in the badge.
-                </td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>onClick</td>
-                <td>
-                  <TableCode>{"() => void"}</TableCode>
-                </td>
-                <td>This function will be called when the user clicks on this tab. This feature is mostly recommended for compatibility with third-party routing APIs.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>onHover</td>
-                <td>
-                  <TableCode>{"() => void"}</TableCode>
-                </td>
-                <td>This function will be called when the user hovers this tab.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    tabId
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Value used to identify the tab internally.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    title
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Tooltip text for the tab.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
+          <DxcFlex direction="column" gap="var(--spacing-gap-l)">
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>active</td>
+                  <td>
+                    <TableCode>boolean</TableCode>
+                  </td>
+                  <td>Whether the tab is active or not.</td>
+                  <td>
+                    <TableCode>false</TableCode>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                      <StatusBadge status="required" />
+                      children
+                    </DxcFlex>
+                  </td>
+                  <td>
+                    <TableCode>React.ReactNode</TableCode>
+                  </td>
+                  <td>Contains the component to be rendered when this tab is active.</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>defaultActive</td>
+                  <td>
+                    <TableCode>boolean</TableCode>
+                  </td>
+                  <td>Whether the tab is active or not by default, but mantaining the uncontrolled behaviour.</td>
+                  <td>
+                    <TableCode>false</TableCode>
+                  </td>
+                </tr>
+                <tr>
+                  <td>disabled</td>
+                  <td>
+                    <TableCode>boolean</TableCode>
+                  </td>
+                  <td>Whether the tab is disabled or not.</td>
+                  <td>
+                    <TableCode>false</TableCode>
+                  </td>
+                </tr>
+                <tr>
+                  <td>icon</td>
+                  <td>
+                    <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+                  </td>
+                  <td>
+                    <DxcLink newWindow href="https://fonts.google.com/icons">
+                      Material Symbol
+                    </DxcLink>{" "}
+                    name or SVG element as the icon that will be displayed in the tab. When using Material Symbols,
+                    replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
+                    symbol name with <TableCode>"filled_"</TableCode>. The icon or the label, either of which must have
+                    a valid value.
+                  </td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>
+                    <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                      label
+                    </DxcFlex>
+                  </td>
+                  <td>
+                    <TableCode>string</TableCode>
+                  </td>
+                  <td>Tab label text. The icon or the label, either of which must have a valid value.</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>notificationNumber</td>
+                  <td>
+                    <TableCode>boolean | number</TableCode>
+                  </td>
+                  <td>
+                    If true, an empty badge will appear. If false or if the tab is disabled, no badge will appear. If a
+                    number is specified, the component will display a badge with the value as its label. Take into
+                    account that if that number is greater than 99, it will appear as <TableCode>+99</TableCode> in the
+                    badge.
+                  </td>
+                  <td>
+                    <TableCode>false</TableCode>
+                  </td>
+                </tr>
+                <tr>
+                  <td>onClick</td>
+                  <td>
+                    <TableCode>{"() => void"}</TableCode>
+                  </td>
+                  <td>
+                    This function will be called when the user clicks on this tab. This feature is mostly recommended
+                    for compatibility with third-party routing APIs.
+                  </td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>onHover</td>
+                  <td>
+                    <TableCode>{"() => void"}</TableCode>
+                  </td>
+                  <td>This function will be called when the user hovers this tab.</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>tabId</td>
+                  <td>
+                    <TableCode>string</TableCode>
+                  </td>
+                  <td>Value used to identify the tab internally.</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>
+                    <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                      title
+                    </DxcFlex>
+                  </td>
+                  <td>
+                    <TableCode>string</TableCode>
+                  </td>
+                  <td>Tooltip text for the tab.</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+            <DxcAlert
+              title="Important"
+              semantic="warning"
+              message={{
+                text: (
+                  <>
+                    Each tab must have either <Code>tabId</Code> or <Code>label</Code> defined for the component to
+                    function correctly.
+                  </>
+                ),
+              }}
+              mode="banner"
+              closable={false}
+            />
+          </DxcFlex>
         ),
       },
     ],
@@ -245,9 +259,7 @@ const sections = [
 
 const TabsCodePage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/tabs/code/TabsCodePage.tsx" />
   </DxcFlex>
 );

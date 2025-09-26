@@ -153,6 +153,7 @@ const SelectedOption = styled.span<{
   );
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
+  font-family: var(--typography-font-family);
   user-select: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -193,6 +194,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
       value,
+      virtualizedHeight,
     },
     ref
   ) => {
@@ -211,7 +213,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
-    const width = useWidth(selectRef.current);
+    const width = useWidth(selectRef);
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
@@ -592,6 +594,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content
+              aria-label="Select options"
               onCloseAutoFocus={(event) => {
                 // Avoid select to lose focus when the list is closed
                 event.preventDefault();
@@ -610,6 +613,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 handleOptionOnClick={handleOptionOnClick}
                 handleGroupOnClick={handleSelectAllGroup}
                 handleSelectAllOnClick={handleSelectAllOnClick}
+                virtualizedHeight={virtualizedHeight}
                 id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}

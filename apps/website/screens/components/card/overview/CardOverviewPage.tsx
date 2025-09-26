@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/card_anatomy.png";
 import example from "./images/card_example.png";
@@ -22,7 +21,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Card's anatomy" />
+        <Image src={anatomy} alt="Card anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the main structural wrapper that ensures padding, spacing, and alignment across
@@ -66,9 +65,9 @@ const sections = [
             <strong>Image placement:</strong> cards support placing the image either on the left or the right side of
             the layout. The image should maintain a fixed ratio and size for visual harmony. By default, the component
             provides layout options where the image can appear on the left or right side of the content. However,
-            alternative layouts —such as vertical image placements — can be achieved by placing the image directly within
-            the custom content area. This allows for more flexibility while still adhering to spacing and alignment
-            guidelines.
+            alternative layouts — such as vertical image placements — can be achieved by placing the image directly
+            within the custom content area. This allows for more flexibility while still adhering to spacing and
+            alignment guidelines.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Text content:</strong> titles, descriptions, metadata, or status labels are typically placed in the
@@ -83,7 +82,15 @@ const sections = [
             card should be easy to scan and act upon.
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <Image src={example} alt="Card's example" />
+        {/* <Image src={example} alt="Card's example" /> */}
+      </>
+    ),
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>The card component will adjust to the size of its parent container.</DxcParagraph>
       </>
     ),
   },
@@ -132,9 +139,7 @@ const sections = [
 
 const CardOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/overview/CardOverviewPage.tsx" />
   </DxcFlex>
 );

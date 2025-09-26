@@ -2,7 +2,6 @@ import { DxcHeading, DxcParagraph, DxcFlex, DxcBulletedList, DxcLink, DxcTable }
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import fontFamily from "./images/font_family.png";
 import heading from "./images/heading.png";
@@ -20,11 +19,11 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Typography plays a critical role in structuring the user’s experience through the visual impact it has on the
+          Typography plays a critical role in structuring the user's experience through the visual impact it has on the
           interface content.
         </DxcParagraph>
         <DxcParagraph>
-          It <strong>defines what is the first noticeable piece of information or data</strong> based on the font’s
+          It <strong>defines what is the first noticeable piece of information or data</strong> based on the font's
           shape, size, color, or type, and it <strong>highlights some pieces of text over others</strong>.
         </DxcParagraph>
         <DxcParagraph>
@@ -629,18 +628,16 @@ const sections = [
   },
 ];
 
-export default function TypographyPage() {
-  return (
-    <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
-      <PageHeading>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <DxcHeading level={1} text="Typography" />
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/typography/TypographyPage.tsx" />
-    </DxcFlex>
-  );
-}
+const TypographyPage = () => (
+  <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
+    <PageHeading>
+      <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+        <DxcHeading level={1} text="Typography" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/typography/TypographyPage.tsx" />
+  </DxcFlex>
+);
+
+export default TypographyPage;

@@ -1,5 +1,4 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -24,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Badge's anatomy" />
+        <Image src={anatomy} alt="Badge anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> it's the area that holds the badge's content, defining its shape, size and
@@ -75,7 +74,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Designed mainly for data visualization interfaces, the contextual variant of the Badge component’s main
+              Designed mainly for data visualization interfaces, the contextual variant of the Badge component's main
               advantage lies in its ability to categorize content and represent specific information. It is
               intentionally non-interactive and may contain icons strategically chosen to enhance the conveyed
               information.
@@ -95,7 +94,7 @@ const sections = [
                 colors are available:
                 <DxcBulletedList type="circle">
                   <DxcBulletedList.Item>
-                    Green: positive actions, such as approved, completed, success…
+                    Green: positive actions, such as approved, completed, success...
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>Blue: informative actions, such as published, in use...</DxcBulletedList.Item>
                   <DxcBulletedList.Item>
@@ -163,9 +162,7 @@ const sections = [
 const BadgeOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/badge/overview/BadgeOverviewPage.tsx" />
     </DxcFlex>
   );

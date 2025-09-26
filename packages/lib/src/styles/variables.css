@@ -12,15 +12,15 @@
   --z-header-menu: 210;
 
   /* UI components */
-  --z-date-input: 300;
-  --z-dropdown: 310;
-  --z-textinput: 320;
-  --z-select: 330;
+  --z-dialog: 300;
+  --z-date-input: 310;
+  --z-dropdown: 320;
+  --z-textinput: 330;
+  --z-select: 340;
 
   /* Modals and overlays */
   --z-spinner-overlay: 400;
   --z-progressbar-overlay: 410;
-  --z-dialog: 420;
   --z-alert: 430;
 
   /* Notifications */
@@ -268,8 +268,6 @@
   --color-fg-warning-medium: var(--color-warning-500);
   --color-fg-warning-strong: var(--color-warning-600);
   --color-fg-warning-stronger: var(--color-warning-800);
-  --shadow-dark: var(--color-alpha-400-a);
-  --shadow-light: var(--color-alpha-300-a);
   --border-radius-none: var(--dimensions-0);
   --border-radius-xs: var(--dimensions-2);
   --border-radius-s: var(--dimensions-4);
@@ -289,22 +287,10 @@
   --height-xl: var(--dimensions-40);
   --height-xxl: var(--dimensions-48);
   --height-xxxl: var(--dimensions-56);
-  --shadow-high-spread: var(--dimensions-0);
-  --shadow-high-x-position: var(--dimensions-0);
-  --shadow-high-blur: var(--dimensions-24);
-  --shadow-high-y-position: var(--dimensions-24);
-  --shadow-higher-spread: var(--dimensions-0);
-  --shadow-higher-x-position: var(--dimensions-0);
-  --shadow-higher-blur: var(--dimensions-48);
-  --shadow-higher-y-position: var(--dimensions-48);
-  --shadow-low-spread: var(--dimensions-0);
-  --shadow-low-x-position: var(--dimensions-0);
-  --shadow-low-blur: var(--dimensions-2);
-  --shadow-low-y-position: var(--dimensions-2);
-  --shadow-mid-spread: var(--dimensions-0);
-  --shadow-mid-x-position: var(--dimensions-0);
-  --shadow-mid-blur: var(--dimensions-12);
-  --shadow-mid-y-position: var(--dimensions-12);
+  --shadow-100: var(--dimensions-0) var(--dimensions-2) var(--dimensions-2) var(--dimensions-0) var(--color-alpha-400-a);
+  --shadow-200: var(--dimensions-0) var(--dimensions-12) var(--dimensions-12) var(--dimensions-0) var(--color-alpha-300-a);
+  --shadow-300: var(--dimensions-0) var(--dimensions-24) var(--dimensions-24) var(--dimensions-0) var(--color-alpha-300-a);
+  --shadow-400: var(--dimensions-0) var(--dimensions-48) var(--dimensions-48) var(--dimensions-0) var(--color-alpha-300-a);
   --spacing-gap-none: var(--dimensions-0);
   --spacing-gap-xxs: var(--dimensions-2);
   --spacing-gap-xs: var(--dimensions-4);

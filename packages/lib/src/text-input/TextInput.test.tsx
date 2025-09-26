@@ -592,7 +592,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest uncontrolled - Suggestion selected by click", async () => {
+  test("Autosuggest uncontrolled — Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
@@ -612,7 +612,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest controlled - Suggestion selected by click", async () => {
+  test("Autosuggest controlled — Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autocomplete Countries" value="Andor" suggestions={countries} onChange={onChange} />
@@ -627,7 +627,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
-  test("Autosuggest - Pattern constraint", async () => {
+  test("Autosuggest — Pattern constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole, getByText } = render(
@@ -654,7 +654,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "Andorra", error: "Please match the format requested." });
   });
 
-  test("Autosuggest - Length constraint", async () => {
+  test("Autosuggest — Length constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByText, getByRole } = render(

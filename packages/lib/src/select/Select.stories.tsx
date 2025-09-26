@@ -7,6 +7,7 @@ import DxcFlex from "../flex/Flex";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
+import { waitFor } from "@testing-library/react";
 
 export default {
   title: "Select",
@@ -30,6 +31,13 @@ const single_options = [
   { label: "Option 02", value: "2" },
   { label: "Option 03", value: "3" },
   { label: "Option 04", value: "4" },
+];
+
+const single_options_virtualized = [
+  ...Array.from({ length: 10000 }, (_, i) => ({
+    label: `Option ${String(i + 1).padStart(2, "0")}`,
+    value: `${i + 1}`,
+  })),
 ];
 
 const group_options = [
@@ -359,6 +367,13 @@ const Select = () => (
   </>
 );
 
+const VirtualizedSelect = () => (
+  <ExampleContainer>
+    <Title title="Virtualized" theme="light" level={4} />
+    <DxcSelect label="Virtualized" options={single_options_virtualized} virtualizedHeight="300px" />
+  </ExampleContainer>
+);
+
 const SelectListbox = () => (
   <>
     <Title title="Listbox" theme="light" level={2} />
@@ -554,7 +569,7 @@ const SelectListbox = () => (
         options={options_material}
         visualFocusIndex={-1}
         lastOptionIndex={6}
-        multiple={true}
+        multiple
         optional={false}
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
@@ -703,6 +718,15 @@ export const Chromatic: Story = {
   },
 };
 
+export const Virtualization: Story = {
+  render: VirtualizedSelect,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole("combobox");
+    await userEvent.click(select);
+  },
+};
+
 export const ListboxStates: Story = {
   render: SelectListbox,
   play: async ({ canvasElement }) => {
@@ -777,6 +801,7 @@ export const ListboxOptionWithEllipsisTooltip: Story = {
   render: TooltipOption,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
     await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
   },

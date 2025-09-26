@@ -151,7 +151,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-    const width = useWidth(inputContainerRef.current);
+    const width = useWidth(inputContainerRef);
 
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
@@ -465,6 +465,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               </Popover.Trigger>
               <Popover.Portal>
                 <Popover.Content
+                  aria-label="Suggestions"
                   onCloseAutoFocus={(event) => {
                     // Avoid select to lose focus when the list is closed
                     event.preventDefault();

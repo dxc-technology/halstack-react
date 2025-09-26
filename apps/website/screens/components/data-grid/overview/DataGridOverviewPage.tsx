@@ -1,9 +1,11 @@
 import { DxcParagraph, DxcBulletedList, DxcTable, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/datagrid-anatomy.png";
+import reducedDataGrid from "./images/datagrid_reduced.png";
+import fullWidthDataGrid from "./images/datagrid_fullWidth.png";
+import Figure from "@/common/Figure";
 
 const sections = [
   {
@@ -24,7 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Datagrid's anatomy" />
+        <Image src={anatomy} alt="Datagrid anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header row:</strong> it's the top section of the datagrid that displays the column titles and can
@@ -198,6 +200,32 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>The datagrid's size adjusts to the available space.</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            When placing a datagrid inside a parent component, adjusting the parent component's width also
+            correspondingly adjusts datagrid width up to a certain extent. A datagrid's minimum width based on the
+            content of the column headers and the number of columns it has.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            The Datagrid will adjust its own scroll based on the content and the avalaible space. Careful planning for
+            structuring large datagrids (such as using a combination of managing column counts, using expandable
+            content, or even resizeable columns) can help minimize over reliance on scrollbars to display a lot of
+            information.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            For smaller screen sizes, managing information density becomes even more important because of limited space.
+            Leveraging features such as allowing for expandable rows or managing the number of columns during initial
+            display can go a long way towards maintaining a clean and manageable datagrid.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <>
@@ -280,9 +308,7 @@ const sections = [
 const DataGridOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/data-grid/overview/DataGridOverviewPage.tsx" />
     </DxcFlex>
   );

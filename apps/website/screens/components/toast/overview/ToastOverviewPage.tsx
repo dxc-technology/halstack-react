@@ -1,6 +1,5 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable, DxcTypography } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Figure from "@/common/Figure";
@@ -28,7 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Toast's anatomy" />
+        <Image src={anatomy} alt="Toast anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all elements of the toast, defining its size,
@@ -173,8 +172,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Displays general information or updates. (i.e. New message received. Check inbox. - New update
-                available. Download now.)
+                Displays general information or updates. (i.e. New message received. Check inbox. New update available.
+                Download now.)
               </td>
             </tr>
             <tr>
@@ -184,8 +183,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Indicates successful completion of an action. (i.e. Operation successful. Changes saved. - Profile
-                updated successfully.)
+                Indicates successful completion of an action. (i.e. Operation successful. Changes saved. Profile updated
+                successfully.)
               </td>
             </tr>
             <tr>
@@ -240,9 +239,7 @@ const sections = [
 
 const TextareaOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toast/overview/TextareaOverviewPage.tsx" />
   </DxcFlex>
 );

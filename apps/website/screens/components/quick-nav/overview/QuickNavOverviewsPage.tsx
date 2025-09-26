@@ -1,7 +1,6 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import anatomyImage from "./images/quickNav_anatomy.png";
 
@@ -44,6 +43,21 @@ const sections = [
     ),
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          When designing applications that contain a quick nav for smaller screens, make sure to set a minimum width for
+          the main content so that the quick nav does not overwhelm the main content.
+        </DxcParagraph>
+        <DxcParagraph>
+          Also consider hiding this component once a specific breakpoint has been reached to allow users to focus on the
+          primary content.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList>
@@ -77,9 +91,7 @@ const sections = [
 
 const QuickNavOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/overview/QuickNavOverviewPage.tsx" />
   </DxcFlex>
 );

@@ -21,7 +21,7 @@ const code = `() => {
             label: "Payment",
           },
         ]}
-      ></DxcWizard>
+      />
     </DxcInset>
   );
 }`;

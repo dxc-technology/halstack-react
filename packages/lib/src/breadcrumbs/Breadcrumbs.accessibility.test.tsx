@@ -3,6 +3,14 @@ import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+
+  unobserve() {}
+
+  disconnect() {}
+};
+
 const disabledRules = {
   rules: formatRules(rules),
 };

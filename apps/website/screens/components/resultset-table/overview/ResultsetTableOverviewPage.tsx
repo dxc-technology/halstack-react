@@ -1,9 +1,10 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import anatomy from "./images/resultset_table_anatomy.png";
+import resultsetTableOverflow from "./images/resultset_table_overflow.png";
+import resultsetTableResponsive from "./images/resultset_table_responsive.png";
 import Image from "@/common/Image";
 
 const sections = [
@@ -22,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="ResultsetTable's anatomy" />
+        <Image src={anatomy} alt="ResultsetTable anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header row:</strong> displays the column titles and defines the data categories for the table. It
@@ -130,6 +131,35 @@ const sections = [
     ],
   },
   {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          Changes to the screen size affects tables based on the default behavior of their parent components (ex.
+          container, flexbox, grid).
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            When placing a table inside a container component that adjusts based on screen width, the table's width also
+            correspondingly adjusts up to a certain minimum value based on its content and the number of columns.
+            <Image src={resultsetTableResponsive} alt="Resultset table overflow" />
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Using the overflow property of the container (to account for both horizontal and vertical adjustments) is
+            one way to preserve the size of the display of the table while using scrollbars for the adjustments needed
+            in place of continuous resizing.
+            <Image src={resultsetTableOverflow} alt="Resultset table responsive" />
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Consider using the reduced mode for tables that are information dense and need to minimize the spacing in
+            between table cells. This can help accommodate more information as the screen size is reduced up to a
+            certain extent.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList>
@@ -172,9 +202,7 @@ const sections = [
 
 const ResultsetTableOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/overview/ResultsetTableOverviewPage.tsx" />
   </DxcFlex>
 );

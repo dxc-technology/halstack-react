@@ -3,9 +3,9 @@ import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import anatomy from "./images/header_anatomy.png";
 import responsive from "./images/header_responsive.png";
+import responsiveDetails from "./images/header_responsive_details.png";
 import variants from "./images/header_variants.png";
 
 const sections = [
@@ -23,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Header's anatomy" />
+        <Image src={anatomy} alt="Header anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> a layout structure that wraps all Header elements, ensuring consistent
@@ -78,18 +78,19 @@ const sections = [
     ),
   },
   {
-    title: "Responsive version for mobile and tablet",
+    title: "Responsive version",
     content: (
       <>
         <DxcParagraph>
-          Since applications are accessed from a variety of devices, including laptops, tablets, and smartphones, it's
-          essential to design a Header that adapts fluidly to different screen sizes. The responsive Header should
-          maintain the core structure and visual hierarchy of the desktop version, ensuring a consistent and intuitive
-          user experience across all devices.
+          Applications are accessed on a wide range of devices, including laptops, tablets, and smartphones. To support
+          this, the header must be designed to scale responsively across screen sizes. The responsive header should
+          preserve the structural layout and visual hierarchy of the desktop version, ensuring consistency and usability
+          across all platforms.
         </DxcParagraph>
-        <Figure caption="Header menu responsive version">
-          <Image src={responsive} alt="Header menu responsive version" />
-        </Figure>
+        <DxcParagraph>
+          "On smaller screens, the header content is replaced by a button. Triggering this button opens a menu that
+          displays custom content."
+        </DxcParagraph>
       </>
     ),
   },
@@ -128,9 +129,7 @@ const sections = [
 
 const HeaderOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/header/overview/HeaderOverviewPage.tsx" />
   </DxcFlex>
 );

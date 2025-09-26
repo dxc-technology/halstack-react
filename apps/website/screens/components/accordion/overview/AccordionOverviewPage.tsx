@@ -1,6 +1,5 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/accordion_anatomy.png";
@@ -8,6 +7,7 @@ import Example from "@/common/example/Example";
 import basicExample from "./examples/basicExample";
 import nestedExample from "./examples/nestedExample";
 import placement from "./images/accordion_placement.png";
+import Link from "next/link";
 
 const sections = [
   {
@@ -24,7 +24,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Accordion's anatomy" />
+        <Image src={anatomy} alt="Accordion anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Header:</strong> serves as the trigger for expanding or collapsing the section. It acts as a summary
@@ -173,21 +173,21 @@ const sections = [
           </>
         ),
       },
-      {
-        title: "Mobile",
-        content: (
-          <>
-            <DxcParagraph>
-              In small devices, extremely long pages are detrimental to the user experience. Collapsing information
-              minimises excessive scrolling and gives an overview of the structure and content available on the page.
-            </DxcParagraph>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>In mobile use 100% of the available screen width</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </>
-        ),
-      },
     ],
+  },
+  {
+    title: "Responsive behavior",
+    content: (
+      <>
+        <DxcParagraph>
+          In small devices, extremely long pages are detrimental to the user experience. Collapsing information
+          minimises excessive scrolling and gives an overview of the structure and content available on the page.
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>In mobile use 100% of the available screen width</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
   {
     title: "Best practices",
@@ -223,7 +223,7 @@ const sections = [
               Each accordion header must include a clear, concise title that describes the content inside.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Use a sublabel only when additional context is necessary —it should not overpower the title.
+              Use a sublabel only when additional context is necessary — it should not overpower the title.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Avoid hiding essential or primary information inside an accordion panel.
@@ -304,9 +304,7 @@ const sections = [
 
 const AccordionOverviewPage = () => (
   <DxcFlex direction="column" gap="4rem">
-    <QuickNavContainerLayout>
-      <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    </QuickNavContainerLayout>
+    <QuickNavContainer sections={sections} startHeadingLevel={2} />
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/overview/AccordionOverviewPage.tsx" />
   </DxcFlex>
 );

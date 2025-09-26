@@ -5,6 +5,14 @@ import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import DxcHeader from "./Header";
 
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+
+  unobserve() {}
+
+  disconnect() {}
+};
+
 const disabledRules = {
   rules: formatRules(rules),
 };
