@@ -317,7 +317,7 @@ const ScrollingDialog = () => (
 const DialogWithDateInput = () => (
   <ExampleContainer expanded>
     <DxcDialog>
-      <DxcDateInput label="Date input" />
+      <DxcDateInput defaultValue="03-12-1995" label="Date input" />
     </DxcDialog>
   </ExampleContainer>
 );

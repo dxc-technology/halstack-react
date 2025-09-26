@@ -194,6 +194,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
       value,
+      virtualizedHeight,
     },
     ref
   ) => {
@@ -593,6 +594,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content
+              aria-label="Select options"
               onCloseAutoFocus={(event) => {
                 // Avoid select to lose focus when the list is closed
                 event.preventDefault();
@@ -611,6 +613,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 handleOptionOnClick={handleOptionOnClick}
                 handleGroupOnClick={handleSelectAllGroup}
                 handleSelectAllOnClick={handleSelectAllOnClick}
+                virtualizedHeight={virtualizedHeight}
                 id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}
