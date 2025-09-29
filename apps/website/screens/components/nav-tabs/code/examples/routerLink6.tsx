@@ -2,6 +2,7 @@ import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 import { forwardRef } from "react";
 
 const useNavigate = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (to: string, options?: { replace?: boolean; state?: any }) => {
     console.log(`Use navigate mock function called "${to}"`, options);
   };

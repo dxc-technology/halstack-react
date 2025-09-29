@@ -1,15 +1,8 @@
 import reactInternal from "./react-internal.js";
-import onlyWarn from "eslint-plugin-only-warn";
 import vercelNext from "@vercel/style-guide/eslint/next";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const compat = new FlatCompat();
 
 /** @type {import("eslint").Config[]} */
-export default [
-  ...reactInternal,
-  ...vercelNext,
-  {
-    plugins: { "only-warn": onlyWarn },
-    languageOptions: { globals: { React: true, JSX: true } },
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    linterOptions: { ignorePatterns: [".*.js", "node_modules/", "out/"] },
-  },
-];
+export default [...reactInternal, ...compat.config(vercelNext)];

@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -7,7 +7,6 @@ import Example from "@/common/example/Example";
 import basicExample from "./examples/basicExample";
 import nestedExample from "./examples/nestedExample";
 import placement from "./images/accordion_placement.png";
-import Link from "next/link";
 
 const sections = [
   {

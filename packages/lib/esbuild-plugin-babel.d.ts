@@ -6,7 +6,7 @@ declare module "esbuild-plugin-babel" {
     filter?: RegExp;
   }
 
-  function babel(options?: BabelPluginOptions): Plugin;
+  function babel(_options?: BabelPluginOptions): Plugin;
 
   export default babel;
 }

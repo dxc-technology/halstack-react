@@ -339,7 +339,7 @@ const DxcDataGrid = ({
 
   const reorderedColumns = useMemo(
     () =>
-      // Array ordered by columnsOrder
+      // Array sorted by columnsOrder
       columnsOrder.map((index) => columnsToRender[index]!),
     [columnsOrder, columnsToRender]
   );
