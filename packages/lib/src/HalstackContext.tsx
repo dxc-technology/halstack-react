@@ -34,7 +34,7 @@ type ThemeType = Record<string, string | number>;
 type HalstackProviderPropsType = {
   labels?: DeepPartial<TranslatedLabels>;
   children: ReactNode;
-  opinionatedTheme: ThemeType;
+  opinionatedTheme?: ThemeType;
 };
 
 const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
@@ -55,7 +55,7 @@ const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
   }}
 `;
 
-const createCoreTheme = (opinionatedTheme: ThemeType = {}) => {
+const createCoreTheme = (opinionatedTheme: ThemeType | undefined = {}) => {
   const newTheme: ThemeType = {};
   Object.entries(coreTokens).forEach(([key, value]) => {
     newTheme[key] = opinionatedTheme[key] ?? value;
