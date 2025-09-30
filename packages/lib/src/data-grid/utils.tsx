@@ -120,6 +120,19 @@ export const renderExpandableTrigger = (
 );
 
 /**
+ * Determines if the given row is a `HierarchyGridRow`.
+ *
+ * A `HierarchyGridRow` is identified by having a `childRows` property
+ * that is an array with at least one element.
+ *
+ * @param {GridRow} row - The row to check.
+ * @returns {row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] }}
+ *          Returns `true` if the row is a `HierarchyGridRow` with `childRows` defined, otherwise `false`.
+ */
+const isHierarchyGridRow = (row: GridRow): row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] } =>
+  Array.isArray(row.childRows) && row.childRows.length > 0;
+
+/**
  * Renders a trigger for hierarchical row expansion in the grid.
  * @param {HierarchyGridRow[]} rows - List of all hierarchy grid rows.
  * @param {HierarchyGridRow} triggerRow - Row object with children that can be expanded or collapsed.
@@ -540,19 +553,6 @@ const getChildrenSelection = (
     }
   });
 };
-
-/**
- * Determines if the given row is a `HierarchyGridRow`.
- *
- * A `HierarchyGridRow` is identified by having a `childRows` property
- * that is an array with at least one element.
- *
- * @param {GridRow} row - The row to check.
- * @returns {row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] }}
- *          Returns `true` if the row is a `HierarchyGridRow` with `childRows` defined, otherwise `false`.
- */
-const isHierarchyGridRow = (row: GridRow): row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] } =>
-  Array.isArray(row.childRows) && row.childRows.length > 0;
 
 /**
  * Check if the parent and its parent should be selected/unselected
