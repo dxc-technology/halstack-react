@@ -24,7 +24,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for semantic error", async () => {
     const { container } = render(
@@ -41,7 +41,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for semantic warning", async () => {
     const { container } = render(
@@ -58,7 +58,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for semantic success", async () => {
     const { container } = render(
@@ -75,7 +75,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for semantic info", async () => {
     const { container } = render(
@@ -92,7 +92,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
@@ -109,7 +109,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode for semantic error", async () => {
     const { container } = render(
@@ -127,7 +127,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode for semantic warning", async () => {
     const { container } = render(
@@ -145,7 +145,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode for semantic success", async () => {
     const { container } = render(
@@ -163,7 +163,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode for semantic info", async () => {
     const { container } = render(
@@ -181,7 +181,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for secondary mode", async () => {
     const { container } = render(
@@ -197,7 +197,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for secondary mode for semantic error", async () => {
     const { container } = render(
@@ -214,7 +214,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for secondary mode for semantic warning", async () => {
     const { container } = render(
@@ -231,7 +231,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for secondary mode for semantic success", async () => {
     const { container } = render(
@@ -248,7 +248,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for secondary mode for semantic info", async () => {
     const { container } = render(
@@ -265,7 +265,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for tertiary mode", async () => {
     const { container } = render(
@@ -281,7 +281,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for tertiary mode for semantic error", async () => {
     const { container } = render(
@@ -298,7 +298,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for tertiary mode for semantic warning", async () => {
     const { container } = render(
@@ -315,7 +315,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for tertiary mode for semantic success", async () => {
     const { container } = render(
@@ -332,7 +332,7 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for tertiary mode for semantic info", async () => {
     const { container } = render(
@@ -349,6 +349,6 @@ describe("Button component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

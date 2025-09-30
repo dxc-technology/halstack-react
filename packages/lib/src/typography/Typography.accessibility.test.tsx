@@ -34,7 +34,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different letter spacings", async () => {
     const { container } = render(
@@ -60,7 +60,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different line heights", async () => {
     const { container } = render(
@@ -86,7 +86,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different font weights", async () => {
     const { container } = render(
@@ -106,7 +106,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different text decorations", async () => {
     const { container } = render(
@@ -120,7 +120,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different font families", async () => {
     const { container } = render(
@@ -134,7 +134,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different font styles", async () => {
     const { container } = render(
@@ -148,7 +148,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different text alignments", async () => {
     const { container } = render(
@@ -165,7 +165,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different white-spaces", async () => {
     const { container } = render(
@@ -186,7 +186,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different displays", async () => {
     const { container } = render(
@@ -202,7 +202,7 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for different text overflows", async () => {
     const { container } = render(
@@ -225,6 +225,6 @@ describe("Typography component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

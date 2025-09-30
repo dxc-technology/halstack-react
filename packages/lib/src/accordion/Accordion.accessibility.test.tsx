@@ -37,7 +37,7 @@ describe("Accordion component accessibility tests", () => {
       </DxcAccordion>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it("Should not have basic accessibility issues with badge and status light", async () => {
@@ -55,7 +55,7 @@ describe("Accordion component accessibility tests", () => {
       </DxcAccordion>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it("Should not have basic accessibility issues for disabled mode", async () => {
@@ -73,7 +73,7 @@ describe("Accordion component accessibility tests", () => {
       </DxcAccordion>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it("Should not have basic accessibility issues for disabled mode with badge and status light", async () => {
@@ -92,6 +92,6 @@ describe("Accordion component accessibility tests", () => {
       </DxcAccordion>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

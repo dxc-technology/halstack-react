@@ -24,7 +24,7 @@
     "storybook": "storybook dev -p 6006",
     "test-storybook": "rm -rf node_modules/.cache/storybook && vitest --project=storybook --coverage",
     "test": "jest --env=jsdom --config=./jest.config.ts",
-    "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.ts",
+    "test:accessibility": "vitest run --config=vitest.config.accessibility.ts",
     "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2"
@@ -72,7 +72,6 @@
     "@types/color": "^3.0.6",
     "@types/eslint": "^9.6.1",
     "@types/jest": "^29.5.12",
-    "@types/jest-axe": "^3.5.9",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
@@ -93,13 +92,13 @@
     "eslint-plugin-storybook": "^9.1.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
-    "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "playwright": "^1.54.1",
     "storybook": "^9.1.8",
     "storybook-addon-pseudo-states": "^9.0.17",
     "tsup": "^8.1.0",
     "typescript": "^5.6.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "vitest-axe": "^0.1.0"
   }
 }

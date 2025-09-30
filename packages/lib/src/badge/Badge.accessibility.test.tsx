@@ -25,7 +25,7 @@ describe("Badge component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for notification mode", async () => {
     const { container } = render(
@@ -43,6 +43,6 @@ describe("Badge component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

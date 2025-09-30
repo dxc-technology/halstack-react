@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcTextInput from "./TextInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { vi } from "vitest";
 
 // TODO: REMOVE
 import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
@@ -48,10 +49,10 @@ const action = {
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe("TextInput component accessibility tests", () => {
@@ -75,7 +76,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     // baseElement is needed when using React Portals
@@ -98,7 +99,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for suggestions mode", async () => {
     // baseElement is needed when using React Portals
@@ -121,7 +122,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for pattern mode", async () => {
     // baseElement is needed when using React Portals
@@ -144,7 +145,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     // baseElement is needed when using React Portals
@@ -167,7 +168,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     // baseElement is needed when using React Portals
@@ -190,7 +191,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
     // baseElement is needed when using React Portals
@@ -212,7 +213,7 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     // baseElement is needed when using React Portals
@@ -233,6 +234,6 @@ describe("TextInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });
