@@ -1,4 +1,4 @@
-import { Children, useContext } from "react";
+import { Children } from "react";
 import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";

@@ -1,11 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
-import { userEvent, within } from "@storybook/test";
-import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Breadcrumbs",
@@ -15,7 +15,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -159,6 +159,6 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dropdowns = canvas.getAllByRole("button");
-    dropdowns[2] != null && (await userEvent.click(dropdowns[2]));
+    if (dropdowns[2] != null) await userEvent.click(dropdowns[2]);
   },
 };

@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import DxcBulletedList from "./BulletedList";
-import DxcIcon from "../icon/Icon";
 
 describe("Bulleted list component tests", () => {
   test("The component renders properly", () => {

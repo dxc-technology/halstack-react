@@ -4,20 +4,31 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "turbo lint",
+    "format": "prettier --write .",
+    "lint": "turbo lint --",
     "storybook": "turbo storybook",
     "storybook:accessibility": "turbo storybook:accessibility",
     "storybook:accessibility:ci": "turbo storybook:accessibility:ci",
     "test": "turbo test",
     "test:accessibility": "turbo test:accessibility",
+    "prepare": "husky",
     "test:watch": "turbo test:watch"
   },
   "devDependencies": {
+    "husky": "^9.0.11",
+    "identity-obj-proxy": "^3.0.0",
+    "lint-staged": "^15.2.7",
     "@types/color": "^4.2.0",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@storybook/addon-a11y": "^8.3.2",
+    "@storybook/addon-essentials": "^8.3.2",
+    "@storybook/addon-interactions": "^8.3.2",
+    "@storybook/addon-links": "^8.3.2",
+    "@storybook/addon-viewport": "^8.3.2",
+    "storybook-addon-pseudo-states": "^3.1.1",
+    "@chromatic-com/storybook": "^1.9.0"
   },
   "engines": {
     "node": ">=18"

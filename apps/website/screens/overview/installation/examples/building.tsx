@@ -16,7 +16,11 @@ const code = `() => (
 );`;
 
 const scope = {
-  DxcButton, DxcFlex, DxcHeading, DxcInset, DxcParagraph
+  DxcButton,
+  DxcFlex,
+  DxcHeading,
+  DxcInset,
+  DxcParagraph,
 };
 
 export default { code, scope };

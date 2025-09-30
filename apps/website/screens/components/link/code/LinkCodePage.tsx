@@ -196,8 +196,8 @@ const sections = [
                   >
                     React Router v6
                   </DxcLink>{" "}
-                  and higher, the prop <Code>component</Code> is no longer available so it is necessary to use hooks provided by the
-                  newer versions of{" "}
+                  and higher, the prop <Code>component</Code> is no longer available so it is necessary to use hooks
+                  provided by the newer versions of{" "}
                   <DxcLink href="https://reactrouter.com/api/hooks/useNavigate" newWindow>
                     React Router
                   </DxcLink>

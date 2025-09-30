@@ -3,16 +3,11 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0, x: 0, y: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Tooltip component accessibility tests", () => {
   it("Should not have basic accessibility issues for bottom position", async () => {

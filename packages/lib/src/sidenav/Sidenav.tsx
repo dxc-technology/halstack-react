@@ -10,7 +10,7 @@ import SidenavPropsType, {
   SidenavSectionPropsType,
   SidenavTitlePropsType,
 } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 
@@ -221,7 +221,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     return (
       <SidenavLink
         selected={selected}
-        href={href ? href : undefined}
+        href={href || undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}

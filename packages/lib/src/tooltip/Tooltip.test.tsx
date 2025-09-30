@@ -1,19 +1,14 @@
-import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
+import DxcButton from "../button/Button";
+import "@testing-library/jest-dom";
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0, x: 0, y: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Tooltip component tests", () => {
   test("Tooltip does not render by default", async () => {
@@ -36,7 +31,8 @@ describe("Tooltip component tests", () => {
     );
     const triggerElement = getByText("Hoverable button");
     userEvent.hover(triggerElement);
-    await screen.findByRole("tooltip", { name: "Tooltip Test" });
+    const tooltipElement = await screen.findByRole("tooltip", { name: "Tooltip Test" });
+    expect(tooltipElement).toBeInTheDocument();
   });
 
   test("Tooltip stops being rendered when hover is stopped", async () => {

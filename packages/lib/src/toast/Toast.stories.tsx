@@ -1,4 +1,6 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -6,8 +8,6 @@ import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { Meta, StoryObj } from "@storybook/react";
 import DxcDialog from "../dialog/Dialog";
 import DxcInset from "../inset/Inset";
 import { screen } from "@testing-library/react";
@@ -245,7 +245,7 @@ const Screens = () => {
             toast.success({
               message:
                 "This is another very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
-              action: action,
+              action,
             });
           }}
         />

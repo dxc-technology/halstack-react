@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import DxcPasswordInput from "./PasswordInput";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Password Input",

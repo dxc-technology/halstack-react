@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
-import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Application Layout",
@@ -156,21 +156,19 @@ const ApplicationLayoutCustomFooter = () => (
 );
 
 const Tooltip = () => (
-  <>
-    <DxcApplicationLayout
-      sidenav={
-        <DxcApplicationLayout.SideNav>
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
-        </DxcApplicationLayout.SideNav>
-      }
-    >
-      <DxcApplicationLayout.Main>
-        <p>Main Content</p>
-      </DxcApplicationLayout.Main>
-    </DxcApplicationLayout>
-  </>
+  <DxcApplicationLayout
+    sidenav={
+      <DxcApplicationLayout.SideNav>
+        <DxcApplicationLayout.SideNav.Section>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav.Section>
+      </DxcApplicationLayout.SideNav>
+    }
+  >
+    <DxcApplicationLayout.Main>
+      <p>Main Content</p>
+    </DxcApplicationLayout.Main>
+  </DxcApplicationLayout>
 );
 
 type Story = StoryObj<typeof DxcApplicationLayout>;

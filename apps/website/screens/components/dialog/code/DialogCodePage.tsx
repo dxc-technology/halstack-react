@@ -55,8 +55,8 @@ const sections = [
               <TableCode>{"() => void"}</TableCode>
             </td>
             <td>
-              This function will be called when the user clicks on the background of the modal. The responsibility of hiding the
-              dialog lies with the user.
+              This function will be called when the user clicks on the background of the modal. The responsibility of
+              hiding the dialog lies with the user.
             </td>
             <td>-</td>
           </tr>

@@ -178,8 +178,8 @@ const sections = [
                 should complement each other to enhance usability.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid using
-                two icons of the same type.
+                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid
+                using two icons of the same type.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>

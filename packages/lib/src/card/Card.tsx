@@ -42,7 +42,10 @@ const CardContainer = styled.div<{
   }
 `;
 
-const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; imageCover: CardPropsType["imageCover"] }>`
+const TagImage = styled.img<{
+  imagePadding: CardPropsType["imagePadding"];
+  imageCover: CardPropsType["imageCover"];
+}>`
   height: ${({ imagePadding }) =>
     !imagePadding
       ? "100%"
@@ -102,7 +105,7 @@ const DxcCard = ({
       href={linkHref ? linkHref : undefined}
       shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
     >
-      <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>
+      <CardContainer hasAction={!!(onClick || linkHref)} imagePosition={imageSrc ? imagePosition : "none"}>
         {imageSrc && (
           <ImageContainer imageBgColor={imageBgColor}>
             <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />

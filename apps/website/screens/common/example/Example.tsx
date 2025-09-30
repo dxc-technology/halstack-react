@@ -43,11 +43,11 @@ type ExamplePropTypes = {
   actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: {
-    scope: Record<string, any>;
+    scope: Record<string, unknown>;
     code: string;
   };
 };
-
+//
 const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
   const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);

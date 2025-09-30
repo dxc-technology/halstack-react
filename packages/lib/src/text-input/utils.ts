@@ -17,8 +17,22 @@ export const makeCancelable = (promise: Promise<string[]>) => {
   let hasCanceled_ = false;
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
-      (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
+      (val) => {
+        if (hasCanceled_) {
+          reject(new Error("Is canceled"));
+        } else {
+          resolve(val);
+        }
+      },
+      (promiseError) => {
+        if (hasCanceled_) {
+          reject(new Error("Is canceled"));
+        } else if (promiseError instanceof Error) {
+          reject(promiseError);
+        } else {
+          reject(new Error(String(promiseError)));
+        }
+      }
     );
   });
   return {
@@ -57,7 +71,9 @@ export const transformSpecialChars = (str: string) => {
     const regexAsString = specialCharsRegex.toString().split("");
     const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
     uniqueSpecialChars.forEach((specialChar) => {
-      if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+      if (str.includes(specialChar)) {
+        value = value.replace(specialChar, `\\${specialChar}`);
+      }
     });
   }
   return value;

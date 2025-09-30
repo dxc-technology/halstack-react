@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
 import Section from "./Section";
 import ContextualMenuContext from "./ContextualMenuContext";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 import { addIdToItems, isSection } from "./utils";
 import SubMenu from "./SubMenu";
 
@@ -34,10 +34,12 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef.current;
-      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']") as HTMLButtonElement;
-      contextualMenuEl?.scrollTo?.({
-        top: (selectedItemEl?.offsetTop ?? 0) - (contextualMenuEl?.clientHeight ?? 0) / 2,
-      });
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']");
+      if (selectedItemEl instanceof HTMLButtonElement) {
+        contextualMenuEl?.scrollTo?.({
+          top: (selectedItemEl?.offsetTop ?? 0) - (contextualMenuEl?.clientHeight ?? 0) / 2,
+        });
+      }
       setFirstUpdate(false);
     }
   }, [firstUpdate, selectedItemId]);

@@ -40,7 +40,7 @@ describe("Accordion component accessibility tests", () => {
     expect(results).toHaveNoViolations();
   });
 
-  it("Should not have basic accessibility issues", async () => {
+  it("Should not have basic accessibility issues with badge and status light", async () => {
     const { container } = render(
       <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem
@@ -76,7 +76,7 @@ describe("Accordion component accessibility tests", () => {
     expect(results).toHaveNoViolations();
   });
 
-  it("Should not have basic accessibility issues for disabled mode", async () => {
+  it("Should not have basic accessibility issues for disabled mode with badge and status light", async () => {
     const { container } = render(
       <DxcAccordion defaultIndexActive={0} independent>
         <DxcAccordion.AccordionItem

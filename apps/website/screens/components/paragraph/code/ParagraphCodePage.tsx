@@ -12,25 +12,29 @@ const sections = [
     title: "Props",
     content: (
       <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-        <tr>
-          <td>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="required" />
-              children
-            </DxcFlex>
-          </td>
-          <td>
-            <TableCode>React.ReactNode</TableCode>
-          </td>
-          <td>Text to be displayed in the paragraph.</td>
-          <td>-</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Text to be displayed in the paragraph.</td>
+            <td>-</td>
+          </tr>
+        </tbody>
       </DxcTable>
     ),
   },
