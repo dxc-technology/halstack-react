@@ -9,7 +9,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
 
 export default {
-  title: "Header",
+  title: "Resultset Table",
   component: DxcResultsetTable,
   parameters: {
     a11y: {
