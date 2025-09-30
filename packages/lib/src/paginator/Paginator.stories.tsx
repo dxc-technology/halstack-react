@@ -84,4 +84,7 @@ export const ResponsivePaginator: Story = {
     viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
     chromatic: { viewports: [400] },
   },
+  globals: {
+    viewport: { value: "resizedScreen", isRotated: false },
+  },
 };
