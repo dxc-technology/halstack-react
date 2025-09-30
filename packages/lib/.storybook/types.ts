@@ -31,7 +31,7 @@ interface A11yParameters {
   options?: Record<string, unknown>;
 }
 
-export interface StorybookParameters {
+interface StorybookParameters {
   controls: {
     matchers: {
       color: RegExp;
