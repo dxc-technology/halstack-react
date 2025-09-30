@@ -11,15 +11,7 @@ const __dirname = dirname(__filename);
 /** @type {import("eslint").Config[]} */
 export default [
   { ignores: ["dist/**", "coverage/**", "eslint.config.js"] },
-  {
-    plugins: { "@typescript-eslint": tsPlugin },
-    rules: {
-      ...tsPlugin.configs.recommended.rules,
-      ...tsPlugin.configs["recommended-requiring-type-checking"].rules,
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-    },
-  },
+  ...libraryConfig,
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -33,6 +25,12 @@ export default [
         ...globals.node,
       },
     },
+    plugins: { "@typescript-eslint": tsPlugin },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+      ...tsPlugin.configs["recommended-requiring-type-checking"].rules,
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-unused-vars": "off",
+    },
   },
-  ...libraryConfig,
 ];

@@ -25,9 +25,4 @@ export default [
       },
     },
   },
-  {
-    files: ["**/types.{ts,js}"],
-    plugins: { storybook },
-    rules: { "no-unused-vars": "off" },
-  },
 ];

@@ -13,6 +13,7 @@ export default [
   {
     ignores: ["out/**", ".next/**", "eslint.config.js"],
   },
+  ...nextConfig,
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -26,16 +27,13 @@ export default [
         ...globals.node,
       },
     },
-  },
-  {
     plugins: { "@typescript-eslint": tsPlugin },
     rules: {
       ...tsPlugin.configs.recommended.rules,
       ...tsPlugin.configs["recommended-requiring-type-checking"].rules,
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-unused-vars": "off",
       "@typescript-eslint/triple-slash-reference": "off",
     },
   },
-  ...nextConfig,
 ];

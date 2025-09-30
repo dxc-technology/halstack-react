@@ -23,7 +23,6 @@ import {
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
 import scrollbarStyles from "../styles/scroll";
-
 const DataGridContainer = styled.div<{
   paginatorRendered: boolean;
 }>`
