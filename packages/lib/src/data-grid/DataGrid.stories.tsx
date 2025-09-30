@@ -861,12 +861,10 @@ const DataGridControlled = () => {
 };
 
 const DataGridSort = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
-    </ExampleContainer>
-  </>
+  <ExampleContainer>
+    <Title title="Default" theme="light" level={4} />
+    <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+  </ExampleContainer>
 );
 
 const DataGridPaginator = () => {
