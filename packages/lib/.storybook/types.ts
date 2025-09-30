@@ -13,7 +13,7 @@ interface Viewport {
 interface ViewportMap {
   [key: string]: Viewport;
 }
-export interface ViewportParameters {
+interface ViewportParameters {
   viewports: ViewportMap;
   defaultViewport: string;
 }
