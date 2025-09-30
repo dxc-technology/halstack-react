@@ -47,7 +47,7 @@ type ExamplePropTypes = {
     code: string;
   };
 };
-// 
+//
 const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
   const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
