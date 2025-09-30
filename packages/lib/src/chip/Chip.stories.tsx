@@ -1,8 +1,8 @@
-import { userEvent } from "@storybook/test";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import Title from "../../.storybook/components/Title";
-import DxcChip from "./Chip";
 import { Meta, StoryObj } from "@storybook/react";
+import { userEvent } from "@storybook/test";
+import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DxcChip from "./Chip";
 
 export default {
   title: "Chip",

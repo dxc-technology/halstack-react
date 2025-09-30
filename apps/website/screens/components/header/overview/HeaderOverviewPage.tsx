@@ -4,8 +4,6 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import anatomy from "./images/header_anatomy.png";
-import responsive from "./images/header_responsive.png";
-import responsiveDetails from "./images/header_responsive_details.png";
 import variants from "./images/header_variants.png";
 
 const sections = [

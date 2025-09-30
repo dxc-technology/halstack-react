@@ -1,15 +1,15 @@
+import { isValidElement, useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
-import { GridColumn, GridRow, HierarchyGridRow } from "./types";
-import { isValidElement, useState } from "react";
-import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import { GridColumn, HierarchyGridRow } from "./types";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
-import { Meta, StoryObj } from "@storybook/react";
 import { isKeyOfRow } from "./utils";
 
 export default {
@@ -20,7 +20,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -450,15 +450,15 @@ const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
       setTimeout(() => {
         resolve([
           {
-            name: `${triggerRow.name} Child 1`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-1`,
+            name: `${triggerRow.name as string} Child 1`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-1`,
             childrenTrigger,
           },
           {
-            name: `${triggerRow.name} Child 2`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-2`,
+            name: `${triggerRow.name as string} Child 2`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-2`,
             childrenTrigger,
           },
         ] as unknown as HierarchyGridRow[]);
@@ -643,7 +643,7 @@ const customSortColumns: GridColumn[] = [
     summaryKey: "total",
     sortable: true,
     sortFn: (a, b) => {
-      if (isValidElement(a) && isValidElement(b)) {
+      if (isValidElement<{ label: string }>(a) && isValidElement<{ label: string }>(b)) {
         return a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0;
       }
       return 0;
@@ -657,27 +657,27 @@ const customSortRows = [
     task: "Task 1",
     complete: 46,
     priority: "High",
-    component: <DxcBadge label={"CCC"} />,
+    component: <DxcBadge label="CCC" />,
   },
   {
     id: 2,
     task: "Task 2",
     complete: 51,
     priority: "High",
-    component: <DxcBadge label={"BBB"} />,
+    component: <DxcBadge label="BBB" />,
   },
   {
     id: 3,
     task: "Task 3",
     complete: 40,
     priority: "High",
-    component: <DxcBadge label={"AAA"} />,
+    component: <DxcBadge label="AAA" />,
   },
   {
     id: 4,
     task: "Task 4",
     complete: 10,
-    component: <DxcBadge label={"EEE"} />,
+    component: <DxcBadge label="EEE" />,
     priority: "High",
   },
   {
@@ -685,21 +685,21 @@ const customSortRows = [
     task: "Task 5",
     complete: 68,
     priority: "High",
-    component: <DxcBadge label={"DDD"} />,
+    component: <DxcBadge label="DDD" />,
   },
   {
     id: 6,
     task: "Task 6",
     complete: 37,
     priority: "High",
-    component: <DxcBadge label={"FFF"} />,
+    component: <DxcBadge label="FFF" />,
   },
   {
     id: 7,
     task: "Task 7",
     complete: 73,
     priority: "Medium",
-    component: <DxcBadge label={"GGG"} />,
+    component: <DxcBadge label="GGG" />,
   },
 ];
 
@@ -816,8 +816,8 @@ const DataGridControlled = () => {
             if (sortColumn) {
               const { columnKey, direction } = sortColumn;
               console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => {
-                return currentRows.sort((a, b) => {
+              setRowsControlled((currentRows) =>
+                currentRows.sort((a, b) => {
                   if (isKeyOfRow(columnKey, a) && isKeyOfRow(columnKey, b)) {
                     const valueA = a[columnKey];
                     const valueB = b[columnKey];
@@ -833,8 +833,8 @@ const DataGridControlled = () => {
                   } else {
                     return 0;
                   }
-                });
-              });
+                })
+              );
             } else {
               console.log("Removed sorting criteria");
               setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
@@ -860,16 +860,12 @@ const DataGridControlled = () => {
   );
 };
 
-const DataGridSort = () => {
-  return (
-    <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
-      </ExampleContainer>
-    </>
-  );
-};
+const DataGridSort = () => (
+  <ExampleContainer>
+    <Title title="Default" theme="light" level={4} />
+    <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+  </ExampleContainer>
+);
 
 const DataGridPaginator = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
@@ -1083,27 +1079,41 @@ export const DataGridSortedWithChildren: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const checkbox0 = canvas.getAllByRole("checkbox")[0];
-    checkbox0 && (await userEvent.click(checkbox0));
+    if (checkbox0) {
+      await userEvent.click(checkbox0);
+    }
     await userEvent.click(canvas.getByText("Root Node 1"));
     await userEvent.click(canvas.getByText("Root Node 2"));
     await userEvent.click(canvas.getByText("Child Node 1.1"));
     await userEvent.click(canvas.getByText("Child Node 2.1"));
     let columnheader1 = canvas.getAllByRole("columnheader")[1];
-    columnheader1 && (await userEvent.click(columnheader1));
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
     columnheader1 = canvas.getAllByRole("columnheader")[1];
-    columnheader1 && (await userEvent.click(columnheader1));
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
     const checkbox5 = canvas.getAllByRole("checkbox")[5];
-    checkbox5 && (await userEvent.click(checkbox5));
+    if (checkbox5) {
+      await userEvent.click(checkbox5);
+    }
     const checkbox13 = canvas.getAllByRole("checkbox")[13];
-    checkbox13 && (await userEvent.click(checkbox13));
+    if (checkbox13) {
+      await userEvent.click(checkbox13);
+    }
     await userEvent.click(canvas.getByText("Paginated Node 1"));
     await userEvent.click(canvas.getByText("Paginated Node 2"));
     await userEvent.click(canvas.getByText("Paginated Node 1.1"));
     await userEvent.click(canvas.getByText("Paginated Node 2.1"));
     const columnheader4 = canvas.getAllByRole("columnheader")[4];
-    columnheader4 && (await userEvent.click(columnheader4));
+    if (columnheader4) {
+      await userEvent.click(columnheader4);
+    }
     const checkbox18 = canvas.getAllByRole("checkbox")[18];
-    checkbox18 && (await userEvent.click(checkbox18));
+    if (checkbox18) {
+      await userEvent.click(checkbox18);
+    }
   },
 };
 
@@ -1112,25 +1122,45 @@ export const DataGridSortedExpanded: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button0 = canvas.getAllByRole("button")[0];
-    button0 && (await userEvent.click(button0));
+    if (button0) {
+      await userEvent.click(button0);
+    }
     const button1 = canvas.getAllByRole("button")[1];
-    button1 && (await userEvent.click(button1));
+    if (button1) {
+      await userEvent.click(button1);
+    }
     const columnHeaders4 = canvas.getAllByRole("columnheader")[4];
-    columnHeaders4 && (await userEvent.click(columnHeaders4));
+    if (columnHeaders4) {
+      await userEvent.click(columnHeaders4);
+    }
     const button9 = canvas.getAllByRole("button")[9];
-    button9 && (await userEvent.click(button9));
+    if (button9) {
+      await userEvent.click(button9);
+    }
     const button10 = canvas.getAllByRole("button")[10];
-    button10 && (await userEvent.click(button10));
+    if (button10) {
+      await userEvent.click(button10);
+    }
     const columnHeaders10 = canvas.getAllByRole("columnheader")[10];
-    columnHeaders10 && (await userEvent.click(columnHeaders10));
+    if (columnHeaders10) {
+      await userEvent.click(columnHeaders10);
+    }
     const button16 = canvas.getAllByRole("button")[16];
-    button16 && (await userEvent.click(button16));
+    if (button16) {
+      await userEvent.click(button16);
+    }
     const button43 = canvas.getAllByRole("button")[43];
-    button43 && (await userEvent.click(button43));
+    if (button43) {
+      await userEvent.click(button43);
+    }
     const button36 = canvas.getAllByRole("button")[36];
-    button36 && (await userEvent.click(button36));
+    if (button36) {
+      await userEvent.click(button36);
+    }
     const button37 = canvas.getAllByRole("button")[37];
-    button37 && (await userEvent.click(button37));
+    if (button37) {
+      await userEvent.click(button37);
+    }
   },
 };
 
@@ -1139,6 +1169,6 @@ export const UnknownUniqueId: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const editorCell = canvas.getAllByText("Task 1")[0];
-    editorCell && (await userEvent.dblClick(editorCell));
+    if (editorCell) await userEvent.dblClick(editorCell);
   },
 };

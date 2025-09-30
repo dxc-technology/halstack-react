@@ -35,6 +35,6 @@ export type Props = {
   whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
 };
 
-export default Props;
-
 export type TypographyContextProps = Required<Omit<Props, "children">>;
+
+export default Props;

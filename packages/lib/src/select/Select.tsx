@@ -40,7 +40,7 @@ import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
-import { inputStylesByState } from "../styles/forms/inputStylesByState";
+import inputStylesByState from "../styles/forms/inputStylesByState";
 
 const SelectContainer = styled.div<{
   margin: SelectPropsType["margin"];
@@ -633,5 +633,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     );
   }
 );
+
+DxcSelect.displayName = "DxcSelect";
 
 export default DxcSelect;

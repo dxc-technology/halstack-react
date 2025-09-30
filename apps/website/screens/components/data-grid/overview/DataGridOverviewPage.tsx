@@ -1,11 +1,8 @@
-import { DxcParagraph, DxcBulletedList, DxcTable, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import anatomy from "./images/datagrid-anatomy.png";
-import reducedDataGrid from "./images/datagrid_reduced.png";
-import fullWidthDataGrid from "./images/datagrid_fullWidth.png";
-import Figure from "@/common/Figure";
 
 const sections = [
   {

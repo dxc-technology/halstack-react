@@ -1,12 +1,18 @@
-import { ReactNode, ReactElement } from "react";
+import { ReactNode, ReactElement, isValidElement } from "react";
 
-export const getPropInChild = (child: ReactNode, propName: string): string | undefined => {
-  if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
-    if (childWithProps.props[propName]) {
-      return childWithProps.props[propName];
-    } else if (childWithProps.props.children) {
-      return getPropInChild(childWithProps.props.children, propName);
+type ElementWithChildren = ReactElement<{ children?: ReactNode; [key: string]: unknown }>;
+
+export const getPropInChild = (child: ReactNode, propName: string): string | boolean | undefined => {
+  if (isValidElement(child)) {
+    const el = child as ElementWithChildren;
+    const value = el.props[propName];
+
+    if (typeof value === "string" || typeof value === "boolean") {
+      return value;
+    }
+
+    if (el.props.children) {
+      return getPropInChild(el.props.children, propName);
     }
   }
 };
@@ -14,11 +20,16 @@ export const getPropInChild = (child: ReactNode, propName: string): string | und
 export const getLabelFromTab = (child: ReactNode): string | undefined => {
   if (typeof child === "string") {
     return child;
-  } else if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
-    return Array.isArray(childWithProps.props.children)
-      ? getLabelFromTab(childWithProps.props.children[0])
-      : getLabelFromTab(childWithProps.props.children);
+  }
+  if (isValidElement(child)) {
+    const el = child as ElementWithChildren;
+    const children = el.props.children;
+
+    if (Array.isArray(children) && isValidElement(children[0] as ReactNode)) {
+      return getLabelFromTab(children[0] as ReactNode);
+    }
+
+    return getLabelFromTab(children);
   }
 };
 

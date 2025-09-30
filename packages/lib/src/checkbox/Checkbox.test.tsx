@@ -35,10 +35,10 @@ describe("Checkbox component tests", () => {
     fireEvent.click(checkbox);
     expect(onChange).not.toHaveBeenCalled();
   });
-  test("Read-only checkbox sends its value on submit", async () => {
-    const handlerOnSubmit = jest.fn((e) => {
+  test("Read-only checkbox sends its value on submit", () => {
+    const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.currentTarget);
       const formProps = Object.fromEntries(formData);
       expect(formProps).toStrictEqual({ data: "checked" });
     });
@@ -49,7 +49,7 @@ describe("Checkbox component tests", () => {
       </form>
     );
     const submit = getByText("Submit");
-    await userEvent.click(submit);
+    userEvent.click(submit);
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
   test("Read-only checkbox doesn't change its value with Space key", () => {
@@ -58,7 +58,12 @@ describe("Checkbox component tests", () => {
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();
-    fireEvent.keyDown(checkbox, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(checkbox, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     expect(onChange).not.toHaveBeenCalled();
   });
   test("Uncontrolled checkbox", () => {
@@ -97,7 +102,7 @@ describe("Checkbox component tests", () => {
     expect(checkbox.getAttribute("aria-checked")).toBe("true");
     expect(submitInput?.checked).toBe(true);
   });
-  test("Test disable keyboard and mouse interactions", () => {
+  test("Disable keyboard and mouse interactions", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, container } = render(
       <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />
@@ -113,13 +118,18 @@ describe("Checkbox component tests", () => {
     userEvent.tab();
     expect(document.activeElement === input).toBeFalsy();
   });
-  test("Test keyboard interactions", () => {
+  test("Keyboard interactions", () => {
     const onChange = jest.fn();
     const { getByRole } = render(<DxcCheckbox label="Checkbox" name="test" onChange={onChange} />);
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();
-    fireEvent.keyDown(checkbox, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(checkbox, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     expect(onChange).toHaveBeenCalledWith(true);
   });
 });

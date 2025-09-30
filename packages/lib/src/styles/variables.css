@@ -288,9 +288,12 @@
   --height-xxl: var(--dimensions-48);
   --height-xxxl: var(--dimensions-56);
   --shadow-100: var(--dimensions-0) var(--dimensions-2) var(--dimensions-2) var(--dimensions-0) var(--color-alpha-400-a);
-  --shadow-200: var(--dimensions-0) var(--dimensions-12) var(--dimensions-12) var(--dimensions-0) var(--color-alpha-300-a);
-  --shadow-300: var(--dimensions-0) var(--dimensions-24) var(--dimensions-24) var(--dimensions-0) var(--color-alpha-300-a);
-  --shadow-400: var(--dimensions-0) var(--dimensions-48) var(--dimensions-48) var(--dimensions-0) var(--color-alpha-300-a);
+  --shadow-200: var(--dimensions-0) var(--dimensions-12) var(--dimensions-12) var(--dimensions-0)
+    var(--color-alpha-300-a);
+  --shadow-300: var(--dimensions-0) var(--dimensions-24) var(--dimensions-24) var(--dimensions-0)
+    var(--color-alpha-300-a);
+  --shadow-400: var(--dimensions-0) var(--dimensions-48) var(--dimensions-48) var(--dimensions-0)
+    var(--color-alpha-300-a);
   --spacing-gap-none: var(--dimensions-0);
   --spacing-gap-xxs: var(--dimensions-2);
   --spacing-gap-xs: var(--dimensions-4);

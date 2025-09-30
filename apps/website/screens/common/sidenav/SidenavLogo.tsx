@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Image from "@/common/Image";
-import halstackLogo from "@/common/images/halstack_logo.svg";
 import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
+import halstackLogo from "@/common/images/halstack_logo.svg";
 
 const LogoContainer = styled.div`
   display: flex;
@@ -30,7 +30,13 @@ const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
     <DxcFlex alignItems="center">
       <LogoContainer>
         <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-          <Image alt="Halstack logo" height={24} src={halstackLogo} width={24} />
+          <Image
+            alt="Halstack logo"
+            height={24}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            src={halstackLogo}
+            width={24}
+          />
           <Title>Halstack</Title>
         </DxcFlex>
         <Subtitle>{subtitle}</Subtitle>

@@ -1,11 +1,7 @@
 import { getMargin } from "../common/utils";
 import ButtonPropsType, { Mode, Semantic, Size } from "./types";
 
-export const getButtonStyles = (
-  mode: Mode,
-  semantic: Semantic | "unselected" | "selected",
-  size: Size,
-) => {
+export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | "selected", size: Size) => {
   let enabled = "";
   let hover = "";
   let active = "";

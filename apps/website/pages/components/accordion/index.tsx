@@ -1,5 +1,5 @@
 import Head from "next/head";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import AccordionPageLayout from "screens/components/accordion/AccordionPageLayout";
 import AccordionOverviewPage from "screens/components/accordion/overview/AccordionOverviewPage";
 

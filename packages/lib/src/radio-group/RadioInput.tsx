@@ -56,12 +56,12 @@ const RadioInput = ({ checked, disabled, error, focused, label, onClick, readOnl
       setFirstUpdate(false);
       return;
     }
-    focused && ref.current?.focus();
+    if (focused) ref.current?.focus();
   }, [focused]);
 
   const handleOnClick = () => {
     onClick();
-    document.activeElement !== ref.current && ref.current?.focus();
+    if (document.activeElement !== ref.current) ref.current?.focus();
   };
 
   return (

@@ -2,22 +2,11 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcPaginator from "./Paginator";
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-
-  unobserve() {}
-
-  disconnect() {}
-};
-
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Paginator component tests", () => {
   test("Paginator renders with default values", () => {
@@ -57,7 +46,7 @@ describe("Paginator component tests", () => {
     expect(getByText("Go to page:")).toBeTruthy();
   });
 
-  test("Paginator goToPage call correct function", async () => {
+  test("Paginator goToPage call correct function", () => {
     const onClick = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
@@ -65,23 +54,29 @@ describe("Paginator component tests", () => {
       <DxcPaginator currentPage={1} itemsPerPage={10} totalItems={27} showGoToPage onPageChange={onClick} />
     );
     const goToPageSelect = getAllByRole("combobox")[0];
-    goToPageSelect && (await userEvent.click(goToPageSelect));
+    if (goToPageSelect) {
+      userEvent.click(goToPageSelect);
+    }
     const goToPageOption = getByText("2");
-    goToPageOption && (await userEvent.click(goToPageOption));
+    if (goToPageOption) {
+      userEvent.click(goToPageOption);
+    }
     expect(onClick).toHaveBeenCalledWith(2);
   });
 
-  test("Call correct goToPageFunction", async () => {
+  test("Call correct goToPageFunction", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
-    nextButton && (await userEvent.click(nextButton));
+    if (nextButton) {
+      userEvent.click(nextButton);
+    }
     expect(onClick).toHaveBeenCalled();
   });
 
-  test("Call correct itemsPerPageFunction", async () => {
+  test("Call correct itemsPerPageFunction", () => {
     const onClick = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
@@ -95,53 +90,65 @@ describe("Paginator component tests", () => {
       />
     );
     const select = getAllByText("10")[0];
-    select && (await userEvent.click(select));
+    if (select) {
+      userEvent.click(select);
+    }
     const itemPerPageOption = getByText("15");
-    itemPerPageOption && (await userEvent.click(itemPerPageOption));
+    if (itemPerPageOption) {
+      userEvent.click(itemPerPageOption);
+    }
     expect(onClick).toHaveBeenCalledWith(15);
   });
 
-  test("Next button is disable in last page", async () => {
+  test("Next button is disable in last page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
     expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
-    nextButton && (await userEvent.click(nextButton));
+    if (nextButton) {
+      userEvent.click(nextButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("Last button is disable in last page", async () => {
+  test("Last button is disable in last page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[3];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
-    lastButton && (await userEvent.click(lastButton));
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("First button is disable in first page", async () => {
+  test("First button is disable in first page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[0];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
-    lastButton && (await userEvent.click(lastButton));
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("Previous button is disable in first page", async () => {
+  test("Previous button is disable in first page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[1];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
-    lastButton && (await userEvent.click(lastButton));
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 

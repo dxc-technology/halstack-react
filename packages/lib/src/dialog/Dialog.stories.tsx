@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { screen, userEvent, within } from "@storybook/test";
+import { screen, userEvent } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import DxcAlert from "../alert/Alert";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcHeading from "../heading/Heading";
 import DxcInset from "../inset/Inset";
 import DxcParagraph from "../paragraph/Paragraph";
+import DxcAlert from "../alert/Alert";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
-import { Meta, StoryObj } from "@storybook/react";
 import DxcSelect from "../select/Select";
 import DxcDateInput from "../date-input/DateInput";
 import DxcDropdown from "../dropdown/Dropdown";
@@ -425,7 +425,9 @@ export const DropdownDialog: Story = {
   render: DialogWithDropdown,
   play: async () => {
     const buttons = await screen.findAllByRole("button");
-    buttons[0] && (await userEvent.click(buttons[0]));
+    if (buttons[0]) {
+      await userEvent.click(buttons[0]);
+    }
   },
 };
 
@@ -441,6 +443,8 @@ export const TooltipDialog: Story = {
   render: DialogWithTooltip,
   play: async () => {
     const buttons = await screen.findAllByRole("button");
-    buttons[0] && (await userEvent.hover(buttons[0]));
+    if (buttons[0]) {
+      await userEvent.hover(buttons[0]);
+    }
   },
 };

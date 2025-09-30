@@ -4,7 +4,6 @@ import { AccordionItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcFlex from "../flex/Flex";
 import DxcContainer from "../container/Container";
-import React from "react";
 import AccordionContext from "./AccordionContext";
 
 const AccordionContainer = styled.div`
@@ -154,11 +153,13 @@ const AccordionItem = ({
 }: AccordionItemProps): JSX.Element => {
   const id = useId();
   const { activeIndex, handlerActiveChange, index, independent } = useContext(AccordionContext) ?? {};
-  const isItemExpanded = useMemo(() => {
-    return independent
-      ? activeIndex === index
-      : Array.isArray(activeIndex) && index !== undefined && activeIndex.includes(index);
-  }, [independent, activeIndex, index]);
+  const isItemExpanded = useMemo(
+    () =>
+      independent
+        ? activeIndex === index
+        : Array.isArray(activeIndex) && index !== undefined && activeIndex.includes(index),
+    [independent, activeIndex, index]
+  );
 
   const handleAccordionState = () => {
     if (index !== undefined) handlerActiveChange?.(index);
@@ -203,12 +204,12 @@ const AccordionItem = ({
               )}
               {badge && badge?.position === "after" && !assistiveText && (
                 <StatusContainer subLabel={subLabel}>
-                  {disabled ? React.cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
+                  {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
                 </StatusContainer>
               )}
               {badge?.position !== "after" && statusLight && !assistiveText && (
                 <StatusContainer subLabel={subLabel}>
-                  {disabled ? React.cloneElement(statusLight as ReactElement, { mode: "default" }) : statusLight}
+                  {disabled ? cloneElement(statusLight as ReactElement, { mode: "default" }) : statusLight}
                 </StatusContainer>
               )}
               <CollapseIndicator disabled={disabled}>

@@ -5,6 +5,7 @@ import {
   forwardRef,
   KeyboardEvent,
   MouseEvent,
+  ReactNode,
   useContext,
   useEffect,
   useId,
@@ -33,7 +34,7 @@ import {
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 import ErrorMessage from "../styles/forms/ErrorMessage";
-import { inputStylesByState } from "../styles/forms/inputStylesByState";
+import inputStylesByState from "../styles/forms/inputStylesByState";
 
 const TextInputContainer = styled.div<{
   margin: TextInputPropsType["margin"];
@@ -152,6 +153,50 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const width = useWidth(inputContainerRef);
+
+    const autosuggestWrapperFunction = (children: ReactNode) => (
+      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+        <Popover.Trigger
+          aria-controls={undefined}
+          aria-expanded={undefined}
+          aria-haspopup={undefined}
+          asChild
+          type={undefined}
+        >
+          {children}
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            aria-label="Suggestions"
+            onCloseAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is closed
+              event.preventDefault();
+            }}
+            onOpenAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is opened
+              event.preventDefault();
+            }}
+            sideOffset={4}
+            style={{ zIndex: "var(--z-textinput)" }}
+          >
+            <Suggestions
+              highlightedSuggestions={typeof suggestions !== "function"}
+              id={autosuggestId}
+              isSearching={isSearching}
+              searchHasErrors={isAutosuggestError}
+              suggestionOnClick={(suggestion) => {
+                changeValue(suggestion);
+                closeSuggestions();
+              }}
+              suggestions={filteredSuggestions}
+              styles={{ width }}
+              value={value ?? innerValue}
+              visualFocusIndex={visualFocusIndex}
+            />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    );
 
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
@@ -410,7 +455,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             changeIsAutosuggestError(false);
             changeFilteredSuggestions(promiseResponse);
           })
-          .catch((err) => {
+          .catch((err: Error) => {
             if (err.message !== "Is canceled") {
               changeIsSearching(false);
               changeIsAutosuggestError(true);
@@ -435,7 +480,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
       }
-      return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
@@ -450,52 +494,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             {helperText}
           </HelperText>
         )}
-        <AutosuggestWrapper
-          condition={hasSuggestions(suggestions)}
-          wrapper={(children) => (
-            <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-              <Popover.Trigger
-                aria-controls={undefined}
-                aria-expanded={undefined}
-                aria-haspopup={undefined}
-                asChild
-                type={undefined}
-              >
-                {children}
-              </Popover.Trigger>
-              <Popover.Portal>
-                <Popover.Content
-                  aria-label="Suggestions"
-                  onCloseAutoFocus={(event) => {
-                    // Avoid select to lose focus when the list is closed
-                    event.preventDefault();
-                  }}
-                  onOpenAutoFocus={(event) => {
-                    // Avoid select to lose focus when the list is opened
-                    event.preventDefault();
-                  }}
-                  sideOffset={4}
-                  style={{ zIndex: "var(--z-textinput)" }}
-                >
-                  <Suggestions
-                    highlightedSuggestions={typeof suggestions !== "function"}
-                    id={autosuggestId}
-                    isSearching={isSearching}
-                    searchHasErrors={isAutosuggestError}
-                    suggestionOnClick={(suggestion) => {
-                      changeValue(suggestion);
-                      closeSuggestions();
-                    }}
-                    suggestions={filteredSuggestions}
-                    styles={{ width }}
-                    value={value ?? innerValue}
-                    visualFocusIndex={visualFocusIndex}
-                  />
-                </Popover.Content>
-              </Popover.Portal>
-            </Popover.Root>
-          )}
-        >
+        <AutosuggestWrapper condition={hasSuggestions(suggestions)} wrapper={autosuggestWrapperFunction}>
           <TextInput
             disabled={disabled}
             error={!!error}
@@ -599,5 +598,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     );
   }
 );
+
+DxcTextInput.displayName = "DxcTextInput";
 
 export default DxcTextInput;

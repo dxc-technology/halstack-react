@@ -4,8 +4,8 @@ import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
 import { getGroupSelectionType, groupsHaveOptions } from "./utils";
+import scrollbarStyles from "../styles/scroll";
 import { FlattenedItem, ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
 import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 
@@ -417,10 +417,12 @@ const NonVirtualizedListbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
-      listEl?.scrollTo?.({
-        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
-      });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      if (selectedListOptionEl instanceof HTMLUListElement) {
+        listEl?.scrollTo?.({
+          top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+        });
+      }
     }
   }, [currentValue, multiple]);
 

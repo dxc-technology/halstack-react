@@ -5,7 +5,11 @@ export default function Index() {
   const { asPath, push } = useRouter();
 
   useEffect(() => {
-    asPath === "/" && push("/overview/introduction");
+    if (asPath === "/") {
+      push("/overview/introduction").catch((err) => {
+        console.error("Navigation error:", err);
+      });
+    }
   }, [asPath, push]);
 
   return <></>;

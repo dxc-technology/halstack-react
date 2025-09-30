@@ -16,5 +16,5 @@ jobs:
           stale-issue-label: "stale"
           stale-issue-message: "This issue is stale because it has been open for 15 days with no activity. If there are no further updates or modifications within the next 15 days, it will be automatically closed."
           close-issue-message: "This issue has been closed as it has been inactive for 15 days since being marked as stale."
-          exempt-issue-labels: 'non-closable'
+          exempt-issue-labels: "non-closable"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

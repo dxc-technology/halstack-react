@@ -1,10 +1,11 @@
 import NextImage from "next/image";
+import type { StaticImageData } from "next/image";
 
 const customLoader = ({ src }: { src: string }) =>
   process.env.NODE_ENV === "production" ? src.replace("//", "/") : src;
 
 type ImageProps = {
-  src: any;
+  src: string | StaticImageData;
   alt: string;
   width?: number;
   height?: number;

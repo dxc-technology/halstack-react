@@ -33,12 +33,17 @@ const CodeBlock = ({ children }: { children: ReactNode }) => {
   };
 
   const copyCode = () => {
-    navigator.clipboard.writeText(children as string).then(() => {
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 2500);
-    });
+    navigator.clipboard
+      .writeText(children as string)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => {
+          setCopied(false);
+        }, 2500);
+      })
+      .catch((err) => {
+        console.error("Could not copy text: ", err);
+      });
   };
 
   return (
@@ -59,6 +64,6 @@ const CodeBlock = ({ children }: { children: ReactNode }) => {
       </PreformattedText>
     </DxcFlex>
   );
-}
+};
 
-export default CodeBlock
+export default CodeBlock;
