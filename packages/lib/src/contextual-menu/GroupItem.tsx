@@ -7,7 +7,7 @@ import { GroupItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
 import { isGroupSelected } from "./utils";
 
-export default function GroupItem({ items, ...props }: GroupItemProps) {
+const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
   const { selectedItemId } = useContext(ContextualMenuContext) ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
@@ -20,9 +20,7 @@ export default function GroupItem({ items, ...props }: GroupItemProps) {
         aria-expanded={isOpen ? true : undefined}
         aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-        onClick={() => {
-          setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
-        }}
+        onClick={() => setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen)}
         selected={groupSelected && !isOpen}
         {...props}
       />
@@ -35,4 +33,6 @@ export default function GroupItem({ items, ...props }: GroupItemProps) {
       )}
     </>
   );
-}
+};
+
+export default GroupItem;
