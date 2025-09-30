@@ -9,9 +9,9 @@ const a11yConfig: TestRunnerConfig = {
     await injectAxe(page);
 
     try {
+      // Get the entire context of a story, including parameters, args, argTypes, etc.
       const storyContext = await getStoryContext(page, context);
-
-      // Accedemos solo a los parámetros que necesitamos de forma parcial
+      // Apply viewport handle support
       const parameters = storyContext.parameters as Partial<PreviewExtended["parameters"]> | undefined;
       const viewPortParams = parameters?.viewport;
       const defaultViewport = viewPortParams?.defaultViewport;
