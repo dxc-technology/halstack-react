@@ -1,9 +1,9 @@
-import Title from "../../.storybook/components/Title";
-import DxcFlex from "./../flex/Flex";
-import DxcInset from "./Inset";
-import { Meta, StoryObj } from "@storybook/react-vite";
-import DxcContainer from "../container/Container";
 import { ReactNode } from "react";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import Title from "../../.storybook/components/Title";
+import DxcFlex from "../flex/Flex";
+import DxcInset from "./Inset";
+import DxcContainer from "../container/Container";
 
 export default {
   title: "Inset",

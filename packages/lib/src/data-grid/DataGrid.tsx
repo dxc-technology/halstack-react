@@ -1,5 +1,4 @@
-import "react-data-grid/lib/styles.css";
-import { useEffect, useMemo, useState, ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
@@ -22,8 +21,7 @@ import {
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
-import { scrollbarStyles } from "../styles/scroll";
-
+import scrollbarStyles from "../styles/scroll";
 const DataGridContainer = styled.div<{
   paginatorRendered: boolean;
 }>`
@@ -180,6 +178,7 @@ const DxcDataGrid = ({
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
+  const [loadingChildren, setLoadingChildren] = useState<(string | number)[]>([]);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
@@ -217,7 +216,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return (row.expandedChildContent as ReactNode) || null;
+              return row.expandedChildContent || null;
             }
             // if row has expandable content
             return (
@@ -232,8 +231,8 @@ const DxcDataGrid = ({
     }
     const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
       return (
-        (Array.isArray(row.childRows) && row.childRows.length > 0) ||
-        typeof (row as HierarchyGridRow).childrenTrigger === "function"
+        (Array.isArray(row.childRows) && row.childRows?.length > 0) ||
+        typeof (row as HierarchyGridRow)?.childrenTrigger === "function"
       );
     };
     if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
@@ -252,14 +251,16 @@ const DxcDataGrid = ({
                     uniqueRowId,
                     firstColumnKey,
                     setRowsToRender,
-                    row.childrenTrigger,
+                    loadingChildren,
+                    setLoadingChildren,
+                    row.childrenTrigger
                   )}
                 </HierarchyContainer>
               );
             }
             return (
               <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey] as ReactNode}
+                {row[firstColumnKey]}
               </HierarchyContainer>
             );
           },
@@ -294,7 +295,18 @@ const DxcDataGrid = ({
       ];
     }
     return expectedColumns;
-  }, [selectable, expandable, columns, rowsToRender, onSelectRows, rows, summaryRow, uniqueRowId, selectedRows]);
+  }, [
+    selectable,
+    expandable,
+    columns,
+    rowsToRender,
+    onSelectRows,
+    rows,
+    summaryRow,
+    uniqueRowId,
+    selectedRows,
+    loadingChildren,
+  ]);
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
@@ -325,7 +337,7 @@ const DxcDataGrid = ({
 
   const reorderedColumns = useMemo(
     () =>
-      // Array ordered by columnsOrder
+      // Array sorted by columnsOrder
       columnsOrder.map((index) => columnsToRender[index]!),
     [columnsOrder, columnsToRender]
   );

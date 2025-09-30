@@ -1,6 +1,6 @@
+import { ReactNode } from "react";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
-import { ReactNode } from "react";
 
 type LevelEnum = 1 | 2 | 3 | 4 | 5;
 

@@ -1,16 +1,16 @@
+import { isValidElement, useState } from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
-import { GridColumn, GridRow, HierarchyGridRow } from "./types";
-import { isValidElement, useState } from "react";
-import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import { GridColumn, HierarchyGridRow } from "./types";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "storybook/test";
 import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
-import { Meta, StoryObj } from "@storybook/react-vite";
 import { isKeyOfRow } from "./utils";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Data Grid",
@@ -19,7 +19,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
         ],
       },
@@ -450,15 +450,15 @@ const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
       setTimeout(() => {
         resolve([
           {
-            name: `${triggerRow.name} Child 1`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-1`,
+            name: `${triggerRow.name as string} Child 1`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-1`,
             childrenTrigger,
           },
           {
-            name: `${triggerRow.name} Child 2`,
-            value: triggerRow.value,
-            id: `${triggerRow.id}-child-2`,
+            name: `${triggerRow.name as string} Child 2`,
+            value: triggerRow.value as string,
+            id: `${triggerRow.id as string}-child-2`,
             childrenTrigger,
           },
         ] as unknown as HierarchyGridRow[]);
@@ -643,7 +643,7 @@ const customSortColumns: GridColumn[] = [
     summaryKey: "total",
     sortable: true,
     sortFn: (a, b) => {
-      if (isValidElement(a) && isValidElement(b)) {
+      if (isValidElement<{ label: string }>(a) && isValidElement<{ label: string }>(b)) {
         return a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0;
       }
       return 0;
@@ -657,27 +657,27 @@ const customSortRows = [
     task: "Task 1",
     complete: 46,
     priority: "High",
-    component: <DxcBadge label={"CCC"} />,
+    component: <DxcBadge label="CCC" />,
   },
   {
     id: 2,
     task: "Task 2",
     complete: 51,
     priority: "High",
-    component: <DxcBadge label={"BBB"} />,
+    component: <DxcBadge label="BBB" />,
   },
   {
     id: 3,
     task: "Task 3",
     complete: 40,
     priority: "High",
-    component: <DxcBadge label={"AAA"} />,
+    component: <DxcBadge label="AAA" />,
   },
   {
     id: 4,
     task: "Task 4",
     complete: 10,
-    component: <DxcBadge label={"EEE"} />,
+    component: <DxcBadge label="EEE" />,
     priority: "High",
   },
   {
@@ -685,21 +685,21 @@ const customSortRows = [
     task: "Task 5",
     complete: 68,
     priority: "High",
-    component: <DxcBadge label={"DDD"} />,
+    component: <DxcBadge label="DDD" />,
   },
   {
     id: 6,
     task: "Task 6",
     complete: 37,
     priority: "High",
-    component: <DxcBadge label={"FFF"} />,
+    component: <DxcBadge label="FFF" />,
   },
   {
     id: 7,
     task: "Task 7",
     complete: 73,
     priority: "Medium",
-    component: <DxcBadge label={"GGG"} />,
+    component: <DxcBadge label="GGG" />,
   },
 ];
 
@@ -816,8 +816,8 @@ const DataGridControlled = () => {
             if (sortColumn) {
               const { columnKey, direction } = sortColumn;
               console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => {
-                return currentRows.sort((a, b) => {
+              setRowsControlled((currentRows) =>
+                currentRows.sort((a, b) => {
                   if (isKeyOfRow(columnKey, a) && isKeyOfRow(columnKey, b)) {
                     const valueA = a[columnKey];
                     const valueB = b[columnKey];
@@ -833,8 +833,8 @@ const DataGridControlled = () => {
                   } else {
                     return 0;
                   }
-                });
-              });
+                })
+              );
             } else {
               console.log("Removed sorting criteria");
               setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
@@ -860,16 +860,12 @@ const DataGridControlled = () => {
   );
 };
 
-const DataGridSort = () => {
-  return (
-    <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
-      </ExampleContainer>
-    </>
-  );
-};
+const DataGridSort = () => (
+  <ExampleContainer>
+    <Title title="Default" theme="light" level={4} />
+    <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+  </ExampleContainer>
+);
 
 const DataGridPaginator = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
@@ -1083,56 +1079,90 @@ export const Paginator: Story = {
 export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
   play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
-  checkbox0 && (await userEvent.click(checkbox0));
-  await userEvent.click(await canvas.findByText("Root Node 1"));
-  await userEvent.click(await canvas.findByText("Root Node 2"));
-  await userEvent.click(await canvas.findByText("Child Node 1.1"));
-  await userEvent.click(await canvas.findByText("Child Node 2.1"));
-  let columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
-  columnheader1 && (await userEvent.click(columnheader1));
-  columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
-  columnheader1 && (await userEvent.click(columnheader1));
-  const checkbox5 = (await canvas.findAllByRole("checkbox"))[5];
-  checkbox5 && (await userEvent.click(checkbox5));
-  const checkbox13 = (await canvas.findAllByRole("checkbox"))[13];
-  checkbox13 && (await userEvent.click(checkbox13));
-  await userEvent.click(await canvas.findByText("Paginated Node 1"));
-  await userEvent.click(await canvas.findByText("Paginated Node 2"));
-  await userEvent.click(await canvas.findByText("Paginated Node 1.1"));
-  await userEvent.click(await canvas.findByText("Paginated Node 2.1"));
-  const columnheader4 = (await canvas.findAllByRole("columnheader"))[4];
-  columnheader4 && (await userEvent.click(columnheader4));
-  const checkbox18 = (await canvas.findAllByRole("checkbox"))[18];
-  checkbox18 && (await userEvent.click(checkbox18));
+    const canvas = within(canvasElement);
+    const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
+    if (checkbox0) {
+      await userEvent.click(checkbox0);
+    }
+    await userEvent.click(await canvas.findByText("Root Node 1"));
+    await userEvent.click(await canvas.findByText("Root Node 2"));
+    await userEvent.click(await canvas.findByText("Child Node 1.1"));
+    await userEvent.click(await canvas.findByText("Child Node 2.1"));
+    let columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
+    columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
+    const checkbox5 = (await canvas.findAllByRole("checkbox"))[5];
+    if (checkbox5) {
+      await userEvent.click(checkbox5);
+    }
+    const checkbox13 = (await canvas.findAllByRole("checkbox"))[13];
+    if (checkbox13) {
+      await userEvent.click(checkbox13);
+    }
+    await userEvent.click(await canvas.findByText("Paginated Node 1"));
+    await userEvent.click(await canvas.findByText("Paginated Node 2"));
+    await userEvent.click(await canvas.findByText("Paginated Node 1.1"));
+    await userEvent.click(await canvas.findByText("Paginated Node 2.1"));
+    const columnheader4 = (await canvas.findAllByRole("columnheader"))[4];
+    if (columnheader4) {
+      await userEvent.click(columnheader4);
+    }
+    const checkbox18 = (await canvas.findAllByRole("checkbox"))[18];
+    if (checkbox18) {
+      await userEvent.click(checkbox18);
+    }
   },
 };
 
 export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button0 = (await canvas.findAllByRole("button"))[0];
-  button0 && (await userEvent.click(button0));
-  const button1 = (await canvas.findAllByRole("button"))[1];
-  button1 && (await userEvent.click(button1));
-  const columnHeaders4 = (await canvas.findAllByRole("columnheader"))[4];
-  columnHeaders4 && (await userEvent.click(columnHeaders4));
-  const columnHeaders10 = (await canvas.findAllByRole("columnheader"))[10];
-  columnHeaders10 && (await userEvent.click(columnHeaders10));
-  const button16 = (await canvas.findAllByRole("button"))[16];
-  button16 && (await userEvent.click(button16));
-  const button43 = (await canvas.findAllByRole("button"))[43];
-  button43 && (await userEvent.click(button43));
-  const button36 = (await canvas.findAllByRole("button"))[36];
-  button36 && (await userEvent.click(button36));
-  const button37 = (await canvas.findAllByRole("button"))[37];
-  button37 && (await userEvent.click(button37));
-  const button9 = (await canvas.findAllByRole("button"))[9];
-  button9 && (await userEvent.click(button9));
-  const button10 = (await canvas.findAllByRole("button"))[10];
-  button10 && (await userEvent.click(button10));
+    const canvas = within(canvasElement);
+    const button0 = (await canvas.findAllByRole("button"))[0];
+    if (button0) {
+      await userEvent.click(button0);
+    }
+    const button1 = (await canvas.findAllByRole("button"))[1];
+    if (button1) {
+      await userEvent.click(button1);
+    }
+    const columnHeaders4 = (await canvas.findAllByRole("columnheader"))[4];
+    if (columnHeaders4) {
+      await userEvent.click(columnHeaders4);
+    }
+    const button9 = (await canvas.findAllByRole("button"))[9];
+    if (button9) {
+      await userEvent.click(button9);
+    }
+    const button10 = (await canvas.findAllByRole("button"))[10];
+    if (button10) {
+      await userEvent.click(button10);
+    }
+    const columnHeaders10 = (await canvas.findAllByRole("columnheader"))[10];
+    if (columnHeaders10) {
+      await userEvent.click(columnHeaders10);
+    }
+    const button16 = (await canvas.findAllByRole("button"))[16];
+    if (button16) {
+      await userEvent.click(button16);
+    }
+    const button43 = (await canvas.findAllByRole("button"))[43];
+    if (button43) {
+      await userEvent.click(button43);
+    }
+    const button36 = (await canvas.findAllByRole("button"))[36];
+    if (button36) {
+      await userEvent.click(button36);
+    }
+    const button37 = (await canvas.findAllByRole("button"))[37];
+    if (button37) {
+      await userEvent.click(button37);
+    }
   },
 };
 
@@ -1141,6 +1171,8 @@ export const UnknownUniqueId: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const editorCell = (await canvas.findAllByText("Task 1"))[0];
-    editorCell && (await userEvent.dblClick(editorCell));
+    if (editorCell) {
+      await userEvent.dblClick(editorCell);
+    }
   },
 };

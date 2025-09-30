@@ -4,8 +4,8 @@ import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionsCellPropsType } from "./types";
-import { scrollbarStyles } from "../styles/scroll";
-import { useEffect, useMemo } from "react";
+import scrollbarStyles from "../styles/scroll";
+import { useMemo } from "react";
 
 const calculateWidth = (margin: TablePropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
@@ -121,5 +121,6 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType) => (
 );
 
 DxcTable.ActionsCell = DxcActionsCell;
+
 export { DxcActionsCell };
 export default DxcTable;

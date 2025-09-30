@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "@cloudscape-design/components": "^3.0.706",
@@ -33,8 +33,8 @@
     "@types/react": "^18",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "15.5.4",
     "typescript": "^5.6.3"
   }
 }

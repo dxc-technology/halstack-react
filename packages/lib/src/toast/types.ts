@@ -28,8 +28,8 @@ type CommonProps = {
 };
 type DefaultToast = CommonProps & {
   /**
-   * Material Symbol name or SVG element as the icon that will be placed next to the panel label. 
-   * When using Material Symbols, replace spaces with underscores. 
+   * Material Symbol name or SVG element as the icon that will be placed next to the panel label.
+   * When using Material Symbols, replace spaces with underscores.
    * By default they are outlined if you want it to be filled prefix the symbol name with "filled_".
    */
   icon?: string | SVG;
@@ -71,7 +71,7 @@ type ToastsQueuePropsType = {
    */
   children: ReactNode;
   /**
-   * Duration in milliseconds before a toast automatically hides itself. 
+   * Duration in milliseconds before a toast automatically hides itself.
    * The range goes from 3000ms to 5000ms, any other value will not be taken into consideration.
    */
   duration?: number;

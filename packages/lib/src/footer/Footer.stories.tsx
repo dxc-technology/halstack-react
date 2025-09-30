@@ -1,13 +1,13 @@
-import { userEvent, within } from "storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/footer/disabledRules";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
-import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcLink from "../link/Link";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Footer",
@@ -16,7 +16,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
         ],
       },
@@ -122,15 +122,6 @@ const bottom = [
   },
 ];
 
-const opinionatedTheme = {
-  footer: {
-    baseColor: "#000000",
-    fontColor: "#ffffff",
-    accentColor: "#0095ff",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-  },
-};
-
 const info = [
   { label: "Example Label", text: "Example" },
   { label: "Example Label", text: "Example" },
@@ -169,7 +160,7 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
           {info.map((tag, index) => (
             <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
@@ -218,7 +209,9 @@ export const FooterTooltipFirst: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = (await canvas.findAllByRole("link"))[0];
-    link != null && (await userEvent.hover(link));
+    if (link != null) {
+      await userEvent.hover(link);
+    }
   },
 };
 
@@ -227,6 +220,8 @@ export const FooterTooltipSecond: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = (await canvas.findAllByRole("link"))[1];
-    link != null && (await userEvent.hover(link));
+    if (link != null) {
+      await userEvent.hover(link);
+    }
   },
 };

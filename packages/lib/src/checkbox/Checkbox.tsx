@@ -160,4 +160,6 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
   }
 );
 
+DxcCheckbox.displayName = "DxcCheckbox";
+
 export default DxcCheckbox;

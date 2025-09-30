@@ -33,6 +33,11 @@ type Props = {
    * lead to unexpected behaviours with the focus within the dialog.
    */
   tabIndex?: number;
+  /**
+   * If true the focusLock functionality won't work.
+   * @private
+   */
+  disableFocusLock?: boolean;
 };
 
 export default Props;

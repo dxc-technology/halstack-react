@@ -108,8 +108,8 @@ const sections = [
           helping users quickly grasp their choices. Avoid vague terms like "Select an option."
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Prioritize logical ordering:</strong> arrange options in a meaningful order — alphabetically for lists,
-          by frequency of use for common selections, or categorically when grouping similar items.
+          <strong>Prioritize logical ordering:</strong> arrange options in a meaningful order — alphabetically for
+          lists, by frequency of use for common selections, or categorically when grouping similar items.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Keep the list of options manageable:</strong> avoid overwhelming users with too many options. If the

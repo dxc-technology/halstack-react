@@ -1,16 +1,15 @@
-import { useContext } from "react";
-import { fireEvent, screen, userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import dayjs from "dayjs";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/date-input/disabledRules";
 import DxcContainer from "../container/Container";
 import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Date Input",
@@ -19,8 +18,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...preview?.parameters?.a11y?.config?.rules,
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
         ],
       },
     },
@@ -225,8 +227,10 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const firstDateInput = (await canvas.findAllByRole("combobox"))[0];
-    firstDateInput != null && (await userEvent.click(firstDateInput));
-    await fireEvent.click(await screen.findByText("April 1905"));
+    if (firstDateInput != null) {
+      await userEvent.click(firstDateInput);
+    }
+    await fireEvent.click(screen.getByText("April 1905"));
   },
 };
 
@@ -244,7 +248,9 @@ export const DatePickerStates: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dateBtn = (await canvas.findAllByRole("combobox"))[0];
-    dateBtn != null && (await userEvent.click(dateBtn));
+    if (dateBtn != null) {
+      await userEvent.click(dateBtn);
+    }
   },
 };
 
@@ -261,7 +267,9 @@ export const DatePickerTooltipPrevious: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const previousMonthButton = (await canvas.findAllByRole("button"))[0];
-    previousMonthButton != null && (await userEvent.hover(previousMonthButton));
+    if (previousMonthButton != null) {
+      await userEvent.hover(previousMonthButton);
+    }
   },
 };
 
@@ -270,6 +278,8 @@ export const DatePickerTooltipAfter: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const afterMonthButton = (await canvas.findAllByRole("button"))[2];
-    afterMonthButton != null && (await userEvent.hover(afterMonthButton));
+    if (afterMonthButton != null) {
+      await userEvent.hover(afterMonthButton);
+    }
   },
 };

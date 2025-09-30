@@ -2,7 +2,6 @@ import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/card_anatomy.png";
-import example from "./images/card_example.png";
 import Image from "@/common/Image";
 
 const sections = [

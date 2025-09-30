@@ -17,7 +17,7 @@ const Heading = styled.h1<{
   $weight: HeadingPropsType["weight"];
 }>`
   color: var(--color-fg-neutral-dark);
-  font-family: var(--font-family-sans);
+  font-family: var(--typography-font-family);
   font-size: ${({ $level }) => getHeadingSize($level)};
   font-weight: ${({ $weight }) => getHeadingWeight($weight)};
   margin: 0;

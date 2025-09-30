@@ -343,4 +343,6 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
   }
 );
 
+DxcDateInput.displayName = "DxcDateInput";
+
 export default DxcDateInput;

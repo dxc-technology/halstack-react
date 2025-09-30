@@ -2,8 +2,8 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
-import { Meta, StoryObj } from "@storybook/react/*";
-import { userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Tabs",
@@ -312,7 +312,9 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const tabs = await canvas.findAllByRole("tab");
-    if (tabs[0]) await userEvent.hover(tabs[0]);
+    if (tabs[0]) {
+      await userEvent.hover(tabs[0]);
+    }
   },
 };
 

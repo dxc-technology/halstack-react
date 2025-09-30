@@ -6,6 +6,7 @@ import DxcIcon from "../icon/Icon";
 import WizardPropsType, { StepProps } from "./types";
 import DxcFlex from "../flex/Flex";
 import icons from "./Icons";
+import { css } from "@emotion/react";
 
 const Wizard = styled.div<{
   margin: WizardPropsType["margin"];
@@ -103,13 +104,14 @@ const Step = styled.button<{
   }
   ${({ unvisited }) =>
     unvisited &&
-    `${IconContainer} {
-      border-color: var(--border-color-neutral-strongest);
-    }
-    ${IconContainer}, ${Number}, ${Label}, ${Description} {
-      color: var(--color-fg-neutral-stronger);
-    }
-  `}
+    css`
+      ${IconContainer} {
+        border-color: var(--border-color-neutral-strongest);
+      }
+      ${IconContainer}, ${Number}, ${Label}, ${Description} {
+        color: var(--color-fg-neutral-stronger);
+      }
+    `}
   &:focus:enabled {
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }

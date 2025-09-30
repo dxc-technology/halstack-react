@@ -1,15 +1,14 @@
 import "../src/styles/fonts.css";
 import "../src/styles/variables.css";
-
-import type { Preview } from "@storybook/react-vite";
-import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
-import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import disabledRules from "../test/accessibility/rules/common/disabledRules";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
+import type { StoryFn } from "@storybook/react-vite";
 
 const emotionCache = createCache({ key: "css", prepend: true });
 
-const preview: Preview = {
+const preview = {
   parameters: {
     controls: {
       matchers: {
@@ -30,7 +29,7 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <CacheProvider value={emotionCache}>
         <Story />
       </CacheProvider>

@@ -1,14 +1,15 @@
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
-import { MouseEvent, useEffect, useRef, useState } from "react";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const OptionItem = styled.li<{
   visualFocused: OptionProps["visualFocused"];
   selected: OptionProps["isSelected"];
 }>`
+  list-style: none;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
   ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};

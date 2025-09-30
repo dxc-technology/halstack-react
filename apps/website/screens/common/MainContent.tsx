@@ -3,6 +3,12 @@ import { ReactNode, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "./variables";
 
+interface NpmRegistryResponse {
+  "dist-tags": {
+    latest: string;
+  };
+}
+
 const MainContainer = styled.div`
   margin: 80px auto;
   max-width: 1124px;
@@ -25,16 +31,20 @@ const MainContent = ({ children }: { children: ReactNode }) => {
   const [latestRelease, setLatestRelease] = useState<number | null>(null);
 
   useEffect(() => {
-    (async () => {
+    const fetchLatestRelease = async () => {
       try {
         const response = await fetch("https://registry.npmjs.org/@dxc-technology/halstack-react/");
-        const data = await response.json();
-        const latestRelease = parseInt(data["dist-tags"].latest.split(".")[0], 10);
-        setLatestRelease(latestRelease);
+        const data = (await response.json()) as NpmRegistryResponse;
+        const majorVersionStr = data["dist-tags"].latest.split(".")[0];
+        if (majorVersionStr) {
+          const latestRelease = parseInt(majorVersionStr, 10);
+          setLatestRelease(latestRelease);
+        }
       } catch (error) {
         console.error("Error fetching version:", error);
       }
-    })();
+    };
+    void fetchLatestRelease();
   }, []);
 
   useEffect(() => {

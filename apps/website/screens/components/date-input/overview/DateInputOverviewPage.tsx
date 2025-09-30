@@ -222,8 +222,8 @@ const sections = [
               Provide clear feedback if the user types an invalid date manually.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Avoid using text inputs with custom formatting masks in place of the date input component — this can confuse
-              users and complicate validation.
+              Avoid using text inputs with custom formatting masks in place of the date input component — this can
+              confuse users and complicate validation.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),

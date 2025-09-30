@@ -3,7 +3,7 @@ import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),
@@ -16,16 +16,11 @@ const deleteIcon = (
   </svg>
 );
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const actions = [
   {

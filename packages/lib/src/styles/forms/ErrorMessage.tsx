@@ -8,6 +8,7 @@ const ErrorMessageContainer = styled.div`
   color: var(--color-fg-error-medium);
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
+  font-family: var(--typography-font-family);
   margin-top: var(--spacing-gap-xs);
 
   /* Error icon */

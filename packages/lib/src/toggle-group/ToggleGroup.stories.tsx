@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcToggleGroup from "./ToggleGroup";
-import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Toggle Group",

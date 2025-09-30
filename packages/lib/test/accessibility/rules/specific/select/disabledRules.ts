@@ -2,8 +2,10 @@
  * Array of accessibility rule IDs to be disabled in both Jest and Storybook for the header component.
  *
  */
-export const disabledRules = [
+const disabledRules = [
   // TODO: Work on nested interaction with the DxcCheckbox component to prevent these issues
   "nested-interactive",
-  "scrollable-region-focusable"
+  "scrollable-region-focusable",
 ];
+
+export default disabledRules;

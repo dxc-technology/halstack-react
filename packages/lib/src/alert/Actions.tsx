@@ -35,4 +35,6 @@ const Actions = memo(
     )
 );
 
+Actions.displayName = "Actions";
+
 export default Actions;

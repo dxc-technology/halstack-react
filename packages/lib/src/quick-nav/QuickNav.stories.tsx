@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcQuickNav from "./QuickNav";
-import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Quick Nav",
@@ -126,37 +126,38 @@ const QuickNav = () => (
           <Content id="overview">
             <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
             <DxcParagraph>
-              Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
-              Our system provides all the tools and resources needed to create superior, beautiful but above all,
-              functional user experiences. Halstack is the DXC Technology's open source design system for insurance
-              products and digital experiences. Our system provides all the tools and resources needed to create
-              superior, beautiful but above all, functional user experiences.Halstack is the DXC Technology's open
-              source design system for insurance products and digital experiences. Our system provides all the tools and
-              resources needed to create superior, beautiful but above all, functional user experiences.Halstack is the
-              DXC Technology's open source design system for insurance products and digital experiences. Our system
-              provides all the tools and resources needed to create superior, beautiful but above all, functional user
-              experiences.Halstack is the DXC Technology's open source design system for insurance products and digital
+              Halstack is the DXC Technology&apos;s open source design system for insurance products and digital
               experiences. Our system provides all the tools and resources needed to create superior, beautiful but
-              above all, functional user experiences.Halstack is the DXC Technology's open source design system for
-              insurance products and digital experiences. Our system provides all the tools and resources needed to
-              create superior, beautiful but above all, functional user experiences.Halstack is the DXC Technology's
-              open source design system for insurance products and digital experiences. Our system provides all the
-              tools and resources needed to create superior, beautiful but above all, functional user experiences.
+              above all, functional user experiences. Halstack is the DXC Technology&apos;s open source design system
+              for insurance products and digital experiences. Our system provides all the tools and resources needed to
+              create superior, beautiful but above all, functional user experiences.Halstack is the DXC
+              Technology&apos;s open source design system for insurance products and digital experiences. Our system
+              provides all the tools and resources needed to create superior, beautiful but above all, functional user
+              experiences.Halstack is the DXC Technology&apos;s open source design system for insurance products and
+              digital experiences. Our system provides all the tools and resources needed to create superior, beautiful
+              but above all, functional user experiences.Halstack is the DXC Technology&apos;s open source design system
+              for insurance products and digital experiences. Our system provides all the tools and resources needed to
+              create superior, beautiful but above all, functional user experiences.Halstack is the DXC
+              Technology&apos;s open source design system for insurance products and digital experiences. Our system
+              provides all the tools and resources needed to create superior, beautiful but above all, functional user
+              experiences.Halstack is the DXC Technology&apos;s open source design system for insurance products and
+              digital experiences. Our system provides all the tools and resources needed to create superior, beautiful
+              but above all, functional user experiences.
             </DxcParagraph>
             <Content id="overview-introduction">
               <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
-                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
-                provide guidance for development teams in order to deliver delightful and consistent user experiences to
-                our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
+                Design principles Halstack design principles are the fundamental part of DXC Technology&apos;s approach
+                to provide guidance for development teams in order to deliver delightful and consistent user experiences
+                to our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
                 guidelines, responsive design techniques, and layout proposals have been carefully curated by DXC design
                 and engineering teams with the objective of creating a unique visual language and ecosystem for our
                 applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
                 design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
                 to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
-                design new features, or help us improve the project documentation. If you're interested, definitely
+                design new features, or help us improve the project documentation. If you&apos;re interested, definitely
                 check out our contribution guidelines.Design principles Halstack design principles are the fundamental
-                part of DXC Technology's approach to provide guidance for development teams in order to deliver
+                part of DXC Technology&apos;s approach to provide guidance for development teams in order to deliver
                 delightful and consistent user experiences to our customers: Balance Consistency Visual hierarchy All
                 our components, design tokens, accessibility guidelines, responsive design techniques, and layout
                 proposals have been carefully curated by DXC design and engineering teams with the objective of creating
@@ -164,16 +165,16 @@ const QuickNav = () => (
                 Experiences. Open Source Halstack is an open source design system, this means that we work towards DXC
                 Technology bussines needs, but it is open for anyone to use and contribute back to. We are charmed to
                 receive external contributions to help us find bugs, design new features, or help us improve the project
-                documentation. If you're interested, definitely check out our contribution guidelines.Design principles
-                Halstack design principles are the fundamental part of DXC Technology's approach to provide guidance for
-                development teams in order to deliver delightful and consistent user experiences to our customers:
-                Balance Consistency Visual hierarchy All our components, design tokens, accessibility guidelines,
-                responsive design techniques, and layout proposals have been carefully curated by DXC design and
-                engineering teams with the objective of creating a unique visual language and ecosystem for our
+                documentation. If you&apos;re interested, definitely check out our contribution guidelines.Design
+                principles Halstack design principles are the fundamental part of DXC Technology&apos;s approach to
+                provide guidance for development teams in order to deliver delightful and consistent user experiences to
+                our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
+                guidelines, responsive design techniques, and layout proposals have been carefully curated by DXC design
+                and engineering teams with the objective of creating a unique visual language and ecosystem for our
                 applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
                 design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
                 to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
-                design new features, or help us improve the project documentation. If you're interested, definitely
+                design new features, or help us improve the project documentation. If you&apos;re interested, definitely
                 check out our contribution guidelines.
               </DxcParagraph>
             </Content>
@@ -183,17 +184,17 @@ const QuickNav = () => (
             <Content id="components-introduction">
               <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
-                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
-                provide guidance for development teams in order to deliver delightful and consistent user experiences to
-                our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
+                Design principles Halstack design principles are the fundamental part of DXC Technology&apos;s approach
+                to provide guidance for development teams in order to deliver delightful and consistent user experiences
+                to our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
                 guidelines, responsive design techniques, and layout proposals have been carefully curated by DXC design
                 and engineering teams with the objective of creating a unique visual language and ecosystem for our
                 applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
                 design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
                 to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
-                design new features, or help us improve the project documentation. If you're interested, definitely
+                design new features, or help us improve the project documentation. If you&apos;re interested, definitely
                 check out our contribution guidelines.Design principles Halstack design principles are the fundamental
-                part of DXC Technology's approach to provide guidance for development teams in order to deliver
+                part of DXC Technology&apos;s approach to provide guidance for development teams in order to deliver
                 delightful and consistent user experiences to our customers: Balance Consistency Visual hierarchy All
                 our components, design tokens, accessibility guidelines, responsive design techniques, and layout
                 proposals have been carefully curated by DXC design and engineering teams with the objective of creating
@@ -201,16 +202,16 @@ const QuickNav = () => (
                 Experiences. Open Source Halstack is an open source design system, this means that we work towards DXC
                 Technology bussines needs, but it is open for anyone to use and contribute back to. We are charmed to
                 receive external contributions to help us find bugs, design new features, or help us improve the project
-                documentation. If you're interested, definitely check out our contribution guidelines.Design principles
-                Halstack design principles are the fundamental part of DXC Technology's approach to provide guidance for
-                development teams in order to deliver delightful and consistent user experiences to our customers:
-                Balance Consistency Visual hierarchy All our components, design tokens, accessibility guidelines,
-                responsive design techniques, and layout proposals have been carefully curated by DXC design and
-                engineering teams with the objective of creating a unique visual language and ecosystem for our
+                documentation. If you&apos;re interested, definitely check out our contribution guidelines.Design
+                principles Halstack design principles are the fundamental part of DXC Technology&apos;s approach to
+                provide guidance for development teams in order to deliver delightful and consistent user experiences to
+                our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
+                guidelines, responsive design techniques, and layout proposals have been carefully curated by DXC design
+                and engineering teams with the objective of creating a unique visual language and ecosystem for our
                 applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
                 design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
                 to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
-                design new features, or help us improve the project documentation. If you're interested, definitely
+                design new features, or help us improve the project documentation. If you&apos;re interested, definitely
                 check out our contribution guidelines.
               </DxcParagraph>
             </Content>
@@ -229,37 +230,37 @@ const QuickNav = () => (
               <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 The color palette is an essential asset as a communication resource of our design system. Halstack color
-                palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
-                is based in the HSL model . All our color families are calculated using the lightness value of the
-                standard DXC palette colors. Color Tokens Halstack uses tokens to manage color. Appart from a
+                palette brings a unified consistency and helps in guiding the user&apos;s perception order. Our color
+                palette is based in the HSL model . All our color families are calculated using the lightness value of
+                the standard DXC palette colors. Color Tokens Halstack uses tokens to manage color. Appart from a
                 multi-purpose greyscale family, purple and blue are the core color families used in our set of
                 components. Additional families as red, green and yellow help as feedback role-based color palettes and
                 must not be used outside this context.The color palette is an essential asset as a communication
                 resource of our design system. Halstack color palette brings a unified consistency and helps in guiding
-                the user's perception order. Our color palette is based in the HSL model . All our color families are
-                calculated using the lightness value of the standard DXC palette colors. Color Tokens Halstack uses
+                the user&apos;s perception order. Our color palette is based in the HSL model . All our color families
+                are calculated using the lightness value of the standard DXC palette colors. Color Tokens Halstack uses
                 tokens to manage color. Appart from a multi-purpose greyscale family, purple and blue are the core color
                 families used in our set of components. Additional families as red, green and yellow help as feedback
                 role-based color palettes and must not be used outside this context.The color palette is an essential
                 asset as a communication resource of our design system. Halstack color palette brings a unified
-                consistency and helps in guiding the user's perception order. Our color palette is based in the HSL
+                consistency and helps in guiding the user&apos;s perception order. Our color palette is based in the HSL
                 model . All our color families are calculated using the lightness value of the standard DXC palette
                 colors. Color Tokens Halstack uses tokens to manage color. Appart from a multi-purpose greyscale family,
                 purple and blue are the core color families used in our set of components. Additional families as red,
                 green and yellow help as feedback role-based color palettes and must not be used outside this
                 context.The color palette is an essential asset as a communication resource of our design system.
-                Halstack color palette brings a unified consistency and helps in guiding the user's perception order.
-                Our color palette is based in the HSL model . All our color families are calculated using the lightness
-                value of the standard DXC palette colors. Color Tokens Halstack uses tokens to manage color. Appart from
-                a multi-purpose greyscale family, purple and blue are the core color families used in our set of
-                components. Additional families as red, green and yellow help as feedback role-based color palettes and
-                must not be used outside this context.The color palette is an essential asset as a communication
-                resource of our design system. Halstack color palette brings a unified consistency and helps in guiding
-                the user's perception order. Our color palette is based in the HSL model . All our color families are
-                calculated using the lightness value of the standard DXC palette colors. Color Tokens Halstack uses
-                tokens to manage color. Appart from a multi-purpose greyscale family, purple and blue are the core color
-                families used in our set of components. Additional families as red, green and yellow help as feedback
-                role-based color palettes and must not be used outside this context.
+                Halstack color palette brings a unified consistency and helps in guiding the user&apos;s perception
+                order. Our color palette is based in the HSL model . All our color families are calculated using the
+                lightness value of the standard DXC palette colors. Color Tokens Halstack uses tokens to manage color.
+                Appart from a multi-purpose greyscale family, purple and blue are the core color families used in our
+                set of components. Additional families as red, green and yellow help as feedback role-based color
+                palettes and must not be used outside this context.The color palette is an essential asset as a
+                communication resource of our design system. Halstack color palette brings a unified consistency and
+                helps in guiding the user&apos;s perception order. Our color palette is based in the HSL model . All our
+                color families are calculated using the lightness value of the standard DXC palette colors. Color Tokens
+                Halstack uses tokens to manage color. Appart from a multi-purpose greyscale family, purple and blue are
+                the core color families used in our set of components. Additional families as red, green and yellow help
+                as feedback role-based color palettes and must not be used outside this context.
               </DxcParagraph>
             </Content>
             <Content id="principles-very-very-very-very-very-very-very-very-long-spacingveryveryveryveryveryveryveryverylong">
@@ -287,37 +288,38 @@ const QuickNav = () => (
             <Content id="principles-very-very-very-very-very-very-very-very-long-typography">
               <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
-                Our selected typography helps in structuring our user's experience based on the visual impact that it
-                has on the user interface content. It defines what is the first noticeable piece of information or data
-                based on the font shape, size, color, or type and it highlights some pieces of text over the rest. Some
+                Our selected typography helps in structuring our user&apos;s experience based on the visual impact that
+                it has on the user interface content. It defines what is the first noticeable piece of information or
+                data based on the font shape, size, color, or type and it highlights some pieces of text over the rest.
+                Some typographic elements used in Halstack Design System include headers, body, taglines, captions, and
+                labels. Make sure you include all the different typographic variants in order to enhance the
+                application&apos;s content structure, including the Heading component which defines different levels of
+                page and section titles.Our selected typography helps in structuring our user&apos;s experience based on
+                the visual impact that it has on the user interface content. It defines what is the first noticeable
+                piece of information or data based on the font shape, size, color, or type and it highlights some pieces
+                of text over the rest. Some typographic elements used in Halstack Design System include headers, body,
+                taglines, captions, and labels. Make sure you include all the different typographic variants in order to
+                enhance the application&apos;s content structure, including the Heading component which defines
+                different levels of page and section titles.Our selected typography helps in structuring our user&apos;s
+                experience based on the visual impact that it has on the user interface content. It defines what is the
+                first noticeable piece of information or data based on the font shape, size, color, or type and it
+                highlights some pieces of text over the rest. Some typographic elements used in Halstack Design System
+                include headers, body, taglines, captions, and labels. Make sure you include all the different
+                typographic variants in order to enhance the application&apos;s content structure, including the Heading
+                component which defines different levels of page and section titles.Our selected typography helps in
+                structuring our user&apos;s experience based on the visual impact that it has on the user interface
+                content. It defines what is the first noticeable piece of information or data based on the font shape,
+                size, color, or type and it highlights some pieces of text over the rest. Some typographic elements used
+                in Halstack Design System include headers, body, taglines, captions, and labels. Make sure you include
+                all the different typographic variants in order to enhance the application&apos;s content structure,
+                including the Heading component which defines different levels of page and section titles.Our selected
+                typography helps in structuring our user&apos;s experience based on the visual impact that it has on the
+                user interface content. It defines what is the first noticeable piece of information or data based on
+                the font shape, size, color, or type and it highlights some pieces of text over the rest. Some
                 typographic elements used in Halstack Design System include headers, body, taglines, captions, and
                 labels. Make sure you include all the different typographic variants in order to enhance the
-                application's content structure, including the Heading component which defines different levels of page
-                and section titles.Our selected typography helps in structuring our user's experience based on the
-                visual impact that it has on the user interface content. It defines what is the first noticeable piece
-                of information or data based on the font shape, size, color, or type and it highlights some pieces of
-                text over the rest. Some typographic elements used in Halstack Design System include headers, body,
-                taglines, captions, and labels. Make sure you include all the different typographic variants in order to
-                enhance the application's content structure, including the Heading component which defines different
-                levels of page and section titles.Our selected typography helps in structuring our user's experience
-                based on the visual impact that it has on the user interface content. It defines what is the first
-                noticeable piece of information or data based on the font shape, size, color, or type and it highlights
-                some pieces of text over the rest. Some typographic elements used in Halstack Design System include
-                headers, body, taglines, captions, and labels. Make sure you include all the different typographic
-                variants in order to enhance the application's content structure, including the Heading component which
-                defines different levels of page and section titles.Our selected typography helps in structuring our
-                user's experience based on the visual impact that it has on the user interface content. It defines what
-                is the first noticeable piece of information or data based on the font shape, size, color, or type and
-                it highlights some pieces of text over the rest. Some typographic elements used in Halstack Design
-                System include headers, body, taglines, captions, and labels. Make sure you include all the different
-                typographic variants in order to enhance the application's content structure, including the Heading
-                component which defines different levels of page and section titles.Our selected typography helps in
-                structuring our user's experience based on the visual impact that it has on the user interface content.
-                It defines what is the first noticeable piece of information or data based on the font shape, size,
-                color, or type and it highlights some pieces of text over the rest. Some typographic elements used in
-                Halstack Design System include headers, body, taglines, captions, and labels. Make sure you include all
-                the different typographic variants in order to enhance the application's content structure, including
-                the Heading component which defines different levels of page and section titles.
+                application&apos;s content structure, including the Heading component which defines different levels of
+                page and section titles.
               </DxcParagraph>
             </Content>
           </Content>

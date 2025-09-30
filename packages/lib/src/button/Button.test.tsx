@@ -4,7 +4,9 @@ import DxcButton from "./Button";
 describe("Button component tests", () => {
   test("Calls correct function on click", () => {
     const onClick = jest.fn();
-    const { getByText } = render(<DxcButton label="Button" onClick={onClick} size={{ height: "medium" }} semantic="success" />);
+    const { getByText } = render(
+      <DxcButton label="Button" onClick={onClick} size={{ height: "medium" }} semantic="success" />
+    );
     const button = getByText("Button");
     fireEvent.click(button);
     expect(onClick).toHaveBeenCalled();

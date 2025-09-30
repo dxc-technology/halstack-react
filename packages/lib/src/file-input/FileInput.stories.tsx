@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
-import { userEvent, within } from "storybook/test";
 
 export default {
   title: "File Input",

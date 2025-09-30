@@ -1,7 +1,4 @@
-// TODO: Remove eslint disable
-/* eslint-disable no-param-reassign */
-
-import { ReactNode, SetStateAction, useState } from "react";
+import { ReactNode, SetStateAction } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
@@ -123,6 +120,19 @@ export const renderExpandableTrigger = (
 );
 
 /**
+ * Determines if the given row is a `HierarchyGridRow`.
+ *
+ * A `HierarchyGridRow` is identified by having a `childRows` property
+ * that is an array with at least one element.
+ *
+ * @param {GridRow} row - The row to check.
+ * @returns {row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] }}
+ *          Returns `true` if the row is a `HierarchyGridRow` with `childRows` defined, otherwise `false`.
+ */
+const isHierarchyGridRow = (row: GridRow): row is HierarchyGridRow & { childRows: HierarchyGridRow[] | GridRow[] } =>
+  Array.isArray(row.childRows) && row.childRows.length > 0;
+
+/**
  * Renders a trigger for hierarchical row expansion in the grid.
  * @param {HierarchyGridRow[]} rows - List of all hierarchy grid rows.
  * @param {HierarchyGridRow} triggerRow - Row object with children that can be expanded or collapsed.
@@ -138,94 +148,114 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void,
+  loadingChildren?: (string | number)[],
+  setLoadingChildren?: (_value: SetStateAction<(string | number)[]>) => void,
   childrenTrigger?: (
     _open: boolean,
     _selectedRow: HierarchyGridRow
   ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>
 ) => {
-  const [loading, setLoading] = useState(false);
-  const onClick = async () => {
-    if (loading) return; // Prevent double clicks while loading
-    if (!triggerRow.visibleChildren) {
-      if (childrenTrigger) {
-        setLoading(true);
-        triggerRow.loadingChildren = true;
-        try {
-          const dynamicChildren = await childrenTrigger(true, triggerRow);
-          triggerRow.childRows = dynamicChildren;
+  const isLoading = !!loadingChildren?.includes(rowKeyGetter(triggerRow, uniqueRowId));
+  const expandChildren = async () => {
+    if (childrenTrigger && !triggerRow.childRows?.length) {
+      setLoadingChildren?.((currentLoadingChildren) => [
+        ...currentLoadingChildren,
+        rowKeyGetter(triggerRow, uniqueRowId),
+      ]);
+      triggerRow.loadingChildren = true;
+      try {
+        const dynamicChildren = await childrenTrigger(true, triggerRow);
+        triggerRow.childRows = dynamicChildren;
 
-          setRowsToRender((currentRows) => {
-            const newRowsToRender = [...currentRows];
-            // Prevents adding children if the triggerRow has been removed
-            if (newRowsToRender.some((row) => rowKeyGetter(row, uniqueRowId) === triggerRow[uniqueRowId])) {
-              const rowIndex = currentRows.findIndex((row) => triggerRow === row);
-
-              dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
-                childRow.rowLevel =
-                  triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-                childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-                addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-              });
-            }
-            return newRowsToRender;
-          });
-        } catch (error) {
-          console.error("Error loading children:", error);
-        } finally {
-          setLoading(false);
-        }
-      } else if (triggerRow.childRows) {
         setRowsToRender((currentRows) => {
           const newRowsToRender = [...currentRows];
-          const rowIndex = currentRows.findIndex((row) => triggerRow === row);
-
-          triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-            childRow.rowLevel =
-              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-          });
-
+          if (newRowsToRender.some((row) => rowKeyGetter(row, uniqueRowId) === triggerRow[uniqueRowId])) {
+            const rowIndex = currentRows.findIndex((row) => triggerRow === row);
+            dynamicChildren.forEach((childRow: HierarchyGridRow, index: number) => {
+              childRow.rowLevel =
+                triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+              childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+              addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+            });
+          }
           return newRowsToRender;
         });
+      } catch (e) {
+        console.error("Error loading children:", e);
+      } finally {
+        setLoadingChildren?.((currentLoadingChildren) =>
+          currentLoadingChildren.filter((key) => key !== rowKeyGetter(triggerRow, uniqueRowId))
+        );
       }
-    } else {
+    } else if (triggerRow?.childRows) {
       setRowsToRender((currentRows) => {
-        // The children of the row that is being collapsed are added to an array
-        const rowsToRemove: HierarchyGridRow[] = rows.filter(
-          (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
-        );
-        // The children are checked if any of them has any other children of their own
-        const rowsToCheck = [...rowsToRemove];
-        while (rowsToCheck.length > 0) {
-          const currentRow = rowsToCheck.pop();
-          const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
+        const newRowsToRender = [...currentRows];
+        const rowIndex = currentRows.findIndex((row) => triggerRow === row);
 
-          rowsToRemove.push(...childRows);
-          rowsToCheck.push(...childRows);
-        }
-
-        const newRowsToRender = currentRows.filter(
-          (row) =>
-            !rowsToRemove
-              .map((rowToRemove) => {
-                if (rowToRemove.visibleChildren) {
-                  rowToRemove.visibleChildren = false;
-                }
-                return rowKeyGetter(rowToRemove, uniqueRowId);
-              })
-              .includes(rowKeyGetter(row, uniqueRowId))
-        );
+        triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+          childRow.rowLevel =
+            triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+          childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+          addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+        });
 
         return newRowsToRender;
       });
     }
+  };
+  if (
+    triggerRow.visibleChildren &&
+    triggerRow.childRows?.length &&
+    !rows.some((row) => row.parentKey === rowKeyGetter(triggerRow, uniqueRowId))
+  ) {
+    expandChildren().catch((err) => {
+      console.error("Children expansion failed:", err);
+    });
+  }
+  const onClick = async () => {
+    try {
+      if (isLoading) return; // Prevent double clicks while loading
+      triggerRow.visibleChildren = !triggerRow.visibleChildren;
+      if (triggerRow.visibleChildren) {
+        await expandChildren();
+      } else {
+        setRowsToRender((currentRows) => {
+          // The children of the row that is being collapsed are added to an array
+          const rowsToRemove: HierarchyGridRow[] = rows.filter(
+            (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
+          );
+          // The children are checked if any of them has any other children of their own
+          const rowsToCheck = [...rowsToRemove];
+          while (rowsToCheck.length > 0) {
+            const currentRow = rowsToCheck.pop();
+            const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
 
-    triggerRow.visibleChildren = !triggerRow.visibleChildren;
+            rowsToRemove.push(...childRows);
+            rowsToCheck.push(...childRows);
+          }
+
+          const newRowsToRender = currentRows.filter(
+            (row) =>
+              !rowsToRemove
+                .map((rowToRemove) => {
+                  if (rowToRemove.visibleChildren) {
+                    rowToRemove.visibleChildren = false;
+                  }
+                  return rowKeyGetter(rowToRemove, uniqueRowId);
+                })
+                .includes(rowKeyGetter(row, uniqueRowId))
+          );
+
+          return newRowsToRender;
+        });
+      }
+    } catch (err) {
+      console.error("Error toggling row:", err);
+    }
   };
   return (
-    <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={onClick}>
-      {loading ? (
+    <button type="button" disabled={!rows.some((row) => uniqueRowId in row)} onClick={() => void onClick()}>
+      {isLoading ? (
         <DxcSpinner mode="small" />
       ) : (
         <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
@@ -263,10 +293,7 @@ export const renderCheckbox = (
       onChange={(checked) => {
         handleCheckboxUpdate(rows, row, uniqueRowId, selectedRows, checked, onSelectRows);
       }}
-      disabled={
-        // row.loadingChildren ||
-        !rows.some((row) => uniqueRowId in row)
-      }
+      disabled={!rows.some((row) => uniqueRowId in row)}
     />
   );
 };
@@ -293,14 +320,14 @@ export const renderHeaderCheckbox = (
       if (checked) {
         rows.forEach((row) => {
           updatedSelection.add(rowKeyGetter(row, uniqueRowId));
-          if (row.childRows && Array.isArray(row.childRows)) {
+          if (isHierarchyGridRow(row)) {
             getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
           }
         });
       } else {
         rows.forEach((row) => {
           updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
-          if (row.childRows && Array.isArray(row.childRows)) {
+          if (isHierarchyGridRow(row)) {
             getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
           }
         });
@@ -495,26 +522,25 @@ export const rowFinderBasedOnId = (
   if (foundRow) {
     return foundRow;
   }
-  return undefined;
 };
 
 /**
  * Recursively selects or deselects children rows based on the checked state.
- * @param {HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
+ * @param {GridRow[] | HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
  * @param {string} uniqueRowId - Key used to uniquely identify each row.
  * @param {Set<string | number>} selectedRows - Set of selected rows.
  * @param {boolean} checked - Boolean indicating whether the rows should be selected (true) or deselected (false).
  * @param {boolean} expandingChildren - Defines children are being expanded or not, used to avoid removing children that were previously set when expanding an unset parent
  */
 const getChildrenSelection = (
-  rowList: HierarchyGridRow[],
+  rowList: GridRow[] | HierarchyGridRow[],
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   checked: boolean,
   hierarchyValidation?: boolean
 ) => {
   rowList.forEach((row) => {
-    if (row.childRows) {
+    if (isHierarchyGridRow(row)) {
       // Recursively select/deselect child rows
       getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked, hierarchyValidation);
     }
@@ -549,7 +575,7 @@ const getParentSelectedState = (
   }
   const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
 
-  if (!parentRow) {
+  if (!parentRow || !isHierarchyGridRow(parentRow)) {
     return;
   }
 
@@ -687,6 +713,4 @@ export const getPaginatedNodes = (
  * @returns {boolean} - Returns `true` if `key` is a valid key of `obj`, otherwise `false`.
  *
  */
-export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => {
-  return key in obj;
-};
+export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => key in obj;

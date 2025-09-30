@@ -4,8 +4,8 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
-import { userEvent, within } from "storybook/test";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Button",

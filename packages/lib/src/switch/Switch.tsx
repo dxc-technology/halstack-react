@@ -188,4 +188,6 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   }
 );
 
+DxcSwitch.displayName = "DxcSwitch";
+
 export default DxcSwitch;

@@ -3,9 +3,9 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import { userEvent, within } from "storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Badge",

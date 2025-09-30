@@ -8,7 +8,7 @@ export default {
   component: DxcRadioGroup,
 } satisfies Meta<typeof DxcRadioGroup>;
 
-const single_option = [{ label: "Option A", value: "A" }];
+const singleOption = [{ label: "Option A", value: "A" }];
 
 const options = [
   { label: "Option 1", value: "1" },
@@ -17,44 +17,44 @@ const options = [
   { label: "Option 4", value: "4" },
 ];
 
-const single_disabled_options = [{ label: "Option A", value: "A", disabled: true }];
+const singleDisabledOptions = [{ label: "Option A", value: "A", disabled: true }];
 
 const RadioGroup = () => (
   <>
     <Title title="Enabled" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={singleOption} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={singleOption} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={singleOption} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={singleOption} />
     </ExampleContainer>
     <Title title="Disabled" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_disabled_options} defaultValue="A" />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={singleDisabledOptions} defaultValue="A" />
     </ExampleContainer>
     <Title title="Readonly" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={singleOption} defaultValue="A" readOnly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={singleOption} defaultValue="A" readOnly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={singleOption} defaultValue="A" readOnly />
     </ExampleContainer>
     <Title title="Error" theme="light" level={2} />
     <ExampleContainer>
@@ -62,7 +62,7 @@ const RadioGroup = () => (
       <DxcRadioGroup
         label="Label"
         helperText="Helper text"
-        options={single_option}
+        options={singleOption}
         defaultValue="A"
         error="Error message"
       />
@@ -72,7 +72,7 @@ const RadioGroup = () => (
       <DxcRadioGroup
         label="Label"
         helperText="Helper text"
-        options={single_option}
+        options={singleOption}
         defaultValue="A"
         readOnly
         error="Error message"
@@ -83,7 +83,7 @@ const RadioGroup = () => (
       <DxcRadioGroup
         label="Label"
         helperText="Helper text"
-        options={single_option}
+        options={singleOption}
         defaultValue="A"
         readOnly
         error="Error message"

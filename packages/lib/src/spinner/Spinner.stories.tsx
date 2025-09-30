@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcSpinner from "./Spinner";
-import { userEvent, within } from "storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Spinner",

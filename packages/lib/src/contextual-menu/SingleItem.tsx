@@ -21,7 +21,9 @@ export default function SingleItem({ id, onSelect, selectedByDefault = false, ..
     <ItemAction
       aria-pressed={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
       onClick={handleClick}
-      selected={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
+      selected={
+        selectedItemId != null && (selectedItemId === -1 ? (selectedByDefault ?? false) : selectedItemId === id)
+      }
       {...props}
     />
   );

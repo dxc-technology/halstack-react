@@ -158,6 +158,21 @@ const sections = [
     ],
   },
   {
+    title: "Supported Browsers",
+    content: (
+      <>
+        <DxcParagraph>
+          Our design system is optimized to work seamlessly on Firefox and browsers based on the Chromium engine (such
+          as Google Chrome, Microsoft Edge, Brave, and Opera).
+        </DxcParagraph>
+        <DxcParagraph>
+          Other browsers are not officially supported, which means some components or features may not behave as
+          expected. For the best experience, we recommend using one of the supported browsers.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "How to use this site",
     content: (
       <>

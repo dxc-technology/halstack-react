@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcCheckbox from "./Checkbox";
-import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Checkbox",
@@ -193,7 +193,7 @@ type Story = StoryObj<typeof DxcCheckbox>;
 
 export const Chromatic: Story = {
   render: Checkbox,
-  play: async () => {
+  play: () => {
     document.getElementById("scroll-container")?.scrollTo({ top: 50 });
   },
 };

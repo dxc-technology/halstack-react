@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
 import DxcTypography from "../typography/Typography";
-import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Container",
@@ -26,7 +26,10 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
     width="250px"
   >
     {suggestions.map((suggestion, index) => (
-      <DxcContainer padding={{ left: "var(--spacing-padding-xs)", right: "var(--spacing-padding-xs)" }}>
+      <DxcContainer
+        padding={{ left: "var(--spacing-padding-xs)", right: "var(--spacing-padding-xs)" }}
+        key={`suggestion_${index}`}
+      >
         <DxcContainer
           border={
             index !== suggestions.length - 1

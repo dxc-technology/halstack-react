@@ -4,9 +4,9 @@ import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
-import { userEvent, within } from "storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Contextual Menu",

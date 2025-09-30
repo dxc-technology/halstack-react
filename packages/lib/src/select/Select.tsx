@@ -40,7 +40,7 @@ import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
-import { inputStylesByState } from "../styles/forms/inputStylesByState";
+import inputStylesByState from "../styles/forms/inputStylesByState";
 
 const SelectContainer = styled.div<{
   margin: SelectPropsType["margin"];
@@ -153,6 +153,7 @@ const SelectedOption = styled.span<{
   );
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
+  font-family: var(--typography-font-family);
   user-select: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -193,6 +194,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
       value,
+      virtualizedHeight,
     },
     ref
   ) => {
@@ -611,6 +613,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 handleOptionOnClick={handleOptionOnClick}
                 handleGroupOnClick={handleSelectAllGroup}
                 handleSelectAllOnClick={handleSelectAllOnClick}
+                virtualizedHeight={virtualizedHeight}
                 id={listboxId}
                 lastOptionIndex={lastOptionIndex}
                 multiple={multiple}
@@ -630,5 +633,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     );
   }
 );
+
+DxcSelect.displayName = "DxcSelect";
 
 export default DxcSelect;

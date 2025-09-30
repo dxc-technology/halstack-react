@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcInset from "../inset/Inset";
 import DxcGrid from "./Grid";
-import { Meta, StoryObj } from "@storybook/react-vite";
 
 export default {
   title: "Grid",

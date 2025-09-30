@@ -1,4 +1,4 @@
-import { DxcDialog, DxcButton, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcDialog, DxcButton, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,7 +13,7 @@ const code = `() => {
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
           <DxcInset space="var(--spacing-padding-l)">
-            Please enter your personal information.
+            <DxcParagraph>Please enter your personal information.</DxcParagraph>
           </DxcInset>
         </DxcDialog>
       )}
@@ -26,6 +26,7 @@ const scope = {
   DxcButton,
   DxcDialog,
   DxcInset,
+  DxcParagraph,
 };
 
 export default { code, scope };

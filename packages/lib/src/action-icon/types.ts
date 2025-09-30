@@ -1,5 +1,5 @@
-import { SVG } from "../common/utils";
 import { MouseEvent } from "react";
+import { SVG } from "../common/utils";
 
 type Props = {
   /**

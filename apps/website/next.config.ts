@@ -1,12 +1,15 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
+import type { NextConfig } from "next";
+import type { Configuration } from "webpack";
+
+const nextConfig: NextConfig = {
   images: {
     loader: "custom",
   },
   output: "export",
   trailingSlash: true,
-  webpack: (config) => {
-    config.module.rules.push({
+  webpack: (config: Configuration): Configuration => {
+    config.module = config.module || { rules: [] };
+    config.module.rules?.push({
       test: /\.md$/,
       use: "raw-loader",
     });
@@ -30,3 +33,5 @@ module.exports = {
     "@cloudscape-design/theming-runtime",
   ],
 };
+
+export default nextConfig;

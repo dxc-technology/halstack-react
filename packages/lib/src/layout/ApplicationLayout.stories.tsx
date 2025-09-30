@@ -1,11 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
-import { userEvent, within } from "storybook/test";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Application Layout",
-  component: DxcApplicationLayout
+  component: DxcApplicationLayout,
 } satisfies Meta<typeof DxcApplicationLayout>;
 
 const ApplicationLayout = () => (
@@ -150,21 +150,19 @@ const ApplicationLayoutCustomFooter = () => (
 );
 
 const Tooltip = () => (
-  <>
-    <DxcApplicationLayout
-      sidenav={
-        <DxcApplicationLayout.SideNav>
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
-        </DxcApplicationLayout.SideNav>
-      }
-    >
-      <DxcApplicationLayout.Main>
-        <p>Main Content</p>
-      </DxcApplicationLayout.Main>
-    </DxcApplicationLayout>
-  </>
+  <DxcApplicationLayout
+    sidenav={
+      <DxcApplicationLayout.SideNav>
+        <DxcApplicationLayout.SideNav.Section>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav.Section>
+      </DxcApplicationLayout.SideNav>
+    }
+  >
+    <DxcApplicationLayout.Main>
+      <p>Main Content</p>
+    </DxcApplicationLayout.Main>
+  </DxcApplicationLayout>
 );
 
 type Story = StoryObj<typeof DxcApplicationLayout>;

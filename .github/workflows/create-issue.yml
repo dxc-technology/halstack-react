@@ -23,9 +23,6 @@ jobs:
         run: cd scripts && npm install
 
       - name: Run Autorespond Script
-        run: 
-          node scripts/new_issue-message.js
+        run: node scripts/new_issue-message.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    

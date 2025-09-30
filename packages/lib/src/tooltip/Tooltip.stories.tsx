@@ -1,11 +1,11 @@
-import { userEvent, within } from "storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import DxcTooltip from "./Tooltip";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import DxcTooltip from "./Tooltip";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Tooltip",

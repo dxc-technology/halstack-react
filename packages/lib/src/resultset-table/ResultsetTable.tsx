@@ -1,23 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, forwardRef, HTMLAttributes, TableHTMLAttributes } from "react";
 import styled from "@emotion/styled";
-import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
-import ResultsetTablePropsType, { Column } from "./types";
-import { assignIdsToRows, calculateWidth, getMinItemsPerPageIndex, getMaxItemsPerPageIndex, sortArray } from "./utils";
+import ResultsetTablePropsType, { Column, Row } from "./types";
+import { assignIdsToRows, getMinItemsPerPageIndex, getMaxItemsPerPageIndex, sortArray } from "./utils";
 import DxcIcon from "../icon/Icon";
-
-const ResultsetTableContainer = styled.div<{
-  margin: ResultsetTablePropsType["margin"];
-}>`
-  width: ${({ margin }) => calculateWidth(margin)};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
-  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
-`;
+import { TableVirtuoso } from "react-virtuoso";
+import { Table, TableContainer } from "../styles/tables/tablesStyles";
 
 const SortingHeader = styled.span<{
   isSortable: Column["isSortable"];
@@ -39,6 +28,9 @@ const SortingHeader = styled.span<{
       : "cursor: default;"}
 `;
 
+const getSortIcon = (isSortedColumn: boolean, order: "ascending" | "descending"): string =>
+  isSortedColumn ? (order === "ascending" ? "arrow_upward" : "arrow_downward") : "unfold_more";
+
 const DxcResultsetTable = ({
   columns,
   hidePaginator = false,
@@ -50,11 +42,13 @@ const DxcResultsetTable = ({
   rows,
   showGoToPage = true,
   tabIndex = 0,
+  virtualizedHeight,
 }: ResultsetTablePropsType) => {
   const [page, setPage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
   const prevRowCountRef = useRef<number>(rows.length);
+
   const rowsWithIds = useMemo(() => assignIdsToRows(rows), [rows]);
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
@@ -101,69 +95,86 @@ const DxcResultsetTable = ({
     }
   }, [hidePaginator, page, rows]);
 
+  const renderHeaderRow = () => (
+    <tr>
+      {columns.map((column, index) => {
+        const isSortedColumn = sortColumnIndex === index;
+        return (
+          <th
+            key={`tableHeader_${index}`}
+            aria-sort={column.isSortable ? (isSortedColumn ? sortOrder : "none") : undefined}
+          >
+            <SortingHeader
+              aria-label={column.isSortable ? "Sort column" : undefined}
+              isSortable={column.isSortable}
+              mode={mode}
+              onClick={() => column.isSortable && changeSorting(index)}
+              role={column.isSortable ? "button" : undefined}
+              tabIndex={column.isSortable ? tabIndex : -1}
+            >
+              {column.displayValue}
+              {column.isSortable && <DxcIcon icon={getSortIcon(isSortedColumn, sortOrder)} />}
+            </SortingHeader>
+          </th>
+        );
+      })}
+    </tr>
+  );
+
+  const renderPaginator = () =>
+    !hidePaginator && rows.length > itemsPerPage ? (
+      <DxcPaginator
+        currentPage={page}
+        itemsPerPage={itemsPerPage}
+        itemsPerPageFunction={itemsPerPageFunction}
+        itemsPerPageOptions={itemsPerPageOptions}
+        onPageChange={goToPage}
+        showGoToPage={showGoToPage}
+        tabIndex={tabIndex}
+        totalItems={rows.length}
+      />
+    ) : null;
+
   return (
-    <ResultsetTableContainer margin={margin}>
-      <DxcTable mode={mode}>
-        <thead>
-          <tr>
-            {columns.map((column, index) => (
-              <th
-                aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
-                key={`tableHeader_${index}`}
-              >
-                <SortingHeader
-                  aria-label={column.isSortable ? "Sort column" : undefined}
-                  isSortable={column.isSortable}
-                  mode={mode}
-                  onClick={() => {
-                    if (column.isSortable) {
-                      changeSorting(index);
-                    }
-                  }}
-                  role={column.isSortable ? "button" : undefined}
-                  tabIndex={column.isSortable ? tabIndex : -1}
-                >
-                  {column.displayValue}
-                  {column.isSortable && (
-                    <DxcIcon
-                      icon={
-                        sortColumnIndex === index
-                          ? sortOrder === "ascending"
-                            ? "arrow_upward"
-                            : "arrow_downward"
-                          : "unfold_more"
-                      }
-                    />
-                  )}
-                </SortingHeader>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredResultset.map((row) => (
-            <tr key={`resultSetTableCell_${row.id}`}>
+    <>
+      {virtualizedHeight ? (
+        <TableVirtuoso
+          data={filteredResultset}
+          components={{
+            Scroller: forwardRef<HTMLDivElement>((props, ref) => (
+              <TableContainer margin={margin} {...props} ref={ref} />
+            )),
+            Table: (props: TableHTMLAttributes<HTMLTableElement>) => <Table mode={mode} {...props} />,
+            TableRow: (props: HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />,
+          }}
+          fixedHeaderContent={renderHeaderRow}
+          itemContent={(_index: number, row: { id: string; cells: Row }) => (
+            <>
               {row.cells.map((cellContent, cellIndex) => (
                 <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </DxcTable>
-      {!hidePaginator &&
-        (itemsPerPageOptions?.some((itemsPerPage) => rows.length > itemsPerPage) || rows.length > itemsPerPage) && (
-          <DxcPaginator
-            currentPage={page}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageFunction={itemsPerPageFunction}
-            itemsPerPageOptions={itemsPerPageOptions}
-            onPageChange={goToPage}
-            showGoToPage={showGoToPage}
-            tabIndex={tabIndex}
-            totalItems={rows.length}
-          />
-        )}
-    </ResultsetTableContainer>
+            </>
+          )}
+          style={{ height: virtualizedHeight }}
+        />
+      ) : (
+        <TableContainer margin={margin}>
+          <DxcTable mode={mode}>
+            <thead>{renderHeaderRow()}</thead>
+            <tbody>
+              {filteredResultset.map((row) => (
+                <tr key={`resultSetTableCell_${row.id}`}>
+                  {row.cells.map((cellContent, cellIndex) => (
+                    <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </DxcTable>
+        </TableContainer>
+      )}
+      {renderPaginator()}
+    </>
   );
 };
 

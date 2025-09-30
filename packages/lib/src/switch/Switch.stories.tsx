@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import disabledRules from "../../test/accessibility/rules/specific/switch/disabledRules";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/switch/disabledRules";
 import DxcSwitch from "./Switch";
 
 export default {
@@ -12,7 +12,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
         ],
       },

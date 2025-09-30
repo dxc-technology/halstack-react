@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { ReactNode } from "react";
 import Title from "../../.storybook/components/Title";
 import DxcBleed from "./Bleed";
 import DxcFlex from "../flex/Flex";
-import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcContainer from "../container/Container";
-import { ReactNode } from "react";
 
 export default {
   title: "Bleed",

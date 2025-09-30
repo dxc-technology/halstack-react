@@ -1,13 +1,12 @@
-import { userEvent, waitFor, within } from "storybook/test";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
-import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import DxcHeader from "./Header";
 import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, waitFor, within } from "storybook/internal/test";
 
 export default {
   title: "Header",
@@ -16,7 +15,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
         ],
       },
@@ -24,27 +23,29 @@ export default {
   },
 } satisfies Meta<typeof DxcHeader>;
 
-const options: any = [
+const options = [
   {
-    value: 1,
+    value: "1",
     label: "Amazon",
   },
 ];
 
-const options2: any = [
+const options2 = [
   {
-    value: 1,
+    value: "1",
     label: "Home",
   },
   {
-    value: 2,
+    value: "2",
     label: "Release notes",
   },
   {
-    value: 3,
+    value: "3",
     label: "Sign out",
   },
 ];
+
+const responsiveContentFunction = () => <p>Lorem ipsum dolor sit amet.</p>;
 
 const Header = () => (
   <>
@@ -132,9 +133,7 @@ const Responsive = () => (
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
       content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-      responsiveContent={(closeHandler) => (
-        <DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />
-      )}
+      responsiveContent={responsiveContentFunction}
       underlined
     />
   </ExampleContainer>
@@ -143,28 +142,26 @@ const Responsive = () => (
 const RespHeaderFocus = () => (
   <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Responsive focus" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderMenuMobile = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
 const RespHeaderMenuTablet = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
@@ -259,6 +256,8 @@ export const ResponsiveHeaderTooltip: Story = {
     await waitFor(() => canvas.findByText("Menu"));
     await userEvent.click(await canvas.findByText("Menu"));
     const closeButton = (await canvas.findAllByRole("button"))[1];
-    closeButton != null && (await userEvent.hover(closeButton));
+    if (closeButton != null) {
+      await userEvent.hover(closeButton);
+    }
   },
 };
