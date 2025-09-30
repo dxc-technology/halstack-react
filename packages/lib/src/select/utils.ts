@@ -214,9 +214,9 @@ export const getSelectableOptionsValues = (options: Props["options"]) =>
 
 /**
  * (Un)Selects the option passed as parameter.
- * @param currentValue 
- * @param newOption 
- * @returns 
+ * @param currentValue
+ * @param newOption
+ * @returns
  */
 export const computeNewValue = (currentValue: string[], newOption: ListOptionType) =>
   currentValue.includes(newOption.value)

@@ -10,7 +10,7 @@ describe("StatusLight component tests", () => {
     const { getByRole } = render(<DxcStatusLight label="Status Light Test" />);
     expect(getByRole("status")).toBeTruthy();
   });
-  
+
   test("StatusLight dot is aria-hidden", () => {
     const { container } = render(<DxcStatusLight label="Hidden Dot Test" />);
     const dot = container.querySelector("div[aria-hidden='true']");

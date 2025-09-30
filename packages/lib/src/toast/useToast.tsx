@@ -15,6 +15,6 @@ export default function useToast() {
     }),
     [add]
   );
-  
+
   return toast;
 }

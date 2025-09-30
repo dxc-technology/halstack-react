@@ -1,3 +1,3 @@
-const fs = require('fs');
+const fs = require("fs");
 
-fs.createReadStream('../../README.md').pipe(fs.createWriteStream('../lib/README.md'));
+fs.createReadStream("../../README.md").pipe(fs.createWriteStream("../lib/README.md"));

@@ -98,8 +98,8 @@ const sections = [
               content updates related to that tab. These badges are typically displayed as small counters and serve as a
               visual prompt to <strong>draw the user's attention</strong> to something that requires their interaction
               or awareness. Use notification badges sparingly and only when there is a clear need to highlight important
-              changes — such as unread messages, pending actions or system alerts — to avoid visual noise and ensure they
-              retain their impact.
+              changes — such as unread messages, pending actions or system alerts — to avoid visual noise and ensure
+              they retain their impact.
             </DxcParagraph>
             <Example example={badges} defaultIsVisible={false} />
           </>

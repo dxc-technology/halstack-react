@@ -37,7 +37,7 @@ type Props = {
    * If true the focusLock functionality won't work.
    * @private
    */
-  disableFocusLock?: boolean
+  disableFocusLock?: boolean;
 };
 
 export default Props;

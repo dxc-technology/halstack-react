@@ -5,7 +5,7 @@
 const disabledRules = [
   // TODO: Work on nested interaction with the DxcCheckbox component to prevent these issues
   "nested-interactive",
-  "scrollable-region-focusable"
+  "scrollable-region-focusable",
 ];
 
 export default disabledRules;

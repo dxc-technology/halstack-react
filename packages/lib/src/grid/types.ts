@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-type Gap = string | { columnGap?: string; rowGap: string; } | { columnGap: string; rowGap?: string; };
-type GridCell = { end: number | string; start: number | string; };
+type Gap = string | { columnGap?: string; rowGap: string } | { columnGap: string; rowGap?: string };
+type GridCell = { end: number | string; start: number | string };
 type PlaceSelfValues = "auto" | "baseline" | "center" | "end" | "start" | "stretch";
 type PlaceContentValues =
   | "baseline"
@@ -18,8 +18,8 @@ type PlaceObject<Type, Suffix extends string> = {
   [Property in keyof Type as `${string & Property}${Capitalize<string & Suffix>}`]: Type[Property];
 };
 type PlaceGeneric<PlaceValues, Element extends string> =
-  | PlaceObject<{ align: PlaceValues; justify?: PlaceValues; }, Element>
-  | PlaceObject<{ align?: PlaceValues; justify: PlaceValues; }, Element>
+  | PlaceObject<{ align: PlaceValues; justify?: PlaceValues }, Element>
+  | PlaceObject<{ align?: PlaceValues; justify: PlaceValues }, Element>
   | PlaceValues;
 
 export type GridItemProps = {

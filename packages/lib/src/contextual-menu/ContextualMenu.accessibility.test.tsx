@@ -74,17 +74,15 @@ const items = [
           {
             label: "Sales performance",
           },
-          { 
-            label: "Key metrics" 
+          {
+            label: "Key metrics",
           },
         ],
       },
     ],
   },
   {
-    items: [
-      { label: "Support", icon: "support_agent" },
-    ],
+    items: [{ label: "Support", icon: "support_agent" }],
   },
 ];
 

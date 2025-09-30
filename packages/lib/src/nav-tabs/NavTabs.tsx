@@ -22,9 +22,7 @@ const Underline = styled.div`
 
 const DxcNavTabs = ({ iconPosition = "left", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
-  const childArray = Children.toArray(children).filter(
-    (child) => typeof child === "object" && "props" in child
-  );
+  const childArray = Children.toArray(children).filter((child) => typeof child === "object" && "props" in child);
 
   const contextValue = useMemo(
     () => ({

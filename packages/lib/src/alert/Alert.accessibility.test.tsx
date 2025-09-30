@@ -27,7 +27,9 @@ describe("Alert component accessibility tests", () => {
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for modal mode", async () => {
-    const { container } = render(<DxcAlert title="Info" mode="modal" message={{ text: "info-alert-text", onClose: () => {} }} />);
+    const { container } = render(
+      <DxcAlert title="Info" mode="modal" message={{ text: "info-alert-text", onClose: () => {} }} />
+    );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

@@ -15,7 +15,8 @@ const sections = [
         <DxcParagraph>
           The file input component is a key UI element for collecting <strong>digital files</strong> such as documents,
           images, videos or other media types. It plays a critical role in workflows where users must provide
-          supplemental information — like uploading resumes, profile pictures, supporting documents or media attachments.
+          supplemental information — like uploading resumes, profile pictures, supporting documents or media
+          attachments.
         </DxcParagraph>
         <DxcParagraph>
           Unlike text or number inputs, file inputs trigger system-level dialogs and are limited in how their visual
@@ -26,8 +27,8 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           Clear instructions, visual feedback and validation help users understand what types of files are accepted,
-          whether multiple files are allowed, and if an upload was successful. Proper labeling and accessibility
-          support — including keyboard navigation and screen reader compatibility — are essential to providing an inclusive
+          whether multiple files are allowed, and if an upload was successful. Proper labeling and accessibility support
+          — including keyboard navigation and screen reader compatibility — are essential to providing an inclusive
           experience.
         </DxcParagraph>
         <DxcParagraph>
@@ -218,9 +219,9 @@ const sections = [
                     <strong>Dropzone</strong>
                   </td>
                   <td>
-                    Choose the dropzone when the <strong>primary goal is file uploading</strong> — such as media galleries
-                    or document submission tools. It provides a large, visually prominent area optimized for dragging
-                    and dropping files.
+                    Choose the dropzone when the <strong>primary goal is file uploading</strong> — such as media
+                    galleries or document submission tools. It provides a large, visually prominent area optimized for
+                    dragging and dropping files.
                   </td>
                 </tr>
               </tbody>
