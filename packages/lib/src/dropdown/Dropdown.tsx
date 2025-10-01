@@ -317,7 +317,7 @@ const DxcDropdown = ({
           </Popover.Portal>
         </Popover.Root>
       </DropdownContainer>
-      <div id={`${id}-portal`}></div>
+      <div id={`${id}-portal`} style={{ position: "absolute" }} />
     </>
   );
 };

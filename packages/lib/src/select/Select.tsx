@@ -631,7 +631,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Root>
           {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </SelectContainer>
-        <div id={`${id}-portal`}></div>
+        <div id={`${id}-portal`} style={{ position: "absolute" }} />
       </>
     );
   }

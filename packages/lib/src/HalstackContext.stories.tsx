@@ -7,6 +7,9 @@ import DxcButton from "./button/Button";
 import DxcDateInput from "./date-input/DateInput";
 import DxcFlex from "./flex/Flex";
 import DxcSelect from "./select/Select";
+import DxcDialog from "./dialog/Dialog";
+import DxcInset from "./inset/Inset";
+import DxcAlert from "./alert/Alert";
 
 export default {
   title: "HalstackContext",
@@ -14,6 +17,14 @@ export default {
 } as Meta<typeof HalstackProvider>;
 
 const Provider = () => {
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const handleClickDialog = () => {
+    setDialogVisible(!isDialogVisible);
+  };
+  const handleClickAlert = () => {
+    setAlertVisible(!isAlertVisible);
+  };
   const [newTheme, setNewTheme] = useState<Record<string, string | number>>({
     "--color-primary-50": "#d3f0b4",
     "--color-primary-100": "#a2df5e",
@@ -35,6 +46,7 @@ const Provider = () => {
     "--color-secondary-700": "#6b5517",
     "--color-secondary-800": "#47370f",
     "--color-secondary-900": "#241b08",
+    "--color-alpha-800-a": "#9a2257cc",
   });
   const options = [
     { label: "Option 01", value: "1" },
@@ -73,16 +85,48 @@ const Provider = () => {
                   "--color-secondary-700": "#3e2b19",
                   "--color-secondary-800": "#21170d",
                   "--color-secondary-900": "#100b06",
+                  "--color-alpha-800-a": "#fabadacc",
                 })
               }
               size={{ height: "small" }}
             />
-            <DxcButton label="Primary" semantic="default" mode="secondary" size={{ height: "small" }} />
-            <DxcButton label="Primary" semantic="default" mode="tertiary" size={{ height: "small" }} />
+            <DxcButton
+              label="Show Dialog"
+              semantic="default"
+              mode="secondary"
+              size={{ height: "small" }}
+              onClick={handleClickDialog}
+            />
+            {isDialogVisible && (
+              <DxcDialog onCloseClick={handleClickDialog}>
+                <DxcInset space="var(--spacing-padding-l)">
+                  <DxcButton label="Primary" semantic="default" mode="tertiary" size={{ height: "small" }} />
+                  <DxcButton label="Primary" semantic="info" size={{ height: "small" }} />
+                  <DxcButton label="Primary" semantic="info" mode="secondary" size={{ height: "small" }} />
+                  <DxcDateInput />
+                  <DxcSelect options={options} />
+                </DxcInset>
+              </DxcDialog>
+            )}
+            <DxcButton
+              label="Alert visibility"
+              semantic="default"
+              mode="tertiary"
+              size={{ height: "small" }}
+              onClick={handleClickAlert}
+            />
             <DxcButton label="Primary" semantic="info" size={{ height: "small" }} />
             <DxcButton label="Primary" semantic="info" mode="secondary" size={{ height: "small" }} />
             <DxcDateInput />
             <DxcSelect options={options} />
+
+            {isAlertVisible && (
+              <DxcAlert
+                title="Information"
+                mode="modal"
+                message={{ text: "Your document has been auto-saved.", onClose: handleClickAlert }}
+              />
+            )}
           </DxcFlex>
         </HalstackProvider>
       </ExampleContainer>

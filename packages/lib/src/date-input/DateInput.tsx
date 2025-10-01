@@ -341,7 +341,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
             </Popover.Portal>
           </Popover.Root>
         </DateInputContainer>
-        <div id={`${calendarId}-portal`}></div>
+        <div id={`${calendarId}-portal`} style={{ position: "absolute" }} />
       </>
     );
   }

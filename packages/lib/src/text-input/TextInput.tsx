@@ -596,7 +596,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </TextInputContainer>
-        <div id={`${inputId}-portal`}></div>
+        <div id={`${inputId}-portal`} style={{ position: "absolute" }} />
       </>
     );
   }
