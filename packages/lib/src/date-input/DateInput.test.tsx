@@ -2,17 +2,15 @@ import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import dayjs from "dayjs";
 import DxcDateInput from "./DateInput";
+import MockDOMRect from "../../test/mocks/domRectMock";
 
 // Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.DOMRect = MockDOMRect;
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("DateInput component tests", () => {
   test("Renders with correct label, helper text, optional, placeholder and clearable action", () => {
@@ -26,7 +24,9 @@ describe("DateInput component tests", () => {
     expect(input.getAttribute("placeholder")).toBe("DD-MM-YYYY");
     userEvent.type(input, "10/10/2010");
     const closeAction = getAllByRole("button")[0];
-    closeAction != null && userEvent.click(closeAction);
+    if (closeAction != null) {
+      userEvent.click(closeAction);
+    }
     expect(input.value).toBe("");
   });
   test("Renders with custom error", () => {
@@ -76,7 +76,10 @@ describe("DateInput component tests", () => {
     userEvent.keyboard("/");
     userEvent.keyboard("2010");
     expect(onChange).toHaveBeenCalledTimes(10);
-    expect(onChange).toHaveBeenCalledWith({ value: "10/90/2010", error: "Invalid date." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "10/90/2010",
+      error: "Invalid date.",
+    });
   });
   test("Calendar renders with correct date: today's date", () => {
     const { getByText, getByRole, getAllByText } = render(<DxcDateInput />);
@@ -136,12 +139,19 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     userEvent.click(calendarAction);
     const dayButton = getAllByText("10")[0];
-    dayButton != null && fireEvent.click(dayButton);
+    if (dayButton != null) {
+      fireEvent.click(dayButton);
+    }
     let d = dayjs();
     d = d.set("date", 10);
     expect(getAllByText(d.get("date"))[0]?.getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe(d.format("M-DD-YYYY"));
   });
   test("Changing months using the arrows", () => {
@@ -154,14 +164,14 @@ describe("DateInput component tests", () => {
     d = d.set("date", 10);
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
     const previousMonthButton = getAllByRole("button")[0];
+    expect(previousMonthButton?.getAttribute("aria-label")).toBe("Previous month");
     if (previousMonthButton != null) {
-      expect(previousMonthButton.getAttribute("aria-label")).toBe("Previous month");
       userEvent.click(previousMonthButton);
     }
     expect(getByText(d.set("month", d.get("month") - 1).format("MMMM YYYY"))).toBeTruthy();
     const nextMonthButton = getAllByRole("button")[2];
+    expect(nextMonthButton?.getAttribute("aria-label")).toBe("Next month");
     if (nextMonthButton != null) {
-      expect(nextMonthButton.getAttribute("aria-label")).toBe("Next month");
       userEvent.click(nextMonthButton);
     }
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
@@ -174,12 +184,19 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     userEvent.click(calendarAction);
     const dayButton = getAllByText("31")[0];
-    dayButton != null && fireEvent.click(dayButton);
+    if (dayButton != null) {
+      fireEvent.click(dayButton);
+    }
     let d = dayjs("10-08-2021", "DD-MM-YYYY", true);
     d = d.set("date", 31).set("month", 6);
     expect(getAllByText(d.get("date"))[0]?.getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
   });
   test("Selecting a year from the calendar year picker", () => {
@@ -195,45 +212,48 @@ describe("DateInput component tests", () => {
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
   });
-  test("Selecting a date from the calendar (using keyboard presses)", async () => {
+  test("Selecting a date from the calendar (using keyboard presses)", () => {
     const { getByRole, getAllByText, getByText } = render(<DxcDateInput />);
     const calendarAction = getByRole("combobox");
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "01-01-2010");
     expect(input.value).toBe("01-01-2010");
-    await userEvent.click(calendarAction);
+    userEvent.click(calendarAction);
     const day1 = getAllByText("1")[0];
     expect(document.activeElement === day1).toBeTruthy();
-    day1 != null &&
+    if (day1 != null) {
       fireEvent.keyDown(day1, {
         key: "ArrowRight",
         code: "ArrowRight",
         keyCode: 39,
         charCode: 39,
       });
+    }
     let day2 = getAllByText("2")[0];
     expect(document.activeElement === day2).toBeTruthy();
-    day2 != null &&
+    if (day2 != null) {
       fireEvent.keyDown(day2, {
         key: "PageUp",
         code: "PageUp",
         keyCode: 33,
         charCode: 33,
       });
+    }
     day2 = getAllByText("2")[0];
     expect(document.activeElement === day2).toBeTruthy();
     expect(getByText("December 2009")).toBeTruthy();
-    day2 != null &&
+    if (day2 != null) {
       fireEvent.keyDown(day2, {
         key: "PageDown",
         code: "PageDown",
         keyCode: 34,
         charCode: 34,
       });
+    }
     day2 = getAllByText("2")[0];
     expect(document.activeElement === day2).toBeTruthy();
     expect(getByText("January 2010")).toBeTruthy();
-    day2 != null &&
+    if (day2 != null) {
       fireEvent.keyDown(day2, {
         key: "PageDown",
         code: "PageDown",
@@ -241,9 +261,10 @@ describe("DateInput component tests", () => {
         charCode: 34,
         shiftKey: true,
       });
+    }
     day2 = getAllByText("2")[0];
     expect(getByText("January 2011")).toBeTruthy();
-    day2 != null &&
+    if (day2 != null) {
       fireEvent.keyDown(day2, {
         key: "PageUp",
         code: "PageUp",
@@ -251,10 +272,13 @@ describe("DateInput component tests", () => {
         charCode: 33,
         shiftKey: true,
       });
+    }
     day2 = getAllByText("2")[0];
     expect(getByText("January 2010")).toBeTruthy();
     expect(document.activeElement === day2).toBeTruthy();
-    day2 != null && fireEvent.click(day2, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    if (day2 != null) {
+      fireEvent.click(day2, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    }
     expect(day2?.getAttribute("aria-selected")).toBe("true");
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe("02-01-2010");
@@ -271,15 +295,16 @@ describe("DateInput component tests", () => {
     const day8 = getAllByText("8")[0];
     const day10 = getAllByText("10")[0];
     const day15 = getAllByText("15")[0];
-    day1 != null &&
+    if (day1 != null) {
       fireEvent.keyDown(day1, {
         key: "ArrowDown",
         code: "ArrowDown",
         keyCode: 40,
         charCode: 40,
       });
+    }
+    expect(document.activeElement === day8).toBeTruthy();
     if (day8 != null) {
-      expect(document.activeElement === day8).toBeTruthy();
       fireEvent.keyDown(day8, {
         key: "ArrowDown",
         code: "ArrowDown",
@@ -287,8 +312,8 @@ describe("DateInput component tests", () => {
         charCode: 40,
       });
     }
+    expect(document.activeElement === day15).toBeTruthy();
     if (day15 != null) {
-      expect(document.activeElement === day15).toBeTruthy();
       fireEvent.keyDown(day15, {
         key: "ArrowUp",
         code: "ArrowUp",
@@ -296,8 +321,8 @@ describe("DateInput component tests", () => {
         charCode: 38,
       });
     }
+    expect(document.activeElement === day8).toBeTruthy();
     if (day8 != null) {
-      expect(document.activeElement === day8).toBeTruthy();
       fireEvent.keyDown(day8, {
         key: "End",
         code: "End",
@@ -305,8 +330,8 @@ describe("DateInput component tests", () => {
         charCode: 35,
       });
     }
+    expect(document.activeElement === day10).toBeTruthy();
     if (day10 != null) {
-      expect(document.activeElement === day10).toBeTruthy();
       fireEvent.keyDown(day10, {
         key: "Home",
         code: "Home",
@@ -339,10 +364,16 @@ describe("DateInput component tests", () => {
     userEvent.type(input, "10-10-");
     expect(input.value).toBe("10-10-");
     expect(onChange).toHaveBeenCalledTimes(6);
-    expect(onChange).toHaveBeenCalledWith({ value: "10-10-", error: "Invalid date." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "10-10-",
+      error: "Invalid date.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "10-10-", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "10-10-",
+      error: "Invalid date.",
+    });
   });
   test("onBlur function removes the error when it is fixed", () => {
     const onBlur = jest.fn();
@@ -353,7 +384,10 @@ describe("DateInput component tests", () => {
     expect(input.value).toBe("test");
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Invalid date.",
+    });
     userEvent.clear(input);
     userEvent.type(input, "20-02-2002");
     expect(input.value).toBe("20-02-2002");
@@ -369,7 +403,10 @@ describe("DateInput component tests", () => {
     expect(input.value).toBe("test");
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Invalid date.",
+    });
     userEvent.clear(input);
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
@@ -400,7 +437,11 @@ describe("DateInput component tests", () => {
     const { getByRole, queryByText } = render(<DxcDateInput disabled />);
     const calendarAction = getByRole("button");
     const d = new Date();
-    const options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    };
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.disabled).toBeTruthy();
     userEvent.click(calendarAction);
@@ -421,8 +462,8 @@ describe("DateInput component tests", () => {
     const datePicker = getByRole("dialog");
     expect(datePicker.getAttribute("aria-modal")).toBe("true");
     expect(calendarAction.getAttribute("aria-expanded")).toBe("true");
-    const ariaDescribedBy = calendarAction.getAttribute("aria-describedby");
-    ariaDescribedBy != null && expect(document.getElementById(ariaDescribedBy)).toBeTruthy();
+    const ariaDescribedBy = calendarAction.getAttribute("aria-describedby") ?? "";
+    expect(document.getElementById(ariaDescribedBy)).toBeTruthy();
     expect(
       calendarAction.getAttribute("aria-describedby") === calendarAction.getAttribute("aria-controls")
     ).toBeTruthy();
@@ -446,7 +487,9 @@ describe("DateInput component tests", () => {
     userEvent.click(getByText("October 1910"));
     userEvent.click(getByText("2010"));
     const day1 = getAllByText("1")[0];
-    day1 != null && userEvent.click(day1);
+    if (day1 != null) {
+      userEvent.click(day1);
+    }
     expect(input.value).toBe("01-10-10");
     userEvent.type(calendarAction, "{esc}");
     fireEvent.change(input, { target: { value: "21-10-80" } });

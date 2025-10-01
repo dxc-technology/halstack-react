@@ -48,7 +48,7 @@ const scope = {
   DxcHeading,
   DxcInset,
   DxcSelect,
-  useState
+  useState,
 };
 
 export default { code, scope };

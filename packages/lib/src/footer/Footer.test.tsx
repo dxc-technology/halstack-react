@@ -36,7 +36,10 @@ describe("Footer component tests", () => {
   });
   test("Footer renders with correct children", () => {
     // We need to force the offsetWidth value
-    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 1024 });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 1024,
+    });
     const { getByText } = render(
       <DxcFooter>
         <p>footer-child-text</p>
@@ -46,7 +49,10 @@ describe("Footer component tests", () => {
   });
   test("Footer renders with children in mobile", () => {
     // 425 is mobile width
-    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 425 });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 425,
+    });
 
     const { queryByText } = render(
       <DxcFooter>
@@ -57,7 +63,10 @@ describe("Footer component tests", () => {
     expect(queryByText("footer-child-text")).toBeTruthy();
   });
   test("Footer is fully rendered", () => {
-    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 1024 });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 1024,
+    });
 
     const { getAllByRole, getByText } = render(
       <DxcFooter socialLinks={social} bottomLinks={bottom} copyright="test-copyright">

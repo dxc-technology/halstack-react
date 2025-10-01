@@ -29,8 +29,12 @@ describe("Switch component tests", () => {
     const { getByText } = render(<DxcSwitch label="SwitchComponent" checked={false} onChange={onChange} />);
     fireEvent.click(getByText("SwitchComponent"));
     fireEvent.click(getByText("SwitchComponent"));
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(true);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(true);
   });
   test("Every time the user use enter in the component, the onchange function is called with the correct value CONTROLLED COMPONENT", () => {
     const onChange = jest.fn();
@@ -38,8 +42,12 @@ describe("Switch component tests", () => {
     fireEvent.focus(getByText("SwitchComponent"));
     fireEvent.keyDown(getByText("SwitchComponent"), { key: "Enter" });
     fireEvent.keyDown(getByText("SwitchComponent"), { key: "Enter" });
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(true);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(true);
   });
   test("Every time the user use space in the component, the onchange function is called with the correct value CONTROLLED COMPONENT", () => {
     const onChange = jest.fn();
@@ -47,16 +55,24 @@ describe("Switch component tests", () => {
     fireEvent.focus(getByText("SwitchComponent"));
     fireEvent.keyDown(getByText("SwitchComponent"), { key: " " });
     fireEvent.keyDown(getByText("SwitchComponent"), { key: " " });
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(true);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(true);
   });
   test("Every time the user clicks the component the onchange function is called with the correct value UNCONTROLLED COMPONENT", () => {
     const onChange = jest.fn();
     const { getByText } = render(<DxcSwitch label="SwitchComponent" onChange={onChange} />);
     fireEvent.click(getByText("SwitchComponent"));
     fireEvent.click(getByText("SwitchComponent"));
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(false);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(false);
   });
   test("Every time the user use enter in the component, the onchange function is called with the correct value UNCONTROLLED COMPONENT", () => {
     const onChange = jest.fn();
@@ -64,8 +80,12 @@ describe("Switch component tests", () => {
     fireEvent.focus(getByText("SwitchComponent"));
     fireEvent.keyDown(getByText("SwitchComponent"), { key: "Enter" });
     fireEvent.keyDown(getByText("SwitchComponent"), { key: "Enter" });
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(false);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(false);
   });
   test("Every time the user use space in the component, the onchange function is called with the correct value UNCONTROLLED COMPONENT", () => {
     const onChange = jest.fn();
@@ -73,8 +93,12 @@ describe("Switch component tests", () => {
     fireEvent.focus(getByText("SwitchComponent"));
     fireEvent.keyDown(getByText("SwitchComponent"), { key: " " });
     fireEvent.keyDown(getByText("SwitchComponent"), { key: " " });
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[1][0]).toBe(false);
+
+    const firstCall = onChange.mock.calls[0] as [boolean];
+    const secondCall = onChange.mock.calls[1] as [boolean];
+
+    expect(firstCall[0]).toBe(true);
+    expect(secondCall[0]).toBe(false);
   });
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
     const component = render(

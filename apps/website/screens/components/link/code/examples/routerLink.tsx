@@ -1,14 +1,18 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
-import { ReactNode } from "react";
+import { ElementType } from "react";
 
-type routerProps = {
+type RouterLinkProps = {
   to: string;
-  component: ReactNode;
+  component?: ElementType;
   children: string;
-};
+} & React.ComponentProps<typeof DxcLink>;
 
-const RouterLink = ({ to, component, children }: routerProps) => {
-  return <DxcLink href={to}>{children}</DxcLink>;
+const RouterLink = ({ to, component: Component = DxcLink, children, ...other }: RouterLinkProps) => {
+  return (
+    <Component {...other} href={to}>
+      {children}
+    </Component>
+  );
 };
 
 const code = `() => {

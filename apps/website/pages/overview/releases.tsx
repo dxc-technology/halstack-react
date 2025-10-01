@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps<{
   releases: Release[];
 }> = async () => {
   const response = await fetch("https://api.github.com/repos/dxc-technology/halstack-react/releases");
-  const releases: Release[] = await response.json();
+  const releases = (await response.json()) as Release[];
   return { props: { releases } };
 };
 

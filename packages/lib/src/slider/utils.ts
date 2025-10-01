@@ -15,9 +15,9 @@ export const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPr
 /**
  * Rounds a number to a specific number of decimal places.
  * this function tries to avoid floating point inaccuracies, present in JS:
- * 
+ *
  * 0.1 + 0.2 === 0.3 // false
- * 
+ *
  * @param number the number to round
  * @param step slider step value that defines the number of decimal places
  * @returns the rounded number
@@ -29,7 +29,7 @@ export const stepPrecision = (target: number, step: number) => {
 
 /**
  * This function calculates the closest tick value to the target value within the range [min, max].
- * 
+ *
  * @param target the target value to round up
  * @param step the step value that defines the ticks from the range
  * @param min the minimum value of the range
@@ -42,17 +42,18 @@ export const roundUp = (target: number, step: number, min: number, max: number):
   else if (target >= max) return max;
   else if (step === 1) return Math.round(target);
 
-  const ticks = Array.from({ length: Math.floor((max - min) / step) + 1 }, (_, index) => stepPrecision(min + index * step, step));
+  const ticks = Array.from({ length: Math.floor((max - min) / step) + 1 }, (_, index) =>
+    stepPrecision(min + index * step, step)
+  );
   if (ticks.includes(target)) return target;
 
-  let rounded = 0;
-  let acc = Infinity;
-  for (const tick of ticks) {
-    const diff = Math.abs(stepPrecision(target - tick, target));
-    if (diff < Math.abs(acc) || (diff === Math.abs(acc) && target > 0)) {
-      rounded = tick;
-      acc = diff;
-    } else break;
-  };
-  return rounded;
+  return ticks?.reduce((closest, tick) => {
+    const currentDiff = Math.abs(stepPrecision(target - tick, target));
+    const closestDiff = Math.abs(stepPrecision(target - closest, target));
+
+    if (currentDiff < closestDiff || (currentDiff === closestDiff && target > 0)) {
+      return tick;
+    }
+    return closest;
+  }, ticks[0] ?? 0);
 };

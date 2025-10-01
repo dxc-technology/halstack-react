@@ -1,16 +1,11 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import DxcSlider from "./Slider";
 
-// Mocking DOMRect for Radix Primitive Popover
-(global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Slider component tests", () => {
   test("Slider renders with correct text and label id", () => {
@@ -34,7 +29,7 @@ describe("Slider component tests", () => {
     expect(slider.getAttribute("aria-valuenow")).toBe("30");
     expect(input.value).toBe("30");
   });
-  test("Slider correct limit values", async () => {
+  test("Slider correct limit values", () => {
     const { getByRole, getByText } = render(
       <DxcSlider defaultValue={-30} minValue={-30} maxValue={125} showLimitsValues />
     );

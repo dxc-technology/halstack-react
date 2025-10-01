@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
 import DxcButton from "../button/Button";
-import userEvent from "@testing-library/user-event";
 
 const actionIcon = {
   label: "Action",
@@ -37,7 +37,9 @@ describe("Toast component accessibility tests", () => {
     const { container } = render(<TestExample />);
     const results = await axe(container);
     const button = container.querySelector("button");
-    button && userEvent.click(button);
+    if (button) {
+      userEvent.click(button);
+    }
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues", async () => {

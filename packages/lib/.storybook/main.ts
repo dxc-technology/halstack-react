@@ -4,12 +4,12 @@ import react from "@vitejs/plugin-react";
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/addon-links",
+    "@storybook/addon-a11y",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-links",
     "@storybook/addon-viewport",
     "storybook-addon-pseudo-states",
-    "@storybook/addon-a11y",
     "@chromatic-com/storybook",
   ],
   framework: {
@@ -19,7 +19,7 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
-  async viteFinal(config) {
+  viteFinal(config) {
     config.plugins = config.plugins || [];
 
     config.plugins.push(

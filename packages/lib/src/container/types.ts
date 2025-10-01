@@ -33,11 +33,11 @@ export type BorderProperties = {
 type Border =
   | BorderProperties
   | {
-    top?: BorderProperties;
-    right?: BorderProperties;
-    bottom?: BorderProperties;
-    left?: BorderProperties;
-  };
+      top?: BorderProperties;
+      right?: BorderProperties;
+      bottom?: BorderProperties;
+      left?: BorderProperties;
+    };
 
 type Outline = BorderProperties & {
   offset?: string;

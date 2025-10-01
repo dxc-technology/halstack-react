@@ -15,6 +15,7 @@ const HalstackMarkdownParser = ({ markdown }: { markdown: string }) => (
       h3: ({ children }) => (
         <DxcHeading
           level={4}
+          // eslint-disable-next-line no-control-regex
           text={Children?.map(children, (child) => (child as string).replace(/[^\x00-\x7F]/g, ""))?.join("") ?? ""}
         />
       ),

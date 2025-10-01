@@ -104,7 +104,7 @@ const scope = {
   DxcFlex,
   DxcInset,
   DxcToggleGroup,
-  useRef
+  useRef,
 };
 
 export default { code, scope };

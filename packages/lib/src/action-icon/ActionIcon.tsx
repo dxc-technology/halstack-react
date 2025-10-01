@@ -35,8 +35,8 @@ const ActionIcon = styled.button`
   }
 `;
 
-export default forwardRef<RefType, ActionIconPropsTypes>(
-  ({ disabled = false, icon, onClick, tabIndex, title }, ref) => (
+const ForwardedActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
+  ({ disabled = false, title, icon, onClick, tabIndex }, ref) => (
     <Tooltip label={title}>
       <ActionIcon
         aria-label={title}
@@ -54,3 +54,7 @@ export default forwardRef<RefType, ActionIconPropsTypes>(
     </Tooltip>
   )
 );
+
+ForwardedActionIcon.displayName = "ActionIcon";
+
+export default ForwardedActionIcon;

@@ -4,7 +4,7 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
-import { scrollbarStyles } from "../styles/scroll";
+import scrollbarStyles from "../styles/scroll";
 
 const SuggestionsContainer = styled.div`
   box-sizing: border-box;

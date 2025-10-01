@@ -1,6 +1,6 @@
 import { injectAxe, checkA11y, configureAxe } from "axe-playwright";
 import { getStoryContext, type TestRunnerConfig } from "@storybook/test-runner";
-import { ViewportParameters, ViewportStyles } from "./types";
+import { PreviewExtended, ViewportStyles } from "./types";
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
 
@@ -12,38 +12,37 @@ const a11yConfig: TestRunnerConfig = {
       // Get the entire context of a story, including parameters, args, argTypes, etc.
       const storyContext = await getStoryContext(page, context);
       // Apply viewport handle support
-      const viewPortParams: ViewportParameters = storyContext.parameters?.viewport;
+      const parameters = storyContext.parameters as Partial<PreviewExtended["parameters"]> | undefined;
+      const viewPortParams = parameters?.viewport;
       const defaultViewport = viewPortParams?.defaultViewport;
-      const viewport = defaultViewport && viewPortParams?.viewports[defaultViewport]?.styles;
+      const viewport = defaultViewport ? viewPortParams.viewports?.[defaultViewport]?.styles : undefined;
+
       const parsedViewportSizes: ViewportStyles = viewport
-        ? Object.entries(viewport).reduce(
-            (acc, [screen, size]) => ({
-              ...acc,
-              [screen]: parseInt(size),
-            }),
-            {} as ViewportStyles
-          )
+        ? Object.entries(viewport).reduce((acc, [screen, size]) => {
+            const safeSize = typeof size === "string" ? parseInt(size, 10) : undefined;
+            if (safeSize) acc[screen as keyof ViewportStyles] = safeSize;
+            return acc;
+          }, {} as ViewportStyles)
         : DEFAULT_VIEWPORT_SIZE;
 
-      if (parsedViewportSizes && Object.keys(parsedViewportSizes)?.length !== 0) {
-        page.setViewportSize(parsedViewportSizes);
+      if (parsedViewportSizes && Object.keys(parsedViewportSizes).length) {
+        await page.setViewportSize(parsedViewportSizes);
       }
     } catch (err) {
       console.error("Problem when loading the Story Context -> ", err);
     }
   },
+
   async postVisit(page, context) {
     try {
       // Get the entire context of a story, including parameters, args, argTypes, etc.
       const storyContext = await getStoryContext(page, context);
-      // Do not run a11y tests on disabled stories.
-      if (storyContext.parameters?.a11y?.disable) {
-        return;
-      }
+      const parameters = storyContext.parameters as Partial<PreviewExtended["parameters"]> | undefined;
 
-      // Apply story-level a11y rules
+      if (parameters?.a11y?.disable) return;
+
       await configureAxe(page, {
-        rules: storyContext?.parameters?.a11y?.config?.rules,
+        rules: parameters?.a11y?.config?.rules,
       });
     } catch (err) {
       console.error("Problem when loading the Story Context -> ", err);
@@ -58,4 +57,4 @@ const a11yConfig: TestRunnerConfig = {
   },
 };
 
-module.exports = a11yConfig;
+export default a11yConfig;

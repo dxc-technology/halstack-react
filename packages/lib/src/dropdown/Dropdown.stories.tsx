@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Dropdown",
@@ -80,7 +80,7 @@ const optionWithIcon: Option[] = [
   },
 ];
 
-const optionsIcon: any = options.map((op, i) => ({ ...op, icon: icons[i] }));
+const optionsIcon = options.map((op, i) => ({ ...op, icon: icons[i] }));
 
 const Dropdown = () => (
   <>
@@ -234,7 +234,12 @@ const DropdownListStates = () => (
           zIndex: "130",
         }}
       >
-        <DxcDropdown label="Select a platform" options={defaultOptions} onSelectOption={(option) => {}} size="medium" />
+        <DxcDropdown
+          label="Select a platform"
+          options={defaultOptions}
+          onSelectOption={(_option) => {}}
+          size="medium"
+        />
         <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
       </div>
     </ExampleContainer>
@@ -328,7 +333,9 @@ export const Chromatic: Story = {
     const canvas = within(canvasElement);
     const buttonList = canvas.getAllByRole("button");
     const lastButton = buttonList[buttonList.length - 1];
-    lastButton != null && (await userEvent.click(lastButton));
+    if (lastButton != null) {
+      await userEvent.click(lastButton);
+    }
   },
 };
 
@@ -337,7 +344,9 @@ export const MenuStates: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dropdownTrigger = canvas.getAllByRole("button")[0];
-    dropdownTrigger != null && (await userEvent.click(dropdownTrigger));
+    if (dropdownTrigger != null) {
+      await userEvent.click(dropdownTrigger);
+    }
   },
 };
 

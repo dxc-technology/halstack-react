@@ -26,7 +26,7 @@ const scope = {
   DxcButton,
   DxcDialog,
   DxcInset,
-  DxcParagraph
+  DxcParagraph,
 };
 
 export default { code, scope };

@@ -106,4 +106,6 @@ const DxcLink = forwardRef(
   )
 );
 
+DxcLink.displayName = "DxcLink";
+
 export default DxcLink;

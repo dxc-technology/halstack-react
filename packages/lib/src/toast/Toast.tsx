@@ -4,9 +4,9 @@ import styled from "@emotion/styled";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
+import { HalstackLanguageContext } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
 import getSemantic from "./utils";
 import ToastIcon from "./ToastIcon";
@@ -187,5 +187,7 @@ const DxcToast = ({
     </Toast>
   );
 };
+
+DxcToast.displayName = "DxcToast";
 
 export default memo(DxcToast);
