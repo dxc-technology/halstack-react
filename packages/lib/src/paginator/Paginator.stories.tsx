@@ -29,6 +29,10 @@ const Paginator = () => (
       <DxcPaginator itemsPerPageOptions={[5, 10, 15]} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Default with items per page options virtualized" theme="light" level={4} />
+      <DxcPaginator itemsPerPageOptions={Array.from({ length: 10000 }, (_, i) => i + 1)} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Default with show go to page selector" theme="light" level={4} />
       <DxcPaginator showGoToPage />
     </ExampleContainer>

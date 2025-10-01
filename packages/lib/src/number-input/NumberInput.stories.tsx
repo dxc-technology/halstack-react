@@ -3,11 +3,59 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import DxcNumberInput from "./NumberInput";
+import { useState } from "react";
+import DxcTextInput from "../text-input/TextInput";
 
 export default {
   title: "Number Input",
   component: DxcNumberInput,
 } as Meta<typeof DxcNumberInput>;
+
+// const formatNumber = (value: string | number, decimals = 2, thousandSep = ",", decimalSep = ".") => {
+//   if (value === "" || isNaN(Number(value))) return "";
+//   const fixed = Number(value).toFixed(decimals);
+//   const [intPart, decPart] = fixed.split(thousandSep);
+//   const withThousands = intPart?.replace(/\B(?=(\d{3})+(?!\d))/g, thousandSep) ?? "";
+//   return decPart ? `${withThousands}${decimalSep}${decPart}` : withThousands;
+// };
+
+// const NumberInputWithFormat = () => {
+//   const [value, setValue] = useState("");
+
+//   const handleUpdate = ({ value }) => {
+//     setValue(value);
+//     const numericValue = formatNumber(value);
+//     console.log("NUMERICVALUE", numericValue);
+//   };
+
+//   return <DxcNumberInput label="Importe" value={value} onChange={handleUpdate} onBlur={handleUpdate} />;
+// };
+
+const formatNumber = (value: string, locale: string = "es-ES", decimals: number = 2) => {
+  if (value === "" || isNaN(Number(value))) return value;
+  const number = Number(value);
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(number);
+};
+
+const NumberInputWithFormat = () => {
+  const [value, setValue] = useState("");
+
+  const handleChange = ({ value }: { value: string }) => {
+    // Prevent other characters than numbers, comma, dot and minus
+    const filtered = value.replace(/[^0-9.,-]/g, "");
+    setValue(filtered);
+  };
+
+  const handleBlur = ({ value }: { value: string }) => {
+    const formatted = formatNumber(value, "en-EN", 2);
+    setValue(formatted);
+  };
+
+  return <DxcTextInput pattern="^[0-9.,-]*$" value={value} onChange={handleChange} onBlur={handleBlur} prefix="$" />;
+};
 
 const NumberInput = () => (
   <>
@@ -125,6 +173,10 @@ const NumberInput = () => (
         <DxcNumberInput label="medium" size="medium" />
         <DxcNumberInput label="large" size="large" />
       </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Amount" theme="light" level={4} />
+      <NumberInputWithFormat />
     </ExampleContainer>
   </>
 );
