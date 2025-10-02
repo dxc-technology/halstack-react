@@ -8,6 +8,30 @@ import type { StoryFn } from "@storybook/react-vite";
 
 const emotionCache = createCache({ key: "css", prepend: true });
 
+// Prevent ResizeObserver loop limit exceeded errors from failing tests
+const resizeObserverErr = /ResizeObserver loop (completed|limit exceeded)/;
+
+window.addEventListener("error", (event) => {
+  if (resizeObserverErr.test(event.message)) {
+    event.stopImmediatePropagation();
+  }
+});
+
+window.addEventListener("unhandledrejection", (event) => {
+  if (resizeObserverErr.test(String(event.reason))) {
+    event.preventDefault();
+  }
+});
+
+const origError = console.error;
+console.error = (...args) => {
+  if (args[0] && resizeObserverErr.test(args[0] as string)) {
+    return;
+  }
+  origError(...args);
+};
+// End ResizeObserver loop limit exceeded errors
+
 const preview = {
   parameters: {
     controls: {
