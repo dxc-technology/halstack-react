@@ -96,4 +96,11 @@ export const ResponsivePaginator: Story = {
     viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
     chromatic: { viewports: [400] },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const virtualizedSelect = canvas.getAllByRole("combobox")[1];
+    if (virtualizedSelect) {
+      await userEvent.click(virtualizedSelect);
+    }
+  },
 };
