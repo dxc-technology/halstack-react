@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcPaginator from "./Paginator";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Paginator",
@@ -80,6 +81,13 @@ type Story = StoryObj<typeof DxcPaginator>;
 
 export const Chromatic: Story = {
   render: Paginator,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const virtualizedSelect = canvas.getAllByRole("combobox")[1];
+    if (virtualizedSelect) {
+      await userEvent.click(virtualizedSelect);
+    }
+  },
 };
 
 export const ResponsivePaginator: Story = {
