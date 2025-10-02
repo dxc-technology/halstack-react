@@ -10,8 +10,8 @@ export default function getSemantic(semantic: ToastPropsType["semantic"]) {
       };
     case "info":
       return {
-        primaryColor: "var(--border-color-secondary-strong)",
-        secondaryColor: "var(--color-bg-secondary-lighter)",
+        primaryColor: "var(--border-color-info-strong)",
+        secondaryColor: "var(--color-bg-info-lighter)",
         icon: "filled_info",
       };
     case "success":
