@@ -72,15 +72,16 @@ const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperPr
     <>
       <BodyStyle />
       <div id={`dialog-${id}-portal`} style={{ position: "absolute" }} />
-      {createPortal(
-        <Modal>
-          <Overlay onClick={onClose} />
-          <ModalAlertContainer>
-            <FocusLock>{children}</FocusLock>
-          </ModalAlertContainer>
-        </Modal>,
-        portalContainer || document.body
-      )}
+      {portalContainer &&
+        createPortal(
+          <Modal>
+            <Overlay onClick={onClose} />
+            <ModalAlertContainer>
+              <FocusLock>{children}</FocusLock>
+            </ModalAlertContainer>
+          </Modal>,
+          portalContainer
+        )}
     </>
   ) : (
     children
