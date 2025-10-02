@@ -15,11 +15,24 @@ import DxcSelect from "../select/Select";
 import DxcDateInput from "../date-input/DateInput";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcTooltip from "../tooltip/Tooltip";
+import disabledRules from "../../test/accessibility/rules/specific/dialog/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Dialog",
   component: DxcDialog,
   parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },

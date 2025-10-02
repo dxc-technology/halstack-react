@@ -12,15 +12,15 @@
   --z-header-menu: 210;
 
   /* UI components */
-  --z-dialog: 300;
-  --z-date-input: 310;
-  --z-dropdown: 320;
-  --z-textinput: 330;
-  --z-select: 340;
+  --z-date-input: 300;
+  --z-dropdown: 310;
+  --z-textinput: 320;
+  --z-select: 330;
 
   /* Modals and overlays */
-  --z-spinner-overlay: 400;
-  --z-progressbar-overlay: 410;
+  --z-dialog: 400;
+  --z-spinner-overlay: 410;
+  --z-progressbar-overlay: 420;
   --z-alert: 430;
 
   /* Notifications */
