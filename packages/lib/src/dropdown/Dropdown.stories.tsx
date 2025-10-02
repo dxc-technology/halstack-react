@@ -1,10 +1,10 @@
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
+import disabledRules from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
 

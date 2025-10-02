@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useEffect } from "react";
+import { useEffect, useId, useState } from "react";
 import { Global, css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
@@ -46,6 +46,9 @@ const ModalAlertContainer = styled.div`
 `;
 
 const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) => {
+  const id = useId();
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+
   useEffect(() => {
     if (condition) {
       const handleModalAlertKeydown = (event: KeyboardEvent) => {
@@ -61,18 +64,24 @@ const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperPr
     }
   }, [condition, onClose]);
 
+  useEffect(() => {
+    setPortalContainer(document.getElementById(`dialog-${id}-portal`));
+  }, []);
+
   return condition ? (
     <>
       <BodyStyle />
-      {createPortal(
-        <Modal>
-          <Overlay onClick={onClose} />
-          <ModalAlertContainer>
-            <FocusLock>{children}</FocusLock>
-          </ModalAlertContainer>
-        </Modal>,
-        document.body
-      )}
+      <div id={`dialog-${id}-portal`} style={{ position: "absolute" }} />
+      {portalContainer &&
+        createPortal(
+          <Modal>
+            <Overlay onClick={onClose} />
+            <ModalAlertContainer>
+              <FocusLock>{children}</FocusLock>
+            </ModalAlertContainer>
+          </Modal>,
+          portalContainer
+        )}
     </>
   ) : (
     children

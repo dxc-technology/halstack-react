@@ -692,7 +692,7 @@ const ResultsetTableLast = () => (
 );
 
 const ResultsetActionsCellDropdown = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Dropdown Action" theme="light" level={4} />
     <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
   </ExampleContainer>

@@ -1,10 +1,10 @@
+import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/text-input/disabledRules";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
 

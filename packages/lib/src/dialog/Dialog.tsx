@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
@@ -66,7 +66,13 @@ const DxcDialog = ({
   tabIndex = 0,
   disableFocusLock = false,
 }: DialogPropsType): JSX.Element => {
+  const id = useId();
   const translatedLabels = useContext(HalstackLanguageContext);
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPortalContainer(document.getElementById(`dialog-${id}-portal`));
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -85,43 +91,45 @@ const DxcDialog = ({
   return (
     <>
       <BodyStyle />
-      {createPortal(
-        <DialogContainer>
-          {overlay && <Overlay onClick={onBackgroundClick} />}
-          <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
-            {!disableFocusLock ? (
-              <FocusLock>
-                {children}
-                {closable && (
-                  <CloseIconActionContainer>
-                    <DxcActionIcon
-                      icon="close"
-                      onClick={onCloseClick}
-                      tabIndex={tabIndex}
-                      title={translatedLabels.dialog.closeIconAriaLabel}
-                    />
-                  </CloseIconActionContainer>
-                )}
-              </FocusLock>
-            ) : (
-              <>
-                {children}
-                {closable && (
-                  <CloseIconActionContainer>
-                    <DxcActionIcon
-                      icon="close"
-                      onClick={onCloseClick}
-                      tabIndex={tabIndex}
-                      title={translatedLabels.dialog.closeIconAriaLabel}
-                    />
-                  </CloseIconActionContainer>
-                )}
-              </>
-            )}
-          </Dialog>
-        </DialogContainer>,
-        document.body
-      )}
+      <div id={`dialog-${id}-portal`} style={{ position: "absolute" }} />
+      {portalContainer &&
+        createPortal(
+          <DialogContainer>
+            {overlay && <Overlay onClick={onBackgroundClick} />}
+            <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
+              {!disableFocusLock ? (
+                <FocusLock>
+                  {children}
+                  {closable && (
+                    <CloseIconActionContainer>
+                      <DxcActionIcon
+                        icon="close"
+                        onClick={onCloseClick}
+                        tabIndex={tabIndex}
+                        title={translatedLabels.dialog.closeIconAriaLabel}
+                      />
+                    </CloseIconActionContainer>
+                  )}
+                </FocusLock>
+              ) : (
+                <>
+                  {children}
+                  {closable && (
+                    <CloseIconActionContainer>
+                      <DxcActionIcon
+                        icon="close"
+                        onClick={onCloseClick}
+                        tabIndex={tabIndex}
+                        title={translatedLabels.dialog.closeIconAriaLabel}
+                      />
+                    </CloseIconActionContainer>
+                  )}
+                </>
+              )}
+            </Dialog>
+          </DialogContainer>,
+          portalContainer
+        )}
     </>
   );
 };

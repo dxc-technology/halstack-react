@@ -14,10 +14,25 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcTooltip from "../tooltip/Tooltip";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { screen, userEvent } from "storybook/internal/test";
+import disabledRules from "../../test/accessibility/rules/specific/dialog/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Dialog",
   component: DxcDialog,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof DxcDialog>;
 
 const customViewports = {
