@@ -48,7 +48,7 @@ const code = `() => {
         </DxcAccordion>
         <DxcAccordion>
           <DxcAccordion.AccordionItem
-            badge={{ position: "after", element: <DxcBadge label="Enterprise" icon="filled_stars" color="yellow" /> }}
+            badge={{ position: "after", element: <DxcBadge label="Enterprise" icon="filled_stars" color="tertiary" /> }}
             label="Life Policy"
             subLabel="Ref — 1236554546"
           >

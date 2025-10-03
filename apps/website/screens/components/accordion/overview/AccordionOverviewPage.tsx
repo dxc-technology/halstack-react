@@ -256,8 +256,8 @@ const sections = [
               Always prioritize the visibility of mandatory elements like the title over optional elements.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              If both a badge and a status light are present, avoid applying semantic colors (e.g., red, green) to the
-              badge to prevent visual conflict with the status indicator.
+              If both a badge and a status light are present, avoid applying semantic colors to the badge to prevent
+              visual conflict with the status indicator.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Maintain consistency in layout and alignment to support content scanning, especially when multiple

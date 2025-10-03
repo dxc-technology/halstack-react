@@ -24,11 +24,13 @@ const sections = [
           <tr>
             <td>color</td>
             <td>
-              <TableCode>'grey' | 'blue' | 'green' | 'orange' | 'red' | 'yellow' | 'purple'</TableCode>
+              <TableCode>
+                'primary' | 'secondary' | 'tertiary' | 'success' | 'info' | 'neutral' | 'warning' | 'error'
+              </TableCode>
             </td>
             <td>Affects the visual style of the badge. It can be used following semantic purposes or not.</td>
             <td>
-              <TableCode>'grey'</TableCode>
+              <TableCode>'neutral'</TableCode>
             </td>
           </tr>
           <tr>
