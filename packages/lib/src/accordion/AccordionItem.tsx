@@ -186,7 +186,7 @@ const AccordionItem = ({
                     </IconContainer>
                   ) : (
                     <StatusContainer subLabel={subLabel}>
-                      {disabled ? cloneElement(badge?.element as ReactElement, { color: "grey" }) : badge?.element}
+                      {disabled ? cloneElement(badge?.element as ReactElement, { color: "neutral" }) : badge?.element}
                     </StatusContainer>
                   )}
                 </OptionalElement>
@@ -204,7 +204,7 @@ const AccordionItem = ({
               )}
               {badge && badge?.position === "after" && !assistiveText && (
                 <StatusContainer subLabel={subLabel}>
-                  {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
+                  {disabled ? cloneElement(badge.element as ReactElement, { color: "neutral" }) : badge.element}
                 </StatusContainer>
               )}
               {badge?.position !== "after" && statusLight && !assistiveText && (
