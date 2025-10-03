@@ -61,11 +61,11 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `background-color: var(--color-bg-secondary-strong);`;
-          hover = `background-color: var(--color-bg-secondary-stronger);`;
-          active = `background-color: var(--color-bg-secondary-strongest);`;
-          disabled = `background-color: var(--color-bg-secondary-lightest);
-          color: var(--color-fg-secondary-lighter);`;
+          enabled = `background-color: var(--color-bg-info-strong);`;
+          hover = `background-color: var(--color-bg-info-stronger);`;
+          active = `background-color: var(--color-bg-info-strongest);`;
+          disabled = `background-color: var(--color-bg-info-lightest);
+          color: var(--color-fg-info-lighter);`;
           break;
       }
       return `${commonStyles}
@@ -124,14 +124,14 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-secondary-strong);
-          color: var(--color-fg-secondary-medium);`;
-          hover = `background: var(--color-bg-secondary-strong);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-info-strong);
+          color: var(--color-fg-info-medium);`;
+          hover = `background: var(--color-bg-info-strong);
           color: var(--color-fg-neutral-bright);`;
-          active = `background-color: var(--color-bg-secondary-stronger);
+          active = `background-color: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
-          disabled = `border-color: var(--border-color-secondary-light);
-          color: var(--color-fg-secondary-lighter);`;
+          disabled = `border-color: var(--border-color-info-light);
+          color: var(--color-fg-info-lighter);`;
           break;
       }
       return `${commonStyles}
@@ -175,10 +175,10 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           disabled = `color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `color: var(--color-fg-secondary-medium);`;
-          hover = `background-color: var(--color-bg-secondary-lighter);`;
-          active = `background-color: var(--color-bg-secondary-light);`;
-          disabled = `color: var(--color-fg-secondary-lighter);`;
+          enabled = `color: var(--color-fg-info-medium);`;
+          hover = `background-color: var(--color-bg-info-lighter);`;
+          active = `background-color: var(--color-bg-info-light);`;
+          disabled = `color: var(--color-fg-info-lighter);`;
           break;
       }
       return `${commonStyles}
