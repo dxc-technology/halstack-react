@@ -7,7 +7,7 @@ const code = `() => {
       <DxcAccordion independent={false} defaultIndexActive={[0, 2]}>
         <DxcAccordion.AccordionItem
           label="Find a person"
-          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          badge={{ position: "before", element: <DxcBadge label="GET" color="success" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -17,7 +17,7 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="Create a person"
           assistiveText="Provide all required info"
-          badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
+          badge={{ position: "before", element: <DxcBadge label="POST" color="secondary" /> }}
           defaultIsExpanded
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -26,7 +26,7 @@ const code = `() => {
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
           label="Find interactions"
-          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
+          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="tertiary" /> }}
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
           defaultIsExpanded
         >
