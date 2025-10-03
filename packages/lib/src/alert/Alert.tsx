@@ -28,7 +28,7 @@ const AlertContainer = styled.div<{
 
   background-color: ${(props) =>
     (props.mode === "modal" && "var(--color-bg-neutral-lightest)") ||
-    (props.semantic === "info" && "var(--color-bg-secondary-lighter)") ||
+    (props.semantic === "info" && "var(--color-bg-info-lighter)") ||
     (props.semantic === "success" && "var(--color-bg-success-lighter)") ||
     (props.semantic === "warning" && "var(--color-bg-warning-lighter)") ||
     (props.semantic === "error" && "var(--color-bg-error-lighter)")};
@@ -41,7 +41,7 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
   align-items: center;
   gap: var(--spacing-gap-s);
   color: ${(props) =>
-    (props.semantic === "info" && "var(--color-fg-secondary-medium)") ||
+    (props.semantic === "info" && "var(--color-fg-info-medium)") ||
     (props.semantic === "success" && "var(--color-fg-success-medium)") ||
     (props.semantic === "warning" && "var(--color-fg-warning-medium)") ||
     (props.semantic === "error" && "var(--color-fg-error-medium)")};
