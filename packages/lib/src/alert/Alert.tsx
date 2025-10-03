@@ -41,7 +41,7 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
   align-items: center;
   gap: var(--spacing-gap-s);
   color: ${(props) =>
-    (props.semantic === "info" && "var(--color-fg-info-medium)") ||
+    (props.semantic === "info" && "var(--color-fg-info-strong)") ||
     (props.semantic === "success" && "var(--color-fg-success-medium)") ||
     (props.semantic === "warning" && "var(--color-fg-warning-medium)") ||
     (props.semantic === "error" && "var(--color-fg-error-medium)")};
