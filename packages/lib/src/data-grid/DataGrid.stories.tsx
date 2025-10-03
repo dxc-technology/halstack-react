@@ -1,6 +1,4 @@
 import { isValidElement, useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
@@ -11,6 +9,8 @@ import preview from "../../.storybook/preview";
 import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
 import { isKeyOfRow } from "./utils";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Data Grid",
@@ -19,13 +19,13 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
         ],
       },
     },
   },
-} as Meta<typeof DxcDataGrid>;
+} satisfies Meta<typeof DxcDataGrid>;
 
 const actions: ActionsCellPropsType["actions"] = [
   {
@@ -1061,8 +1061,10 @@ export const Controlled: Story = {
   render: DataGridControlled,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByText("Root Node 1 Lazy"));
-    await userEvent.click(canvas.getByText("Root Node 2 Lazy"));
+    const node1 = await canvas.findByText("Root Node 1 Lazy");
+    await userEvent.click(node1);
+    const node2 = await canvas.findByText("Root Node 2 Lazy");
+    await userEvent.click(node2);
   },
 };
 
@@ -1078,39 +1080,39 @@ export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const checkbox0 = canvas.getAllByRole("checkbox")[0];
+    const checkbox0 = (await canvas.findAllByRole("checkbox"))[0];
     if (checkbox0) {
       await userEvent.click(checkbox0);
     }
-    await userEvent.click(canvas.getByText("Root Node 1"));
-    await userEvent.click(canvas.getByText("Root Node 2"));
-    await userEvent.click(canvas.getByText("Child Node 1.1"));
-    await userEvent.click(canvas.getByText("Child Node 2.1"));
-    let columnheader1 = canvas.getAllByRole("columnheader")[1];
+    await userEvent.click(await canvas.findByText("Root Node 1"));
+    await userEvent.click(await canvas.findByText("Root Node 2"));
+    await userEvent.click(await canvas.findByText("Child Node 1.1"));
+    await userEvent.click(await canvas.findByText("Child Node 2.1"));
+    let columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
     if (columnheader1) {
       await userEvent.click(columnheader1);
     }
-    columnheader1 = canvas.getAllByRole("columnheader")[1];
+    columnheader1 = (await canvas.findAllByRole("columnheader"))[1];
     if (columnheader1) {
       await userEvent.click(columnheader1);
     }
-    const checkbox5 = canvas.getAllByRole("checkbox")[5];
+    const checkbox5 = (await canvas.findAllByRole("checkbox"))[5];
     if (checkbox5) {
       await userEvent.click(checkbox5);
     }
-    const checkbox13 = canvas.getAllByRole("checkbox")[13];
+    const checkbox13 = (await canvas.findAllByRole("checkbox"))[13];
     if (checkbox13) {
       await userEvent.click(checkbox13);
     }
-    await userEvent.click(canvas.getByText("Paginated Node 1"));
-    await userEvent.click(canvas.getByText("Paginated Node 2"));
-    await userEvent.click(canvas.getByText("Paginated Node 1.1"));
-    await userEvent.click(canvas.getByText("Paginated Node 2.1"));
-    const columnheader4 = canvas.getAllByRole("columnheader")[4];
+    await userEvent.click(await canvas.findByText("Paginated Node 1"));
+    await userEvent.click(await canvas.findByText("Paginated Node 2"));
+    await userEvent.click(await canvas.findByText("Paginated Node 1.1"));
+    await userEvent.click(await canvas.findByText("Paginated Node 2.1"));
+    const columnheader4 = (await canvas.findAllByRole("columnheader"))[4];
     if (columnheader4) {
       await userEvent.click(columnheader4);
     }
-    const checkbox18 = canvas.getAllByRole("checkbox")[18];
+    const checkbox18 = (await canvas.findAllByRole("checkbox"))[18];
     if (checkbox18) {
       await userEvent.click(checkbox18);
     }
@@ -1121,43 +1123,43 @@ export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button0 = canvas.getAllByRole("button")[0];
+    const button0 = (await canvas.findAllByRole("button"))[0];
     if (button0) {
       await userEvent.click(button0);
     }
-    const button1 = canvas.getAllByRole("button")[1];
+    const button1 = (await canvas.findAllByRole("button"))[1];
     if (button1) {
       await userEvent.click(button1);
     }
-    const columnHeaders4 = canvas.getAllByRole("columnheader")[4];
+    const columnHeaders4 = (await canvas.findAllByRole("columnheader"))[4];
     if (columnHeaders4) {
       await userEvent.click(columnHeaders4);
     }
-    const button9 = canvas.getAllByRole("button")[9];
+    const button9 = (await canvas.findAllByRole("button"))[9];
     if (button9) {
       await userEvent.click(button9);
     }
-    const button10 = canvas.getAllByRole("button")[10];
+    const button10 = (await canvas.findAllByRole("button"))[10];
     if (button10) {
       await userEvent.click(button10);
     }
-    const columnHeaders10 = canvas.getAllByRole("columnheader")[10];
+    const columnHeaders10 = (await canvas.findAllByRole("columnheader"))[10];
     if (columnHeaders10) {
       await userEvent.click(columnHeaders10);
     }
-    const button16 = canvas.getAllByRole("button")[16];
+    const button16 = (await canvas.findAllByRole("button"))[16];
     if (button16) {
       await userEvent.click(button16);
     }
-    const button43 = canvas.getAllByRole("button")[43];
+    const button43 = (await canvas.findAllByRole("button"))[43];
     if (button43) {
       await userEvent.click(button43);
     }
-    const button36 = canvas.getAllByRole("button")[36];
+    const button36 = (await canvas.findAllByRole("button"))[36];
     if (button36) {
       await userEvent.click(button36);
     }
-    const button37 = canvas.getAllByRole("button")[37];
+    const button37 = (await canvas.findAllByRole("button"))[37];
     if (button37) {
       await userEvent.click(button37);
     }
@@ -1168,7 +1170,9 @@ export const UnknownUniqueId: Story = {
   render: DataGridUnknownUniqueRowId,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const editorCell = canvas.getAllByText("Task 1")[0];
-    if (editorCell) await userEvent.dblClick(editorCell);
+    const editorCell = (await canvas.findAllByText("Task 1"))[0];
+    if (editorCell) {
+      await userEvent.dblClick(editorCell);
+    }
   },
 };

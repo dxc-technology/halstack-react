@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
@@ -7,7 +7,7 @@ import DxcTypography from "../typography/Typography";
 export default {
   title: "Container",
   component: DxcContainer,
-} as Meta<typeof DxcContainer>;
+} satisfies Meta<typeof DxcContainer>;
 
 const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element => (
   <DxcContainer

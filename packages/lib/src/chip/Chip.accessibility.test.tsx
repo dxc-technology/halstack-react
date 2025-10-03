@@ -29,13 +29,13 @@ describe("Chip component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
       <DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" disabled />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

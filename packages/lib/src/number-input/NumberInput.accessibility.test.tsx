@@ -2,13 +2,14 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcNumberInput from "./NumberInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { vi } from "vitest";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe("Number input component accessibility tests", () => {
@@ -30,7 +31,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     const { container } = render(
@@ -51,7 +52,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     const { container } = render(
@@ -72,7 +73,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
@@ -93,7 +94,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
     const { container } = render(
@@ -114,7 +115,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     const { container } = render(
@@ -135,6 +136,6 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

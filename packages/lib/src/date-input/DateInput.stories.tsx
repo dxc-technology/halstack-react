@@ -1,5 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { fireEvent, screen, userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import dayjs from "dayjs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -10,6 +9,7 @@ import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
+import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Date Input",
@@ -18,16 +18,16 @@ export default {
     a11y: {
       config: {
         rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
             reviewOnFail: true,
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-} as Meta<typeof DxcDateInput>;
+} satisfies Meta<typeof DxcDateInput>;
 
 const DateInputChromatic = () => (
   <>
@@ -226,7 +226,7 @@ export const Chromatic: Story = {
   render: DateInputChromatic,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const firstDateInput = canvas.getAllByRole("combobox")[0];
+    const firstDateInput = (await canvas.findAllByRole("combobox"))[0];
     if (firstDateInput != null) {
       await userEvent.click(firstDateInput);
     }
@@ -238,8 +238,8 @@ export const YearPickerChromatic: Story = {
   render: YearPickerComponent,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole("combobox"));
-    await fireEvent.click(screen.getByText("April 1905"));
+    await userEvent.click(await canvas.findByRole("combobox"));
+    await fireEvent.click(await screen.findByText("April 1905"));
   },
 };
 
@@ -247,7 +247,7 @@ export const DatePickerStates: Story = {
   render: DatePickerButtonStates,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dateBtn = canvas.getAllByRole("combobox")[0];
+    const dateBtn = (await canvas.findAllByRole("combobox"))[0];
     if (dateBtn != null) {
       await userEvent.click(dateBtn);
     }
@@ -266,7 +266,7 @@ export const DatePickerTooltipPrevious: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const previousMonthButton = canvas.getAllByRole("button")[0];
+    const previousMonthButton = (await canvas.findAllByRole("button"))[0];
     if (previousMonthButton != null) {
       await userEvent.hover(previousMonthButton);
     }
@@ -277,7 +277,7 @@ export const DatePickerTooltipAfter: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const afterMonthButton = canvas.getAllByRole("button")[2];
+    const afterMonthButton = (await canvas.findAllByRole("button"))[2];
     if (afterMonthButton != null) {
       await userEvent.hover(afterMonthButton);
     }

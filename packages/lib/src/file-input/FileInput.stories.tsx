@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
@@ -6,7 +6,7 @@ import DxcFileInput from "./FileInput";
 export default {
   title: "File Input",
   component: DxcFileInput,
-} as Meta<typeof DxcFileInput>;
+} satisfies Meta<typeof DxcFileInput>;
 
 const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
@@ -535,8 +535,8 @@ type Story = StoryObj<typeof DxcFileInput>;
 //   render: EllipsisError,
 //   play: async ({ canvasElement }) => {
 //     const canvas = within(canvasElement);
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
-//     await userEvent.hover(canvas.getByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
+//     await userEvent.hover(await canvas.findByText((text) => text.startsWith("This error message")));
 //   },
 // };
 

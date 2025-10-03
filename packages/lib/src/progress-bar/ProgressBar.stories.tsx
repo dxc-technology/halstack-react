@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcProgressBar from "./ProgressBar";
@@ -6,7 +6,7 @@ import DxcProgressBar from "./ProgressBar";
 export default {
   title: "Progress Bar",
   component: DxcProgressBar,
-} as Meta<typeof DxcProgressBar>;
+} satisfies Meta<typeof DxcProgressBar>;
 
 const ProgressBar = () => (
   <>

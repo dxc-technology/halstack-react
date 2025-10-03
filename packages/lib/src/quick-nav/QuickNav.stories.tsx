@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -9,7 +9,7 @@ import DxcQuickNav from "./QuickNav";
 export default {
   title: "Quick Nav",
   component: DxcQuickNav,
-} as Meta<typeof DxcQuickNav>;
+} satisfies Meta<typeof DxcQuickNav>;
 
 const defaultLinks = [
   {

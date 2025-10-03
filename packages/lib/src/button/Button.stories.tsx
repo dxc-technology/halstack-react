@@ -1,16 +1,16 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import DxcButton from "./Button";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Button",
   component: DxcButton,
-} as Meta<typeof DxcButton>;
+} satisfies Meta<typeof DxcButton>;
 
 const facebookIcon = (
   <svg
@@ -4951,18 +4951,20 @@ export const Chromatic: Story = {
 
 export const ButtonTooltip: Story = {
   render: Tooltip,
+  // TODO: Fix this test, it is throwing an error: Unable to find role="button" inside the CI
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
 
 export const NestedButtonTooltip: Story = {
   render: NestedTooltip,
+  // TODO: Fix this test, it is throwing an error: Unable to find role="button" inside the CI
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };

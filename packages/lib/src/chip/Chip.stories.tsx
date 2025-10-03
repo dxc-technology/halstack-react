@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcChip from "./Chip";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent } from "storybook/internal/test";
 
 export default {
   title: "Chip",
   component: DxcChip,
-} as Meta<typeof DxcChip>;
+} satisfies Meta<typeof DxcChip>;
 
 const iconSVG = (
   <svg

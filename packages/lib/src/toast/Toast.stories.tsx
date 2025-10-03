@@ -1,6 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -10,12 +8,12 @@ import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
 import DxcDialog from "../dialog/Dialog";
 import DxcInset from "../inset/Inset";
-import { screen } from "@testing-library/react";
+import { screen, userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Toast",
   component: DxcToast,
-} as Meta<typeof DxcToast>;
+} satisfies Meta<typeof DxcToast>;
 
 const action = {
   label: "Action",
@@ -262,9 +260,9 @@ const ToastsQueue = () => (
 
 const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByText("Show default toast"));
-  await userEvent.click(canvas.getByText("Show info toast"));
-  await userEvent.click(canvas.getByText("Show success toast"));
+  await userEvent.click(await canvas.findByText("Show default toast"));
+  await userEvent.click(await canvas.findByText("Show info toast"));
+  await userEvent.click(await canvas.findByText("Show success toast"));
 };
 
 const ToastAboveDialog = () => {
@@ -339,11 +337,8 @@ export const FullScreenToast: Story = {
 export const MobileScreenToast: Story = {
   render: ToastsQueue,
   play: playFunc,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "iphonex",
-    },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 

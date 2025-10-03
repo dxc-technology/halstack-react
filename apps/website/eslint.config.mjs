@@ -6,4 +6,4 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /** @type {import("eslint").Config[]} */
-export default [{ ignores: ["out/**", ".next/**", "eslint.config.js"] }, ...nextConfig({ tsconfigRootDir: __dirname })];
+export default [{ ignores: ["out/**", ".next/**", "eslint.config.mjs"] }, ...nextConfig({ tsconfigRootDir: __dirname })];

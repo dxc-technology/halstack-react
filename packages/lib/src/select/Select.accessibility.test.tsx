@@ -3,6 +3,7 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcFlex from "../flex/Flex";
 import DxcSelect from "./Select";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { vi } from "vitest";
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -69,10 +70,10 @@ const singleOptions = [
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe("Select component accessibility tests", () => {
@@ -107,7 +108,7 @@ describe("Select component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for group mode", async () => {
     // baseElement is needed when using React Portals
@@ -142,6 +143,6 @@ describe("Select component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

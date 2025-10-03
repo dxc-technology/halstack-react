@@ -1,14 +1,14 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import DxcPasswordInput from "./PasswordInput";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Password Input",
   component: DxcPasswordInput,
-} as Meta<typeof DxcPasswordInput>;
+} satisfies Meta<typeof DxcPasswordInput>;
 
 const PasswordInput = () => (
   <>
@@ -110,7 +110,7 @@ export const ShowPassword: Story = {
   render: PasswordInteraction,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const passwordBtn = canvas.getByRole("button");
+    const passwordBtn = await canvas.findByRole("button");
     await userEvent.click(passwordBtn);
   },
 };

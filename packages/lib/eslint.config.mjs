@@ -7,6 +7,6 @@ const __dirname = dirname(__filename);
 
 /** @type {import("eslint").Config[]} */
 export default [
-  { ignores: ["dist/**", "coverage/**", "eslint.config.js"] },
+  { ignores: ["dist/**", "coverage/**", "eslint.config.mjs"] },
   ...libraryConfig({ tsconfigRootDir: __dirname }),
 ];

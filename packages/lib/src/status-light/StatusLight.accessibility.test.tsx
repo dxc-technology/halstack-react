@@ -13,7 +13,7 @@ describe("StatusLight component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     const { container } = render(
@@ -24,7 +24,7 @@ describe("StatusLight component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for info mode", async () => {
     const { container } = render(
@@ -35,7 +35,7 @@ describe("StatusLight component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for success mode", async () => {
     const { container } = render(
@@ -46,7 +46,7 @@ describe("StatusLight component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for warning mode", async () => {
     const { container } = render(
@@ -57,6 +57,6 @@ describe("StatusLight component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

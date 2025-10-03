@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcFileInput from "./FileInput";
+import { vi } from "vitest";
 
 const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
@@ -45,7 +46,7 @@ const filesExamples = [
 
 describe("FileInput component accessibility tests", () => {
   it("Should not have basic accessibility issues for dropzone mode", async () => {
-    const callbackFile = jest.fn();
+    const callbackFile = vi.fn();
     const { container } = render(
       <DxcFileInput
         label="File input"
@@ -63,10 +64,10 @@ describe("FileInput component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
-    const callbackFile = jest.fn();
+    const callbackFile = vi.fn();
     const { container } = render(
       <DxcFileInput
         label="File input"
@@ -84,10 +85,10 @@ describe("FileInput component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for file mode", async () => {
-    const callbackFile = jest.fn();
+    const callbackFile = vi.fn();
     const { container } = render(
       <DxcFileInput
         label="File input"
@@ -104,10 +105,10 @@ describe("FileInput component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for filedrop mode", async () => {
-    const callbackFile = jest.fn();
+    const callbackFile = vi.fn();
     const { container } = render(
       <DxcFileInput
         label="File input"
@@ -125,6 +126,6 @@ describe("FileInput component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

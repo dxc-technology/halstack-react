@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcToggleGroup from "./ToggleGroup";
@@ -6,7 +6,7 @@ import DxcToggleGroup from "./ToggleGroup";
 export default {
   title: "Toggle Group",
   component: DxcToggleGroup,
-} as Meta<typeof DxcToggleGroup>;
+} satisfies Meta<typeof DxcToggleGroup>;
 
 const ethernetSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">

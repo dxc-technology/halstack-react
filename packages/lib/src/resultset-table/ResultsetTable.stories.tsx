@@ -1,5 +1,3 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import styled from "@emotion/styled";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -7,6 +5,8 @@ import disabledRules from "../../test/accessibility/rules/specific/resultset-tab
 import preview from "../../.storybook/preview";
 import DxcResultsetTable from "./ResultsetTable";
 import DxcFlex from "../flex/Flex";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Resultset Table",
@@ -15,16 +15,13 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({
-            id: ruleId,
-            reviewOnFail: true,
-          })),
           ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
         ],
       },
     },
   },
-} as Meta<typeof DxcResultsetTable>;
+} satisfies Meta<typeof DxcResultsetTable>;
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -723,10 +720,14 @@ export const AscendentSorting: Story = {
   render: ResultsetTableAsc,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const idHeader = canvas.getAllByRole("button")[0];
-    const idHeader2 = canvas.getAllByRole("button")[2];
-    if (idHeader) await userEvent.click(idHeader);
-    if (idHeader2) await userEvent.click(idHeader2);
+    const idHeader = (await canvas.findAllByRole("button"))[0];
+    const idHeader2 = (await canvas.findAllByRole("button"))[2];
+    if (idHeader) {
+      await userEvent.click(idHeader);
+    }
+    if (idHeader2) {
+      await userEvent.click(idHeader2);
+    }
   },
 };
 
@@ -734,12 +735,20 @@ export const DescendantSorting: Story = {
   render: ResultsetTableDesc,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const nameHeader = canvas.getAllByRole("button")[1];
-    const nameHeader2 = canvas.getAllByRole("button")[3];
-    if (nameHeader) await userEvent.click(nameHeader);
-    if (nameHeader) await userEvent.click(nameHeader);
-    if (nameHeader2) await userEvent.click(nameHeader2);
-    if (nameHeader2) await userEvent.click(nameHeader2);
+    const nameHeader = (await canvas.findAllByRole("button"))[1];
+    const nameHeader2 = (await canvas.findAllByRole("button"))[3];
+    if (nameHeader) {
+      await userEvent.click(nameHeader);
+    }
+    if (nameHeader) {
+      await userEvent.click(nameHeader);
+    }
+    if (nameHeader2) {
+      await userEvent.click(nameHeader2);
+    }
+    if (nameHeader2) {
+      await userEvent.click(nameHeader2);
+    }
   },
 };
 
@@ -747,7 +756,7 @@ export const MiddlePage: Story = {
   render: ResultsetTableMiddle,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const nextButton = canvas.getAllByRole("button")[2];
+    const nextButton = (await canvas.findAllByRole("button"))[2];
     if (nextButton) {
       await userEvent.click(nextButton);
     }
@@ -758,7 +767,7 @@ export const LastPage: Story = {
   render: ResultsetTableLast,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const nextButton = canvas.getAllByRole("button")[3];
+    const nextButton = (await canvas.findAllByRole("button"))[3];
     if (nextButton) {
       await userEvent.click(nextButton);
     }
@@ -769,7 +778,7 @@ export const DropdownAction: Story = {
   render: ResultsetActionsCellDropdown,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const dropdown = canvas.getAllByRole("button")[5];
+    const dropdown = (await canvas.findAllByRole("button"))[5];
     if (dropdown) {
       await userEvent.click(dropdown);
     }

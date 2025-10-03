@@ -1,6 +1,6 @@
 import ExampleContainer from "./../.storybook/components/ExampleContainer";
 import Title from "./../.storybook/components/Title";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { HalstackProvider } from "./HalstackContext";
 import { useState } from "react";
 import DxcButton from "./button/Button";

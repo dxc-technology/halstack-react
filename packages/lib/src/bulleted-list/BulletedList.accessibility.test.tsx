@@ -19,7 +19,7 @@ describe("Bulleted List component accessibility tests", () => {
       </DxcBulletedList>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for icon mode", async () => {
     const { container } = render(
@@ -30,7 +30,7 @@ describe("Bulleted List component accessibility tests", () => {
       </DxcBulletedList>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for number mode", async () => {
     const { container } = render(
@@ -41,7 +41,7 @@ describe("Bulleted List component accessibility tests", () => {
       </DxcBulletedList>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for square mode", async () => {
     const { container } = render(
@@ -52,7 +52,7 @@ describe("Bulleted List component accessibility tests", () => {
       </DxcBulletedList>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for circle mode", async () => {
     const { container } = render(
@@ -63,6 +63,6 @@ describe("Bulleted List component accessibility tests", () => {
       </DxcBulletedList>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

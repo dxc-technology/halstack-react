@@ -1,4 +1,4 @@
-import { configureAxe } from "jest-axe";
+import { configureAxe } from "vitest-axe";
 import disabledRules from "./rules/common/disabledRules";
 
 export const formatRules = (rules: string[]) =>

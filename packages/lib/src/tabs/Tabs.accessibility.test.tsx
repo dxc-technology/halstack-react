@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcTabs from "./Tabs";
+import { vi } from "vitest";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const iconSVG = (
@@ -35,6 +36,6 @@ describe("Tabs component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(sampleTabs);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

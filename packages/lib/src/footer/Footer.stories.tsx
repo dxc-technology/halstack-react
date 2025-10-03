@@ -1,5 +1,3 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -8,6 +6,23 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
 import DxcLink from "../link/Link";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
+
+export default {
+  title: "Footer",
+  component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+        ],
+      },
+    },
+  },
+} satisfies Meta<typeof DxcFooter>;
 
 const social = [
   {
@@ -107,21 +122,6 @@ const bottom = [
   },
 ];
 
-export default {
-  title: "Footer",
-  component: DxcFooter,
-  parameters: {
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
-} as Meta<typeof DxcFooter>;
-
 const info = [
   { label: "Example Label", text: "Example" },
   { label: "Example Label", text: "Example" },
@@ -208,7 +208,7 @@ export const FooterTooltipFirst: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[0];
+    const link = (await canvas.findAllByRole("link"))[0];
     if (link != null) {
       await userEvent.hover(link);
     }
@@ -219,7 +219,7 @@ export const FooterTooltipSecond: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const link = canvas.getAllByRole("link")[1];
+    const link = (await canvas.findAllByRole("link"))[1];
     if (link != null) {
       await userEvent.hover(link);
     }

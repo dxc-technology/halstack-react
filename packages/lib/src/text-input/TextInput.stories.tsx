@@ -1,5 +1,3 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -7,6 +5,8 @@ import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import preview from "../../.storybook/preview";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Text Input",
@@ -15,16 +15,13 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({
-            id: ruleId,
-            reviewOnFail: true,
-          })),
           ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
         ],
       },
     },
   },
-} as Meta<typeof DxcTextInput>;
+} satisfies Meta<typeof DxcTextInput>;
 
 const action = {
   onClick: () => {},
@@ -382,7 +379,7 @@ export const AutosuggestListboxStates: Story = {
   render: AutosuggestListbox,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };

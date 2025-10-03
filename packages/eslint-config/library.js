@@ -40,7 +40,7 @@ export default function libraryConfig({ tsconfigRootDir, tsconfigName = "tsconfi
       rules: { ...storybook.configs.recommended.rules },
     },
     {
-      files: ["**/*.test.{ts,tsx,js,jsx}", "setupJestAxe.[jt]s"],
+      files: ["**/*.test.{ts,tsx,js,jsx}"],
       plugins: { jest },
       rules: {
         ...jest.configs.recommended.rules,

@@ -1,18 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Application Layout",
   component: DxcApplicationLayout,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof DxcApplicationLayout>;
+} satisfies Meta<typeof DxcApplicationLayout>;
 
 const ApplicationLayout = () => (
   <>
@@ -182,10 +176,10 @@ export const ApplicationLayoutWithDefaultSidenav: Story = {
 export const ApplicationLayoutWithResponsiveSidenav: Story = {
   render: ApplicationLayoutResponsiveSidenav,
   parameters: {
-    viewport: {
-      defaultViewport: "pixel",
-    },
     chromatic: { viewports: [540] },
+  },
+  globals: {
+    viewport: { value: "pixel", isRotated: false },
   },
 };
 
@@ -200,10 +194,10 @@ export const ApplicationLayoutWithCustomFooter: Story = {
 export const ApplicationLayoutTooltip: Story = {
   render: Tooltip,
   parameters: {
-    viewport: {
-      defaultViewport: "pixel",
-    },
     chromatic: { viewports: [540] },
+  },
+  globals: {
+    viewport: { value: "pixel", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

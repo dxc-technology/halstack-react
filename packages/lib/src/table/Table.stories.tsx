@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import DxcTable from "./Table";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Table",
@@ -13,16 +13,16 @@ export default {
     a11y: {
       config: {
         rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
             reviewOnFail: true,
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-} as Meta<typeof DxcTable>;
+} satisfies Meta<typeof DxcTable>;
 
 const actions = [
   {
@@ -608,7 +608,7 @@ export const DropdownAction: Story = {
   render: ActionsCellDropdown,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const nextButton = canvas.getAllByRole("button")[8];
+    const nextButton = (await canvas.findAllByRole("button"))[8];
     if (nextButton) {
       await userEvent.click(nextButton);
     }

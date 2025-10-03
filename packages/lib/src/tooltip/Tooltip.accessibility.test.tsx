@@ -2,11 +2,12 @@ import { fireEvent, render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
+import { vi } from "vitest";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe("Tooltip component accessibility tests", () => {
@@ -20,7 +21,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for top position", async () => {
     // baseElement is needed when using React Portals
@@ -32,7 +33,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for left position", async () => {
     // baseElement is needed when using React Portals
@@ -44,7 +45,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for right position", async () => {
     // baseElement is needed when using React Portals
@@ -56,6 +57,6 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });
