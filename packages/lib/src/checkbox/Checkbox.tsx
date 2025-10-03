@@ -66,7 +66,7 @@ const CheckboxContainer = styled.div<{
   }
   &:active ${Checkbox} {
     ${({ disabled, readOnly }) =>
-      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-secondary-strong)"}`};
+      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-primary-stronger)"}`};
   }
 `;
 
