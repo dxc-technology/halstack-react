@@ -4,33 +4,37 @@ import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const contextualColorMap = {
-  grey: {
-    background: "var(--color-bg-neutral-light)",
-    text: "var(--color-fg-neutral-strongest)",
+  primary: {
+    background: "var(--color-bg-primary-lighter)",
+    text: "var(--color-fg-primary-stronger)",
   },
-  blue: {
+  secondary: {
     background: "var(--color-bg-secondary-lighter)",
     text: "var(--color-fg-secondary-stronger)",
   },
-  green: {
-    background: "var(--color-bg-success-lighter)",
-    text: "var(--color-fg-success-stronger)",
-  },
-  orange: {
-    background: "var(--color-bg-warning-lighter)",
-    text: "var(--color-fg-warning-stronger)",
-  },
-  red: {
-    background: "var(--color-bg-error-lighter)",
-    text: "var(--color-fg-error-stronger)",
-  },
-  yellow: {
+  tertiary: {
     background: "var(--color-bg-yellow-light)",
     text: "var(--color-fg-neutral-yellow-dark)",
   },
-  purple: {
-    background: "var(--color-bg-primary-lighter)",
-    text: "var(--color-fg-primary-stronger)",
+  success: {
+    background: "var(--color-bg-success-lighter)",
+    text: "var(--color-fg-success-stronger)",
+  },
+  info: {
+    background: "var(--color-bg-info-lighter)",
+    text: "var(--color-fg-info-stronger)",
+  },
+  neutral: {
+    background: "var(--color-bg-neutral-light)",
+    text: "var(--color-fg-neutral-strongest)",
+  },
+  warning: {
+    background: "var(--color-bg-warning-lighter)",
+    text: "var(--color-fg-warning-stronger)",
+  },
+  error: {
+    background: "var(--color-bg-error-lighter)",
+    text: "var(--color-fg-error-stronger)",
   },
 };
 
@@ -136,7 +140,7 @@ const DxcBadge = ({
   label,
   title,
   mode = "contextual",
-  color = "grey",
+  color = "neutral",
   icon,
   notificationLimit = 99,
   size = "medium",
