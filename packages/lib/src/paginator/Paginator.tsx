@@ -102,6 +102,7 @@ const DxcPaginator = ({
               value={itemsPerPage.toString()}
               size="fillParent"
               tabIndex={tabIndex}
+              virtualizedHeight={itemsPerPageOptions.length >= 100 ? "304px" : undefined}
             />
           </SelectContainer>
         </ItemsPerPageContainer>

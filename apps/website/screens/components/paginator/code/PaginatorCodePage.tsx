@@ -46,7 +46,8 @@ const sections = [
             </td>
             <td>
               An array of numbers representing the items per page options. If undefined, the select with items per page
-              options will not be displayed.
+              options will not be displayed. If there are 100 or more options, the select will be virtualized for better
+              performance.
             </td>
             <td>-</td>
           </tr>
