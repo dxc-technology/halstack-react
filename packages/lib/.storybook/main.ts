@@ -21,6 +21,9 @@ const config: StorybookConfig = {
     // getAbsolutePath("storybook-addon-performance"),
     getAbsolutePath("storybook-addon-pseudo-states"),
   ],
+  core: {
+    builder: "@storybook/builder-vite",
+  },
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
@@ -36,17 +39,6 @@ const config: StorybookConfig = {
     const { mergeConfig } = await import("vite");
 
     return mergeConfig(config, {
-      // Workaround to prevent fail during first text execution (https://github.com/storybookjs/storybook/issues/32049)
-      // optimizeDeps: {
-      //   include: [
-      //     "react",
-      //     "react-dom",
-      //     "react/jsx-runtime",
-      //     "react/jsx-dev-runtime",
-      //     "@emotion/react",
-      //     "@emotion/styled",
-      //   ],
-      // },
       plugins: [
         react({
           jsxImportSource: "@emotion/react",
@@ -55,6 +47,9 @@ const config: StorybookConfig = {
           },
         }),
       ],
+      optimizeDeps: {
+        include: ["@emotion/styled/base"],
+      },
     });
   },
 };

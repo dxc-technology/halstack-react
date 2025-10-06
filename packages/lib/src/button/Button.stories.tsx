@@ -4951,7 +4951,6 @@ export const Chromatic: Story = {
 
 export const ButtonTooltip: Story = {
   render: Tooltip,
-  // TODO: Fix this test, it is throwing an error: Unable to find role="button" inside the CI
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole("button");
@@ -4961,7 +4960,6 @@ export const ButtonTooltip: Story = {
 
 export const NestedButtonTooltip: Story = {
   render: NestedTooltip,
-  // TODO: Fix this test, it is throwing an error: Unable to find role="button" inside the CI
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole("button");
