@@ -184,16 +184,20 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Green — Success</strong>: Communicates successful operations, confirmations, or valid states. It
+                <strong>Success</strong>: Communicates successful operations, confirmations, or valid states. It
                 reassures users and reinforces positive outcomes.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Orange — Warning</strong>: Used for cautionary messages or potential risks that don't block
-                progress but may require attention.
+                <strong>Info</strong>: Provides additional information, guidance, or context that helps users understand
+                the current state or available options.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Red — Error</strong>: Indicates destructive actions, form validation errors, or system failures.
-                It draws immediate attention and signals that something needs user correction or caution.
+                <strong>Warning</strong>: Used for cautionary messages or potential risks that don't block progress but
+                may require attention.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>Error</strong>: Indicates destructive actions, form validation errors, or system failures. It
+                draws immediate attention and signals that something needs user correction or caution.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>

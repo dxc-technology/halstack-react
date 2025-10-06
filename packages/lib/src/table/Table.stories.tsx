@@ -565,7 +565,7 @@ const Table = () => (
 );
 
 const ActionsCellDropdown = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Dropdown Action" theme="light" level={4} />
     <DxcTable>
       <tr>

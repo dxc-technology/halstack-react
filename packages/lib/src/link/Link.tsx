@@ -30,11 +30,11 @@ const Link = styled.a<{
   font-weight: var(--typography-link-regular);
   text-decoration: none;
   color: ${({ disabled, inheritColor }) =>
-    inheritColor ? "inherit" : !disabled ? "var(--color-fg-secondary-strong)" : "var(--color-fg-neutral-medium)"};
+    inheritColor ? "inherit" : !disabled ? "var(--color-fg-primary-strong)" : "var(--color-fg-neutral-medium)"};
   ${({ disabled }) => (disabled ? "cursor: default;" : "cursor: pointer;")}
   ${({ disabled }) => (disabled ? "pointer-events: none;" : "")}  
   ${({ disabled, inheritColor }) =>
-    !inheritColor && !disabled && "&:visited { color: var(--color-fg-primary-strong); }"};
+    !inheritColor && !disabled && "&:visited { color: var(--color-fg-primary-strongest); }"};
   &:focus {
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     ${({ disabled }) => disabled && "outline: none"}
@@ -52,7 +52,7 @@ const LinkContent = styled.span<{
   padding: var(--spacing-padding-xxxs);
 
   &:hover {
-    color: var(--color-fg-secondary-stronger);
+    color: var(--color-fg-primary-stronger);
     cursor: pointer;
   }
   &:active {
