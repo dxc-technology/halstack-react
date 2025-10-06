@@ -111,7 +111,7 @@ const sections = [
                   name or SVG element used as the icon displayed in the step.
                 </li>
                 <li>
-                  <b>disabled</b>: Whether the step is disabled or not.
+                  <b>disabled</b>: If true, the step will be disabled.
                 </li>
                 <li>
                   <b>valid</b>: Whether the step is valid or not.
