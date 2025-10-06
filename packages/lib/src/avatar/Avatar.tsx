@@ -115,7 +115,7 @@ const StatusContainer = styled.div<{
 `;
 
 const DxcAvatar = ({
-  color = "grey",
+  color = "neutral",
   disabled = false,
   icon = "person",
   imageSrc,

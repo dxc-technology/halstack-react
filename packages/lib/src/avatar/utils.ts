@@ -1,33 +1,37 @@
 import AvatarPropsType from "./types";
 
 const contextualColorMap = {
-  grey: {
-    background: "var(--color-bg-neutral-light)",
-    text: "var(--color-fg-neutral-strongest)",
+  primary: {
+    background: "var(--color-bg-primary-lighter)",
+    text: "var(--color-fg-primary-stronger)",
   },
-  blue: {
+  secondary: {
     background: "var(--color-bg-secondary-lighter)",
     text: "var(--color-fg-secondary-stronger)",
   },
-  green: {
-    background: "var(--color-bg-success-lighter)",
-    text: "var(--color-fg-success-stronger)",
-  },
-  orange: {
-    background: "var(--color-bg-warning-lighter)",
-    text: "var(--color-fg-warning-stronger)",
-  },
-  red: {
-    background: "var(--color-bg-error-lighter)",
-    text: "var(--color-fg-error-stronger)",
-  },
-  yellow: {
+  tertiary: {
     background: "var(--color-bg-yellow-light)",
     text: "var(--color-fg-neutral-yellow-dark)",
   },
-  purple: {
-    background: "var(--color-bg-primary-lighter)",
-    text: "var(--color-fg-primary-stronger)",
+  neutral: {
+    background: "var(--color-bg-neutral-light)",
+    text: "var(--color-fg-neutral-strongest)",
+  },
+  info: {
+    background: "var(--color-bg-info-lighter)",
+    text: "var(--color-fg-info-stronger)",
+  },
+  success: {
+    background: "var(--color-bg-success-lighter)",
+    text: "var(--color-fg-success-stronger)",
+  },
+  warning: {
+    background: "var(--color-bg-warning-lighter)",
+    text: "var(--color-fg-warning-stronger)",
+  },
+  error: {
+    background: "var(--color-bg-error-lighter)",
+    text: "var(--color-fg-error-stronger)",
   },
 };
 
@@ -113,9 +117,11 @@ export const getFontSize = (size: AvatarPropsType["size"]) => (size ? fontSizeMa
 
 export const getIconSize = (size: AvatarPropsType["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
 
-export const getBorderWidth = (size: AvatarPropsType["size"]) => (size ? borderWidthMap[size] : "var(--border-width-s)");
+export const getBorderWidth = (size: AvatarPropsType["size"]) =>
+  size ? borderWidthMap[size] : "var(--border-width-s)";
 
-export const getOutlineWidth = (size: AvatarPropsType["size"]) => (size ? outlineWidthMap[size] : "var(--border-width-m)");
+export const getOutlineWidth = (size: AvatarPropsType["size"]) =>
+  size ? outlineWidthMap[size] : "var(--border-width-m)";
 
 export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) =>
   mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";

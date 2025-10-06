@@ -22,7 +22,7 @@ type AvatarRowProps = {
   icon?: AvatarPropsType["icon"];
   imageSrc?: AvatarPropsType["imageSrc"];
   statusModes?: Status["mode"][];
-  statusPositions?: (Status["position"]| undefined)[];
+  statusPositions?: (Status["position"] | undefined)[];
   pseudoStates?: (PseudoState | undefined)[];
   groupBy?: GroupingKey[];
 };
@@ -30,7 +30,7 @@ type AvatarRowProps = {
 const AvatarRow = ({
   sizes = ["medium"],
   shapes = ["circle"],
-  colors = ["grey"],
+  colors = ["neutral"],
   label,
   icon,
   imageSrc,
@@ -159,7 +159,7 @@ export const Colors: Story = {
       <AvatarRow
         sizes={["medium"]}
         shapes={["circle"]}
-        colors={["grey", "blue", "green", "orange", "red", "yellow", "purple"]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info"]}
         groupBy={["color"]}
       />
     </>
@@ -172,7 +172,7 @@ export const Statuses: Story = {
       <Title title="Statuses" theme="light" level={2} />
       <AvatarRow
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        colors={["grey", "blue", "green", "orange", "red", "yellow", "purple"]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info"]}
         shapes={["circle"]}
         statusModes={["default", "info", "success", "warning", "error"]}
         statusPositions={["top", "bottom"]}
