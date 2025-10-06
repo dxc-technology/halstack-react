@@ -21,10 +21,10 @@ export function getRadioInputStyles(
           : "var(--color-fg-neutral-stronger)";
     default:
       return status === "default"
-        ? "var(--color-fg-secondary-medium)"
+        ? "var(--color-fg-primary-strong)"
         : status === "hover"
-          ? "var(--color-fg-secondary-strong)"
-          : "var(--color-fg-secondary-stronger)";
+          ? "var(--color-fg-primary-stronger)"
+          : "var(--color-fg-primary-stronger)";
   }
 }
 
