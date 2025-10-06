@@ -64,7 +64,8 @@ const sections = [
               have been made to a certain section of the interface.
             </DxcParagraph>
             <DxcParagraph>
-              Only one color is allowed for this badge, which is red, and cannot be changed by any means.
+              Only one color is allowed for this badge, which is the semantic error (generally red), and cannot be
+              changed by any means.
             </DxcParagraph>
           </>
         ),
@@ -94,14 +95,14 @@ const sections = [
                 colors are available:
                 <DxcBulletedList type="circle">
                   <DxcBulletedList.Item>
-                    Green: positive actions, such as approved, completed, success...
+                    Success: positive actions, such as approved, completed, success...
                   </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Blue: informative actions, such as published, in use...</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Info: informative actions, such as published, in use...</DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Red: negative actions, such as error, rejection, incomplete...
+                    Warning: alert actions, such as pending or paused actions...
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Orange: alert actions, such as pending or paused actions...
+                    Error: negative actions, such as error, rejection, incomplete...
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
               </DxcBulletedList.Item>

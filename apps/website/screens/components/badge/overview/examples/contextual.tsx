@@ -6,21 +6,21 @@ const code = `() => {
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)" direction="column">
         <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
-          <DxcBadge label="Label" color="green" icon="info" />
-          <DxcBadge label="Label" color="blue" icon="info" />
-          <DxcBadge label="Label" color="red" icon="info" />
-          <DxcBadge label="Label" color="orange" icon="info" />
-          <DxcBadge label="Label" color="yellow" icon="info" />
-          <DxcBadge label="Label" color="purple" icon="info" />
+          <DxcBadge label="Label" color="success" icon="info" />
+          <DxcBadge label="Label" color="info" icon="info" />
+          <DxcBadge label="Label" color="error" icon="info" />
+          <DxcBadge label="Label" color="warning" icon="info" />
+          <DxcBadge label="Label" color="tertiary" icon="info" />
+          <DxcBadge label="Label" color="primary" icon="info" />
           <DxcBadge label="Label" icon="info" />
         </DxcFlex>
         <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="space-evenly">
-          <DxcBadge label="Label" color="green" />
-          <DxcBadge label="Label" color="blue" />
-          <DxcBadge label="Label" color="red" />
-          <DxcBadge label="Label" color="orange" />
-          <DxcBadge label="Label" color="yellow" />
-          <DxcBadge label="Label" color="purple" />
+          <DxcBadge label="Label" color="success" />
+          <DxcBadge label="Label" color="info" />
+          <DxcBadge label="Label" color="error" />
+          <DxcBadge label="Label" color="warning" />
+          <DxcBadge label="Label" color="tertiary" />
+          <DxcBadge label="Label" color="primary" />
           <DxcBadge label="Label" />
         </DxcFlex>
       </DxcFlex>

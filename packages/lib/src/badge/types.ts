@@ -16,7 +16,7 @@ export type ContextualProps = {
   /**
    * Affects the visual style of the badge. It can be used following semantic purposes or not.
    */
-  color?: "grey" | "blue" | "green" | "orange" | "red" | "yellow" | "purple";
+  color?: "primary" | "secondary" | "tertiary" | "success" | "info" | "neutral" | "warning" | "error";
 };
 
 export type NotificationProps = {

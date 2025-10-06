@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcPaginator from "./Paginator";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Paginator",
@@ -27,6 +28,10 @@ const Paginator = () => (
     <ExampleContainer>
       <Title title="Default with items per page options" theme="light" level={4} />
       <DxcPaginator itemsPerPageOptions={[5, 10, 15]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Default with items per page options virtualized" theme="light" level={4} />
+      <DxcPaginator itemsPerPageOptions={Array.from({ length: 10000 }, (_, i) => i + 1)} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Default with show go to page selector" theme="light" level={4} />
@@ -76,6 +81,13 @@ type Story = StoryObj<typeof DxcPaginator>;
 
 export const Chromatic: Story = {
   render: Paginator,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const virtualizedSelect = canvas.getAllByRole("combobox")[1];
+    if (virtualizedSelect) {
+      await userEvent.click(virtualizedSelect);
+    }
+  },
 };
 
 export const ResponsivePaginator: Story = {
@@ -83,5 +95,12 @@ export const ResponsivePaginator: Story = {
   parameters: {
     viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
     chromatic: { viewports: [400] },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const virtualizedSelect = canvas.getAllByRole("combobox")[1];
+    if (virtualizedSelect) {
+      await userEvent.click(virtualizedSelect);
+    }
   },
 };
