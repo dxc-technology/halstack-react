@@ -40,13 +40,13 @@ const groupItems = [
               {
                 label: "Item 2",
                 icon: "bookmark",
-                badge: <DxcBadge color="purple" label="Experimental" />,
+                badge: <DxcBadge color="primary" label="Experimental" />,
               },
               { label: "Selected Item 3", selectedByDefault: true },
             ],
           },
         ],
-        badge: <DxcBadge color="green" label="New" />,
+        badge: <DxcBadge color="success" label="New" />,
       },
       { label: "Item 4", icon: "key" },
     ],
@@ -79,11 +79,11 @@ const itemsWithIcon = [
 const itemsWithBadge = [
   {
     label: "Item 1",
-    badge: <DxcBadge color="green" label="New" />,
+    badge: <DxcBadge color="success" label="New" />,
   },
   {
     label: "Item 2",
-    badge: <DxcBadge color="purple" label="Experimental" />,
+    badge: <DxcBadge color="primary" label="Experimental" />,
   },
 ];
 
@@ -110,7 +110,7 @@ const sectionsWithScroll = [
 const itemsWithTruncatedText = [
   {
     label: "Item with a very long label that should be truncated",
-    badge: <DxcBadge color="green" label="New" />,
+    badge: <DxcBadge color="success" label="New" />,
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />

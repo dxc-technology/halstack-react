@@ -8,7 +8,7 @@ const getModeColor = (mode: Required<StatusLightPropsType>["mode"]) => {
     case "error":
       return "var(--color-fg-error-medium)";
     case "info":
-      return "var(--color-fg-secondary-medium)";
+      return "var(--color-fg-info-strong)";
     case "success":
       return "var(--color-fg-success-medium)";
     case "warning":

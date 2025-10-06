@@ -168,8 +168,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Indicates a destructive action or highlights a critical issue. Styled in red. Use for actions like
-                "Delete", "Remove" or "Cancel Subscription.".
+                Indicates a destructive action or highlights a critical issue. Use for actions like "Delete", "Remove"
+                or "Cancel Subscription.".
               </td>
             </tr>
             <tr>
@@ -179,8 +179,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Provides additional information or context. Shown in blue, the brand's secondary color. Use for actions
-                like "More Info", "Details" or "Learn More.".
+                Provides additional information or context. Use for actions like "More Info", "Details" or "Learn
+                More.".
               </td>
             </tr>
             <tr>
@@ -190,8 +190,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
-                "Confirm", "Complete" or "Approve.".
+                Represents a positive action or confirms the completion of a task. Use for actions like "Confirm",
+                "Complete" or "Approve.".
               </td>
             </tr>
             <tr>
@@ -201,8 +201,8 @@ const sections = [
                 </DxcTypography>
               </td>
               <td>
-                Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
-                "Warning" or "Attention Needed.".
+                Alerts the user to potential issues or actions that need caution. Use for actions like "Warning" or
+                "Attention Needed.".
               </td>
             </tr>
           </tbody>

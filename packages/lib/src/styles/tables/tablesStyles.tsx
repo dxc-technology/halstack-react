@@ -5,7 +5,7 @@ import { calculateWidth } from "../../table/utils";
 import { spaces } from "../../common/variables";
 
 export const TableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
-  height: 100%;
+  max-height: 100%;
   width: ${({ margin }) => calculateWidth(margin)};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};

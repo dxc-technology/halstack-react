@@ -15,7 +15,7 @@ const code = `() => {
               items: [
                 {
                   label: "Sales data module",
-                  badge: <DxcBadge color="purple" label="Experimental" />,
+                  badge: <DxcBadge color="primary" label="Experimental" />,
                 },
                 { label: "Central platform" },
               ],

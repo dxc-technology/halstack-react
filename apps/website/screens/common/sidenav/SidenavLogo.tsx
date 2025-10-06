@@ -42,7 +42,7 @@ const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <DxcBadge
-        color="purple"
+        color="primary"
         label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         size="small"
       />

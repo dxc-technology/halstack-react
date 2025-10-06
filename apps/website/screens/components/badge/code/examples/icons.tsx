@@ -20,12 +20,12 @@ const code = `() => {
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-xl)" wrap="wrap">
         <DxcBadge label="Authorized" icon={icon} />
-        <DxcBadge label="Reserved" color="blue" icon={icon} />
-        <DxcBadge label="Ready" color="green" icon={icon} />
-        <DxcBadge label="Pending" color="orange" icon={icon} />
-        <DxcBadge label="Unfulfilled" color="red" icon="error" />
-        <DxcBadge label="Paid" color="yellow" icon="euro" />
-        <DxcBadge label="Restocked" color="purple" icon="refresh" />
+        <DxcBadge label="Reserved" color="secondary" icon={icon} />
+        <DxcBadge label="Ready" color="success" icon={icon} />
+        <DxcBadge label="Pending" color="warning" icon={icon} />
+        <DxcBadge label="Unfulfilled" color="error" icon="error" />
+        <DxcBadge label="Paid" color="tertiary" icon="euro" />
+        <DxcBadge label="Restocked" color="primary" icon="refresh" />
       </DxcFlex>
     </DxcInset>
   );

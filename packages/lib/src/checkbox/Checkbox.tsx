@@ -24,7 +24,7 @@ const Checkbox = styled.span<{
   display: flex;
   border-radius: var(--border-radius-s);
   color: ${({ disabled, readOnly }) =>
-    disabled || readOnly ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+    disabled || readOnly ? "var(--color-fg-neutral-medium)" : "var(--color-fg-primary-strong)"};
   ${({ disabled }) => disabled && "pointer-events: none;"}
 
   &:focus {
@@ -62,11 +62,11 @@ const CheckboxContainer = styled.div<{
 
   &:hover ${Checkbox} {
     ${({ disabled, readOnly }) =>
-      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-secondary-strong)"}`};
+      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-primary-stronger)"}`};
   }
   &:active ${Checkbox} {
     ${({ disabled, readOnly }) =>
-      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-secondary-strong)"}`};
+      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-primary-stronger)"}`};
   }
 `;
 
