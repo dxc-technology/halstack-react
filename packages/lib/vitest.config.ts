@@ -7,13 +7,6 @@ const dirname = typeof __dirname !== "undefined" ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  // Workaround to prevent fail during first text execution (https://github.com/storybookjs/storybook/issues/32049)
-  // optimizeDeps: {
-  //   include: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@emotion/react", "@emotion/styled"],
-  // },
-  // resolve: {
-  //   dedupe: ["@emotion/react", "@emotion/styled"],
-  // },
   test: {
     projects: [
       {
