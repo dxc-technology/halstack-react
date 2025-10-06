@@ -9,17 +9,17 @@ type StatusBadgeProps = {
 const getBadgeColor = (status: StatusBadgeProps["status"]) => {
   switch (status) {
     case "required":
-      return "orange";
+      return "warning";
     case "experimental":
-      return "blue";
+      return "secondary";
     case "new":
-      return "purple";
+      return "primary";
     case "stable":
-      return "green";
+      return "success";
     case "legacy":
-      return "yellow";
+      return "tertiary";
     default:
-      return "grey";
+      return "neutral";
   }
 };
 

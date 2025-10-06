@@ -54,7 +54,117 @@ const Badge = () => (
       </DxcFlex>
     </ExampleContainer>
     <Title title="Contextual" theme="light" level={2} />
-    <Title title="Grey" theme="light" level={3} />
+    <Title title="Primary" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="primary" label="Label" size="small" />
+        <DxcBadge color="primary" label="Label" size="small" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="primary" label="Label" />
+        <DxcBadge color="primary" label="Label" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="primary" label="Label" size="large" />
+        <DxcBadge color="primary" label="Label" size="large" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Secondary" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="secondary" label="Label" size="small" />
+        <DxcBadge color="secondary" label="Label" size="small" icon="done" />
+      </DxcFlex>
+      <ExampleContainer>
+        <Title title="Medium" theme="light" level={4} />
+        <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+          <DxcBadge color="secondary" label="Label" />
+          <DxcBadge color="secondary" label="Label" icon={icon} />
+        </DxcFlex>
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Large" theme="light" level={4} />
+        <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+          <DxcBadge color="secondary" label="Label" size="large" />
+          <DxcBadge color="secondary" label="Label" size="large" icon={icon} />
+        </DxcFlex>
+      </ExampleContainer>
+    </ExampleContainer>
+    <Title title="Tertiary" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="tertiary" label="Label" size="small" />
+        <DxcBadge color="tertiary" label="Label" size="small" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="tertiary" label="Label" />
+        <DxcBadge color="tertiary" label="Label" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="tertiary" label="Label" size="large" />
+        <DxcBadge color="tertiary" label="Label" size="large" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Success" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="success" label="Label" size="small" />
+        <DxcBadge color="success" label="Label" size="small" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="success" label="Label" />
+        <DxcBadge color="success" label="Label" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="success" label="Label" size="large" />
+        <DxcBadge color="success" label="Label" size="large" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Info" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="info" label="Label" size="small" />
+        <DxcBadge color="info" label="Label" size="small" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="info" label="Label" />
+        <DxcBadge color="info" label="Label" icon="done" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
+        <DxcBadge color="info" label="Label" size="large" />
+        <DxcBadge color="info" label="Label" size="large" icon={icon} />
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Neutral" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
@@ -76,136 +186,48 @@ const Badge = () => (
         <DxcBadge label="Label" size="large" icon="done" />
       </DxcFlex>
     </ExampleContainer>
-    <Title title="Blue" theme="light" level={3} />
+    <Title title="Warning" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="blue" label="Label" size="small" />
-        <DxcBadge color="blue" label="Label" size="small" icon="done" />
+        <DxcBadge color="warning" label="Label" size="small" />
+        <DxcBadge color="warning" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="blue" label="Label" />
-        <DxcBadge color="blue" label="Label" icon={icon} />
+        <DxcBadge color="warning" label="Label" />
+        <DxcBadge color="warning" label="Label" icon={icon} />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="blue" label="Label" size="large" />
-        <DxcBadge color="blue" label="Label" size="large" icon={icon} />
+        <DxcBadge color="warning" label="Label" size="large" />
+        <DxcBadge color="warning" label="Label" size="large" icon={icon} />
       </DxcFlex>
     </ExampleContainer>
-    <Title title="Green" theme="light" level={3} />
+    <Title title="Error" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="green" label="Label" size="small" />
-        <DxcBadge color="green" label="Label" size="small" icon="done" />
+        <DxcBadge color="error" label="Label" size="small" />
+        <DxcBadge color="error" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="green" label="Label" />
-        <DxcBadge color="green" label="Label" icon="done" />
+        <DxcBadge color="error" label="Label" />
+        <DxcBadge color="error" label="Label" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
       <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="green" label="Label" size="large" />
-        <DxcBadge color="green" label="Label" size="large" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <Title title="Orange" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="orange" label="Label" size="small" />
-        <DxcBadge color="orange" label="Label" size="small" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="orange" label="Label" />
-        <DxcBadge color="orange" label="Label" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="orange" label="Label" size="large" />
-        <DxcBadge color="orange" label="Label" size="large" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <Title title="Red" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="red" label="Label" size="small" />
-        <DxcBadge color="red" label="Label" size="small" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="red" label="Label" />
-        <DxcBadge color="red" label="Label" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="red" label="Label" size="large" />
-        <DxcBadge color="red" label="Label" size="large" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <Title title="Yellow" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="yellow" label="Label" size="small" />
-        <DxcBadge color="yellow" label="Label" size="small" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="yellow" label="Label" />
-        <DxcBadge color="yellow" label="Label" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="yellow" label="Label" size="large" />
-        <DxcBadge color="yellow" label="Label" size="large" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <Title title="Purple" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="purple" label="Label" size="small" />
-        <DxcBadge color="purple" label="Label" size="small" icon="done" />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="purple" label="Label" />
-        <DxcBadge color="purple" label="Label" icon={icon} />
-      </DxcFlex>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcFlex gap="var(--spacing-gap-xl)" alignItems="center">
-        <DxcBadge color="purple" label="Label" size="large" />
-        <DxcBadge color="purple" label="Label" size="large" icon={icon} />
+        <DxcBadge color="error" label="Label" size="large" />
+        <DxcBadge color="error" label="Label" size="large" icon={icon} />
       </DxcFlex>
     </ExampleContainer>
   </>
