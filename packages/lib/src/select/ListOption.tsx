@@ -12,11 +12,11 @@ const OptionItem = styled.li<{
   list-style: none;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
-  ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
+  ${({ selected }) => selected && "background-color: var(--color-bg-primary-lighter);"};
   &:hover,
   &:active {
     background-color: ${({ selected }) =>
-      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
+      selected ? "var(--color-bg-primary-medium)" : "var(--color-bg-neutral-light)"};
   }
   ${({ visualFocused }) =>
     visualFocused &&

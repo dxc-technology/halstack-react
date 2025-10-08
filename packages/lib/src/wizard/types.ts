@@ -14,7 +14,7 @@ export type StepProps = {
    */
   icon?: string | SVG;
   /**
-   * Whether the step is disabled or not.
+   * If true, the step will be disabled.
    */
   disabled?: boolean;
   /**
