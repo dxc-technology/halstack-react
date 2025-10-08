@@ -20,14 +20,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>title</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The area assigned to render the title. It is highly recommended to use the sidenav title.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
