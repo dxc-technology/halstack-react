@@ -11,14 +11,9 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-a11y"),
-    // getAbsolutePath("@storybook/addon-docs"),
-    // getAbsolutePath("@storybook/addon-essentials"),
-    // getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-links"),
-    // getAbsolutePath("@storybook/addon-viewport"),
     getAbsolutePath("@storybook/addon-vitest"),
     getAbsolutePath("@vitest/coverage-v8"),
-    // getAbsolutePath("storybook-addon-performance"),
     getAbsolutePath("storybook-addon-pseudo-states"),
   ],
   core: {
