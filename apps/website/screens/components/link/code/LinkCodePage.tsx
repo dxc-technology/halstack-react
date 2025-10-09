@@ -42,7 +42,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the link is disabled.</td>
+            <td>If true, the link will be disabled.</td>
             <td>
               <TableCode>false</TableCode>
             </td>

@@ -110,7 +110,7 @@ const sections = [
                 <td>
                   <TableCode>boolean</TableCode>
                 </td>
-                <td>Whether the tab is disabled or not.</td>
+                <td>If true, the tab will be disabled.</td>
                 <td>
                   <TableCode>false</TableCode>
                 </td>
