@@ -140,7 +140,7 @@ const DxcAvatar = ({
         tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
         role={onClick ? "button" : undefined}
         as={linkHref ? "a" : undefined}
-        href={(!disabled && linkHref) || undefined}
+        href={!disabled ? linkHref : undefined}
         aria-label={(onClick || linkHref) && (label || title || "Avatar")}
         disabled={disabled}
       >
