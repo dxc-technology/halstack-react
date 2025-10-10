@@ -13,10 +13,12 @@ const TabContainer = styled.div`
   flex-direction: column;
 `;
 
-const TabLink = styled.a<{
-  disabled: TabProps["disabled"];
-  iconPosition: NavTabsPropsType["iconPosition"];
-}>`
+const TabLink = styled.div<
+  {
+    disabled: TabProps["disabled"];
+    iconPosition: NavTabsPropsType["iconPosition"];
+  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+>`
   box-sizing: border-box;
   display: flex;
   flex-direction: ${({ iconPosition }) => (iconPosition === "top" ? "column" : "row")};
@@ -96,11 +98,11 @@ const Tab = forwardRef(
       notificationNumber = false,
       ...otherProps
     }: TabProps,
-    ref: Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement | HTMLDivElement>
   ) => {
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
-    const tabRef = useRef<HTMLAnchorElement>();
-    const innerRef = useRef<HTMLAnchorElement | null>(null);
+    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>();
+    const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
@@ -109,7 +111,7 @@ const Tab = forwardRef(
       }
     }, [children, focusedLabel]);
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement | HTMLAnchorElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
@@ -128,11 +130,12 @@ const Tab = forwardRef(
             aria-disabled={disabled}
             aria-selected={active}
             disabled={disabled}
+            as={href ? "a" : onClick ? "button" : "div"}
             href={!disabled ? href : undefined}
+            onClick={!disabled ? onClick : undefined}
             iconPosition={iconPosition}
-            onClick={onClick}
             onKeyDown={handleOnKeyDown}
-            ref={(anchorRef: HTMLAnchorElement) => {
+            ref={(anchorRef: HTMLAnchorElement | HTMLDivElement | null) => {
               tabRef.current = anchorRef;
               if (ref) {
                 if (typeof ref === "function") ref(anchorRef);
