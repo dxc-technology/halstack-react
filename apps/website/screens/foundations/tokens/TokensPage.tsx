@@ -6,6 +6,19 @@ import DxcQuickNavContainer from "@/common/QuickNavContainer";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
+import {
+  NeutralTokens,
+  PrimaryTokens,
+  SecondaryTokens,
+  Semantic01Tokens,
+  Semantic02Tokens,
+  Semantic03Tokens,
+  Semantic04Tokens,
+  TertiaryTokens,
+} from "./tables/CoreColorTokens";
+import DimensionsTokens from "./tables/CoreDimensionsTokens";
+import { FontFamilyTokens, FontSizesTokens, FontStylesTokens, FontWeightTokens } from "./tables/CoreFontTokens";
+import BorderTokens from "./tables/CoreBorderTokens";
 
 const sections = [
   {
@@ -288,7 +301,63 @@ const sections = [
         title: "Tokens in Development",
         content: (
           <>
-            <DxcParagraph>Work in Progress.</DxcParagraph>
+            <DxcParagraph>
+              We have overhauled our token system to improve consistency in naming and usability. To achieve this, we
+              chose an implementation with CSS variables over our previous JavaScript-based implementation. There are
+              other advantages to using CSS variables, including less re-rendering, better performance and the ability
+              to update them at runtime.
+            </DxcParagraph>
+            <DxcParagraph>
+              As explained in the previous section, the token structure has been updated from a two-layer system to a
+              three-layer system. This new structure will allow developers to customize both the first and third layers.
+            </DxcParagraph>
+            <DxcParagraph>
+              The first layer (composed of core tokens) can be customized when using the opinionated theming approach.
+              Below is the list of available core tokens:
+            </DxcParagraph>
+            <>
+              {/* Color Tokens */}
+              <DxcHeading level={4} text="Colors" />
+              <DxcHeading level={5} text="Primary color tokens" />
+              <PrimaryTokens />
+              <DxcHeading level={5} text="Secondary color tokens" />
+              <SecondaryTokens />
+              <DxcHeading level={5} text="Tertiary color tokens" />
+              <TertiaryTokens />
+              <DxcHeading level={5} text="Neutral color tokens" />
+              <NeutralTokens />
+              <DxcHeading level={5} text="Semantic 01 color tokens" />
+              <Semantic01Tokens />
+              <DxcHeading level={5} text="Semantic 02 color tokens" />
+              <Semantic02Tokens />
+              <DxcHeading level={5} text="Semantic 03 color tokens" />
+              <Semantic03Tokens />
+              <DxcHeading level={5} text="Semantic 04 color tokens" />
+              <Semantic04Tokens />
+            </>
+            <>
+              {/* Dimensions Tokens */}
+              <DxcHeading level={4} text="Dimensions" />
+              <DimensionsTokens />
+            </>
+            <>
+              {/* Font Tokens */}
+              <DxcHeading level={4} text="Font" />
+              <DxcHeading level={5} text="Font size tokens" />
+              <FontSizesTokens />
+              <DxcHeading level={5} text="Font weight tokens" />
+              <FontWeightTokens />
+              <DxcHeading level={5} text="Font family tokens" />
+              <FontFamilyTokens />
+              <DxcHeading level={5} text="Font style tokens" />
+              <FontStylesTokens />
+            </>
+            <>
+              {/* Border Tokens */}
+              <DxcHeading level={4} text="Border" />
+              <BorderTokens />
+            </>
+            <DxcParagraph>The component layer is still under development.</DxcParagraph>
           </>
         ),
       },
