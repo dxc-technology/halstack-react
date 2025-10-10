@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcAvatar from "./Avatar";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
@@ -8,7 +8,7 @@ import AvatarPropsType, { Status } from "./types";
 export default {
   title: "Avatar",
   component: DxcAvatar,
-} as Meta<typeof DxcAvatar>;
+} satisfies Meta<typeof DxcAvatar>;
 
 type Story = StoryObj<typeof DxcAvatar>;
 
