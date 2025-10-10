@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcPaginator from "./Paginator";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Paginator",
   component: DxcPaginator,
-} as Meta<typeof DxcPaginator>;
+} satisfies Meta<typeof DxcPaginator>;
 
 const customViewports = {
   resizedScreen: {
@@ -93,8 +93,11 @@ export const Chromatic: Story = {
 export const ResponsivePaginator: Story = {
   render: Paginator,
   parameters: {
-    viewport: { viewports: customViewports, defaultViewport: "resizedScreen" },
+    viewport: { viewports: customViewports },
     chromatic: { viewports: [400] },
+  },
+  globals: {
+    viewport: { value: "resizedScreen", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

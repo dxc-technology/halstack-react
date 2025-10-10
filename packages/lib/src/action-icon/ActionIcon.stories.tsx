@@ -1,15 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcActionIcon from "./ActionIcon";
 import DxcTooltip from "../tooltip/Tooltip";
 import DxcInset from "../inset/Inset";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Action Icon ",
   component: DxcActionIcon,
-} as Meta<typeof DxcActionIcon>;
+} satisfies Meta<typeof DxcActionIcon>;
 
 const iconSVG = (
   <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">
@@ -75,7 +75,7 @@ export const ActionIconTooltip: Story = {
   render: Tooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };
@@ -84,7 +84,7 @@ export const NestedActionIconTooltip: Story = {
   render: NestedTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button");
+    const button = await canvas.findByRole("button");
     await userEvent.hover(button);
   },
 };

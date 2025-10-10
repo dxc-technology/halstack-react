@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcWizard from "./Wizard";
@@ -7,7 +7,7 @@ import DxcContainer from "../container/Container";
 export default {
   title: "Wizard",
   component: DxcWizard,
-} as Meta<typeof DxcWizard>;
+} satisfies Meta<typeof DxcWizard>;
 
 const favoriteSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">
