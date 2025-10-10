@@ -4,7 +4,6 @@ const IconContainer = styled.span<{
   icon: string;
   filled: boolean;
 }>`
-  @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1");
   font-family: "Material Symbols Outlined";
   font-weight: normal;
   font-style: normal;

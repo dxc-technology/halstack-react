@@ -44,6 +44,6 @@ describe("Quick Nav component accessibility tests", () => {
   it("Should not have basic accessibility issues for icon mode", async () => {
     const { container } = render(<DxcQuickNav links={links} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -8,6 +8,6 @@ describe("ProgressBar component accessibility tests", () => {
       <DxcProgressBar label="test-label" helperText="helper-text" margin="medium" value={50} showValue overlay />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

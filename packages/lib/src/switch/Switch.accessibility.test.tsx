@@ -22,7 +22,7 @@ describe("Switch component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     const { container } = render(
@@ -38,7 +38,7 @@ describe("Switch component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
@@ -54,6 +54,6 @@ describe("Switch component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

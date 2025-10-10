@@ -6,6 +6,6 @@ describe("Icon component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcIcon icon="home" />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });
