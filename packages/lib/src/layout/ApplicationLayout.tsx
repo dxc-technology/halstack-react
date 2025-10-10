@@ -4,7 +4,7 @@ import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
 import DxcIcon from "../icon/Icon";
-import DxcSidenav from "../sidenav/Sidenav";
+// import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import { Tooltip } from "../tooltip/Tooltip";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
@@ -189,7 +189,7 @@ const DxcApplicationLayout = ({
 DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.SideNav = DxcSidenav;
+// DxcApplicationLayout.SideNav = DxcSidenav;
 DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

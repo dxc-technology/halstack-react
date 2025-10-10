@@ -11,8 +11,6 @@ import SubMenu from "./SubMenu";
 const ContextualMenuContainer = styled.div`
   box-sizing: border-box;
   margin: 0;
-  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
-  border-radius: var(--border-radius-s);
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
   display: grid;
   gap: var(--spacing-gap-xs);

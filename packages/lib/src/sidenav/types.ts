@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode, ButtonHTMLAttributes, Dispatch, ReactElement, SetStateAction } from "react";
 import { SVG } from "../common/utils";
 
 export type SidenavTitlePropsType = {
@@ -68,15 +68,104 @@ export type SidenavLinkPropsType = {
   tabIndex?: number;
 };
 
+export type Logo = {
+  /**
+   * URL of the image that will be placed in the logo.
+   */
+  src: string;
+  /**
+   * Alternative text for the logo image.
+   */
+  alt: string;
+  /**
+   *  URL to navigate to when the logo is clicked. If not provided, the logo will not be clickable.
+   */
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  /**
+   * URL to navigate when the logo is clicked.
+   */
+  href?: string;
+};
+
 type Props = {
   /**
-   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
+   * The title of the sidenav that will be placed under the logo.
    */
-  title?: ReactNode;
+  title?: string;
   /**
    * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
   children: ReactNode;
+  /**
+   * Array of items to be displayed in the Nav menu.
+   * Each item can be a single/simple item, a group item or a section.
+   */
+  items: (Item | GroupItem)[] | Section[];
+  /**
+   * Object with the properties of the logo placed at the top of the sidenav.
+   */
+  logo: Logo;
+};
+
+type CommonItemProps = {
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+};
+type Item = CommonItemProps & {
+  onSelect?: () => void;
+  selectedByDefault?: boolean;
+};
+type GroupItem = CommonItemProps & {
+  items: (Item | GroupItem)[];
+};
+type Section = { items: (Item | GroupItem)[]; title?: string };
+
+type ItemWithId = Item & { id: number };
+type GroupItemWithId = {
+  badge?: ReactElement;
+  icon: string | SVG;
+  items: (ItemWithId | GroupItemWithId)[];
+  label: string;
+};
+type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+
+type SingleItemProps = ItemWithId & { depthLevel: number };
+type GroupItemProps = GroupItemWithId & { depthLevel: number };
+type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
+type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  badge?: Item["badge"];
+  collapseIcon?: ReactNode;
+  depthLevel: number;
+  icon?: Item["icon"];
+  label: Item["label"];
+  selected: boolean;
+};
+type SectionProps = {
+  section: SectionWithId;
+  index: number;
+  length: number;
+};
+type SubMenuProps = { children: ReactNode; id?: string };
+type ContextualMenuContextProps = {
+  selectedItemId: number;
+  setSelectedItemId: Dispatch<SetStateAction<number>>;
+};
+
+export type {
+  ContextualMenuContextProps,
+  GroupItem,
+  GroupItemProps,
+  GroupItemWithId,
+  Item,
+  ItemActionProps,
+  ItemWithId,
+  SubMenuProps,
+  MenuItemProps,
+  Section,
+  SectionWithId,
+  SectionProps,
+  SingleItemProps,
 };
 
 export default Props;
