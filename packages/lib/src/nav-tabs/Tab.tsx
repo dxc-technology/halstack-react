@@ -101,7 +101,7 @@ const Tab = forwardRef(
     ref: Ref<HTMLAnchorElement | HTMLDivElement>
   ) => {
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
-    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement>();
+    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>();
     const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 
@@ -130,13 +130,13 @@ const Tab = forwardRef(
             aria-disabled={disabled}
             aria-selected={active}
             disabled={disabled}
-            as={href ? "a" : "div"}
+            as={href ? "a" : onClick ? "button" : "div"}
             href={!disabled ? href : undefined}
             onClick={!disabled ? onClick : undefined}
             iconPosition={iconPosition}
             onKeyDown={handleOnKeyDown}
-            ref={(anchorRef) => {
-              tabRef.current = anchorRef as HTMLAnchorElement | HTMLDivElement;
+            ref={(anchorRef: HTMLAnchorElement | HTMLDivElement | null) => {
+              tabRef.current = anchorRef;
               if (ref) {
                 if (typeof ref === "function") ref(anchorRef);
                 else innerRef.current = anchorRef;
