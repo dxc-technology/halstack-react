@@ -19,12 +19,13 @@ import DxcImage from "../image/Image";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 
-const AvatarContainer = styled.div<{
-  hasAction?: boolean;
-  size: AvatarPropsType["size"];
-  href?: AvatarPropsType["linkHref"];
-  disabled?: AvatarPropsType["disabled"];
-}>`
+const AvatarContainer = styled.div<
+  {
+    hasAction?: boolean;
+    size: AvatarPropsType["size"];
+    disabled?: AvatarPropsType["disabled"];
+  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+>`
   position: relative;
   display: flex;
   justify-content: center;
