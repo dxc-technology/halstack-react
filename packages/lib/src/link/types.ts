@@ -2,7 +2,7 @@ import { Margin, SVG, Space } from "../common/utils";
 
 export type LinkProps = {
   /**
-   * If true, the link is disabled.
+   * If true, the link will be disabled.
    */
   disabled?: boolean;
   /**
