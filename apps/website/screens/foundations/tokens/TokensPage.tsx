@@ -7,6 +7,8 @@ import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph }
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
 import {
+  AbsoluteTokens,
+  AlphaTokens,
   NeutralTokens,
   PrimaryTokens,
   SecondaryTokens,
@@ -318,6 +320,8 @@ const sections = [
             <>
               {/* Color Tokens */}
               <DxcHeading level={4} text="Colors" />
+              <DxcHeading level={5} text="Absolute color tokens" />
+              <AbsoluteTokens />
               <DxcHeading level={5} text="Primary color tokens" />
               <PrimaryTokens />
               <DxcHeading level={5} text="Secondary color tokens" />
@@ -334,6 +338,8 @@ const sections = [
               <Semantic03Tokens />
               <DxcHeading level={5} text="Semantic 04 color tokens" />
               <Semantic04Tokens />
+              <DxcHeading level={5} text="Alpha color tokens" />
+              <AlphaTokens />
             </>
             <>
               {/* Dimensions Tokens */}
