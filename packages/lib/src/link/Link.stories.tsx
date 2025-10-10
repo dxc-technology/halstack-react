@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcLink from "./Link";
@@ -6,7 +6,7 @@ import DxcLink from "./Link";
 export default {
   title: "Link",
   component: DxcLink,
-} as Meta<typeof DxcLink>;
+} satisfies Meta<typeof DxcLink>;
 
 const icon = (
   <svg viewBox="0 0 24 24" enableBackground="new 0 0 24 24" fill="currentColor">

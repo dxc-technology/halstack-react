@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -7,7 +7,7 @@ import DxcNumberInput from "./NumberInput";
 export default {
   title: "Number Input",
   component: DxcNumberInput,
-} as Meta<typeof DxcNumberInput>;
+} satisfies Meta<typeof DxcNumberInput>;
 
 const NumberInput = () => (
   <>

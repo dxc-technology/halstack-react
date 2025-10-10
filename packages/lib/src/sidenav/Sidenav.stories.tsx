@@ -1,15 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";
 import DxcSidenav from "./Sidenav";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
-} as Meta<typeof DxcSidenav>;
+} satisfies Meta<typeof DxcSidenav>;
 
 const iconSVG = (
   <svg
@@ -212,7 +212,7 @@ export const CollapsableGroup: Story = {
   render: CollapsedGroupSidenav,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    const collapsableGroups = await canvas.findAllByText("Collapsed Group");
     for (const group of collapsableGroups) {
       await userEvent.click(group);
     }
@@ -223,7 +223,7 @@ export const CollapsedHoverGroup: Story = {
   render: HoveredGroupSidenav,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    const collapsableGroups = await canvas.findAllByText("Collapsed Group");
     for (const group of collapsableGroups) {
       await userEvent.click(group);
     }
@@ -237,7 +237,7 @@ export const CollapsedActiveGroup: Story = {
   render: ActiveGroupSidenav,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    const collapsableGroups = await canvas.findAllByText("Collapsed Group");
     if (collapsableGroups[0]) {
       await userEvent.click(collapsableGroups[0]);
     }

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -8,7 +8,7 @@ import DxcDivider from "./Divider";
 export default {
   title: "Divider",
   component: DxcDivider,
-} as Meta<typeof DxcDivider>;
+} satisfies Meta<typeof DxcDivider>;
 
 const Divider = () => (
   <>

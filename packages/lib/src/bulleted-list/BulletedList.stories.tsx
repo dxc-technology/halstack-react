@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -7,7 +7,7 @@ import DxcBulletedList from "./BulletedList";
 export default {
   title: "Bulleted List",
   component: DxcBulletedList,
-} as Meta<typeof DxcBulletedList>;
+} satisfies Meta<typeof DxcBulletedList>;
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
