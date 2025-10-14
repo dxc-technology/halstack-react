@@ -15,7 +15,11 @@ const AvatarPageHeading = ({ children }: { children: ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Avatar" />
-          <DxcParagraph>The avatar component...</DxcParagraph>
+          <DxcParagraph>
+            The Avatar component is a key visual element used to identify users, teams, or entities across the
+            interface. It helps create a recognizable and consistent user experience by visually representing people or
+            objects through images, icons, or initials.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>

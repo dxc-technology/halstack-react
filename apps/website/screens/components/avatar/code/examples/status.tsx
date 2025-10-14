@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcAvatar
-        color="red"
+        color="error"
         status={{mode: "success", position: "top"}}
       />
     </DxcInset>

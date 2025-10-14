@@ -31,10 +31,14 @@ const sections = [
           <tr>
             <td>color</td>
             <td>
-              <TableCode>'grey' | 'blue' | 'green' | 'orange' | 'red' | 'yellow' | 'purple'</TableCode>
+              <TableCode>
+                'primary' | 'secondary' | 'tertiary' | 'success' | 'info' | 'neutral' |'warning' | 'error'
+              </TableCode>
             </td>
             <td>Affects the visual style of the avatar. It can be used following semantic purposes or not.</td>
-            <td><TableCode>'grey'</TableCode></td>
+            <td>
+              <TableCode>'grey'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>disabled</td>
@@ -42,7 +46,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, the componente will be disabled.</td>
-            <td><TableCode>false</TableCode></td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>icon</td>

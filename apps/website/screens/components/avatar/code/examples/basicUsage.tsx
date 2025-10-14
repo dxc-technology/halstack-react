@@ -5,7 +5,7 @@ const code = `() => {
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcAvatar
         label="John Doe"
-        color="green"
+        color="success"
       />
     </DxcInset>
   );
