@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
 
-type PseudoStates =
+export type PseudoState =
   | "pseudo-active"
   | "pseudo-focus"
   | "pseudo-focus-visible"
@@ -13,7 +13,7 @@ type PseudoStates =
 
 type Props = {
   children?: ReactNode;
-  pseudoState?: PseudoStates | PseudoStates[];
+  pseudoState?: PseudoState | PseudoState[];
   expanded?: boolean;
 };
 
