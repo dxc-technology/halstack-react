@@ -33,16 +33,16 @@ const sections = [
         <Image src={anatomy} alt="Avatar anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Base Shape:</strong> defines the visual form of the avatar.
+            <strong>Base shape:</strong> defines the visual form of the avatar.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Content Area:</strong> displays the main visual content.
+            <strong>Content area:</strong> displays the main visual content.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Status Indicator (optional):</strong> a small color light that communicates user presence or status.
+            <strong>Status indicator (Optional):</strong> a small color light that communicates user presence or status.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label & Sublabel (optional):</strong> textual information placed next to or below the avatar,
+            <strong>Label & sublabel (Optional):</strong> textual information placed next to or below the avatar,
             providing context such as name, role, or email.
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -59,7 +59,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           Through its different <strong>shapes, content types, sizes, and color options</strong>, it can seamlessly
-          represent users, temas, or entities across various contexts, from compact tables to rich profile sections.
+          represent users, teams, or entities across various contexts, from compact tables to rich profile sections.
         </DxcParagraph>
         <DxcParagraph>
           Each variant ensures visual consistency while providing the flexibility to match the tone and hierarchy of the
@@ -144,42 +144,42 @@ const sections = [
           <tbody>
             <tr>
               <td>
-                <strong>XS</strong>
+                <strong>xsmall</strong>
               </td>
               <td>24px</td>
               <td>Tables, dense lists.</td>
             </tr>
             <tr>
               <td>
-                <strong>S</strong>
+                <strong>small</strong>
               </td>
               <td>32px</td>
               <td>Headers, compact cards.</td>
             </tr>
             <tr>
               <td>
-                <strong>M</strong>
+                <strong>medium</strong>
               </td>
               <td>40px</td>
               <td>Sidenav bars, user previews, chat threads.</td>
             </tr>
             <tr>
               <td>
-                <strong>L</strong>
+                <strong>large</strong>
               </td>
               <td>56px</td>
-              <td>Medium cards, profile sections..</td>
+              <td>Medium cards, profile sections...</td>
             </tr>
             <tr>
               <td>
-                <strong>XL</strong>
+                <strong>xlarge</strong>
               </td>
               <td>72px</td>
               <td>Modals, profile headers, featured content.</td>
             </tr>
             <tr>
               <td>
-                <strong>2XL</strong>
+                <strong>xxlarge</strong>
               </td>
               <td>80px</td>
               <td>Large cards or highlight sections.</td>

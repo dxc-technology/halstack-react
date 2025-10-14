@@ -37,7 +37,7 @@ const sections = [
             </td>
             <td>Affects the visual style of the avatar. It can be used following semantic purposes or not.</td>
             <td>
-              <TableCode>'grey'</TableCode>
+              <TableCode>'neutral'</TableCode>
             </td>
           </tr>
           <tr>
@@ -105,7 +105,7 @@ const sections = [
           <tr>
             <td>size</td>
             <td>
-              <TableCode>'small' | 'medium' | 'large'</TableCode>
+              <TableCode>'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
             </td>
             <td>Size of the component.</td>
             <td>
