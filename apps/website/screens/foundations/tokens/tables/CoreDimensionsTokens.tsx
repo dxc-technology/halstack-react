@@ -12,121 +12,121 @@ const DimensionsTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>dimensions-0</TableCode>
+          <TableCode>--dimensions-0</TableCode>
         </td>
         <td>0px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-1</TableCode>
+          <TableCode>--dimensions-1</TableCode>
         </td>
         <td>1px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-2</TableCode>
+          <TableCode>--dimensions-2</TableCode>
         </td>
         <td>2px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-4</TableCode>
+          <TableCode>--dimensions-4</TableCode>
         </td>
         <td>4px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-8</TableCode>
+          <TableCode>--dimensions-8</TableCode>
         </td>
         <td>8px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-12</TableCode>
+          <TableCode>--dimensions-12</TableCode>
         </td>
         <td>12px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-16</TableCode>
+          <TableCode>--dimensions-16</TableCode>
         </td>
         <td>16px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-20</TableCode>
+          <TableCode>--dimensions-20</TableCode>
         </td>
         <td>20px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-24</TableCode>
+          <TableCode>--dimensions-24</TableCode>
         </td>
         <td>24px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-28</TableCode>
+          <TableCode>--dimensions-28</TableCode>
         </td>
         <td>28px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-32</TableCode>
+          <TableCode>--dimensions-32</TableCode>
         </td>
         <td>32px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-36</TableCode>
+          <TableCode>--dimensions-36</TableCode>
         </td>
         <td>36px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-40</TableCode>
+          <TableCode>--dimensions-40</TableCode>
         </td>
         <td>40px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-44</TableCode>
+          <TableCode>--dimensions-44</TableCode>
         </td>
         <td>44px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-48</TableCode>
+          <TableCode>--dimensions-48</TableCode>
         </td>
         <td>48px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-56</TableCode>
+          <TableCode>--dimensions-56</TableCode>
         </td>
         <td>56px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-64</TableCode>
+          <TableCode>--dimensions-64</TableCode>
         </td>
         <td>64px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-72</TableCode>
+          <TableCode>--dimensions-72</TableCode>
         </td>
         <td>72px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-80</TableCode>
+          <TableCode>--dimensions-80</TableCode>
         </td>
         <td>80px</td>
       </tr>
       <tr>
         <td>
-          <TableCode>dimensions-96</TableCode>
+          <TableCode>--dimensions-96</TableCode>
         </td>
         <td>96px</td>
       </tr>
