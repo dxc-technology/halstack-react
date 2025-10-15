@@ -135,7 +135,7 @@ const DxcGorgorito = memo(
           disabled={disabled}
         >
           <GorgoritorWrapper shape={shape} color={color} size={size}>
-            {!!onClick || (!!linkHref && <Overlay aria-hidden="true" />)}
+            {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}
             {content ? (
               content
             ) : (
