@@ -90,6 +90,8 @@ const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
         (action, index) =>
           index < (dropdownAction ? 2 : 3) && (
             <DxcActionIcon
+              shape="square"
+              size="xsmall"
               icon={action.icon}
               disabled={action.disabled ?? false}
               key={`action-${index}`}

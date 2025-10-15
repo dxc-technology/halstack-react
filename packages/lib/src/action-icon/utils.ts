@@ -1,4 +1,4 @@
-import { GorgoritoPropTypes } from "./types";
+import { ActionIconPropTypes } from "./types";
 
 const contextualColorMap = {
   primary: {
@@ -35,7 +35,7 @@ const contextualColorMap = {
   },
   transparent: {
     background: "transparent",
-    text: "var(--color-fg-neutral-strongest)",
+    text: "var(--color-fg-neutral-dark)",
   },
 };
 
@@ -92,11 +92,11 @@ const modeColorMap = {
   error: "var(--color-fg-error-medium)",
 };
 
-export const getColor = (color: GorgoritoPropTypes["color"]) => (color ? contextualColorMap[color].text : undefined);
-export const getBackgroundColor = (color: GorgoritoPropTypes["color"]) =>
+export const getColor = (color: ActionIconPropTypes["color"]) => (color ? contextualColorMap[color].text : undefined);
+export const getBackgroundColor = (color: ActionIconPropTypes["color"]) =>
   color ? contextualColorMap[color].background : undefined;
 
-export const getBorderRadius = (shape: GorgoritoPropTypes["shape"], size: GorgoritoPropTypes["size"]) => {
+export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: ActionIconPropTypes["size"]) => {
   if (shape === "circle") {
     return "100%";
   }
@@ -106,15 +106,15 @@ export const getBorderRadius = (shape: GorgoritoPropTypes["shape"], size: Gorgor
   return "100%";
 };
 
-export const getSize = (size: GorgoritoPropTypes["size"]) => (size ? sizeMap[size] : "var(--height-xl)");
+export const getSize = (size: ActionIconPropTypes["size"]) => (size ? sizeMap[size] : "var(--height-xl)");
 
-export const getIconSize = (size: GorgoritoPropTypes["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
+export const getIconSize = (size: ActionIconPropTypes["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
 
-export const getBorderWidth = (size: GorgoritoPropTypes["size"]) =>
+export const getBorderWidth = (size: ActionIconPropTypes["size"]) =>
   size ? borderWidthMap[size] : "var(--border-width-s)";
 
-export const getOutlineWidth = (size: GorgoritoPropTypes["size"]) =>
+export const getOutlineWidth = (size: ActionIconPropTypes["size"]) =>
   size ? outlineWidthMap[size] : "var(--border-width-m)";
 
-export const getModeColor = (mode: Required<GorgoritoPropTypes>["status"]["mode"]) =>
+export const getModeColor = (mode: Required<ActionIconPropTypes>["status"]["mode"]) =>
   mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";

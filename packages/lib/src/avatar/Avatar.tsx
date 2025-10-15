@@ -3,7 +3,7 @@ import AvatarPropsType from "./types";
 import { getFontSize, getInitials } from "./utils";
 import DxcTypography from "../typography/Typography";
 import DxcImage from "../image/Image";
-import DxcGorgorito from "../gorgorito/Gorgorito";
+import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 
 const DxcAvatar = memo(
@@ -94,7 +94,7 @@ const DxcAvatar = memo(
 
     return (
       <LabelWrapper condition={!!(primaryText || secondaryText)}>
-        <DxcGorgorito
+        <DxcActionIcon
           ariaLabel={label}
           content={(imageSrc && !error) || initials ? content : undefined}
           color={color}

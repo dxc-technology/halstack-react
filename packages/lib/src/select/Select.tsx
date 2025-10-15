@@ -443,7 +443,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       else onChange?.({ value: empty as string & string[] });
     };
 
-    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setSearchValue("");
     };
@@ -582,8 +582,10 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   {searchable && searchValue.length > 0 && (
                     <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                       <DxcActionIcon
+                        shape="square"
+                        size="xsmall"
                         icon="clear"
-                        onClick={handleClearSearchActionOnClick}
+                        onClick={() => handleClearSearchActionOnClick}
                         tabIndex={-1}
                         title={translatedLabels.select.actionClearSearchTitle}
                       />

@@ -100,6 +100,8 @@ export const renderExpandableTrigger = (
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
 ) => (
   <DxcActionIcon
+    shape="square"
+    size="xsmall"
     icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
     title="Expand content"
     aria-expanded={row.contentIsExpanded}

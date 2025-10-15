@@ -1,90 +1,211 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
-import Title from "../../.storybook/components/Title";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcActionIcon from "./ActionIcon";
-import DxcTooltip from "../tooltip/Tooltip";
-import DxcInset from "../inset/Inset";
-import { userEvent, within } from "storybook/internal/test";
+import DxcFlex from "../flex/Flex";
+import Title from "../../.storybook/components/Title";
+import ExampleContainer, { PseudoState } from "../../.storybook/components/ExampleContainer";
+import { ActionIconPropTypes, Status } from "./types";
 
 export default {
-  title: "Action Icon ",
+  title: "ActionIcon",
   component: DxcActionIcon,
 } satisfies Meta<typeof DxcActionIcon>;
 
-const iconSVG = (
-  <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-  </svg>
-);
-
-const ActionIcon = () => (
-  <>
-    <Title title="Default" theme="light" level={2} />
-    <ExampleContainer>
-      <DxcActionIcon icon="favorite" title="Favourite" />
-    </ExampleContainer>
-    <Title title="Disabled" theme="light" level={2} />
-    <ExampleContainer>
-      <DxcActionIcon icon="favorite" title="Favourite" disabled />
-    </ExampleContainer>
-    <Title title="Hover" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <DxcActionIcon icon="filled_favorite" title="Favourite" />
-    </ExampleContainer>
-    <Title title="Focus" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-focus">
-      <DxcActionIcon icon={iconSVG} title="Favourite" />
-    </ExampleContainer>
-    <Title title="Active" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-active">
-      <DxcActionIcon icon={iconSVG} title="Favourite" />
-    </ExampleContainer>
-  </>
-);
-
-const Tooltip = () => (
-  <>
-    <Title title="Default tooltip" theme="light" level={2} />
-    <ExampleContainer>
-      <DxcActionIcon icon="favorite" title="Favourite" />
-    </ExampleContainer>
-  </>
-);
-
-const NestedTooltip = () => (
-  <>
-    <Title title="Nested tooltip" theme="light" level={2} />
-    <ExampleContainer>
-      <DxcInset top="var(--spacing-padding-xxl)">
-        <DxcTooltip label="Favourite" position="top">
-          <DxcActionIcon icon="favorite" title="Favourite" />
-        </DxcTooltip>
-      </DxcInset>
-    </ExampleContainer>
-  </>
-);
-
 type Story = StoryObj<typeof DxcActionIcon>;
 
-export const Chromatic: Story = {
-  render: ActionIcon,
+type GroupingKey = "size" | "shape" | "color" | "statusPosition" | "statusMode" | "pseudoState";
+
+type ActionIconRowProps = {
+  sizes?: ActionIconPropTypes["size"][];
+  shapes?: ActionIconPropTypes["shape"][];
+  colors?: ActionIconPropTypes["color"][];
+  icon?: ActionIconPropTypes["icon"];
+  statusModes?: Status["mode"][];
+  statusPositions?: (Status["position"] | undefined)[];
+  pseudoStates?: (PseudoState | undefined)[];
+  groupBy?: GroupingKey[];
 };
 
-export const ActionIconTooltip: Story = {
-  render: Tooltip,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = await canvas.findByRole("button");
-    await userEvent.hover(button);
-  },
+const ActionIconRow = ({
+  sizes = ["medium"],
+  shapes = ["circle"],
+  colors = ["neutral"],
+  statusModes,
+  statusPositions = [],
+  pseudoStates = [],
+  groupBy = ["size"],
+}: ActionIconRowProps) => {
+  const getValuesForKey = (key?: GroupingKey) => {
+    switch (key) {
+      case "size":
+        return sizes as string[];
+      case "shape":
+        return shapes as string[];
+      case "color":
+        return colors as string[];
+      case "statusPosition":
+        return statusPositions as string[];
+      case "statusMode":
+        return statusModes as string[];
+      case "pseudoState":
+        return pseudoStates;
+      default:
+        return [];
+    }
+  };
+
+  const renderGroup = (
+    level: number,
+    filters: {
+      size?: ActionIconPropTypes["size"];
+      shape?: ActionIconPropTypes["shape"];
+      color?: ActionIconPropTypes["color"];
+      statusMode?: Status["mode"];
+      statusPosition?: Status["position"];
+      pseudoState?: PseudoState;
+    }
+  ): JSX.Element | JSX.Element[] => {
+    if (level >= groupBy.length) {
+      const sizesToRender = filters.size ? [filters.size] : sizes;
+      const colorsToRender = filters.color ? [filters.color] : colors;
+      const shapesToRender = filters.shape ? [filters.shape] : shapes;
+      const positionsToRender = filters.statusPosition
+        ? [filters.statusPosition]
+        : statusPositions.length
+          ? statusPositions
+          : [undefined];
+      const modesToRender = filters.statusMode ? [filters.statusMode] : statusModes?.length ? statusModes : [undefined];
+
+      const pseudoStatesEnabled = !!filters.pseudoState;
+
+      return shapesToRender.map((shape) => (
+        <DxcFlex
+          key={`shape-${shape}-${String(filters.size ?? "all")}-${String(filters.color ?? "all")}`}
+          gap="var(--spacing-gap-l)"
+          wrap="wrap"
+        >
+          {sizesToRender.map((size) =>
+            colorsToRender.map((color) =>
+              positionsToRender.map((position) =>
+                modesToRender.map((mode) => (
+                  <ExampleContainer
+                    key={`${size}-${shape}-${color}-${mode}-${position ?? "none"}`}
+                    pseudoState={filters.pseudoState}
+                  >
+                    <DxcActionIcon
+                      icon="stettings"
+                      size={size}
+                      shape={shape}
+                      color={color}
+                      status={position && mode ? { position, mode: mode } : undefined}
+                      onClick={pseudoStatesEnabled ? () => console.log("") : undefined}
+                    />
+                  </ExampleContainer>
+                ))
+              )
+            )
+          )}
+        </DxcFlex>
+      ));
+    }
+
+    const key = groupBy[level];
+    const values = getValuesForKey(key);
+
+    return values.map((value) => {
+      const newFilters = { ...filters };
+      if (key === "size") newFilters.size = value as ActionIconPropTypes["size"];
+      else if (key === "shape") newFilters.shape = value as ActionIconPropTypes["shape"];
+      else if (key === "color") newFilters.color = value as ActionIconPropTypes["color"];
+      else if (key === "statusPosition") newFilters.statusPosition = value as Status["position"];
+      else if (key === "statusMode") newFilters.statusMode = value as Status["mode"];
+      else if (key === "pseudoState") newFilters.pseudoState = value as PseudoState;
+
+      return (
+        <div key={`${key}-${String(value)}`}>
+          <Title title={String(value)} theme="light" level={3 + level} />
+          {renderGroup(level + 1, newFilters)}
+        </div>
+      );
+    });
+  };
+
+  return <>{renderGroup(0, {})}</>;
 };
 
-export const NestedActionIconTooltip: Story = {
-  render: NestedTooltip,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = await canvas.findByRole("button");
-    await userEvent.hover(button);
-  },
+export const Shapes: Story = {
+  render: () => (
+    <>
+      <Title title="Shapes" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle", "square"]}
+        groupBy={["shape", "size"]}
+      />
+    </>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <>
+      <Title title="Colors" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["medium"]}
+        shapes={["circle"]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info", "transparent"]}
+        groupBy={["color"]}
+      />
+    </>
+  ),
+};
+
+export const Statuses: Story = {
+  render: () => (
+    <>
+      <Title title="Statuses" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info", "transparent"]}
+        shapes={["circle"]}
+        statusModes={["default", "info", "success", "warning", "error"]}
+        statusPositions={["top", "bottom"]}
+        groupBy={["statusPosition", "statusMode", "color"]}
+      />
+    </>
+  ),
+};
+
+export const PseudoStates: Story = {
+  render: () => (
+    <>
+      <Title title="Pseudo states" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        statusModes={["success"]}
+        statusPositions={[undefined, "top", "bottom"]}
+        pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active"]}
+        groupBy={["pseudoState", "size"]}
+      />
+    </>
+  ),
+};
+
+export const Types: Story = {
+  render: () => (
+    <>
+      <Title title="Icon (custom)" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        groupBy={["size"]}
+      />
+      <Title title="Icon (default)" theme="light" level={2} />
+      <ActionIconRow
+        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+        shapes={["circle"]}
+        groupBy={["size"]}
+      />
+    </>
+  ),
 };
