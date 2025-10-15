@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import GorgoritoPropTypes, { RefType } from "./types";
+import { GorgoritoPropTypes, RefType } from "./types";
 import {
   getBackgroundColor,
   getBorderRadius,
@@ -113,7 +113,7 @@ const DxcGorgorito = forwardRef<RefType, GorgoritoPropTypes>(
       content,
       color = "neutral",
       disabled = false,
-      icon = "person",
+      icon,
       linkHref,
       onClick,
       shape = "circle",

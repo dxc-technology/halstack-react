@@ -1,4 +1,4 @@
-import GorgoritoPropTypes from "./types";
+import { GorgoritoPropTypes } from "./types";
 
 const contextualColorMap = {
   primary: {

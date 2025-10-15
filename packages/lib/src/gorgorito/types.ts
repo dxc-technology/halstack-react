@@ -20,7 +20,11 @@ export interface Status {
   position: "top" | "bottom";
 }
 
-type Props = {
+export type GorgoritoPropTypes =
+  | (CommonProps & { content: ReactNode; icon?: string | SVG })
+  | (CommonProps & { content?: string; icon: string | SVG });
+
+type CommonProps = {
   /**
    * Text to be used as aria-label for the gorgorito. It is recommended to provide this prop when using the onClick or linkHref properties and no title is provided.
    */
@@ -30,17 +34,9 @@ type Props = {
    */
   color?: Color;
   /**
-   * Content to be displayed inside the gorgorito when there is no icon provided.
-   */
-  content?: ReactNode;
-  /**
    * If true, the component will be disabled.
    */
   disabled?: boolean;
-  /**
-   * Material Symbol name or SVG element as the icon that will be placed as gorgorito.
-   */
-  icon?: string | SVG;
   /**
    * Page to be opened when the user clicks on the link.
    */
@@ -71,5 +67,3 @@ type Props = {
    */
   title?: string;
 };
-
-export default Props;

@@ -10,7 +10,7 @@ const DxcAvatar = memo(
   ({
     color = "neutral",
     disabled = false,
-    icon,
+    icon = "person",
     imageSrc,
     label,
     linkHref,
