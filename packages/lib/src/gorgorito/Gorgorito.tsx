@@ -1,7 +1,7 @@
-import { memo } from "react";
+import { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import GorgoritoPropTypes from "./types";
+import GorgoritoPropTypes, { RefType } from "./types";
 import {
   getBackgroundColor,
   getBorderRadius,
@@ -106,21 +106,24 @@ const StatusContainer = styled.div<{
   background-color: ${({ status }) => getModeColor(status!.mode)};
 `;
 
-const DxcGorgorito = memo(
-  ({
-    ariaLabel,
-    content,
-    color = "neutral",
-    disabled = false,
-    icon = "person",
-    linkHref,
-    onClick,
-    shape = "circle",
-    size = "medium",
-    status,
-    tabIndex = 0,
-    title,
-  }: GorgoritoPropTypes) => {
+const DxcGorgorito = forwardRef<RefType, GorgoritoPropTypes>(
+  (
+    {
+      ariaLabel,
+      content,
+      color = "neutral",
+      disabled = false,
+      icon = "person",
+      linkHref,
+      onClick,
+      shape = "circle",
+      size = "medium",
+      status,
+      tabIndex = 0,
+      title,
+    },
+    ref
+  ) => {
     return (
       <TooltipWrapper condition={!!title} label={title}>
         <GorgoritorContainer
@@ -133,6 +136,7 @@ const DxcGorgorito = memo(
           href={!disabled ? linkHref : undefined}
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Gorgorito")}
           disabled={disabled}
+          ref={linkHref ? undefined : (ref as React.Ref<HTMLDivElement>)}
         >
           <GorgoritorWrapper shape={shape} color={color} size={size}>
             {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}

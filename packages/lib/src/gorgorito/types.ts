@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { SVG } from "../common/utils";
 
+export type RefType = HTMLDivElement;
+
 type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Shape = "circle" | "square";
 type Color =
