@@ -19,7 +19,8 @@ export type Props = {
     | "pre"
     | "small"
     | "span"
-    | "strong";
+    | "strong"
+    | "label";
   children: ReactNode;
   color?: string;
   display?: "inline" | "block";
