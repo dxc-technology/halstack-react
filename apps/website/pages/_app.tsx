@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -46,6 +46,23 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
     return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
   };
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const el = document.getElementById("MainScroll");
+      if (el) el.scrollTo(0, 0);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("hashChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("hashChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <CacheProvider value={emotionCache}>
