@@ -65,7 +65,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
     }
   }, [latestRelease, toast]);
 
-  return <MainContainer id="hello">{children}</MainContainer>;
+  return <MainContainer>{children}</MainContainer>;
 };
 
 export default MainContent;

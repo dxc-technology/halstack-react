@@ -167,7 +167,7 @@ const DxcApplicationLayout = ({
             <SidenavContainer>{sidenav}</SidenavContainer>
           )}
         </SidenavContextProvider>
-        <MainContainer id="MainScroll">
+        <MainContainer>
           <MainContentContainer>
             {findChildType(children, Main)}
             <FooterContainer>
