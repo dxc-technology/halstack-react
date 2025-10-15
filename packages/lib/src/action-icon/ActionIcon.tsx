@@ -44,6 +44,9 @@ const ActionIconContainer = styled.div<
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
       }
+      &:focus-visible {
+        outline: none;
+      }
     `}
   ${({ disabled }) =>
     disabled &&
