@@ -12,13 +12,13 @@ const BorderTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>line-style-dashed</TableCode>
+          <TableCode>--line-style-dashed</TableCode>
         </td>
         <td>dashed</td>
       </tr>
       <tr>
         <td>
-          <TableCode>line-style-solid</TableCode>
+          <TableCode>--line-style-solid</TableCode>
         </td>
         <td>solid</td>
       </tr>
