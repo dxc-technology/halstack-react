@@ -5,7 +5,7 @@ import DxcIcon from "../icon/Icon";
 import HeaderPropsType, { Logo } from "./types";
 import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
-import ActionIcon from "../action-icon/ActionIcon";
+import DxcActionIcon from "../action-icon/ActionIcon";
 import { dxcLogo } from "./Icons";
 import styled from "@emotion/styled";
 
@@ -244,7 +244,9 @@ const DxcHeader = ({
           <ResponsiveMenu hasVisibility={isMenuVisible}>
             <DxcFlex justifyContent="space-between" alignItems="center">
               <ResponsiveLogoContainer>{headerLogo}</ResponsiveLogoContainer>
-              <ActionIcon
+              <DxcActionIcon
+                shape="square"
+                size="xsmall"
                 icon="close"
                 onClick={handleMenu}
                 tabIndex={tabIndex}
