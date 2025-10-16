@@ -136,6 +136,7 @@ const ActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
           role={onClick ? "button" : undefined}
           as={linkHref ? "a" : onClick ? "button" : "div"}
+          type={onClick && !linkHref ? "button" : undefined}
           href={!disabled ? linkHref : undefined}
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
