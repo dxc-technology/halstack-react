@@ -127,7 +127,7 @@ const DxcApplicationLayout = ({
 }: ApplicationLayoutPropsType): JSX.Element => {
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const isResponsive = useResponsive(responsiveSizes.large);
-  const ref = useRef(null);
+  const mainContentRef = useRef<HTMLDivElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleSidenavVisibility = () => {
@@ -140,8 +140,14 @@ const DxcApplicationLayout = ({
     }
   }, [isResponsive]);
 
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop = 0;
+    }
+  }, [children]);
+
   return (
-    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive}>
       <HeaderContainer>
         {header ?? <DxcHeader underlined />}
         {sidenav && isResponsive && (
@@ -167,7 +173,7 @@ const DxcApplicationLayout = ({
             <SidenavContainer>{sidenav}</SidenavContainer>
           )}
         </SidenavContextProvider>
-        <MainContainer id="MainScroll">
+        <MainContainer ref={mainContentRef}>
           <MainContentContainer>
             {findChildType(children, Main)}
             <FooterContainer>
