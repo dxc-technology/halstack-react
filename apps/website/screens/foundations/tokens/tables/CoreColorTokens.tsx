@@ -12,13 +12,13 @@ export const AbsoluteTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-absolutes-black</TableCode>
+          <TableCode>--color-absolutes-black</TableCode>
         </td>
         <td>#000000</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-absolutes-white</TableCode>
+          <TableCode>--color-absolutes-white</TableCode>
         </td>
         <td>#ffffff</td>
       </tr>
@@ -37,55 +37,55 @@ export const AlphaTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-alpha-100-a</TableCode>
+          <TableCode>--color-alpha-100-a</TableCode>
         </td>
         <td>#ebebeb1a</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-200-a</TableCode>
+          <TableCode>--color-alpha-200-a</TableCode>
         </td>
         <td>#dedede33</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-300-a</TableCode>
+          <TableCode>--color-alpha-300-a</TableCode>
         </td>
         <td>#d1d1d14d</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-400-a</TableCode>
+          <TableCode>--color-alpha-400-a</TableCode>
         </td>
         <td>#b5b5b566</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-500-a</TableCode>
+          <TableCode>--color-alpha-500-a</TableCode>
         </td>
         <td>#9a9a9a80</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-600-a</TableCode>
+          <TableCode>--color-alpha-600-a</TableCode>
         </td>
         <td>#79797999</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-700-a</TableCode>
+          <TableCode>--color-alpha-700-a</TableCode>
         </td>
         <td>#5b5b5bb2</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-800-a</TableCode>
+          <TableCode>--color-alpha-800-a</TableCode>
         </td>
         <td>#494949cc</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-alpha-900-a</TableCode>
+          <TableCode>--color-alpha-900-a</TableCode>
         </td>
         <td>#333333e5</td>
       </tr>
@@ -104,61 +104,61 @@ export const PrimaryTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-primary-50</TableCode>
+          <TableCode>--color-primary-50</TableCode>
         </td>
         <td>#fcfbfe</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-100</TableCode>
+          <TableCode>--color-primary-100</TableCode>
         </td>
         <td>#f0e8fa</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-200</TableCode>
+          <TableCode>--color-primary-200</TableCode>
         </td>
         <td>#e7d9f6</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-300</TableCode>
+          <TableCode>--color-primary-300</TableCode>
         </td>
         <td>#ddc9f3</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-400</TableCode>
+          <TableCode>--color-primary-400</TableCode>
         </td>
         <td>#c8a7eb</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-500</TableCode>
+          <TableCode>--color-primary-500</TableCode>
         </td>
         <td>#b487e4</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-600</TableCode>
+          <TableCode>--color-primary-600</TableCode>
         </td>
         <td>#9363c8</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-700</TableCode>
+          <TableCode>--color-primary-700</TableCode>
         </td>
         <td>#6f4b97</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-800</TableCode>
+          <TableCode>--color-primary-800</TableCode>
         </td>
         <td>#5a3c7a</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-primary-900</TableCode>
+          <TableCode>--color-primary-900</TableCode>
         </td>
         <td>#3e2a55</td>
       </tr>
@@ -177,61 +177,61 @@ export const SecondaryTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-secondary-50</TableCode>
+          <TableCode>--color-secondary-50</TableCode>
         </td>
         <td>#f8fcff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-100</TableCode>
+          <TableCode>--color-secondary-100</TableCode>
         </td>
         <td>#d9efff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-200</TableCode>
+          <TableCode>--color-secondary-200</TableCode>
         </td>
         <td>#bce3ff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-300</TableCode>
+          <TableCode>--color-secondary-300</TableCode>
         </td>
         <td>#a0d7ff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-400</TableCode>
+          <TableCode>--color-secondary-400</TableCode>
         </td>
         <td>#61bdff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-500</TableCode>
+          <TableCode>--color-secondary-500</TableCode>
         </td>
         <td>#30a1f1</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-600</TableCode>
+          <TableCode>--color-secondary-600</TableCode>
         </td>
         <td>#267fbf</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-700</TableCode>
+          <TableCode>--color-secondary-700</TableCode>
         </td>
         <td>#1d6091</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-800</TableCode>
+          <TableCode>--color-secondary-800</TableCode>
         </td>
         <td>#174e74</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-secondary-900</TableCode>
+          <TableCode>--color-secondary-900</TableCode>
         </td>
         <td>#103651</td>
       </tr>
@@ -250,61 +250,61 @@ export const TertiaryTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-tertiary-50</TableCode>
+          <TableCode>--color-tertiary-50</TableCode>
         </td>
         <td>#fefbef</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-100</TableCode>
+          <TableCode>--color-tertiary-100</TableCode>
         </td>
         <td>#fcedae</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-200</TableCode>
+          <TableCode>--color-tertiary-200</TableCode>
         </td>
         <td>#f9de6e</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-300</TableCode>
+          <TableCode>--color-tertiary-300</TableCode>
         </td>
         <td>#f5cd2b</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-400</TableCode>
+          <TableCode>--color-tertiary-400</TableCode>
         </td>
         <td>#d4b226</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-500</TableCode>
+          <TableCode>--color-tertiary-500</TableCode>
         </td>
         <td>#b6981f</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-600</TableCode>
+          <TableCode>--color-tertiary-600</TableCode>
         </td>
         <td>#8f7818</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-700</TableCode>
+          <TableCode>--color-tertiary-700</TableCode>
         </td>
         <td>#6c5a12</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-800</TableCode>
+          <TableCode>--color-tertiary-800</TableCode>
         </td>
         <td>#57490f</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-tertiary-900</TableCode>
+          <TableCode>--color-tertiary-900</TableCode>
         </td>
         <td>#3d3309</td>
       </tr>
@@ -323,61 +323,61 @@ export const NeutralTokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-neutral-50</TableCode>
+          <TableCode>--color-neutral-50</TableCode>
         </td>
         <td>#fbfbfb</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-100</TableCode>
+          <TableCode>--color-neutral-100</TableCode>
         </td>
         <td>#ebebeb</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-200</TableCode>
+          <TableCode>--color-neutral-200</TableCode>
         </td>
         <td>#dedede</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-300</TableCode>
+          <TableCode>--color-neutral-300</TableCode>
         </td>
         <td>#d1d1d1</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-400</TableCode>
+          <TableCode>--color-neutral-400</TableCode>
         </td>
         <td>#b5b5b5</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-500</TableCode>
+          <TableCode>--color-neutral-500</TableCode>
         </td>
         <td>#9a9a9a</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-600</TableCode>
+          <TableCode>--color-neutral-600</TableCode>
         </td>
         <td>#797979</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-700</TableCode>
+          <TableCode>--color-neutral-700</TableCode>
         </td>
         <td>#5b5b5b</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-800</TableCode>
+          <TableCode>--color-neutral-800</TableCode>
         </td>
         <td>#494949</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-neutral-900</TableCode>
+          <TableCode>--color-neutral-900</TableCode>
         </td>
         <td>#333333</td>
       </tr>
@@ -396,61 +396,61 @@ export const Semantic01Tokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-semantic01-50</TableCode>
+          <TableCode>--color-semantic01-50</TableCode>
         </td>
         <td>#f8fcff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-100</TableCode>
+          <TableCode>--color-semantic01-100</TableCode>
         </td>
         <td>#d9efff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-200</TableCode>
+          <TableCode>--color-semantic01-200</TableCode>
         </td>
         <td>#bce3ff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-300</TableCode>
+          <TableCode>--color-semantic01-300</TableCode>
         </td>
         <td>#a0d7ff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-400</TableCode>
+          <TableCode>--color-semantic01-400</TableCode>
         </td>
         <td>#61bdff</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-500</TableCode>
+          <TableCode>--color-semantic01-500</TableCode>
         </td>
         <td>#30a1f1</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-600</TableCode>
+          <TableCode>--color-semantic01-600</TableCode>
         </td>
         <td>#267fbf</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-700</TableCode>
+          <TableCode>--color-semantic01-700</TableCode>
         </td>
         <td>#1d6091</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-800</TableCode>
+          <TableCode>--color-semantic01-800</TableCode>
         </td>
         <td>#174e74</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic01-900</TableCode>
+          <TableCode>--color-semantic01-900</TableCode>
         </td>
         <td>#103651</td>
       </tr>
@@ -469,61 +469,61 @@ export const Semantic02Tokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-semantic02-50</TableCode>
+          <TableCode>--color-semantic02-50</TableCode>
         </td>
         <td>#f3fcf5</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-100</TableCode>
+          <TableCode>--color-semantic02-100</TableCode>
         </td>
         <td>#d1f5db</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-200</TableCode>
+          <TableCode>--color-semantic02-200</TableCode>
         </td>
         <td>#acecbe</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-300</TableCode>
+          <TableCode>--color-semantic02-300</TableCode>
         </td>
         <td>#87e3a0</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-400</TableCode>
+          <TableCode>--color-semantic02-400</TableCode>
         </td>
         <td>#53cb75</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-500</TableCode>
+          <TableCode>--color-semantic02-500</TableCode>
         </td>
         <td>#47ae64</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-600</TableCode>
+          <TableCode>--color-semantic02-600</TableCode>
         </td>
         <td>#39884f</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-700</TableCode>
+          <TableCode>--color-semantic02-700</TableCode>
         </td>
         <td>#2a673b</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-800</TableCode>
+          <TableCode>--color-semantic02-800</TableCode>
         </td>
         <td>#225230</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic02-900</TableCode>
+          <TableCode>--color-semantic02-900</TableCode>
         </td>
         <td>#183921</td>
       </tr>
@@ -542,61 +542,61 @@ export const Semantic03Tokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-semantic03-50</TableCode>
+          <TableCode>--color-semantic03-50</TableCode>
         </td>
         <td>#fffbf6</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-100</TableCode>
+          <TableCode>--color-semantic03-100</TableCode>
         </td>
         <td>#fde9d2</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-200</TableCode>
+          <TableCode>--color-semantic03-200</TableCode>
         </td>
         <td>#fbd9b3</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-300</TableCode>
+          <TableCode>--color-semantic03-300</TableCode>
         </td>
         <td>#f9c78f</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-400</TableCode>
+          <TableCode>--color-semantic03-400</TableCode>
         </td>
         <td>#f5a344</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-500</TableCode>
+          <TableCode>--color-semantic03-500</TableCode>
         </td>
         <td>#d58a35</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-600</TableCode>
+          <TableCode>--color-semantic03-600</TableCode>
         </td>
         <td>#a76d2b</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-700</TableCode>
+          <TableCode>--color-semantic03-700</TableCode>
         </td>
         <td>#7f5121</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-800</TableCode>
+          <TableCode>--color-semantic03-800</TableCode>
         </td>
         <td>#66421a</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic03-900</TableCode>
+          <TableCode>--color-semantic03-900</TableCode>
         </td>
         <td>#3d3309</td>
       </tr>
@@ -615,61 +615,61 @@ export const Semantic04Tokens = () => (
     <tbody>
       <tr>
         <td>
-          <TableCode>color-semantic04-50</TableCode>
+          <TableCode>--color-semantic04-50</TableCode>
         </td>
         <td>#fff7f6</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-100</TableCode>
+          <TableCode>--color-semantic04-100</TableCode>
         </td>
         <td>#ffe6e4</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-200</TableCode>
+          <TableCode>--color-semantic04-200</TableCode>
         </td>
         <td>#ffd3d0</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-300</TableCode>
+          <TableCode>--color-semantic04-300</TableCode>
         </td>
         <td>#ffc1bd</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-400</TableCode>
+          <TableCode>--color-semantic04-400</TableCode>
         </td>
         <td>#ff9896</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-500</TableCode>
+          <TableCode>--color-semantic04-500</TableCode>
         </td>
         <td>#ff696f</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-600</TableCode>
+          <TableCode>--color-semantic04-600</TableCode>
         </td>
         <td>#e33248</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-700</TableCode>
+          <TableCode>--color-semantic04-700</TableCode>
         </td>
         <td>#a92c37</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-800</TableCode>
+          <TableCode>--color-semantic04-800</TableCode>
         </td>
         <td>#87262d</td>
       </tr>
       <tr>
         <td>
-          <TableCode>color-semantic04-900</TableCode>
+          <TableCode>--color-semantic04-900</TableCode>
         </td>
         <td>#5b1f21</td>
       </tr>
