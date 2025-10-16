@@ -92,6 +92,7 @@ const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
             <DxcActionIcon
               shape="square"
               size="xsmall"
+              color="transparentPrimary"
               icon={action.icon}
               disabled={action.disabled ?? false}
               key={`action-${index}`}

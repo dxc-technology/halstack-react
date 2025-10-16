@@ -14,7 +14,8 @@ type Color =
   | "neutral"
   | "warning"
   | "error"
-  | "transparent";
+  | "transparent"
+  | "transparentPrimary";
 export interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
