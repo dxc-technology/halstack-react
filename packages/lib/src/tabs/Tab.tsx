@@ -128,7 +128,7 @@ const DxcTab = forwardRef(
     }, [active, tabId, setActiveTabId]);
 
     return (
-      <TooltipWrapper condition={!disabled} label={title}>
+      <TooltipWrapper condition={!!title} label={title}>
         <Tab
           aria-selected={activeTabId === tabId}
           disabled={disabled}

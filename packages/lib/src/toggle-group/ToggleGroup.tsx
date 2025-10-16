@@ -106,7 +106,7 @@ export default function DxcToggleGroup({
       {options.map((option, i) => {
         const selected = !option.disabled && isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
         return (
-          <TooltipWrapper condition={!option.disabled} label={option.title} key={`toggle-${i}-${option.label}`}>
+          <TooltipWrapper condition={!!option.title} label={option.title} key={`toggle-${i}-${option.label}`}>
             <ToggleButton
               aria-label={option.title}
               aria-pressed={selected}

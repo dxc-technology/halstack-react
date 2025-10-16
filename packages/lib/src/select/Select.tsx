@@ -540,10 +540,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                     </TooltipWrapper>
                   </SelectionIndicator>
                 )}
-                <TooltipWrapper
-                  condition={!disabled && hasTooltip}
-                  label={getSelectedOptionLabel(placeholder, selectedOption)}
-                >
+                <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
                   <SearchableValueContainer>
                     <input
                       disabled={disabled}

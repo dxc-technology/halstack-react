@@ -260,7 +260,7 @@ const DxcDropdown = ({
         size={size}
       >
         <Popover.Root open={isOpen}>
-          <TooltipWrapper condition={!disabled} label={title}>
+          <TooltipWrapper label={title}>
             <Popover.Trigger asChild type={undefined}>
               <DropdownTrigger
                 onClick={handleTriggerOnClick}

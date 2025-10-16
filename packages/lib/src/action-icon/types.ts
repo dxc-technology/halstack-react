@@ -9,7 +9,7 @@ type Props = {
   /**
    * Value for the HTML properties title and aria-label.
    */
-  title: string;
+  title?: string;
   /**
    * Material Symbol name or SVG element as the icon that will be placed next to the label.
    */
