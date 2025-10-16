@@ -29,6 +29,17 @@ const ActionIconContainer = styled.div<
   height: ${({ size }) => getSize(size)};
   aspect-ratio: 1 / 1;
   text-decoration: none;
+
+  /* Reset button default styles when rendered as button */
+  &[type="button"] {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    outline: none;
+  }
   ${({ hasAction, disabled, size }) =>
     !disabled &&
     hasAction &&
@@ -109,7 +120,7 @@ const StatusContainer = styled.div<{
   background-color: ${({ status }) => getModeColor(status!.mode)};
 `;
 
-const ActionIcon = forwardRef<RefType, ActionIconPropTypes>(
+const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
   (
     {
       ariaLabel,
@@ -159,4 +170,6 @@ const ActionIcon = forwardRef<RefType, ActionIconPropTypes>(
   }
 );
 
-export default ActionIcon;
+ForwardedActionIcon.displayName = "ActionIcon";
+
+export default ForwardedActionIcon;
