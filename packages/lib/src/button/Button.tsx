@@ -80,7 +80,7 @@ const DxcButton = ({
   title,
   type = "button",
 }: ButtonPropsType): JSX.Element => (
-  <TooltipWrapper condition={!disabled} label={title}>
+  <TooltipWrapper condition={!!title} label={title}>
     <Button
       aria-label={title}
       disabled={disabled}
