@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 import { SVG } from "../common/utils";
 
 export type RefType = HTMLDivElement;
@@ -44,7 +44,7 @@ type CommonProps = {
   /**
    * This function will be called when the user clicks the Action Icon. Makes it behave as a button.
    */
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
   /**
    * This will determine if the Action Icon will be rounded square or a circle.
    */

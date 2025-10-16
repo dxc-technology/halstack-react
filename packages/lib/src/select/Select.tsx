@@ -443,7 +443,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       else onChange?.({ value: empty as string & string[] });
     };
 
-    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLDivElement>) => {
+    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLElement>) => {
       event.stopPropagation();
       setSearchValue("");
     };
@@ -580,16 +580,14 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 </TooltipWrapper>
                 <DxcFlex alignItems="center">
                   {searchable && searchValue.length > 0 && (
-                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
-                      <DxcActionIcon
-                        shape="square"
-                        size="xsmall"
-                        icon="clear"
-                        onClick={() => handleClearSearchActionOnClick}
-                        tabIndex={-1}
-                        title={translatedLabels.select.actionClearSearchTitle}
-                      />
-                    </Tooltip>
+                    <DxcActionIcon
+                      shape="square"
+                      size="xsmall"
+                      icon="clear"
+                      onClick={handleClearSearchActionOnClick}
+                      tabIndex={-1}
+                      title={translatedLabels.select.actionClearSearchTitle}
+                    />
                   )}
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </DxcFlex>
