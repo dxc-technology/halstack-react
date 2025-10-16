@@ -59,6 +59,7 @@ const CloseIconActionContainer = styled.div`
 
 const DxcDialog = ({
   children,
+  // Will have sense to be closable if onCloseClick is passed?
   closable = true,
   onBackgroundClick,
   onCloseClick,
