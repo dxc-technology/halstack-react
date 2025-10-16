@@ -51,9 +51,9 @@ const ActionIconContainer = styled.div<
       }
       &:focus > div:first-child,
       &:active > div:first-child {
-        outline-style: solid;
-        outline-width: ${getOutlineWidth(size)};
-        outline-color: var(--border-color-secondary-medium);
+        border-style: solid;
+        border-width: ${getOutlineWidth(size)};
+        border-color: var(--border-color-secondary-medium);
       }
       &:focus-visible {
         outline: none;
