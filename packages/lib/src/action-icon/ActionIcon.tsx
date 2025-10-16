@@ -96,12 +96,14 @@ const Overlay = styled.div`
   background-color: var(--color-alpha-400-a);
 `;
 
-const ActionIconIcon = styled.div<{ size: ActionIconPropTypes["size"] }>`
+const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 1;
   font-size: ${({ size }) => getIconSize(size)};
+  height: ${({ size }) => getIconSize(size)};
+  width: ${({ size }) => getIconSize(size)};
 `;
 
 const StatusContainer = styled.div<{
@@ -158,9 +160,9 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
             {content ? (
               content
             ) : (
-              <ActionIconIcon size={size} color={color}>
+              <IconContainer size={size} color={color}>
                 {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
-              </ActionIconIcon>
+              </IconContainer>
             )}
           </ActionIconWrapper>
           {status && <StatusContainer role="status" size={size} status={status} />}
