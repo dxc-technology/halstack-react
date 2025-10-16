@@ -54,6 +54,7 @@ const ActionIconContainer = styled.div<
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
+        /* Remove offset when its avatar */
         outline-offset: -2px;
       }
       &:focus-visible:enabled {
