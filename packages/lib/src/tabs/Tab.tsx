@@ -2,7 +2,7 @@ import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect
 import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
-import { Tooltip } from "../tooltip/Tooltip";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 import TabsContext from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
@@ -128,7 +128,7 @@ const DxcTab = forwardRef(
     }, [active, tabId, setActiveTabId]);
 
     return (
-      <Tooltip label={title}>
+      <TooltipWrapper condition={!disabled} label={title}>
         <Tab
           aria-selected={activeTabId === tabId}
           disabled={disabled}
@@ -172,7 +172,7 @@ const DxcTab = forwardRef(
           )}
           <Underline active={activeTabId === tabId} />
         </Tab>
-      </Tooltip>
+      </TooltipWrapper>
     );
   }
 );

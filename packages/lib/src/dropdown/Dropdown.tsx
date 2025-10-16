@@ -7,7 +7,7 @@ import DxcIcon from "../icon/Icon";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
-import { Tooltip } from "../tooltip/Tooltip";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const sizes = {
   small: "60px",
@@ -260,7 +260,7 @@ const DxcDropdown = ({
         size={size}
       >
         <Popover.Root open={isOpen}>
-          <Tooltip label={title}>
+          <TooltipWrapper condition={!disabled} label={title}>
             <Popover.Trigger asChild type={undefined}>
               <DropdownTrigger
                 onClick={handleTriggerOnClick}
@@ -299,7 +299,7 @@ const DxcDropdown = ({
                 )}
               </DropdownTrigger>
             </Popover.Trigger>
-          </Tooltip>
+          </TooltipWrapper>
           <Popover.Portal container={document.getElementById(`${id}-portal`)}>
             <Popover.Content aria-label="Dropdown options" asChild sideOffset={1}>
               <DropdownMenu

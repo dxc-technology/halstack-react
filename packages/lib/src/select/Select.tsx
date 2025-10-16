@@ -15,7 +15,7 @@ import {
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 import { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Listbox from "./Listbox";
@@ -524,7 +524,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator disabled={disabled}>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         aria-label={translatedLabels.select.actionClearSelectionTitle}
                         disabled={disabled}
@@ -537,10 +537,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
-                    </Tooltip>
+                    </TooltipWrapper>
                   </SelectionIndicator>
                 )}
-                <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
+                <TooltipWrapper
+                  condition={!disabled && hasTooltip}
+                  label={getSelectedOptionLabel(placeholder, selectedOption)}
+                >
                   <SearchableValueContainer>
                     <input
                       disabled={disabled}
@@ -580,14 +583,14 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 </TooltipWrapper>
                 <DxcFlex alignItems="center">
                   {searchable && searchValue.length > 0 && (
-                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
                       <DxcActionIcon
                         icon="clear"
                         onClick={handleClearSearchActionOnClick}
                         tabIndex={-1}
                         title={translatedLabels.select.actionClearSearchTitle}
                       />
-                    </Tooltip>
+                    </TooltipWrapper>
                   )}
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </DxcFlex>

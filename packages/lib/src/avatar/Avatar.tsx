@@ -162,7 +162,7 @@ const DxcAvatar = memo(
     );
 
     return (
-      <TooltipWrapper condition={!!title} label={title}>
+      <TooltipWrapper condition={!disabled && !!title} label={title}>
         <AvatarContainer
           size={size}
           onClick={!disabled ? onClick : undefined}
