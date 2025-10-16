@@ -49,13 +49,14 @@ const ActionIconContainer = styled.div<
       &:active > div:first-child > div:first-child {
         display: block;
       }
-      &:focus > div:first-child,
-      &:active > div:first-child {
-        border-style: solid;
-        border-width: ${getOutlineWidth(size)};
-        border-color: var(--border-color-secondary-medium);
+      &:focus:enabled > div:first-child,
+      &:active:enabled > div:first-child {
+        outline-style: solid;
+        outline-width: ${getOutlineWidth(size)};
+        outline-color: var(--border-color-secondary-medium);
+        outline-offset: -2px;
       }
-      &:focus-visible {
+      &:focus-visible:enabled {
         outline: none;
       }
     `}
@@ -153,7 +154,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           href={!disabled ? linkHref : undefined}
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
-          ref={linkHref ? undefined : (ref as React.Ref<HTMLDivElement>)}
+          ref={ref}
         >
           <ActionIconWrapper shape={shape} color={color} size={size}>
             {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}

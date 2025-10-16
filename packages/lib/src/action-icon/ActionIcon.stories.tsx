@@ -92,7 +92,7 @@ const ActionIconRow = ({
                     pseudoState={filters.pseudoState}
                   >
                     <DxcActionIcon
-                      icon="stettings"
+                      icon="settings"
                       size={size}
                       shape={shape}
                       color={color}
