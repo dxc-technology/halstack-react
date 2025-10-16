@@ -1,18 +1,22 @@
-import { cloneElement, memo, MouseEvent, useState } from "react";
+import { cloneElement, memo, MouseEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";
+import ContextualMenuContext from "./ContextualMenuContext";
 
 const Action = styled.button<{
   depthLevel: ItemActionProps["depthLevel"];
   selected: ItemActionProps["selected"];
+  displayGroupsLine: boolean;
 }>`
   box-sizing: content-box;
   border: none;
   border-radius: var(--border-radius-s);
-  padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs)
-    ${({ depthLevel }) => `calc(var(--spacing-padding-xs) + ${depthLevel} * var(--spacing-padding-l))`};
+  ${({ displayGroupsLine, depthLevel }) => `
+    padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) calc(var(--spacing-padding-xs) + ${!displayGroupsLine ? depthLevel : 0} * var(--spacing-padding-l));
+    ${displayGroupsLine && depthLevel > 0 ? "margin-left: var(--spacing-padding-xs);" : ""}
+  `}
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-m);
@@ -63,16 +67,26 @@ const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
   overflow: hidden;
 `;
 
+const Control = styled.span`
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-padding-none);
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+`;
+
 const ItemAction = memo(({ badge, collapseIcon, depthLevel, icon, label, ...props }: ItemActionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge, { size: "small" });
+  const { displayControlsAfter } = useContext(ContextualMenuContext) ?? {};
 
   return (
     <TooltipWrapper condition={hasTooltip} label={label}>
-      <Action depthLevel={depthLevel} {...props}>
+      <Action depthLevel={depthLevel} displayGroupsLine={!!displayControlsAfter} {...props}>
         <Label>
-          {collapseIcon && <Icon>{collapseIcon}</Icon>}
-          {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
+          {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
+          {icon && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
           <Text
             selected={props.selected}
             onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
@@ -83,7 +97,10 @@ const ItemAction = memo(({ badge, collapseIcon, depthLevel, icon, label, ...prop
             {label}
           </Text>
         </Label>
-        {modifiedBadge}
+        <Control>
+          {modifiedBadge}
+          {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
+        </Control>
       </Action>
     </TooltipWrapper>
   );

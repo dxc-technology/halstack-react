@@ -8,11 +8,9 @@ import scrollbarStyles from "../styles/scroll";
 import { addIdToItems, isSection } from "./utils";
 import SubMenu from "./SubMenu";
 
-const ContextualMenuContainer = styled.div`
+const ContextualMenuContainer = styled.div<{ displayBorder: boolean }>`
   box-sizing: border-box;
   margin: 0;
-  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
-  border-radius: var(--border-radius-s);
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
   display: grid;
   gap: var(--spacing-gap-xs);
@@ -21,15 +19,30 @@ const ContextualMenuContainer = styled.div`
   background-color: var(--color-bg-neutral-lightest);
   overflow-y: auto;
   overflow-x: hidden;
-  ${scrollbarStyles}
+  ${scrollbarStyles};
+
+  ${({ displayBorder }) =>
+    displayBorder &&
+    `
+      border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
+      border-radius: var(--border-radius-s);
+    `}
 `;
 
-export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
+export default function DxcContextualMenu({
+  items,
+  displayBorder = true,
+  displayGroupsLine = false,
+  displayControlsAfter = false,
+}: ContextualMenuPropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
-  const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
+  const contextValue = useMemo(
+    () => ({ selectedItemId, setSelectedItemId, displayGroupsLine, displayControlsAfter }),
+    [selectedItemId, setSelectedItemId, displayGroupsLine, displayControlsAfter]
+  );
 
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
@@ -45,7 +58,7 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ContextualMenuContainer ref={contextualMenuRef}>
+    <ContextualMenuContainer displayBorder={displayBorder} ref={contextualMenuRef}>
       <ContextualMenuContext.Provider value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
           (itemsWithId as SectionWithId[]).map((item, index) => (

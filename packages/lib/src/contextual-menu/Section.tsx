@@ -26,7 +26,7 @@ export default function Section({ index, length, section }: SectionProps) {
   return (
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
-      <SubMenu>
+      <SubMenu depthLevel={-1}>
         {section.items.map((item, i) => (
           <MenuItem item={item} key={`${item.label}-${i}`} />
         ))}

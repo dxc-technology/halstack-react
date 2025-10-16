@@ -5,7 +5,7 @@ import SidenavPropsType, { Logo } from "./types";
 import scrollbarStyles from "../styles/scroll";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
-import DxcContextualMenu from "../general-contextual-menu/ContextualMenu";
+import DxcContextualMenu from "../contextual-menu/ContextualMenu";
 import DxcImage from "../image/Image";
 import { useState } from "react";
 
@@ -83,7 +83,7 @@ const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Ele
         )}
       </DxcFlex>
       {/* TODO: SEARCHBAR */}
-      <DxcContextualMenu items={items} reduced={!isExpanded} />
+      <DxcContextualMenu items={items} displayGroupsLine displayControlsAfter />
       <DxcDivider color="lightGrey" />
       {children}
     </SidenavContainer>

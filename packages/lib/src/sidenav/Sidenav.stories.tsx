@@ -63,7 +63,7 @@ const SideNav = () => {
           label: "Grouped Item 1",
           icon: "favorite",
           items: [
-            { label: "Item 1" },
+            { label: "Item 1", icon: "person" },
             {
               label: "Grouped Item 2",
               items: [
@@ -84,8 +84,8 @@ const SideNav = () => {
     {
       title: "Section 2",
       items: [
-        { label: "Item 5" },
-        { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] },
+        { label: "Item 5", icon: "person" },
+        { label: "Grouped Item 6", items: [{ label: "Item 7", icon: "person" }, { label: "Item 8" }] },
         { label: "Item 9" },
       ],
     },
