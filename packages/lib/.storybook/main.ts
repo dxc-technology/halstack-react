@@ -1,37 +1,51 @@
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 import react from "@vitejs/plugin-react";
 
+const require = createRequire(import.meta.url);
+
+const getAbsolutePath = (value: string) => dirname(require.resolve(join(value, "package.json")));
+
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/addon-a11y",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/addon-links",
-    "@storybook/addon-viewport",
-    "storybook-addon-pseudo-states",
-    "@chromatic-com/storybook",
+    getAbsolutePath("@chromatic-com/storybook"),
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-vitest"),
+    getAbsolutePath("@vitest/coverage-v8"),
+    getAbsolutePath("storybook-addon-pseudo-states"),
   ],
+  core: {
+    builder: "@storybook/builder-vite",
+  },
   framework: {
-    name: "@storybook/react-vite",
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
+  stories: [
+    // "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
-  viteFinal(config) {
-    config.plugins = config.plugins || [];
+  async viteFinal(config) {
+    const { mergeConfig } = await import("vite");
 
-    config.plugins.push(
-      react({
-        jsxImportSource: "@emotion/react",
-        babel: {
-          plugins: ["@emotion/babel-plugin"],
-        },
-      })
-    );
-
-    return config;
+    return mergeConfig(config, {
+      plugins: [
+        react({
+          jsxImportSource: "@emotion/react",
+          babel: {
+            plugins: ["@emotion/babel-plugin"],
+          },
+        }),
+      ],
+      optimizeDeps: {
+        include: ["@emotion/styled/base"],
+      },
+    });
   },
 };
 

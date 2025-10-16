@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcAlert from "./Alert";
+import { vi } from "vitest";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const messages = [
@@ -19,18 +20,18 @@ describe("Alert component accessibility tests", () => {
   it("Should not have basic accessibility issues for inline mode", async () => {
     const { container } = render(<DxcAlert semantic="success" title="Success" message={messages} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for banner mode", async () => {
     const { container } = render(<DxcAlert title="Info" mode="banner" message={messages} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for modal mode", async () => {
     const { container } = render(
       <DxcAlert title="Info" mode="modal" message={{ text: "info-alert-text", onClose: () => {} }} />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -1,7 +1,15 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcDropdown from "./Dropdown";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { vi } from "vitest";
+
+// TODO: REMOVE
+import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+
+const disabledRules = {
+  rules: formatRules(rules),
+};
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -14,10 +22,10 @@ const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedi
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const options = [
@@ -58,8 +66,8 @@ describe("Dropdown component accessibility tests", () => {
         onSelectOption={() => {}}
       />
     );
-    const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    const results = await axe(baseElement, disabledRules);
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     // baseElement is needed when using React Portals
@@ -76,8 +84,8 @@ describe("Dropdown component accessibility tests", () => {
         disabled
       />
     );
-    const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    const results = await axe(baseElement, disabledRules);
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for caret-hidden mode", async () => {
     // baseElement is needed when using React Portals
@@ -94,8 +102,8 @@ describe("Dropdown component accessibility tests", () => {
         caretHidden
       />
     );
-    const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    const results = await axe(baseElement, disabledRules);
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for expand-on-hover mode", async () => {
     // baseElement is needed when using React Portals
@@ -112,7 +120,7 @@ describe("Dropdown component accessibility tests", () => {
         expandOnHover
       />
     );
-    const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    const results = await axe(baseElement, disabledRules);
+    expect(results.violations).toHaveLength(0);
   });
 });

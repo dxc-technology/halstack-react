@@ -3,12 +3,13 @@ import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import CardPropsType from "./types";
 
-const Card = styled.div<{
-  hasAction: boolean;
-  margin: CardPropsType["margin"];
-  shadowDepth: 0 | 1 | 2;
-  href?: string;
-}>`
+const Card = styled.div<
+  {
+    hasAction: boolean;
+    margin: CardPropsType["margin"];
+    shadowDepth: 0 | 1 | 2;
+  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+>`
   display: flex;
   cursor: ${({ hasAction }) => (hasAction ? "pointer" : "unset")};
   outline: ${({ hasAction }) => !hasAction && "none"};

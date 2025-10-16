@@ -1,4 +1,4 @@
-name: "Chromatic"
+name: "Chromatic & Storybook Tests"
 
 on:
   push:
@@ -19,17 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Node.js 22.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org/
+
       - name: Install dependencies
         run: npm install
 
-      - name: Install Node.js 18.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-          registry-url: https://registry.npmjs.org/
-
       - name: Publish to Chromatic
-        id: chromatic_publish
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -38,10 +37,23 @@ jobs:
           workingDir: packages/lib
           forceRebuild: true
 
+  storybook-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 22.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run Storybook Tests
         run: |
           cd packages/lib
           npx playwright install --with-deps
-          npm run storybook:accessibility:ci
-        env:
-          TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
+          npm run test-storybook

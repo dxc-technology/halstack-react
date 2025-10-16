@@ -1,20 +1,14 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Tabs",
   component: DxcTabs,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof DxcTabs>;
+} satisfies Meta<typeof DxcTabs>;
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
@@ -317,27 +311,29 @@ export const Chromatic: Story = {
   render: Tabs,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const tabs = canvas.getAllByRole("tab");
-    if (tabs[0]) await userEvent.hover(tabs[0]);
+    const tabs = await canvas.findAllByRole("tab");
+    if (tabs[0]) {
+      await userEvent.hover(tabs[0]);
+    }
   },
 };
 
 export const ScrollableTabs: Story = {
   render: Scroll,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 
 export const ResponsiveFocusedTabs: Story = {
   render: ResponsiveFocused,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

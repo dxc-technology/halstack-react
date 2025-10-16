@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcRadioGroup from "./RadioGroup";
@@ -6,7 +6,7 @@ import DxcRadioGroup from "./RadioGroup";
 export default {
   title: "Radio Group",
   component: DxcRadioGroup,
-} as Meta<typeof DxcRadioGroup>;
+} satisfies Meta<typeof DxcRadioGroup>;
 
 const singleOption = [{ label: "Option A", value: "A" }];
 

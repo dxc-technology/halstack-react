@@ -82,7 +82,6 @@ const HamburgerTrigger = styled.button`
   font-weight: var(--typography-label-semibold);
   height: var(--height-xl);
   justify-content: center;
-  // TODO: Ask about padding (spacing-padding-m or spacing-padding-xs?)
   padding: var(--spacing-padding-none) var(--spacing-padding-m);
   text-transform: uppercase;
   :hover {

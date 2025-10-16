@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcSidenav from "./Sidenav";
@@ -11,7 +11,7 @@ import DxcButton from "../button/Button";
 export default {
   title: "Sidenav",
   component: DxcSidenav,
-} as Meta<typeof DxcSidenav>;
+} satisfies Meta<typeof DxcSidenav>;
 
 const DetailedAvatar = () => {
   return (

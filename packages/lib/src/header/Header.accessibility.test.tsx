@@ -4,11 +4,12 @@ import DxcHeader from "./Header";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import rules from "../../test/accessibility/rules/specific/header/disabledRules";
+import { vi } from "vitest";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const disabledRules = {
@@ -51,7 +52,7 @@ describe("Header component accessibility tests", () => {
   beforeAll(() => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
-      value: jest.fn().mockImplementation(() => ({
+      value: vi.fn().mockImplementation(() => ({
         matches: false,
       })),
     });
@@ -81,6 +82,6 @@ describe("Header component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

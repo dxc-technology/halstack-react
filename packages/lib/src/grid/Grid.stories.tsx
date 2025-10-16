@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -8,7 +8,7 @@ import DxcGrid from "./Grid";
 export default {
   title: "Grid",
   component: DxcGrid,
-} as Meta<typeof DxcGrid>;
+} satisfies Meta<typeof DxcGrid>;
 
 const Container = styled.div<{ height?: string }>`
   display: grid;

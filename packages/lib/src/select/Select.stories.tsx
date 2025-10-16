@@ -1,5 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, waitFor } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -7,6 +6,7 @@ import disabledRules from "../../test/accessibility/rules/specific/select/disabl
 import DxcFlex from "../flex/Flex";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Select",
@@ -15,16 +15,16 @@ export default {
     a11y: {
       config: {
         rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
             reviewOnFail: true,
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-} as Meta<typeof DxcSelect>;
+} satisfies Meta<typeof DxcSelect>;
 
 const oneOption = [{ label: "Option 01", value: "1" }];
 
@@ -707,7 +707,7 @@ export const Chromatic: Story = {
   render: Select,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[24];
+    const combobox = (await canvas.findAllByRole("combobox"))[24];
     if (combobox) {
       await userEvent.click(combobox);
     }
@@ -718,7 +718,7 @@ export const Virtualization: Story = {
   render: VirtualizedSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };
@@ -727,7 +727,7 @@ export const ListboxStates: Story = {
   render: SelectListbox,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };
@@ -736,7 +736,7 @@ export const Searchable: Story = {
   render: SearchableSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.type(canvas.getByRole("combobox"), "r");
+    await userEvent.type(await canvas.findByRole("combobox"), "r");
   },
 };
 
@@ -744,7 +744,7 @@ export const SearchableWithValue: Story = {
   render: SearchValue,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole("combobox"));
+    await userEvent.click(await canvas.findByRole("combobox"));
   },
 };
 
@@ -752,7 +752,7 @@ export const MultipleSearchableWithValue: Story = {
   render: MultipleSearchable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[0];
+    const combobox = (await canvas.findAllByRole("combobox"))[0];
     if (combobox) await userEvent.click(combobox);
   },
 };
@@ -761,7 +761,7 @@ export const GroupOptionsDisplayed: Story = {
   render: DefaultGroupedOptionsSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };
@@ -770,8 +770,10 @@ export const MultipleOptionsDisplayed: Story = {
   render: MultipleSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[0];
-    if (combobox) await userEvent.click(combobox);
+    const combobox = (await canvas.findAllByRole("combobox"))[0];
+    if (combobox) {
+      await userEvent.click(combobox);
+    }
   },
 };
 
@@ -779,7 +781,7 @@ export const MultipleGroupedOptionsDisplayed: Story = {
   render: MultipleGroupedOptionsSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };
@@ -788,8 +790,8 @@ export const ValueWithEllipsisTooltip: Story = {
   render: TooltipValue,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText("Option 01, Option 02, Option 03, Option 04"));
-    await userEvent.hover(canvas.getByText("Option 01, Option 02, Option 03, Option 04"));
+    await userEvent.hover(await canvas.findByText("Option 01, Option 02, Option 03, Option 04"));
+    await userEvent.hover(await canvas.findByText("Option 01, Option 02, Option 03, Option 04"));
   },
 };
 
@@ -797,9 +799,8 @@ export const ListboxOptionWithEllipsisTooltip: Story = {
   render: TooltipOption,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Optiond123456789012345678901234567890123451231231"));
-    await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
-    await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
+    await userEvent.hover(await canvas.findByText("Optiond123456789012345678901234567890123451231231"));
+    await userEvent.hover(await canvas.findByText("Optiond123456789012345678901234567890123451231231"));
   },
 };
 
@@ -807,7 +808,7 @@ export const ClearActionTooltip: Story = {
   render: TooltipClear,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const clearSelectionButton = canvas.getByRole("button");
+    const clearSelectionButton = await canvas.findByRole("button");
     await userEvent.hover(clearSelectionButton);
   },
 };
@@ -816,8 +817,8 @@ export const SearchableClearActionTooltip: Story = {
   render: SearchableSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.type(canvas.getByRole("combobox"), "r");
-    const clearSelectionButton = canvas.getByRole("button");
+    await userEvent.type(await canvas.findByRole("combobox"), "r");
+    const clearSelectionButton = await canvas.findByRole("button");
     await userEvent.hover(clearSelectionButton);
   },
 };
@@ -826,7 +827,7 @@ export const SelectAllOptions: Story = {
   render: SelectAll,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
+    const select = await canvas.findByRole("combobox");
     await userEvent.click(select);
   },
 };
