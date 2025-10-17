@@ -35,6 +35,11 @@ type Props = {
    * @private
    */
   displayControlsAfter?: boolean;
+  /**
+   * If true the contextual menu will be icons only and display a popover on click.
+   * @private
+   */
+  responsiveView?: boolean;
 };
 
 type ItemWithId = Item & { id: number };
@@ -75,6 +80,7 @@ type ContextualMenuContextProps = {
   setSelectedItemId: Dispatch<SetStateAction<number>>;
   displayGroupsLine: boolean;
   displayControlsAfter: boolean;
+  responsiveView: boolean;
 };
 
 export type {

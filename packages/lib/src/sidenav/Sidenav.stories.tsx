@@ -5,8 +5,8 @@ import DxcSidenav from "./Sidenav";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
-import DxcContainer from "../container/Container";
 import DxcButton from "../button/Button";
+import DxcAvatar from "../avatar/Avatar";
 
 export default {
   title: "Sidenav",
@@ -18,12 +18,7 @@ const DetailedAvatar = () => {
     <DxcFlex justifyContent="space-between" alignItems="center">
       <DxcFlex gap="var(--spacing-gap-s)">
         {/* TODO: METER AVATAR */}
-        <DxcContainer
-          width="40px"
-          height="40px"
-          background={{ color: "var(--color-fg-primary-lighter)" }}
-          borderRadius="125px"
-        />
+        <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramírez" />
         <DxcFlex direction="column">
           <DxcTypography
             color="var(--color-fg-neutral-dark"
@@ -102,24 +97,48 @@ const SideNav = () => {
             alt: "TEST",
           }}
         >
-          <DetailedAvatar />
-          <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-            <DxcButton
-              icon="group"
-              iconPosition="after"
-              title="Manage clients"
-              label="Manage clients"
-              mode="secondary"
-              size={{ height: "medium", width: "fillParent" }}
-            />
-            <DxcButton
-              icon="note_add"
-              iconPosition="after"
-              title="Start new application"
-              label="Start new application"
-              size={{ height: "medium", width: "fillParent" }}
-            />
-          </DxcFlex>
+          {(expanded: boolean) =>
+            expanded ? (
+              <>
+                <DetailedAvatar />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    label="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    iconPosition="after"
+                    title="Start new application"
+                    label="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            ) : (
+              <>
+                <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramírez" />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    title="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            )
+          }
         </DxcSidenav>
       </ExampleContainer>
     </>

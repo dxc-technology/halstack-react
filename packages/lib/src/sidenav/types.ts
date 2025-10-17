@@ -93,9 +93,10 @@ type Props = {
    */
   title?: string;
   /**
-   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
+   * The additional content rendered inside the sidenav.
+   * It can also be a function that receives the expansion state to render different content based on it.
    */
-  children: ReactNode;
+  children?: React.ReactNode | ((expanded: boolean) => React.ReactNode);
   /**
    * Array of items to be displayed in the Nav menu.
    * Each item can be a single/simple item, a group item or a section.

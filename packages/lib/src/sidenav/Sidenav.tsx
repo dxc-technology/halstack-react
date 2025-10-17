@@ -50,13 +50,16 @@ const LogoContainer = styled.div<{
 
 const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(true);
+
+  const renderedChildren = typeof children === "function" ? children(isExpanded) : children;
+
   return (
     <SidenavContainer expanded={isExpanded}>
-      <DxcFlex justifyContent="space-between">
+      <DxcFlex justifyContent={isExpanded ? "space-between" : "center"}>
         {/* TODO: HANDLE TITLE */}
         <DxcButton
           icon={`left_panel_${isExpanded ? "close" : "open"}`}
-          size={{ height: "medium", width: "small" }}
+          size={{ height: "medium" }}
           mode="tertiary"
           title={isExpanded ? "Collapse" : "Expand"}
           onClick={() => {
@@ -83,12 +86,19 @@ const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Ele
         )}
       </DxcFlex>
       {/* TODO: SEARCHBAR */}
-      <DxcContextualMenu items={items} displayGroupsLine displayControlsAfter />
+      <DxcContextualMenu
+        items={items}
+        displayGroupsLine
+        displayControlsAfter
+        displayBorder={false}
+        responsiveView={!isExpanded}
+      />
       <DxcDivider color="lightGrey" />
-      {children}
+      {renderedChildren}
     </SidenavContainer>
   );
 };
+
 // DxcSidenav.Section = Section;
 // DxcSidenav.Group = Group;
 // DxcSidenav.Link = Link;
