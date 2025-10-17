@@ -33,4 +33,19 @@ describe("Avatar component accessibility tests", () => {
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
+  it("Should not have basic accessibility issues when primaryText is passed", async () => {
+    const { container } = render(<DxcAvatar primaryText="Primary Text" />);
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+  it("Should not have basic accessibility issues when secondaryText is passed", async () => {
+    const { container } = render(<DxcAvatar secondaryText="Secondary Text" />);
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+  it("Should not have basic accessibility issues when primaryText and secondaryText are passed", async () => {
+    const { container } = render(<DxcAvatar primaryText="Primary Text" secondaryText="Secondary Text" />);
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 });

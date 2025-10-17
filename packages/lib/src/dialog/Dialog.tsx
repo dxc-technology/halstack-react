@@ -59,6 +59,7 @@ const CloseIconActionContainer = styled.div`
 
 const DxcDialog = ({
   children,
+  // Will have sense to be closable if onCloseClick is passed?
   closable = true,
   onBackgroundClick,
   onCloseClick,
@@ -103,6 +104,8 @@ const DxcDialog = ({
                   {closable && (
                     <CloseIconActionContainer>
                       <DxcActionIcon
+                        shape="square"
+                        size="xsmall"
                         icon="close"
                         onClick={onCloseClick}
                         tabIndex={tabIndex}
@@ -117,6 +120,8 @@ const DxcDialog = ({
                   {closable && (
                     <CloseIconActionContainer>
                       <DxcActionIcon
+                        shape="square"
+                        size="xsmall"
                         icon="close"
                         onClick={onCloseClick}
                         tabIndex={tabIndex}

@@ -28,18 +28,17 @@ describe("Number input component tests", () => {
     expect(number.disabled).toBeTruthy();
   });
   test("Number input is read only and cannot be incremented or decremented using the actions", () => {
-    const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number label" readOnly />);
+    const { getByLabelText, queryByRole, getAllByRole } = render(<DxcNumberInput label="Number label" readOnly />);
     const number = getByLabelText("Number label") as HTMLInputElement;
     expect(number.readOnly).toBeTruthy();
-    const decrement = getAllByRole("button")[0];
-    if (decrement) {
-      userEvent.click(decrement);
-    }
+    // When readOnly is true, the action should not render as a clickable button
+    expect(queryByRole("button")).toBeFalsy();
+    // The action icons should still be visible but not clickable
+    const actionIcons = getAllByRole("img", { hidden: true });
+    expect(actionIcons.length).toBe(2);
+    userEvent.click(actionIcons[0]!);
     expect(number.value).toBe("");
-    const increment = getAllByRole("button")[1];
-    if (increment) {
-      userEvent.click(increment);
-    }
+    userEvent.click(actionIcons[1]!);
     expect(number.value).toBe("");
   });
   test("Number input is read only and cannot be incremented or decremented using the arrow keys", () => {

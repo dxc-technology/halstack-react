@@ -157,6 +157,8 @@ const DxcAlert = ({
           {messages.length > 1 && (
             <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
               <DxcActionIcon
+                shape="square"
+                size="xsmall"
                 icon="chevron_left"
                 title={translatedLabels.alert.previousMessageActionTitle}
                 onClick={handlePrevOnClick}
@@ -166,6 +168,8 @@ const DxcAlert = ({
                 {currentIndex + 1} of {messages.length}
               </NavigationText>
               <DxcActionIcon
+                shape="square"
+                size="xsmall"
                 icon="chevron_right"
                 title={translatedLabels.alert.nextMessageActionTitle}
                 onClick={handleNextOnClick}
@@ -177,6 +181,8 @@ const DxcAlert = ({
             <DxcFlex gap="var(--spacing-gap-xs)">
               {mode !== "modal" && <DxcDivider orientation="vertical" />}
               <DxcActionIcon
+                shape="square"
+                size="xsmall"
                 icon="close"
                 title={
                   messages.length > 1
