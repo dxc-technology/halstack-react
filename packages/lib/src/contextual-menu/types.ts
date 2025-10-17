@@ -20,6 +20,26 @@ type Props = {
    * Each item can be a single/simple item, a group item or a section.
    */
   items: (Item | GroupItem)[] | Section[];
+  /**
+   * If true the contextual menu will be displayed with a border.
+   * @private
+   */
+  displayBorder?: boolean;
+  /**
+   * If true the contextual menu will have lines marking the groups.
+   * @private
+   */
+  displayGroupsLine?: boolean;
+  /**
+   * If true the contextual menu will have controls at the end.
+   * @private
+   */
+  displayControlsAfter?: boolean;
+  /**
+   * If true the contextual menu will be icons only and display a popover on click.
+   * @private
+   */
+  responsiveView?: boolean;
 };
 
 type ItemWithId = Item & { id: number };
@@ -31,9 +51,16 @@ type GroupItemWithId = {
 };
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
 
-type SingleItemProps = ItemWithId & { depthLevel: number };
-type GroupItemProps = GroupItemWithId & { depthLevel: number };
-type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
+type SingleItemProps = ItemWithId & {
+  depthLevel: number;
+};
+type GroupItemProps = GroupItemWithId & {
+  depthLevel: number;
+};
+type MenuItemProps = {
+  item: ItemWithId | GroupItemWithId;
+  depthLevel?: number;
+};
 type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   badge?: Item["badge"];
   collapseIcon?: ReactNode;
@@ -47,10 +74,13 @@ type SectionProps = {
   index: number;
   length: number;
 };
-type SubMenuProps = { children: ReactNode; id?: string };
+type SubMenuProps = { children: ReactNode; id?: string; depthLevel?: number };
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: Dispatch<SetStateAction<number>>;
+  displayGroupsLine: boolean;
+  displayControlsAfter: boolean;
+  responsiveView: boolean;
 };
 
 export type {
