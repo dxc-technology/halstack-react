@@ -47,6 +47,10 @@ type CommonProps = {
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   /**
+   * If true, the outline shown on focus will have a negative offset.
+   */
+  reducedOutline?: boolean;
+  /**
    * This will determine if the Action Icon will be rounded square or a circle.
    */
   shape?: Shape;

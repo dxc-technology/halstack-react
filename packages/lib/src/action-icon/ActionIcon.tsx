@@ -9,17 +9,19 @@ import {
   getColor,
   getIconSize,
   getModeColor,
+  getOutlineOffset,
   getOutlineWidth,
   getSize,
 } from "./utils";
 import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const ActionIconContainer = styled.div<
   {
     hasAction?: boolean;
     size: ActionIconPropTypes["size"];
     disabled?: ActionIconPropTypes["disabled"];
+    reducedOutline: ActionIconPropTypes["reducedOutline"];
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
   position: relative;
@@ -40,7 +42,7 @@ const ActionIconContainer = styled.div<
     color: inherit;
     outline: none;
   }
-  ${({ hasAction, disabled, size }) =>
+  ${({ hasAction, disabled, size, reducedOutline }) =>
     !disabled &&
     hasAction &&
     css`
@@ -54,8 +56,7 @@ const ActionIconContainer = styled.div<
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
-        /* Remove offset when its avatar */
-        outline-offset: -2px;
+        outline-offset: ${getOutlineOffset(reducedOutline)};
       }
       &:focus-visible:enabled {
         outline: none;
@@ -134,6 +135,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
       icon,
       linkHref,
       onClick,
+      reducedOutline = true,
       shape = "circle",
       size = "medium",
       status,
@@ -143,7 +145,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
     ref
   ) => {
     return (
-      <TooltipWrapper condition={!!title} label={title}>
+      <Tooltip label={title}>
         <ActionIconContainer
           size={size}
           onClick={!disabled ? onClick : undefined}
@@ -156,6 +158,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
           ref={ref}
+          reducedOutline={reducedOutline}
         >
           <ActionIconWrapper shape={shape} color={color} size={size}>
             {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}
@@ -169,7 +172,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           </ActionIconWrapper>
           {status && <StatusContainer role="status" size={size} status={status} />}
         </ActionIconContainer>
-      </TooltipWrapper>
+      </Tooltip>
     );
   }
 );
