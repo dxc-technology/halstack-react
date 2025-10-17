@@ -26,7 +26,7 @@ const sections = [
             <td>
               <TableCode>
                 'a' | 'blockquote' | 'cite' | 'code' | 'div' | 'em' | 'figcaption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' |
-                'h6' | 'p' | 'pre' | 'small' | 'span' | 'strong' | 'label'
+                'h6' | 'p' | 'pre' | 'small' | 'span' | 'strong'
               </TableCode>
             </td>
             <td>Determines the HTML tag with which the text is to be rendered.</td>

@@ -62,7 +62,7 @@ const DxcAvatar = memo(
           <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-none)">
             {primaryText && (
               <DxcTypography
-                as="label"
+                as="h3"
                 color="var(--color-fg-neutral-dark)"
                 fontSize="var(--typography-label-l)"
                 fontFamily="var(--typography-font-family)"
@@ -75,7 +75,7 @@ const DxcAvatar = memo(
             )}
             {secondaryText && (
               <DxcTypography
-                as="label"
+                as="p"
                 color="var(--color-fg-neutral-stronger)"
                 fontSize="var(--typography-label-s)"
                 fontFamily="var(--typography-font-family)"
