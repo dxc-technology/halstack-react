@@ -2,7 +2,7 @@ import { KeyboardEvent, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 import ToggleGroupPropsType from "./types";
 import { getButtonStyles, getHeight } from "../button/utils";
 
@@ -106,7 +106,7 @@ export default function DxcToggleGroup({
       {options.map((option, i) => {
         const selected = !option.disabled && isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
         return (
-          <TooltipWrapper condition={!!option.title} label={option.title} key={`toggle-${i}-${option.label}`}>
+          <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
             <ToggleButton
               aria-label={option.title}
               aria-pressed={selected}
@@ -128,7 +128,7 @@ export default function DxcToggleGroup({
               )}
               {option.label && <span>{option.label}</span>}
             </ToggleButton>
-          </TooltipWrapper>
+          </Tooltip>
         );
       })}
     </ToggleGroup>

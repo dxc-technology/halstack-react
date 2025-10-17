@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import ButtonPropsType, { Mode, Semantic, Size } from "./types";
 import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 import { calculateWidth, getButtonStyles, getHeight } from "./utils";
 
 const Button = styled.button<{
@@ -80,7 +80,7 @@ const DxcButton = ({
   title,
   type = "button",
 }: ButtonPropsType): JSX.Element => (
-  <TooltipWrapper condition={!!title} label={title}>
+  <Tooltip label={title}>
     <Button
       aria-label={title}
       disabled={disabled}
@@ -97,7 +97,7 @@ const DxcButton = ({
       {label && <LabelContainer>{label}</LabelContainer>}
       {icon && <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
     </Button>
-  </TooltipWrapper>
+  </Tooltip>
 );
 
 export default DxcButton;
