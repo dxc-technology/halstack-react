@@ -39,7 +39,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           />
         </Popover.Trigger>
         <Popover.Portal container={document.getElementById(`${contextualMenuId}-portal`)}>
-          <ContextualMenuContext.Provider value={{ ...contextValue, displayGroupsLine: false, responsiveView: false }}>
+          <ContextualMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, responsiveView: false }}>
             <Popover.Content
               aria-label="Group details"
               onCloseAutoFocus={(event) => {

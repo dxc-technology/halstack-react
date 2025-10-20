@@ -29,7 +29,7 @@ type Props = {
    * If true the contextual menu will have lines marking the groups.
    * @private
    */
-  displayGroupsLine?: boolean;
+  displayGroupLines?: boolean;
   /**
    * If true the contextual menu will have controls at the end.
    * @private
@@ -78,7 +78,7 @@ type SubMenuProps = { children: ReactNode; id?: string; depthLevel?: number };
 type ContextualMenuContextProps = {
   selectedItemId?: number;
   setSelectedItemId?: Dispatch<SetStateAction<number>>;
-  displayGroupsLine?: boolean;
+  displayGroupLines?: boolean;
   displayControlsAfter?: boolean;
   responsiveView?: boolean;
 };

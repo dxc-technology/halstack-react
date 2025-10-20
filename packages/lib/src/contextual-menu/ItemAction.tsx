@@ -8,15 +8,15 @@ import ContextualMenuContext from "./ContextualMenuContext";
 const Action = styled.button<{
   depthLevel: ItemActionProps["depthLevel"];
   selected: ItemActionProps["selected"];
-  displayGroupsLine: boolean;
+  displayGroupLines: boolean;
   responsiveView?: boolean;
 }>`
   box-sizing: content-box;
   border: none;
   border-radius: var(--border-radius-s);
-  ${({ displayGroupsLine, depthLevel, responsiveView }) => `
-    ${!responsiveView ? `padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) calc(var(--spacing-padding-xs) + ${!displayGroupsLine ? depthLevel : 0} * var(--spacing-padding-l))` : "padding: var(--spacing-padding-xxs) var(--spacing-padding-none)"};
-    ${displayGroupsLine && depthLevel > 0 ? "margin-left: var(--spacing-padding-xs);" : ""}
+  ${({ displayGroupLines, depthLevel, responsiveView }) => `
+    ${!responsiveView ? `padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) calc(var(--spacing-padding-xs) + ${!displayGroupLines ? depthLevel : 0} * var(--spacing-padding-l))` : "padding: var(--spacing-padding-xxs) var(--spacing-padding-none)"};
+    ${displayGroupLines && depthLevel > 0 ? "margin-left: var(--spacing-padding-xs);" : ""}
   `}
   display: flex;
   align-items: center;
@@ -81,14 +81,14 @@ const ItemAction = memo(
   forwardRef<HTMLButtonElement, ItemActionProps>(({ badge, collapseIcon, depthLevel, icon, label, ...props }, ref) => {
     const [hasTooltip, setHasTooltip] = useState(false);
     const modifiedBadge = badge && cloneElement(badge, { size: "small" });
-    const { displayControlsAfter, responsiveView, displayGroupsLine } = useContext(ContextualMenuContext) ?? {};
+    const { displayControlsAfter, responsiveView, displayGroupLines } = useContext(ContextualMenuContext) ?? {};
 
     return (
       <TooltipWrapper condition={hasTooltip} label={label}>
         <Action
           ref={ref}
           depthLevel={depthLevel}
-          displayGroupsLine={!!displayGroupsLine}
+          displayGroupLines={!!displayGroupLines}
           responsiveView={responsiveView}
           {...props}
         >

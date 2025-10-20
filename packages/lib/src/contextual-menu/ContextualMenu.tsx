@@ -31,7 +31,7 @@ const ContextualMenuContainer = styled.div<{ displayBorder: boolean }>`
 export default function DxcContextualMenu({
   items,
   displayBorder = true,
-  displayGroupsLine = false,
+  displayGroupLines = false,
   displayControlsAfter = false,
   responsiveView = false,
 }: ContextualMenuPropsType) {
@@ -40,8 +40,8 @@ export default function DxcContextualMenu({
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(
-    () => ({ selectedItemId, setSelectedItemId, displayGroupsLine, displayControlsAfter, responsiveView }),
-    [selectedItemId, setSelectedItemId, displayGroupsLine, displayControlsAfter, responsiveView]
+    () => ({ selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView }),
+    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView]
   );
 
   useLayoutEffect(() => {

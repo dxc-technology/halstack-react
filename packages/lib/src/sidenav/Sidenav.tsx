@@ -48,7 +48,7 @@ const LogoContainer = styled.div<{
   text-decoration: none;
 `;
 
-const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Element => {
+const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }: SidenavPropsType): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const renderedChildren = typeof children === "function" ? children(isExpanded) : children;
@@ -72,7 +72,7 @@ const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Ele
               <LogoContainer
                 onClick={logo?.onClick}
                 hasAction={!!logo?.onClick || !!logo?.href}
-                role={logo?.onClick ? "button" : "presentation"}
+                role={logo?.onClick ? "button" : logo?.href ? "link" : "presentation"}
                 as={logo?.href ? "a" : undefined}
                 href={logo?.href}
                 aria-label={(logo?.onClick || logo?.href) && (title || "Avatar")}
@@ -86,13 +86,15 @@ const DxcSidenav = ({ title, children, items, logo }: SidenavPropsType): JSX.Ele
         )}
       </DxcFlex>
       {/* TODO: SEARCHBAR */}
-      <DxcContextualMenu
-        items={items}
-        displayGroupsLine
-        displayControlsAfter
-        displayBorder={false}
-        responsiveView={!isExpanded}
-      />
+      {items && (
+        <DxcContextualMenu
+          items={items}
+          displayGroupLines={displayGroupLines}
+          displayBorder={false}
+          responsiveView={!isExpanded}
+          displayControlsAfter
+        />
+      )}
       <DxcDivider color="lightGrey" />
       {renderedChildren}
     </SidenavContainer>

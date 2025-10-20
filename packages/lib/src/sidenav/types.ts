@@ -103,11 +103,15 @@ type Props = {
    * Array of items to be displayed in the Nav menu.
    * Each item can be a single/simple item, a group item or a section.
    */
-  items: (Item | GroupItem)[] | Section[];
+  items?: (Item | GroupItem)[] | Section[];
   /**
    * Object with the properties of the logo placed at the top of the sidenav.
    */
-  logo: Logo;
+  logo?: Logo;
+  /**
+   * If true the nav menu will have lines marking the groups.
+   */
+  displayGroupLines?: boolean;
 };
 
 type CommonItemProps = {
