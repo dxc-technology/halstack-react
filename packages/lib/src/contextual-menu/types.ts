@@ -76,11 +76,11 @@ type SectionProps = {
 };
 type SubMenuProps = { children: ReactNode; id?: string; depthLevel?: number };
 type ContextualMenuContextProps = {
-  selectedItemId: number;
-  setSelectedItemId: Dispatch<SetStateAction<number>>;
-  displayGroupsLine: boolean;
-  displayControlsAfter: boolean;
-  responsiveView: boolean;
+  selectedItemId?: number;
+  setSelectedItemId?: Dispatch<SetStateAction<number>>;
+  displayGroupsLine?: boolean;
+  displayControlsAfter?: boolean;
+  responsiveView?: boolean;
 };
 
 export type {
