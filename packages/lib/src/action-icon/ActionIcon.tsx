@@ -9,7 +9,6 @@ import {
   getColor,
   getIconSize,
   getModeColor,
-  getOutlineOffset,
   getOutlineWidth,
   getSize,
 } from "./utils";
@@ -21,7 +20,6 @@ const ActionIconContainer = styled.div<
     hasAction?: boolean;
     size: ActionIconPropTypes["size"];
     disabled?: ActionIconPropTypes["disabled"];
-    reducedOutline: ActionIconPropTypes["reducedOutline"];
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
   position: relative;
@@ -42,7 +40,7 @@ const ActionIconContainer = styled.div<
     color: inherit;
     outline: none;
   }
-  ${({ hasAction, disabled, size, reducedOutline }) =>
+  ${({ hasAction, disabled, size }) =>
     !disabled &&
     hasAction &&
     css`
@@ -56,7 +54,7 @@ const ActionIconContainer = styled.div<
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
-        outline-offset: ${getOutlineOffset(reducedOutline)};
+        outline-offset: -2px;
       }
       &:focus-visible:enabled {
         outline: none;
@@ -135,7 +133,6 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
       icon,
       linkHref,
       onClick,
-      reducedOutline = true,
       shape = "square",
       size = "medium",
       status,
@@ -158,7 +155,6 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
           ref={ref}
-          reducedOutline={reducedOutline}
         >
           <ActionIconWrapper shape={shape} color={color} size={size}>
             {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}
