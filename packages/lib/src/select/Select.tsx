@@ -586,7 +586,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       icon="clear"
                       onClick={handleClearSearchActionOnClick}
                       tabIndex={-1}
-                      title={translatedLabels.select.actionClearSearchTitle}
+                      title={!disabled ? translatedLabels.select.actionClearSearchTitle : undefined}
                     />
                   )}
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
