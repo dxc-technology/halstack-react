@@ -35,11 +35,7 @@ const contextualColorMap = {
   },
   transparent: {
     background: "transparent",
-    text: "var(--color-fg-neutral-dark)",
-  },
-  transparentPrimary: {
-    background: "transparent",
-    text: "var(--color-fg-primary-strong)",
+    text: "inherit",
   },
 };
 

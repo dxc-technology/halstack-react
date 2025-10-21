@@ -136,7 +136,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
       linkHref,
       onClick,
       reducedOutline = true,
-      shape = "circle",
+      shape = "square",
       size = "medium",
       status,
       tabIndex = 0,

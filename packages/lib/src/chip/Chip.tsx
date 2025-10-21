@@ -67,7 +67,6 @@ const DxcChip = ({
     {prefixIcon &&
       (typeof onClickPrefix === "function" ? (
         <DxcActionIcon
-          shape="square"
           size="xsmall"
           disabled={disabled}
           icon={prefixIcon}
@@ -84,7 +83,6 @@ const DxcChip = ({
     {suffixIcon &&
       (typeof onClickSuffix === "function" ? (
         <DxcActionIcon
-          shape="square"
           size="xsmall"
           disabled={disabled}
           icon={suffixIcon}

@@ -14,8 +14,7 @@ type Color =
   | "neutral"
   | "warning"
   | "error"
-  | "transparent"
-  | "transparentPrimary";
+  | "transparent";
 export interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
@@ -23,7 +22,7 @@ export interface Status {
 
 export type ActionIconPropTypes =
   | (CommonProps & { content: ReactNode; icon?: string | SVG })
-  | (CommonProps & { content?: string; icon: string | SVG });
+  | (CommonProps & { content?: ReactNode; icon: string | SVG });
 
 type CommonProps = {
   /**

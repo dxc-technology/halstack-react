@@ -581,7 +581,6 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 <DxcFlex alignItems="center">
                   {searchable && searchValue.length > 0 && (
                     <DxcActionIcon
-                      shape="square"
                       size="xsmall"
                       icon="clear"
                       onClick={handleClearSearchActionOnClick}
