@@ -73,7 +73,7 @@ const DxcChip = ({
           icon={prefixIcon}
           onClick={onClickPrefix}
           tabIndex={tabIndex}
-          title="Prefix Action"
+          title={!disabled ? "Prefix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>
@@ -90,7 +90,7 @@ const DxcChip = ({
           icon={suffixIcon}
           onClick={onClickSuffix}
           tabIndex={tabIndex}
-          title="Suffix Action"
+          title={!disabled ? "Suffix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>
