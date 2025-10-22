@@ -88,7 +88,7 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
                       })}`}
                       onClick={(e) => {
                         e.preventDefault();
-                        const id = slugify(link.label, { lower: true });
+                        const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
                         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
                       }}
                     >
