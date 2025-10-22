@@ -68,7 +68,14 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
       <ListColumn>
         {links.map((link) => (
           <li key={link.label}>
-            <Link href={`#${slugify(link.label, { lower: true })}`}>
+            <Link
+              href={`#${slugify(link.label, { lower: true })}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const id = slugify(link.label, { lower: true });
+                document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <span>{link.label}</span>
             </Link>
             {link.links?.length && (
@@ -79,6 +86,11 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
                       href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
                         lower: true,
                       })}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const id = slugify(link.label, { lower: true });
+                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      }}
                     >
                       <span>{sublink.label}</span>
                     </Link>
