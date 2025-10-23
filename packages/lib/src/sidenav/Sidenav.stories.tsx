@@ -8,10 +8,22 @@ import DxcTypography from "../typography/Typography";
 import DxcButton from "../button/Button";
 import DxcAvatar from "../avatar/Avatar";
 import { userEvent, within } from "storybook/internal/test";
+import disabledRules from "../../test/accessibility/rules/specific/sidenav/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof DxcSidenav>;
 
 const DetailedAvatar = () => {
