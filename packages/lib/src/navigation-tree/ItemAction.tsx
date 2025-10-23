@@ -98,7 +98,7 @@ const ItemAction = memo(
             {...props}
             aria-pressed={href ? undefined : props["aria-pressed"]}
           >
-            <Label>
+            <Label aria-label={label}>
               {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
               <TooltipWrapper condition={responsiveView} label={label}>
                 <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
