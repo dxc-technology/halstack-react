@@ -59,7 +59,7 @@ const Link = styled.a`
   }
 `;
 
-export default function DxcQuickNav({ links, title }: QuickNavTypes) {
+export default function DxcQuickNav({ links, title, isHashRouter = false }: QuickNavTypes) {
   const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
@@ -70,12 +70,15 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
           <li key={link.label}>
             <Link
               href={`#${slugify(link.label, { lower: true })}`}
-              onClick={(e) => {
-                e.preventDefault();
-                const id = slugify(link.label, { lower: true });
-                document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-                history.replaceState(null, "", `#${id}`);
-              }}
+              onClick={
+                isHashRouter
+                  ? (e) => {
+                      e.preventDefault();
+                      const id = slugify(link.label, { lower: true });
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  : undefined
+              }
             >
               <span>{link.label}</span>
             </Link>
@@ -87,12 +90,15 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
                       href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
                         lower: true,
                       })}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
-                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-                        history.replaceState(null, "", `#${id}`);
-                      }}
+                      onClick={
+                        isHashRouter
+                          ? (e) => {
+                              e.preventDefault();
+                              const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
+                              document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                            }
+                          : undefined
+                      }
                     >
                       <span>{sublink.label}</span>
                     </Link>

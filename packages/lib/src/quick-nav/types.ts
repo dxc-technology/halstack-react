@@ -18,6 +18,10 @@ type Props = {
    * Links to be shown inside the quick nav component.
    */
   links: Link[];
+  /*
+   * Links to be shown inside the quick nav component.
+   */
+  isHashRouter?: boolean;
 };
 
 export default Props;
