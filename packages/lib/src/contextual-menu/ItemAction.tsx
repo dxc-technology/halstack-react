@@ -26,6 +26,7 @@ const Action = styled.button<{
   height: var(--height-s);
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;
 
   &:hover {
     background-color: ${({ selected }) =>
@@ -78,47 +79,53 @@ const Control = styled.span`
 `;
 
 const ItemAction = memo(
-  forwardRef<HTMLButtonElement, ItemActionProps>(({ badge, collapseIcon, depthLevel, icon, label, ...props }, ref) => {
-    const [hasTooltip, setHasTooltip] = useState(false);
-    const modifiedBadge = badge && cloneElement(badge, { size: "small" });
-    const { displayControlsAfter, responsiveView, displayGroupLines } = useContext(ContextualMenuContext) ?? {};
+  forwardRef<HTMLButtonElement, ItemActionProps>(
+    ({ badge, collapseIcon, depthLevel, icon, label, href, ...props }, ref) => {
+      const [hasTooltip, setHasTooltip] = useState(false);
+      const modifiedBadge = badge && cloneElement(badge, { size: "small" });
+      const { displayControlsAfter, responsiveView, displayGroupLines, allowNavigation } =
+        useContext(ContextualMenuContext) ?? {};
 
-    return (
-      <TooltipWrapper condition={hasTooltip} label={label}>
-        <Action
-          ref={ref}
-          depthLevel={depthLevel}
-          displayGroupLines={!!displayGroupLines}
-          responsiveView={responsiveView}
-          {...props}
-        >
-          <Label>
-            {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
-            <TooltipWrapper condition={responsiveView} label={label}>
-              <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
-            </TooltipWrapper>
+      return (
+        <TooltipWrapper condition={hasTooltip} label={label}>
+          <Action
+            as={allowNavigation && href ? "a" : "button"}
+            role={allowNavigation && href ? "link" : "button"}
+            ref={ref}
+            depthLevel={depthLevel}
+            displayGroupLines={!!displayGroupLines}
+            responsiveView={responsiveView}
+            {...(allowNavigation && href && { href })}
+            {...props}
+          >
+            <Label>
+              {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
+              <TooltipWrapper condition={responsiveView} label={label}>
+                <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+              </TooltipWrapper>
+              {!responsiveView && (
+                <Text
+                  selected={props.selected}
+                  onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
+                    const text = event.currentTarget;
+                    setHasTooltip(text.scrollWidth > text.clientWidth);
+                  }}
+                >
+                  {label}
+                </Text>
+              )}
+            </Label>
             {!responsiveView && (
-              <Text
-                selected={props.selected}
-                onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
-                  const text = event.currentTarget;
-                  setHasTooltip(text.scrollWidth > text.clientWidth);
-                }}
-              >
-                {label}
-              </Text>
+              <Control>
+                {modifiedBadge}
+                {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
+              </Control>
             )}
-          </Label>
-          {!responsiveView && (
-            <Control>
-              {modifiedBadge}
-              {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
-            </Control>
-          )}
-        </Action>
-      </TooltipWrapper>
-    );
-  })
+          </Action>
+        </TooltipWrapper>
+      );
+    }
+  )
 );
 
 ItemAction.displayName = "ItemAction";

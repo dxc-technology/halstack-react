@@ -22,7 +22,7 @@ describe("Sidenav component accessibility tests", () => {
                     icon: "bookmark",
                     badge: <DxcBadge color="primary" label="Experimental" />,
                   },
-                  { label: "Selected Item 3", selectedByDefault: true },
+                  { label: "Selected Item 3", selected: true },
                 ],
               },
             ],

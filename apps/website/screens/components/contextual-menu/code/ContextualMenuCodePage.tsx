@@ -12,7 +12,7 @@ const itemTypeString = `{
     icon?: string | SVG;
     label: string;
     onSelect?: () => void;
-    selectedByDefault?: boolean;
+    selected?: boolean;
 }`;
 
 const groupItemTypeString = `{

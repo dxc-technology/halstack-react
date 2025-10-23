@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import SidenavPropsType, { Logo } from "./types";
-import scrollbarStyles from "../styles/scroll";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcContextualMenu from "../contextual-menu/ContextualMenu";
 import DxcImage from "../image/Image";
 import { useState } from "react";
+import DxcTextInput from "../text-input/TextInput";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
@@ -23,9 +23,6 @@ const SidenavContainer = styled.div<{ expanded: boolean }>`
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
   gap: var(--spacing-gap-l);
   background-color: var(--color-bg-neutral-lightest);
-  /* overflow-y: auto;
-  overflow-x: hidden;
-  ${scrollbarStyles} */
 `;
 
 const SidenavTitle = styled.div`
@@ -56,7 +53,6 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
   return (
     <SidenavContainer expanded={isExpanded}>
       <DxcFlex justifyContent={isExpanded ? "space-between" : "center"}>
-        {/* TODO: HANDLE TITLE */}
         <DxcButton
           icon={`left_panel_${isExpanded ? "close" : "open"}`}
           size={{ height: "medium" }}
@@ -68,6 +64,7 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
         />
         {isExpanded && (
           <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
+            {/* TODO: ADD GORGORITO TO COVER CASES WITH NO ICON? */}
             {logo && (
               <LogoContainer
                 onClick={logo?.onClick}
@@ -86,6 +83,22 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
         )}
       </DxcFlex>
       {/* TODO: SEARCHBAR */}
+      <DxcTextInput placeholder="Search docs" size="small" clearable />
+      {/* <DxcTextInput
+        placeholder="Search docs"
+        value={filter}
+        onChange={({ value }: { value: string }) => {
+          setFilter(value);
+        }}
+        size="fillParent"
+        clearable
+        margin={{
+          top: "large",
+          bottom: "large",
+          right: "medium",
+          left: "medium",
+        }}
+      /> */}
       {items && (
         <DxcContextualMenu
           items={items}
@@ -93,6 +106,7 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
           displayBorder={false}
           responsiveView={!isExpanded}
           displayControlsAfter
+          allowNavigation
         />
       )}
       <DxcDivider color="lightGrey" />
@@ -100,10 +114,5 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
     </SidenavContainer>
   );
 };
-
-// DxcSidenav.Section = Section;
-// DxcSidenav.Group = Group;
-// DxcSidenav.Link = Link;
-// DxcSidenav.Title = Title;
 
 export default DxcSidenav;

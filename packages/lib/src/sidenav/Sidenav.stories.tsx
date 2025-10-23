@@ -56,7 +56,7 @@ const groupItems = [
         label: "Grouped Item 1",
         icon: "favorite",
         items: [
-          { label: "Item 1", icon: "person" },
+          { label: "Item 1", icon: "person", href: "#1" },
           {
             label: "Grouped Item 2",
             items: [
@@ -67,11 +67,12 @@ const groupItems = [
               },
               { label: "Selected Item 3" },
             ],
+            href: "#2",
           },
         ],
         badge: <DxcBadge color="success" label="New" />,
       },
-      { label: "Item 4", icon: "key" },
+      { label: "Item 4", icon: "key", href: "#3" },
     ],
   },
   {
@@ -101,7 +102,7 @@ const selectedGroupItems = [
                 icon: "bookmark",
                 badge: <DxcBadge color="primary" label="Experimental" />,
               },
-              { label: "Selected Item 3", selectedByDefault: true },
+              { label: "Selected Item 3", selected: true },
             ],
           },
         ],

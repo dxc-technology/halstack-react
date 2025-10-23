@@ -8,7 +8,8 @@ type CommonItemProps = {
 };
 type Item = CommonItemProps & {
   onSelect?: () => void;
-  selectedByDefault?: boolean;
+  selected?: boolean;
+  href?: string;
 };
 type GroupItem = CommonItemProps & {
   items: (Item | GroupItem)[];
@@ -40,6 +41,11 @@ type Props = {
    * @private
    */
   responsiveView?: boolean;
+  /**
+   * If true the leaf nodes will be rendered as anchor elements when href is provided.
+   * @private
+   */
+  allowNavigation?: boolean;
 };
 
 type ItemWithId = Item & { id: number };
@@ -68,6 +74,7 @@ type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: Item["icon"];
   label: Item["label"];
   selected: boolean;
+  href?: Item["href"];
 };
 type SectionProps = {
   section: SectionWithId;
@@ -81,6 +88,7 @@ type ContextualMenuContextProps = {
   displayGroupLines?: boolean;
   displayControlsAfter?: boolean;
   responsiveView?: boolean;
+  allowNavigation?: boolean;
 };
 
 export type {

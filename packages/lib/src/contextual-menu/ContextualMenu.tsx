@@ -34,14 +34,22 @@ export default function DxcContextualMenu({
   displayGroupLines = false,
   displayControlsAfter = false,
   responsiveView = false,
+  allowNavigation = false,
 }: ContextualMenuPropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(
-    () => ({ selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView }),
-    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView]
+    () => ({
+      selectedItemId,
+      setSelectedItemId,
+      displayGroupLines,
+      displayControlsAfter,
+      responsiveView,
+      allowNavigation,
+    }),
+    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView, allowNavigation]
   );
 
   useLayoutEffect(() => {

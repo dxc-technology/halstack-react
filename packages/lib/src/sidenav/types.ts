@@ -121,7 +121,7 @@ type CommonItemProps = {
 };
 type Item = CommonItemProps & {
   onSelect?: () => void;
-  selectedByDefault?: boolean;
+  selected?: boolean;
 };
 type GroupItem = CommonItemProps & {
   items: (Item | GroupItem)[];
