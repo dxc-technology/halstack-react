@@ -83,20 +83,20 @@ const ItemAction = memo(
     ({ badge, collapseIcon, depthLevel, icon, label, href, ...props }, ref) => {
       const [hasTooltip, setHasTooltip] = useState(false);
       const modifiedBadge = badge && cloneElement(badge, { size: "small" });
-      const { displayControlsAfter, responsiveView, displayGroupLines, allowNavigation } =
-        useContext(NavigationTreeContext) ?? {};
+      const { displayControlsAfter, responsiveView, displayGroupLines } = useContext(NavigationTreeContext) ?? {};
 
       return (
         <TooltipWrapper condition={hasTooltip} label={label}>
           <Action
-            as={allowNavigation && href ? "a" : "button"}
-            role={allowNavigation && href ? "link" : "button"}
+            as={href ? "a" : "button"}
+            role={href ? "link" : "button"}
             ref={ref}
             depthLevel={depthLevel}
             displayGroupLines={!!displayGroupLines}
             responsiveView={responsiveView}
-            {...(allowNavigation && href && { href })}
+            {...(href && { href })}
             {...props}
+            aria-pressed={href ? undefined : props["aria-pressed"]}
           >
             <Label>
               {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}

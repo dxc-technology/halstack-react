@@ -34,7 +34,6 @@ export default function DxcNavigationTree({
   displayGroupLines = false,
   displayControlsAfter = false,
   responsiveView = false,
-  allowNavigation = false,
 }: NavigationTreePropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
@@ -47,9 +46,8 @@ export default function DxcNavigationTree({
       displayGroupLines,
       displayControlsAfter,
       responsiveView,
-      allowNavigation,
     }),
-    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView, allowNavigation]
+    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView]
   );
 
   useLayoutEffect(() => {

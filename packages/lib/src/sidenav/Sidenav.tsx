@@ -115,7 +115,6 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
           displayBorder={false}
           responsiveView={!isExpanded}
           displayControlsAfter
-          allowNavigation
         />
       )}
       <DxcDivider color="lightGrey" />

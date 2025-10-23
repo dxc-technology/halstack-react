@@ -37,10 +37,6 @@ type Props = {
    * If true the navigation tree will be icons only and display a popover on click.
    */
   responsiveView?: boolean;
-  /**
-   * If true the leaf nodes will be rendered as anchor elements when href is provided.
-   */
-  allowNavigation?: boolean;
 };
 
 type ItemWithId = Item & { id: number };
@@ -83,7 +79,6 @@ type NavigationTreeContextProps = {
   displayGroupLines?: boolean;
   displayControlsAfter?: boolean;
   responsiveView?: boolean;
-  allowNavigation?: boolean;
 };
 
 export type {
