@@ -2,6 +2,13 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcSidenav from "./Sidenav";
 import DxcBadge from "../badge/Badge";
+import { vi } from "vitest";
+
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
 
 describe("Sidenav component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
