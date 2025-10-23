@@ -8,49 +8,28 @@ import scrollbarStyles from "../styles/scroll";
 import { addIdToItems, isSection } from "./utils";
 import SubMenu from "./SubMenu";
 
-const ContextualMenuContainer = styled.div<{ displayBorder: boolean }>`
+const ContextualMenu = styled.div`
   box-sizing: border-box;
   margin: 0;
+  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-padding-m) var(--spacing-padding-xs);
   display: grid;
   gap: var(--spacing-gap-xs);
-  /* min-width: 248px; */
+  min-width: 248px;
   max-height: 100%;
   background-color: var(--color-bg-neutral-lightest);
   overflow-y: auto;
   overflow-x: hidden;
-  ${scrollbarStyles};
-  ${({ displayBorder }) =>
-    displayBorder &&
-    `
-      border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
-      border-radius: var(--border-radius-s);
-      padding: var(--spacing-padding-m) var(--spacing-padding-xs);
-    `}
+  ${scrollbarStyles}
 `;
 
-export default function DxcContextualMenu({
-  items,
-  displayBorder = true,
-  displayGroupLines = false,
-  displayControlsAfter = false,
-  responsiveView = false,
-  allowNavigation = false,
-}: ContextualMenuPropsType) {
+export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
-  const contextValue = useMemo(
-    () => ({
-      selectedItemId,
-      setSelectedItemId,
-      displayGroupLines,
-      displayControlsAfter,
-      responsiveView,
-      allowNavigation,
-    }),
-    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView, allowNavigation]
-  );
+  const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
@@ -66,7 +45,7 @@ export default function DxcContextualMenu({
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ContextualMenuContainer displayBorder={displayBorder} ref={contextualMenuRef}>
+    <ContextualMenu ref={contextualMenuRef}>
       <ContextualMenuContext.Provider value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
           (itemsWithId as SectionWithId[]).map((item, index) => (
@@ -80,6 +59,6 @@ export default function DxcContextualMenu({
           </SubMenu>
         )}
       </ContextualMenuContext.Provider>
-    </ContextualMenuContainer>
+    </ContextualMenu>
   );
 }

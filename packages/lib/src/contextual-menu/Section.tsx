@@ -1,11 +1,10 @@
-import { useContext, useId } from "react";
+import { useId } from "react";
 import styled from "@emotion/styled";
 import { DxcInset } from "..";
 import DxcDivider from "../divider/Divider";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
-import ContextualMenuContext from "./ContextualMenuContext";
 
 const SectionContainer = styled.section`
   display: grid;
@@ -23,11 +22,11 @@ const Title = styled.h2`
 
 export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
-  const { responsiveView } = useContext(ContextualMenuContext) ?? {};
-  return !responsiveView ? (
+
+  return (
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
-      <SubMenu depthLevel={-1}>
+      <SubMenu>
         {section.items.map((item, i) => (
           <MenuItem item={item} key={`${item.label}-${i}`} />
         ))}
@@ -38,11 +37,5 @@ export default function Section({ index, length, section }: SectionProps) {
         </DxcInset>
       )}
     </SectionContainer>
-  ) : (
-    <SubMenu depthLevel={-1}>
-      {section.items.map((item, i) => (
-        <MenuItem item={item} key={`${item.label}-${i}`} />
-      ))}
-    </SubMenu>
   );
 }

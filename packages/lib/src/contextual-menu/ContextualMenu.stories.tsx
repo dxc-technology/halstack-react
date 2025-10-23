@@ -42,7 +42,7 @@ const groupItems = [
                 icon: "bookmark",
                 badge: <DxcBadge color="primary" label="Experimental" />,
               },
-              { label: "Selected Item 3", selected: true },
+              { label: "Selected Item 3", selectedByDefault: true },
             ],
           },
         ],
@@ -102,7 +102,7 @@ const sectionsWithScroll = [
       { label: "Approved locations" },
       { label: "Approved locations" },
       { label: "Approved locations" },
-      { label: "Approved locations", selected: true },
+      { label: "Approved locations", selectedByDefault: true },
     ],
   },
 ];
