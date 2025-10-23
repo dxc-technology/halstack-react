@@ -1,11 +1,11 @@
 import { useContext, useId } from "react";
 import styled from "@emotion/styled";
-import { DxcInset } from "..";
-import DxcDivider from "../divider/Divider";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
 import NavigationTreeContext from "./NavigationTreeContext";
+import DxcInset from "../inset/Inset";
+import DxcDivider from "../divider/Divider";
 
 const SectionContainer = styled.section`
   display: grid;
