@@ -76,7 +76,7 @@ export type Logo = {
   /**
    * Alternative text for the logo image.
    */
-  alt: string;
+  alt?: string;
   /**
    *  URL to navigate to when the logo is clicked. If not provided, the logo will not be clickable.
    */
@@ -107,7 +107,7 @@ type Props = {
   /**
    * Object with the properties of the logo placed at the top of the sidenav.
    */
-  logo?: Logo;
+  logo?: Logo | ReactElement;
   /**
    * If true the nav menu will have lines marking the groups.
    */

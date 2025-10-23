@@ -4,10 +4,10 @@ import DxcFlex from "../flex/Flex";
 import SidenavPropsType, { Logo } from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
-import DxcContextualMenu from "../contextual-menu/ContextualMenu";
 import DxcImage from "../image/Image";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import DxcTextInput from "../text-input/TextInput";
+import DxcNavigationTree from "../tree-navigation/NavigationTree";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
@@ -50,6 +50,10 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
 
   const renderedChildren = typeof children === "function" ? children(isExpanded) : children;
 
+  function isLogoObject(logo: Logo | ReactElement): logo is Logo {
+    return (logo as Logo).src !== undefined;
+  }
+
   return (
     <SidenavContainer expanded={isExpanded}>
       <DxcFlex justifyContent={isExpanded ? "space-between" : "center"}>
@@ -66,17 +70,22 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
           <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
             {/* TODO: ADD GORGORITO TO COVER CASES WITH NO ICON? */}
             {logo && (
-              <LogoContainer
-                onClick={logo?.onClick}
-                hasAction={!!logo?.onClick || !!logo?.href}
-                role={logo?.onClick ? "button" : logo?.href ? "link" : "presentation"}
-                as={logo?.href ? "a" : undefined}
-                href={logo?.href}
-                aria-label={(logo?.onClick || logo?.href) && (title || "Avatar")}
-                // tabIndex={logo?.onClick || logo?.href ? tabIndex : undefined}
-              >
-                <DxcImage alt={logo?.alt} src={logo?.src} height="100%" width="100%" />
-              </LogoContainer>
+              <>
+                {isLogoObject(logo) ? (
+                  <LogoContainer
+                    onClick={logo.onClick}
+                    hasAction={!!logo.onClick || !!logo.href}
+                    role={logo.onClick ? "button" : logo.href ? "link" : "presentation"}
+                    as={logo.href ? "a" : undefined}
+                    href={logo.href}
+                    aria-label={(logo.onClick || logo.href) && (title || "Avatar")}
+                  >
+                    <DxcImage alt={logo.alt ?? ""} src={logo.src} height="100%" width="100%" />
+                  </LogoContainer>
+                ) : (
+                  logo
+                )}
+              </>
             )}
             <SidenavTitle>{title}</SidenavTitle>
           </DxcFlex>
@@ -100,7 +109,7 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
         }}
       /> */}
       {items && (
-        <DxcContextualMenu
+        <DxcNavigationTree
           items={items}
           displayGroupLines={displayGroupLines}
           displayBorder={false}
