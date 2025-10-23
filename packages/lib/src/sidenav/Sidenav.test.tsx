@@ -1,9 +1,15 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
 import DxcSidenav from "./Sidenav";
-import DxcContextualMenu from "../contextual-menu/ContextualMenu";
+import DxcNavigationTree from "../navigation-tree/NavigationTree";
 
-jest.mock("../contextual-menu/ContextualMenu", () => jest.fn(() => <div data-testid="mock-menu" />));
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+jest.mock("../navigation-tree/NavigationTree", () => jest.fn(() => <div data-testid="mock-menu" />));
 
 describe("DxcSidenav component", () => {
   beforeEach(() => {
@@ -47,7 +53,7 @@ describe("DxcSidenav component", () => {
     const items = [{ label: "Dashboard" }, { label: "Settings" }];
     const { getByTestId } = render(<DxcSidenav items={items} />);
     expect(getByTestId("mock-menu")).toBeTruthy();
-    expect(DxcContextualMenu).toHaveBeenCalledWith(
+    expect(DxcNavigationTree).toHaveBeenCalledWith(
       expect.objectContaining({
         items,
         displayGroupLines: false,

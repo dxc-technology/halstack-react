@@ -7,7 +7,7 @@ import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
 import { ReactElement, useState } from "react";
 import DxcTextInput from "../text-input/TextInput";
-import DxcNavigationTree from "../tree-navigation/NavigationTree";
+import DxcNavigationTree from "../navigation-tree/NavigationTree";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
