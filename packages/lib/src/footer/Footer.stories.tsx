@@ -131,7 +131,10 @@ const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcFooter />
+      <DxcFooter>
+        <DxcFooter.LeftContent>Holaaa</DxcFooter.LeftContent>
+        <DxcFooter.RightContent>Hellooo</DxcFooter.RightContent>
+      </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
