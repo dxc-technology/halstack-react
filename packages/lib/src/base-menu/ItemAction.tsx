@@ -44,6 +44,7 @@ const Action = styled.button<{
 
 const Label = styled.span`
   display: flex;
+  align-items: center;
   gap: var(--spacing-gap-s);
   overflow: hidden;
 `;
