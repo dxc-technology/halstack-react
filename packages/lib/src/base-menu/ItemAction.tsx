@@ -122,7 +122,7 @@ const ItemAction = memo(
               </Text>
             )}
           </Label>
-          {!responsiveView && (
+          {!responsiveView && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
             <Control>
               {modifiedBadge}
               {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
