@@ -110,7 +110,10 @@ export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: Actio
   return "100%";
 };
 
-export const getSize = (size: ActionIconPropTypes["size"]) => (size ? sizeMap[size] : "var(--height-xl)");
+export const getSize = (size: ActionIconPropTypes["size"]) => {
+  if (!size) return "var(--height-xl)";
+  return sizeMap[size] ?? "var(--height-xl)";
+};
 
 export const getIconSize = (size: ActionIconPropTypes["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
 
