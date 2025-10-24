@@ -67,13 +67,12 @@ const DxcChip = ({
     {prefixIcon &&
       (typeof onClickPrefix === "function" ? (
         <DxcActionIcon
-          shape="square"
           size="xsmall"
           disabled={disabled}
           icon={prefixIcon}
           onClick={onClickPrefix}
           tabIndex={tabIndex}
-          title="Prefix Action"
+          title={!disabled ? "Prefix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>
@@ -84,13 +83,12 @@ const DxcChip = ({
     {suffixIcon &&
       (typeof onClickSuffix === "function" ? (
         <DxcActionIcon
-          shape="square"
           size="xsmall"
           disabled={disabled}
           icon={suffixIcon}
           onClick={onClickSuffix}
           tabIndex={tabIndex}
-          title="Suffix Action"
+          title={!disabled ? "Suffix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>

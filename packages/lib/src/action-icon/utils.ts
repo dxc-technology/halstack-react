@@ -35,11 +35,7 @@ const contextualColorMap = {
   },
   transparent: {
     background: "transparent",
-    text: "var(--color-fg-neutral-dark)",
-  },
-  transparentPrimary: {
-    background: "transparent",
-    text: "var(--color-fg-primary-strong)",
+    text: "inherit",
   },
 };
 
@@ -125,11 +121,3 @@ export const getOutlineWidth = (size: ActionIconPropTypes["size"]) =>
 
 export const getModeColor = (mode: Required<ActionIconPropTypes>["status"]["mode"]) =>
   mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
-
-export const getOutlineOffset = (reducedOutline: ActionIconPropTypes["reducedOutline"]) => {
-  if (reducedOutline) {
-    return "-2px";
-  } else {
-    return "0px";
-  }
-};

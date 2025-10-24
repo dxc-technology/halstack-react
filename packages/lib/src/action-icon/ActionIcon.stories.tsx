@@ -21,7 +21,7 @@ type ActionIconRowProps = {
   icon?: ActionIconPropTypes["icon"];
   statusModes?: Status["mode"][];
   statusPositions?: (Status["position"] | undefined)[];
-  pseudoStates?: (PseudoState | undefined)[];
+  pseudoStates?: (PseudoState | "disabled" | undefined)[];
   groupBy?: GroupingKey[];
 };
 
@@ -61,7 +61,7 @@ const ActionIconRow = ({
       color?: ActionIconPropTypes["color"];
       statusMode?: Status["mode"];
       statusPosition?: Status["position"];
-      pseudoState?: PseudoState;
+      pseudoState?: PseudoState | "disabled";
     }
   ): JSX.Element | JSX.Element[] => {
     if (level >= groupBy.length) {
@@ -76,6 +76,8 @@ const ActionIconRow = ({
       const modesToRender = filters.statusMode ? [filters.statusMode] : statusModes?.length ? statusModes : [undefined];
 
       const pseudoStatesEnabled = !!filters.pseudoState;
+      const isDisabled = filters.pseudoState === "disabled";
+      const validPseudoState = isDisabled ? undefined : (filters.pseudoState as PseudoState | undefined);
 
       return shapesToRender.map((shape) => (
         <DxcFlex
@@ -89,7 +91,7 @@ const ActionIconRow = ({
                 modesToRender.map((mode) => (
                   <ExampleContainer
                     key={`${size}-${shape}-${color}-${mode}-${position ?? "none"}`}
-                    pseudoState={filters.pseudoState}
+                    pseudoState={validPseudoState}
                   >
                     <DxcActionIcon
                       icon="settings"
@@ -98,6 +100,7 @@ const ActionIconRow = ({
                       color={color}
                       status={position && mode ? { position, mode: mode } : undefined}
                       onClick={pseudoStatesEnabled ? () => console.log("") : undefined}
+                      disabled={isDisabled}
                     />
                   </ExampleContainer>
                 ))
@@ -118,7 +121,7 @@ const ActionIconRow = ({
       else if (key === "color") newFilters.color = value as ActionIconPropTypes["color"];
       else if (key === "statusPosition") newFilters.statusPosition = value as Status["position"];
       else if (key === "statusMode") newFilters.statusMode = value as Status["mode"];
-      else if (key === "pseudoState") newFilters.pseudoState = value as PseudoState;
+      else if (key === "pseudoState") newFilters.pseudoState = value as PseudoState | "disabled";
 
       return (
         <div key={`${key}-${String(value)}`}>
@@ -184,7 +187,7 @@ export const PseudoStates: Story = {
         shapes={["circle"]}
         statusModes={["success"]}
         statusPositions={[undefined, "top", "bottom"]}
-        pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active"]}
+        pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active", "disabled"]}
         groupBy={["pseudoState", "size"]}
       />
     </>
@@ -206,6 +209,17 @@ export const Types: Story = {
         shapes={["circle"]}
         groupBy={["size"]}
       />
+    </>
+  ),
+};
+
+export const ActionIconTooltip: Story = {
+  render: () => (
+    <>
+      <Title title="Default tooltip" theme="ligth" level={2} />
+      <ExampleContainer>
+        <DxcActionIcon title="Home" icon="home" color="neutral" />
+      </ExampleContainer>
     </>
   ),
 };

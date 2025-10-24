@@ -170,7 +170,6 @@ const DxcToast = ({
           />
         )}
         <DxcActionIcon
-          shape="square"
           size="xsmall"
           icon="clear"
           onClick={() => {

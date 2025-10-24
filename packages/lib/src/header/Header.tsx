@@ -245,7 +245,6 @@ const DxcHeader = ({
             <DxcFlex justifyContent="space-between" alignItems="center">
               <ResponsiveLogoContainer>{headerLogo}</ResponsiveLogoContainer>
               <DxcActionIcon
-                shape="square"
                 size="xsmall"
                 icon="close"
                 onClick={handleMenu}

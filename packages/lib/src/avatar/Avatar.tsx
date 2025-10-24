@@ -59,7 +59,7 @@ const DxcAvatar = memo(
       condition ? (
         <DxcFlex gap="var(--spacing-gap-s)" alignItems="center">
           {children}
-          <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-none)">
+          <DxcFlex direction="column" justifyContent="center" alignItems="flex-start" gap="var(--spacing-gap-none)">
             {primaryText && (
               <DxcTypography
                 as="h3"

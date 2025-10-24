@@ -14,8 +14,7 @@ type Color =
   | "neutral"
   | "warning"
   | "error"
-  | "transparent"
-  | "transparentPrimary";
+  | "transparent";
 export interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
@@ -23,7 +22,7 @@ export interface Status {
 
 export type ActionIconPropTypes =
   | (CommonProps & { content: ReactNode; icon?: string | SVG })
-  | (CommonProps & { content?: string; icon: string | SVG });
+  | (CommonProps & { content?: ReactNode; icon: string | SVG });
 
 type CommonProps = {
   /**
@@ -46,10 +45,6 @@ type CommonProps = {
    * This function will be called when the user clicks the Action Icon. Makes it behave as a button.
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
-  /**
-   * If true, the outline shown on focus will have a negative offset.
-   */
-  reducedOutline?: boolean;
   /**
    * This will determine if the Action Icon will be rounded square or a circle.
    */

@@ -104,7 +104,6 @@ const DxcDialog = ({
                   {closable && (
                     <CloseIconActionContainer>
                       <DxcActionIcon
-                        shape="square"
                         size="xsmall"
                         icon="close"
                         onClick={onCloseClick}
@@ -120,7 +119,6 @@ const DxcDialog = ({
                   {closable && (
                     <CloseIconActionContainer>
                       <DxcActionIcon
-                        shape="square"
                         size="xsmall"
                         icon="close"
                         onClick={onCloseClick}
