@@ -22,26 +22,33 @@ const ApplicationLayout = () => (
   </>
 );
 
+const items = [
+  {
+    label: "SideNav Content",
+    icon: "tab",
+  },
+  {
+    label: "SideNav Content",
+    icon: "tab",
+  },
+  {
+    label: "SideNav Content",
+    icon: "tab",
+  },
+  {
+    label: "SideNav Content",
+    icon: "tab",
+  },
+  {
+    label: "SideNav Content",
+    icon: "tab",
+  },
+];
+
 const ApplicationLayoutDefaultSidenav = () => (
   <>
     <DxcApplicationLayout
-      sidenav={
-        <DxcApplicationLayout.SideNav
-          title={
-            <DxcApplicationLayout.SideNav.Title>
-              Application layout with push sidenav
-            </DxcApplicationLayout.SideNav.Title>
-          }
-        >
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
-        </DxcApplicationLayout.SideNav>
-      }
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -56,22 +63,9 @@ const ApplicationLayoutDefaultSidenav = () => (
 const ApplicationLayoutResponsiveSidenav = () => (
   <>
     <DxcApplicationLayout
-      visibilityToggleLabel="Example"
       sidenav={
-        <DxcApplicationLayout.SideNav
-          title={
-            <DxcApplicationLayout.SideNav.Title>
-              Application layout with push sidenav
-            </DxcApplicationLayout.SideNav.Title>
-          }
-        >
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
+        <DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items}>
+          {(expanded: boolean) => (!expanded ? <p>Responsive Content</p> : <></>)}
         </DxcApplicationLayout.SideNav>
       }
     >
@@ -89,23 +83,7 @@ const ApplicationLayoutCustomHeader = () => (
   <>
     <DxcApplicationLayout
       header={<p>Custom Header</p>}
-      sidenav={
-        <DxcApplicationLayout.SideNav
-          title={
-            <DxcApplicationLayout.SideNav.Title>
-              Application layout with push sidenav
-            </DxcApplicationLayout.SideNav.Title>
-          }
-        >
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
-        </DxcApplicationLayout.SideNav>
-      }
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -121,23 +99,7 @@ const ApplicationLayoutCustomFooter = () => (
   <>
     <DxcApplicationLayout
       footer={<p>Custom Footer</p>}
-      sidenav={
-        <DxcApplicationLayout.SideNav
-          title={
-            <DxcApplicationLayout.SideNav.Title>
-              Application layout with push sidenav
-            </DxcApplicationLayout.SideNav.Title>
-          }
-        >
-          <DxcApplicationLayout.SideNav.Section>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-            <p>SideNav Content</p>
-          </DxcApplicationLayout.SideNav.Section>
-        </DxcApplicationLayout.SideNav>
-      }
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -151,13 +113,7 @@ const ApplicationLayoutCustomFooter = () => (
 
 const Tooltip = () => (
   <DxcApplicationLayout
-    sidenav={
-      <DxcApplicationLayout.SideNav>
-        <DxcApplicationLayout.SideNav.Section>
-          <p>SideNav Content</p>
-        </DxcApplicationLayout.SideNav.Section>
-      </DxcApplicationLayout.SideNav>
-    }
+    sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
   >
     <DxcApplicationLayout.Main>
       <p>Main Content</p>
@@ -181,6 +137,13 @@ export const ApplicationLayoutWithResponsiveSidenav: Story = {
   globals: {
     viewport: { value: "pixel", isRotated: false },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const collapseButton = (await canvas.findAllByRole("button"))[0];
+    if (collapseButton) {
+      await userEvent.click(collapseButton);
+    }
+  },
 };
 
 export const ApplicationLayoutWithCustomHeader: Story = {
@@ -201,7 +164,9 @@ export const ApplicationLayoutTooltip: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const toggleVisibility = await canvas.findByRole("button");
-    await userEvent.hover(toggleVisibility);
+    const collapseButton = (await canvas.findAllByRole("button"))[0];
+    if (collapseButton) {
+      await userEvent.hover(collapseButton);
+    }
   },
 };

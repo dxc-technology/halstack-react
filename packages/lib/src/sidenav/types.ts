@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode, ReactElement } from "react";
 import { SVG } from "../common/utils";
 
 export type SidenavTitlePropsType = {
@@ -68,15 +68,63 @@ export type SidenavLinkPropsType = {
   tabIndex?: number;
 };
 
+export type Logo = {
+  /**
+   * URL of the image that will be placed in the logo.
+   */
+  src: string;
+  /**
+   * Alternative text for the logo image.
+   */
+  alt?: string;
+  /**
+   *  URL to navigate to when the logo is clicked. If not provided, the logo will not be clickable.
+   */
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  /**
+   * URL to navigate when the logo is clicked.
+   */
+  href?: string;
+};
+
+type Section = { items: (Item | GroupItem)[]; title?: string };
+
 type Props = {
   /**
-   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
+   * The title of the sidenav that will be placed under the logo.
    */
-  title?: ReactNode;
+  title?: string;
   /**
-   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
+   * The additional content rendered inside the sidenav.
+   * It can also be a function that receives the expansion state to render different content based on it.
    */
-  children: ReactNode;
+  children?: React.ReactNode | ((expanded: boolean) => React.ReactNode);
+  /**
+   * Array of items to be displayed in the Nav menu.
+   * Each item can be a single/simple item, a group item or a section.
+   */
+  items?: (Item | GroupItem)[] | Section[];
+  /**
+   * Object with the properties of the logo placed at the top of the sidenav.
+   */
+  logo?: Logo | ReactElement;
+  /**
+   * If true the nav menu will have lines marking the groups.
+   */
+  displayGroupLines?: boolean;
+};
+
+type CommonItemProps = {
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+};
+type Item = CommonItemProps & {
+  onSelect?: () => void;
+  selected?: boolean;
+};
+type GroupItem = CommonItemProps & {
+  items: (Item | GroupItem)[];
 };
 
 export default Props;

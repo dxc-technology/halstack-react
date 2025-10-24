@@ -1,12 +1,12 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import MenuItem from "./MenuItem";
+import MenuItem from "../base-menu/MenuItem";
+import Section from "../base-menu/Section";
+import SubMenu from "../base-menu/SubMenu";
+import ContextualMenuContext from "../base-menu/BaseMenuContext";
 import ContextualMenuPropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
-import Section from "./Section";
-import ContextualMenuContext from "./ContextualMenuContext";
 import scrollbarStyles from "../styles/scroll";
-import { addIdToItems, isSection } from "./utils";
-import SubMenu from "./SubMenu";
+import { addIdToItems, isSection } from "../base-menu/utils";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
