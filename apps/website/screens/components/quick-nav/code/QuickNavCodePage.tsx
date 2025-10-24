@@ -22,17 +22,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>isHashRouter</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>
-              If true, enables navigation to sections within the page using the onClick handler, ensuring compatibility
-              with HashRouter.
-            </td>
-            <td>false</td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -44,7 +33,8 @@ const sections = [
             </td>
             <td>
               Links of the quick nav component. Only first and second level links will be shown in the quick nav, due to
-              design restrictions. Each link has the following properties:
+              design restrictions. The component automatically detects HashRouter usage and enables smooth scrolling
+              navigation when appropriate. Each link has the following properties:
               <ul>
                 <li>
                   <b>label</b>: Text to be shown in the link. The content must be wrapped with an id equal to the

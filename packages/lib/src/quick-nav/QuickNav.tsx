@@ -59,8 +59,12 @@ const Link = styled.a`
   }
 `;
 
-export default function DxcQuickNav({ links, title, isHashRouter = false }: QuickNavTypes) {
+export default function DxcQuickNav({ links, title }: QuickNavTypes) {
   const translatedLabels = useContext(HalstackLanguageContext);
+  const isHashRouter = (): boolean => {
+    if (typeof window === "undefined") return false;
+    return window.location.href.includes("/#/");
+  };
 
   return (
     <QuickNavContainer>
@@ -71,11 +75,11 @@ export default function DxcQuickNav({ links, title, isHashRouter = false }: Quic
             <Link
               href={`#${slugify(link.label, { lower: true })}`}
               onClick={
-                isHashRouter
+                isHashRouter()
                   ? (e) => {
                       e.preventDefault();
                       const id = slugify(link.label, { lower: true });
-                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      document.getElementById(id)?.scrollIntoView();
                     }
                   : undefined
               }
@@ -91,11 +95,11 @@ export default function DxcQuickNav({ links, title, isHashRouter = false }: Quic
                         lower: true,
                       })}`}
                       onClick={
-                        isHashRouter
+                        isHashRouter()
                           ? (e) => {
                               e.preventDefault();
                               const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
-                              document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                              document.getElementById(id)?.scrollIntoView();
                             }
                           : undefined
                       }
