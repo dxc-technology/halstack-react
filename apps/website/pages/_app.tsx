@@ -58,7 +58,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         ...(link.status && {
           badge: link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
         }),
-        renderItem: ({ children }) => (
+        renderItem: ({ children }: { children: ReactNode }) => (
           <Link key={link.path} href={link.path} passHref legacyBehavior>
             {children}
           </Link>

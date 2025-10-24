@@ -91,7 +91,7 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
           </DxcFlex>
         )}
       </DxcFlex>
-      {/* TODO: SEARCHBAR */}
+      {/* TODO: REPLACE WITH THE ACTUAL SEARCHBAR */}
       <DxcTextInput placeholder="Search docs" size="small" clearable />
       {/* <DxcTextInput
         placeholder="Search docs"
