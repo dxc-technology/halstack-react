@@ -28,6 +28,5 @@ export type {
   SectionWithId,
   SectionProps,
   SingleItemProps,
+  Props as default,
 };
-
-export default Props;
