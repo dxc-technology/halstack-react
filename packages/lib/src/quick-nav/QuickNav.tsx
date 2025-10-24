@@ -61,6 +61,10 @@ const Link = styled.a`
 
 export default function DxcQuickNav({ links, title }: QuickNavTypes) {
   const translatedLabels = useContext(HalstackLanguageContext);
+  const isHashRouter = (): boolean => {
+    if (typeof window === "undefined") return false;
+    return window.location.href.includes("/#/");
+  };
 
   return (
     <QuickNavContainer>
@@ -68,7 +72,18 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
       <ListColumn>
         {links.map((link) => (
           <li key={link.label}>
-            <Link href={`#${slugify(link.label, { lower: true })}`}>
+            <Link
+              href={`#${slugify(link.label, { lower: true })}`}
+              onClick={
+                isHashRouter()
+                  ? (e) => {
+                      e.preventDefault();
+                      const id = slugify(link.label, { lower: true });
+                      document.getElementById(id)?.scrollIntoView();
+                    }
+                  : undefined
+              }
+            >
               <span>{link.label}</span>
             </Link>
             {link.links?.length && (
@@ -79,6 +94,15 @@ export default function DxcQuickNav({ links, title }: QuickNavTypes) {
                       href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
                         lower: true,
                       })}`}
+                      onClick={
+                        isHashRouter()
+                          ? (e) => {
+                              e.preventDefault();
+                              const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
+                              document.getElementById(id)?.scrollIntoView();
+                            }
+                          : undefined
+                      }
                     >
                       <span>{sublink.label}</span>
                     </Link>
