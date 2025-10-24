@@ -1,114 +1,10 @@
 import { memo, useCallback, useMemo, useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import AvatarPropsType from "./types";
-import {
-  getBackgroundColor,
-  getBorderRadius,
-  getBorderWidth,
-  getColor,
-  getFontSize,
-  getIconSize,
-  getInitials,
-  getModeColor,
-  getOutlineWidth,
-  getSize,
-} from "./utils";
+import { getFontSize, getInitials } from "./utils";
 import DxcTypography from "../typography/Typography";
 import DxcImage from "../image/Image";
-import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
-
-const AvatarContainer = styled.div<
-  {
-    hasAction?: boolean;
-    size: AvatarPropsType["size"];
-    disabled?: AvatarPropsType["disabled"];
-  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
->`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: ${({ size }) => getSize(size)};
-  aspect-ratio: 1 / 1;
-  text-decoration: none;
-  ${({ hasAction, disabled, size }) =>
-    !disabled &&
-    hasAction &&
-    css`
-      cursor: pointer;
-      &:hover > div:first-child > div:first-child,
-      &:active > div:first-child > div:first-child {
-        display: block;
-      }
-      &:focus > div:first-child,
-      &:active > div:first-child {
-        outline-style: solid;
-        outline-width: ${getOutlineWidth(size)};
-        outline-color: var(--border-color-secondary-medium);
-      }
-    `}
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      cursor: not-allowed;
-      & > div:first-child > div:first-child {
-        display: block;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    `}
-`;
-
-const AvatarWrapper = styled.div<{
-  shape: AvatarPropsType["shape"];
-  color: AvatarPropsType["color"];
-  size: AvatarPropsType["size"];
-}>`
-  position: relative;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: ${({ color }) => getBackgroundColor(color)};
-  color: ${({ color }) => getColor(color)};
-  border-radius: ${({ shape, size }) => getBorderRadius(shape, size)};
-`;
-
-const Overlay = styled.div`
-  display: none;
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--color-alpha-400-a);
-`;
-
-const AvatarIcon = styled.div<{ size: AvatarPropsType["size"] }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  font-size: ${({ size }) => getIconSize(size)};
-`;
-
-const StatusContainer = styled.div<{
-  status: AvatarPropsType["status"];
-  size: AvatarPropsType["size"];
-}>`
-  position: absolute;
-  right: 0px;
-  ${({ status }) => (status?.position === "top" ? "top: 0px;" : "bottom: 0px;")}
-  width: 25%;
-  height: 25%;
-  border-width: ${({ size }) => getBorderWidth(size)};
-  border-style: solid;
-  border-color: var(--border-color-neutral-brighter);
-  border-radius: 100%;
-  background-color: ${({ status }) => getModeColor(status!.mode)};
-`;
+import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcFlex from "../flex/Flex";
 
 const DxcAvatar = memo(
   ({
@@ -119,6 +15,8 @@ const DxcAvatar = memo(
     label,
     linkHref,
     onClick,
+    primaryText,
+    secondaryText,
     shape = "circle",
     size = "medium",
     status,
@@ -141,7 +39,7 @@ const DxcAvatar = memo(
             objectFit="cover"
             objectPosition="center"
           />
-        ) : initials.length > 0 ? (
+        ) : (
           <DxcTypography
             as="span"
             fontFamily="var(--typography-font-family)"
@@ -153,34 +51,64 @@ const DxcAvatar = memo(
           >
             {initials}
           </DxcTypography>
-        ) : (
-          <AvatarIcon size={size} color={color}>
-            {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
-          </AvatarIcon>
         )}
       </>
     );
 
+    const LabelWrapper = ({ condition, children }: { condition: boolean; children: React.ReactNode }) =>
+      condition ? (
+        <DxcFlex gap="var(--spacing-gap-s)" alignItems="center">
+          {children}
+          <DxcFlex direction="column" justifyContent="center" alignItems="flex-start" gap="var(--spacing-gap-none)">
+            {primaryText && (
+              <DxcTypography
+                as="h3"
+                color="var(--color-fg-neutral-dark)"
+                fontSize="var(--typography-label-l)"
+                fontFamily="var(--typography-font-family)"
+                fontStyle="normal"
+                fontWeight="var(--typography-label-regular)"
+                lineHeight="normal"
+              >
+                {primaryText}
+              </DxcTypography>
+            )}
+            {secondaryText && (
+              <DxcTypography
+                as="p"
+                color="var(--color-fg-neutral-stronger)"
+                fontSize="var(--typography-label-s)"
+                fontFamily="var(--typography-font-family)"
+                fontStyle="normal"
+                fontWeight="var(--typography-label-regular)"
+                lineHeight="normal"
+              >
+                {secondaryText}
+              </DxcTypography>
+            )}
+          </DxcFlex>
+        </DxcFlex>
+      ) : (
+        <>{children}</>
+      );
+
     return (
-      <TooltipWrapper condition={!!title} label={title}>
-        <AvatarContainer
-          size={size}
-          onClick={!disabled ? onClick : undefined}
-          hasAction={!!onClick || !!linkHref}
-          tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
-          role={onClick ? "button" : undefined}
-          as={linkHref ? "a" : undefined}
-          href={!disabled ? linkHref : undefined}
-          aria-label={(onClick || linkHref) && (label || title || "Avatar")}
+      <LabelWrapper condition={!!(primaryText || secondaryText)}>
+        <DxcActionIcon
+          ariaLabel={label}
+          content={(imageSrc && !error) || initials ? content : undefined}
+          color={color}
           disabled={disabled}
-        >
-          <AvatarWrapper shape={shape} color={color} size={size}>
-            <Overlay aria-hidden="true" />
-            {content}
-          </AvatarWrapper>
-          {status && <StatusContainer role="status" size={size} status={status} />}
-        </AvatarContainer>
-      </TooltipWrapper>
+          icon={icon}
+          linkHref={linkHref}
+          onClick={onClick}
+          shape={shape}
+          size={size}
+          status={status}
+          tabIndex={tabIndex}
+          title={title}
+        />
+      </LabelWrapper>
     );
   }
 );

@@ -48,7 +48,7 @@ const customViewports = {
 const Dialog = () => (
   <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
-    <DxcDialog>
+    <DxcDialog onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
@@ -100,7 +100,7 @@ const DialogInput = () => (
 const DialogNoOverlay = () => (
   <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
-    <DxcDialog overlay={false}>
+    <DxcDialog overlay={false} onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
@@ -145,7 +145,7 @@ const DialogCloseNoVisible = () => (
 const RespDialog = () => (
   <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
-    <DxcDialog>
+    <DxcDialog onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />

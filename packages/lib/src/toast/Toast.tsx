@@ -1,7 +1,6 @@
 import { memo, useContext, useState, useRef, useEffect } from "react";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -10,6 +9,7 @@ import useTimeout from "../utils/useTimeout";
 import { responsiveSizes } from "../common/variables";
 import getSemantic from "./utils";
 import ToastIcon from "./ToastIcon";
+import DxcActionIcon from "../action-icon/ActionIcon";
 
 const fadeInUp = keyframes`
   0% {
@@ -170,6 +170,7 @@ const DxcToast = ({
           />
         )}
         <DxcActionIcon
+          size="xsmall"
           icon="clear"
           onClick={() => {
             if (!loading) {

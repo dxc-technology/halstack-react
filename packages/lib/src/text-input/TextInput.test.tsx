@@ -362,8 +362,13 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const { getByRole } = render(<DxcTextInput label="Input label" action={action} readOnly />);
-    userEvent.click(getByRole("button"));
+    const { getByTestId, queryByRole } = render(<DxcTextInput label="Input label" action={action} readOnly />);
+    // When readOnly is true, the action should not render as a clickable button
+    expect(queryByRole("button")).toBeFalsy();
+    // The action icon should still be visible but not clickable
+    const actionIcon = getByTestId("image");
+    expect(actionIcon).toBeTruthy();
+    userEvent.click(actionIcon);
     expect(onClick).not.toHaveBeenCalled();
   });
 
