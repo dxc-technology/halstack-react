@@ -44,7 +44,6 @@ const Action = styled.button<{
 
 const Label = styled.span`
   display: flex;
-  align-items: center;
   gap: var(--spacing-gap-s);
   overflow: hidden;
 `;
@@ -106,10 +105,16 @@ const ItemAction = memo(
           aria-pressed={!href ? ariaPressed : undefined}
         >
           <Label aria-label={responsiveView ? label : undefined}>
-            {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
-            <TooltipWrapper condition={responsiveView} label={label}>
-              <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
-            </TooltipWrapper>
+            {!displayControlsAfter && collapseIcon && (
+              <Control>
+                <Icon>{collapseIcon}</Icon>
+              </Control>
+            )}
+            {icon && (
+              <TooltipWrapper condition={responsiveView} label={label}>
+                <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+              </TooltipWrapper>
+            )}
             {!responsiveView && (
               <Text selected={props.selected} onMouseEnter={handleTextMouseEnter}>
                 {label}
