@@ -6,10 +6,19 @@ type CommonItemProps = {
   icon?: string | SVG;
   label: string;
 };
+
+type RenderItemProps = {
+  /** Whether the item is selected (for styling) */
+  // selected: boolean;
+  /** The default rendered content (label, icon, badge, etc.) */
+  children: React.ReactNode;
+};
+
 type Item = CommonItemProps & {
   onSelect?: () => void;
   selected?: boolean;
   href?: string;
+  renderItem?: (props: RenderItemProps) => React.ReactNode;
 };
 type GroupItem = CommonItemProps & {
   items: (Item | GroupItem)[];
@@ -64,8 +73,9 @@ type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   depthLevel: number;
   icon?: Item["icon"];
   label: Item["label"];
-  selected: boolean;
+  selected: Item["selected"];
   href?: Item["href"];
+  renderItem?: Item["renderItem"];
 };
 type SectionProps = {
   section: SectionWithId;

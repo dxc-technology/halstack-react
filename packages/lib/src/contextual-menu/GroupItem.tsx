@@ -1,18 +1,17 @@
-import { useContext, useMemo, useState, useId } from "react";
+import { useContext, useId } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
-import { isGroupSelected } from "./utils";
+import { useGroupItem } from "../utils/useGroupItem";
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const { selectedItemId } = useContext(ContextualMenuContext) ?? {};
-  const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
-  const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1);
 
+  const contextValue = useContext(ContextualMenuContext) ?? {};
+  const { groupSelected, isOpen, toggleOpen } = useGroupItem(items, contextValue);
   return (
     <>
       <ItemAction
@@ -20,7 +19,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         aria-expanded={isOpen ? true : undefined}
         aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-        onClick={() => setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen)}
+        onClick={() => toggleOpen()}
         selected={groupSelected && !isOpen}
         {...props}
       />

@@ -11,6 +11,7 @@ import "../global-styles.css";
 import createCache, { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;
@@ -52,11 +53,16 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       title: section.label,
       items: section.links.map((link) => ({
         label: link.label,
-        onSelect: () => router.push(link.path),
+        href: link.path,
         selected: matchPaths(link.path),
         ...(link.status && {
           badge: link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
         }),
+        renderItem: ({ children }) => (
+          <Link key={link.path} href={link.path} passHref legacyBehavior>
+            {children}
+          </Link>
+        ),
       })),
     }));
   };

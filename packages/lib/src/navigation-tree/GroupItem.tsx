@@ -1,22 +1,19 @@
-import { useContext, useMemo, useState, useId } from "react";
+import { useContext, useId } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps } from "./types";
 import NavigationTreeContext from "./NavigationTreeContext";
-import { isGroupSelected } from "./utils";
 import * as Popover from "@radix-ui/react-popover";
+import { useGroupItem } from "../utils/useGroupItem";
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const { selectedItemId, responsiveView } = useContext(NavigationTreeContext) ?? {};
-  const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
-  const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1);
 
   const NavigationTreeId = `sidenav-${useId()}`;
-
   const contextValue = useContext(NavigationTreeContext) ?? {};
+  const { groupSelected, isOpen, toggleOpen, responsiveView } = useGroupItem(items, contextValue);
 
   return responsiveView ? (
     <>
@@ -33,7 +30,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
             aria-expanded={isOpen ? true : undefined}
             aria-pressed={groupSelected && !isOpen}
             collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-            onClick={() => setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen)}
+            onClick={() => toggleOpen()}
             selected={groupSelected && !isOpen}
             {...props}
           />
@@ -70,7 +67,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         aria-expanded={isOpen ? true : undefined}
         aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-        onClick={() => setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen)}
+        onClick={() => toggleOpen()}
         selected={groupSelected && !isOpen}
         {...props}
       />

@@ -3,7 +3,7 @@ import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
 
-export default function SingleItem({ id, onSelect, selectedByDefault = false, ...props }: SingleItemProps) {
+export default function SingleItem({ id, onSelect, selected = false, ...props }: SingleItemProps) {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext) ?? {};
 
   const handleClick = () => {
@@ -12,18 +12,16 @@ export default function SingleItem({ id, onSelect, selectedByDefault = false, ..
   };
 
   useEffect(() => {
-    if (selectedItemId === -1 && selectedByDefault) {
+    if (selectedItemId === -1 && selected) {
       setSelectedItemId?.(id);
     }
-  }, [selectedItemId, selectedByDefault, id]);
+  }, [selectedItemId, selected, id]);
 
   return (
     <ItemAction
-      aria-pressed={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
+      aria-pressed={selectedItemId === -1 ? selected : selectedItemId === id}
       onClick={handleClick}
-      selected={
-        selectedItemId != null && (selectedItemId === -1 ? (selectedByDefault ?? false) : selectedItemId === id)
-      }
+      selected={selectedItemId != null && (selectedItemId === -1 ? (selected ?? false) : selectedItemId === id)}
       {...props}
     />
   );

@@ -1,4 +1,4 @@
-import { cloneElement, forwardRef, memo, MouseEvent, useContext, useState } from "react";
+import { cloneElement, memo, MouseEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -79,53 +79,54 @@ const Control = styled.span`
 `;
 
 const ItemAction = memo(
-  forwardRef<HTMLButtonElement, ItemActionProps>(
-    ({ badge, collapseIcon, depthLevel, icon, label, href, ...props }, ref) => {
-      const [hasTooltip, setHasTooltip] = useState(false);
-      const modifiedBadge = badge && cloneElement(badge, { size: "small" });
-      const { displayControlsAfter, responsiveView, displayGroupLines } = useContext(NavigationTreeContext) ?? {};
+  ({ badge, collapseIcon, depthLevel, icon, label, href, renderItem, ...props }: ItemActionProps) => {
+    const [hasTooltip, setHasTooltip] = useState(false);
+    const modifiedBadge = badge && cloneElement(badge, { size: "small" });
+    const { displayControlsAfter, responsiveView, displayGroupLines } = useContext(NavigationTreeContext) ?? {};
 
-      return (
-        <TooltipWrapper condition={hasTooltip} label={label}>
-          <Action
-            as={href ? "a" : "button"}
-            role={href ? "link" : "button"}
-            ref={ref}
-            depthLevel={depthLevel}
-            displayGroupLines={!!displayGroupLines}
-            responsiveView={responsiveView}
-            {...(href && { href })}
-            {...props}
-            aria-pressed={href ? undefined : props["aria-pressed"]}
-          >
-            <Label aria-label={responsiveView ? label : undefined}>
-              {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
-              <TooltipWrapper condition={responsiveView} label={label}>
-                <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
-              </TooltipWrapper>
-              {!responsiveView && (
-                <Text
-                  selected={props.selected}
-                  onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
-                    const text = event.currentTarget;
-                    setHasTooltip(text.scrollWidth > text.clientWidth);
-                  }}
-                >
-                  {label}
-                </Text>
-              )}
-            </Label>
+    const content = (
+      <TooltipWrapper condition={hasTooltip} label={label}>
+        <Action
+          as={href ? "a" : "button"}
+          role={href ? "link" : "button"}
+          depthLevel={depthLevel}
+          displayGroupLines={!!displayGroupLines}
+          responsiveView={responsiveView}
+          {...(href && { href })}
+          {...props}
+          aria-pressed={href ? undefined : props["aria-pressed"]}
+        >
+          <Label aria-label={responsiveView ? label : undefined}>
+            {!displayControlsAfter && <Control>{collapseIcon && <Icon>{collapseIcon}</Icon>}</Control>}
+            <TooltipWrapper condition={responsiveView} label={label}>
+              <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+            </TooltipWrapper>
             {!responsiveView && (
-              <Control>
-                {modifiedBadge}
-                {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
-              </Control>
+              <Text
+                selected={props.selected}
+                onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
+                  const text = event.currentTarget;
+                  setHasTooltip(text.scrollWidth > text.clientWidth);
+                }}
+              >
+                {label}
+              </Text>
             )}
-          </Action>
-        </TooltipWrapper>
-      );
+          </Label>
+          {!responsiveView && (
+            <Control>
+              {modifiedBadge}
+              {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
+            </Control>
+          )}
+        </Action>
+      </TooltipWrapper>
+    );
+    if (renderItem) {
+      return <>{renderItem({ children: content })}</>;
     }
-  )
+    return content;
+  }
 );
 
 ItemAction.displayName = "ItemAction";
