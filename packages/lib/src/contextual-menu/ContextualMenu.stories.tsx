@@ -3,8 +3,8 @@ import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcContextualMenu from "./ContextualMenu";
-import SingleItem from "./SingleItem";
-import ContextualMenuContext from "./ContextualMenuContext";
+import SingleItem from "../base-menu/SingleItem";
+import ContextualMenuContext from "../base-menu/BaseMenuContext";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
 

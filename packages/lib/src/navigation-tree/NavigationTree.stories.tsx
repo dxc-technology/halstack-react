@@ -3,10 +3,10 @@ import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcNavigationTree from "./NavigationTree";
-import SingleItem from "./SingleItem";
-import NavigationTreeContext from "./NavigationTreeContext";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
+import NavigationTreeContext from "./NavigationTreeContext";
+import SingleItem from "../base-menu/SingleItem";
 
 export default {
   title: "Navigation Tree",

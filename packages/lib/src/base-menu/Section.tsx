@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
-import NavigationTreeContext from "./NavigationTreeContext";
+import BaseMenuContext from "./BaseMenuContext";
 import DxcInset from "../inset/Inset";
 import DxcDivider from "../divider/Divider";
 
@@ -23,7 +23,7 @@ const Title = styled.h2`
 
 export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
-  const { responsiveView } = useContext(NavigationTreeContext) ?? {};
+  const { responsiveView } = useContext(BaseMenuContext) ?? {};
   return !responsiveView ? (
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}

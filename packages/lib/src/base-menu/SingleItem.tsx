@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
-import NavigationTreeContext from "./NavigationTreeContext";
+import BaseMenuContext from "./BaseMenuContext";
 
 export default function SingleItem({ id, onSelect, selected = false, ...props }: SingleItemProps) {
-  const { selectedItemId, setSelectedItemId } = useContext(NavigationTreeContext) ?? {};
+  const { selectedItemId, setSelectedItemId } = useContext(BaseMenuContext) ?? {};
 
   const handleClick = () => {
     setSelectedItemId?.(id);

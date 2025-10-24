@@ -1,18 +1,18 @@
 import { useContext, useId } from "react";
 import DxcIcon from "../icon/Icon";
+import SubMenu from "./SubMenu";
+import ItemAction from "./ItemAction";
+import MenuItem from "./MenuItem";
 import { GroupItemProps } from "./types";
 import * as Popover from "@radix-ui/react-popover";
-import { useGroupItem } from "../base-menu/useGroupItem";
-import NavigationTreeContext from "./NavigationTreeContext";
-import ItemAction from "../base-menu/ItemAction";
-import SubMenu from "../base-menu/SubMenu";
-import MenuItem from "../base-menu/MenuItem";
+import { useGroupItem } from "./useGroupItem";
+import BaseMenuContext from "./BaseMenuContext";
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
 
   const NavigationTreeId = `sidenav-${useId()}`;
-  const contextValue = useContext(NavigationTreeContext) ?? {};
+  const contextValue = useContext(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, responsiveView } = useGroupItem(items, contextValue);
 
   return responsiveView ? (
@@ -36,7 +36,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           />
         </Popover.Trigger>
         <Popover.Portal container={document.getElementById(`${NavigationTreeId}-portal`)}>
-          <NavigationTreeContext.Provider value={{ ...contextValue, displayGroupLines: false, responsiveView: false }}>
+          <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, responsiveView: false }}>
             <Popover.Content
               aria-label="Group details"
               onCloseAutoFocus={(event) => {
@@ -55,7 +55,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                 ))}
               </SubMenu>
             </Popover.Content>
-          </NavigationTreeContext.Provider>
+          </BaseMenuContext.Provider>
         </Popover.Portal>
       </Popover.Root>
       <div id={`${NavigationTreeId}-portal`} style={{ position: "absolute" }} />

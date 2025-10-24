@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SubMenuProps } from "./types";
-import NavigationTreeContext from "./NavigationTreeContext";
+import BaseMenuContext from "./BaseMenuContext";
 import { useContext } from "react";
 
 const SubMenuContainer = styled.ul<{ depthLevel: number; displayGroupLines?: boolean }>`
@@ -20,7 +20,7 @@ const SubMenuContainer = styled.ul<{ depthLevel: number; displayGroupLines?: boo
 `;
 
 export default function SubMenu({ children, id, depthLevel = 0 }: SubMenuProps) {
-  const { displayGroupLines } = useContext(NavigationTreeContext) ?? {};
+  const { displayGroupLines } = useContext(BaseMenuContext) ?? {};
   return (
     <SubMenuContainer id={id} role="menu" depthLevel={depthLevel} displayGroupLines={displayGroupLines}>
       {children}

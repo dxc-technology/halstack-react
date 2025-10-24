@@ -1,12 +1,12 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import MenuItem from "./MenuItem";
+import MenuItem from "../base-menu/MenuItem";
 import NavigationTreePropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
-import Section from "./Section";
-import NavigationTreeContext from "./NavigationTreeContext";
+import Section from "../base-menu/Section";
+import NavigationTreeContext from "../base-menu/BaseMenuContext";
 import scrollbarStyles from "../styles/scroll";
-import { addIdToItems, isSection } from "./utils";
-import SubMenu from "./SubMenu";
+import { addIdToItems, isSection } from "../base-menu/utils";
+import SubMenu from "../base-menu/SubMenu";
 
 const NavigationTreeContainer = styled.div<{ displayBorder: boolean }>`
   box-sizing: border-box;
