@@ -144,7 +144,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex attribute. It will only apply when the onClick property is passed.</td>
+            <td>
+              Value of the tabindex attribute. It will only apply when the onClick or linkHref property is passed.
+            </td>
             <td>
               <TableCode>0</TableCode>
             </td>

@@ -105,7 +105,7 @@ const DxcAvatar = memo(
           shape={shape}
           size={size}
           status={status}
-          tabIndex={tabIndex}
+          tabIndex={onClick || linkHref ? tabIndex : undefined}
           title={title}
         />
       </LabelWrapper>
