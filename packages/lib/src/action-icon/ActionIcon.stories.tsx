@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within } from "storybook/internal/test";
 import DxcActionIcon from "./ActionIcon";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
@@ -213,13 +214,20 @@ export const Types: Story = {
   ),
 };
 
+const Tooltip = () => (
+  <>
+    <Title title="Default tooltip" theme="ligth" level={2} />
+    <ExampleContainer>
+      <DxcActionIcon title="Home" icon="home" color="neutral" />
+    </ExampleContainer>
+  </>
+);
+
 export const ActionIconTooltip: Story = {
-  render: () => (
-    <>
-      <Title title="Default tooltip" theme="ligth" level={2} />
-      <ExampleContainer>
-        <DxcActionIcon title="Home" icon="home" color="neutral" />
-      </ExampleContainer>
-    </>
-  ),
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button");
+    await userEvent.hover(button);
+  },
 };
