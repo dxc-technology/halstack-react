@@ -218,7 +218,7 @@ const Tooltip = () => (
   <>
     <Title title="Default tooltip" theme="ligth" level={2} />
     <ExampleContainer>
-      <DxcActionIcon title="Home" icon="home" color="neutral" />
+      <DxcActionIcon title="Home" icon="home" color="neutral" onClick={() => console.log()} />
     </ExampleContainer>
   </>
 );
