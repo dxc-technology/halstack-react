@@ -34,9 +34,10 @@ describe("DateInput component tests", () => {
     expect(getByText("Personalized error.")).toBeTruthy();
   });
   test("Read-only variant doesn't open the calendar", () => {
-    const { getByRole, queryByRole } = render(<DxcDateInput value="20-10-2019" readOnly />);
-    const calendarAction = getByRole("combobox");
-    userEvent.click(calendarAction);
+    const { queryByRole } = render(<DxcDateInput value="20-10-2019" readOnly />);
+    // When readOnly is true, there should be no calendar button (combobox) available
+    expect(queryByRole("combobox")).toBeFalsy();
+    // And consequently, no calendar dialog should be openable
     expect(queryByRole("dialog")).toBeFalsy();
   });
   test("Renders with an initial value when it is uncontrolled", () => {
