@@ -93,6 +93,22 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>primaryText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be displayed as label next to the avatar.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>secondaryText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be displayed as sublabel next to the avatar.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>shape</td>
             <td>
               <TableCode>'circle' | 'square'</TableCode>
