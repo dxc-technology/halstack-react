@@ -11,28 +11,6 @@ export type TabsContextProps = {
   tabIndex: number;
 };
 
-export type TabLabelProps = {
-  /**
-   * Tab label.
-   */
-  label: string;
-  /**
-   * Material Symbol name or SVG element used as the icon that will be displayed in the tab.
-   */
-  icon?: string | SVG;
-};
-
-export type TabIconProps = {
-  /**
-   * Tab label.
-   */
-  label?: string;
-  /**
-   * Material Symbol name or SVG element used as the icon that will be displayed in the tab.
-   */
-  icon: string | SVG;
-};
-
 type CommonTabProps = {
   defaultActive?: boolean;
   active?: boolean;

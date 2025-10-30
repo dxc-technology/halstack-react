@@ -89,7 +89,8 @@ describe("Dialog component tests", () => {
 
 describe("Dialog component: Focus lock tests", () => {
   test("Close action: when there's no focusable content, the focus never leaves the close action (unless you click outside)", () => {
-    const { getByRole } = render(<DxcDialog>example-dialog</DxcDialog>);
+    const onClick = jest.fn();
+    const { getByRole } = render(<DxcDialog onCloseClick={onClick}>example-dialog</DxcDialog>);
     const button = getByRole("button");
     const dialog = getByRole("dialog");
     expect(document.activeElement).toEqual(button);
@@ -191,8 +192,9 @@ describe("Dialog component: Focus lock tests", () => {
     expect(document.activeElement).toEqual(textarea);
   });
   test("Negative tabindex elements are not automatically focused, even if it is enabled and a valid focusable item (programatically and by click)", () => {
+    const onClick = jest.fn();
     const { getAllByRole, getByRole } = render(
-      <DxcDialog>
+      <DxcDialog onCloseClick={onClick}>
         <input title="Name" tabIndex={-1} />
         <input title="Name" />
       </DxcDialog>
@@ -225,8 +227,9 @@ describe("Dialog component: Focus lock tests", () => {
     expect(document.activeElement).toEqual(textarea);
   });
   test("Focus jumps from last element to the first", () => {
+    const onClick = jest.fn();
     const { getByRole } = render(
-      <DxcDialog>
+      <DxcDialog onCloseClick={onClick}>
         <DxcCheckbox label="Accept" disabled />
         <DxcTextarea label="Name" />
         <DxcRadioGroup label="Name" options={options} />
@@ -242,8 +245,11 @@ describe("Dialog component: Focus lock tests", () => {
     expect(document.activeElement).toEqual(textarea);
   });
   test("'display: none;', 'visibility: hidden;' and 'type = 'hidden'' elements are never autofocused", () => {
+    // TODO: Solve this
+    // If we don't have an Onclick function, the Close Icon will be a <div> instead of a <button>, so it won't be focusable.
+    const onClick = jest.fn();
     const { getByRole } = render(
-      <DxcDialog>
+      <DxcDialog onCloseClick={onClick}>
         <input title="Name" style={{ display: "none" }} />
         <input title="Name" style={{ visibility: "hidden" }} />
         <input type="hidden" name="example" />
@@ -275,8 +281,9 @@ describe("Dialog component: Focus lock tests", () => {
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
   test("Focus travels correctly in a complex tab sequence", () => {
+    const onClick = jest.fn();
     const { getAllByRole, queryByRole, getByRole } = render(
-      <DxcDialog>
+      <DxcDialog onCloseClick={onClick}>
         <DxcSelect label="Accept" options={options} />
         <DxcDateInput label="Older age" />
         <DxcTooltip label="Text input tooltip label">
