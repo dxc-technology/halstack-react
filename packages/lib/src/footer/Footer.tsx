@@ -119,6 +119,7 @@ const SocialIconContainer = styled.div`
   svg {
     height: var(--height-s);
     width: 24px;
+    fill: var(--color-fg-primary-strong);
   }
 `;
 
@@ -126,7 +127,7 @@ const BottomLinks = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
-  color: var(--color-fg-neutral-dark);
+  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
@@ -148,7 +149,7 @@ const BottomLink = styled.a`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-  color: var(--color-fg-neutral-bright);
+  color: inherit;
 
   &:focus {
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
