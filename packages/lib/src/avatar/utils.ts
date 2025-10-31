@@ -97,9 +97,11 @@ const modeColorMap = {
   error: "var(--color-fg-error-medium)",
 };
 
-export const getColor = (color: AvatarPropsType["color"]) => (color ? contextualColorMap[color].text : undefined);
+export const getColor = (color: AvatarPropsType["color"]) =>
+  color && contextualColorMap[color] ? contextualColorMap[color].text : contextualColorMap.neutral.text;
+
 export const getBackgroundColor = (color: AvatarPropsType["color"]) =>
-  color ? contextualColorMap[color].background : undefined;
+  color && contextualColorMap[color] ? contextualColorMap[color].background : contextualColorMap.neutral.background;
 
 export const getBorderRadius = (shape: AvatarPropsType["shape"], size: AvatarPropsType["size"]) => {
   if (shape === "circle") {
@@ -111,20 +113,22 @@ export const getBorderRadius = (shape: AvatarPropsType["shape"], size: AvatarPro
   return "100%";
 };
 
-export const getSize = (size: AvatarPropsType["size"]) => (size ? sizeMap[size] : "var(--height-xl)");
+export const getSize = (size: AvatarPropsType["size"]) => (size && sizeMap[size] ? sizeMap[size] : "var(--height-xl)");
 
-export const getFontSize = (size: AvatarPropsType["size"]) => (size ? fontSizeMap[size] : "var(--typography-label-l)");
+export const getFontSize = (size: AvatarPropsType["size"]) =>
+  size && fontSizeMap[size] ? fontSizeMap[size] : "var(--typography-label-l)";
 
-export const getIconSize = (size: AvatarPropsType["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
+export const getIconSize = (size: AvatarPropsType["size"]) =>
+  size && iconSizeMap[size] ? iconSizeMap[size] : "var(--height-s)";
 
 export const getBorderWidth = (size: AvatarPropsType["size"]) =>
-  size ? borderWidthMap[size] : "var(--border-width-s)";
+  size && borderWidthMap[size] ? borderWidthMap[size] : "var(--border-width-s)";
 
 export const getOutlineWidth = (size: AvatarPropsType["size"]) =>
-  size ? outlineWidthMap[size] : "var(--border-width-m)";
+  size && outlineWidthMap[size] ? outlineWidthMap[size] : "var(--border-width-m)";
 
 export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) =>
-  mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
+  mode && modeColorMap[mode] ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
 
 export const getInitials = (label?: string): string => {
   if (!label) return "";
