@@ -92,32 +92,33 @@ const modeColorMap = {
   error: "var(--color-fg-error-medium)",
 };
 
-export const getColor = (color: ActionIconPropTypes["color"]) => (color ? contextualColorMap[color].text : undefined);
+export const getColor = (color: ActionIconPropTypes["color"]) =>
+  color && contextualColorMap[color] ? contextualColorMap[color].text : contextualColorMap.transparent.text;
+
 export const getBackgroundColor = (color: ActionIconPropTypes["color"]) =>
-  color ? contextualColorMap[color].background : undefined;
+  color && contextualColorMap[color] ? contextualColorMap[color].background : contextualColorMap.transparent.background;
 
 export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: ActionIconPropTypes["size"]) => {
   if (shape === "circle") {
     return "100%";
   }
   if (shape === "square") {
-    return size ? borderRadiusMap[size] : "var(--border-radius-m)";
+    return size && borderRadiusMap[size] ? borderRadiusMap[size] : "var(--border-radius-m)";
   }
   return "100%";
 };
 
-export const getSize = (size: ActionIconPropTypes["size"]) => {
-  if (!size) return "var(--height-xl)";
-  return sizeMap[size] ?? "var(--height-xl)";
-};
+export const getSize = (size: ActionIconPropTypes["size"]) =>
+  size && sizeMap[size] ? sizeMap[size] : "var(--height-xl)";
 
-export const getIconSize = (size: ActionIconPropTypes["size"]) => (size ? iconSizeMap[size] : "var(--height-s)");
+export const getIconSize = (size: ActionIconPropTypes["size"]) =>
+  size && iconSizeMap[size] ? iconSizeMap[size] : "var(--height-s)";
 
 export const getBorderWidth = (size: ActionIconPropTypes["size"]) =>
-  size ? borderWidthMap[size] : "var(--border-width-s)";
+  size && borderWidthMap[size] ? borderWidthMap[size] : "var(--border-width-s)";
 
 export const getOutlineWidth = (size: ActionIconPropTypes["size"]) =>
-  size ? outlineWidthMap[size] : "var(--border-width-m)";
+  size && outlineWidthMap[size] ? outlineWidthMap[size] : "var(--border-width-m)";
 
 export const getModeColor = (mode: Required<ActionIconPropTypes>["status"]["mode"]) =>
-  mode ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
+  mode && modeColorMap[mode] ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
