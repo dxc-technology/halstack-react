@@ -4,8 +4,10 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcAvatar
-        label="John Doe"
+        label="Michael Ramirez"
         color="success"
+        primaryText="Michael Ramirez"
+        secondaryText="m.ramirez@insurance.com"
       />
     </DxcInset>
   );

@@ -1,58 +1,5 @@
 import AvatarPropsType from "./types";
 
-const contextualColorMap = {
-  primary: {
-    background: "var(--color-bg-primary-lighter)",
-    text: "var(--color-fg-primary-stronger)",
-  },
-  secondary: {
-    background: "var(--color-bg-secondary-lighter)",
-    text: "var(--color-fg-secondary-stronger)",
-  },
-  tertiary: {
-    background: "var(--color-bg-yellow-light)",
-    text: "var(--color-fg-neutral-yellow-dark)",
-  },
-  neutral: {
-    background: "var(--color-bg-neutral-light)",
-    text: "var(--color-fg-neutral-strongest)",
-  },
-  info: {
-    background: "var(--color-bg-info-lighter)",
-    text: "var(--color-fg-info-stronger)",
-  },
-  success: {
-    background: "var(--color-bg-success-lighter)",
-    text: "var(--color-fg-success-stronger)",
-  },
-  warning: {
-    background: "var(--color-bg-warning-lighter)",
-    text: "var(--color-fg-warning-stronger)",
-  },
-  error: {
-    background: "var(--color-bg-error-lighter)",
-    text: "var(--color-fg-error-stronger)",
-  },
-};
-
-const borderRadiusMap = {
-  xsmall: "var(--border-radius-xs)",
-  small: "var(--border-radius-s)",
-  medium: "var(--border-radius-m)",
-  large: "var(--border-radius-m)",
-  xlarge: "var(--border-radius-l)",
-  xxlarge: "var(--border-radius-l)",
-};
-
-const sizeMap = {
-  xsmall: "var(--height-s)",
-  small: "var(--height-m)",
-  medium: "var(--height-xl)",
-  large: "var(--height-xxxl)",
-  xlarge: "72px",
-  xxlarge: "80px",
-};
-
 const fontSizeMap = {
   xsmall: "var(--typography-label-s)",
   small: "var(--typography-label-m)",
