@@ -32,25 +32,35 @@ const MainContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   min-height: 80px;
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-gap-ml);
+    padding: var(--spacing-padding-m) var(--spacing-gap-ml);
+  }
 `;
 
 const BottomContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (min-width: ${responsiveSizes.small}rem) {
-    flex-direction: row;
-  }
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-    align-items: center;
-  }
-  width: 100%;
-  height: var(--height-xl);
   background-color: var(--color-bg-primary-strong);
   padding: var(--spacing-padding-none) var(--spacing-padding-xl);
   box-sizing: border-box;
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    height: var(--height-xl);
+    flex-direction: row;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-gap-ml);
+    padding: var(--spacing-padding-m);
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -60,7 +70,10 @@ const LeftContainer = styled.div`
   max-width: 33.3%;
   height: 100%;
   color: var(--color-fg-neutral-dark);
-  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+  }
 `;
 
 const RightContainer = styled.div`
@@ -69,7 +82,10 @@ const RightContainer = styled.div`
   gap: var(--spacing-gap-xl);
   max-width: 66.66%;
   height: 100%;
-  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+  }
 `;
 
 const Copyright = styled.div`
@@ -117,8 +133,8 @@ const SocialIconContainer = styled.div`
   font-size: var(--height-s);
 
   svg {
-    height: var(--height-s);
-    width: 24px;
+    height: var(--height-xs);
+    width: var(--height-xs);
     fill: var(--color-fg-primary-strong);
   }
 `;
@@ -218,15 +234,17 @@ const DxcFooter = ({
       )}
       <BottomContainer>
         {mode === "default" ? (
-          <BottomLinks>
-            {bottomLinks?.map((link, index) => (
-              <span key={`bottom${index}${link.text}`}>
-                <BottomLink href={link.href} tabIndex={tabIndex}>
-                  {link.text}
-                </BottomLink>
-              </span>
-            ))}
-          </BottomLinks>
+          bottomLinks && (
+            <BottomLinks>
+              {bottomLinks?.map((link, index) => (
+                <span key={`bottom${index}${link.text}`}>
+                  <BottomLink href={link.href} tabIndex={tabIndex}>
+                    {link.text}
+                  </BottomLink>
+                </span>
+              ))}
+            </BottomLinks>
+          )
         ) : (
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
         )}
