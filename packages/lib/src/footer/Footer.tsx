@@ -1,4 +1,4 @@
-import { ElementType, ReactNode, useContext, Children, isValidElement } from "react";
+import { useContext } from "react";
 import styled from "@emotion/styled";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -12,12 +12,19 @@ const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
   mode?: FooterPropsType["mode"];
 }>`
+  background-color: var(--color-bg-neutral-strongest);
   box-sizing: border-box;
   display: flex;
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
+  min-height: ${(props) => (props?.mode === "default" ? "124px" : "40px")};
   width: 100%;
+  gap: var(--spacing-gap-m);
+  padding: ${(props) =>
+    props?.mode === "default"
+      ? "var(--spacing-padding-m) var(--spacing-padding-xl)"
+      : "var(--spacing-padding-s) var(--spacing-padding-xl)"};
   @media (max-width: ${responsiveSizes.medium}rem) {
     padding: var(--spacing-padding-l) var(--spacing-padding-ml);
   }
@@ -26,18 +33,10 @@ const FooterContainer = styled.footer<{
   }
 `;
 
-const MainContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: 80px;
-`;
-
 const BottomContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 
   @media (min-width: ${responsiveSizes.small}rem) {
     flex-direction: row;
@@ -46,33 +45,18 @@ const BottomContainer = styled.div`
     flex-direction: column;
     align-items: center;
   }
-  width: 100%;
-  height: var(--height-xl);
-  background-color: var(--color-bg-primary-strong);
-  padding: var(--spacing-padding-none) var(--spacing-padding-xl);
-  box-sizing: border-box;
+
+  border-top: var(--border-width-s) var(--border-style-default) var(--border-color-primary-medium);
+  margin-top: var(--spacing-gap-m);
 `;
 
-const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-gap-ml);
-  max-width: 33.3%;
-  height: 100%;
-  color: var(--color-fg-neutral-dark);
-  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--spacing-gap-xl);
-  max-width: 66.66%;
-  height: 100%;
-  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+const ChildComponents = styled.div`
+  min-height: var(--height-xxs);
+  color: var(--color-fg-neutral-bright);
 `;
 
 const Copyright = styled.div`
+  margin-top: var(--spacing-padding-xs);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
@@ -112,7 +96,7 @@ const SocialAnchor = styled.a<{ index: number }>`
 const SocialIconContainer = styled.div`
   display: flex;
   align-items: center;
-  color: var(--color-fg-primary-strong);
+  color: var(--color-fg-neutral-bright);
   overflow: hidden;
   font-size: var(--height-s);
 
@@ -126,7 +110,8 @@ const BottomLinks = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
-  color: var(--color-fg-neutral-dark);
+  margin-top: var(--spacing-padding-xs);
+  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
@@ -163,13 +148,10 @@ const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["l
   }
 };
 
-const findChildType = (children: FooterPropsType["children"], childType: ElementType) =>
-  Children.toArray(children).find((child) => isValidElement(child) && child.type === childType);
-
 const DxcFooter = ({
   bottomLinks,
-  copyright,
   children,
+  copyright,
   logo,
   margin,
   mode = "default",
@@ -177,46 +159,36 @@ const DxcFooter = ({
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
+
   const footerLogo = getLogoElement(mode, logo);
-  const leftContentChild = findChildType(children, LeftContent);
-  const rightContentChild = findChildType(children, RightContent);
 
   return (
     <FooterContainer margin={margin} mode={mode}>
+      <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap">
+        <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
+        {mode === "default" && (
+          <DxcFlex gap="var(--spacing-gap-ml)">
+            {socialLinks?.map((link, index) => (
+              <Tooltip label={link.title} key={`social${index}${link.href}`}>
+                <SocialAnchor
+                  href={link.href}
+                  tabIndex={tabIndex}
+                  aria-label={link.title}
+                  key={`social${index}${link.href}`}
+                  index={index}
+                >
+                  <SocialIconContainer>
+                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                  </SocialIconContainer>
+                </SocialAnchor>
+              </Tooltip>
+            ))}
+          </DxcFlex>
+        )}
+      </DxcFlex>
+      <ChildComponents>{children}</ChildComponents>
       {mode === "default" && (
-        <MainContainer>
-          <LeftContainer>
-            <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
-            {leftContentChild}
-          </LeftContainer>
-          {(socialLinks || rightContentChild) && (
-            <RightContainer>
-              {rightContentChild}
-              {socialLinks && (
-                <DxcFlex gap="var(--spacing-gap-ml)">
-                  {socialLinks?.map((link, index) => (
-                    <Tooltip label={link.title} key={`social${index}${link.href}`}>
-                      <SocialAnchor
-                        href={link.href}
-                        tabIndex={tabIndex}
-                        aria-label={link.title}
-                        key={`social${index}${link.href}`}
-                        index={index}
-                      >
-                        <SocialIconContainer>
-                          {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
-                        </SocialIconContainer>
-                      </SocialAnchor>
-                    </Tooltip>
-                  ))}
-                </DxcFlex>
-              )}
-            </RightContainer>
-          )}
-        </MainContainer>
-      )}
-      <BottomContainer>
-        {mode === "default" ? (
+        <BottomContainer>
           <BottomLinks>
             {bottomLinks?.map((link, index) => (
               <span key={`bottom${index}${link.text}`}>
@@ -226,18 +198,11 @@ const DxcFooter = ({
               </span>
             ))}
           </BottomLinks>
-        ) : (
-          <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
-        )}
-        <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
-      </BottomContainer>
+          <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+        </BottomContainer>
+      )}
     </FooterContainer>
   );
 };
 
-const LeftContent = ({ children }: { children: ReactNode }) => <>{children}</>;
-const RightContent = ({ children }: { children: ReactNode }) => <>{children}</>;
-
-DxcFooter.LeftContent = LeftContent;
-DxcFooter.RightContent = RightContent;
 export default DxcFooter;
