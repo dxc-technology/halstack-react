@@ -118,4 +118,15 @@ describe("Avatar component tests", () => {
     rerender(<DxcAvatar label="John Doe" status={{ mode: "info", position: "bottom" }} />);
     expect(getByRole("status")).toHaveStyle("bottom: 0px");
   });
+  test("Avatar renders primaryText and secondaryText correctly", () => {
+    const { rerender, getByText } = render(<DxcAvatar primaryText="Primary Text" secondaryText="Secondary Text" />);
+    expect(getByText("Primary Text")).toBeInTheDocument();
+    expect(getByText("Secondary Text")).toBeInTheDocument();
+    rerender(<DxcAvatar primaryText="Primary Text" />);
+    expect(getByText("Primary Text")).toBeInTheDocument();
+    expect(() => getByText("Secondary Text")).toThrow();
+    rerender(<DxcAvatar secondaryText="Secondary Text" />);
+    expect(() => getByText("Primary Text")).toThrow();
+    expect(getByText("Secondary Text")).toBeInTheDocument();
+  });
 });

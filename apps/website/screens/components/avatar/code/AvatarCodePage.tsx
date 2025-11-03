@@ -93,6 +93,22 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>primaryText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be displayed as label next to the avatar.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>secondaryText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be displayed as sublabel next to the avatar.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>shape</td>
             <td>
               <TableCode>'circle' | 'square'</TableCode>
@@ -128,7 +144,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex attribute. It will only apply when the onClick property is passed.</td>
+            <td>
+              Value of the tabindex attribute. It will only apply when the onClick or linkHref property is passed.
+            </td>
             <td>
               <TableCode>0</TableCode>
             </td>

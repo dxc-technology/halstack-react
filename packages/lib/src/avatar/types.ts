@@ -39,6 +39,14 @@ type Props = {
    */
   onClick?: () => void;
   /**
+   * Text to be displayed as label next to the avatar.
+   */
+  primaryText?: string;
+  /**
+   * Text to be displayed as sublabel next to the avatar.
+   */
+  secondaryText?: string;
+  /**
    * This will determine if the avatar will be rounded square or a circle.
    */
   shape?: Shape;

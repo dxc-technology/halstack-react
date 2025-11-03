@@ -139,6 +139,7 @@ const FileItem = ({
           <FileName id={fileNameId}>{fileName}</FileName>
           <DxcFlex>
             <DxcActionIcon
+              size="xsmall"
               onClick={() => onDelete(fileName)}
               icon="close"
               tabIndex={tabIndex}
