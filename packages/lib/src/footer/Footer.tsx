@@ -66,6 +66,8 @@ const BottomContainer = styled.div`
 
 const LeftContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--spacing-gap-ml);
   height: 100%;
   color: var(--color-fg-neutral-dark);
@@ -74,17 +76,13 @@ const LeftContainer = styled.div`
     max-width: 33.3%;
     padding: var(--spacing-padding-l) var(--spacing-padding-xl);
   }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 `;
 
 const RightContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-gap-xl);
+  flex-wrap: wrap;
   height: 100%;
 
   @media (min-width: ${responsiveSizes.small}rem) {
