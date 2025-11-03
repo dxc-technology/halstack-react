@@ -97,7 +97,11 @@ const DxcAvatar = memo(
         <DxcActionIcon
           ariaLabel={label}
           content={(imageSrc && !error) || initials ? content : undefined}
-          color={color}
+          color={
+            ["primary", "secondary", "tertiary", "success", "info", "neutral", "warning", "error"].includes(color)
+              ? color
+              : "neutral"
+          }
           disabled={disabled}
           icon={icon}
           linkHref={linkHref}
@@ -105,7 +109,7 @@ const DxcAvatar = memo(
           shape={shape}
           size={size}
           status={status}
-          tabIndex={onClick || linkHref ? tabIndex : undefined}
+          tabIndex={tabIndex}
           title={title}
         />
       </LabelWrapper>
