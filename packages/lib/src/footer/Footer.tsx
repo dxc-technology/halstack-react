@@ -18,9 +18,7 @@ const FooterContainer = styled.footer<{
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
   width: 100%;
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    padding: var(--spacing-padding-l) var(--spacing-padding-ml);
-  }
+
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;
   }
@@ -31,13 +29,16 @@ const MainContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 80px;
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    min-height: 80px;
+  }
 
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-gap-ml);
-    padding: var(--spacing-padding-m) var(--spacing-gap-ml);
+    padding: var(--spacing-padding-l) var(--spacing-padding-m);
   }
 `;
 
@@ -57,7 +58,7 @@ const BottomContainer = styled.div`
 
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--spacing-gap-ml);
     padding: var(--spacing-padding-m);
   }
@@ -65,14 +66,18 @@ const BottomContainer = styled.div`
 
 const LeftContainer = styled.div`
   display: flex;
-  flex-direction: column;
   gap: var(--spacing-gap-ml);
-  max-width: 33.3%;
   height: 100%;
   color: var(--color-fg-neutral-dark);
 
   @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 33.3%;
     padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
@@ -80,10 +85,10 @@ const RightContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-gap-xl);
-  max-width: 66.66%;
   height: 100%;
 
   @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 66.66%;
     padding: var(--spacing-padding-l) var(--spacing-padding-xl);
   }
 `;
@@ -139,7 +144,7 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const BottomLinks = styled.div`
+const BottomLinks = styled.div<{ hasContent: boolean }>`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
@@ -151,6 +156,7 @@ const BottomLinks = styled.div`
   @media (max-width: ${responsiveSizes.small}rem) {
     max-width: 100%;
     width: 100%;
+    display: ${(props) => (props.hasContent ? "inline-flex" : "none")};
   }
 
   & > span:not(:first-child):before {
@@ -234,17 +240,15 @@ const DxcFooter = ({
       )}
       <BottomContainer>
         {mode === "default" ? (
-          bottomLinks && (
-            <BottomLinks>
-              {bottomLinks?.map((link, index) => (
-                <span key={`bottom${index}${link.text}`}>
-                  <BottomLink href={link.href} tabIndex={tabIndex}>
-                    {link.text}
-                  </BottomLink>
-                </span>
-              ))}
-            </BottomLinks>
-          )
+          <BottomLinks hasContent={bottomLinks ? true : false}>
+            {bottomLinks?.map((link, index) => (
+              <span key={`bottom${index}${link.text}`}>
+                <BottomLink href={link.href} tabIndex={tabIndex}>
+                  {link.text}
+                </BottomLink>
+              </span>
+            ))}
+          </BottomLinks>
         ) : (
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
         )}

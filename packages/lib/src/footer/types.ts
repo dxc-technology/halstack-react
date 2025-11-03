@@ -29,10 +29,6 @@ type BottomLink = {
 
 type Logo = {
   /**
-   * URL to navigate when the logo is clicked.
-   */
-  href?: string;
-  /**
    * Source of the logo image.
    */
   src: string;

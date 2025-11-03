@@ -1,11 +1,10 @@
-import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import StatusBadge from "@/common/StatusBadge";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
 const logoTypeString = `{
-  href?: string;
   src: string;
   title?: string;
 }`;
@@ -75,7 +74,7 @@ const sections = [
                 <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
               </td>
             </td>
-            <td>Logo to be displayed inside the header.</td>
+            <td>Logo to be displayed inside the footer.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -156,6 +155,23 @@ const sections = [
           </tr>
         </tbody>
       </DxcTable>
+    ),
+  },
+  {
+    title: "DxcFooter.LeftContent",
+    content: (
+      <DxcParagraph>
+        This compound will be used to display the content on the Left Container under the Logo.
+      </DxcParagraph>
+    ),
+  },
+  {
+    title: "DxcFooter.RigthContent",
+    content: (
+      <DxcParagraph>
+        This compound will be used to display the content on the Right Container of the footer, if socialLinks are
+        provided they will always display at the end of the container.
+      </DxcParagraph>
     ),
   },
   {
