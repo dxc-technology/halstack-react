@@ -34,7 +34,7 @@ describe("Footer component tests", () => {
     const { getByText } = render(<DxcFooter copyright="test-copyright" />);
     expect(getByText("test-copyright")).toBeTruthy();
   });
-  test("Footer renders with correct children", () => {
+  test("Footer renders LeftContent correctly", () => {
     // We need to force the offsetWidth value
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
@@ -42,12 +42,29 @@ describe("Footer component tests", () => {
     });
     const { getByText } = render(
       <DxcFooter>
-        <p>footer-child-text</p>
+        <DxcFooter.LeftContent>
+          <p>footer-child-text</p>
+        </DxcFooter.LeftContent>
       </DxcFooter>
     );
     expect(getByText("footer-child-text")).toBeTruthy();
   });
-  test("Footer renders with children in mobile", () => {
+  test("Footer renders RightContent correctly", () => {
+    // We need to force the offsetWidth value
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 1024,
+    });
+    const { getByText } = render(
+      <DxcFooter>
+        <DxcFooter.RightContent>
+          <p>footer-child-text</p>
+        </DxcFooter.RightContent>
+      </DxcFooter>
+    );
+    expect(getByText("footer-child-text")).toBeTruthy();
+  });
+  test("Footer renders LeftContent in mobile", () => {
     // 425 is mobile width
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
@@ -56,7 +73,26 @@ describe("Footer component tests", () => {
 
     const { queryByText } = render(
       <DxcFooter>
-        <p>footer-child-text</p>
+        <DxcFooter.LeftContent>
+          <p>footer-child-text</p>
+        </DxcFooter.LeftContent>
+      </DxcFooter>
+    );
+
+    expect(queryByText("footer-child-text")).toBeTruthy();
+  });
+  test("Footer renders RightContent in mobile", () => {
+    // 425 is mobile width
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 425,
+    });
+
+    const { queryByText } = render(
+      <DxcFooter>
+        <DxcFooter.RightContent>
+          <p>footer-child-text</p>
+        </DxcFooter.RightContent>
       </DxcFooter>
     );
 
@@ -70,7 +106,12 @@ describe("Footer component tests", () => {
 
     const { getAllByRole, getByText } = render(
       <DxcFooter socialLinks={social} bottomLinks={bottom} copyright="test-copyright">
-        <p>footer-child-text</p>
+        <DxcFooter.LeftContent>
+          <p>footer-left-text</p>
+        </DxcFooter.LeftContent>
+        <DxcFooter.RightContent>
+          <p>footer-right-text</p>
+        </DxcFooter.RightContent>
       </DxcFooter>
     );
     const socialIcon = getAllByRole("link")[0];
@@ -79,6 +120,7 @@ describe("Footer component tests", () => {
     const bottomLink = getByText("bottom-link-text");
     expect(bottomLink.getAttribute("href")).toBe("https://www.test.com/bottom");
     expect(getByText("test-copyright")).toBeTruthy();
-    expect(getByText("footer-child-text")).toBeTruthy();
+    expect(getByText("footer-left-text")).toBeTruthy();
+    expect(getByText("footer-right-text")).toBeTruthy();
   });
 });
