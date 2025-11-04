@@ -103,7 +103,7 @@ type Props = {
    * Array of items to be displayed in the Nav menu.
    * Each item can be a single/simple item, a group item or a section.
    */
-  items?: (Item | GroupItem)[] | Section[];
+  navItems?: (Item | GroupItem)[] | Section[];
   /**
    * Object with the properties of the logo placed at the top of the sidenav.
    */

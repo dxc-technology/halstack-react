@@ -51,7 +51,7 @@ describe("DxcSidenav component", () => {
 
   test("renders contextual menu with items", () => {
     const items = [{ label: "Dashboard" }, { label: "Settings" }];
-    const { getByTestId } = render(<DxcSidenav items={items} />);
+    const { getByTestId } = render(<DxcSidenav navItems={items} />);
     expect(getByTestId("mock-menu")).toBeTruthy();
     expect(DxcNavigationTree).toHaveBeenCalledWith(
       expect.objectContaining({

@@ -137,7 +137,7 @@ const SideNav = () => (
     <ExampleContainer>
       <Title title="Default sidenav" theme="light" level={4} />
       <DxcSidenav
-        items={groupItems}
+        navItems={groupItems}
         title="Application Name"
         logo={{
           src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
@@ -167,7 +167,7 @@ const SideNav = () => (
     <ExampleContainer>
       <Title title="Sidenav with group lines" theme="light" level={4} />
       <DxcSidenav
-        items={groupItems}
+        navItems={groupItems}
         title="Application Name"
         logo={{
           src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
@@ -202,7 +202,7 @@ const Collapsed = () => (
   <>
     <ExampleContainer>
       <Title title="Collapsed sidenav" theme="light" level={4} />
-      <DxcSidenav items={groupItems} title="App Name">
+      <DxcSidenav navItems={groupItems} title="App Name">
         {(expanded: boolean) =>
           expanded ? (
             <>
@@ -249,7 +249,7 @@ const Collapsed = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Collapsed sidenav with groups expanded (no lines)" theme="light" level={4} />
-      <DxcSidenav items={groupItems} title="App Name">
+      <DxcSidenav navItems={groupItems} title="App Name">
         {(expanded: boolean) =>
           expanded ? (
             <>
@@ -296,7 +296,7 @@ const Collapsed = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Collapsed sidenav with groups expanded (lines)" theme="light" level={4} />
-      <DxcSidenav items={groupItems} title="App Name" displayGroupLines>
+      <DxcSidenav navItems={groupItems} title="App Name" displayGroupLines>
         {(expanded: boolean) =>
           expanded ? (
             <>
@@ -348,7 +348,7 @@ const Hovered = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Hover state for groups" theme="light" level={4} />
     <DxcSidenav
-      items={groupItems}
+      navItems={groupItems}
       title="Application Name"
       logo={{
         src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
@@ -381,7 +381,7 @@ const SelectedGroup = () => (
   <ExampleContainer>
     <Title title="Default sidenav" theme="light" level={4} />
     <DxcSidenav
-      items={selectedGroupItems}
+      navItems={selectedGroupItems}
       title="Application Name"
       logo={{
         src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",

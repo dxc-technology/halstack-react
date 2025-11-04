@@ -45,7 +45,7 @@ const LogoContainer = styled.div<{
   text-decoration: none;
 `;
 
-const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }: SidenavPropsType): JSX.Element => {
+const DxcSidenav = ({ title, children, navItems, logo, displayGroupLines = false }: SidenavPropsType): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const renderedChildren = typeof children === "function" ? children(isExpanded) : children;
@@ -108,9 +108,9 @@ const DxcSidenav = ({ title, children, items, logo, displayGroupLines = false }:
           left: "medium",
         }}
       /> */}
-      {items && (
+      {navItems && (
         <DxcNavigationTree
-          items={items}
+          items={navItems}
           displayGroupLines={displayGroupLines}
           displayBorder={false}
           responsiveView={!isExpanded}

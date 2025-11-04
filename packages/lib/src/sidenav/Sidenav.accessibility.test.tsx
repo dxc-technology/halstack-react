@@ -49,7 +49,7 @@ describe("Sidenav component accessibility tests", () => {
     ];
     const { container } = render(
       <DxcSidenav
-        items={groupItems}
+        navItems={groupItems}
         title="Application Name"
         logo={{
           src: "https://picsum.photos/id/1022/200/300",
