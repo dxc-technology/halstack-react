@@ -90,7 +90,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       <DxcApplicationLayout
         sidenav={
           <DxcApplicationLayout.SideNav
-            items={sections}
+            navItems={sections}
             //  title={<SidenavLogo />}
           >
             {/* {filteredLinks?.map(({ label, links }) => (
