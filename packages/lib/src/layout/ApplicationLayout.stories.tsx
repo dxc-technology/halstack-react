@@ -48,7 +48,7 @@ const items = [
 const ApplicationLayoutDefaultSidenav = () => (
   <>
     <DxcApplicationLayout
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -64,7 +64,7 @@ const ApplicationLayoutResponsiveSidenav = () => (
   <>
     <DxcApplicationLayout
       sidenav={
-        <DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items}>
+        <DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items}>
           {(expanded: boolean) => (!expanded ? <p>Responsive Content</p> : <></>)}
         </DxcApplicationLayout.SideNav>
       }
@@ -83,7 +83,7 @@ const ApplicationLayoutCustomHeader = () => (
   <>
     <DxcApplicationLayout
       header={<p>Custom Header</p>}
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -99,7 +99,7 @@ const ApplicationLayoutCustomFooter = () => (
   <>
     <DxcApplicationLayout
       footer={<p>Custom Footer</p>}
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
+      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -113,7 +113,7 @@ const ApplicationLayoutCustomFooter = () => (
 
 const Tooltip = () => (
   <DxcApplicationLayout
-    sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" items={items} />}
+    sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
   >
     <DxcApplicationLayout.Main>
       <p>Main Content</p>
