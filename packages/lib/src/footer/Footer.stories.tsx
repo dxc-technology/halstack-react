@@ -8,6 +8,8 @@ import DxcFooter from "./Footer";
 import DxcLink from "../link/Link";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
+import DxcParagraph from "../paragraph/Paragraph";
+import DxcHeading from "../heading/Heading";
 
 export default {
   title: "Footer",
@@ -131,33 +133,108 @@ const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcFooter>
-        <DxcFooter.LeftContent>Holaaa</DxcFooter.LeftContent>
-        <DxcFooter.RightContent>Hellooo</DxcFooter.RightContent>
-      </DxcFooter>
+      <DxcFooter />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
-          Linkedin
-        </DxcLink>
+        <DxcFooter.LeftContent>
+          <DxcParagraph>
+            Application description, version, notes, and contact details can go here for additional information
+          </DxcParagraph>
+          <DxcParagraph>
+            <strong>Contact Us:</strong> email@dxc.com
+          </DxcParagraph>
+        </DxcFooter.LeftContent>
+
+        <DxcFooter.RightContent>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+        </DxcFooter.RightContent>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
-        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
-          Linkedin
-        </DxcLink>
+        <DxcFooter.LeftContent>
+          <DxcParagraph>
+            Application description, version, notes, and contact details can go here for additional information
+          </DxcParagraph>
+          <DxcParagraph>
+            <strong>Contact Us:</strong> email@dxc.com
+          </DxcParagraph>
+        </DxcFooter.LeftContent>
+
+        <DxcFooter.RightContent>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+        </DxcFooter.RightContent>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <DxcLink href="https://www.linkedin.com/company/dxctechnology" inheritColor>
-          Linkedin
-        </DxcLink>
+        <DxcFooter.LeftContent>
+          <DxcParagraph>
+            Application description, version, notes, and contact details can go here for additional information
+          </DxcParagraph>
+          <DxcParagraph>
+            <strong>Contact Us:</strong> email@dxc.com
+          </DxcParagraph>
+        </DxcFooter.LeftContent>
+
+        <DxcFooter.RightContent>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+        </DxcFooter.RightContent>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>

@@ -27,11 +27,14 @@ const FooterContainer = styled.footer<{
 const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: flex;
 
   @media (min-width: ${responsiveSizes.small}rem) {
     min-height: 80px;
+  }
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    flex-wrap: wrap;
   }
 
   @media (max-width: ${responsiveSizes.small}rem) {
@@ -76,18 +79,30 @@ const LeftContainer = styled.div`
     max-width: 33.3%;
     padding: var(--spacing-padding-l) var(--spacing-padding-xl);
   }
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    max-width: 100%;
+  }
 `;
 
 const RightContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-gap-xl);
-  flex-wrap: wrap;
   height: 100%;
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 66.66%;
     padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+  }
+
+  @media (max-width: ${responsiveSizes.large}rem) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    max-width: 100%;
+    justify-content: flex-start;
   }
 `;
 
@@ -120,6 +135,7 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
+  height: fit-content;
   border-radius: var(--border-radius-s);
 
   &:focus {
