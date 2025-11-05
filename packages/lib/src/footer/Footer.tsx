@@ -8,6 +8,7 @@ import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { findChildType, getContrastColor } from "./utils";
+import DxcLink from "../link/Link";
 
 const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
@@ -179,19 +180,6 @@ const BottomLinks = styled.div<{ hasContent: boolean }>`
   }
 `;
 
-const BottomLink = styled.a`
-  text-decoration: none;
-  border-radius: var(--border-radius-xs);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-regular);
-  color: inherit;
-
-  &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-  }
-`;
-
 const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["logo"]) => {
   if (logo) {
     return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
@@ -264,9 +252,9 @@ const DxcFooter = ({
           <BottomLinks hasContent={bottomLinks ? true : false}>
             {bottomLinks?.map((link, index) => (
               <span key={`bottom${index}${link.text}`}>
-                <BottomLink href={link.href} tabIndex={tabIndex}>
+                <DxcLink inheritColor href={link.href} tabIndex={tabIndex} newWindow>
                   {link.text}
-                </BottomLink>
+                </DxcLink>
               </span>
             ))}
           </BottomLinks>
