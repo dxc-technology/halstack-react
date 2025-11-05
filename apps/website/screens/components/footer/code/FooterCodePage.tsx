@@ -43,14 +43,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The center section of the footer. Can be used to render custom content in this area.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>copyright</td>
             <td>
               <TableCode>string</TableCode>
@@ -164,6 +156,38 @@ const sections = [
         This compound will be used to display the content on the Left Container under the Logo.
       </DxcParagraph>
     ),
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
   },
   {
     title: "DxcFooter.RigthContent",
@@ -173,6 +197,38 @@ const sections = [
         provided they will always display at the end of the container.
       </DxcParagraph>
     ),
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
   },
   {
     title: "Examples",

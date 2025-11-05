@@ -82,6 +82,73 @@ const sections = [
     ),
   },
   {
+    title: "Usage",
+    content: (
+      <>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            The footer frame should be docked at the bottom of the page and should not scroll with any of the data
+            within working section of the screen.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>The footer frame should span the entire screen width.</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            The footer frame should display the copyright information at the right margin.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            We recommend uploading either an alternative version or smaller brand image than the used in the header. If
+            the company has an alternate version of the logo, isotype, imagotype or isologo available, we encourage to
+            use it. In the opposite case a smaller version of the main brand image can be used.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
+    title: "Content",
+    content: (
+      <>
+        <DxcParagraph>
+          The footer component has a custom area where many kinds of content can be placed, some of them are
+          contemplated in the following list:
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Plain text or content
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Informational</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Legal / Branding</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Version</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Menu links
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Global navigation</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Sitemap</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Useful links or resources</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Forms
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Select language</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Login / Sign-up</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Contact information: email address / Subscribe</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Actions
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Ask for help / Support</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Business related actions / Call to action</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Search</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     content: (
       <>
