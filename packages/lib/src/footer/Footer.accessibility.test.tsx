@@ -91,9 +91,16 @@ describe("Footer component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="default">
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
+        <DxcFooter.LeftContent>
+          <div>
+            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+          </div>
+        </DxcFooter.LeftContent>
+        <DxcFooter.RightContent>
+          <div>
+            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+          </div>
+        </DxcFooter.RightContent>
       </DxcFooter>
     );
     const results = await axe(container, disabledRules);
@@ -101,11 +108,7 @@ describe("Footer component accessibility tests", () => {
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="reduced">
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="reduced" />
     );
     const results = await axe(container, disabledRules);
     expect(results.violations).toHaveLength(0);
