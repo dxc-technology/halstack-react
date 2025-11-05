@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import DxcFooter from "./Footer";
+import { getContrastColor } from "./utils";
 
 const social = [
   {
@@ -122,5 +123,21 @@ describe("Footer component tests", () => {
     expect(getByText("test-copyright")).toBeTruthy();
     expect(getByText("footer-left-text")).toBeTruthy();
     expect(getByText("footer-right-text")).toBeTruthy();
+  });
+});
+
+describe("getContrastColor function", () => {
+  test("should return black color for light backgrounds", () => {
+    expect(getContrastColor("#FFFFFF")).toBe("#000000");
+    expect(getContrastColor("#F5F5F5")).toBe("#000000");
+    expect(getContrastColor("rgb(255, 255, 255)")).toBe("#000000");
+    expect(getContrastColor("rgb(245, 245, 245)")).toBe("#000000");
+  });
+
+  test("should return white color for dark backgrounds", () => {
+    expect(getContrastColor("#000000")).toBe("#FFFFFF");
+    expect(getContrastColor("#333333")).toBe("#FFFFFF");
+    expect(getContrastColor("rgb(0, 0, 0)")).toBe("#FFFFFF");
+    expect(getContrastColor("rgb(51, 51, 51)")).toBe("#FFFFFF");
   });
 });

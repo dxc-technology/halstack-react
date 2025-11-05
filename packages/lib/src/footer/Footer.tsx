@@ -1,4 +1,4 @@
-import { ElementType, ReactNode, useContext, Children, isValidElement } from "react";
+import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -7,6 +7,7 @@ import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
+import { findChildType, getContrastColor } from "./utils";
 
 const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
@@ -45,12 +46,13 @@ const MainContainer = styled.div`
   }
 `;
 
-const BottomContainer = styled.div`
+const BottomContainer = styled.div<{ textColor: string }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-primary-strong);
+  color: ${({ textColor }) => textColor};
   padding: var(--spacing-padding-none) var(--spacing-padding-xl);
   box-sizing: border-box;
 
@@ -110,7 +112,6 @@ const Copyright = styled.div`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
-  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 40%;
@@ -162,7 +163,6 @@ const BottomLinks = styled.div<{ hasContent: boolean }>`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
-  color: var(--color-fg-neutral-bright);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
@@ -200,9 +200,6 @@ const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["l
   }
 };
 
-const findChildType = (children: FooterPropsType["children"], childType: ElementType) =>
-  Children.toArray(children).find((child) => isValidElement(child) && child.type === childType);
-
 const DxcFooter = ({
   bottomLinks,
   copyright,
@@ -217,6 +214,16 @@ const DxcFooter = ({
   const footerLogo = getLogoElement(mode, logo);
   const leftContentChild = findChildType(children, LeftContent);
   const rightContentChild = findChildType(children, RightContent);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const [textColor, setTextColor] = useState("#fff");
+
+  useEffect(() => {
+    if (ref.current) {
+      const bg = window.getComputedStyle(ref.current).getPropertyValue("background-color").trim();
+      setTextColor(getContrastColor(bg));
+    }
+  }, []);
 
   return (
     <FooterContainer margin={margin} mode={mode}>
@@ -252,7 +259,7 @@ const DxcFooter = ({
           )}
         </MainContainer>
       )}
-      <BottomContainer>
+      <BottomContainer ref={ref} textColor={textColor}>
         {mode === "default" ? (
           <BottomLinks hasContent={bottomLinks ? true : false}>
             {bottomLinks?.map((link, index) => (
