@@ -136,7 +136,7 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
   width: auto;
 `;
 
-const SocialAnchor = styled.a<{ index: number }>`
+const SocialAnchor = styled.a`
   height: fit-content;
   border-radius: var(--border-radius-s);
 
@@ -238,7 +238,6 @@ const DxcFooter = ({
                         tabIndex={tabIndex}
                         aria-label={link.title}
                         key={`social${index}${link.href}`}
-                        index={index}
                       >
                         <SocialIconContainer>
                           {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}

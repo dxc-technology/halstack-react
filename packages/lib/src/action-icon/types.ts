@@ -42,6 +42,10 @@ type CommonProps = {
    */
   linkHref?: string;
   /**
+   * If true, the page is opened in a new browser tab.
+   */
+  newWindow?: boolean;
+  /**
    * This function will be called when the user clicks the Action Icon. Makes it behave as a button.
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;

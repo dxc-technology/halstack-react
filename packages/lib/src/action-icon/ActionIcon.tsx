@@ -29,6 +29,7 @@ const ActionIconContainer = styled.div<
   height: ${({ size }) => getSize(size)};
   aspect-ratio: 1 / 1;
   text-decoration: none;
+  color: inherit;
 
   /* Reset button default styles when rendered as button */
   &[type="button"] {
@@ -49,14 +50,14 @@ const ActionIconContainer = styled.div<
       &:active > div:first-child > div:first-child {
         display: block;
       }
-      &:focus:enabled > div:first-child,
-      &:active:enabled > div:first-child {
+      &:focus > div:first-child,
+      &:active > div:first-child {
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
         outline-offset: -2px;
       }
-      &:focus-visible:enabled {
+      &:focus-visible {
         outline: none;
       }
     `}
@@ -132,6 +133,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
       disabled = false,
       icon,
       linkHref,
+      newWindow,
       onClick,
       shape = "square",
       size = "medium",
@@ -152,6 +154,7 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           as={linkHref ? "a" : onClick ? "button" : "div"}
           type={onClick && !linkHref ? "button" : undefined}
           href={!disabled ? linkHref : undefined}
+          target={linkHref ? (newWindow ? "_blank" : "_self") : undefined}
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
           ref={ref}
