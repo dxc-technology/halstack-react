@@ -102,7 +102,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
 
   const filteredSections = useMemo(() => {
     const sections = mapLinksToGroupItems(LinksSections);
-    console.log("SECTIONS", sections);
     return filterSections(sections, filter);
   }, [filter]);
 
