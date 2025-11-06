@@ -28,8 +28,8 @@ describe("Footer component tests", () => {
   });
   test("Footer renders with bottom links", () => {
     const { getByText } = render(<DxcFooter bottomLinks={bottom} />);
-    const link = getByText("bottom-link-text");
-    expect(link.getAttribute("href")).toBe("https://www.test.com/bottom");
+    const link = getByText("bottom-link-text").closest("a");
+    expect(link?.getAttribute("href")).toBe("https://www.test.com/bottom");
   });
   test("Footer renders with copyright text", () => {
     const { getByText } = render(<DxcFooter copyright="test-copyright" />);
@@ -118,8 +118,8 @@ describe("Footer component tests", () => {
     const socialIcon = getAllByRole("link")[0];
     expect(socialIcon?.getAttribute("href")).toBe("https://www.test.com/social");
     expect(socialIcon?.getAttribute("aria-label")).toBe("test");
-    const bottomLink = getByText("bottom-link-text");
-    expect(bottomLink.getAttribute("href")).toBe("https://www.test.com/bottom");
+    const bottomLink = getByText("bottom-link-text").closest("a");
+    expect(bottomLink?.getAttribute("href")).toBe("https://www.test.com/bottom");
     expect(getByText("test-copyright")).toBeTruthy();
     expect(getByText("footer-left-text")).toBeTruthy();
     expect(getByText("footer-right-text")).toBeTruthy();

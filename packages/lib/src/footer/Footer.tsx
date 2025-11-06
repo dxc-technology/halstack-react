@@ -160,7 +160,7 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const BottomLinks = styled.div<{ hasContent: boolean }>`
+const BottomLinks = styled.div<{ hasContent: boolean; textColor: string }>`
   display: inline-flex;
   flex-wrap: wrap;
   align-self: center;
@@ -177,6 +177,11 @@ const BottomLinks = styled.div<{ hasContent: boolean }>`
   & > span:not(:first-child):before {
     content: "·";
     padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  }
+
+  & > span > a > span:hover,
+  & > span > a > span:active {
+    color: ${({ textColor }) => textColor};
   }
 `;
 
@@ -249,7 +254,7 @@ const DxcFooter = ({
       )}
       <BottomContainer ref={ref} textColor={textColor}>
         {mode === "default" ? (
-          <BottomLinks hasContent={bottomLinks ? true : false}>
+          <BottomLinks hasContent={bottomLinks ? true : false} textColor={textColor}>
             {bottomLinks?.map((link, index) => (
               <span key={`bottom${index}${link.text}`}>
                 <DxcLink inheritColor href={link.href} tabIndex={tabIndex} newWindow>

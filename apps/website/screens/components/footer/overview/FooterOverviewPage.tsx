@@ -61,9 +61,10 @@ const sections = [
             clean, uncluttered appearance suitable for most standard applications.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>With Navigation:</strong> includes additional navigational sections, enabling users to quickly
-            access key areas of the site. This layout is ideal for content-heavy pages or enterprise-level applications
-            requiring enhanced footer functionality.
+            <strong>With Navigation:</strong> includes several additional content sections, enabling users to
+            inmediately see various forms of helpful content such form elements, buttons, and more navigational links.
+            This layout is ideal for content-heavy pages or enterprise-level applications requiring enhanced footer
+            functionality.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Small:</strong> offers a compact version of the footer, typically limited to branding and minimal
@@ -78,73 +79,6 @@ const sections = [
           Choosing between these variants helps tailor the footer to a wide range of contexts, whether prioritizing
           simplicity, providing extended navigation, or optimizing for space efficiency.
         </DxcParagraph>
-      </>
-    ),
-  },
-  {
-    title: "Usage",
-    content: (
-      <>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            The footer frame should be docked at the bottom of the page and should not scroll with any of the data
-            within working section of the screen.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>The footer frame should span the entire screen width.</DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            The footer frame should display the copyright information at the right margin.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            We recommend uploading either an alternative version or smaller brand image than the used in the header. If
-            the company has an alternate version of the logo, isotype, imagotype or isologo available, we encourage to
-            use it. In the opposite case a smaller version of the main brand image can be used.
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-      </>
-    ),
-  },
-  {
-    title: "Content",
-    content: (
-      <>
-        <DxcParagraph>
-          The footer component has a custom area where many kinds of content can be placed, some of them are
-          contemplated in the following list:
-        </DxcParagraph>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            Plain text or content
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Informational</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Legal / Branding</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Version</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Menu links
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Global navigation</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Sitemap</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Useful links or resources</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Forms
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Select language</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Login / Sign-up</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Contact information: email address / Subscribe</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Actions
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Ask for help / Support</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Business related actions / Call to action</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Search</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
       </>
     ),
   },
