@@ -24,23 +24,23 @@ const ApplicationLayout = () => (
 
 const items = [
   {
-    label: "SideNav Content",
+    label: "Sidenav Content",
     icon: "tab",
   },
   {
-    label: "SideNav Content",
+    label: "Sidenav Content",
     icon: "tab",
   },
   {
-    label: "SideNav Content",
+    label: "Sidenav Content",
     icon: "tab",
   },
   {
-    label: "SideNav Content",
+    label: "Sidenav Content",
     icon: "tab",
   },
   {
-    label: "SideNav Content",
+    label: "Sidenav Content",
     icon: "tab",
   },
 ];
@@ -48,7 +48,12 @@ const items = [
 const ApplicationLayoutDefaultSidenav = () => (
   <>
     <DxcApplicationLayout
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
+      sidenav={
+        <DxcApplicationLayout.Sidenav
+          branding={{ appTitle: "Application layout with push sidenav" }}
+          navItems={items}
+        />
+      }
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -64,9 +69,11 @@ const ApplicationLayoutResponsiveSidenav = () => (
   <>
     <DxcApplicationLayout
       sidenav={
-        <DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items}>
-          {(expanded: boolean) => (!expanded ? <p>Responsive Content</p> : <></>)}
-        </DxcApplicationLayout.SideNav>
+        <DxcApplicationLayout.Sidenav
+          branding={{ appTitle: "Application layout with push sidenav" }}
+          navItems={items}
+          bottomContent={(expanded: boolean) => (!expanded ? <p>Responsive Content</p> : <></>)}
+        />
       }
     >
       <DxcApplicationLayout.Main>
@@ -83,7 +90,12 @@ const ApplicationLayoutCustomHeader = () => (
   <>
     <DxcApplicationLayout
       header={<p>Custom Header</p>}
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
+      sidenav={
+        <DxcApplicationLayout.Sidenav
+          branding={{ appTitle: "Application layout with push sidenav" }}
+          navItems={items}
+        />
+      }
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -99,7 +111,12 @@ const ApplicationLayoutCustomFooter = () => (
   <>
     <DxcApplicationLayout
       footer={<p>Custom Footer</p>}
-      sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
+      sidenav={
+        <DxcApplicationLayout.Sidenav
+          branding={{ appTitle: "Application layout with push sidenav" }}
+          navItems={items}
+        />
+      }
     >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -113,7 +130,9 @@ const ApplicationLayoutCustomFooter = () => (
 
 const Tooltip = () => (
   <DxcApplicationLayout
-    sidenav={<DxcApplicationLayout.SideNav title="Application layout with push sidenav" navItems={items} />}
+    sidenav={
+      <DxcApplicationLayout.Sidenav branding={{ appTitle: "Application layout with push sidenav" }} navItems={items} />
+    }
   >
     <DxcApplicationLayout.Main>
       <p>Main Content</p>

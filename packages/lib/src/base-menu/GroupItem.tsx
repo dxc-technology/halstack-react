@@ -15,6 +15,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const contextValue = useContext(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, responsiveView } = useGroupItem(items, contextValue);
 
+  // TODO: SET A FIXED WIDTH TO PREVENT MOVING CONTENT WHEN EXPANDING/COLLAPSING IN RESPONSIVEVIEW
   return responsiveView ? (
     <>
       <Popover.Root open={isOpen}>

@@ -10,6 +10,7 @@ import DxcAvatar from "../avatar/Avatar";
 import { userEvent, within } from "storybook/internal/test";
 import disabledRules from "../../test/accessibility/rules/specific/sidenav/disabledRules";
 import preview from "../../.storybook/preview";
+import { useState } from "react";
 
 export default {
   title: "Sidenav",
@@ -132,248 +133,287 @@ const selectedGroupItems = [
   },
 ];
 
-const SideNav = () => (
+const Sidenav = () => (
   <>
     <ExampleContainer>
       <Title title="Default sidenav" theme="light" level={4} />
       <DxcSidenav
         navItems={groupItems}
-        title="Application Name"
-        logo={{
-          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-          alt: "TEST",
+        branding={{
+          appTitle: "Application Name",
+          logo: {
+            src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
+            alt: "TEST",
+          },
         }}
-      >
-        <DetailedAvatar />
-        <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-          <DxcButton
-            icon="group"
-            iconPosition="after"
-            title="Manage clients"
-            label="Manage clients"
-            mode="secondary"
-            size={{ height: "medium", width: "fillParent" }}
-          />
-          <DxcButton
-            icon="note_add"
-            iconPosition="after"
-            title="Start new application"
-            label="Start new application"
-            size={{ height: "medium", width: "fillParent" }}
-          />
-        </DxcFlex>
-      </DxcSidenav>
+        bottomContent={
+          <>
+            <DetailedAvatar />
+            <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+              <DxcButton
+                icon="group"
+                iconPosition="after"
+                title="Manage clients"
+                label="Manage clients"
+                mode="secondary"
+                size={{ height: "medium", width: "fillParent" }}
+              />
+              <DxcButton
+                icon="note_add"
+                iconPosition="after"
+                title="Start new application"
+                label="Start new application"
+                size={{ height: "medium", width: "fillParent" }}
+              />
+            </DxcFlex>
+          </>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Sidenav with group lines" theme="light" level={4} />
       <DxcSidenav
         navItems={groupItems}
-        title="Application Name"
-        logo={{
-          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-          alt: "TEST",
+        branding={{
+          appTitle: "Application Name",
+          logo: {
+            src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
+            alt: "TEST",
+          },
         }}
+        bottomContent={
+          <>
+            <DetailedAvatar />
+            <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+              <DxcButton
+                icon="group"
+                iconPosition="after"
+                title="Manage clients"
+                label="Manage clients"
+                mode="secondary"
+                size={{ height: "medium", width: "fillParent" }}
+              />
+              <DxcButton
+                icon="note_add"
+                iconPosition="after"
+                title="Start new application"
+                label="Start new application"
+                size={{ height: "medium", width: "fillParent" }}
+              />
+            </DxcFlex>
+          </>
+        }
         displayGroupLines
-      >
-        <DetailedAvatar />
-        <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-          <DxcButton
-            icon="group"
-            iconPosition="after"
-            title="Manage clients"
-            label="Manage clients"
-            mode="secondary"
-            size={{ height: "medium", width: "fillParent" }}
-          />
-          <DxcButton
-            icon="note_add"
-            iconPosition="after"
-            title="Start new application"
-            label="Start new application"
-            size={{ height: "medium", width: "fillParent" }}
-          />
-        </DxcFlex>
-      </DxcSidenav>
+      />
     </ExampleContainer>
   </>
 );
 
-const Collapsed = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Collapsed sidenav" theme="light" level={4} />
-      <DxcSidenav navItems={groupItems} title="App Name">
-        {(expanded: boolean) =>
-          expanded ? (
-            <>
-              <DetailedAvatar />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  label="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  iconPosition="after"
-                  title="Start new application"
-                  label="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          ) : (
-            <>
-              <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  title="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          )
-        }
-      </DxcSidenav>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Collapsed sidenav with groups expanded (no lines)" theme="light" level={4} />
-      <DxcSidenav navItems={groupItems} title="App Name">
-        {(expanded: boolean) =>
-          expanded ? (
-            <>
-              <DetailedAvatar />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  label="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  iconPosition="after"
-                  title="Start new application"
-                  label="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          ) : (
-            <>
-              <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  title="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          )
-        }
-      </DxcSidenav>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Collapsed sidenav with groups expanded (lines)" theme="light" level={4} />
-      <DxcSidenav navItems={groupItems} title="App Name" displayGroupLines>
-        {(expanded: boolean) =>
-          expanded ? (
-            <>
-              <DetailedAvatar />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  label="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  iconPosition="after"
-                  title="Start new application"
-                  label="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          ) : (
-            <>
-              <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
-              <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                <DxcButton
-                  icon="group"
-                  iconPosition="after"
-                  title="Manage clients"
-                  mode="secondary"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-                <DxcButton
-                  icon="note_add"
-                  title="Start new application"
-                  size={{ height: "medium", width: "fillParent" }}
-                />
-              </DxcFlex>
-            </>
-          )
-        }
-      </DxcSidenav>
-    </ExampleContainer>
-  </>
-);
+const Collapsed = () => {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpandedGroupsNoLines, setIsExpandedGroupsNoLines] = useState(true);
+  const [isExpandedGroups, setIsExpandedGroups] = useState(true);
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Collapsed sidenav" theme="light" level={4} />
+        <DxcSidenav
+          navItems={groupItems}
+          branding={{ appTitle: "App Name" }}
+          bottomContent={
+            isExpanded ? (
+              <>
+                <DetailedAvatar />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    label="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    iconPosition="after"
+                    title="Start new application"
+                    label="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            ) : (
+              <>
+                <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    title="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            )
+          }
+          expanded={isExpanded}
+          onExpandedChange={() => {
+            setIsExpanded((previouslyExpanded) => !previouslyExpanded);
+          }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Collapsed sidenav with groups expanded (no lines)" theme="light" level={4} />
+        <DxcSidenav
+          navItems={groupItems}
+          branding={{ appTitle: "App Name" }}
+          bottomContent={
+            isExpandedGroupsNoLines ? (
+              <>
+                <DetailedAvatar />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    label="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    iconPosition="after"
+                    title="Start new application"
+                    label="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            ) : (
+              <>
+                <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    title="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            )
+          }
+          expanded={isExpandedGroupsNoLines}
+          onExpandedChange={() => {
+            setIsExpandedGroupsNoLines((previouslyExpanded) => !previouslyExpanded);
+          }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Collapsed sidenav with groups expanded (lines)" theme="light" level={4} />
+        <DxcSidenav
+          navItems={groupItems}
+          branding={{ appTitle: "App Name" }}
+          bottomContent={
+            isExpandedGroups ? (
+              <>
+                <DetailedAvatar />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    label="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    iconPosition="after"
+                    title="Start new application"
+                    label="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            ) : (
+              <>
+                <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
+                <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                  <DxcButton
+                    icon="group"
+                    iconPosition="after"
+                    title="Manage clients"
+                    mode="secondary"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                  <DxcButton
+                    icon="note_add"
+                    title="Start new application"
+                    size={{ height: "medium", width: "fillParent" }}
+                  />
+                </DxcFlex>
+              </>
+            )
+          }
+          expanded={isExpandedGroups}
+          onExpandedChange={() => {
+            setIsExpandedGroups((previouslyExpanded) => !previouslyExpanded);
+          }}
+          displayGroupLines
+        />
+      </ExampleContainer>
+    </>
+  );
+};
 
 const Hovered = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Hover state for groups" theme="light" level={4} />
     <DxcSidenav
       navItems={groupItems}
-      title="Application Name"
-      logo={{
-        src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-        alt: "TEST",
+      branding={{
+        appTitle: "Application Name",
+        logo: {
+          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
+          alt: "TEST",
+        },
       }}
-    >
-      <DetailedAvatar />
-      <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-        <DxcButton
-          icon="group"
-          iconPosition="after"
-          title="Manage clients"
-          label="Manage clients"
-          mode="secondary"
-          size={{ height: "medium", width: "fillParent" }}
-        />
-        <DxcButton
-          icon="note_add"
-          iconPosition="after"
-          title="Start new application"
-          label="Start new application"
-          size={{ height: "medium", width: "fillParent" }}
-        />
-      </DxcFlex>
-    </DxcSidenav>
+      bottomContent={
+        <>
+          <DetailedAvatar />
+          <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+            <DxcButton
+              icon="group"
+              iconPosition="after"
+              title="Manage clients"
+              label="Manage clients"
+              mode="secondary"
+              size={{ height: "medium", width: "fillParent" }}
+            />
+            <DxcButton
+              icon="note_add"
+              iconPosition="after"
+              title="Start new application"
+              label="Start new application"
+              size={{ height: "medium", width: "fillParent" }}
+            />
+          </DxcFlex>
+        </>
+      }
+    />
   </ExampleContainer>
 );
 
@@ -382,39 +422,42 @@ const SelectedGroup = () => (
     <Title title="Default sidenav" theme="light" level={4} />
     <DxcSidenav
       navItems={selectedGroupItems}
-      title="Application Name"
-      logo={{
-        src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-        alt: "TEST",
+      branding={{
+        appTitle: "Application Name",
+        logo: {
+          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
+          alt: "TEST",
+        },
       }}
-    >
-      <DetailedAvatar />
-      <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-        <DxcButton
-          icon="group"
-          iconPosition="after"
-          title="Manage clients"
-          label="Manage clients"
-          mode="secondary"
-          size={{ height: "medium", width: "fillParent" }}
-        />
-        <DxcButton
-          icon="note_add"
-          iconPosition="after"
-          title="Start new application"
-          label="Start new application"
-          size={{ height: "medium", width: "fillParent" }}
-        />
-      </DxcFlex>
-    </DxcSidenav>
+      bottomContent={
+        <>
+          <DetailedAvatar />
+          <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+            <DxcButton
+              icon="group"
+              iconPosition="after"
+              title="Manage clients"
+              label="Manage clients"
+              mode="secondary"
+              size={{ height: "medium", width: "fillParent" }}
+            />
+            <DxcButton
+              icon="note_add"
+              iconPosition="after"
+              title="Start new application"
+              label="Start new application"
+              size={{ height: "medium", width: "fillParent" }}
+            />
+          </DxcFlex>
+        </>
+      }
+    />
   </ExampleContainer>
 );
 type Story = StoryObj<typeof DxcSidenav>;
 
-// TODO: ADD TEST AND STORIES FOR LINK/RENDERITEM PROPS
-
 export const Chromatic: Story = {
-  render: SideNav,
+  render: Sidenav,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const menuItem1 = (await canvas.findAllByRole("button"))[10];
@@ -428,7 +471,7 @@ export const Chromatic: Story = {
   },
 };
 
-export const CollapsedSideNav: Story = {
+export const CollapsedSidenav: Story = {
   render: Collapsed,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -455,7 +498,7 @@ export const CollapsedSideNav: Story = {
   },
 };
 
-export const HoveredSideNav: Story = {
+export const HoveredSidenav: Story = {
   render: Hovered,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -471,6 +514,6 @@ export const HoveredSideNav: Story = {
   },
 };
 
-export const SelectedGroupSideNav: Story = {
+export const SelectedGroupSidenav: Story = {
   render: SelectedGroup,
 };

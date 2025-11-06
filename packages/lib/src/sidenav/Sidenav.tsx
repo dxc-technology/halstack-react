@@ -5,15 +5,14 @@ import SidenavPropsType, { Logo } from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { ReactElement, useState } from "react";
-import DxcTextInput from "../text-input/TextInput";
+import { useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* TODO: ASK FINAL SIZES AND IMPLEMENT RESIZABLE SIDENAV */
+  /* TODO: IMPLEMENT RESIZABLE SIDENAV */
   min-width: ${({ expanded }) => (expanded ? "240px" : "56px")};
   max-width: ${({ expanded }) => (expanded ? "320px" : "56px")};
   height: 100%;
@@ -45,69 +44,69 @@ const LogoContainer = styled.div<{
   text-decoration: none;
 `;
 
-const DxcSidenav = ({ title, children, navItems, logo, displayGroupLines = false }: SidenavPropsType): JSX.Element => {
-  const [isExpanded, setIsExpanded] = useState(true);
+const DxcSidenav = ({
+  topContent,
+  bottomContent,
+  navItems,
+  branding,
+  displayGroupLines = false,
+  expanded,
+  defaultExpanded = true,
+  onExpandedChange,
+}: SidenavPropsType): JSX.Element => {
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const isControlled = expanded !== undefined;
+  const isExpanded = isControlled ? !!expanded : internalExpanded;
 
-  const renderedChildren = typeof children === "function" ? children(isExpanded) : children;
+  const handleToggle = () => {
+    const nextState = !isExpanded;
+    if (!isControlled) setInternalExpanded(nextState);
+    onExpandedChange?.(nextState);
+  };
 
-  function isLogoObject(logo: Logo | ReactElement): logo is Logo {
-    return (logo as Logo).src !== undefined;
-  }
+  const isBrandingObject = (branding: SidenavPropsType["branding"]): branding is { logo?: Logo; appTitle?: string } => {
+    return (
+      (typeof branding === "object" && branding !== null && "logo" in branding) ||
+      (!!branding && "appTitle" in branding)
+    );
+  };
 
   return (
     <SidenavContainer expanded={isExpanded}>
-      <DxcFlex justifyContent={isExpanded ? "space-between" : "center"}>
+      <DxcFlex
+        justifyContent={isExpanded ? "normal" : "center"}
+        gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
+        direction={isExpanded ? "row" : "column-reverse"}
+        alignItems={isExpanded ? "normal" : "center"}
+      >
         <DxcButton
           icon={`left_panel_${isExpanded ? "close" : "open"}`}
           size={{ height: "medium" }}
           mode="tertiary"
           title={isExpanded ? "Collapse" : "Expand"}
-          onClick={() => {
-            setIsExpanded((previousExpanded) => !previousExpanded);
-          }}
+          onClick={handleToggle}
         />
-        {isExpanded && (
+        {isBrandingObject(branding) ? (
           <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
-            {/* TODO: ADD GORGORITO TO COVER CASES WITH NO ICON? */}
-            {logo && (
-              <>
-                {isLogoObject(logo) ? (
-                  <LogoContainer
-                    onClick={logo.onClick}
-                    hasAction={!!logo.onClick || !!logo.href}
-                    role={logo.onClick ? "button" : logo.href ? "link" : "presentation"}
-                    as={logo.href ? "a" : undefined}
-                    href={logo.href}
-                    aria-label={(logo.onClick || logo.href) && (title || "Avatar")}
-                  >
-                    <DxcImage alt={logo.alt ?? ""} src={logo.src} height="100%" width="100%" />
-                  </LogoContainer>
-                ) : (
-                  logo
-                )}
-              </>
+            {branding.logo && (
+              <LogoContainer
+                onClick={branding.logo.onClick}
+                hasAction={!!branding.logo.onClick || !!branding.logo.href}
+                role={branding.logo.onClick ? "button" : branding.logo.href ? "link" : "presentation"}
+                as={branding.logo.href ? "a" : undefined}
+                href={branding.logo.href}
+                aria-label={(branding.logo.onClick || branding.logo.href) && (branding.appTitle || "Avatar")}
+              >
+                <DxcImage alt={branding.logo.alt ?? ""} src={branding.logo.src} height="100%" width="100%" />
+              </LogoContainer>
             )}
-            <SidenavTitle>{title}</SidenavTitle>
+            <SidenavTitle>{branding.appTitle}</SidenavTitle>
           </DxcFlex>
+        ) : (
+          branding
         )}
       </DxcFlex>
-      {/* TODO: REPLACE WITH THE ACTUAL SEARCHBAR */}
-      <DxcTextInput placeholder="Search docs" size="small" clearable />
-      {/* <DxcTextInput
-        placeholder="Search docs"
-        value={filter}
-        onChange={({ value }: { value: string }) => {
-          setFilter(value);
-        }}
-        size="fillParent"
-        clearable
-        margin={{
-          top: "large",
-          bottom: "large",
-          right: "medium",
-          left: "medium",
-        }}
-      /> */}
+      {topContent}
       {navItems && (
         <DxcNavigationTree
           items={navItems}
@@ -118,7 +117,7 @@ const DxcSidenav = ({ title, children, navItems, logo, displayGroupLines = false
         />
       )}
       <DxcDivider color="lightGrey" />
-      {renderedChildren}
+      {bottomContent}
     </SidenavContainer>
   );
 };

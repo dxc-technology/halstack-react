@@ -111,9 +111,11 @@ const ItemAction = memo(
                 <Icon>{collapseIcon}</Icon>
               </Control>
             )}
-            {icon && (
+            {(icon || responsiveView) && (
               <TooltipWrapper condition={responsiveView} label={label}>
-                <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+                <Icon>
+                  {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}
+                </Icon>
               </TooltipWrapper>
             )}
             {!responsiveView && (

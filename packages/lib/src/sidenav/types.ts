@@ -1,72 +1,5 @@
-import { MouseEvent, ReactNode, ReactElement } from "react";
+import { MouseEvent, ReactElement } from "react";
 import { SVG } from "../common/utils";
-
-export type SidenavTitlePropsType = {
-  /**
-   * The area inside the sidenav title. This area can be used to render custom content.
-   */
-  children: ReactNode;
-};
-
-export type SidenavSectionPropsType = {
-  /**
-   * The area inside the sidenav section. This area can be used to render sidenav groups, links and custom content.
-   */
-  children: ReactNode;
-};
-
-export type SidenavGroupPropsType = {
-  /**
-   * The title of the sidenav group.
-   */
-  title?: string;
-  /**
-   * If true, the sidenav group will be a button that will allow you to collapse the links contained within it.
-   * In addition, if it's collapsed and contains the currently selected link, the group title will also be marked as selected.
-   */
-  collapsable?: boolean;
-  /**
-   * Material Symbol name or SVG icon to be displayed next to the title of the group.
-   */
-  icon?: string | SVG;
-  /**
-   * The area inside the sidenav group. This area can be used to render sidenav links.
-   */
-  children: ReactNode;
-};
-
-export type SidenavLinkPropsType = {
-  /**
-   * Page to be opened when the user clicks on the link.
-   */
-  href?: string;
-  /**
-   * If true, the page is opened in a new browser tab.
-   */
-  newWindow?: boolean;
-  /**
-   * The Material symbol or SVG element used as the icon that will be placed to the left of the link text.
-   */
-  icon?: string | SVG;
-  /**
-   * If true, the link will be marked as selected. Moreover, in that same case,
-   * if it is contained within a collapsed group, and consequently, the currently selected link is not visible,
-   * the group title will appear as selected too.
-   */
-  selected?: boolean;
-  /**
-   * This function will be called when the user clicks the link and the event will be passed to this function.
-   */
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
-  /**
-   * The area inside the sidenav link.
-   */
-  children: ReactNode;
-  /**
-   * Value of the tabindex.
-   */
-  tabIndex?: number;
-};
 
 export type Logo = {
   /**
@@ -76,7 +9,7 @@ export type Logo = {
   /**
    * Alternative text for the logo image.
    */
-  alt?: string;
+  alt: string;
   /**
    *  URL to navigate to when the logo is clicked. If not provided, the logo will not be clickable.
    */
@@ -91,23 +24,37 @@ type Section = { items: (Item | GroupItem)[]; title?: string };
 
 type Props = {
   /**
-   * The title of the sidenav that will be placed under the logo.
+   * If true, the sidenav is expanded.
+   * If undefined the component will be uncontrolled and the value will be managed internally by the component.
    */
-  title?: string;
+  expanded?: boolean;
   /**
-   * The additional content rendered inside the sidenav.
+   * Initial state of the expansion of the sidenav, only when it is uncontrolled.
+   */
+  defaultExpanded?: boolean;
+  /**
+   * Function called when the expansion state of the sidenav changes.
+   */
+  onExpandedChange?: (value: boolean) => void;
+  /**
+   * The additional content rendered in the upper part of the sidenav, under the branding.
    * It can also be a function that receives the expansion state to render different content based on it.
    */
-  children?: React.ReactNode | ((expanded: boolean) => React.ReactNode);
+  topContent?: ReactElement;
   /**
-   * Array of items to be displayed in the Nav menu.
+   * The content rendered in the bottom part of the sidenav, under the navigation menu.
+   * It can also be a function that receives the expansion state to render different content based on it.
+   */
+  bottomContent?: ReactElement;
+  /**
+   * Array of items to be displayed in the navigation menu.
    * Each item can be a single/simple item, a group item or a section.
    */
   navItems?: (Item | GroupItem)[] | Section[];
   /**
    * Object with the properties of the logo placed at the top of the sidenav.
    */
-  logo?: Logo | ReactElement;
+  branding?: { logo?: Logo; appTitle?: string } | ReactElement;
   /**
    * If true the nav menu will have lines marking the groups.
    */

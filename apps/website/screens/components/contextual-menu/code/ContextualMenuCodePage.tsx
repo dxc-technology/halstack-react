@@ -80,7 +80,7 @@ const sections = [
         title: "Action menu",
         content: <Example example={actionMenu} defaultIsVisible />,
       },
-      // TODO: We should remove this example as it is not the intended usage right?
+      // TODO: We should remove this example as it is not the intended usage right? (Navigation is handled inside ApplicationLayout)
       {
         title: "Navigation menu",
         content: <Example example={navigationMenu} defaultIsVisible />,

@@ -92,6 +92,6 @@ const DxcApplicationLayout = ({ header, sidenav, footer, children }: Application
 DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.SideNav = DxcSidenav;
+DxcApplicationLayout.Sidenav = DxcSidenav;
 
 export default DxcApplicationLayout;
