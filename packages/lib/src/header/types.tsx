@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 import { GroupItem, Item } from "../base-menu/types";
+import { SVG } from "../common/utils";
 
 type LogoPropsType = {
-  src: string;
+  src: string | SVG;
   alt: string;
   href?: string;
   onClick?: () => void;
