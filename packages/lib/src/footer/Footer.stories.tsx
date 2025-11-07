@@ -137,7 +137,7 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+      <DxcFooter socialLinks={social} bottomLinks={bottom}>
         <DxcFooter.LeftContent>
           <DxcParagraph>
             Application description, version, notes, and contact details can go here for additional information

@@ -47,29 +47,6 @@ const MainContainer = styled.div`
   }
 `;
 
-const BottomContainer = styled.div<{ textColor: string }>`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-bg-primary-strong);
-  color: ${({ textColor }) => textColor};
-  padding: var(--spacing-padding-none) var(--spacing-padding-xl);
-  box-sizing: border-box;
-
-  @media (min-width: ${responsiveSizes.small}rem) {
-    height: var(--height-xl);
-    flex-direction: row;
-  }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-gap-ml);
-    padding: var(--spacing-padding-m);
-  }
-`;
-
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,6 +63,17 @@ const LeftContainer = styled.div`
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 100%;
   }
+`;
+
+const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  padding-left: ${(props) => (props?.mode === "default" ? "var(--spacing-padding-none)" : "var(--spacing-padding-xl)")};
+  width: auto;
+`;
+
+const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  width: auto;
 `;
 
 const RightContainer = styled.div`
@@ -107,33 +95,6 @@ const RightContainer = styled.div`
     max-width: 100%;
     justify-content: flex-start;
   }
-`;
-
-const Copyright = styled.div`
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-s);
-  font-weight: var(--typography-label-regular);
-
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 40%;
-    text-align: right;
-  }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    max-width: 100%;
-    width: 100%;
-    text-align: left;
-  }
-`;
-
-const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
-  width: auto;
-`;
-
-const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
-  width: auto;
 `;
 
 const SocialAnchor = styled.a`
@@ -160,18 +121,53 @@ const SocialIconContainer = styled.div`
   }
 `;
 
+const BottomContainer = styled.div<{ textColor: string }>`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-padding-m);
+  align-items: center;
+  background-color: var(--color-bg-primary-strong);
+  color: ${({ textColor }) => textColor};
+  padding-right: var(--spacing-padding-xl);
+  box-sizing: border-box;
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    height: var(--height-xl);
+    flex-direction: row;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-gap-ml);
+    padding: var(--spacing-padding-m);
+  }
+`;
+
 const BottomLinks = styled.div<{ hasContent: boolean; textColor: string }>`
+  height: 100%;
   display: inline-flex;
+  align-items: center;
   flex-wrap: wrap;
   align-self: center;
+  padding-left: var(--spacing-padding-xl);
+  padding-right: var(--spacing-padding-xxxs);
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
+
   @media (max-width: ${responsiveSizes.small}rem) {
     max-width: 100%;
     width: 100%;
     display: ${(props) => (props.hasContent ? "inline-flex" : "none")};
+  }
+
+  & > span {
+    white-space: nowrap;
   }
 
   & > span:not(:first-child):before {
@@ -182,6 +178,24 @@ const BottomLinks = styled.div<{ hasContent: boolean; textColor: string }>`
   & > span > a > span:hover,
   & > span > a > span:active {
     color: ${({ textColor }) => textColor};
+  }
+`;
+
+const Copyright = styled.div`
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-s);
+  font-weight: var(--typography-label-regular);
+  white-space: nowrap;
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 40%;
+    overflow: hidden;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
   }
 `;
 
