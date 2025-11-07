@@ -116,7 +116,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             navItems={filteredSections}
             branding={<SidenavLogo expanded={isExpanded} />}
             topContent={
-              isExpanded ? (
+              isExpanded && (
                 <DxcTextInput
                   placeholder="Search docs"
                   value={filter}
@@ -126,8 +126,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
                   size="fillParent"
                   clearable
                 />
-              ) : (
-                <></>
               )
             }
             expanded={isExpanded}
