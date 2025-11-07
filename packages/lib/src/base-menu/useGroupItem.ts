@@ -21,6 +21,7 @@ export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuCo
     groupSelected,
     isOpen,
     toggleOpen,
-    responsiveView: context.responsiveView,
+    hasPopOver: context.hasPopOver,
+    isHorizontal: context.isHorizontal,
   };
 };

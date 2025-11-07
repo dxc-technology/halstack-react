@@ -13,9 +13,9 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
 
   const NavigationTreeId = `sidenav-${useId()}`;
   const contextValue = useContext(NavigationTreeContext) ?? {};
-  const { groupSelected, isOpen, toggleOpen, responsiveView } = useGroupItem(items, contextValue);
+  const { groupSelected, isOpen, toggleOpen, hasPopOver } = useGroupItem(items, contextValue);
 
-  return responsiveView ? (
+  return hasPopOver ? (
     <>
       <Popover.Root open={isOpen}>
         <Popover.Trigger
@@ -36,7 +36,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           />
         </Popover.Trigger>
         <Popover.Portal container={document.getElementById(`${NavigationTreeId}-portal`)}>
-          <NavigationTreeContext.Provider value={{ ...contextValue, displayGroupLines: false, responsiveView: false }}>
+          <NavigationTreeContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
             <Popover.Content
               aria-label="Group details"
               onCloseAutoFocus={(event) => {

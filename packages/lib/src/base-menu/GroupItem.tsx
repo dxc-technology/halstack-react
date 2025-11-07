@@ -13,10 +13,10 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
 
   const NavigationTreeId = `sidenav-${useId()}`;
   const contextValue = useContext(BaseMenuContext) ?? {};
-  const { groupSelected, isOpen, toggleOpen, responsiveView } = useGroupItem(items, contextValue);
+  const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(items, contextValue);
 
   // TODO: SET A FIXED WIDTH TO PREVENT MOVING CONTENT WHEN EXPANDING/COLLAPSING IN RESPONSIVEVIEW
-  return responsiveView ? (
+  return hasPopOver ? (
     <>
       <Popover.Root open={isOpen}>
         <Popover.Trigger
@@ -37,7 +37,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           />
         </Popover.Trigger>
         <Popover.Portal container={document.getElementById(`${NavigationTreeId}-portal`)}>
-          <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, responsiveView: false }}>
+          <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
             <Popover.Content
               aria-label="Group details"
               onCloseAutoFocus={(event) => {
@@ -47,12 +47,18 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                 event.preventDefault();
               }}
               align="start"
-              side="right"
+              side={isHorizontal ? "bottom" : "right"}
               style={{ zIndex: "var(--z-contextualmenu)" }}
+              sideOffset={isHorizontal ? 16 : 0}
+              onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
             >
-              <SubMenu id={groupMenuId} depthLevel={props.depthLevel}>
+              <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
                 {items.map((item, index) => (
-                  <MenuItem item={item} depthLevel={props.depthLevel + 1} key={`${item.label}-${index}`} />
+                  <MenuItem
+                    item={item}
+                    depthLevel={isHorizontal ? props.depthLevel : props.depthLevel + 1}
+                    key={`${item.label}-${index}`}
+                  />
                 ))}
               </SubMenu>
             </Popover.Content>

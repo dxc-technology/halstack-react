@@ -112,7 +112,7 @@ const DxcSidenav = ({
           items={navItems}
           displayGroupLines={displayGroupLines}
           displayBorder={false}
-          responsiveView={!isExpanded}
+          hasPopOver={!isExpanded}
           displayControlsAfter
         />
       )}
