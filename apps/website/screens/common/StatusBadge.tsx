@@ -4,6 +4,7 @@ import { ComponentStatus } from "./pagesList";
 type StatusBadgeProps = {
   hasTitle?: boolean;
   status: ComponentStatus | "required";
+  // reduced?: boolean;
 };
 
 const getBadgeColor = (status: StatusBadgeProps["status"]) => {
@@ -40,13 +41,36 @@ const getBadgeTitle = (status: StatusBadgeProps["status"]) => {
   }
 };
 
-const StatusBadge = ({ hasTitle = false, status }: StatusBadgeProps) => (
-  <DxcBadge
-    label={status[0]?.toUpperCase() + status.slice(1)}
-    color={getBadgeColor(status)}
-    title={hasTitle ? getBadgeTitle(status) : undefined}
-    size="small"
-  />
-);
+// TODO: enable icon when the status badge supports reduced version
+// const getBadgeIcon = (status: StatusBadgeProps["status"]) => {
+//   switch (status) {
+//     case "required":
+//       return "warning_amber";
+//     case "experimental":
+//       return "science";
+//     case "new":
+//       return "new_releases";
+//     case "stable":
+//       return "check_circle";
+//     case "legacy":
+//       return "history";
+//     case "deprecated":
+//       return "highlight_off";
+//     default:
+//       return "";
+//   }
+// };
+
+const StatusBadge = ({ hasTitle = false, status }: StatusBadgeProps) => {
+  return (
+    <DxcBadge
+      label={status[0]?.toUpperCase() + status.slice(1)}
+      color={getBadgeColor(status)}
+      title={hasTitle ? getBadgeTitle(status) : undefined}
+      size="small"
+      // icon={reduced ? getBadgeIcon(status) : undefined}
+    />
+  );
+};
 
 export default StatusBadge;
