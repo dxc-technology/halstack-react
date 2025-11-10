@@ -65,10 +65,7 @@ const DxcSidenav = ({
   };
 
   const isBrandingObject = (branding: SidenavPropsType["branding"]): branding is { logo?: Logo; appTitle?: string } => {
-    return (
-      (typeof branding === "object" && branding !== null && "logo" in branding) ||
-      (!!branding && "appTitle" in branding)
-    );
+    return typeof branding === "object" && branding !== null && ("logo" in branding || "appTitle" in branding);
   };
 
   return (
