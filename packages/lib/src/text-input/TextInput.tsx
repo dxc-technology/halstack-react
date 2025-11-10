@@ -554,7 +554,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     icon="close"
                     onClick={handleClearActionOnClick}
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                    title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
@@ -566,7 +566,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       onClick={!readOnly ? handleDecrementActionOnClick : undefined}
                       ref={actionRef}
                       tabIndex={tabIndex}
-                      title={translatedLabels.numberInput.decrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.decrementValueTitle : undefined}
                     />
                     <DxcActionIcon
                       size="xsmall"
@@ -575,7 +575,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       onClick={!readOnly ? handleIncrementActionOnClick : undefined}
                       ref={actionRef}
                       tabIndex={tabIndex}
-                      title={translatedLabels.numberInput.incrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.incrementValueTitle : undefined}
                     />
                   </>
                 )}
@@ -587,7 +587,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={!readOnly ? action.onClick : undefined}
                     ref={actionRef}
                     tabIndex={tabIndex}
-                    title={action.title ?? ""}
+                    title={!disabled ? (action.title ?? undefined) : undefined}
                   />
                 )}
               </DxcFlex>
