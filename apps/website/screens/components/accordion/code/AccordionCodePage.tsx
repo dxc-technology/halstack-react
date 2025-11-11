@@ -126,12 +126,7 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    badge
-                  </DxcFlex>
-                </td>
+                <td>badge</td>
                 <td>
                   <TableCode>{"{ position: 'before' | 'after'; element: ReactNode }"}</TableCode>
                 </td>
@@ -190,12 +185,7 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    statusLight
-                  </DxcFlex>
-                </td>
+                <td>statusLight</td>
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>
@@ -203,12 +193,7 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    subLabel
-                  </DxcFlex>
-                </td>
+                <td>subLabel</td>
                 <td>
                   <TableCode>string</TableCode>
                 </td>
