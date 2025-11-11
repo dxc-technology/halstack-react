@@ -7,15 +7,15 @@ const code = `() => {
       href: "/components/select",
     },
     {
-      label: "Specifications",
-      href: "/components/select/specifications",
+      label: "Code",
+      href: "/components/select/code",
     },
     {
-      label: "Design Tokens",
-      href: "/components/select/specifications/#design-tokens",
+      label: "Examples",
+      href: "/components/select/code/#examples",
     },
     {
-      label: "Color",
+      label: "Uncontrolled",
     }
   ];
 
