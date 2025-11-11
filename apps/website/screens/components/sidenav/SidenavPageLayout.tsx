@@ -7,10 +7,11 @@ import { ReactNode } from "react";
 
 const SidenavPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Overview", path: "/components/sidenav" },
-    { label: "Code", path: "/components/sidenav/code" },
+    // { label: "Overview", path: "/components/sidenav" },
+    // { label: "Code", path: "/components/sidenav/code" },
+    { label: "Code", path: "/components/sidenav" },
   ];
-  // TODO: UPDATE DESCRIPTION
+  // TODO: UPDATE DESCRIPTION WHEN OVERVIEW IS ADDED
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-xxl)">
       <PageHeading>
