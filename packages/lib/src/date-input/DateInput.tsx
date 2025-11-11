@@ -264,7 +264,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 ariaLabel={ariaLabel}
               />
             </Popover.Trigger>
-            <Popover.Portal>
+            <Popover.Portal container={document.getElementById(`${calendarId}-portal`)}>
               <StyledPopoverContent
                 sideOffset={sideOffset}
                 align="end"
@@ -278,6 +278,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
             </Popover.Portal>
           </Popover.Root>
         </DateInputContainer>
+        <div id={`${calendarId}-portal`} style={{ position: "absolute" }} />
       </ThemeProvider>
     );
   }
@@ -341,7 +342,7 @@ const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
 `;
 
 const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 300;
+  z-index: 310;
   &:focus-visible {
     outline: none;
   }

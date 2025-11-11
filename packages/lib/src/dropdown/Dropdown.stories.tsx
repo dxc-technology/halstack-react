@@ -2,7 +2,9 @@ import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import preview from "../../.storybook/preview";
 import Title from "../../.storybook/components/Title";
+import disabledRules from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import HalstackContext from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
@@ -13,6 +15,19 @@ import { Meta, StoryObj } from "@storybook/react";
 export default {
   title: "Dropdown",
   component: DxcDropdown,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 } as Meta<typeof DxcDropdown>;
 
 const iconSVG = (

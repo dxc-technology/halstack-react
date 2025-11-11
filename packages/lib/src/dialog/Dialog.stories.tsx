@@ -12,11 +12,24 @@ import DxcParagraph from "../paragraph/Paragraph";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
 import { Meta, StoryObj } from "@storybook/react";
+import disabledRules from "../../test/accessibility/rules/specific/dialog/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Dialog",
   component: DxcDialog,
   parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },

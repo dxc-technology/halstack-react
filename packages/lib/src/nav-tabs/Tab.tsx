@@ -51,8 +51,9 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           href={!disabled ? href : undefined}
+          as={href ? "a" : onClick ? "button" : "div"}
           iconPosition={iconPosition}
-          onClick={onClick}
+          onClick={!disabled ? onClick : undefined}
           onKeyDown={handleOnKeyDown}
           hasIcon={icon != null}
           ref={(anchorRef: HTMLAnchorElement) => {

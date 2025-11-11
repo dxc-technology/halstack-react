@@ -11,6 +11,10 @@ import QuickNavTypes from "./types";
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const colorsTheme = useContext(HalstackContext);
+  const isHashRouter = (): boolean => {
+    if (typeof window === "undefined") return false;
+    return window.location.href.includes("/#/");
+  };
 
   return (
     <ThemeProvider theme={colorsTheme.quickNav}>
@@ -22,7 +26,20 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
               <li key={link.label}>
                 <DxcInset space="0.25rem">
                   <DxcTypography>
-                    <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
+                    <Link
+                      href={`#${slugify(link.label, { lower: true })}`}
+                      onClick={
+                        isHashRouter()
+                          ? (e) => {
+                              e.preventDefault();
+                              const id = slugify(link.label, { lower: true });
+                              document.getElementById(id)?.scrollIntoView();
+                            }
+                          : undefined
+                      }
+                    >
+                      <span>{link.label}</span>
+                    </Link>
                     <ListSecondColumn>
                       {link.links?.map((sublink) => (
                         <li key={sublink.label}>
@@ -32,6 +49,15 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
                                 href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
                                   lower: true,
                                 })}`}
+                                onClick={
+                                  isHashRouter()
+                                    ? (e) => {
+                                        e.preventDefault();
+                                        const id = `${slugify(link.label, { lower: true })}-${slugify(sublink.label, { lower: true })}`;
+                                        document.getElementById(id)?.scrollIntoView();
+                                      }
+                                    : undefined
+                                }
                               >
                                 {sublink.label}
                               </Link>

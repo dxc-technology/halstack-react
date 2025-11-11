@@ -199,7 +199,7 @@ const DxcDropdown = ({
               </DropdownTrigger>
             </Popover.Trigger>
           </Tooltip>
-          <Popover.Portal>
+          <Popover.Portal container={document.getElementById(`${id}-portal`)}>
             <Popover.Content asChild sideOffset={1}>
               <DropdownMenu
                 id={menuId}
@@ -209,13 +209,14 @@ const DxcDropdown = ({
                 visualFocusIndex={visualFocusIndex}
                 menuItemOnClick={handleMenuItemOnClick}
                 onKeyDown={handleMenuOnKeyDown}
-                styles={{ width, zIndex: "310" }}
+                styles={{ width, zIndex: "320" }}
                 ref={menuRef}
               />
             </Popover.Content>
           </Popover.Portal>
         </Popover.Root>
       </DropdownContainer>
+      <div id={`${id}-portal`} style={{ position: "absolute" }} />
     </ThemeProvider>
   );
 };

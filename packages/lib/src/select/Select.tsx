@@ -333,7 +333,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         disabled={disabled}
                         onMouseDown={(event) => {
@@ -346,7 +346,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
-                    </Tooltip>
+                    </TooltipWrapper>
                   </SelectionIndicator>
                 )}
                 <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
@@ -396,7 +396,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                  <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus
@@ -408,14 +408,14 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                     >
                       <DxcIcon icon="clear" />
                     </ClearSearchAction>
-                  </Tooltip>
+                  </TooltipWrapper>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </CollapseIndicator>
               </Select>
             </Popover.Trigger>
-            <Popover.Portal>
+            <Popover.Portal container={document.getElementById(`${selectId}-portal`)}>
               <Popover.Content
                 sideOffset={4}
                 style={{ zIndex: "310" }}
@@ -450,6 +450,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             </Error>
           )}
         </SelectContainer>
+        <div id={`${selectId}-portal`} style={{ position: "absolute" }} />
       </ThemeProvider>
     );
   }

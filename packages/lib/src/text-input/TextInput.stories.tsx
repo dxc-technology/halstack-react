@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
+import disabledRules from "../../test/accessibility/rules/specific/text-input/disabledRules";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -8,9 +9,24 @@ import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
+
 export default {
   title: "Text Input",
   component: DxcTextInput,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 } as Meta<typeof DxcTextInput>;
 
 const action = {

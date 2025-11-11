@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import FocusLock from "../utils/FocusLock";
 import { ModalAlertWrapperProps } from "./types";
+import { useEffect, useId, useState } from "react";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -39,22 +40,32 @@ const ModalAlertContainer = styled.div`
   }
 `;
 
-const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) =>
-  condition ? (
+const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) => {
+  const id = useId();
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPortalContainer(document.getElementById(`dialog-${id}-portal`));
+  }, []);
+
+  return condition ? (
     <>
       <BodyStyle />
-      {createPortal(
-        <Modal>
-          <Overlay onClick={onClose} />
-          <ModalAlertContainer>
-            <FocusLock>{children}</FocusLock>
-          </ModalAlertContainer>
-        </Modal>,
-        document.body
-      )}
+      <div id={`dialog-${id}-portal`} style={{ position: "absolute" }} />
+      {portalContainer &&
+        createPortal(
+          <Modal>
+            <Overlay onClick={onClose} />
+            <ModalAlertContainer>
+              <FocusLock>{children}</FocusLock>
+            </ModalAlertContainer>
+          </Modal>,
+          portalContainer
+        )}
     </>
   ) : (
     children
   );
+};
 
 export default ModalAlertWrapper;

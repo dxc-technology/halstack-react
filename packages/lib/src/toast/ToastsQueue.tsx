@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
@@ -39,6 +39,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
   const adjustedDuration = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
+  const id = useId();
 
   const remove = useCallback((id: string) => {
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
@@ -59,6 +60,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
 
   return (
     <ToastContext.Provider value={add}>
+      <div id={`toasts-${id}-portal`} style={{ position: "absolute" }} />
       {isMounted &&
         createPortal(
           <ToastsQueue>
@@ -73,7 +75,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
               />
             ))}
           </ToastsQueue>,
-          document.body
+          document.getElementById(`toasts-${id}-portal`) || document.body
         )}
       {children}
     </ToastContext.Provider>

@@ -570,7 +570,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                 >
                   {children}
                 </Popover.Trigger>
-                <Popover.Portal>
+                <Popover.Portal container={document.getElementById(`${inputId}-portal`)}>
                   <Popover.Content
                     sideOffset={5}
                     style={{ zIndex: "320" }}
@@ -660,7 +660,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={handleClearActionOnClick}
                     icon="close"
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                    title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
@@ -670,7 +670,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.decrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.decrementValueTitle : undefined}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -678,7 +678,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.incrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.incrementValueTitle : undefined}
                       disabled={disabled}
                     />
                   </>
@@ -689,7 +689,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     icon={action.icon}
                     tabIndex={tabIndex}
                     ref={actionRef}
-                    title={action.title ?? ""}
+                    title={!disabled ? (action.title ?? undefined) : undefined}
                     disabled={disabled}
                   />
                 )}
@@ -703,6 +703,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             </ErrorMessageContainer>
           )}
         </TextInputContainer>
+        <div id={`${inputId}-portal`} style={{ position: "absolute" }} />
       </ThemeProvider>
     );
   }
