@@ -72,7 +72,7 @@ const ApplicationLayoutResponsiveSidenav = () => (
         <DxcApplicationLayout.Sidenav
           branding={{ appTitle: "Application layout with push sidenav" }}
           navItems={items}
-          bottomContent={(expanded: boolean) => (!expanded ? <p>Responsive Content</p> : <></>)}
+          defaultExpanded={false}
         />
       }
     >
