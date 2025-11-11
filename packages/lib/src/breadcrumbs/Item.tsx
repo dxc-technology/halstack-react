@@ -48,8 +48,10 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   const currentItemRef = useRef<HTMLSpanElement | null>(null);
 
   const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    if (href) onClick?.(href);
+    if (onClick) {
+      event.preventDefault();
+      if (href) onClick?.(href);
+    }
   };
 
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
