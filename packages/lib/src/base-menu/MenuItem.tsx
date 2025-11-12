@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import GroupItem from "./GroupItem";
 import SingleItem from "./SingleItem";
 import { MenuItemProps } from "./types";
+import { isGroupItem } from "./utils";
 
 const MenuItemContainer = styled.li`
   display: grid;
@@ -11,7 +12,7 @@ const MenuItemContainer = styled.li`
 export default function MenuItem({ item, depthLevel = 0 }: MenuItemProps) {
   return (
     <MenuItemContainer role="menuitem">
-      {"items" in item ? (
+      {isGroupItem(item) ? (
         <GroupItem {...item} depthLevel={depthLevel} />
       ) : (
         <SingleItem {...item} depthLevel={depthLevel} />

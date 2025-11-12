@@ -2,16 +2,16 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
-import DxcContextualMenu from "./ContextualMenu";
-import SingleItem from "../base-menu/SingleItem";
-import ContextualMenuContext from "../base-menu/BaseMenuContext";
+import DxcNavigationTree from "./NavigationTree";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
+import NavigationTreeContext from "./NavigationTreeContext";
+import SingleItem from "../base-menu/SingleItem";
 
 export default {
-  title: "Contextual Menu",
-  component: DxcContextualMenu,
-} satisfies Meta<typeof DxcContextualMenu>;
+  title: "Navigation Tree",
+  component: DxcNavigationTree,
+} satisfies Meta<typeof DxcNavigationTree>;
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 
@@ -123,52 +123,52 @@ const itemsWithTruncatedText = [
   },
 ];
 
-const ContextualMenu = () => (
+const NavigationTree = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <DxcContextualMenu items={items} />
+      <DxcNavigationTree items={items} />
     </ExampleContainer>
     <Title title="With sections" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={sections} />
+        <DxcNavigationTree items={sections} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With group items" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={groupItems} />
+        <DxcNavigationTree items={groupItems} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With icons" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithIcon} />
+        <DxcNavigationTree items={itemsWithIcon} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With badge" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithBadge} />
+        <DxcNavigationTree items={itemsWithBadge} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With label truncated" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithTruncatedText} />
+        <DxcNavigationTree items={itemsWithTruncatedText} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With auto-scroll" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer height="300px" width="300px">
-        <DxcContextualMenu items={sectionsWithScroll} />
+        <DxcNavigationTree items={sectionsWithScroll} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="Width doesn't go below 248px" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="200px">
-        <DxcContextualMenu items={items} />
+        <DxcNavigationTree items={items} />
       </DxcContainer>
     </ExampleContainer>
   </>
@@ -176,7 +176,7 @@ const ContextualMenu = () => (
 
 const Single = () => (
   <DxcContainer width="300px">
-    <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
+    <NavigationTreeContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
       <Title title="Default" theme="light" level={3} />
       <ExampleContainer>
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
@@ -193,8 +193,8 @@ const Single = () => (
       <ExampleContainer pseudoState="pseudo-active">
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
       </ExampleContainer>
-    </ContextualMenuContext.Provider>
-    <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
+    </NavigationTreeContext.Provider>
+    <NavigationTreeContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
       <Title title="Selected" theme="light" level={3} />
       <ExampleContainer>
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
@@ -207,7 +207,7 @@ const Single = () => (
       <ExampleContainer pseudoState="pseudo-active">
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
       </ExampleContainer>
-    </ContextualMenuContext.Provider>
+    </NavigationTreeContext.Provider>
   </DxcContainer>
 );
 
@@ -215,22 +215,22 @@ const ItemWithEllipsis = () => (
   <ExampleContainer expanded>
     <Title title="Tooltip in items with ellipsis" theme="light" level={3} />
     <DxcContainer width="300px">
-      <DxcContextualMenu items={itemsWithTruncatedText} />
+      <DxcNavigationTree items={itemsWithTruncatedText} />
     </DxcContainer>
   </ExampleContainer>
 );
 
-type Story = StoryObj<typeof DxcContextualMenu>;
+type Story = StoryObj<typeof DxcNavigationTree>;
 
 export const Chromatic: Story = {
-  render: ContextualMenu,
+  render: NavigationTree,
 };
 
 export const SingleItemStates: Story = {
   render: Single,
 };
 
-export const ContextualMenuTooltip: Story = {
+export const NavigationTreeTooltip: Story = {
   render: ItemWithEllipsis,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DxcContextualMenu from "./ContextualMenu";
+import DxcNavigationTree from "./NavigationTree";
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 
@@ -30,9 +30,9 @@ const groups = [
   { label: "Item 8" },
 ];
 
-describe("Contextual menu component tests", () => {
+describe("Navigation tree component tests", () => {
   test("Single — Renders with correct aria attributes", () => {
-    const { getAllByRole, getByRole } = render(<DxcContextualMenu items={items} />);
+    const { getAllByRole, getByRole } = render(<DxcNavigationTree items={items} />);
     expect(getAllByRole("menuitem").length).toBe(4);
     const actions = getAllByRole("button");
     if (actions[0] != null) {
@@ -48,12 +48,12 @@ describe("Contextual menu component tests", () => {
         selected: true,
       },
     ];
-    const { getByRole } = render(<DxcContextualMenu items={test} />);
+    const { getByRole } = render(<DxcNavigationTree items={test} />);
     const item = getByRole("button");
     expect(item.getAttribute("aria-pressed")).toBeTruthy();
   });
   test("Group — Group items collapse when clicked", () => {
-    const { queryByText, getByText } = render(<DxcContextualMenu items={groups} />);
+    const { queryByText, getByText } = render(<DxcNavigationTree items={groups} />);
     userEvent.click(getByText("Grouped Item 1"));
     expect(getByText("Item 1")).toBeTruthy();
     expect(getByText("Grouped Item 2")).toBeTruthy();
@@ -66,7 +66,7 @@ describe("Contextual menu component tests", () => {
     expect(queryByText("Item 3")).toBeFalsy();
   });
   test("Group — Renders with correct aria attributes", () => {
-    const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
+    const { getAllByRole } = render(<DxcNavigationTree items={groups} />);
     const group1 = getAllByRole("button")[0];
     if (group1 != null) {
       userEvent.click(group1);
@@ -95,12 +95,12 @@ describe("Contextual menu component tests", () => {
         items: [{ label: "Tested item", selected: true }],
       },
     ];
-    const { getByText, getAllByRole } = render(<DxcContextualMenu items={test} />);
+    const { getByText, getAllByRole } = render(<DxcNavigationTree items={test} />);
     expect(getByText("Tested item")).toBeTruthy();
     expect(getAllByRole("button")[1]?.getAttribute("aria-pressed")).toBeTruthy();
   });
   test("Group — Collapsed groups render as selected when containing a selected item", () => {
-    const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
+    const { getAllByRole } = render(<DxcNavigationTree items={groups} />);
     const group1 = getAllByRole("button")[0];
     if (group1 != null) {
       userEvent.click(group1);
@@ -126,7 +126,7 @@ describe("Contextual menu component tests", () => {
     expect(group1?.getAttribute("aria-pressed")).toBe("true");
   });
   test("Sections — Renders with correct aria attributes", () => {
-    const { getAllByRole, getByText } = render(<DxcContextualMenu items={sections} />);
+    const { getAllByRole, getByText } = render(<DxcNavigationTree items={sections} />);
     expect(getAllByRole("region").length).toBe(2);
     expect(getAllByRole("menuitem").length).toBe(6);
     const actions = getAllByRole("button");
@@ -145,7 +145,7 @@ describe("Contextual menu component tests", () => {
         onSelect: jest.fn(),
       },
     ];
-    const { getByRole } = render(<DxcContextualMenu items={test} />);
+    const { getByRole } = render(<DxcNavigationTree items={test} />);
     const item = getByRole("button");
     fireEvent.click(item);
     expect(test[0]?.onSelect).toHaveBeenCalled();
