@@ -48,12 +48,19 @@ const foundationsLinks: LinkDetails[] = [
   { label: "Typography", path: "/foundations/typography" },
 ];
 
+const migrationLinks: LinkDetails[] = [
+  { label: "Modified APIs", path: "/migration/migrating-modified-apis" },
+  // { label: "Migrating to emotion", path: "/migration/migrating-to-emotion" },
+  // { label: "Migrating tokens", path: "/migration/migrating-tokens" },
+];
+
 const componentsLinks = componentsList as LinkDetails[];
 
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },
   { label: "Principles", links: principlesLinks },
   { label: "Foundations", links: foundationsLinks },
+  { label: "Migration", links: migrationLinks },
   { label: "Utilities", links: utilitiesLinks },
   { label: "Components", links: componentsLinks },
 ];
