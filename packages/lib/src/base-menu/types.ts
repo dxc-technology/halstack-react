@@ -61,7 +61,7 @@ type MenuItemProps = {
   item: ItemWithId | GroupItemWithId;
   depthLevel?: number;
 };
-type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ItemActionProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
   badge?: Item["badge"];
   collapseIcon?: ReactNode;
   depthLevel: number;
