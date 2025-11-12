@@ -1,246 +1,122 @@
-import { forwardRef, MouseEvent, useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
-import { GroupContext, GroupContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
-import SidenavPropsType, {
-  SidenavGroupPropsType,
-  SidenavLinkPropsType,
-  SidenavSectionPropsType,
-  SidenavTitlePropsType,
-} from "./types";
-import scrollbarStyles from "../styles/scroll";
+import SidenavPropsType, { Logo } from "./types";
 import DxcDivider from "../divider/Divider";
-import DxcInset from "../inset/Inset";
+import DxcButton from "../button/Button";
+import DxcImage from "../image/Image";
+import { useState } from "react";
+import DxcNavigationTree from "../navigation-tree/NavigationTree";
 
-const SidenavContainer = styled.div`
+const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 280px;
+  /* TODO: IMPLEMENT RESIZABLE SIDENAV */
+  min-width: ${({ expanded }) => (expanded ? "240px" : "56px")};
+  max-width: ${({ expanded }) => (expanded ? "320px" : "56px")};
   height: 100%;
   @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
   }
-  padding: var(--spacing-padding-xl) var(--spacing-padding-none);
-  background-color: var(--color-bg-neutral-light);
-
-  overflow-y: auto;
-  overflow-x: hidden;
-  ${scrollbarStyles}
+  padding: var(--spacing-padding-m) var(--spacing-padding-xs);
+  gap: var(--spacing-gap-l);
+  background-color: var(--color-bg-neutral-lightest);
 `;
 
 const SidenavTitle = styled.div`
   display: flex;
   align-items: center;
-  padding: var(--spacing-padding-xs) var(--spacing-padding-m);
   font-family: var(--typography-font-family);
-  font-size: var(--typography-label-xl);
-  color: var(--color-fg-neutral-stronger);
-  font-weight: var(--typography-label-semibold);
-`;
-
-const SidenavGroup = styled.div`
-  a {
-    padding: var(--spacing-padding-xs) var(--spacing-padding-xxl);
-  }
-`;
-
-const SectionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-gap-ml);
-  &:last-child {
-    hr {
-      display: none;
-    }
-  }
-`;
-
-const SidenavGroupTitle = styled.span`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-gap-s);
-  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
+  font-size: var(--typography-ttle-m);
   color: var(--color-fg-neutral-dark);
-  span::before {
-    font-size: var(--height-xxs);
-  }
-  svg {
-    height: var(--height-xxs);
-    width: 16px;
-  }
+  font-weight: var(--typography-title-bold);
 `;
 
-const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
-  all: unset;
-  box-sizing: border-box;
+const LogoContainer = styled.div<{
+  hasAction?: boolean;
+  href?: Logo["href"];
+}>`
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-  cursor: pointer;
-
-  ${(props) =>
-    props.selectedGroup
-      ? `color: var(--color-fg-neutral-bright); background-color: var(--color-bg-neutral-stronger);`
-      : `color: var(--color-fg-neutral-stronger); background-color: transparent;`}
-
-  &:focus, &:focus-visible {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: -2px;
-  }
-  &:hover,
-  &:active {
-    background-color: ${(props) =>
-      props.selectedGroup ? "var(--color-bg-neutral-strongest)" : "var(--color-bg-neutral-medium)"};
-  }
-  span::before {
-    font-size: var(--height-xxs);
-  }
-  svg {
-    height: var(--height-xxs);
-    width: 16px;
-  }
-`;
-
-const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-padding-xs) var(--spacing-padding-ml);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-regular);
   text-decoration: none;
-  cursor: pointer;
-
-  ${(props) =>
-    props.selected
-      ? `color: var(--color-fg-neutral-bright); background-color: var(--color-bg-neutral-stronger);`
-      : `color: var(--color-fg-neutral-stronger); background-color: transparent;`}
-
-  &:focus, &:focus-visible {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: -2px;
-  }
-  &:hover,
-  &:active {
-    background-color: ${(props) =>
-      props.selected ? "var(--color-bg-neutral-strongest)" : "var(--color-bg-neutral-medium)"};
-  }
-  span::before {
-    font-size: var(--height-xxs);
-  }
-  svg {
-    height: var(--height-xxs);
-    width: 16px;
-  }
 `;
 
-const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
+const DxcSidenav = ({
+  topContent,
+  bottomContent,
+  navItems,
+  branding,
+  displayGroupLines = false,
+  expanded,
+  defaultExpanded = true,
+  onExpandedChange,
+}: SidenavPropsType): JSX.Element => {
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const isControlled = expanded !== undefined;
+  const isExpanded = isControlled ? !!expanded : internalExpanded;
+
+  const handleToggle = () => {
+    const nextState = !isExpanded;
+    if (!isControlled) setInternalExpanded(nextState);
+    onExpandedChange?.(nextState);
+  };
+
+  const isBrandingObject = (branding: SidenavPropsType["branding"]): branding is { logo?: Logo; appTitle?: string } => {
+    return typeof branding === "object" && branding !== null && ("logo" in branding || "appTitle" in branding);
+  };
+
   return (
-    <SidenavContainer>
-      {title}
-      <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
-        {children}
+    <SidenavContainer expanded={isExpanded}>
+      <DxcFlex
+        justifyContent={isExpanded ? "normal" : "center"}
+        gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
+        direction={isExpanded ? "row" : "column-reverse"}
+        alignItems={isExpanded ? "normal" : "center"}
+      >
+        <DxcButton
+          icon={`left_panel_${isExpanded ? "close" : "open"}`}
+          size={{ height: "medium" }}
+          mode="tertiary"
+          title={isExpanded ? "Collapse" : "Expand"}
+          onClick={handleToggle}
+        />
+        {isBrandingObject(branding) ? (
+          <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
+            {branding.logo && (
+              <LogoContainer
+                onClick={branding.logo.onClick}
+                hasAction={!!branding.logo.onClick || !!branding.logo.href}
+                role={branding.logo.onClick ? "button" : branding.logo.href ? "link" : "presentation"}
+                as={branding.logo.href ? "a" : undefined}
+                href={branding.logo.href}
+                aria-label={(branding.logo.onClick || branding.logo.href) && (branding.appTitle || "Avatar")}
+              >
+                <DxcImage alt={branding.logo.alt ?? ""} src={branding.logo.src} height="100%" width="100%" />
+              </LogoContainer>
+            )}
+            <SidenavTitle>{branding.appTitle}</SidenavTitle>
+          </DxcFlex>
+        ) : (
+          branding
+        )}
       </DxcFlex>
+      {topContent}
+      {navItems && (
+        <DxcNavigationTree
+          items={navItems}
+          displayGroupLines={displayGroupLines}
+          displayBorder={false}
+          responsiveView={!isExpanded}
+          displayControlsAfter
+        />
+      )}
+      <DxcDivider color="lightGrey" />
+      {bottomContent}
     </SidenavContainer>
   );
 };
-
-const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
-
-const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <SectionContainer>
-    <DxcFlex direction="column">{children}</DxcFlex>
-    <DxcInset horizontal="var(--spacing-padding-ml)">
-      <DxcDivider />
-    </DxcInset>
-  </SectionContainer>
-);
-
-const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [isSelected, changeIsSelected] = useState(false);
-
-  return (
-    <GroupContextProvider value={changeIsSelected}>
-      <SidenavGroup>
-        {collapsable && title ? (
-          <SidenavGroupTitleButton
-            aria-expanded={!collapsed}
-            onClick={() => setCollapsed(!collapsed)}
-            selectedGroup={collapsed && isSelected}
-          >
-            <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-              {title}
-            </DxcFlex>
-            <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
-          </SidenavGroupTitleButton>
-        ) : (
-          title && (
-            <SidenavGroupTitle>
-              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-              {title}
-            </SidenavGroupTitle>
-          )
-        )}
-        {!collapsed && children}
-      </SidenavGroup>
-    </GroupContextProvider>
-  );
-};
-
-const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
-  (
-    { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
-    ref
-  ): JSX.Element => {
-    const changeIsGroupSelected = useContext(GroupContext);
-    const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-    const handleClick = ($event: MouseEvent<HTMLAnchorElement>) => {
-      onClick?.($event);
-      setIsSidenavVisibleResponsive?.(false);
-    };
-
-    useEffect(() => {
-      changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
-    }, [selected, changeIsGroupSelected]);
-
-    return (
-      <SidenavLink
-        selected={selected}
-        href={href || undefined}
-        target={href ? (newWindow ? "_blank" : "_self") : undefined}
-        ref={ref}
-        tabIndex={tabIndex}
-        onClick={handleClick}
-        {...otherProps}
-      >
-        <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-          {children}
-        </DxcFlex>
-        {newWindow && <DxcIcon icon="open_in_new" />}
-      </SidenavLink>
-    );
-  }
-);
-
-DxcSidenav.Section = Section;
-DxcSidenav.Group = Group;
-DxcSidenav.Link = Link;
-DxcSidenav.Title = Title;
 
 export default DxcSidenav;

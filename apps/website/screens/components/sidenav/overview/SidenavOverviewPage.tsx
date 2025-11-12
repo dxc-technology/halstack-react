@@ -5,6 +5,7 @@ import Image from "@/common/Image";
 import anatomy from "./images/sidenav_anatomy.png";
 import responsive from "./images/sidenav_responsive.png";
 
+// TODO: UPDATE WHEN DOC IS READY
 const sections = [
   {
     title: "Introduction",
