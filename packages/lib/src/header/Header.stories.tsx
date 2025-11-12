@@ -4,6 +4,12 @@ import DxcBadge from "../badge/Badge";
 import { useEffect } from "react";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
+import DxcApplicationLayout from "../layout/ApplicationLayout";
+import DxcParagraph from "../paragraph/Paragraph";
+import { dxcLogo } from "./Icons";
+import DxcButton from "../button/Button";
+import { waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 export default {
   title: "Header",
@@ -41,6 +47,13 @@ const brandingWithoutTitle = {
   },
 };
 
+const dxcBrandedLogo = {
+  logo: {
+    src: dxcLogo,
+    alt: "DXC Logo",
+  },
+};
+
 const longBranding = {
   logo: {
     src: "https://picsum.photos/id/1000/104/34",
@@ -58,7 +71,7 @@ const items = [
     label: "Grouped Item 1",
     icon: "favorite",
     items: [
-      { label: "Item 1", icon: "person" },
+      { label: "Item 1", icon: "person", selected: true },
       {
         label: "Grouped Item 2",
         items: [
@@ -108,8 +121,104 @@ const Header = () => (
   </DxcFlex>
 );
 
+const HeaderInLayout = () => (
+  <DxcApplicationLayout
+    header={
+      <DxcHeader
+        branding={dxcBrandedLogo}
+        navItems={items}
+        sideContent={(isResponsive) =>
+          isResponsive ? (
+            <>
+              <DxcButton icon="settings" mode="tertiary" size={{ height: "medium" }} />
+            </>
+          ) : (
+            <>
+              <DxcButton icon="settings" mode="tertiary" size={{ height: "medium" }} />
+              <DxcButton label="Side button" mode="secondary" size={{ height: "medium" }} />
+              <DxcButton label="Another button" mode="primary" size={{ height: "medium" }} />
+            </>
+          )
+        }
+        responsiveBottomContent={
+          <>
+            <DxcButton label="Bottom content button" mode="secondary" size={{ width: "fillParent" }} />
+            <DxcButton label="Another button" mode="primary" size={{ width: "fillParent" }} />
+          </>
+        }
+      />
+    }
+  >
+    <DxcApplicationLayout.Main>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+    </DxcApplicationLayout.Main>
+  </DxcApplicationLayout>
+);
+
 type Story = StoryObj<typeof DxcHeader>;
 
 export const Chromatic: Story = {
   render: Header,
+};
+
+export const InLayout: Story = {
+  render: HeaderInLayout,
+};
+
+export const Responsive: Story = {
+  render: HeaderInLayout,
+  parameters: {
+    chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const menuButton = await waitFor(() => canvas.getAllByRole("button")[1]);
+    if (menuButton) userEvent.click(menuButton);
+  },
 };

@@ -5,7 +5,6 @@ import DxcHeader from "../header/Header";
 import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
-import { dxcLogo } from "./Icons";
 
 const ApplicationLayoutContainer = styled.div`
   top: 0;
@@ -20,6 +19,7 @@ const ApplicationLayoutContainer = styled.div`
 
 const HeaderContainer = styled.div`
   width: 100%;
+  min-height: var(--height-xxxl);
   height: fit-content;
   z-index: var(--z-app-layout-header);
 `;
@@ -61,13 +61,6 @@ const MainContentContainer = styled.main`
   grid-template-rows: 1fr auto;
 `;
 
-const defaultHeaderBranding = {
-  logo: {
-    src: dxcLogo,
-    alt: "DXC Logo",
-  },
-};
-
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
 
 const DxcApplicationLayout = ({ header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
@@ -75,7 +68,7 @@ const DxcApplicationLayout = ({ header, sidenav, footer, children }: Application
 
   return (
     <ApplicationLayoutContainer ref={ref}>
-      <HeaderContainer>{header ?? <DxcHeader branding={defaultHeaderBranding} />}</HeaderContainer>
+      {header && <HeaderContainer>{header}</HeaderContainer>}
       <BodyContainer>
         {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
         <MainContainer>

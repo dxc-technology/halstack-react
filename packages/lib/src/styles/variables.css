@@ -4,8 +4,8 @@
   /**************/
 
   /* Application Layout */
-  --z-app-layout-header: 100;
-  --z-app-layout-sidenav: 110;
+  --z-app-layout-sidenav: 100;
+  --z-app-layout-header: 110;
 
   /* Header */
   --z-header-overlay: 200;

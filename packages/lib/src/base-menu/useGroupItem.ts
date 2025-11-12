@@ -10,9 +10,9 @@ const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number
 
 export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuContextProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const { selectedItemId } = context ?? {};
+  const { selectedItemId, hasPopOver } = context ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
-  const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1);
+  const [isOpen, setIsOpen] = useState(hasPopOver ? false : groupSelected && selectedItemId === -1);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
 

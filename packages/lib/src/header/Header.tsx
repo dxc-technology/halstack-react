@@ -14,6 +14,16 @@ import DxcButton from "../button/Button";
 const MAX_MAIN_NAV_SIZE = "60%";
 const LEVEL_LIMIT = 1;
 
+const MainContainer = styled.div<{ isResponsive: boolean; isMenuVisible: boolean }>`
+  display: grid;
+  width: 100%;
+  grid-template-rows: ${(props) =>
+    props.isResponsive && props.isMenuVisible
+      ? "var(--height-xxxl) calc(100vh - var(--height-xxxl))"
+      : "var(--height-xxxl)"};
+  ${(props) => (props.isResponsive && props.isMenuVisible ? "position: fixed;" : "")}
+`;
+
 const HeaderContainer = styled.header`
   width: 100%;
   height: var(--height-xxxl);
@@ -46,6 +56,10 @@ const RightSideContainer = styled(SideContainer)`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  svg {
+    height: var(--height-m);
+    width: auto;
+  }
 `;
 
 const MainNavContainer = styled.div`
@@ -74,7 +88,7 @@ const ResponsiveMenu = styled.div`
   padding: var(--spacing-padding-m);
   box-sizing: border-box;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-gap-m);
 `;
 
 const Overlay = styled.div`
@@ -109,7 +123,7 @@ const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (G
   return sanitizedItems;
 };
 
-const DxcHeader = ({ branding, navItems, sideContent }: HeaderProps): JSX.Element => {
+const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -131,16 +145,10 @@ const DxcHeader = ({ branding, navItems, sideContent }: HeaderProps): JSX.Elemen
       setIsMenuVisible(!isMenuVisible);
     }
   };
-
   const sanitizedNavItems = useMemo(() => (navItems ? sanitizeNavItems(navItems) : []), [navItems]);
+
   return (
-    <DxcGrid
-      templateRows={
-        isResponsive && isMenuVisible
-          ? ["var(--height-xxxl)", "calc(100vh - var(--height-xxxl))"]
-          : ["var(--height-xxxl)"]
-      }
-    >
+    <MainContainer isResponsive={isResponsive} isMenuVisible={isMenuVisible}>
       <HeaderContainer>
         <DxcGrid
           templateColumns={
@@ -189,7 +197,8 @@ const DxcHeader = ({ branding, navItems, sideContent }: HeaderProps): JSX.Elemen
           )}
           {sideContent && (
             <RightSideContainer>
-              {!isResponsive && sideContent} {isResponsive && <HamburguerButton onClick={toggleMenu} />}
+              {typeof sideContent === "function" ? sideContent(isResponsive) : isResponsive && sideContent}{" "}
+              {isResponsive && <HamburguerButton onClick={toggleMenu} />}
             </RightSideContainer>
           )}
         </DxcGrid>
@@ -204,17 +213,17 @@ const DxcHeader = ({ branding, navItems, sideContent }: HeaderProps): JSX.Elemen
               displayBorder={false}
               displayControlsAfter
             />
-            {sideContent && (
+            {responsiveBottomContent && (
               <>
                 <DxcDivider />
-                {sideContent}
+                {responsiveBottomContent}
               </>
             )}
           </ResponsiveMenu>
           <Overlay onClick={toggleMenu} />
         </ResponsiveMenuContainer>
       )}
-    </DxcGrid>
+    </MainContainer>
   );
 };
 

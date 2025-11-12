@@ -20,7 +20,8 @@ type Props = {
   branding: BrandingPropsType;
   responsiveBranding?: BrandingPropsType;
   navItems?: MainNavPropsType;
-  sideContent?: ReactNode;
+  sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
+  responsiveBottomContent?: ReactNode;
 };
 
 export default Props;
