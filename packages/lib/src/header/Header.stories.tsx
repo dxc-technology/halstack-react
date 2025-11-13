@@ -8,7 +8,7 @@ import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcParagraph from "../paragraph/Paragraph";
 import { dxcLogo } from "./Icons";
 import DxcButton from "../button/Button";
-import { screen, userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/internal/test";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 
@@ -229,12 +229,9 @@ export const Responsive: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const buttons = await canvas.findAllByRole<HTMLButtonElement>("button");
-    const secondButton = buttons[1];
-    if (!secondButton) {
-      throw new Error("Button not found");
-    }
-    await userEvent.click(secondButton);
-    await screen.findByText("Bottom content button");
+    await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.keyboard("{Enter}");
+    await canvas.findByText("Bottom content button");
   },
 };
