@@ -1,4 +1,4 @@
-import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcBulletedList } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcHeading, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
@@ -8,14 +8,131 @@ const sections = [
   {
     title: "Introduction",
     content: (
+      <DxcParagraph>
+        Version <Code>16.0.0</Code> introduces major breaking changes, including redesigned components, API updates, and
+        the removal of deprecated elements. This guide details the main differences and migration paths from
+        <Code>15.x.x</Code> to <Code>16.0.0</Code>.
+      </DxcParagraph>
+    ),
+  },
+  {
+    title: "Added components",
+    content: (
       <>
+        <DxcParagraph>The following components are now available to be used in your applications:</DxcParagraph>
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Features</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Avatar</td>
+              <td>
+                Visual element used to identify users, teams, or entities across the interface. It helps create a
+                recognizable and consistent user experience by visually representing people or objects through images,
+                icons, or initials.
+              </td>
+            </tr>
+            <tr>
+              <td>ApplicationLayout</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <td>Header</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <td>SideNav</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <td>Footer</td>
+              <td>TBD</td>
+            </tr>
+          </tbody>
+        </DxcTable>
         <DxcParagraph>
-          Version <Code>16.0.0</Code> introduces major breaking changes, including redesigned components, API updates,
-          and the removal of deprecated elements. This guide details the main differences and migration paths from
-          <Code>15.x.x</Code> to <Code>16.0.0</Code>.
+          These components define the structure of page layouts within the Halstack Design System.
         </DxcParagraph>
       </>
     ),
+  },
+  {
+    title: "Modified APIs",
+    content: (
+      <DxcParagraph>
+        Several components were redesigned and now expose different props or behavior. See below for details.
+      </DxcParagraph>
+    ),
+    subSections: [
+      // TODO: INCLUDE APPLICATIONLAYOUT COMPONENTS HERE?
+      {
+        title: "Badge",
+        content: (
+          <DxcParagraph>
+            Due to the recent token updates, we have aligned the <Code>color</Code> prop with a semantic color approach.
+            The available values are now <Code>'primary'</Code>, <Code>'secondary'</Code>, <Code>'tertiary'</Code>,
+            <Code>'success'</Code>, <Code>'info'</Code>, <Code>'neutral'</Code>, <Code>'warning'</Code>, and
+            <Code>'error'</Code>, replacing the previous functional options (<Code>'grey'</Code>, <Code>'blue'</Code>,{" "}
+            <Code>'green'</Code>, <Code>'orange'</Code>, <Code>'red'</Code>,<Code>'yellow'</Code>, <Code>'purple'</Code>
+            ).
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "DataGrid",
+        content: (
+          <DxcParagraph>
+            This component has exited the experimental phase and is now fully supported, featuring new functionalities
+            like on-demand loading (thanks to the <Code>childrenTrigger</Code> prop), possibility to have rows expanded
+            by default and the possibility to render any page by default. To know more about these new features, please
+            refer to the updated documentation.
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "Heading",
+        content: (
+          <DxcParagraph>
+            The weight options have been refactored, from <Code>'light' | 'normal' | 'bold'</Code> to{" "}
+            <Code>'default' | 'regular' | 'light'</Code>. Additionally, a heading level 6 is now supported.
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "Slider",
+        content: (
+          <DxcParagraph>
+            <Code>tabIndex</Code> prop has been removed. The prop was not having any effect in the component and was not
+            included on purpose, so it is now removed.
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "Tabs",
+        content: (
+          <DxcParagraph>
+            The <Code>Tabs</Code> component no longer supports the legacy API. A more flexible approach using a Compound
+            Component Pattern is now used instead to maintain a higher consistency with our existing{" "}
+            <Code>NavTabs</Code> and make the API much simpler. // TODO: ADD AN EXAMPLE CONVERTING THE OLD API TO THE
+            NEW ONE
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "ToggleGroup",
+        content: (
+          <DxcParagraph>
+            The <Code>ToggleGroup</Code> component API has been updated, including the possibility to have a custom
+            orientation (horizontal or vertical) and a redesign of the way options are structured. Please refer to the
+            updated documentation for more details.// TODO: INCLUDE LINK TO THE NEW DOCS
+          </DxcParagraph>
+        ),
+      },
+    ],
   },
   {
     title: "Removed components",
@@ -85,94 +202,12 @@ const sections = [
     ),
   },
   {
-    title: "Modified APIs",
-    content: (
-      <>
-        <DxcParagraph>
-          Several components were redesigned and now expose different props or behavior. See below for details.
-        </DxcParagraph>
-      </>
-    ),
-    subSections: [
-      {
-        title: "Tabs",
-        content: (
-          <>
-            <DxcParagraph>
-              The <Code>Tabs</Code> component no longer supports the legacy API. Update to the new structure using the
-              <Code>tabs</Code> prop with items as objects containing <Code>label</Code>, <Code>icon</Code>, and{" "}
-              <Code>onClick</Code>.
-            </DxcParagraph>
-          </>
-        ),
-      },
-      {
-        title: "Slider",
-        content: (
-          <>
-            <DxcParagraph>
-              <Code>tabIndex</Code> prop has been removed. The new implementation follows native accessibility patterns.
-            </DxcParagraph>
-          </>
-        ),
-      },
-      {
-        title: "ToggleGroup",
-        content: (
-          <>
-            <DxcParagraph>
-              The <Code>ToggleGroup</Code> component has been redesigned with a new API and structure. Refer to updated
-              documentation for usage examples.
-            </DxcParagraph>
-          </>
-        ),
-      },
-      {
-        title: "Heading",
-        content: (
-          <>
-            <DxcParagraph>
-              Simplified API for <Code>Heading</Code>. Levels and weights are handled internally according to design
-              tokens.
-            </DxcParagraph>
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    title: "New components",
-    content: (
-      <>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            <Code>Header</Code>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <Code>Footer</Code>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <Code>SideNav</Code>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <Code>ApplicationLayout</Code>
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-        <DxcParagraph>
-          These components define the structure of page layouts within the Halstack Design System.
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
     title: "Token updates",
     content: (
-      <>
-        <DxcParagraph>
-          New design tokens have been added for semantic color mapping and improved theme support. Review any custom
-          themes using deprecated core tokens.
-        </DxcParagraph>
-      </>
+      <DxcParagraph>
+        New design tokens have been added for semantic color mapping and improved theme support. Review any custom
+        themes using deprecated core tokens.
+      </DxcParagraph>
     ),
   },
 ];
