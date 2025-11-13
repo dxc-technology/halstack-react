@@ -10,6 +10,8 @@ import { dxcLogo } from "./Icons";
 import DxcButton from "../button/Button";
 import { waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import preview from "../../.storybook/preview";
+import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 
 export default {
   title: "Header",
@@ -28,6 +30,16 @@ export default {
       return <Story />;
     },
   ],
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof DxcHeader>;
 
 const branding = {
