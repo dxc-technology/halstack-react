@@ -218,7 +218,7 @@ export const Responsive: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const menuButton = await waitFor(() => canvas.getAllByRole("button")[1]);
-    if (menuButton) userEvent.click(menuButton);
+    const menuButtons = await waitFor(() => canvas.getAllByRole("button"));
+    if (menuButtons[1]) userEvent.click(menuButtons[1]);
   },
 };
