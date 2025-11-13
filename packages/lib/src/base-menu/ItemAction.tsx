@@ -92,19 +92,19 @@ const ItemAction = memo(
     const { depthLevel, selected, href, label, icon, collapseIcon, "aria-pressed": ariaPressed, ...rest } = props;
 
     return getWrapper(
-      <Action
-        ref={ref}
-        as={href ? "a" : "button"}
-        role={href ? "link" : "button"}
-        depthLevel={depthLevel}
-        selected={selected}
-        displayGroupLines={!!displayGroupLines}
-        responsiveView={responsiveView}
-        {...(href && { href })}
-        {...rest}
-        aria-pressed={!href ? ariaPressed : undefined}
-      >
-        <TooltipWrapper condition={hasTooltip} label={label}>
+      <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
+        <Action
+          ref={ref}
+          as={href ? "a" : "button"}
+          role={href ? "link" : "button"}
+          depthLevel={depthLevel}
+          selected={selected}
+          displayGroupLines={!!displayGroupLines}
+          responsiveView={responsiveView}
+          {...(href && { href })}
+          {...rest}
+          aria-pressed={!href ? ariaPressed : undefined}
+        >
           <Label aria-label={responsiveView ? label : undefined}>
             {!displayControlsAfter && collapseIcon && (
               <Control>
@@ -130,51 +130,9 @@ const ItemAction = memo(
               {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
             </Control>
           )}
-        </TooltipWrapper>
-      </Action>
+        </Action>
+      </TooltipWrapper>
     );
-    // return getWrapper(
-    //   <TooltipWrapper condition={hasTooltip} label={label}>
-    //     <Action
-    //       ref={ref}
-    //       as={href ? "a" : "button"}
-    //       role={href ? "link" : "button"}
-    //       depthLevel={depthLevel}
-    //       selected={selected}
-    //       displayGroupLines={!!displayGroupLines}
-    //       responsiveView={responsiveView}
-    //       {...(href && { href })}
-    //       {...rest}
-    //       aria-pressed={!href ? ariaPressed : undefined}
-    //     >
-    //       <Label aria-label={responsiveView ? label : undefined}>
-    //         {!displayControlsAfter && collapseIcon && (
-    //           <Control>
-    //             <Icon>{collapseIcon}</Icon>
-    //           </Control>
-    //         )}
-    //         {(icon || responsiveView) && (
-    //           <TooltipWrapper condition={responsiveView} label={label}>
-    //             <Icon>
-    //               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}
-    //             </Icon>
-    //           </TooltipWrapper>
-    //         )}
-    //         {!responsiveView && (
-    //           <Text selected={props.selected} onMouseEnter={handleTextMouseEnter}>
-    //             {label}
-    //           </Text>
-    //         )}
-    //       </Label>
-    //       {!responsiveView && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
-    //         <Control>
-    //           {modifiedBadge}
-    //           {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
-    //         </Control>
-    //       )}
-    //     </Action>
-    //   </TooltipWrapper>
-    // );
   })
 );
 
