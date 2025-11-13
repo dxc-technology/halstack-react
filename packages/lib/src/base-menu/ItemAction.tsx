@@ -5,7 +5,7 @@ import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 import { useItemAction } from "./useItemAction";
 
-const Action = styled.button<{
+const Action = styled.a<{
   depthLevel: ItemActionProps["depthLevel"];
   selected: ItemActionProps["selected"];
   displayGroupLines: boolean;
@@ -79,7 +79,7 @@ const Control = styled.span`
 `;
 
 const ItemAction = memo(
-  forwardRef<HTMLButtonElement, ItemActionProps>((props, ref) => {
+  forwardRef<HTMLAnchorElement, ItemActionProps>((props, ref) => {
     const {
       hasTooltip,
       modifiedBadge,
@@ -92,7 +92,7 @@ const ItemAction = memo(
     const { depthLevel, selected, href, label, icon, collapseIcon, "aria-pressed": ariaPressed, ...rest } = props;
 
     return getWrapper(
-      <TooltipWrapper condition={hasTooltip} label={label}>
+      <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
         <Action
           ref={ref}
           as={href ? "a" : "button"}
