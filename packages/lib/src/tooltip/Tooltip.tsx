@@ -124,6 +124,8 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipPropsType & { hasAdd
               </Portal>
             </Root>
           </Provider>
+        ) : isValidElement(children) ? (
+          cloneElement(children, { ref, ...rest })
         ) : (
           children
         )}
