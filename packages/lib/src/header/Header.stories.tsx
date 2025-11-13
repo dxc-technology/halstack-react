@@ -8,7 +8,7 @@ import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcParagraph from "../paragraph/Paragraph";
 import { dxcLogo } from "./Icons";
 import DxcButton from "../button/Button";
-import { waitFor, userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/internal/test";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 
@@ -227,14 +227,17 @@ export const Responsive: Story = {
   globals: {
     viewport: { value: "iphonex", isRotated: false },
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const menuButtons = await waitFor(() => canvas.getAllByRole("button"));
-    if (menuButtons[1]) {
-      await userEvent.click(menuButtons[1]);
-      await userEvent.click(menuButtons[1]);
-      await userEvent.click(menuButtons[1]);
-    }
-    await waitFor(() => canvas.getByText("Bottom content button"));
+    await step("Open Menu", async () => {
+      const buttons = await canvas.findAllByRole("button");
+      if (buttons[1]) {
+        await userEvent.click(buttons[1]);
+      }
+    });
+
+    await step("Wait for content", async () => {
+      await canvas.findByText("Bottom content button");
+    });
   },
 };
