@@ -231,5 +231,6 @@ export const Responsive: Story = {
     const canvas = within(canvasElement);
     const menuButtons = await waitFor(() => canvas.getAllByRole("button"));
     if (menuButtons[1]) await userEvent.click(menuButtons[1]);
+    await waitFor(() => canvas.getByText("Bottom content button"));
   },
 };
