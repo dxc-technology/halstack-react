@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { cloneElement, forwardRef, isValidElement, useContext } from "react";
+import { cloneElement, isValidElement, useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import TooltipContext from "./TooltipContext";
@@ -102,51 +102,51 @@ const triangleIcon = (
   </svg>
 );
 
-export const Tooltip = forwardRef<HTMLButtonElement, TooltipPropsType & { hasAdditionalContainer?: boolean }>(
-  ({ children, hasAdditionalContainer, label, position = "bottom", ...rest }, ref) => {
-    const hasTooltip = useContext(TooltipContext);
+export const Tooltip = ({
+  children,
+  hasAdditionalContainer,
+  label,
+  position = "bottom",
+  ...rest
+}: { hasAdditionalContainer?: boolean } & TooltipPropsType) => {
+  const hasTooltip = useContext(TooltipContext);
+  return (
+    <TooltipContext.Provider value>
+      {label && !hasTooltip ? (
+        <Provider delayDuration={300}>
+          <Root>
+            <Trigger asChild {...rest}>
+              {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
+            </Trigger>
+            <Portal>
+              <StyledTooltipContent side={position} sideOffset={8}>
+                <TooltipContainer>{label}</TooltipContainer>
+                <Arrow asChild aria-hidden>
+                  {triangleIcon}
+                </Arrow>
+              </StyledTooltipContent>
+            </Portal>
+          </Root>
+        </Provider>
+      ) : isValidElement(children) ? (
+        cloneElement(children, { ...rest })
+      ) : (
+        children
+      )}
+    </TooltipContext.Provider>
+  );
+};
 
-    return (
-      <TooltipContext.Provider value>
-        {label && !hasTooltip ? (
-          <Provider delayDuration={300}>
-            <Root>
-              <Trigger asChild ref={ref} {...rest}>
-                {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
-              </Trigger>
-              <Portal>
-                <StyledTooltipContent side={position} sideOffset={8}>
-                  <TooltipContainer>{label}</TooltipContainer>
-                  <Arrow asChild aria-hidden>
-                    {triangleIcon}
-                  </Arrow>
-                </StyledTooltipContent>
-              </Portal>
-            </Root>
-          </Provider>
-        ) : isValidElement(children) ? (
-          cloneElement(children, { ref, ...rest })
-        ) : (
-          children
-        )}
-      </TooltipContext.Provider>
-    );
-  }
-);
-
-export const TooltipWrapper = forwardRef<HTMLButtonElement, TooltipWrapperProps>(
-  ({ condition, children, label, ...rest }, ref) => {
-    return condition ? (
-      <Tooltip ref={ref} label={label} {...rest}>
-        {children}
-      </Tooltip>
-    ) : isValidElement(children) ? (
-      cloneElement(children, { ref, ...rest })
-    ) : (
-      children
-    );
-  }
-);
+export const TooltipWrapper = ({ condition, children, label, ...rest }: TooltipWrapperProps) =>
+  condition ? (
+    <Tooltip label={label} {...rest}>
+      {children}
+    </Tooltip>
+  ) : isValidElement(children) ? (
+    cloneElement(children, { ...rest })
+  ) : (
+    children
+  );
 
 const DxcTooltip = (props: TooltipPropsType) => <Tooltip {...props} hasAdditionalContainer />;
 
