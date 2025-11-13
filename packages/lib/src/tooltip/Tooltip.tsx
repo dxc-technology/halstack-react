@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
+import { cloneElement, isValidElement, useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import TooltipContext from "./TooltipContext";
@@ -107,15 +107,15 @@ export const Tooltip = ({
   hasAdditionalContainer,
   label,
   position = "bottom",
+  ...rest
 }: { hasAdditionalContainer?: boolean } & TooltipPropsType) => {
   const hasTooltip = useContext(TooltipContext);
-
   return (
     <TooltipContext.Provider value>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
           <Root>
-            <Trigger asChild>
+            <Trigger asChild {...rest}>
               {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
             </Trigger>
             <Portal>
@@ -128,6 +128,8 @@ export const Tooltip = ({
             </Portal>
           </Root>
         </Provider>
+      ) : isValidElement(children) ? (
+        cloneElement(children, { ...rest })
       ) : (
         children
       )}
@@ -135,8 +137,16 @@ export const Tooltip = ({
   );
 };
 
-export const TooltipWrapper = ({ condition, children, label }: TooltipWrapperProps) =>
-  condition ? <Tooltip label={label}>{children}</Tooltip> : <>{children}</>;
+export const TooltipWrapper = ({ condition, children, label, ...rest }: TooltipWrapperProps) =>
+  condition ? (
+    <Tooltip label={label} {...rest}>
+      {children}
+    </Tooltip>
+  ) : isValidElement(children) ? (
+    cloneElement(children, { ...rest })
+  ) : (
+    children
+  );
 
 const DxcTooltip = (props: TooltipPropsType) => <Tooltip {...props} hasAdditionalContainer />;
 
