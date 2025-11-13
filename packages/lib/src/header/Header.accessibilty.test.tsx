@@ -75,7 +75,9 @@ describe("Header component accessibility tests", () => {
       <DxcHeader
         branding={branding}
         navItems={items}
-        sideContent={<DxcButton icon="settings" mode="tertiary" size={{ height: "medium" }} onClick={() => {}} />}
+        sideContent={
+          <DxcButton title="Settings" icon="settings" mode="tertiary" size={{ height: "medium" }} onClick={() => {}} />
+        }
       />
     );
     const results = await axe(container, disabledRules);
