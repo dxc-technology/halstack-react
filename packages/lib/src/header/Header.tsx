@@ -73,7 +73,7 @@ const MainNavContainer = styled.div`
 `;
 
 const HamburguerButton = ({ onClick }: { onClick: () => void }) => {
-  return <DxcButton icon="menu" mode="tertiary" aria-label="Menu button" onClick={onClick} />;
+  return <DxcButton title="Toggle menu" icon="menu" mode="tertiary" aria-label="Menu button" onClick={onClick} />;
 };
 
 const ResponsiveMenuContainer = styled.div`
