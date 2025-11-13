@@ -130,11 +130,11 @@ const HeaderInLayout = () => (
         sideContent={(isResponsive) =>
           isResponsive ? (
             <>
-              <DxcButton icon="settings" mode="tertiary" size={{ height: "medium" }} />
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
             </>
           ) : (
             <>
-              <DxcButton icon="settings" mode="tertiary" size={{ height: "medium" }} />
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
               <DxcButton label="Side button" mode="secondary" size={{ height: "medium" }} />
               <DxcButton label="Another button" mode="primary" size={{ height: "medium" }} />
             </>
