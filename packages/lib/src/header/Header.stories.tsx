@@ -8,8 +8,7 @@ import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcParagraph from "../paragraph/Paragraph";
 import { dxcLogo } from "./Icons";
 import DxcButton from "../button/Button";
-import { waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { waitFor, userEvent, within } from "storybook/internal/test";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 
@@ -231,6 +230,6 @@ export const Responsive: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const menuButtons = await waitFor(() => canvas.getAllByRole("button"));
-    if (menuButtons[1]) userEvent.click(menuButtons[1]);
+    if (menuButtons[1]) await userEvent.click(menuButtons[1]);
   },
 };
