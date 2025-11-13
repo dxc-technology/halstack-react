@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { GroupItem, Item } from "../base-menu/types";
+import { CommonItemProps, Item } from "../base-menu/types";
 import { SVG } from "../common/utils";
 
 type LogoPropsType = {
@@ -14,14 +14,17 @@ type BrandingPropsType = {
   appTitle?: string;
 };
 
+type GroupItem = CommonItemProps & {
+  items: Item[];
+};
+
 type MainNavPropsType = (GroupItem | Item)[];
 
 type Props = {
   branding: BrandingPropsType;
-  responsiveBranding?: BrandingPropsType;
   navItems?: MainNavPropsType;
-  sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
   responsiveBottomContent?: ReactNode;
+  sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
 };
 
 export default Props;

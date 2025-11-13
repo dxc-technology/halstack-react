@@ -100,7 +100,10 @@ const Overlay = styled.div`
 
 /**
  * Prepares the navigation items to be rendered in the header.
+ * Even though the typing does not allow this, the navigation tree does.
+ * So this function limits the levels of navigation to the limit by ignoring any nested group items over that limit.
  * @param navItems prop with the navigation items.
+ * @param level current level of recursion.
  * @return Processed navigation items with limited levels.
  */
 const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (GroupItem | Item)[] => {
@@ -153,7 +156,11 @@ const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }:
         <DxcGrid
           templateColumns={
             !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
-              ? ["auto", `minmax(auto, ${MAX_MAIN_NAV_SIZE})`, "auto"]
+              ? [
+                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
+                  `minmax(auto, ${MAX_MAIN_NAV_SIZE})`,
+                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
+                ]
               : ["auto", "auto"]
           }
           templateRows={["var(--height-xxxl)"]}
@@ -197,7 +204,7 @@ const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }:
           )}
           {sideContent && (
             <RightSideContainer>
-              {typeof sideContent === "function" ? sideContent(isResponsive) : isResponsive && sideContent}{" "}
+              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}{" "}
               {isResponsive && <HamburguerButton onClick={toggleMenu} />}
             </RightSideContainer>
           )}

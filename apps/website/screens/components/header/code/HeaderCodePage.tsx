@@ -1,14 +1,36 @@
-import { DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Link from "next/link";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
-const logoTypeString = `{
-  href?: string;
-  src: string;
-  title?: string;
+const brandingTypeString = `{
+  logo : {
+    src: string | SVG;
+    alt: string;
+    href?: string;
+    onClick?: () => void;
+    };
+  appTitle?: string;
+}`;
+
+const navItemsTypeString = `(GroupItem | Item)[]`;
+
+const commonItemTypeString = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+}`;
+
+const itemTypeString = `{ 
+  ${commonItemTypeString}
+  onSelect?: () => void;
+  selected?: boolean;
+}`;
+
+const groupItemTypeString = `{ 
+  ${commonItemTypeString}
+  items: (Item)[];
 }`;
 
 const sections = [
@@ -26,123 +48,89 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>content</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                branding
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
+            </td>
+            <td>Object used to configure the header branding, including logo and application title.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>navItems</td>
+            <td>
+              <TableCode>{navItemsTypeString}</TableCode>
+            </td>
+            <td>
+              Array of navigation items to be displayed in the header navigation menu. Each item can be a single/simple
+              item or a group item.
+              <p>
+                Being <Code>Item</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
+              <p>
+                and <Code>GroupItem</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
+              Group items will ignore any nested group items to maintain a maximum of two levels in the navigation menu.
+              When responsive, navigation items will be displayed in a vertical menu below the header in a vertical
+              layout.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>responsiveBottomContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>
-              Content shown in the header. Take into account that the component applies styles for the first child in
-              the content, so we recommend the use of <Code>React.Fragment</Code> to be applied correctly. Otherwise,
-              the styles can be modified.
+              The content rendered in the bottom part of the header menu under the navigation items when in responsive
+              mode.
             </td>
             <td>-</td>
           </tr>
           <tr>
+            <td>sideContent</td>
             <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                logo
-              </DxcFlex>
+              <TableCode>{"React.ReactNode | (isResponsive: boolean) => React.ReactNode"}</TableCode>
             </td>
             <td>
-              <td>
-                <TableCode>{"Logo"}</TableCode>
-                <p>
-                  being <Code>Logo</Code> an object with the following properties:
-                </p>
-                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
-              </td>
-            </td>
-            <td>Logo to be displayed inside the header.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
-            </td>
-            <td>Size of the bottom margin to be applied to the header.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onClick</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>This function will be called when the user clicks the header logo.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>responsiveContent</td>
-            <td>
-              <TableCode>{"(closeHandler: () => void) => React.ReactNode"}</TableCode>
-            </td>
-            <td>
-              Content shown in responsive version. It receives the close menu handler that can be used to add that
-              functionality when a element is clicked.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>tabIndex</td>
-            <td>
-              <TableCode>number</TableCode>
-            </td>
-            <td>Value of the tabindex for all interactive elements, except those inside the custom area.</td>
-            <td>
-              <TableCode>0</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>underlined</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>Whether a contrast line should appear at the bottom of the header.</td>
-            <td>
-              <TableCode>false</TableCode>
+              Content to be displayed on the right side of the header. It can be a React node or a function that
+              receives a boolean indicating if the header is in responsive mode and returns a React node.
             </td>
           </tr>
         </tbody>
       </DxcTable>
     ),
   },
-  {
-    title: "DxcHeader.Dropdown",
-    content: (
-      <DxcParagraph>
-        Everything between the tags will be displayed as a dropdown. If you want to show a{" "}
-        <Link href="/components/dropdown" passHref legacyBehavior>
-          <DxcLink>DxcDropdown</DxcLink>
-        </Link>
-        , as a shortcut, you can also use it as a direct child of the DxcHeader without the tags, but we recommend to
-        use it with the tags since some styles will be applied for a better fit in the header.
-      </DxcParagraph>
-    ),
-  },
-  {
-    title: "Examples",
-    subSections: [
-      {
-        title: "Header in application layout",
-        content: (
-          <iframe
-            src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
-            style={{
-              width: "100%",
-              minHeight: "500px",
-              border: "0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-            title="Footer and header"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          />
-        ),
-      },
-    ],
-  },
+  // UPDATE to new sandbox link when available
+  // {
+  //   title: "Examples",
+  //   subSections: [
+  //     {
+  //       title: "Header in application layout",
+  //       content: (
+  //         <iframe
+  //           src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
+  //           style={{
+  //             width: "100%",
+  //             minHeight: "500px",
+  //             border: "0",
+  //             borderRadius: "4px",
+  //             overflow: "hidden",
+  //           }}
+  //           title="Footer and header"
+  //           sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  //           allowFullScreen
+  //         />
+  //       ),
+  //     },
+  //   ],
+  // },
 ];
 
 const HeaderCodePage = () => {

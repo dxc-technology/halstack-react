@@ -97,6 +97,7 @@ type BaseMenuContextProps = {
 };
 
 export type {
+  CommonItemProps,
   BaseMenuContextProps,
   GroupItem,
   GroupItemProps,
