@@ -10,26 +10,24 @@ const brandingTypeString = `{
     alt: string;
     href?: string;
     onClick?: () => void;
-    };
+  };
   appTitle?: string;
 }`;
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
 
-const commonItemTypeString = `{
+const itemTypeString = `{
   badge?: ReactElement;
   icon?: string | SVG;
   label: string;
-}`;
-
-const itemTypeString = `{ 
-  ${commonItemTypeString}
   onSelect?: () => void;
   selected?: boolean;
 }`;
 
-const groupItemTypeString = `{ 
-  ${commonItemTypeString}
+const groupItemTypeString = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
   items: (Item)[];
 }`;
 
@@ -99,8 +97,8 @@ const sections = [
               <TableCode>{"React.ReactNode | (isResponsive: boolean) => React.ReactNode"}</TableCode>
             </td>
             <td>
-              Content to be displayed on the right side of the header. It can be a React node or a function that
-              receives a boolean indicating if the header is in responsive mode and returns a React node.
+              Content to be displayed on the right side of the header. It can be a ReactNode or a function that receives
+              a boolean indicating if the header is in responsive mode and returns a ReactNode.
             </td>
           </tr>
         </tbody>
