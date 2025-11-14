@@ -18,10 +18,12 @@ const SubMenuContainer = styled.ul<{
   ${({ isPopOver }) =>
     isPopOver &&
     `
-      max-width: 240px;
+      min-width: 200px;
+      max-width: 320px;
+      padding: var(--spacing-padding-xs);
       background-color: var(--color-bg-neutral-lightest);
       border-radius: var(--border-radius-m);
-      box-shadow: var(--shadow-200);
+      box-shadow: var(--shadow-100);
     `}
   ${({ depthLevel, displayGroupLines }) =>
     displayGroupLines &&
