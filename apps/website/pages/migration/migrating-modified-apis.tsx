@@ -1,12 +1,12 @@
 import Head from "next/head";
-import ModifiedAPIsPage from "screens/migration/ModifiedAPIsPage";
+import Components16Page from "screens/migration/Components16Page";
 
 const DataVisualization = () => (
   <>
     <Head>
-      <title>Migrating modified component APIs</title>
+      <title>Migrating component APIs</title>
     </Head>
-    <ModifiedAPIsPage />
+    <Components16Page />
   </>
 );
 

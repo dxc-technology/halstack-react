@@ -61,10 +61,10 @@ const sections = [
     ),
   },
   {
-    title: "Modified APIs",
+    title: "Modified components",
     content: (
       <DxcParagraph>
-        Several components were redesigned and now expose different props or behavior. See below for details.
+        Several components were redesigned and now have a different API or behavior. See below for details.
       </DxcParagraph>
     ),
     subSections: [
@@ -201,26 +201,17 @@ const sections = [
       </>
     ),
   },
-  {
-    title: "Token updates",
-    content: (
-      <DxcParagraph>
-        New design tokens have been added for semantic color mapping and improved theme support. Review any custom
-        themes using deprecated core tokens.
-      </DxcParagraph>
-    ),
-  },
 ];
 
 const MigrationPage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Migrating from 15.x.x to 16.0.0" />
+        <DxcHeading level={1} text="Components' update in v16" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/MigrationPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/Components16Page.tsx" />
   </DxcFlex>
 );
 
