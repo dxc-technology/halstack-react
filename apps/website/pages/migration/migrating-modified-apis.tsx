@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Components16Page from "screens/migration/Components16Page";
 
-const DataVisualization = () => (
+const Components16Migration = () => (
   <>
     <Head>
       <title>Migrating component APIs</title>
@@ -10,4 +10,4 @@ const DataVisualization = () => (
   </>
 );
 
-export default DataVisualization;
+export default Components16Migration;

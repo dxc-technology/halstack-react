@@ -1,8 +1,9 @@
-import { DxcFlex, DxcParagraph, DxcHeading, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import Code from "@/common/Code";
+import Link from "next/link";
 
 const sections = [
   {
@@ -128,7 +129,10 @@ const sections = [
           <DxcParagraph>
             The <Code>ToggleGroup</Code> component API has been updated, including the possibility to have a custom
             orientation (horizontal or vertical) and a redesign of the way options are structured. Please refer to the
-            updated documentation for more details.// TODO: INCLUDE LINK TO THE NEW DOCS
+            <Link href="/components/toggle-group" passHref legacyBehavior>
+              <DxcLink>updated documentation</DxcLink>
+            </Link>{" "}
+            for more details.
           </DxcParagraph>
         ),
       },
@@ -203,7 +207,7 @@ const sections = [
   },
 ];
 
-const MigrationPage = () => (
+const Components16Page = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
@@ -215,4 +219,4 @@ const MigrationPage = () => (
   </DxcFlex>
 );
 
-export default MigrationPage;
+export default Components16Page;
