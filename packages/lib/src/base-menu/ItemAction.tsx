@@ -94,7 +94,7 @@ const ItemAction = memo(
     const { depthLevel, selected, href, label, icon, collapseIcon, "aria-pressed": ariaPressed, ...rest } = props;
 
     return getWrapper(
-      <TooltipWrapper condition={hasTooltip} label={label}>
+      <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
         <Action
           ref={ref}
           as={href ? "a" : "button"}
