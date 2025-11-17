@@ -23,10 +23,10 @@ const Title = styled.h2`
 
 export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
-  const { responsiveView } = useContext(BaseMenuContext) ?? {};
+  const { hasPopOver } = useContext(BaseMenuContext) ?? {};
   return (
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
-      {!responsiveView && section.title && <Title id={id}>{section.title}</Title>}
+      {!hasPopOver && section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu depthLevel={-1}>
         {section.items.map((item, i) => (
           <MenuItem item={item} key={`${item.label}-${i}`} />

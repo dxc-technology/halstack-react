@@ -6,11 +6,11 @@ import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 
-const ApplicationLayoutContainer = styled.div`
+const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   top: 0;
   left: 0;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: ${({ header }) => (header ? "auto 1fr" : "1fr")};
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -19,6 +19,7 @@ const ApplicationLayoutContainer = styled.div`
 
 const HeaderContainer = styled.div`
   width: 100%;
+  min-height: var(--height-xxxl);
   height: fit-content;
   z-index: var(--z-app-layout-header);
 `;
@@ -66,8 +67,8 @@ const DxcApplicationLayout = ({ header, sidenav, footer, children }: Application
   const ref = useRef(null);
 
   return (
-    <ApplicationLayoutContainer ref={ref}>
-      <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
+    <ApplicationLayoutContainer ref={ref} header={header}>
+      {header && <HeaderContainer>{header}</HeaderContainer>}
       <BodyContainer>
         {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
         <MainContainer>

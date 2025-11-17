@@ -33,7 +33,8 @@ export default function DxcNavigationTree({
   displayBorder = true,
   displayGroupLines = false,
   displayControlsAfter = false,
-  responsiveView = false,
+  hasPopOver = false,
+  isHorizontal = false,
 }: NavigationTreePropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
@@ -45,9 +46,10 @@ export default function DxcNavigationTree({
       setSelectedItemId,
       displayGroupLines,
       displayControlsAfter,
-      responsiveView,
+      hasPopOver,
+      isHorizontal,
     }),
-    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, responsiveView]
+    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, hasPopOver, isHorizontal]
   );
 
   useLayoutEffect(() => {
@@ -71,7 +73,7 @@ export default function DxcNavigationTree({
             <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
           ))
         ) : (
-          <SubMenu>
+          <SubMenu isHorizontal={isHorizontal}>
             {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
               <MenuItem item={item} key={`${item.label}-${index}`} />
             ))}
