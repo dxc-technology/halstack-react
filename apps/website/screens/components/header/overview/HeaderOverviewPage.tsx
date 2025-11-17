@@ -1,10 +1,6 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import anatomy from "./images/header_anatomy.png";
-import variants from "./images/header_variants.png";
 
 const sections = [
   {
@@ -12,8 +8,8 @@ const sections = [
     content: (
       <DxcParagraph>
         The Header serves as the primary navigation and identity element for an application. It includes branding, quick
-        access to key sections via navigation links, and a user account menu. Its consistent presence reinforces brand
-        recognition and improves usability by offering easy navigation and access to user-related actions.
+        access to key sections via navigation links, and a customizable side content. Its consistent presence reinforces
+        brand recognition and improves usability by offering easy navigation and access to quick actions.
       </DxcParagraph>
     ),
   },
@@ -21,7 +17,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Header anatomy" />
+        {/* <Image src={anatomy} alt="Header anatomy" /> */}
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> a layout structure that wraps all Header elements, ensuring consistent
@@ -40,38 +36,10 @@ const sections = [
             <strong>Navigation Links</strong> <em>(Optional)</em>: key links to main sections of the application.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Header Dropdown</strong> <em>(Optional)</em>: a dropdown menu for user-specific actions such as
+            <strong>Side Content</strong> <em>(Optional)</em>: a customizable area for user-specific actions such as
             profile, settings, or logout, triggered by click or keyboard focus.
           </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Divider</strong> <em>(Optional)</em>: horizontal line that visually separates the Header from the
-            page content below, enhancing layout clarity.
-          </DxcBulletedList.Item>
         </DxcBulletedList>
-      </>
-    ),
-  },
-  {
-    title: "Variants",
-    content: (
-      <>
-        <DxcParagraph>
-          To maintain consistency with the way variants are structured across components, the Header offers two primary
-          styles: <strong>default</strong> and <strong>underlined</strong>.
-        </DxcParagraph>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            The <strong>default</strong> variant features a clean header without a visual separation from the page
-            content, ideal for minimalistic or immersive layouts.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            The <strong>underlined</strong> variant includes a subtle bottom divider, creating a clear visual boundary
-            between the header and the rest of the page content, enhancing structure and clarity.
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-        <Figure caption="Header variants">
-          <Image src={variants} alt="Header variants" />
-        </Figure>
       </>
     ),
   },
@@ -87,7 +55,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           "On smaller screens, the header content is replaced by a button. Triggering this button opens a menu that
-          displays custom content."
+          displays navigation links and a bottom section."
         </DxcParagraph>
       </>
     ),
@@ -100,17 +68,12 @@ const sections = [
           <strong>Keep the Header minimal and functional:</strong> include only essential elements.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Select the correct variant according to visual needs:</strong> Use the <strong>default</strong>{" "}
-          variant for simple pages and underlined variant to visually separate the Header from the content when
-          necessary.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Use dropdowns correctly for complex navigation:</strong> Only use Header dropdowns when necessary to
-          organize multiple links logically without overwhelming the top navigation.
+          <strong>Use navigation links correctly:</strong> Only use navigation groups when necessary to organize
+          multiple links logically without overwhelming the top navigation.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Avoid overcrowding the Header:</strong> Limit the number of top-level navigation links. Group
-          secondary links inside dropdowns if needed to maintain a clean and user-friendly interface.
+          secondary links inside navigation groups if needed to maintain a clean and user-friendly interface.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Display the application name clearly and concisely:</strong> The application name should be readable,
@@ -118,7 +81,8 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Design the Header to respond gracefully to smaller screens:</strong> When adapting the Header to
-          mobile or tablet layouts, restructure the content to preserve both visual clarity and functional hierarchy.
+          mobile or tablet layouts, restructure the side content to preserve both visual clarity and functional
+          hierarchy.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),

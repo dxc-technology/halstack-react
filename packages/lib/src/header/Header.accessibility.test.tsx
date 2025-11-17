@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcHeader from "./Header";
-import DxcFlex from "../flex/Flex";
-import DxcLink from "../link/Link";
 import rules from "../../test/accessibility/rules/specific/header/disabledRules";
 import { vi } from "vitest";
+import DxcBadge from "../badge/Badge";
+import DxcButton from "../button/Button";
 
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
@@ -25,27 +25,40 @@ const iconSVG = (
 
 const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
 
-const options = [
-  {
-    value: "1",
-    label: "Amazon",
-    icon: iconUrl,
+const branding = {
+  logo: {
+    src: iconSVG,
+    alt: "DXC Logo",
+    href: iconUrl,
   },
+  appTitle:
+    "Application Title with a very long name that exceeds the normal length to test how the header manages overflow situations",
+};
+
+const items = [
   {
-    value: "2",
-    label: "Ebay",
-    icon: iconUrl,
+    label: "Grouped Item 1",
+    icon: "favorite",
+    items: [
+      { label: "Item 1", icon: "person", selected: true },
+      {
+        label: "Grouped Item 2",
+        items: [
+          {
+            label: "Item 2",
+            icon: "bookmark",
+            badge: <DxcBadge color="primary" label="Experimental" />,
+          },
+          { label: "Selected Item 3" },
+        ],
+      },
+    ],
+    badge: <DxcBadge color="success" label="New" />,
   },
-  {
-    value: "3",
-    label: "Wallapop",
-    icon: iconSVG,
-  },
-  {
-    value: "4",
-    label: "Aliexpress",
-    icon: iconSVG,
-  },
+  { label: "Item 4", icon: "key" },
+  { label: "Item 5", icon: "person" },
+  { label: "Grouped Item 6", items: [{ label: "Item 7", icon: "person" }, { label: "Item 8" }] },
+  { label: "Item 9" },
 ];
 
 describe("Header component accessibility tests", () => {
@@ -60,25 +73,11 @@ describe("Header component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
       <DxcHeader
-        content={
-          <DxcFlex alignItems="center" gap="4rem">
-            <DxcLink>Link 1</DxcLink>
-            <DxcLink>Link 2</DxcLink>
-            <DxcLink>Link 3</DxcLink>
-            <DxcHeader.Dropdown
-              options={options}
-              label="dropdown-test"
-              icon={iconSVG}
-              iconPosition="after"
-              margin="medium"
-              size="medium"
-              optionsIconPosition="after"
-              onSelectOption={() => {}}
-            />
-          </DxcFlex>
+        branding={branding}
+        navItems={items}
+        sideContent={
+          <DxcButton title="Settings" icon="settings" mode="tertiary" size={{ height: "medium" }} onClick={() => {}} />
         }
-        margin="medium"
-        underlined
       />
     );
     const results = await axe(container, disabledRules);
