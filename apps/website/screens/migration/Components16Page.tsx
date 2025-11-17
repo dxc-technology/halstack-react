@@ -1,4 +1,4 @@
-import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcLink, DxcBulletedList } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
@@ -37,22 +37,6 @@ const sections = [
                 icons, or initials.
               </td>
             </tr>
-            <tr>
-              <td>ApplicationLayout</td>
-              <td>TBD</td>
-            </tr>
-            <tr>
-              <td>Header</td>
-              <td>TBD</td>
-            </tr>
-            <tr>
-              <td>SideNav</td>
-              <td>TBD</td>
-            </tr>
-            <tr>
-              <td>Footer</td>
-              <td>TBD</td>
-            </tr>
           </tbody>
         </DxcTable>
         <DxcParagraph>
@@ -68,8 +52,114 @@ const sections = [
         Several components were redesigned and now have a different API or behavior. See below for details.
       </DxcParagraph>
     ),
+    // TODO: ADD AN EXAMPLE CONVERTING THE OLD APIs TO THE NEW ONES OR REDIRECT TO THE COMPONENTS' PAGES?
     subSections: [
-      // TODO: INCLUDE APPLICATIONLAYOUT COMPONENTS HERE?
+      {
+        title: "ApplicationLayout",
+        content: (
+          <DxcParagraph>
+            The <Code>ApplicationLayout</Code> component and its compound components have been redesigned. The new API
+            focuses on improved flexibility, better responsiveness, and easier customization. The <Code>header</Code>{" "}
+            prop is no longer required, however it is highly encouraged to have either a <Code>Sidenav</Code> or a{" "}
+            <Code>Header</Code> in your application. The following sections will explain the changes in more depth.
+          </DxcParagraph>
+        ),
+        subSections: [
+          {
+            title: "ApplicationLayout.Header",
+            content: (
+              <>
+                <DxcParagraph>
+                  The <Code>Header</Code> component has been redesigned. The new API provides a simpler and more
+                  flexible approach:
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    <b>v15 (old)</b>: The header was configured using props like <Code>underlined</Code>,
+                    <Code>content</Code>, and <Code>responsiveContent</Code>. Dropdowns were rendered using{" "}
+                    <Code>DxcHeader.Dropdown</Code>.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <b>v16</b>: The new header uses <Code>branding</Code> for logo/app title, <Code>navItems</Code> for
+                    navigation links (with optional nested groups), <Code>sideContent</Code> for side elements, and
+                    <Code>responsiveBottomContent</Code> for mobile-specific content.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+                <DxcParagraph>
+                  When migrating, move your old <Code>content</Code> and dropdowns into the new <Code>branding</Code>{" "}
+                  and
+                  <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with
+                  <Code>responsiveBottomContent</Code> and use <Code>sideContent</Code> as needed for further required
+                  interaction.
+                </DxcParagraph>
+                <DxcParagraph>
+                  For further information regarding the new API, please refer to{" "}
+                  <Link href="/components/header" passHref legacyBehavior>
+                    <DxcLink>updated documentation</DxcLink>
+                  </Link>
+                </DxcParagraph>
+              </>
+            ),
+          },
+          {
+            title: "ApplicationLayout.Sidenav",
+            content: (
+              <>
+                <DxcParagraph>
+                  The <Code>Sidenav</Code> component has also changed from a compound component structure to a
+                  declarative
+                  <Code>navItems</Code> prop. This new API also features changes that improve the responsiveness and
+                  flexibility of the component.
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    <b>v15 (old)</b>: Nested components like <Code>DxcSidenav.Title</Code>,{" "}
+                    <Code>DxcSidenav.Section</Code>,<Code>DxcSidenav.Group</Code>, and <Code>DxcSidenav.Link</Code>{" "}
+                    defined the structure and links.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <b>v16</b>: The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
+                    <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> can have a title, icon, collapsible
+                    flag, and children <Code>Item</Code> objects. Each <Code>Item</Code> has a <Code>label</Code>,
+                    optional <Code>icon</Code>, <Code>selected</Code>
+                    state, and an <Code>onSelect</Code> callback.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+                <DxcParagraph>
+                  This is the main changes but there are some new additional props that have been added in this version:
+                </DxcParagraph>
+                <DxcParagraph>
+                  To migrate, flatten your old <Code>Title</Code>, <Code>Section</Code>, <Code>Group</Code>, and
+                  <Code>Link</Code> structure into a single <Code>items</Code> array following the new typing.
+                </DxcParagraph>
+                <DxcParagraph>
+                  When migrating:{" "}
+                  <DxcBulletedList>
+                    <DxcBulletedList.Item>
+                      Flatten your old <Code>Title</Code>, <Code>Section</Code>, <Code>Group</Code>, and
+                      <Code>Link</Code> structure into a single <Code>items</Code> array following the new typing.
+                    </DxcBulletedList.Item>
+                    <DxcBulletedList.Item>
+                      Move your old logo/app title into the new <Code>branding</Code>
+                    </DxcBulletedList.Item>
+                    <DxcBulletedList.Item>
+                      Include <Code>topContent</Code> and <Code>bottomContent</Code> as needed for further interaction
+                      and handle the expanded state for responsive layouts with <Code>defaultExpanded</Code> for
+                      uncontrolled behavior or <Code>expanded</Code> and <Code>onExpandedChange</Code> for controlled
+                      behavior
+                    </DxcBulletedList.Item>
+                  </DxcBulletedList>
+                </DxcParagraph>
+              </>
+            ),
+          },
+          // TODO: CHECK PELAYO PR FOR THE NEW FOOTER API
+          {
+            title: "ApplicationLayout.Footer",
+            content: <DxcParagraph>TBD</DxcParagraph>,
+          },
+        ],
+      },
       {
         title: "Badge",
         content: (
@@ -118,8 +208,7 @@ const sections = [
           <DxcParagraph>
             The <Code>Tabs</Code> component no longer supports the legacy API. A more flexible approach using a Compound
             Component Pattern is now used instead to maintain a higher consistency with our existing{" "}
-            <Code>NavTabs</Code> and make the API much simpler. // TODO: ADD AN EXAMPLE CONVERTING THE OLD API TO THE
-            NEW ONE
+            <Code>NavTabs</Code> and make the API much simpler.
           </DxcParagraph>
         ),
       },

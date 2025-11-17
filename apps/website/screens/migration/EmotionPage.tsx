@@ -2,8 +2,9 @@ import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcLink } from "@dxc-techn
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
-import Code, { ExtendedCode } from "@/common/Code";
+import Code from "@/common/Code";
 import Link from "next/link";
+import CodeBlock from "@/common/CodeBlock";
 
 const sections = [
   {
@@ -109,9 +110,9 @@ const sections = [
               </Link>
               , the following packages must be added to your project:
             </DxcParagraph>
-            <Code>@emotion/react @emotion/styled</Code>
+            <CodeBlock>{`npm i @emotion/react @emotion/styled`}</CodeBlock>
             <DxcParagraph>While the following package must be removed from it:</DxcParagraph>
-            <Code>styled-components</Code>
+            <CodeBlock>{`npm un styled-components`}</CodeBlock>
           </>
         ),
       },
@@ -123,9 +124,9 @@ const sections = [
               Replace imports from <Code>styled-components</Code> with <Code>@emotion/styled</Code>:
             </DxcParagraph>
             <DxcParagraph>Previous version:</DxcParagraph>
-            <Code>import styled from "styled-components";</Code>
+            <CodeBlock>import styled from "styled-components";</CodeBlock>
             <DxcParagraph>New version:</DxcParagraph>
-            <Code>import styled from "@emotion/styled";</Code>
+            <CodeBlock>import styled from "@emotion/styled";</CodeBlock>
             <DxcParagraph>
               The API of both works in the same way, so this should be the only required change. For further
               information, please refer to the{" "}
@@ -143,12 +144,10 @@ const sections = [
             <DxcParagraph>
               Replace <Code>keyframes</Code> from styled-components with the one provided by Emotion.
             </DxcParagraph>
-
             <DxcParagraph>Previous version:</DxcParagraph>
-            <Code>{`import { keyframes } from "styled-components";`}</Code>
-
+            <CodeBlock>{`import { keyframes } from "styled-components";`}</CodeBlock>
             <DxcParagraph>New version:</DxcParagraph>
-            <Code>{`import { keyframes } from "@emotion/react";`}</Code>
+            <CodeBlock>{`import { keyframes } from "@emotion/react";`}</CodeBlock>
           </>
         ),
       },
@@ -160,9 +159,9 @@ const sections = [
               Theme context must now be provided using Emotion's <Code>ThemeProvider</Code>:
             </DxcParagraph>
             <DxcParagraph>Previous version:</DxcParagraph>
-            <Code>{`import { ThemeProvider } from "styled-components";`}</Code>
+            <CodeBlock>{`import { ThemeProvider } from "styled-components";`}</CodeBlock>
             <DxcParagraph>New version:</DxcParagraph>
-            <Code>{`import { ThemeProvider } from "@emotion/react";`}</Code>
+            <CodeBlock>{`import { ThemeProvider } from "@emotion/react";`}</CodeBlock>
             <DxcParagraph>
               Emotion and styled-components have mostly compatible theming APIs, but theme propagation differs in some
               edge cases. In Emotion, deeply nested styled components always use the nearest
@@ -197,11 +196,11 @@ const sections = [
               If your app uses SSR, replace <Code>ServerStyleSheet</Code> with Emotion's server utilities:
             </DxcParagraph>
             <DxcParagraph>Previous version:</DxcParagraph>
-            <Code>{`import { ServerStyleSheet } from "styled-components";`}</Code>
+            <CodeBlock>{`import { ServerStyleSheet } from "styled-components";`}</CodeBlock>
             <DxcParagraph>New version:</DxcParagraph>
-            <ExtendedCode>{`import createEmotionServer from "@emotion/server/create-instance";
+            <CodeBlock>{`import createEmotionServer from "@emotion/server/create-instance";
 import { cache } from "@emotion/css"; // or emotion-cache if configured
-const { extractCritical } = createEmotionServer(cache);`}</ExtendedCode>
+const { extractCritical } = createEmotionServer(cache);`}</CodeBlock>
           </>
         ),
       },
@@ -216,7 +215,7 @@ const { extractCritical } = createEmotionServer(cache);`}</ExtendedCode>
           replaced with Emotion's <Code>Global</Code> component.
         </DxcParagraph>
         <DxcParagraph>Previous version:</DxcParagraph>
-        <ExtendedCode>
+        <CodeBlock>
           {`import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle\`
@@ -224,9 +223,9 @@ const GlobalStyles = createGlobalStyle\`
     margin: 0;
   }
 \`;`}
-        </ExtendedCode>
+        </CodeBlock>
         <DxcParagraph>New version:</DxcParagraph>
-        <ExtendedCode>
+        <CodeBlock>
           {`import { Global, css } from "@emotion/react";
 
 const GlobalStyles = (
@@ -238,7 +237,7 @@ const GlobalStyles = (
     \`}
   />
 );`}
-        </ExtendedCode>
+        </CodeBlock>
       </>
     ),
   },
@@ -250,14 +249,14 @@ const GlobalStyles = (
           Emotion's <Code>styled</Code> API can still wrap Halstack components. Replace any previous SC wrappers with
           Emotion's equivalent:
         </DxcParagraph>
-        <ExtendedCode>
+        <CodeBlock>
           {`import styled from "@emotion/styled";
 import { DxcButton } from "@dxc-technology/halstack-react";
 
 const CustomButton = styled(DxcButton)\`
   --button-padding: 12px;
 \`;`}
-        </ExtendedCode>
+        </CodeBlock>
       </>
     ),
   },
@@ -265,13 +264,15 @@ const CustomButton = styled(DxcButton)\`
     title: "Removing styled-components from your build",
     content: (
       <>
-        <DxcParagraph>styled-components is no longer required by Halstack React. You may remove:</DxcParagraph>
+        <DxcParagraph>
+          <Code>styled-components</Code> is no longer required by Halstack React. You should make sure to remove:
+        </DxcParagraph>
         <ul>
           <li>
             <Code>styled-components</Code> from <Code>package.json</Code>
           </li>
           <li>
-            Babel plugin: <Code>"babel-plugin-styled-components"</Code>
+            Babel plugin (<Code>babel-plugin-styled-components</Code>)
           </li>
           <li>Any styled-components-specific webpack or SSR setup</li>
         </ul>
