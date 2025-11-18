@@ -1,54 +1,30 @@
 import { ReactNode } from "react";
-import { Space } from "../common/utils";
+import { CommonItemProps, Item } from "../base-menu/types";
+import { SVG } from "../common/utils";
 
-export type Logo = {
-  /**
-   * URL to navigate when the logo is clicked.
-   */
+type LogoPropsType = {
+  src: string | SVG;
+  alt: string;
   href?: string;
-  /**
-   * Source of the logo image.
-   */
-  src: string;
-  /**
-   * Alternative text for the logo image.
-   */
-  title?: string;
+  onClick?: () => void;
 };
 
+type BrandingPropsType = {
+  logo: LogoPropsType;
+  appTitle?: string;
+};
+
+type GroupItem = CommonItemProps & {
+  items: Item[];
+};
+
+type MainNavPropsType = (GroupItem | Item)[];
+
 type Props = {
-  /**
-   * Whether a contrast line should appear at the bottom of the header.
-   */
-  underlined?: boolean;
-  /**
-   * Content shown in the header. Take into account that the component applies styles
-   * for the first child in the content, so we recommend the use of Fragment
-   * to be applied correctly. Otherwise, the styles can be modified.
-   */
-  content?: ReactNode;
-  /**
-   * Content shown in responsive version. It receives the close menu handler that can
-   * be used to add that functionality when a element is clicked.
-   */
-  responsiveContent?: (closeHandler: () => void) => ReactNode;
-  /**
-   * Logo to be displayed inside the header
-   */
-  logo?: Logo;
-  /**
-   * Size of the bottom margin to be applied to the header.
-   */
-  margin?: Space;
-  /**
-   * This function will be called when the user clicks the header logo.
-   */
-  onClick?: () => void;
-  /**
-   * Value of the tabindex for all interactive elements, except those inside the
-   * custom area.
-   */
-  tabIndex?: number;
+  branding: BrandingPropsType;
+  navItems?: MainNavPropsType;
+  responsiveBottomContent?: ReactNode;
+  sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
 };
 
 export default Props;

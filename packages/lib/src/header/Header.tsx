@@ -1,215 +1,139 @@
-import { ComponentProps, useContext, useEffect, useRef, useState } from "react";
-import { responsiveSizes, spaces } from "../common/variables";
-import DxcDropdown from "../dropdown/Dropdown";
-import DxcIcon from "../icon/Icon";
-import HeaderPropsType, { Logo } from "./types";
-import DxcFlex from "../flex/Flex";
-import { HalstackLanguageContext } from "../HalstackContext";
-import DxcActionIcon from "../action-icon/ActionIcon";
-import { dxcLogo } from "./Icons";
 import styled from "@emotion/styled";
+import DxcGrid from "../grid/Grid";
+import HeaderProps from "./types";
+import DxcImage from "../image/Image";
+import DxcDivider from "../divider/Divider";
+import DxcHeading from "../heading/Heading";
+import { isGroupItem } from "../base-menu/utils";
+import { GroupItem, Item } from "../base-menu/types";
+import { useEffect, useMemo, useState } from "react";
+import DxcNavigationTree from "../navigation-tree/NavigationTree";
+import { responsiveSizes } from "../common/variables";
+import DxcButton from "../button/Button";
 
-const HeaderDropdown = styled.div`
-  display: flex;
-  button {
-    background-color: transparent;
-    :hover {
-      background-color: transparent;
-    }
-  }
+const MAX_MAIN_NAV_SIZE = "60%";
+const LEVEL_LIMIT = 1;
+
+const MainContainer = styled.div<{ isResponsive: boolean; isMenuVisible: boolean }>`
+  display: grid;
+  width: 100%;
+  grid-template-rows: ${(props) =>
+    props.isResponsive && props.isMenuVisible
+      ? "var(--height-xxxl) calc(100vh - var(--height-xxxl))"
+      : "var(--height-xxxl)"};
+  ${(props) => (props.isResponsive && props.isMenuVisible ? "position: fixed;" : "")}
 `;
 
-const HeaderContainer = styled.header<{
-  margin: HeaderPropsType["margin"];
-  underlined: HeaderPropsType["underlined"];
-}>`
-  background-color: var(--color-bg-neutral-lightest);
-  border-bottom: ${(props) =>
-    props.underlined && `var(--border-width-m) var(--border-style-default) var(--border-color-neutral-strongest)`};
-  align-items: center;
+const HeaderContainer = styled.header`
+  width: 100%;
+  height: var(--height-xxxl);
   box-sizing: border-box;
+  background: var(--color-bg-neutral-lightest);
+  box-shadow: var(--shadow-100);
+  padding: 0 var(--spacing-gap-l);
+`;
+
+const SideContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: 64px;
-  padding: var(--spacing-padding-none) var(--spacing-padding-l);
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  gap: var(--spacing-gap-m);
 `;
 
-const LogoAnchor = styled.a<{ interactive: boolean }>`
-  ${(props) => (props.interactive ? "cursor: pointer" : "cursor: default; outline:none;")};
+const BrandingContainer = styled(SideContainer)`
+  justify-content: flex-start;
+  height: var(--height-m);
 `;
 
-const LogoImg = styled.img`
-  max-height: var(--height-xl);
-  width: auto;
+const RightSideContainer = styled(SideContainer)`
+  justify-content: flex-end;
 `;
 
 const LogoContainer = styled.div`
-  max-height: var(--height-xl);
-  vertical-align: middle;
-  width: auto;
-`;
-
-const ChildContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex-grow: 1;
-  width: calc(100% - 186px);
+  svg {
+    height: var(--height-m);
+    width: auto;
+  }
 `;
 
-const ContentContainer = styled.div`
+const MainNavContainer = styled.div`
   display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-end;
-  width: calc(100% - 186px);
-  color: var(--color-fg-neutral-dark);
-`;
-
-const HamburgerTrigger = styled.button`
-  align-items: center;
-  background-color: transparent;
-  border-radius: var(--border-radius-xs);
-  border: var(--border-width-s) var(--border-style-default) transparent;
-  color: var(--color-fg-neutral-dark);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-s);
-  font-weight: var(--typography-label-semibold);
-  height: var(--height-xl);
   justify-content: center;
-  padding: var(--spacing-padding-none) var(--spacing-padding-m);
-  text-transform: uppercase;
-  :hover {
-    background-color: var(--color-bg-neutral-medium);
-  }
-  &:focus {
-    outline: var(--border-color-secondary-medium) var(--border-style-default) var(--border-width-m);
-  }
-  & > svg {
-    fill: var(--color-fg-neutral-dark);
-  }
-  & > span {
-    font-size: var(--height-s);
-  }
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  gap: var(--spacing-gap-s);
 `;
 
-const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
-  display: flex;
-  flex-direction: column;
+const HamburguerButton = ({ onClick }: { onClick: () => void }) => {
+  return <DxcButton title="Toggle menu" icon="menu" mode="tertiary" aria-label="Menu button" onClick={onClick} />;
+};
+
+const ResponsiveMenuContainer = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr;
+`;
+
+const ResponsiveMenu = styled.div`
+  width: 100%;
   background-color: var(--color-bg-neutral-lightest);
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: var(--z-header-menu);
-
-  @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
-    width: 60vw;
-  }
-
-  @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
-    width: 100vw;
-  }
-
-  height: 100vh;
-  padding: 20px;
-  transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
-  transition-property: transform, opacity;
-  transition-duration: 0.6s;
-  transition-timing-function: ease-in-out;
+  display: flex;
+  padding: var(--spacing-padding-m);
   box-sizing: border-box;
-`;
-
-const ResponsiveLogoContainer = styled.div`
-  max-height: var(--height-xl);
-  width: auto;
-  display: flex;
-`;
-
-const MenuContent = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-  color: var(--color-fg-neutral-dark);
+  gap: var(--spacing-gap-m);
 `;
 
-const Overlay = styled.div<{ hasVisibility: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: ${(props) => (props.hasVisibility ? "var(--color-bg-alpha-medium)" : "transparent")};
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    ${(props) => !props.hasVisibility && "display: none"};
-  }
-
+const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-alpha-medium);
   z-index: var(--z-header-overlay);
 `;
 
-const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
-  <HeaderDropdown>
-    <DxcDropdown {...props} />
-  </HeaderDropdown>
-);
-
-const getLogoElement = (logo?: Logo) => {
-  if (logo) {
-    return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
-  } else {
-    return dxcLogo;
-  }
+/**
+ * Prepares the navigation items to be rendered in the header.
+ * Even though the typing does not allow this, the navigation tree does.
+ * So this function limits the levels of navigation to the limit by ignoring any nested group items over that limit.
+ * @param navItems prop with the navigation items.
+ * @param level current level of recursion.
+ * @return Processed navigation items with limited levels.
+ */
+const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (GroupItem | Item)[] => {
+  if (!navItems) return [];
+  if (!level) level = 0;
+  const sanitizedItems = navItems.reduce<(GroupItem | Item)[]>((acc, item) => {
+    if (isGroupItem(item)) {
+      if (level < LEVEL_LIMIT) {
+        const processedGroup: GroupItem = {
+          ...item,
+          items: sanitizeNavItems(item.items, level + 1),
+        };
+        return [...acc, processedGroup];
+      }
+    } else {
+      return [...acc, item];
+    }
+    return acc;
+  }, []);
+  return sanitizedItems;
 };
 
-type ContentProps = {
-  isResponsive: boolean;
-  responsiveContent: HeaderPropsType["responsiveContent"];
-  handleMenu: () => void;
-  content: HeaderPropsType["content"];
-};
-
-const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) =>
-  isResponsive ? (
-    <MenuContent>{responsiveContent?.(handleMenu)}</MenuContent>
-  ) : (
-    <ContentContainer>{content}</ContentContainer>
-  );
-
-const DxcHeader = ({
-  underlined = false,
-  content,
-  responsiveContent,
-  logo,
-  margin,
-  onClick,
-  tabIndex = 0,
-}: HeaderPropsType): JSX.Element => {
+const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const translatedLabels = useContext(HalstackLanguageContext);
-  const ref = useRef(null);
-
-  const handleMenu = () => {
-    if (isResponsive && !isMenuVisible) {
-      setIsMenuVisible(!isMenuVisible);
-    } else {
-      setIsMenuVisible(!isMenuVisible);
-    }
-  };
-
-  const headerLogo = getLogoElement(logo);
 
   useEffect(() => {
     const handleResize = () => {
       setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
@@ -217,63 +141,97 @@ const DxcHeader = ({
     };
   }, []);
 
-  useEffect(() => {
-    if (!isResponsive) {
-      setIsMenuVisible(false);
+  const toggleMenu = () => {
+    if (isResponsive && !isMenuVisible) {
+      setIsMenuVisible(!isMenuVisible);
+    } else {
+      setIsMenuVisible(!isMenuVisible);
     }
-  }, [isResponsive]);
+  };
+  const sanitizedNavItems = useMemo(() => (navItems ? sanitizeNavItems(navItems) : []), [navItems]);
 
   return (
-    <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-      <LogoAnchor
-        href={logo?.href}
-        tabIndex={onClick ? tabIndex : -1}
-        interactive={!!onClick || !!logo?.href}
-        onClick={onClick}
-      >
-        <LogoContainer>{headerLogo}</LogoContainer>
-      </LogoAnchor>
-      {isResponsive && responsiveContent && (
-        <DxcFlex grow={1}>
-          <ChildContainer>
-            <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
-              <DxcIcon icon="menu" />
-              {translatedLabels.header.hamburgerTitle}
-            </HamburgerTrigger>
-          </ChildContainer>
-          <ResponsiveMenu hasVisibility={isMenuVisible}>
-            <DxcFlex justifyContent="space-between" alignItems="center">
-              <ResponsiveLogoContainer>{headerLogo}</ResponsiveLogoContainer>
-              <DxcActionIcon
-                size="xsmall"
-                icon="close"
-                onClick={handleMenu}
-                tabIndex={tabIndex}
-                title={translatedLabels.header.closeIcon}
+    <MainContainer isResponsive={isResponsive} isMenuVisible={isMenuVisible}>
+      <HeaderContainer>
+        <DxcGrid
+          templateColumns={
+            !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
+              ? [
+                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
+                  `minmax(auto, ${MAX_MAIN_NAV_SIZE})`,
+                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
+                ]
+              : ["auto", "auto"]
+          }
+          templateRows={["var(--height-xxxl)"]}
+          gap="var(--spacing-gap-ml)"
+          placeItems="center"
+        >
+          <BrandingContainer>
+            <LogoContainer
+              role={branding.logo.onClick ? "button" : undefined}
+              as={branding.logo.href ? "a" : undefined}
+            >
+              {typeof branding.logo.src === "string" ? (
+                <DxcImage
+                  src={branding.logo.src}
+                  alt={branding.logo.alt}
+                  height="var(--height-m)"
+                  objectFit="contain"
+                />
+              ) : (
+                branding.logo.src
+              )}
+            </LogoContainer>
+            {branding.appTitle && !isResponsive && (
+              <>
+                <DxcDivider orientation="vertical" />
+                <DxcHeading text={branding.appTitle} as="h1" level={5} />
+              </>
+            )}
+          </BrandingContainer>
+          {!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0 && (
+            <MainNavContainer>
+              <DxcNavigationTree
+                items={sanitizedNavItems}
+                displayGroupLines={false}
+                displayBorder={false}
+                displayControlsAfter
+                hasPopOver
+                isHorizontal
               />
-            </DxcFlex>
-            <Content
-              isResponsive={isResponsive}
-              responsiveContent={responsiveContent}
-              handleMenu={handleMenu}
-              content={content}
+            </MainNavContainer>
+          )}
+          {sideContent && (
+            <RightSideContainer>
+              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}{" "}
+              {isResponsive && <HamburguerButton onClick={toggleMenu} />}
+            </RightSideContainer>
+          )}
+        </DxcGrid>
+      </HeaderContainer>
+      {isResponsive && isMenuVisible && (
+        <ResponsiveMenuContainer>
+          <ResponsiveMenu>
+            {branding.appTitle && <DxcHeading text={branding.appTitle} as="h1" level={5} />}
+            <DxcNavigationTree
+              items={sanitizedNavItems}
+              displayGroupLines={false}
+              displayBorder={false}
+              displayControlsAfter
             />
+            {responsiveBottomContent && (
+              <>
+                <DxcDivider />
+                {responsiveBottomContent}
+              </>
+            )}
           </ResponsiveMenu>
-          <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} />
-        </DxcFlex>
+          <Overlay onClick={toggleMenu} />
+        </ResponsiveMenuContainer>
       )}
-      {!isResponsive && (
-        <Content
-          isResponsive={isResponsive}
-          responsiveContent={responsiveContent}
-          handleMenu={handleMenu}
-          content={content}
-        />
-      )}
-    </HeaderContainer>
+    </MainContainer>
   );
 };
-
-DxcHeader.Dropdown = Dropdown;
 
 export default DxcHeader;

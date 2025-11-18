@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -10,11 +10,11 @@ import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
 import createCache, { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { GroupItem, Item, Section } from "../../../packages/lib/src/base-menu/types";
 import { isGroupItem } from "../../../packages/lib/src/base-menu/utils";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
+import { dxcLogo } from "@/common/images/dxc_logo";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;
@@ -29,10 +29,9 @@ const clientSideEmotionCache = createCache({ key: "css", prepend: true });
 export default function App({ Component, pageProps, emotionCache = clientSideEmotionCache }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
-  const router = useRouter();
-  const pathname = usePathname();
   const [filter, setFilter] = useState("");
   const [isExpanded, setIsExpanded] = useState(true);
+  const { asPath: currentPath } = useRouter();
 
   const filterSections = (sections: Section[], query: string): Section[] => {
     const q = query.trim().toLowerCase();
@@ -66,7 +65,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const mapLinksToGroupItems = (sections: LinksSectionDetails[]): Section[] => {
     const matchPaths = (linkPath: string) => {
       const desiredPaths = [linkPath, `${linkPath}/code`];
-      const pathToBeMatched = pathname?.split("#")[0]?.slice(0, -1);
+      const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
       return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
     };
 
@@ -88,16 +87,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     }));
   };
 
-  useEffect(() => {
-    const paths = [...new Set(LinksSections.flatMap((s) => s.links.map((l) => l.path)))];
-    const prefetchPaths = async () => {
-      for (const path of paths) {
-        await router.prefetch(path);
-      }
-    };
-    void prefetchPaths();
-  }, []);
-
   // TODO: ADD NEW CATEGORIZATION
 
   const filteredSections = useMemo(() => {
@@ -111,6 +100,11 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <DxcApplicationLayout
+        header={
+          <DxcApplicationLayout.Header
+            branding={{ logo: { src: dxcLogo, alt: "DXC Technology" }, appTitle: "Halstack react" }}
+          />
+        }
         sidenav={
           <DxcApplicationLayout.Sidenav
             navItems={filteredSections}

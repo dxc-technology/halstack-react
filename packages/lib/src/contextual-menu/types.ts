@@ -15,9 +15,9 @@ import BaseProps, {
 } from "../base-menu/types";
 
 type Item = Omit<BaseItem, "href" | "renderItem" | "selected">;
-type Props = Omit<BaseProps, "displayBorder" | "displayGroupLines" | "displayControlsAfter" | "responsiveView">;
+type Props = Omit<BaseProps, "displayBorder" | "displayGroupLines" | "displayControlsAfter" | "hasPopOver">;
 type ItemActionProps = Omit<BaseItemActionProps, "href" | "renderItem">;
-type ContextualMenuContextProps = Omit<BaseMenuContextProps, "responsiveView">;
+type ContextualMenuContextProps = Omit<BaseMenuContextProps, "hasPopOver">;
 
 export type {
   ContextualMenuContextProps,
