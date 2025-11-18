@@ -12,12 +12,14 @@ const sections = [
   {
     title: "Introduction",
     content: (
-      <DxcParagraph>
-        The Header serves as the primary navigation and identity element for an application. It includes branding, quick
-        access to key sections via navigation links, and a user account menu. Its consistent presence reinforces brand
-        recognition and improves usability by offering easy navigation and access to user-related actions. It typically
-        contains three main areas: left slot, main navigation and right slot.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          The Header serves as the primary navigation and identity element for an application. It includes branding,
+          quick access to key sections via navigation links, and a user account menu. Its consistent presence reinforces
+          brand recognition and improves usability by offering easy navigation and access to user-related actions.
+        </DxcParagraph>
+        <DxcParagraph>It typically contains three main areas: left slot, main navigation and right slot.</DxcParagraph>
+      </>
     ),
   },
   {
@@ -201,8 +203,8 @@ const sections = [
               abstract icons that could create confusion.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Limit the number of visible items to maintain balance and prevent overflow. When necessary, rely on the
-              automatic grouping ("More" option) for secondary items.
+              Limit the number of visible items to maintain balance and prevent overflow.
+              {/* When necessary, rely on the automatic grouping ("More" option) for secondary items. */}
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
