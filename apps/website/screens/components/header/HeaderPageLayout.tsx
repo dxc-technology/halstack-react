@@ -17,8 +17,9 @@ const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Header" />
           <DxcParagraph>
-            A horizontal bar located at the top of the application, providing branding, primary navigation, and user
-            account controls.
+            The header is a structural component placed at the top of the interface. It provides global access to
+            navigation, branding, and user actions, ensuring consistency and orientation across products and
+            applications.
           </DxcParagraph>
           <DxcParagraph>
             The header is part of the application layout, so it can only be used inside of it. Please check the{" "}
