@@ -118,28 +118,6 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
     };
   }, [activeTabId, childrenArray, iconPosition, innerFocusIndex, tabIndex]);
 
-  const scrollToActiveTab = () => {
-    if (!refTabListContainer.current || !refTabList.current || !(viewWidth < totalTabsWidth)) return;
-
-    const activeTab = refTabList.current.querySelector('[aria-selected="true"]') as HTMLElement;
-    if (!activeTab) return;
-
-    const containerWidth = refTabListContainer.current.offsetWidth;
-    const containerScrollLeft = refTabListContainer.current.scrollLeft;
-    const tabOffsetLeft = activeTab.offsetLeft;
-    const tabWidth = activeTab.offsetWidth;
-
-    const isTabFullyVisible =
-      tabOffsetLeft >= containerScrollLeft && tabOffsetLeft + tabWidth <= containerScrollLeft + containerWidth;
-
-    if (!isTabFullyVisible) {
-      const targetScroll = tabOffsetLeft - 50;
-      refTabListContainer.current.scrollTo({
-        left: Math.max(0, targetScroll),
-      });
-    }
-  };
-
   const scrollLimitCheck = () => {
     const container = refTabListContainer.current;
     if (container) {
@@ -198,9 +176,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   };
 
   useEffect(() => {
-    const container = refTabListContainer.current;
-
-    if (refTabList.current) {
+    if (refTabList.current)
       setTotalTabsWidth(() => {
         let total = 0;
         refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
@@ -211,38 +187,10 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         });
         return total;
       });
-    }
-
-    const handleScroll = () => scrollLimitCheck();
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [viewWidth, totalTabsWidth]);
-
-  useEffect(() => {
-    const isControlled = childrenArray.some((child) => typeof child.props.active !== "undefined");
-    if (isControlled) {
-      const activeChild = childrenArray.find((child) => child.props.active && !child.props.disabled);
-      if (activeChild) {
-        const newActiveId = activeChild.props.label ?? activeChild.props.tabId ?? "";
-        if (newActiveId !== activeTabId) {
-          setActiveTabId(newActiveId);
-        }
-      }
-    }
-
-    if (activeTabId && viewWidth && viewWidth < totalTabsWidth) {
-      setTimeout(() => {
-        scrollToActiveTab();
-      }, 100);
-    }
-  }, [childrenArray, activeTabId, viewWidth, totalTabsWidth]);
+    setTimeout(() => {
+      scrollLimitCheck();
+    }, 0);
+  }, [viewWidth, totalTabsWidth, activeTabId]);
 
   return (
     <>
