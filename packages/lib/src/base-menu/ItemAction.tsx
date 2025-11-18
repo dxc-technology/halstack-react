@@ -9,19 +9,20 @@ const Action = styled.a<{
   depthLevel: ItemActionProps["depthLevel"];
   selected: ItemActionProps["selected"];
   displayGroupLines: boolean;
-  responsiveView?: boolean;
+  hasPopOver?: boolean;
+  isHorizontal?: boolean;
 }>`
   box-sizing: content-box;
   border: none;
   border-radius: var(--border-radius-s);
-  ${({ displayGroupLines, depthLevel, responsiveView }) => `
-    ${!responsiveView ? `padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) calc(var(--spacing-padding-xs) + ${!displayGroupLines ? depthLevel : 0} * var(--spacing-padding-l))` : "padding: var(--spacing-padding-xxs) var(--spacing-padding-none)"};
+  ${({ displayGroupLines, depthLevel, hasPopOver, isHorizontal }) => `
+    ${!hasPopOver || isHorizontal ? `padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) calc(var(--spacing-padding-xs) + ${!displayGroupLines ? depthLevel : 0} * var(--spacing-padding-l))` : "padding: var(--spacing-padding-xxs) var(--spacing-padding-none)"};
     ${displayGroupLines && depthLevel > 0 ? "margin-left: var(--spacing-padding-xs);" : ""}
   `}
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-m);
-  justify-content: ${({ responsiveView }) => (responsiveView ? "center" : "space-between")};
+  justify-content: ${({ hasPopOver }) => (hasPopOver ? "center" : "space-between")};
   background-color: ${({ selected }) => (selected ? "var(--color-bg-primary-lighter)" : "transparent")};
   height: var(--height-s);
   cursor: pointer;
@@ -84,8 +85,9 @@ const ItemAction = memo(
       hasTooltip,
       modifiedBadge,
       displayControlsAfter,
-      responsiveView,
+      hasPopOver,
       displayGroupLines,
+      isHorizontal,
       handleTextMouseEnter,
       getWrapper,
     } = useItemAction(props);
@@ -100,31 +102,32 @@ const ItemAction = memo(
           depthLevel={depthLevel}
           selected={selected}
           displayGroupLines={!!displayGroupLines}
-          responsiveView={responsiveView}
+          hasPopOver={hasPopOver}
+          isHorizontal={isHorizontal}
           {...(href && { href })}
           {...rest}
           aria-pressed={!href ? ariaPressed : undefined}
         >
-          <Label aria-label={responsiveView ? label : undefined}>
+          <Label aria-label={hasPopOver ? label : undefined}>
             {!displayControlsAfter && collapseIcon && (
               <Control>
                 <Icon>{collapseIcon}</Icon>
               </Control>
             )}
-            {(icon || responsiveView) && (
-              <TooltipWrapper condition={responsiveView} label={label}>
+            {(icon || hasPopOver) && (
+              <TooltipWrapper condition={hasPopOver} label={label}>
                 <Icon>
                   {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}
                 </Icon>
               </TooltipWrapper>
             )}
-            {!responsiveView && (
+            {(!hasPopOver || isHorizontal) && (
               <Text selected={props.selected} onMouseEnter={handleTextMouseEnter}>
                 {label}
               </Text>
             )}
           </Label>
-          {!responsiveView && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
+          {(!hasPopOver || isHorizontal) && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
             <Control>
               {modifiedBadge}
               {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}

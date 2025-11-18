@@ -14,6 +14,7 @@ import Link from "next/link";
 import { GroupItem, Item, Section } from "../../../packages/lib/src/base-menu/types";
 import { isGroupItem } from "../../../packages/lib/src/base-menu/utils";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
+import { dxcLogo } from "@/common/images/dxc_logo";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;
@@ -99,6 +100,11 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <DxcApplicationLayout
+        header={
+          <DxcApplicationLayout.Header
+            branding={{ logo: { src: dxcLogo, alt: "DXC Technology" }, appTitle: "Halstack react" }}
+          />
+        }
         sidenav={
           <DxcApplicationLayout.Sidenav
             navItems={filteredSections}
