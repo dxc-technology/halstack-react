@@ -4,14 +4,11 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
-const brandingTypeString = `{
-  logo : {
-    src: string | SVG;
-    alt: string;
-    href?: string;
-    onClick?: () => void;
-  };
-  appTitle?: string;
+const logoTypeString = `{
+  src: string | SVG;
+  alt: string;
+  href?: string;
+  onClick?: () => void;
 }`;
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
@@ -46,16 +43,24 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>appTitle</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Object used to configure the header application title.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
-                branding
+                logo
               </DxcFlex>
             </td>
             <td>
-              <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
+              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
-            <td>Object used to configure the header branding, including logo and application title.</td>
+            <td>Object used to configure the header logo.</td>
             <td>-</td>
           </tr>
           <tr>

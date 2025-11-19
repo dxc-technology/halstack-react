@@ -68,7 +68,7 @@ const DxcApplicationLayout = ({ header, sidenav, footer, children }: Application
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
       {header && <HeaderContainer>{header}</HeaderContainer>}
-      <BodyContainer hasSidenav={sidenav ? true : false}>
+      <BodyContainer hasSidenav={!!sidenav}>
         {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
         <MainContainer>
           <MainContentContainer>

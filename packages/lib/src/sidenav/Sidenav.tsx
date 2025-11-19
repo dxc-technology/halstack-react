@@ -20,13 +20,15 @@ const SidenavContainer = styled.div<{ expanded: boolean }>`
   @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
   }
-  padding: var(--spacing-padding-m) 0;
+  padding-top: var(--spacing-padding-m);
+  padding-bottom: var(--spacing-padding-m);
   gap: var(--spacing-gap-l);
   background-color: var(--color-bg-neutral-lightest);
   border-right: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
   & > div {
     box-sizing: border-box;
-    padding: 0 var(--spacing-padding-xs);
+    padding-left: var(--spacing-padding-xs);
+    padding-right: var(--spacing-padding-xs);
   }
 `;
 
