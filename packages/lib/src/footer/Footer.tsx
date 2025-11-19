@@ -101,12 +101,17 @@ const RightContainer = styled.div<{ width: number }>`
 `;
 
 const SocialAnchor = styled.a`
-  height: fit-content;
+  height: var(--dimensions-28);
+  aspect-ratio: 1 / 1;
   border-radius: var(--border-radius-s);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  box-sizing: border-box;
 
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: var(--border-width-m);
+    border-color: var(--border-color-secondary-medium);
   }
 `;
 
@@ -115,7 +120,7 @@ const SocialIconContainer = styled.div`
   align-items: center;
   color: var(--color-fg-primary-strong);
   overflow: hidden;
-  font-size: var(--height-s);
+  font-size: var(--height-xs);
 
   svg {
     height: var(--height-xs);
@@ -203,7 +208,7 @@ const Copyright = styled.div<{ width: number }>`
   ${(props) =>
     getResponsiveStyles.isLargeScreen(props.width) &&
     css`
-      grid-column-start: 2;
+      grid-column-start: 3;
     `}
 
   ${(props) =>

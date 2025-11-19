@@ -135,16 +135,16 @@ describe("Footer component tests", () => {
 
 describe("getContrastColor function", () => {
   test("should return black color for light backgrounds", () => {
-    expect(getContrastColor("#FFFFFF")).toBe("#000000");
-    expect(getContrastColor("#F5F5F5")).toBe("#000000");
-    expect(getContrastColor("rgb(255, 255, 255)")).toBe("#000000");
-    expect(getContrastColor("rgb(245, 245, 245)")).toBe("#000000");
+    expect(getContrastColor("#FFFFFF")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("#F5F5F5")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("rgb(255, 255, 255)")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("rgb(245, 245, 245)")).toBe("var(--color-fg-neutral-dark)");
   });
 
   test("should return white color for dark backgrounds", () => {
-    expect(getContrastColor("#000000")).toBe("#FFFFFF");
-    expect(getContrastColor("#333333")).toBe("#FFFFFF");
-    expect(getContrastColor("rgb(0, 0, 0)")).toBe("#FFFFFF");
-    expect(getContrastColor("rgb(51, 51, 51)")).toBe("#FFFFFF");
+    expect(getContrastColor("#000000")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("#333333")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("rgb(0, 0, 0)")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("rgb(51, 51, 51)")).toBe("var(--color-fg-neutral-bright)");
   });
 });
