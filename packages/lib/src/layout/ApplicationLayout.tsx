@@ -24,16 +24,15 @@ const HeaderContainer = styled.div`
   z-index: var(--z-app-layout-header);
 `;
 
-const BodyContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
+const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
+  display: grid;
+  grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
+  grid-template-rows: 1fr;
   overflow: hidden;
 `;
 
 const SidenavContainer = styled.div`
   width: fit-content;
-  min-width: 280px;
   height: 100%;
   z-index: var(--z-app-layout-sidenav);
   position: sticky;
@@ -69,7 +68,7 @@ const DxcApplicationLayout = ({ header, sidenav, footer, children }: Application
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
       {header && <HeaderContainer>{header}</HeaderContainer>}
-      <BodyContainer>
+      <BodyContainer hasSidenav={sidenav ? true : false}>
         {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
         <MainContainer>
           <MainContentContainer>
