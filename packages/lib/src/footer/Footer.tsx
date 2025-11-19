@@ -112,11 +112,11 @@ const SocialAnchor = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid transparent;
-  box-sizing: border-box;
 
-  &:focus {
-    border-color: var(--border-color-secondary-medium);
+  &:focus,
+  &:focus-visible {
+    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline-offset: calc(-1 * var(--border-width-m));
   }
 `;
 
