@@ -7,6 +7,11 @@
     "status": "stable"
   },
   {
+    "label": "Avatar",
+    "path": "/components/avatar",
+    "status": "experimental"
+  },
+  {
     "label": "Badge",
     "path": "/components/badge",
     "status": "stable"

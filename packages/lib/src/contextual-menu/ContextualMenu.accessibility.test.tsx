@@ -26,7 +26,7 @@ const favIcon = (
 const itemsWithTruncatedText = [
   {
     label: "Item with a very long label that should be truncated",
-    slot: <DxcBadge color="blue" mode="contextual" label="Label" size="small" icon={badgeIcon} title="Badge" />,
+    slot: <DxcBadge color="secondary" mode="contextual" label="Label" size="small" icon={badgeIcon} title="Badge" />,
     icon: keyIcon,
   },
   {
@@ -57,7 +57,7 @@ const items = [
             items: [
               {
                 label: "Sales data module",
-                badge: <DxcBadge color="purple" label="Experimental" />,
+                badge: <DxcBadge color="primary" label="Experimental" />,
               },
               { label: "Central platform" },
             ],
@@ -90,11 +90,11 @@ describe("Context menu accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={itemsWithTruncatedText} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("A complex contextual menu should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={items} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

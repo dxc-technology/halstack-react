@@ -22,11 +22,11 @@ const Subtitle = styled.div`
   font-family: var(--typography-font-family);
 `;
 
-const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
+const SidenavLogo = ({ subtitle = "Design System", expanded }: { subtitle?: string; expanded: boolean }) => {
   const pathVersion = process.env.NEXT_PUBLIC_SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
-  return (
+  return expanded ? (
     <DxcFlex alignItems="center">
       <LogoContainer>
         <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
@@ -42,11 +42,19 @@ const SidenavLogo = ({ subtitle = "Design System" }: { subtitle?: string }) => {
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <DxcBadge
-        color="purple"
+        color="primary"
         label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         size="small"
       />
     </DxcFlex>
+  ) : (
+    <Image
+      alt="Halstack logo"
+      height={32}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      src={halstackLogo}
+      width={32}
+    />
   );
 };
 

@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcSpinner from "./Spinner";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Spinner",
   component: DxcSpinner,
-} as Meta<typeof DxcSpinner>;
+} satisfies Meta<typeof DxcSpinner>;
 
 const Spinner = () => (
   <>
@@ -121,8 +121,8 @@ export const Chromatic: Story = {
   render: Spinner,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByText("Loading a full screen..."));
-    await userEvent.hover(canvas.getByText("Loading a full screen..."));
+    await userEvent.hover(await canvas.findByText("Loading a full screen..."));
+    await userEvent.hover(await canvas.findByText("Loading a full screen..."));
   },
 };
 export const SpinnerOverlay: Story = {

@@ -1,9 +1,41 @@
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import StatusBadge from "@/common/StatusBadge";
-import Code, { TableCode } from "@/common/Code";
-import { DxcLink, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
-import Link from "next/link";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+
+const brandingTypeString = `{
+  logo?: Logo;
+  appTitle?: string;
+}`;
+
+const logoTypeString = `{
+  alt: string;
+  href?: string;
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  src: string;
+}`;
+
+const commonItemTypeString = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+}`;
+
+const itemTypeString = `{ 
+  ${commonItemTypeString}
+  onSelect?: () => void;
+  selected?: boolean;
+}`;
+
+const groupItemTypeString = `{ 
+  ${commonItemTypeString}
+  items: (Item | GroupItem)[];
+}`;
+
+const sectionTypeString = `{ 
+  items: (Item | GroupItem)[];
+  title?: string };
+}`;
 
 const sections = [
   {
@@ -20,32 +52,93 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>title</td>
+            <td>bottomContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
-            <td>The area assigned to render the title. It is highly recommended to use the sidenav title.</td>
+            <td>The content rendered in the bottom part of the sidenav, under the navigation menu.</td>
             <td>-</td>
           </tr>
           <tr>
+            <td>branding</td>
             <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
+              <TableCode>{"Logo | ReactNode"}</TableCode>
+              <p>
+                being <Code>Message</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
+              <p>
+                and <Code>Logo</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The area inside the sidenav.</td>
+            <td>Object with the properties of the branding placed at the top of the sidenav.</td>
             <td>-</td>
           </tr>
           <tr>
-            <td>title</td>
+            <td>defaultExpanded</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Initial state of the expansion of the sidenav, only when it is uncontrolled.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>displayGroupLines</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true the nav menu will have lines marking the groups.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>expanded</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the sidenav is expanded. If undefined the component will be uncontrolled and the value will be
+              managed internally by the component.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>navItems</td>
+            <td>
+              <TableCode>{"(Item | GroupItem)[] | Section[]"}</TableCode>
+              <p>
+                being <Code>Item</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
+              <p>
+                , <Code>GroupItem</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
+              <p>
+                and <Code>Section</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{sectionTypeString}</ExtendedTableCode>
+            </td>
+            <td>
+              Array of items to be displayed in the navigation menu. Each item can be a single/simple item, a group item
+              or a section.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onExpandedChange</td>
+            <td>
+              <TableCode>{"(value: boolean) => void"}</TableCode>
+            </td>
+            <td>Function called when the expansion state of the sidenav changes.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>topContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
-            <td>The area assigned to render the title. It is highly recommended to use the sidenav title.</td>
+            <td>The content rendered in the upper part of the sidenav, under the branding.</td>
             <td>-</td>
           </tr>
         </tbody>
@@ -53,280 +146,8 @@ const sections = [
     ),
   },
   {
-    title: "DxcSidenav.Title",
-    content: (
-      <DxcParagraph>
-        This compound component should only be used inside the <Code>title</Code> prop.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>The area inside the sidenav title. This area can be used to render custom content.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
-    title: "DxcSidenav.Section",
-    content: (
-      <DxcParagraph>
-        Sections must be defined as direct children of the <Code>DxcSidenav</Code> and serve to group links, groups
-        and/or custom content into different and distinguishable parts of the component. Consecutive sections are
-        separated by a divider.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>The area inside the sidenav section. Child items will be stacked inside a flex container.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
-    title: "DxcSidenav.Group",
-    content: (
-      <DxcParagraph>
-        Even though any children are accepted in a group, we recommend using only the <Code>DxcSidenav.Link</Code> or
-        any React-based router, complemented with this one, as links to the different pages.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>The area inside the sidenav group. This area can be used to render sidenav links.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>collapsable</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>
-                  If true, the sidenav group will be a button that will allow you to collapse the links contained within
-                  it. In addition, if it's collapsed and contains the currently selected link, the group title will also
-                  be marked as selected.
-                </td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>icon</td>
-                <td>
-                  <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-                </td>
-                <td>
-                  A{" "}
-                  <DxcLink newWindow href="https://fonts.google.com/icons">
-                    Material Symbol
-                  </DxcLink>{" "}
-                  or a SVG element to be displayed next to the title of the group as an icon.
-                </td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>title</td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>The title of the sidenav group.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
-    title: "DxcSidenav.Link",
-    content: (
-      <DxcParagraph>
-        As with the <Code>DxcLink</Code> component, we decided to make our Sidenav link component a styled HTML anchor
-        that can be used with any React-based router. You can check the{" "}
-        <Link href={"/components/link/"} passHref legacyBehavior>
-          <DxcLink>Link</DxcLink>
-        </Link>{" "}
-        for more information regarding this.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>The area inside the sidenav link.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>href</td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Page to be opened when the user clicks on the link.</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>icon</td>
-                <td>
-                  <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-                </td>
-                <td>
-                  A{" "}
-                  <DxcLink newWindow href="https://fonts.google.com/icons">
-                    Material Symbol
-                  </DxcLink>{" "}
-                  or a SVG element to be displayed left to the link as an icon.
-                </td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>newWindow</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>If true, the page is opened in a new browser tab.</td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>onClick</td>
-                <td>
-                  <TableCode>{"(event: React.MouseEvent <HTMLAnchorElement>) => void"}</TableCode>
-                </td>
-                <td>
-                  This function will be called when the user clicks the link and the event will be passed to this
-                  function.
-                </td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>selected</td>
-                <td>
-                  <TableCode>boolean</TableCode>
-                </td>
-                <td>
-                  If true, the link will be marked as selected. Moreover, in that same case, if it is contained within a
-                  collapsed group, and consequently, the currently selected link is not visible, the group title will
-                  appear as selected too.
-                </td>
-                <td>
-                  <TableCode>false</TableCode>
-                </td>
-              </tr>
-              <tr>
-                <td>tabIndex</td>
-                <td>
-                  <TableCode>number</TableCode>
-                </td>
-                <td>
-                  Value of the <Code>tabindex</Code> attribute.
-                </td>
-                <td>
-                  <TableCode>0</TableCode>
-                </td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
     title: "Examples",
+    // TODO: Update the sandbox link
     subSections: [
       {
         title: "Application layout with sidenav",

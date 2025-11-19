@@ -4,7 +4,7 @@ const code = `() => {
   const options = [
     { label: "Red", value: "red" },
     { label: "Blue", value: "blue" },
-    { label: "Green", value: "gree" },
+    { label: "Green", value: "green" },
   ];
 
   return (

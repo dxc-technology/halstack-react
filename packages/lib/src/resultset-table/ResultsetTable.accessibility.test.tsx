@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
+import { vi } from "vitest";
 
 // TODO: REMOVE
 import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
@@ -16,10 +17,10 @@ const deleteIcon = (
   </svg>
 );
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const actions = [
@@ -260,7 +261,7 @@ describe("Resultset Table input component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
@@ -275,6 +276,6 @@ describe("Resultset Table input component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

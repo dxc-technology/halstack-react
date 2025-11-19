@@ -17,7 +17,7 @@ export type TabProps = {
    */
   children: string;
   /**
-   * Whether the tab is disabled or not.
+   * If true, the tab will be disabled.
    */
   disabled?: boolean;
   /**

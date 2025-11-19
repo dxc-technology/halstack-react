@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcPaginator from "./Paginator";
+import { vi } from "vitest";
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe("Paginator component accessibility tests", () => {
@@ -21,6 +22,6 @@ describe("Paginator component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

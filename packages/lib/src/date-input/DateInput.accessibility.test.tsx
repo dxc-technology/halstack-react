@@ -5,13 +5,14 @@ import MockDOMRect from "../../test/mocks/domRectMock";
 
 // TODO: REMOVE
 import rules from "../../test/accessibility/rules/specific/date-input/disabledRules";
+import { vi } from "vitest";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 const disabledRules = {
@@ -35,7 +36,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     // baseElement is needed when using React Portals
@@ -53,7 +54,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     // baseElement is needed when using React Portals
@@ -71,7 +72,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     // baseElement is needed when using React Portals
@@ -90,7 +91,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
     // baseElement is needed when using React Portals
@@ -110,7 +111,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     // baseElement is needed when using React Portals
@@ -130,6 +131,6 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -32,6 +32,7 @@ const DataGridContainer = styled.div<{
     border-radius: var(--border-radius-s);
     height: 100%;
     border: 0px;
+    background-color: var(--color-bg-neutral-lightest);
     ${scrollbarStyles}
   }
   .rdg-cell:has(> #small_action) {

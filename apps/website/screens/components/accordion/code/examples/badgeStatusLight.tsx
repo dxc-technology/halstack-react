@@ -7,7 +7,7 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="GET request"
           subLabel="Jan, 20 2025"
-          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          badge={{ position: "before", element: <DxcBadge label="GET" color="success" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">

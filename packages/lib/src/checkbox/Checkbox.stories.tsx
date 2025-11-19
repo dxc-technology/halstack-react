@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import styled from "@emotion/styled";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -7,7 +7,7 @@ import DxcCheckbox from "./Checkbox";
 export default {
   title: "Checkbox",
   component: DxcCheckbox,
-} as Meta<typeof DxcCheckbox>;
+} satisfies Meta<typeof DxcCheckbox>;
 
 const ScrollableContainer = styled.div`
   display: flex;

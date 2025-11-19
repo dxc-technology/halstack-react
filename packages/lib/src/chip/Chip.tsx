@@ -3,7 +3,7 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import ChipPropsType from "./types";
-import ActionIcon from "../action-icon/ActionIcon";
+import DxcActionIcon from "../action-icon/ActionIcon";
 
 const calculateWidth = (margin: ChipPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
@@ -66,12 +66,13 @@ const DxcChip = ({
   <Chip disabled={disabled} margin={margin}>
     {prefixIcon &&
       (typeof onClickPrefix === "function" ? (
-        <ActionIcon
+        <DxcActionIcon
+          size="xsmall"
           disabled={disabled}
           icon={prefixIcon}
           onClick={onClickPrefix}
           tabIndex={tabIndex}
-          title="Prefix Action"
+          title={!disabled ? "Prefix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>
@@ -81,12 +82,13 @@ const DxcChip = ({
     {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
     {suffixIcon &&
       (typeof onClickSuffix === "function" ? (
-        <ActionIcon
+        <DxcActionIcon
+          size="xsmall"
           disabled={disabled}
           icon={suffixIcon}
           onClick={onClickSuffix}
           tabIndex={tabIndex}
-          title="Suffix Action"
+          title={!disabled ? "Suffix Action" : undefined}
         />
       ) : (
         <IconContainer disabled={disabled}>

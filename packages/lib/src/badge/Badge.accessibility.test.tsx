@@ -15,17 +15,17 @@ describe("Badge component accessibility tests", () => {
   it("Should not have basic accessibility issues for contextual mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcBadge color="blue" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="green" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="grey" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="orange" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="purple" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="red" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-        <DxcBadge color="yellow" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="primary" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="secondary" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="tertiary" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="success" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="neutral" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="warning" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
+        <DxcBadge color="error" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for notification mode", async () => {
     const { container } = render(
@@ -43,6 +43,6 @@ describe("Badge component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

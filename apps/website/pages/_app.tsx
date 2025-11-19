@@ -3,15 +3,18 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue } from "@dxc-technology/halstack-react";
-import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
-import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
 import createCache, { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import Link from "next/link";
+import { GroupItem, Item, Section } from "../../../packages/lib/src/base-menu/types";
+import { isGroupItem } from "../../../packages/lib/src/base-menu/utils";
+import SidenavLogo from "@/common/sidenav/SidenavLogo";
+import { dxcLogo } from "@/common/images/dxc_logo";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;
@@ -27,25 +30,69 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
+  const [isExpanded, setIsExpanded] = useState(true);
   const { asPath: currentPath } = useRouter();
-  const filteredLinks = useMemo(() => {
-    const filtered: LinksSectionDetails[] = [];
-    LinksSections.map((section) => {
-      const sectionFilteredLinks = section?.links.filter((link) =>
-        link.label.toLowerCase().includes(filter.toLowerCase())
-      );
-      if (sectionFilteredLinks.length) {
-        filtered.push({ label: section.label, links: sectionFilteredLinks });
-      }
-    });
-    return filtered;
-  }, [filter]);
 
-  const matchPaths = (linkPath: string) => {
-    const desiredPaths = [linkPath, `${linkPath}/code`];
-    const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
-    return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
+  const filterSections = (sections: Section[], query: string): Section[] => {
+    const q = query.trim().toLowerCase();
+    if (!q) return sections;
+
+    const filterItem = (item: Item | GroupItem): Item | GroupItem | null => {
+      const labelMatches = item.label.toLowerCase().includes(q);
+
+      if (!isGroupItem(item)) return labelMatches ? item : null;
+
+      const items = item.items.reduce<(Item | GroupItem)[]>((acc, child) => {
+        const filtered = filterItem(child);
+        if (filtered) acc.push(filtered);
+        return acc;
+      }, []);
+
+      return labelMatches || items.length ? { ...item, items } : null;
+    };
+
+    return sections.reduce<Section[]>((acc, section) => {
+      const items = section.items.reduce<(Item | GroupItem)[]>((acc, item) => {
+        const filtered = filterItem(item);
+        if (filtered) acc.push(filtered);
+        return acc;
+      }, []);
+      if (items.length) acc.push({ ...section, items });
+      return acc;
+    }, []);
   };
+
+  const mapLinksToGroupItems = (sections: LinksSectionDetails[]): Section[] => {
+    const matchPaths = (linkPath: string) => {
+      const desiredPaths = [linkPath, `${linkPath}/code`];
+      const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
+      return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
+    };
+
+    return sections.map((section) => ({
+      title: section.label,
+      items: section.links.map((link) => ({
+        label: link.label,
+        href: link.path,
+        selected: matchPaths(link.path),
+        ...(link.status && {
+          badge: link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
+        }),
+        renderItem: ({ children }: { children: ReactNode }) => (
+          <Link key={link.path} href={link.path} passHref legacyBehavior>
+            {children}
+          </Link>
+        ),
+      })),
+    }));
+  };
+
+  // TODO: ADD NEW CATEGORIZATION
+
+  const filteredSections = useMemo(() => {
+    const sections = mapLinksToGroupItems(LinksSections);
+    return filterSections(sections, filter);
+  }, [filter]);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -53,46 +100,33 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <DxcApplicationLayout
-        visibilityToggleLabel="Menu"
+        header={
+          <DxcApplicationLayout.Header
+            branding={{ logo: { src: dxcLogo, alt: "DXC Technology" }, appTitle: "Halstack react" }}
+          />
+        }
         sidenav={
-          <DxcApplicationLayout.SideNav title={<SidenavLogo />}>
-            <DxcApplicationLayout.SideNav.Section>
-              <DxcTextInput
-                placeholder="Search docs"
-                value={filter}
-                onChange={({ value }: { value: string }) => {
-                  setFilter(value);
-                }}
-                size="fillParent"
-                clearable
-                margin={{
-                  top: "large",
-                  bottom: "large",
-                  right: "medium",
-                  left: "medium",
-                }}
-              />
-            </DxcApplicationLayout.SideNav.Section>
-            {filteredLinks?.map(({ label, links }) => (
-              <DxcApplicationLayout.SideNav.Section key={label}>
-                <DxcApplicationLayout.SideNav.Group title={label}>
-                  {links.map(({ label, path, status }) => (
-                    <Link key={`${label}-${path}`} href={path} passHref legacyBehavior>
-                      <DxcApplicationLayout.SideNav.Link selected={matchPaths(path)}>
-                        {label}
-                        {status && status !== "stable" && <StatusBadge hasTitle status={status} />}
-                      </DxcApplicationLayout.SideNav.Link>
-                    </Link>
-                  ))}
-                </DxcApplicationLayout.SideNav.Group>
-              </DxcApplicationLayout.SideNav.Section>
-            ))}
-            <DxcApplicationLayout.SideNav.Section>
-              <DxcApplicationLayout.SideNav.Link href="https://github.com/dxc-technology/halstack-react" newWindow>
-                GitHub
-              </DxcApplicationLayout.SideNav.Link>
-            </DxcApplicationLayout.SideNav.Section>
-          </DxcApplicationLayout.SideNav>
+          <DxcApplicationLayout.Sidenav
+            navItems={filteredSections}
+            branding={<SidenavLogo expanded={isExpanded} />}
+            topContent={
+              isExpanded && (
+                <DxcTextInput
+                  placeholder="Search docs"
+                  value={filter}
+                  onChange={({ value }: { value: string }) => {
+                    setFilter(value);
+                  }}
+                  size="fillParent"
+                  clearable
+                />
+              )
+            }
+            expanded={isExpanded}
+            onExpandedChange={() => {
+              setIsExpanded((currentlyExpanded) => !currentlyExpanded);
+            }}
+          />
         }
       >
         <DxcApplicationLayout.Main>

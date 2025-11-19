@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcParagraph from "./Paragraph";
@@ -6,7 +6,7 @@ import DxcParagraph from "./Paragraph";
 export default {
   title: "Paragraph",
   component: DxcParagraph,
-} as Meta<typeof DxcParagraph>;
+} satisfies Meta<typeof DxcParagraph>;
 
 const Paragraph = () => (
   <>

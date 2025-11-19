@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -9,7 +9,7 @@ import DxcInset from "../inset/Inset";
 export default {
   title: "Accordion",
   component: DxcAccordion,
-} as Meta<typeof DxcAccordion>;
+} satisfies Meta<typeof DxcAccordion>;
 
 const smallIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20">
@@ -238,7 +238,7 @@ const Accordion = () => (
       <DxcAccordion independent defaultIndexActive={0}>
         <DxcAccordion.AccordionItem
           label="Find a person"
-          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          badge={{ position: "before", element: <DxcBadge label="GET" color="success" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -249,7 +249,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Create a person"
           assistiveText="Provide all required info"
-          badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
+          badge={{ position: "before", element: <DxcBadge label="POST" color="secondary" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
@@ -258,7 +258,7 @@ const Accordion = () => (
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
           label="Find interactions"
-          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
+          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="tertiary" /> }}
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -337,7 +337,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Bounce Rate"
           subLabel="Mon, May 19, 3:17 PM"
-          badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="green" /> }}
+          badge={{ position: "after", element: <DxcBadge label="Resolved" icon="check_circle" color="success" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
             To edit your profile you need to go to Settings and click on Profile.
@@ -416,7 +416,7 @@ const Accordion = () => (
           label="Assure Claims"
           subLabel="Jan, 09 2025"
           disabled
-          badge={{ position: "before", element: <DxcBadge label="Enterprise" color="green" /> }}
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" color="success" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -431,7 +431,7 @@ const Accordion = () => (
           subLabel="Jan, 09 2025"
           icon="heart_plus"
           disabled
-          badge={{ position: "after", element: <DxcBadge label="Enterprise" color="green" /> }}
+          badge={{ position: "after", element: <DxcBadge label="Enterprise" color="success" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
@@ -445,7 +445,7 @@ const Accordion = () => (
       <DxcAccordion>
         <DxcAccordion.AccordionItem
           label="Find a person"
-          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          badge={{ position: "before", element: <DxcBadge label="GET" color="success" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
           <DxcInset space="var(--spacing-padding-l)">
@@ -456,7 +456,7 @@ const Accordion = () => (
         <DxcAccordion.AccordionItem
           label="Create a person"
           assistiveText="Provide all required info"
-          badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
+          badge={{ position: "before", element: <DxcBadge label="POST" color="secondary" /> }}
         >
           <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
@@ -465,7 +465,7 @@ const Accordion = () => (
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem
           label="Find interactions"
-          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
+          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="tertiary" /> }}
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
         >
           <DxcInset space="var(--spacing-padding-l)">

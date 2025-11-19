@@ -145,7 +145,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const numberInputContext = useContext(NumberInputContext);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const inputContainerRef = useRef<HTMLDivElement | null>(null);
-    const actionRef = useRef<HTMLButtonElement | null>(null);
+    const actionRef = useRef<HTMLDivElement | null>(null);
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
@@ -550,40 +550,44 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               <DxcFlex>
                 {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
                   <DxcActionIcon
+                    size="xsmall"
                     icon="close"
                     onClick={handleClearActionOnClick}
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                    title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
                   <>
                     <DxcActionIcon
+                      size="xsmall"
                       disabled={disabled}
                       icon="remove"
                       onClick={!readOnly ? handleDecrementActionOnClick : undefined}
                       ref={actionRef}
                       tabIndex={tabIndex}
-                      title={translatedLabels.numberInput.decrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.decrementValueTitle : undefined}
                     />
                     <DxcActionIcon
+                      size="xsmall"
                       disabled={disabled}
                       icon="add"
                       onClick={!readOnly ? handleIncrementActionOnClick : undefined}
                       ref={actionRef}
                       tabIndex={tabIndex}
-                      title={translatedLabels.numberInput.incrementValueTitle}
+                      title={!disabled ? translatedLabels.numberInput.incrementValueTitle : undefined}
                     />
                   </>
                 )}
                 {action && (
                   <DxcActionIcon
+                    size="xsmall"
                     disabled={disabled}
                     icon={action.icon}
                     onClick={!readOnly ? action.onClick : undefined}
                     ref={actionRef}
                     tabIndex={tabIndex}
-                    title={action.title ?? ""}
+                    title={!disabled ? (action.title ?? undefined) : undefined}
                   />
                 )}
               </DxcFlex>

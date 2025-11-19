@@ -1,6 +1,3 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { screen, userEvent } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -15,6 +12,8 @@ import DxcSelect from "../select/Select";
 import DxcDateInput from "../date-input/DateInput";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcTooltip from "../tooltip/Tooltip";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { screen, userEvent } from "storybook/internal/test";
 import disabledRules from "../../test/accessibility/rules/specific/dialog/disabledRules";
 import preview from "../../.storybook/preview";
 
@@ -33,11 +32,8 @@ export default {
         ],
       },
     },
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
   },
-} as Meta<typeof DxcDialog>;
+} satisfies Meta<typeof DxcDialog>;
 
 const customViewports = {
   resizedScreen: {
@@ -52,7 +48,7 @@ const customViewports = {
 const Dialog = () => (
   <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
-    <DxcDialog>
+    <DxcDialog onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
@@ -104,7 +100,7 @@ const DialogInput = () => (
 const DialogNoOverlay = () => (
   <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
-    <DxcDialog overlay={false}>
+    <DxcDialog overlay={false} onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
@@ -149,7 +145,7 @@ const DialogCloseNoVisible = () => (
 const RespDialog = () => (
   <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
-    <DxcDialog>
+    <DxcDialog onCloseClick={() => console.log()}>
       <DxcInset space="var(--spacing-padding-l)">
         <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />
@@ -400,20 +396,22 @@ export const ResponsiveDialog: Story = {
   render: Dialog,
   parameters: {
     viewport: {
-      viewports: customViewports,
-      defaultViewport: "resizedScreen",
+      options: customViewports,
     },
     chromatic: { viewports: [720] },
+  },
+  globals: {
+    viewport: { value: "resizedScreen", isRotated: false },
   },
 };
 
 export const MobileResponsiveDialog: Story = {
   render: RespDialog,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 

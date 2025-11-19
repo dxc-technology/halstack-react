@@ -41,11 +41,11 @@ describe("Contextual menu component tests", () => {
     expect(actions[0]?.getAttribute("aria-pressed")).toBeTruthy();
     expect(getByRole("menu")).toBeTruthy();
   });
-  test("Single — An item can appear as selected by default by using the attribute selectedByDefault", () => {
+  test("Single — An item can appear as selected by default by using the attribute selected", () => {
     const test = [
       {
         label: "Tested item",
-        selectedByDefault: true,
+        selected: true,
       },
     ];
     const { getByRole } = render(<DxcContextualMenu items={test} />);
@@ -92,7 +92,7 @@ describe("Contextual menu component tests", () => {
     const test = [
       {
         label: "Grouped item",
-        items: [{ label: "Tested item", selectedByDefault: true }],
+        items: [{ label: "Tested item", selected: true }],
       },
     ];
     const { getByText, getAllByRole } = render(<DxcContextualMenu items={test} />);
