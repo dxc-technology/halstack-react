@@ -130,7 +130,6 @@ const SocialIconContainer = styled.div`
   svg {
     height: var(--height-xs);
     width: var(--height-xs);
-    fill: var(--color-fg-primary-strong);
   }
 `;
 
