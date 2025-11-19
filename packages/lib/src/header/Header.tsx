@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";
+import scrollbarStyles from "../styles/scroll";
 
 const MAX_MAIN_NAV_SIZE = "60%";
 const LEVEL_LIMIT = 1;
@@ -79,6 +80,9 @@ const HamburguerButton = ({ onClick }: { onClick: () => void }) => {
 const ResponsiveMenuContainer = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
+  max-height: 100%;
+  overflow: auto;
+  ${scrollbarStyles}
 `;
 
 const ResponsiveMenu = styled.div`
