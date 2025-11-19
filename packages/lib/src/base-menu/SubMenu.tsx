@@ -3,26 +3,54 @@ import { SubMenuProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
 import { useContext } from "react";
 
-const SubMenuContainer = styled.ul<{ depthLevel: number; displayGroupLines?: boolean }>`
+const SubMenuContainer = styled.ul<{
+  depthLevel: number;
+  displayGroupLines?: boolean;
+  isHorizontal?: boolean;
+  isPopOver?: boolean;
+}>`
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: var(--spacing-gap-xs);
+  display: flex;
+  flex-direction: ${({ isHorizontal }) => (isHorizontal ? "row" : "column")};
+  gap: ${({ isHorizontal }) => (isHorizontal ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
   list-style: none;
-
+  ${({ isPopOver }) =>
+    isPopOver &&
+    `
+      min-width: 200px;
+      max-width: 320px;
+      padding: var(--spacing-padding-xs);
+      background-color: var(--color-bg-neutral-lightest);
+      border-radius: var(--border-radius-m);
+      box-shadow: var(--shadow-100);
+    `}
   ${({ depthLevel, displayGroupLines }) =>
     displayGroupLines &&
     depthLevel >= 0 &&
     `
       margin-left: calc(var(--spacing-padding-m) + ${depthLevel} * var(--spacing-padding-xs));
       border-left: var(--border-width-s) solid var(--border-color-neutral-lighter);
-    `}
+    `};
 `;
 
-export default function SubMenu({ children, id, depthLevel = 0 }: SubMenuProps) {
+export default function SubMenu({
+  children,
+  id,
+  depthLevel = 0,
+  isHorizontal = false,
+  isPopOver = false,
+}: SubMenuProps) {
   const { displayGroupLines } = useContext(BaseMenuContext) ?? {};
   return (
-    <SubMenuContainer id={id} role="menu" depthLevel={depthLevel} displayGroupLines={displayGroupLines}>
+    <SubMenuContainer
+      id={id}
+      role="menu"
+      depthLevel={depthLevel}
+      displayGroupLines={displayGroupLines}
+      isHorizontal={isHorizontal}
+      isPopOver={isPopOver}
+    >
       {children}
     </SubMenuContainer>
   );

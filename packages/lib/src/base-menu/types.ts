@@ -39,7 +39,11 @@ type Props = {
   /**
    * If true the menu will be icons only and display a popover on click.
    */
-  responsiveView?: boolean;
+  hasPopOver?: boolean;
+  /**
+   * If true the menu will be displayed horizontally.
+   */
+  isHorizontal?: boolean;
 };
 
 type ItemWithId = Item & { id: number };
@@ -61,7 +65,7 @@ type MenuItemProps = {
   item: ItemWithId | GroupItemWithId;
   depthLevel?: number;
 };
-type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ItemActionProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
   badge?: Item["badge"];
   collapseIcon?: ReactNode;
   depthLevel: number;
@@ -76,16 +80,24 @@ type SectionProps = {
   index: number;
   length: number;
 };
-type SubMenuProps = { children: ReactNode; id?: string; depthLevel?: number };
+type SubMenuProps = {
+  children: ReactNode;
+  id?: string;
+  depthLevel?: number;
+  isHorizontal?: boolean;
+  isPopOver?: boolean;
+};
 type BaseMenuContextProps = {
   selectedItemId?: number;
   setSelectedItemId?: Dispatch<SetStateAction<number>>;
   displayGroupLines?: boolean;
   displayControlsAfter?: boolean;
-  responsiveView?: boolean;
+  hasPopOver?: boolean;
+  isHorizontal?: boolean;
 };
 
 export type {
+  CommonItemProps,
   BaseMenuContextProps,
   GroupItem,
   GroupItemProps,

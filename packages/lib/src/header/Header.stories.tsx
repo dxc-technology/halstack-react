@@ -1,16 +1,34 @@
-import Title from "../../.storybook/components/Title";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
-import preview from "../../.storybook/preview";
-import DxcFlex from "../flex/Flex";
-import DxcLink from "../link/Link";
-import DxcHeader from "./Header";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, waitFor, within } from "storybook/internal/test";
+import DxcHeader from "./Header";
+import DxcBadge from "../badge/Badge";
+import { useEffect } from "react";
+import DxcFlex from "../flex/Flex";
+import Title from "../../.storybook/components/Title";
+import DxcApplicationLayout from "../layout/ApplicationLayout";
+import DxcParagraph from "../paragraph/Paragraph";
+import { dxcLogo } from "./Icons";
+import DxcButton from "../button/Button";
+import { userEvent, within } from "storybook/internal/test";
+import preview from "../../.storybook/preview";
+import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 
 export default {
   title: "Header",
   component: DxcHeader,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        const prev = document.body.style.cssText;
+        document.body.style.backgroundColor = "var(--color-bg-neutral-light)";
+        document.body.style.padding = "0";
+        return () => {
+          document.body.style.cssText = prev;
+        };
+      }, []);
+
+      return <Story />;
+    },
+  ],
   parameters: {
     a11y: {
       config: {
@@ -23,146 +41,172 @@ export default {
   },
 } satisfies Meta<typeof DxcHeader>;
 
-const options = [
-  {
-    value: "1",
-    label: "Amazon",
+const branding = {
+  logo: {
+    src: "https://picsum.photos/id/1000/104/34",
+    alt: "DXC Logo",
+    href: "https://www.dxc.com",
   },
+  appTitle: "Application Title",
+};
+
+const brandingWithoutTitle = {
+  logo: {
+    src: "https://picsum.photos/id/1000/104/34",
+    alt: "DXC Logo",
+    href: "https://www.dxc.com",
+  },
+};
+
+const dxcBrandedLogo = {
+  logo: {
+    src: dxcLogo,
+    alt: "DXC Logo",
+  },
+};
+
+const longBranding = {
+  logo: {
+    src: "https://picsum.photos/id/1000/104/34",
+    alt: "DXC Logo",
+    href: "https://www.dxc.com",
+  },
+  appTitle:
+    "Application Title with a very long name that exceeds the normal length to test how the header manages overflow situations",
+};
+
+const longSideContent = `Long side content that is intended to test how the header component handles situations where the side content exceeds the typical length. This content should ideally wrap or be truncated based on the design specifications of the header component within the application.`;
+
+const items = [
+  {
+    label: "Grouped Item 1",
+    icon: "favorite",
+    items: [
+      { label: "Item 1", icon: "person", selected: true },
+      {
+        label: "Grouped Item 2",
+        items: [
+          {
+            label: "Item 2",
+            icon: "bookmark",
+            badge: <DxcBadge color="primary" label="Experimental" />,
+          },
+          { label: "Selected Item 3" },
+        ],
+      },
+    ],
+    badge: <DxcBadge color="success" label="New" />,
+  },
+  { label: "Item 4", icon: "key" },
+  { label: "Item 5", icon: "person" },
+  { label: "Grouped Item 6", items: [{ label: "Item 7", icon: "person" }, { label: "Item 8" }] },
+  { label: "Item 9" },
 ];
 
-const options2 = [
-  {
-    value: "1",
-    label: "Home",
-  },
-  {
-    value: "2",
-    label: "Release notes",
-  },
-  {
-    value: "3",
-    label: "Sign out",
-  },
+const longItems = [
+  ...items,
+  { label: "Item 10" },
+  { label: "Item 11" },
+  { label: "Item 12" },
+  { label: "Item 13" },
+  { label: "Item 14" },
+  { label: "Item 15" },
+  { label: "Item 16" },
+  { label: "Item 17" },
 ];
-
-const responsiveContentFunction = () => <p>Lorem ipsum dolor sit amet.</p>;
 
 const Header = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Default with dropdown" theme="light" level={4} />
+  <DxcFlex gap="var(--spacing-gap-m)" direction="column">
+    <Title title="Default Header" theme="light" level={3} />
+    <DxcHeader branding={brandingWithoutTitle} />
+    <DxcHeader branding={branding} />
+    <DxcHeader branding={branding} sideContent={<div>Side Content</div>} />
+    <DxcHeader branding={branding} navItems={items} sideContent={<div>Side Content</div>} />
+    <Title title="Header with long content" theme="light" level={3} />
+    <DxcHeader branding={branding} navItems={items} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader branding={longBranding} navItems={items} />
+    <DxcHeader branding={longBranding} navItems={items} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader branding={longBranding} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader branding={longBranding} navItems={longItems} />
+    <DxcHeader branding={longBranding} navItems={longItems} sideContent={<div>{longSideContent}</div>} />
+  </DxcFlex>
+);
+
+const HeaderInLayout = () => (
+  <DxcApplicationLayout
+    header={
       <DxcHeader
-        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Underlined with text" theme="light" level={4} />
-      <DxcHeader underlined content={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Underlined, dropdown and links" theme="light" level={4} />
-      <DxcHeader
-        content={
-          <DxcFlex alignItems="center" gap="4rem">
-            <DxcLink>Link 1</DxcLink>
-            <DxcLink>Link 2</DxcLink>
-            <DxcLink>Link 3</DxcLink>
-            <DxcHeader.Dropdown options={options2} label="Label" onSelectOption={() => {}} />
-          </DxcFlex>
+        branding={dxcBrandedLogo}
+        navItems={items}
+        sideContent={(isResponsive) =>
+          isResponsive ? (
+            <>
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
+            </>
+          ) : (
+            <>
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
+              <DxcButton label="Side button" mode="secondary" size={{ height: "medium" }} />
+              <DxcButton label="Another button" mode="primary" size={{ height: "medium" }} />
+            </>
+          )
         }
-        underlined
+        responsiveBottomContent={
+          <>
+            <DxcButton label="Bottom content button" mode="secondary" size={{ width: "fillParent" }} />
+            <DxcButton label="Another button" mode="primary" size={{ width: "fillParent" }} />
+          </>
+        }
       />
-    </ExampleContainer>
-    <Title title="Margins" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcHeader underlined margin="xxsmall" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcHeader underlined margin="xsmall" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small margin" theme="light" level={4} />
-      <DxcHeader underlined margin="small" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium margin" theme="light" level={4} />
-      <DxcHeader underlined margin="medium" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large margin" theme="light" level={4} />
-      <DxcHeader underlined margin="large" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcHeader underlined margin="xlarge" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcHeader underlined margin="xxlarge" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
-    </ExampleContainer>
-  </>
-);
-
-const HeaderCustomLogo = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Default with dropdown" theme="light" level={4} />
-      <DxcHeader
-        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-        logo={{
-          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-          title: "Custom Logo",
-          href: "#test",
-        }}
-      />
-    </ExampleContainer>
-  </>
-);
-
-const Responsive = () => (
-  <ExampleContainer>
-    <Title title="Responsive" theme="light" level={4} />
-    <DxcHeader
-      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-      responsiveContent={responsiveContentFunction}
-      underlined
-    />
-  </ExampleContainer>
-);
-
-const RespHeaderFocus = () => (
-  <ExampleContainer pseudoState="pseudo-focus">
-    <Title title="Responsive focus" theme="light" level={4} />
-    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
-  </ExampleContainer>
-);
-const RespHeaderHover = () => (
-  <ExampleContainer pseudoState="pseudo-hover">
-    <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
-  </ExampleContainer>
-);
-const RespHeaderMenuMobile = () => (
-  <ExampleContainer>
-    <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
-  </ExampleContainer>
-);
-
-const RespHeaderMenuTablet = () => (
-  <ExampleContainer>
-    <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
-  </ExampleContainer>
+    }
+  >
+    <DxcApplicationLayout.Main>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+    </DxcApplicationLayout.Main>
+  </DxcApplicationLayout>
 );
 
 type Story = StoryObj<typeof DxcHeader>;
@@ -171,22 +215,12 @@ export const Chromatic: Story = {
   render: Header,
 };
 
-export const CustomLogo: Story = {
-  render: HeaderCustomLogo,
+export const InLayout: Story = {
+  render: HeaderInLayout,
 };
 
-export const ResponsiveHeader: Story = {
-  render: Responsive,
-  parameters: {
-    chromatic: { viewports: [375] },
-  },
-  globals: {
-    viewport: { value: "iphonex", isRotated: false },
-  },
-};
-
-export const ResponsiveHeaderFocus: Story = {
-  render: RespHeaderFocus,
+export const Responsive: Story = {
+  render: HeaderInLayout,
   parameters: {
     chromatic: { viewports: [375] },
   },
@@ -195,69 +229,11 @@ export const ResponsiveHeaderFocus: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-  },
-};
-
-export const ResponsiveHeaderHover: Story = {
-  render: RespHeaderHover,
-  parameters: {
-    chromatic: { viewports: [375] },
-  },
-  globals: {
-    viewport: { value: "iphonex", isRotated: false },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-  },
-};
-
-export const ResponsiveHeaderMenuMobile: Story = {
-  render: RespHeaderMenuMobile,
-  parameters: {
-    chromatic: { viewports: [375] },
-  },
-  globals: {
-    viewport: { value: "iphonex", isRotated: false },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(await canvas.findByText("Menu"));
-  },
-};
-
-export const ResponsiveHeaderMenuTablet: Story = {
-  render: RespHeaderMenuTablet,
-  parameters: {
-    chromatic: { viewports: [720] },
-  },
-  globals: {
-    viewport: { value: "pixelxl", isRotated: false },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(await canvas.findByText("Menu"));
-  },
-};
-
-export const ResponsiveHeaderTooltip: Story = {
-  render: RespHeaderMenuMobile,
-  parameters: {
-    chromatic: { viewports: [375] },
-  },
-  globals: {
-    viewport: { value: "iphonex", isRotated: false },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(() => canvas.findByText("Menu"));
-    await userEvent.click(await canvas.findByText("Menu"));
-    const closeButton = (await canvas.findAllByRole("button"))[1];
-    if (closeButton != null) {
-      await userEvent.hover(closeButton);
-    }
+    await new Promise<void>((resolve) => setTimeout(resolve, 100));
+    await userEvent.tab();
+    await new Promise<void>((resolve) => setTimeout(resolve, 100));
+    await userEvent.tab();
+    await userEvent.keyboard("{Enter}");
+    await canvas.findByText("Bottom content button");
   },
 };

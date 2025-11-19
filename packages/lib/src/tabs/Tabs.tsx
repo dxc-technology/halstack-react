@@ -187,8 +187,10 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         });
         return total;
       });
-    scrollLimitCheck();
-  }, [viewWidth, totalTabsWidth]);
+    setTimeout(() => {
+      scrollLimitCheck();
+    }, 0);
+  }, [viewWidth, totalTabsWidth, activeTabId]);
 
   return (
     <>
