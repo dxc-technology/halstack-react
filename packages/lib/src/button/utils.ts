@@ -65,7 +65,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           hover = `background-color: var(--color-bg-info-stronger);`;
           active = `background-color: var(--color-bg-info-strongest);`;
           disabled = `background-color: var(--color-bg-info-lightest);
-          color: var(--color-fg-info-lighter);`;
+          color: var(--color-fg-info-medium);`;
           break;
       }
       return `${commonStyles}
@@ -125,13 +125,13 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           break;
         case "info":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-info-strong);
-          color: var(--color-fg-info-medium);`;
+          color: var(--color-fg-info-strong);`;
           hover = `background: var(--color-bg-info-strong);
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
-          disabled = `border-color: var(--border-color-info-light);
-          color: var(--color-fg-info-lighter);`;
+          disabled = `border-color: var(--border-color-info-medium);
+          color: var(--color-fg-info-medium);`;
           break;
       }
       return `${commonStyles}
@@ -175,10 +175,10 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           disabled = `color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `color: var(--color-fg-info-medium);`;
+          enabled = `color: var(--color-fg-info-strong);`;
           hover = `background-color: var(--color-bg-info-lighter);`;
           active = `background-color: var(--color-bg-info-light);`;
-          disabled = `color: var(--color-fg-info-lighter);`;
+          disabled = `color: var(--color-fg-info-medium);`;
           break;
       }
       return `${commonStyles}
