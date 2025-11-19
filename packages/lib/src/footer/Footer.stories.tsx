@@ -3,7 +3,6 @@ import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/specific/footer/disabledRules";
 import DxcFlex from "../flex/Flex";
-import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
 import DxcLink from "../link/Link";
 import { Meta, StoryObj } from "@storybook/react-vite";
@@ -179,16 +178,15 @@ const bottomLong = [
   },
 ];
 
-const info = [
-  { label: "Example Label", text: "Example" },
-  { label: "Example Label", text: "Example" },
-];
-
 const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <DxcFooter />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With custom logo" theme="light" level={4} />
+      <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
@@ -385,15 +383,11 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
-      <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
-          {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
-              {tag.label}: {tag.text}
-            </DxcTypography>
-          ))}
-        </DxcFlex>
-      </DxcFooter>
+      <DxcFooter mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced with custom logo" theme="light" level={4} />
+      <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34" }} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useRef, useState } from "react";
+import { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -81,8 +81,8 @@ const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
     `}
 `;
 
-const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+const LogoImg = styled.img<{ mode: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
   width: auto;
 `;
 
@@ -222,14 +222,6 @@ const Copyright = styled.div<{ width: number }>`
     `}
 `;
 
-const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["logo"]) => {
-  if (logo) {
-    return <LogoImg alt={logo.title} src={logo.src} title={logo.title} />;
-  } else {
-    return mode === "default" ? dxcLogo : dxcSmallLogo;
-  }
-};
-
 const DxcFooter = ({
   bottomLinks,
   copyright,
@@ -241,7 +233,15 @@ const DxcFooter = ({
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
-  const footerLogo = getLogoElement(mode, logo);
+
+  const footerLogo = useMemo(() => {
+    if (logo) {
+      return <LogoImg mode={mode} alt={logo.title} src={logo.src} title={logo.title} />;
+    } else {
+      return mode === "default" ? dxcLogo : dxcSmallLogo;
+    }
+  }, [mode, logo]);
+
   const leftContentChild = findChildType(children, LeftContent);
   const rightContentChild = findChildType(children, RightContent);
 
