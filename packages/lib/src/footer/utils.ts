@@ -34,7 +34,7 @@ function getLuminance(color: string): number {
 
 export const getContrastColor = (bgColor: string) => {
   const luminance = getLuminance(bgColor);
-  return luminance > 0.179 ? "#000000" : "#FFFFFF";
+  return luminance > 0.179 ? "var(--color-fg-neutral-dark)" : "var(--color-fg-neutral-bright)";
 };
 
 const BREAKPOINTS = {

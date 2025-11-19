@@ -23,12 +23,6 @@ const FooterContainer = styled.footer<{
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
   width: 100%;
-
-  ${(props) =>
-    getResponsiveStyles.isSmallScreen(props.width) &&
-    css`
-      flex-direction: column;
-    `}
 `;
 
 const MainContainer = styled.div<{ width: number }>`
@@ -56,7 +50,6 @@ const LeftContainer = styled.div<{ width: number }>`
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-gap-ml);
-  height: 100%;
   color: var(--color-fg-neutral-dark);
   box-sizing: border-box;
 
@@ -135,8 +128,7 @@ const BottomContainer = styled.div<{ textColor: string; width: number }>`
   width: 100%;
   min-height: var(--height-xl);
   display: grid;
-  grid-template-columns: 60% 40%;
-  gap: var(--spacing-padding-m);
+  grid-template-columns: 60% var(--spacing-gap-ml) 1fr;
   align-items: center;
   background-color: var(--color-bg-primary-strong);
   color: ${({ textColor }) => textColor};
@@ -147,7 +139,7 @@ const BottomContainer = styled.div<{ textColor: string; width: number }>`
     getResponsiveStyles.isMediumScreen(props.width) &&
     css`
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
+      grid-template-rows: auto;
       gap: var(--spacing-gap-ml);
       padding: var(--spacing-padding-m);
     `}
@@ -236,7 +228,7 @@ const DxcFooter = ({
 
   const footerLogo = useMemo(() => {
     if (logo) {
-      return <LogoImg mode={mode} alt={logo.title} src={logo.src} title={logo.title} />;
+      return <LogoImg mode={mode} alt={logo.alt} src={logo.src} title={logo.alt} />;
     } else {
       return mode === "default" ? dxcLogo : dxcSmallLogo;
     }
@@ -249,7 +241,7 @@ const DxcFooter = ({
   const width = useWidth(footerRef);
 
   const bottomContainerRef = useRef<HTMLDivElement>(null);
-  const [textColor, setTextColor] = useState("#fff");
+  const [textColor, setTextColor] = useState("var(--color-fg-neutral-bright)");
 
   useEffect(() => {
     if (bottomContainerRef.current) {

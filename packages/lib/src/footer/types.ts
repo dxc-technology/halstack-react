@@ -35,7 +35,7 @@ type Logo = {
   /**
    * Alternative text for the logo image.
    */
-  title?: string;
+  alt: string;
 };
 
 type FooterPropsType = {

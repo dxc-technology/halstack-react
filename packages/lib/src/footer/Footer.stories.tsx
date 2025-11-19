@@ -186,7 +186,7 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With custom logo" theme="light" level={4} />
-      <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34" }} />
+      <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
@@ -387,7 +387,7 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced with custom logo" theme="light" level={4} />
-      <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34" }} />
+      <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
