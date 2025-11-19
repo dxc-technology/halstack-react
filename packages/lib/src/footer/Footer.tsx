@@ -1,18 +1,21 @@
 import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { responsiveSizes, spaces } from "../common/variables";
+import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { findChildType, getContrastColor } from "./utils";
+import { findChildType, getContrastColor, getResponsiveStyles } from "./utils";
 import DxcLink from "../link/Link";
+import useWidth from "../utils/useWidth";
+import { css } from "@emotion/react";
 
 const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
   mode?: FooterPropsType["mode"];
+  width: number;
 }>`
   box-sizing: border-box;
   display: flex;
@@ -21,54 +24,61 @@ const FooterContainer = styled.footer<{
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
   width: 100%;
 
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-  }
+  ${(props) =>
+    getResponsiveStyles.isSmallScreen(props.width) &&
+    css`
+      flex-direction: column;
+    `}
 `;
 
-const MainContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex;
+const MainContainer = styled.div<{ width: number }>`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    min-height: 80px;
-  }
+  ${(props) =>
+    getResponsiveStyles.isLargeScreen(props.width) &&
+    css`
+      min-height: 80px;
+    `}
 
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-gap-ml);
-    padding: var(--spacing-padding-l) var(--spacing-padding-m);
-  }
+  ${(props) =>
+    getResponsiveStyles.isMediumScreen(props.width) &&
+    css`
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--spacing-gap-ml);
+      padding: var(--spacing-padding-l) var(--spacing-padding-m);
+    `}
 `;
 
-const LeftContainer = styled.div`
+const LeftContainer = styled.div<{ width: number }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-gap-ml);
   height: 100%;
   color: var(--color-fg-neutral-dark);
+  box-sizing: border-box;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 33.3%;
-    padding: var(--spacing-padding-l) var(--spacing-padding-xl);
-  }
-
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    max-width: 100%;
-  }
+  ${(props) =>
+    getResponsiveStyles.isLargeScreen(props.width) &&
+    css`
+      padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+    `}
 `;
 
 const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
   max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
-  padding-left: ${(props) => (props?.mode === "default" ? "var(--spacing-padding-none)" : "var(--spacing-padding-xl)")};
-  width: auto;
+  width: fit-content;
+  text-align: center;
+
+  ${(props) =>
+    props.mode === "reduced" &&
+    css`
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    `}
 `;
 
 const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
@@ -76,25 +86,25 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
   width: auto;
 `;
 
-const RightContainer = styled.div`
+const RightContainer = styled.div<{ width: number }>`
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   gap: var(--spacing-gap-xl);
   height: 100%;
+  box-sizing: border-box;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 66.66%;
-    padding: var(--spacing-padding-l) var(--spacing-padding-xl);
-  }
+  ${(props) =>
+    getResponsiveStyles.isLargeScreen(props.width) &&
+    css`
+      padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+    `}
 
-  @media (max-width: ${responsiveSizes.large}rem) {
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    max-width: 100%;
-    justify-content: flex-start;
-  }
+  ${(props) =>
+    getResponsiveStyles.isMediumScreen(props.width) &&
+    css`
+      justify-content: flex-start;
+    `}
 `;
 
 const SocialAnchor = styled.a`
@@ -121,50 +131,56 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const BottomContainer = styled.div<{ textColor: string }>`
+const BottomContainer = styled.div<{ textColor: string; width: number }>`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  min-height: var(--height-xl);
+  display: grid;
+  grid-template-columns: 60% 40%;
   gap: var(--spacing-padding-m);
   align-items: center;
   background-color: var(--color-bg-primary-strong);
   color: ${({ textColor }) => textColor};
-  padding-right: var(--spacing-padding-xl);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xl);
   box-sizing: border-box;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    height: var(--height-xl);
-    flex-direction: row;
-  }
+  ${(props) =>
+    getResponsiveStyles.isMediumScreen(props.width) &&
+    css`
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--spacing-gap-ml);
+      padding: var(--spacing-padding-m);
+    `}
 
-  @media (max-width: ${responsiveSizes.small}rem) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-gap-ml);
-    padding: var(--spacing-padding-m);
-  }
+  ${(props) =>
+    getResponsiveStyles.isSmallScreen(props.width) &&
+    css`
+      padding: var(--spacing-padding-m);
+    `}
 `;
 
-const BottomLinks = styled.div<{ hasContent: boolean; textColor: string }>`
+const BottomLinks = styled.div<{ textColor: string; width: number }>`
   height: 100%;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
   align-self: center;
-  padding-left: var(--spacing-padding-xl);
-  padding-right: var(--spacing-padding-xxxs);
+  box-sizing: border-box;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 60%;
-    flex-wrap: nowrap;
-    overflow: hidden;
-  }
+  ${(props) =>
+    getResponsiveStyles.isLargeScreen(props.width) &&
+    css`
+      flex-wrap: nowrap;
+      overflow: hidden;
+      padding-left: var(--spacing-padding-xxxs);
+    `}
 
-  @media (max-width: ${responsiveSizes.small}rem) {
-    max-width: 100%;
-    width: 100%;
-    display: ${(props) => (props.hasContent ? "inline-flex" : "none")};
-  }
+  ${(props) =>
+    getResponsiveStyles.isSmallScreen(props.width) &&
+    css`
+      max-width: 100%;
+      width: 100%;
+    `}
 
   & > span {
     white-space: nowrap;
@@ -181,22 +197,29 @@ const BottomLinks = styled.div<{ hasContent: boolean; textColor: string }>`
   }
 `;
 
-const Copyright = styled.div`
+const Copyright = styled.div<{ width: number }>`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
   white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 40%;
-    overflow: hidden;
-  }
+  ${(props) =>
+    getResponsiveStyles.isLargeScreen(props.width) &&
+    css`
+      grid-column-start: 2;
+    `}
 
-  @media (max-width: ${responsiveSizes.small}rem) {
-    max-width: 100%;
-    width: 100%;
-    text-align: left;
-  }
+  ${(props) =>
+    getResponsiveStyles.isMediumScreen(props.width) &&
+    css`
+      justify-content: flex-start;
+      white-space: wrap;
+    `}
 `;
 
 const getLogoElement = (mode: FooterPropsType["mode"], logo?: FooterPropsType["logo"]) => {
@@ -222,26 +245,29 @@ const DxcFooter = ({
   const leftContentChild = findChildType(children, LeftContent);
   const rightContentChild = findChildType(children, RightContent);
 
-  const ref = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const width = useWidth(footerRef);
+
+  const bottomContainerRef = useRef<HTMLDivElement>(null);
   const [textColor, setTextColor] = useState("#fff");
 
   useEffect(() => {
-    if (ref.current) {
-      const bg = window.getComputedStyle(ref.current).getPropertyValue("background-color").trim();
+    if (bottomContainerRef.current) {
+      const bg = window.getComputedStyle(bottomContainerRef.current).getPropertyValue("background-color").trim();
       setTextColor(getContrastColor(bg));
     }
   }, []);
 
   return (
-    <FooterContainer margin={margin} mode={mode}>
+    <FooterContainer ref={footerRef} margin={margin} mode={mode} width={width}>
       {mode === "default" && (
-        <MainContainer>
-          <LeftContainer>
+        <MainContainer width={width}>
+          <LeftContainer width={width}>
             <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
             {leftContentChild}
           </LeftContainer>
           {(socialLinks || rightContentChild) && (
-            <RightContainer>
+            <RightContainer width={width}>
               {rightContentChild}
               {socialLinks && (
                 <DxcFlex gap="var(--spacing-gap-ml)">
@@ -265,9 +291,9 @@ const DxcFooter = ({
           )}
         </MainContainer>
       )}
-      <BottomContainer ref={ref} textColor={textColor}>
-        {mode === "default" ? (
-          <BottomLinks hasContent={bottomLinks ? true : false} textColor={textColor}>
+      <BottomContainer ref={bottomContainerRef} textColor={textColor} width={width}>
+        {mode === "default" && bottomLinks && (
+          <BottomLinks textColor={textColor} width={width}>
             {bottomLinks?.map((link, index) => (
               <span key={`bottom${index}${link.text}`}>
                 <DxcLink inheritColor href={link.href} tabIndex={tabIndex} newWindow>
@@ -276,10 +302,11 @@ const DxcFooter = ({
               </span>
             ))}
           </BottomLinks>
-        ) : (
-          <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
         )}
-        <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+        {mode === "reduced" && <LogoContainer mode={mode}>{footerLogo}</LogoContainer>}
+        <Copyright width={width}>
+          {copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}
+        </Copyright>
       </BottomContainer>
     </FooterContainer>
   );

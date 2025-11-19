@@ -36,3 +36,15 @@ export const getContrastColor = (bgColor: string) => {
   const luminance = getLuminance(bgColor);
   return luminance > 0.179 ? "#000000" : "#FFFFFF";
 };
+
+const BREAKPOINTS = {
+  small: 480,
+  medium: 720,
+  large: 1056,
+};
+
+export const getResponsiveStyles = {
+  isSmallScreen: (width: number) => width <= BREAKPOINTS.small,
+  isMediumScreen: (width: number) => width <= BREAKPOINTS.medium,
+  isLargeScreen: (width: number) => width >= BREAKPOINTS.medium,
+};
