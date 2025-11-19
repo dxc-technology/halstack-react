@@ -109,7 +109,11 @@ const DxcSidenav = ({
           branding
         )}
       </DxcFlex>
-      {topContent && <div>{topContent}</div>}
+      {topContent && (
+        <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+          {topContent}
+        </DxcFlex>
+      )}
       {navItems && (
         <DxcNavigationTree
           items={navItems}
@@ -124,7 +128,9 @@ const DxcSidenav = ({
           <DxcInset horizontal="var(--spacing-padding-xs)">
             <DxcDivider color="lightGrey" />
           </DxcInset>
-          <div>{bottomContent}</div>
+          <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+            {bottomContent}
+          </DxcFlex>
         </>
       )}
     </SidenavContainer>
