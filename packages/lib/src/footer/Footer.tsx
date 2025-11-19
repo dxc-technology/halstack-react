@@ -1,7 +1,6 @@
 import { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
@@ -98,6 +97,12 @@ const RightContainer = styled.div<{ width: number }>`
     css`
       justify-content: flex-start;
     `}
+`;
+const SocialLinks = styled.div`
+  height: var(--height-m);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-ml);
 `;
 
 const SocialAnchor = styled.a`
@@ -267,7 +272,7 @@ const DxcFooter = ({
             <RightContainer width={width}>
               {rightContentChild}
               {socialLinks && (
-                <DxcFlex gap="var(--spacing-gap-ml)">
+                <SocialLinks>
                   {socialLinks?.map((link, index) => (
                     <Tooltip label={link.title} key={`social${index}${link.href}`}>
                       <SocialAnchor
@@ -282,7 +287,7 @@ const DxcFooter = ({
                       </SocialAnchor>
                     </Tooltip>
                   ))}
-                </DxcFlex>
+                </SocialLinks>
               )}
             </RightContainer>
           )}
