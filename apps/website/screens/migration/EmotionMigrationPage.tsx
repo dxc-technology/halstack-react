@@ -77,7 +77,7 @@ const sections = [
     ),
   },
   {
-    title: "Impact on consumers",
+    title: "Impact on adopters",
     content: (
       <>
         <DxcParagraph>Applications may need adjustments in the following areas:</DxcParagraph>

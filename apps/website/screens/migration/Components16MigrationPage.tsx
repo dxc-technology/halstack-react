@@ -11,7 +11,7 @@ const sections = [
     content: (
       <DxcParagraph>
         Version <Code>16.0.0</Code> introduces major breaking changes, including redesigned components, API updates, and
-        the removal of deprecated elements. This guide details the main differences and migration paths from
+        the removal of deprecated elements. This guide details the main differences and how to migrate components from{" "}
         <Code>15.x.x</Code> to <Code>16.0.0</Code>.
       </DxcParagraph>
     ),
@@ -20,7 +20,7 @@ const sections = [
     title: "Added components",
     content: (
       <>
-        <DxcParagraph>The following components are now available to be used in your applications:</DxcParagraph>
+        <DxcParagraph>The following component is now available to be used in your applications:</DxcParagraph>
         <DxcTable>
           <thead>
             <tr>
@@ -40,7 +40,10 @@ const sections = [
           </tbody>
         </DxcTable>
         <DxcParagraph>
-          These components define the structure of page layouts within the Halstack Design System.
+          For more information about its usage and features, refer to{" "}
+          <Link href="/components/avatar" passHref legacyBehavior>
+            <DxcLink>its documentation</DxcLink>
+          </Link>
         </DxcParagraph>
       </>
     ),
@@ -296,7 +299,7 @@ const sections = [
   },
 ];
 
-const Components16Page = () => (
+const Components16MigrationPage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
@@ -308,4 +311,4 @@ const Components16Page = () => (
   </DxcFlex>
 );
 
-export default Components16Page;
+export default Components16MigrationPage;

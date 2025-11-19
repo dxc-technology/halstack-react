@@ -4,8 +4,8 @@ export const coreTokens: Record<string, string | number> = {
   /**************/
 
   /* Application Layout */
-  "--z-app-layout-header": 100,
-  "--z-app-layout-sidenav": 110,
+  "--z-app-layout-sidenav": 100,
+  "--z-app-layout-header": 110,
 
   /* Header */
   "--z-header-overlay": 200,
@@ -16,6 +16,7 @@ export const coreTokens: Record<string, string | number> = {
   "--z-dropdown": 310,
   "--z-textinput": 320,
   "--z-select": 330,
+  "--z-contextualmenu": 340,
 
   /* Modals and overlays */
   "--z-spinner-overlay": 400,
@@ -376,6 +377,7 @@ export const aliasTokens: Record<string, string | number> = {
   "--typography-helper-text-light": "var(--font-weight-light)",
   "--typography-helper-text-regular": "var(--font-weight-regular)",
   "--typography-helper-text-semibold": "var(--font-weight-semibold)",
+  "--typography-helper-text-italic": "var(--font-style-lightitalic)",
   "--typography-label-s": "var(--font-size-12)",
   "--typography-label-m": "var(--font-size-14)",
   "--typography-label-l": "var(--font-size-16)",
@@ -392,5 +394,4 @@ export const aliasTokens: Record<string, string | number> = {
   "--border-style-default": "var(--line-style-solid)",
   "--border-style-outline": "var(--line-style-dashed)",
   "--typography-font-family": "var(--font-family-sans)",
-  "--typography-helper-text-italic": "var(--font-style-lightitalic)",
 };

@@ -51,7 +51,7 @@ const foundationsLinks: LinkDetails[] = [
 const migrationLinks: LinkDetails[] = [
   { label: "Modified components", path: "/migration/migrating-modified-apis" },
   { label: "Migrating to emotion", path: "/migration/migrating-to-emotion" },
-  // { label: "Migrating tokens", path: "/migration/migrating-tokens" },
+  { label: "Migrating tokens", path: "/migration/migrating-tokens" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];

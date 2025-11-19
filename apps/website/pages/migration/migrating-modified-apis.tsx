@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Components16Page from "screens/migration/Components16Page";
+import Components16MigrationPage from "screens/migration/Components16MigrationPage";
 
 const Components16Migration = () => (
   <>
     <Head>
       <title>Migrating component APIs</title>
     </Head>
-    <Components16Page />
+    <Components16MigrationPage />
   </>
 );
 

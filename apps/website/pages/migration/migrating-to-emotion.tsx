@@ -1,5 +1,5 @@
 import Head from "next/head";
-import EmotionPage from "screens/migration/EmotionPage";
+import EmotionPage from "screens/migration/EmotionMigrationPage";
 
 const EmotionMigration = () => (
   <>
