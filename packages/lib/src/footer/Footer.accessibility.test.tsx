@@ -2,6 +2,13 @@ import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcFooter from "./Footer";
 import rules from "../../test/accessibility/rules/specific/footer/disabledRules";
+import { vi } from "vitest";
+
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
 
 const disabledRules = {
   rules: formatRules(rules),
