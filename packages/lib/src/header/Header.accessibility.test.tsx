@@ -25,15 +25,13 @@ const iconSVG = (
 
 const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
 
-const branding = {
-  logo: {
-    src: iconSVG,
-    alt: "DXC Logo",
-    href: iconUrl,
-  },
-  appTitle:
-    "Application Title with a very long name that exceeds the normal length to test how the header manages overflow situations",
+const logo = {
+  src: iconSVG,
+  alt: "DXC Logo",
+  href: iconUrl,
 };
+const appTitle =
+  "Application Title with a very long name that exceeds the normal length to test how the header manages overflow situations";
 
 const items = [
   {
@@ -73,7 +71,8 @@ describe("Header component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
       <DxcHeader
-        branding={branding}
+        logo={logo}
+        appTitle={appTitle}
         navItems={items}
         sideContent={
           <DxcButton title="Settings" icon="settings" mode="tertiary" size={{ height: "medium" }} onClick={() => {}} />

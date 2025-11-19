@@ -2,10 +2,8 @@ import { render } from "@testing-library/react";
 import DxcHeader from "./Header";
 
 const defaultHeaderBranding = {
-  logo: {
-    src: "url-to-dxc-logo",
-    alt: "DXC Logo",
-  },
+  src: "url-to-dxc-logo",
+  alt: "DXC Logo",
 };
 
 describe("Header component tests", () => {
@@ -18,7 +16,7 @@ describe("Header component tests", () => {
     });
   });
   test("Header renders with default logo", () => {
-    const { getByAltText } = render(<DxcHeader branding={defaultHeaderBranding} />);
+    const { getByAltText } = render(<DxcHeader logo={defaultHeaderBranding} />);
     expect(getByAltText("DXC Logo")).toBeTruthy();
   });
 });
