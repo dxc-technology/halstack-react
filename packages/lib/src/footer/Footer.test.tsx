@@ -2,6 +2,13 @@ import { render } from "@testing-library/react";
 import DxcFooter from "./Footer";
 import { getContrastColor } from "./utils";
 
+// Mock ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 const social = [
   {
     href: "https://www.test.com/social",
