@@ -1,23 +1,13 @@
 import styled from "@emotion/styled";
-import { DxcBadge, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 
-// const AppTitleContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   margin: var(--spacing-padding-none) var(--spacing-padding-l);
-// `;
-
-const Title = styled.div`
-  color: var(--color-fg-primary-strong);
-  font-size: var(--typography-title-l);
+const SidenavTitle = styled.div`
+  display: flex;
+  align-items: center;
   font-family: var(--typography-font-family);
-`;
-
-const Subtitle = styled.div`
-  color: var(--color-fg-neutral-strongest);
-  font-size: var(--typography-title-m);
-  margin-left: var(--spacing-padding-s);
-  font-family: var(--typography-font-family);
+  font-size: var(--typography-ttle-m);
+  color: var(--color-fg-neutral-dark);
+  font-weight: var(--typography-title-bold);
 `;
 
 const SidenavLogo = () => {
@@ -25,11 +15,8 @@ const SidenavLogo = () => {
   const isDev = process.env.NODE_ENV === "development";
 
   return (
-    <DxcFlex alignItems="center">
-      <DxcInset horizontal="var(--spacing-padding-l)">
-        <Title>Halstack</Title>
-        <Subtitle>Design System</Subtitle>
-      </DxcInset>
+    <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
+      <SidenavTitle>Halstack Design System</SidenavTitle>
       <DxcBadge
         color="primary"
         label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
