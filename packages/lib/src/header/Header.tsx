@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";
+import scrollbarStyles from "../styles/scroll";
 
 const MAX_MAIN_NAV_SIZE = "60%";
 const LEVEL_LIMIT = 1;
@@ -79,6 +80,9 @@ const HamburguerButton = ({ onClick }: { onClick: () => void }) => {
 const ResponsiveMenuContainer = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
+  max-height: 100%;
+  overflow: auto;
+  ${scrollbarStyles}
 `;
 
 const ResponsiveMenu = styled.div`
@@ -126,7 +130,7 @@ const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (G
   return sanitizedItems;
 };
 
-const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
+const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -168,25 +172,17 @@ const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }:
           placeItems="center"
         >
           <BrandingContainer>
-            <LogoContainer
-              role={branding.logo.onClick ? "button" : undefined}
-              as={branding.logo.href ? "a" : undefined}
-            >
-              {typeof branding.logo.src === "string" ? (
-                <DxcImage
-                  src={branding.logo.src}
-                  alt={branding.logo.alt}
-                  height="var(--height-m)"
-                  objectFit="contain"
-                />
+            <LogoContainer role={logo.onClick ? "button" : undefined} as={logo.href ? "a" : undefined}>
+              {typeof logo.src === "string" ? (
+                <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
               ) : (
-                branding.logo.src
+                logo.src
               )}
             </LogoContainer>
-            {branding.appTitle && !isResponsive && (
+            {appTitle && !isResponsive && (
               <>
                 <DxcDivider orientation="vertical" />
-                <DxcHeading text={branding.appTitle} as="h1" level={5} />
+                <DxcHeading text={appTitle} as="h1" level={5} />
               </>
             )}
           </BrandingContainer>
@@ -213,7 +209,7 @@ const DxcHeader = ({ branding, navItems, sideContent, responsiveBottomContent }:
       {isResponsive && isMenuVisible && (
         <ResponsiveMenuContainer>
           <ResponsiveMenu>
-            {branding.appTitle && <DxcHeading text={branding.appTitle} as="h1" level={5} />}
+            {appTitle && <DxcHeading text={appTitle} as="h1" level={5} />}
             <DxcNavigationTree
               items={sanitizedNavItems}
               displayGroupLines={false}

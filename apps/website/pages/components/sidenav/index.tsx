@@ -1,36 +1,17 @@
-// import Head from "next/head";
-// import type { ReactElement } from "react";
-// import SidenavPageLayout from "screens/components/sidenav/SidenavPageLayout";
-// import SidenavOverviewPage from "screens/components/sidenav/overview/SidenavOverviewPage";
-
-// const Index = () => (
-//   <>
-//     <Head>
-//       <title>Sidenav — Halstack Design System</title>
-//     </Head>
-//     {/* <SidenavOverviewPage /> */}
-//     <SidenavOverviewPage />
-//   </>
-// );
-
-// Index.getLayout = (page: ReactElement) => <SidenavPageLayout>{page}</SidenavPageLayout>;
-
-// export default Index;
-
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SidenavPageLayout from "screens/components/sidenav/SidenavPageLayout";
-import SidenavCodePage from "screens/components/sidenav/code/SidenavCodePage";
+import SidenavOverviewPage from "screens/components/sidenav/overview/SidenavOverviewPage";
 
-const Code = () => (
+const Index = () => (
   <>
     <Head>
-      <title>Sidenav code — Halstack Design System</title>
+      <title>Sidenav — Halstack Design System</title>
     </Head>
-    <SidenavCodePage />
+    <SidenavOverviewPage />
   </>
 );
 
-Code.getLayout = (page: ReactElement) => <SidenavPageLayout>{page}</SidenavPageLayout>;
+Index.getLayout = (page: ReactElement) => <SidenavPageLayout>{page}</SidenavPageLayout>;
 
-export default Code;
+export default Index;
