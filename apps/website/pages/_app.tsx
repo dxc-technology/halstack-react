@@ -101,9 +101,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       </Head>
       <DxcApplicationLayout
         header={
-          <DxcApplicationLayout.Header
-            branding={{ logo: { src: dxcLogo, alt: "DXC Technology" }, appTitle: "Halstack react" }}
-          />
+          <DxcApplicationLayout.Header logo={{ src: dxcLogo, alt: "DXC Technology" }} appTitle="Halstack react" />
         }
         sidenav={
           <DxcApplicationLayout.Sidenav

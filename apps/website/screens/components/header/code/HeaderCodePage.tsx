@@ -4,14 +4,11 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
-const brandingTypeString = `{
-  logo : {
-    src: string | SVG;
-    alt: string;
-    href?: string;
-    onClick?: () => void;
-  };
-  appTitle?: string;
+const logoTypeString = `{
+  src: string | SVG;
+  alt: string;
+  href?: string;
+  onClick?: () => void;
 }`;
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
@@ -46,16 +43,24 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>appTitle</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Object used to configure the header application title.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
-                branding
+                logo
               </DxcFlex>
             </td>
             <td>
-              <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
+              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
-            <td>Object used to configure the header branding, including logo and application title.</td>
+            <td>Object used to configure the header logo.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -105,30 +110,22 @@ const sections = [
       </DxcTable>
     ),
   },
-  // UPDATE to new sandbox link when available
-  // {
-  //   title: "Examples",
-  //   subSections: [
-  //     {
-  //       title: "Header in application layout",
-  //       content: (
-  //         <iframe
-  //           src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
-  //           style={{
-  //             width: "100%",
-  //             minHeight: "500px",
-  //             border: "0",
-  //             borderRadius: "4px",
-  //             overflow: "hidden",
-  //           }}
-  //           title="Footer and header"
-  //           sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  //           allowFullScreen
-  //         />
-  //       ),
-  //     },
-  //   ],
-  // },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Header in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/6m6hdj?view=editor+%2B+preview&module=%2Fsrc%2FApp.js&hidenavigation=1"
+            style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+            title="Header in application layout"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          />
+        ),
+      },
+    ],
+  },
 ];
 
 const HeaderCodePage = () => {
