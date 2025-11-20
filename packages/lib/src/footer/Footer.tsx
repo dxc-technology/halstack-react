@@ -14,7 +14,6 @@ import { css } from "@emotion/react";
 const FooterContainer = styled.footer<{
   margin: FooterPropsType["margin"];
   mode?: FooterPropsType["mode"];
-  width: number;
 }>`
   box-sizing: border-box;
   display: flex;
@@ -83,7 +82,6 @@ const RightContainer = styled.div<{ width: number }>`
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: var(--spacing-gap-xl);
-  height: 100%;
   box-sizing: border-box;
 
   ${(props) =>
@@ -148,7 +146,6 @@ const BottomContainer = styled.div<{ textColor: string; width: number }>`
     getResponsiveStyles.isMediumScreen(props.width) &&
     css`
       grid-template-columns: 1fr;
-      grid-template-rows: auto;
       gap: var(--spacing-gap-ml);
       padding: var(--spacing-padding-m);
     `}
@@ -260,7 +257,7 @@ const DxcFooter = ({
   }, []);
 
   return (
-    <FooterContainer ref={footerRef} margin={margin} mode={mode} width={width}>
+    <FooterContainer ref={footerRef} margin={margin} mode={mode}>
       {mode === "default" && (
         <MainContainer width={width}>
           <LeftContainer width={width}>

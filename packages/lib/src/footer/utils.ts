@@ -1,5 +1,6 @@
 import { Children, ElementType, isValidElement } from "react";
 import FooterPropsType from "./types";
+import { responsiveSizes } from "../common/variables";
 
 export const findChildType = (children: FooterPropsType["children"], childType: ElementType) =>
   Children.toArray(children).find((child) => isValidElement(child) && child.type === childType);
@@ -37,14 +38,8 @@ export const getContrastColor = (bgColor: string) => {
   return luminance > 0.179 ? "var(--color-fg-neutral-dark)" : "var(--color-fg-neutral-bright)";
 };
 
-const BREAKPOINTS = {
-  small: 480,
-  medium: 720,
-  large: 1056,
-};
-
 export const getResponsiveStyles = {
-  isSmallScreen: (width: number) => width <= BREAKPOINTS.small,
-  isMediumScreen: (width: number) => width <= BREAKPOINTS.medium,
-  isLargeScreen: (width: number) => width >= BREAKPOINTS.medium,
+  isSmallScreen: (width: number) => width <= Number(responsiveSizes.small) * 16,
+  isMediumScreen: (width: number) => width <= Number(responsiveSizes.medium) * 16,
+  isLargeScreen: (width: number) => width >= Number(responsiveSizes.medium) * 16,
 };

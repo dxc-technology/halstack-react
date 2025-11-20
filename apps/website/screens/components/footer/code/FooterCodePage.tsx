@@ -4,10 +4,21 @@ import DocFooter from "@/common/DocFooter";
 import StatusBadge from "@/common/StatusBadge";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
+const bottomLinksTypeString = `{
+  href: string;
+  text: string;
+}[]`;
+
 const logoTypeString = `{
   src: string;
-  title?: string;
+  alt: string;
 }`;
+
+const socialLinkTypeString = `{
+  href: string;
+  title: string;
+  logo: string | SVG;
+}[]`;
 
 const sections = [
   {
@@ -26,7 +37,7 @@ const sections = [
           <tr>
             <td>bottomLinks</td>
             <td>
-              <TableCode>{"{ href: string; text: string; }[]"}</TableCode>
+              <ExtendedTableCode>{bottomLinksTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered at the bottom part of the footer. Each
@@ -39,6 +50,17 @@ const sections = [
                   <b>href</b>: URL of the page the link goes to.
                 </li>
               </ul>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>children</td>
+            <td>
+              <TableCode>ReactNode</TableCode>
+            </td>
+            <td>
+              Contains DxcFooter.LeftContent and DxcFooter.RightContent components to customize the left and right
+              content of the footer respectively.
             </td>
             <td>-</td>
           </tr>
@@ -59,10 +81,6 @@ const sections = [
             </td>
             <td>
               <td>
-                <TableCode>{"Logo"}</TableCode>
-                <p>
-                  being <Code>Logo</Code> an object with the following properties:
-                </p>
                 <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
               </td>
             </td>
@@ -80,7 +98,6 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
                 mode
               </DxcFlex>
             </td>
@@ -105,9 +122,7 @@ const sections = [
           <tr>
             <td>socialLinks</td>
             <td>
-              <TableCode>
-                {`{ href: string; title: string; logo: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); }[]`}
-              </TableCode>
+              <ExtendedTableCode>{socialLinkTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered as icons at the top-right side of the
@@ -180,7 +195,7 @@ const sections = [
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>
-                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>Custom content displayed at the left container of the footer under the logo.</td>
                 <td>-</td>
               </tr>
             </tbody>
@@ -221,7 +236,9 @@ const sections = [
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>
-                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>
+                  Custom content displayed at the right container of the footer before the socialLinks if provided.
+                </td>
                 <td>-</td>
               </tr>
             </tbody>

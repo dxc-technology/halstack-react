@@ -45,8 +45,8 @@ type FooterPropsType = {
    */
   bottomLinks?: BottomLink[];
   /**
-   * The center section of the footer. Can be used to render custom
-   * content in this area.
+   * Contains DxcFooter.LeftContent and DxcFooter.RightContent components to
+   * customize the left and right content of the footer respectively.
    */
   children?: ReactNode;
   /**
