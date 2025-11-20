@@ -62,9 +62,9 @@ const sections = [
           <tr>
             <td>branding</td>
             <td>
-              <TableCode>{"Logo | ReactNode"}</TableCode>
+              <TableCode>{"Branding | ReactNode"}</TableCode>
               <p>
-                being <Code>Message</Code> an object with the following properties:
+                being <Code>Branding</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
               <p>
