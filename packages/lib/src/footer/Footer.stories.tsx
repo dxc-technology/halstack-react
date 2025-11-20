@@ -9,6 +9,11 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcHeading from "../heading/Heading";
+import DxcApplicationLayout from "../layout/ApplicationLayout";
+import DxcHeader from "../header/Header";
+import DxcBadge from "../badge/Badge";
+import DxcButton from "../button/Button";
+import { dxcLogo } from "../header/Icons";
 
 export default {
   title: "Footer",
@@ -53,10 +58,10 @@ const social = [
     href: "https://x.com/dxctechnology",
     logo: (
       <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="256" height="256" rx="40" fill="white" />
+        <rect width="256" height="256" rx="40" fill="currentColor" />
         <path
           d="M140.192 118.205L187.848 64H176.556L135.158 111.056L102.117 64H64L113.975 135.163L64 192H75.2914L118.982 142.296L153.883 192H192L140.192 118.205ZM124.722 135.787L119.65 128.697L79.3634 72.3294H96.7094L129.232 117.837L134.282 124.927L176.551 184.076H159.205L124.722 135.787Z"
-          fill="#0F1419"
+          fill="white"
         />
       </svg>
     ),
@@ -409,6 +414,122 @@ const Footer = () => (
   </>
 );
 
+const dxcBrandedLogo = {
+  logo: {
+    src: dxcLogo,
+    alt: "DXC Logo",
+  },
+};
+
+const items = [
+  {
+    label: "Grouped Item 1",
+    icon: "favorite",
+    items: [
+      { label: "Item 1", icon: "person", selected: true },
+      {
+        label: "Grouped Item 2",
+        items: [
+          {
+            label: "Item 2",
+            icon: "bookmark",
+            badge: <DxcBadge color="primary" label="Experimental" />,
+          },
+          { label: "Selected Item 3" },
+        ],
+      },
+    ],
+    badge: <DxcBadge color="success" label="New" />,
+  },
+  { label: "Item 4", icon: "key" },
+  { label: "Item 5", icon: "person" },
+  { label: "Grouped Item 6", items: [{ label: "Item 7", icon: "person" }, { label: "Item 8" }] },
+  { label: "Item 9" },
+];
+
+const FooterInLayout = () => (
+  <DxcApplicationLayout
+    header={
+      <DxcHeader
+        branding={dxcBrandedLogo}
+        navItems={items}
+        sideContent={(isResponsive) =>
+          isResponsive ? (
+            <>
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
+            </>
+          ) : (
+            <>
+              <DxcButton icon="settings" title="Settings" mode="tertiary" size={{ height: "medium" }} />
+              <DxcButton label="Side button" mode="secondary" size={{ height: "medium" }} />
+              <DxcButton label="Another button" mode="primary" size={{ height: "medium" }} />
+            </>
+          )
+        }
+        responsiveBottomContent={
+          <>
+            <DxcButton label="Bottom content button" mode="secondary" size={{ width: "fillParent" }} />
+            <DxcButton label="Another button" mode="primary" size={{ width: "fillParent" }} />
+          </>
+        }
+      />
+    }
+    sidenav={
+      <DxcApplicationLayout.Sidenav
+        branding={{ appTitle: "Footer in application layout with header and sidenav" }}
+        navItems={items}
+      />
+    }
+  >
+    <DxcApplicationLayout.Main>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+      <DxcParagraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices fermentum ante et pharetra. Integer
+        ullamcorper ante non laoreet suscipit. Integer pharetra viverra nunc, quis fermentum urna eleifend eget.
+        Maecenas dolor justo, ullamcorper ac posuere tincidunt, dictum id urna. Suspendisse est metus, euismod et felis
+        eget, condimentum elementum eros. Curabitur ut lorem ut odio volutpat lacinia. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Sed leo quam, lobortis in ultricies ac, interdum in sem. Suspendisse magna enim,
+        rhoncus eget lectus vitae, rutrum interdum ligula. Nunc efficitur neque ac orci pretium lacinia. Proin sagittis
+        condimentum mi, eu dapibus quam faucibus eget. Aenean fermentum nisl ut mauris convallis, in imperdiet neque
+        porttitor. Aliquam erat volutpat. Fusce tincidunt arcu id arcu dignissim viverra. Sed imperdiet vitae odio eget
+        consequat. Vivamus eu dictum orci.
+      </DxcParagraph>
+    </DxcApplicationLayout.Main>
+  </DxcApplicationLayout>
+);
+
 const Tooltip = () => {
   return (
     <ExampleContainer>
@@ -422,6 +543,20 @@ type Story = StoryObj<typeof DxcFooter>;
 
 export const Chromatic: Story = {
   render: Footer,
+};
+
+export const Responsive: Story = {
+  render: Footer,
+  parameters: {
+    chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
+  },
+};
+
+export const InLayout: Story = {
+  render: FooterInLayout,
 };
 
 export const FooterTooltipFirst: Story = {
