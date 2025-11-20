@@ -52,3 +52,4 @@ export { default as DxcTypography } from "./typography/Typography";
 export { default as DxcWizard } from "./wizard/Wizard";
 export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
+export { default as scrollbarStyles } from "./styles/scroll";
