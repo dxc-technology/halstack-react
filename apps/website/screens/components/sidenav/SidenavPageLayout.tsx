@@ -17,8 +17,8 @@ const SidenavPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Sidenav" />
           <DxcParagraph>
-            The sidenav component provides a vertical navigation structure placed on the left side of the interface. .
-            It provides global access to navigation, branding, and user actions, ensuring consistency and orientation
+            The sidenav component provides a vertical navigation structure placed on the left side of the interface. It
+            provides global access to navigation, branding, and user actions, ensuring consistency and orientation
             across products and applications.
           </DxcParagraph>
           <DxcParagraph>

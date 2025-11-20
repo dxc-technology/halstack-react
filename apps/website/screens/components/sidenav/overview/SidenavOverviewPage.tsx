@@ -34,7 +34,7 @@ const sections = [
         <Image src={anatomy} alt="Sidenav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Branding</strong>
+            <strong>Branding:</strong>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Contains <strong>collapse/expand toggle</strong> for the sidenav.
@@ -46,7 +46,7 @@ const sections = [
             </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Top content</strong>
+            <strong>Top content:</strong>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Space placed under the branding for <strong>contextual or utility actions</strong> that enhance the main
@@ -56,7 +56,7 @@ const sections = [
             </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Main navigation</strong>
+            <strong>Main navigation:</strong>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 The core navigation area, structured into <strong>sections and items</strong>.
@@ -71,7 +71,7 @@ const sections = [
             </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Bottom content</strong>
+            <strong>Bottom content:</strong>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Space for <strong>secondary sections</strong> (navigation) and/or other <strong>common patterns</strong>{" "}
@@ -147,8 +147,16 @@ const sections = [
               hide them.
             </DxcParagraph>
             <DxcParagraph>
+              Each section can be <strong>expanded</strong> to display its child items or <strong>collapsed</strong> to
+              hide them. The sidenav allows <strong>hierarchies of any depth</strong>, making it possible to organize
+              content into <strong>structured, nested groups</strong> when needed. This can be helpful in large or
+              complex applications, but most products work better when navigation is spread across multiple patterns
+              instead of relying on deep nesting. <strong>Choose this approach carefully</strong> to avoid adding
+              unnecessary complexity to the user experience.
+            </DxcParagraph>
+            <DxcParagraph>
               Only this area should be <strong>scrollable</strong>, ensuring that other sidenav elements (such as
-              branding, header actions, or footer content) remain fixed.
+              branding, top content, or bottom content) remain fixed.
             </DxcParagraph>
             <Image src={mainNavigation} alt="Sidenav main navigation" />
             <DxcBulletedList type="number">
@@ -186,7 +194,7 @@ const sections = [
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Scroll bar:</strong> Appears when the content within the main navigation exceeds the available
-                height. Only the main navigation area should scroll, keeping the header and footer fixed.
+                height. Only the main navigation area should scroll, keeping the top content and bottom content fixed.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Border:</strong> A thin visual line that defines the edge of the component and provides a clear
@@ -276,7 +284,7 @@ const sections = [
         title: "Branding",
         content: (
           <>
-            <DxcBulletedList type="number">
+            <DxcBulletedList>
               <DxcBulletedList.Item>
                 <strong>Show branding only when the app lacks a global header:</strong> If there's already a global
                 header, remove or minimize redundant branding to keep the sidenav clean and focused on navigation.
