@@ -1,6 +1,5 @@
 import { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
@@ -12,14 +11,12 @@ import useWidth from "../utils/useWidth";
 import { css } from "@emotion/react";
 
 const FooterContainer = styled.footer<{
-  margin: FooterPropsType["margin"];
   mode?: FooterPropsType["mode"];
 }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
-  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "var(--spacing-padding-none)")};
   width: 100%;
 `;
 
@@ -225,7 +222,6 @@ const DxcFooter = ({
   copyright,
   children,
   logo,
-  margin,
   mode = "default",
   socialLinks,
   tabIndex = 0,
@@ -257,7 +253,7 @@ const DxcFooter = ({
   }, []);
 
   return (
-    <FooterContainer ref={footerRef} margin={margin} mode={mode}>
+    <FooterContainer ref={footerRef} mode={mode}>
       {mode === "default" && (
         <MainContainer width={width}>
           <LeftContainer width={width}>

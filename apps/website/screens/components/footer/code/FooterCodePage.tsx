@@ -88,14 +88,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
-            </td>
-            <td>Size of the top margin to be applied to the footer.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 mode

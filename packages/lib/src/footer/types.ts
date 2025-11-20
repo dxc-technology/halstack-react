@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SVG, Space } from "../common/utils";
+import { SVG } from "../common/utils";
 
 type SocialLink = {
   /**
@@ -57,10 +57,6 @@ type FooterPropsType = {
    * Logo to be displayed inside the footer
    */
   logo?: Logo;
-  /**
-   * Size of the top margin to be applied to the footer.
-   */
-  margin?: Space;
   /**
    * Determines the visual style and layout
    * - "default": The default mode with full content and styling.

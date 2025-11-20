@@ -393,23 +393,6 @@ const Footer = () => (
       <Title title="Reduced with custom logo" theme="light" level={4} />
       <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
     </ExampleContainer>
-    <Title title="Margins" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcFooter margin="xxsmall" />
-      <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcFooter margin="xsmall" />
-      <Title title="Small margin" theme="light" level={4} />
-      <DxcFooter margin="small" />
-      <Title title="Medium margin" theme="light" level={4} />
-      <DxcFooter margin="medium" />
-      <Title title="Large margin" theme="light" level={4} />
-      <DxcFooter margin="large" />
-      <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcFooter margin="xlarge" />
-      <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcFooter margin="xxlarge" />
-    </ExampleContainer>
   </>
 );
 
