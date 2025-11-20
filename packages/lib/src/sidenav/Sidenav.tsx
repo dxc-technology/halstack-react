@@ -7,6 +7,7 @@ import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
 import { useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
+import DxcInset from "../inset/Inset";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
@@ -19,9 +20,16 @@ const SidenavContainer = styled.div<{ expanded: boolean }>`
   @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
   }
-  padding: var(--spacing-padding-m) var(--spacing-padding-xs);
+  padding-top: var(--spacing-padding-m);
+  padding-bottom: var(--spacing-padding-m);
   gap: var(--spacing-gap-l);
   background-color: var(--color-bg-neutral-lightest);
+  border-right: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
+  & > div {
+    box-sizing: border-box;
+    padding-left: var(--spacing-padding-xs);
+    padding-right: var(--spacing-padding-xs);
+  }
 `;
 
 const SidenavTitle = styled.div`
@@ -103,7 +111,11 @@ const DxcSidenav = ({
           branding
         )}
       </DxcFlex>
-      {topContent}
+      {topContent && (
+        <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+          {topContent}
+        </DxcFlex>
+      )}
       {navItems && (
         <DxcNavigationTree
           items={navItems}
@@ -113,8 +125,16 @@ const DxcSidenav = ({
           displayControlsAfter
         />
       )}
-      <DxcDivider color="lightGrey" />
-      {bottomContent}
+      {bottomContent && (
+        <>
+          <DxcInset horizontal="var(--spacing-padding-xs)">
+            <DxcDivider color="lightGrey" />
+          </DxcInset>
+          <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+            {bottomContent}
+          </DxcFlex>
+        </>
+      )}
     </SidenavContainer>
   );
 };

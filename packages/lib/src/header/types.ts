@@ -9,11 +9,6 @@ type LogoPropsType = {
   onClick?: () => void;
 };
 
-type BrandingPropsType = {
-  logo: LogoPropsType;
-  appTitle?: string;
-};
-
 type GroupItem = CommonItemProps & {
   items: Item[];
 };
@@ -21,7 +16,8 @@ type GroupItem = CommonItemProps & {
 type MainNavPropsType = (GroupItem | Item)[];
 
 type Props = {
-  branding: BrandingPropsType;
+  logo: LogoPropsType;
+  appTitle?: string;
   navItems?: MainNavPropsType;
   responsiveBottomContent?: ReactNode;
   sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
