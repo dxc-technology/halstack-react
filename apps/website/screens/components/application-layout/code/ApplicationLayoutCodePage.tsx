@@ -96,10 +96,10 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
+        title: "Application layout with components",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/basic-usage-pi619r?fontsize=14&hidenavigation=1&theme=dark"
+            src="https://codesandbox.io/embed/p4xxm3?view=editor+%2B+preview&module=%2Fsrc%2FApp.js"
             style={{
               width: "100%",
               minHeight: "500px",
@@ -107,44 +107,7 @@ const sections = [
               borderRadius: "4px",
               overflow: "hidden",
             }}
-            title="Basic usage"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          />
-        ),
-      },
-      {
-        title: "With sidenav",
-        content: (
-          <iframe
-            src="https://codesandbox.io/embed/with-sidenav-xce9s2?fontsize=14&hidenavigation=1&theme=dark"
-            style={{
-              width: "100%",
-              minHeight: "500px",
-              border: "0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-            title="With sidenav"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          />
-        ),
-      },
-      {
-        title: "Custom header and footer",
-        content: (
-          <iframe
-            src="https://codesandbox.io/embed/custom-footer-and-header-lt3gkv?fontsize=14&hidenavigation=1&theme=dark"
-            style={{
-              width: "100%",
-              minHeight: "500px",
-              border: "0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-            title="Custom footer and header"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            title="Application layout with components"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
         ),
