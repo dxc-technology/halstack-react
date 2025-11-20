@@ -193,7 +193,45 @@ const Footer = () => (
       <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
+      <Title title="With left content" theme="light" level={4} />
+      <DxcFooter>
+        <DxcFooter.LeftContent>
+          <DxcParagraph>
+            Application description, version, notes, and contact details can go here for additional information
+          </DxcParagraph>
+          <DxcParagraph>
+            <strong>Contact Us:</strong> email@dxc.com
+          </DxcParagraph>
+        </DxcFooter.LeftContent>
+      </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With right content" theme="light" level={4} />
+      <DxcFooter>
+        <DxcFooter.RightContent>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+          <DxcFlex direction="column">
+            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+            <DxcLink>Login / Sign-up</DxcLink>
+            <DxcLink>Subscribe</DxcLink>
+            <DxcLink>Unsubsicribe</DxcLink>
+          </DxcFlex>
+        </DxcFooter.RightContent>
+      </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With left and right content, copyright, bottom links and social links" theme="light" level={4} />
       <DxcFooter socialLinks={social} bottomLinks={bottom}>
         <DxcFooter.LeftContent>
           <DxcParagraph>

@@ -97,7 +97,7 @@ const bottom = [
 describe("Footer component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="default">
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} mode="default">
         <DxcFooter.LeftContent>
           <div>
             <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
@@ -115,7 +115,7 @@ describe("Footer component accessibility tests", () => {
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="reduced" />
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} mode="reduced" />
     );
     const results = await axe(container, disabledRules);
     expect(results.violations).toHaveLength(0);
