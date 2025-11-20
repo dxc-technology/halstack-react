@@ -269,6 +269,7 @@ const DxcFooter = ({
                     <Tooltip label={link.title} key={`social${index}${link.href}`}>
                       <SocialAnchor
                         href={link.href}
+                        target="_blank"
                         tabIndex={tabIndex}
                         aria-label={link.title}
                         key={`social${index}${link.href}`}
