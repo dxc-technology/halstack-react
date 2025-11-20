@@ -61,12 +61,6 @@ const sections = [
             clean, uncluttered appearance suitable for most standard applications.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>With Navigation:</strong> includes several additional content sections, enabling users to
-            inmediately see various forms of helpful content such form elements, buttons, and more navigational links.
-            This layout is ideal for content-heavy pages or enterprise-level applications requiring enhanced footer
-            functionality.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
             <strong>Small:</strong> offers a compact version of the footer, typically limited to branding and minimal
             legal text. It's best suited for lightweight experiences, login pages, or environments with constrained
             vertical space.
@@ -87,15 +81,6 @@ const sections = [
     content: (
       <>
         <DxcBulletedList>
-          <DxcBulletedList.Item>
-            <strong>Dock the footer to the bottom of the page:</strong> the footer should remain fixed at the bottom
-            edge of the viewport and not scroll with the page content to maintain visibility and separation from dynamic
-            areas.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Ensure full-width alignment:</strong> the footer container should always span the full width of the
-            screen to create a clean, structured boundary and support responsive behavior across breakpoints.
-          </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Display copyright information on the right:</strong> consistently place legal disclaimers or
             copyright text aligned to the right edge of the footer to support predictable user expectations.
