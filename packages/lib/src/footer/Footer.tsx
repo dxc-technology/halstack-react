@@ -106,7 +106,7 @@ const SocialLinks = styled.div`
 `;
 
 const SocialAnchor = styled.a`
-  height: var(--dimensions-28);
+  height: var(--height-s);
   aspect-ratio: 1 / 1;
   border-radius: var(--border-radius-s);
   display: flex;
@@ -116,7 +116,7 @@ const SocialAnchor = styled.a`
   &:focus,
   &:focus-visible {
     outline: var(--border-width-m) solid var(--border-color-secondary-medium);
-    outline-offset: calc(-1 * var(--border-width-m));
+    outline-offset: 0px;
   }
 `;
 
