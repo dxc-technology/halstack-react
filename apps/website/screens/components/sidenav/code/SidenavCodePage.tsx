@@ -153,7 +153,7 @@ const sections = [
         title: "Application layout with sidenav",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/with-sidenav-xce9s2?fontsize=14&hidenavigation=1&theme=dark"
+            src="https://codesandbox.io/embed/ysg7l5?view=editor+%2B+preview&hidenavigation=1"
             style={{
               width: "100%",
               minHeight: "500px",
@@ -162,7 +162,6 @@ const sections = [
               overflow: "hidden",
             }}
             title="Application layout with sidenav"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
         ),
