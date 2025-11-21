@@ -101,7 +101,6 @@ describe("Footer component accessibility tests", () => {
         copyright="Copyright"
         socialLinks={social}
         bottomLinks={bottom}
-        margin="small"
         mode="default"
         leftContent={
           <>
