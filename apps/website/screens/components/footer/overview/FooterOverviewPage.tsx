@@ -82,6 +82,16 @@ const sections = [
       <>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <strong>The footer should be docked at the bottom of the page at all times.</strong> If the page content
+            exceeds the current view and the user needs to scroll to reach the bottom of the content, the footer should
+            always be found at the end of the page.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            By default, <strong>the footer spans the entire width of the page excluding the sidenav.</strong> For cases
+            when the left sidenav is not used, the footer container should always span the full width of the screen to
+            create a clean, structured boundary and support responsive behavior across breakpoints.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <strong>Display copyright information on the right:</strong> consistently place legal disclaimers or
             copyright text aligned to the right edge of the footer to support predictable user expectations.
           </DxcBulletedList.Item>

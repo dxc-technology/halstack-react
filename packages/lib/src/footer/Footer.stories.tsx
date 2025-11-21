@@ -512,12 +512,7 @@ const FooterInLayout = () => (
         }
       />
     }
-    sidenav={
-      <DxcApplicationLayout.Sidenav
-        branding={{ appTitle: "Footer in application layout with header and sidenav" }}
-        navItems={items}
-      />
-    }
+    sidenav={<DxcApplicationLayout.Sidenav navItems={items} />}
   >
     <DxcApplicationLayout.Main>
       <DxcParagraph>
