@@ -167,13 +167,13 @@ export const coreTokens: Record<string, string | number> = {
 };
 
 export const aliasTokens: Record<string, string | number> = {
-  "--border-color-info-lightest-halstack": "var(--color-semantic01-50)",
-  "--border-color-info-lighter-halstack": "var(--color-semantic01-100)",
-  "--border-color-info-light-halstack": "var(--color-semantic01-200)",
-  "--border-color-info-medium-halstack": "var(--color-semantic01-300)",
-  "--border-color-info-strong-halstack": "var(--color-semantic01-600)",
-  "--border-color-info-stronger-halstack": "var(--color-semantic01-700)",
-  "--border-color-info-strongest-halstack": "var(--color-semantic01-800)",
+  "--border-color-info-lightest": "var(--color-semantic01-50)",
+  "--border-color-info-lighter": "var(--color-semantic01-100)",
+  "--border-color-info-light": "var(--color-semantic01-200)",
+  "--border-color-info-medium": "var(--color-semantic01-300)",
+  "--border-color-info-strong": "var(--color-semantic01-600)",
+  "--border-color-info-stronger": "var(--color-semantic01-700)",
+  "--border-color-info-strongest": "var(--color-semantic01-800)",
   "--border-color-success-light": "var(--color-semantic02-300)",
   "--border-color-success-medium": "var(--color-semantic02-600)",
   "--border-color-warning-light": "var(--color-semantic03-300)",

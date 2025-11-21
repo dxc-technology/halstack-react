@@ -141,6 +141,33 @@ const sections = [
     ],
   },
   {
+    title: "Responsiveness",
+    content: (
+      <>
+        <DxcParagraph>
+          On smaller viewports, the header adapts to its responsive version. This layout is designed to accommodate the
+          component's elements clearly and consistently, so the experience remains coherent across all screen sizes. The
+          responsive header is organized into three sections: the top bar, the body, and the bottom.
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <strong>Top bar:</strong> this section displays the product or application branding, along with the most
+            relevant utilities from the right slot of the standard header.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Body:</strong> this is where the main navigation items are placed. Visually, these items follow a
+            structure similar to the ones in our sidenav component, and their behavior remains consistent with how they
+            function in the default sidenav.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Bottom:</strong> this area is custom, but it's reserved for the header's call-to-action elements,
+            when present.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     subSections: [
       {
@@ -232,6 +259,31 @@ const sections = [
             <DxcBulletedList.Item>
               Review responsive behavior when adding or removing utilities to ensure the right slot maintains balance
               and visual stability across viewports.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Responsive mode",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Even though the responsive header is composed of custom sections,{" "}
+              <strong>each area should remain aligned</strong> with the structure described above to preserve clarity
+              and consistency across smaller viewports.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Avoid overcrowding the top bar</strong> in the responsive layout. Only the most essential and
+              frequently used actions should remain visible there. Additional actions or CTAs should be placed in the
+              bottom section, while navigation items should be housed in the body.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Keep visual hierarchy</strong> as simple as possible. In reduced spaces, users scan content
+              faster, so each section should present its elements in a clear and predictable order.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Ensure that labels, icons, and interactive elements resize or reorganize in a way that maintains
+              readability and touch friendliness, especially on mobile devices.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
