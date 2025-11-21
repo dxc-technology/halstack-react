@@ -56,7 +56,7 @@ const LinkContent = styled.span<{
     cursor: pointer;
   }
   &:active {
-    color: var(--color-fg-neutral-dark) !important;
+    color: var(--color-fg-neutral-dark);
   }
 `;
 
