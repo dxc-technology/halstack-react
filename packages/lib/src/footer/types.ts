@@ -45,14 +45,13 @@ type FooterPropsType = {
    */
   bottomLinks?: BottomLink[];
   /**
-   * Contains DxcFooter.LeftContent and DxcFooter.RightContent components to
-   * customize the left and right content of the footer respectively.
-   */
-  children?: ReactNode;
-  /**
    * The text that will be displayed as copyright disclaimer.
    */
   copyright?: string;
+  /**
+   * Content to be displayed on the left side of the footer under the logo.
+   */
+  leftContent?: ReactNode;
   /**
    * Logo to be displayed inside the footer
    */
@@ -63,6 +62,10 @@ type FooterPropsType = {
    * - "reduced": A reduced mode with minimal content and styling.
    */
   mode?: "default" | "reduced";
+  /**
+   * Content to be displayed on the right side of the footer before the socialLinks if provided.
+   */
+  rightContent?: ReactNode;
   /**
    * An array of objects representing the links that will be rendered as
    * icons at the top-right side of the footer.

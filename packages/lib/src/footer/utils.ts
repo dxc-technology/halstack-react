@@ -1,9 +1,4 @@
-import { Children, ElementType, isValidElement } from "react";
-import FooterPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
-
-export const findChildType = (children: FooterPropsType["children"], childType: ElementType) =>
-  Children.toArray(children).find((child) => isValidElement(child) && child.type === childType);
 
 const rgbToHex = (color: string): string => {
   const rgbMatch = color.match(/\d+/g);

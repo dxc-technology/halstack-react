@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import StatusBadge from "@/common/StatusBadge";
@@ -76,6 +76,19 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
+                leftContent
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>ReactNode</TableCode>
+            </td>
+            <td>Content to be displayed on the left side of the footer under the logo.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
                 logo
               </DxcFlex>
             </td>
@@ -110,6 +123,19 @@ const sections = [
             <td>
               <TableCode>'default'</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                rightContent
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>ReactNode</TableCode>
+            </td>
+            <td>Content to be displayed on the right side of the footer before the socialLinks if provided.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>socialLinks</td>
@@ -155,112 +181,6 @@ const sections = [
         </tbody>
       </DxcTable>
     ),
-  },
-  {
-    title: "DxcFooter.LeftContent",
-    content: (
-      <DxcParagraph>
-        This compound will be used to display the content on the Left Container under the Logo.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>Custom content displayed at the left container of the footer under the logo.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
-    title: "DxcFooter.RigthContent",
-    content: (
-      <DxcParagraph>
-        This compound will be used to display the content on the Right Container of the footer, if socialLinks are
-        provided they will always display at the end of the container.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Props",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>React.ReactNode</TableCode>
-                </td>
-                <td>
-                  Custom content displayed at the right container of the footer before the socialLinks if provided.
-                </td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
-  },
-  {
-    title: "Examples",
-    subSections: [
-      {
-        title: "Footer in application layout",
-        content: (
-          <iframe
-            src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
-            style={{
-              width: "100%",
-              minHeight: "500px",
-              border: "0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-            title="Footer and header"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          />
-        ),
-      },
-    ],
   },
 ];
 

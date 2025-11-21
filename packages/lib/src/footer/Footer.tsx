@@ -5,7 +5,7 @@ import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { findChildType, getContrastColor, getResponsiveStyles } from "./utils";
+import { getContrastColor, getResponsiveStyles } from "./utils";
 import DxcLink from "../link/Link";
 import useWidth from "../utils/useWidth";
 import { css } from "@emotion/react";
@@ -220,9 +220,10 @@ const Copyright = styled.div<{ width: number }>`
 const DxcFooter = ({
   bottomLinks,
   copyright,
-  children,
+  leftContent,
   logo,
   mode = "default",
+  rightContent,
   socialLinks,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
@@ -235,9 +236,6 @@ const DxcFooter = ({
       return mode === "default" ? dxcLogo : dxcSmallLogo;
     }
   }, [mode, logo]);
-
-  const leftContentChild = findChildType(children, LeftContent);
-  const rightContentChild = findChildType(children, RightContent);
 
   const footerRef = useRef<HTMLDivElement>(null);
   const width = useWidth(footerRef);
@@ -258,11 +256,11 @@ const DxcFooter = ({
         <MainContainer width={width}>
           <LeftContainer width={width}>
             <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
-            {leftContentChild}
+            {leftContent}
           </LeftContainer>
-          {(socialLinks || rightContentChild) && (
+          {(socialLinks || rightContent) && (
             <RightContainer width={width}>
-              {rightContentChild}
+              {rightContent}
               {socialLinks && (
                 <SocialLinks>
                   {socialLinks?.map((link, index) => (

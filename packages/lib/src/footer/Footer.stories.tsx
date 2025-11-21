@@ -193,76 +193,43 @@ const Footer = () => (
       <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With left content" theme="light" level={4} />
-      <DxcFooter>
-        <DxcFooter.LeftContent>
-          <DxcParagraph>
-            Application description, version, notes, and contact details can go here for additional information
-          </DxcParagraph>
-          <DxcParagraph>
-            <strong>Contact Us:</strong> email@dxc.com
-          </DxcParagraph>
-        </DxcFooter.LeftContent>
-      </DxcFooter>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With right content" theme="light" level={4} />
-      <DxcFooter>
-        <DxcFooter.RightContent>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-        </DxcFooter.RightContent>
-      </DxcFooter>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With left and right content, copyright, bottom links and social links" theme="light" level={4} />
-      <DxcFooter socialLinks={social} bottomLinks={bottom}>
-        <DxcFooter.LeftContent>
-          <DxcParagraph>
-            Application description, version, notes, and contact details can go here for additional information
-          </DxcParagraph>
-          <DxcParagraph>
-            <strong>Contact Us:</strong> email@dxc.com
-          </DxcParagraph>
-        </DxcFooter.LeftContent>
-
-        <DxcFooter.RightContent>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-        </DxcFooter.RightContent>
-      </DxcFooter>
+      <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
+      <DxcFooter
+        socialLinks={social}
+        bottomLinks={bottom}
+        leftContent={
+          <>
+            <DxcParagraph>
+              Application description, version, notes, and contact details can go here for additional information
+            </DxcParagraph>
+            <DxcParagraph>
+              <strong>Contact Us:</strong> email@dxc.com
+            </DxcParagraph>
+          </>
+        }
+        rightContent={
+          <>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+          </>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With long content" theme="light" level={4} />
@@ -270,158 +237,172 @@ const Footer = () => (
         socialLinks={social}
         bottomLinks={bottomLong}
         copyright="This is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text."
-      >
-        <DxcFooter.LeftContent>
-          <DxcParagraph>
-            Application description, version, notes, and contact details can go here for additional information.
-            Application description, version, notes, and contact details can go here for additional information
-            Application description, version, notes, and contact details can go here for additional information
-            Application description, version, notes, and contact details can go here for additional information
-            Application description, version, notes, and contact details can go here for additional information
-            Application description, version, notes, and contact details can go here for additional information
-          </DxcParagraph>
-          <DxcParagraph>
-            <strong>Contact Us:</strong> email@dxc.com
-          </DxcParagraph>
-        </DxcFooter.LeftContent>
-
-        <DxcFooter.RightContent>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-        </DxcFooter.RightContent>
-      </DxcFooter>
+        leftContent={
+          <>
+            <DxcParagraph>
+              Application description, version, notes, and contact details can go here for additional information.
+              Application description, version, notes, and contact details can go here for additional information
+              Application description, version, notes, and contact details can go here for additional information
+              Application description, version, notes, and contact details can go here for additional information
+              Application description, version, notes, and contact details can go here for additional information
+              Application description, version, notes, and contact details can go here for additional information
+            </DxcParagraph>
+            <DxcParagraph>
+              <strong>Contact Us:</strong> email@dxc.com
+            </DxcParagraph>
+          </>
+        }
+        rightContent={
+          <>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+          </>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
-        <DxcFooter.LeftContent>
-          <DxcParagraph>
-            Application description, version, notes, and contact details can go here for additional information
-          </DxcParagraph>
-          <DxcParagraph>
-            <strong>Contact Us:</strong> email@dxc.com
-          </DxcParagraph>
-        </DxcFooter.LeftContent>
-
-        <DxcFooter.RightContent>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-        </DxcFooter.RightContent>
-      </DxcFooter>
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={socialMaterialIcons}
+        bottomLinks={bottom}
+        leftContent={
+          <>
+            <DxcParagraph>
+              Application description, version, notes, and contact details can go here for additional information
+            </DxcParagraph>
+            <DxcParagraph>
+              <strong>Contact Us:</strong> email@dxc.com
+            </DxcParagraph>
+          </>
+        }
+        rightContent={
+          <>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+          </>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <DxcFooter.LeftContent>
-          <DxcParagraph>
-            Application description, version, notes, and contact details can go here for additional information
-          </DxcParagraph>
-          <DxcParagraph>
-            <strong>Contact Us:</strong> email@dxc.com
-          </DxcParagraph>
-        </DxcFooter.LeftContent>
-
-        <DxcFooter.RightContent>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-          <DxcFlex direction="column">
-            <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
-            <DxcLink>Login / Sign-up</DxcLink>
-            <DxcLink>Subscribe</DxcLink>
-            <DxcLink>Unsubsicribe</DxcLink>
-          </DxcFlex>
-        </DxcFooter.RightContent>
-      </DxcFooter>
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={social}
+        bottomLinks={bottom}
+        leftContent={
+          <>
+            <DxcParagraph>
+              Application description, version, notes, and contact details can go here for additional information
+            </DxcParagraph>
+            <DxcParagraph>
+              <strong>Contact Us:</strong> email@dxc.com
+            </DxcParagraph>
+          </>
+        }
+        rightContent={
+          <>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+            <DxcFlex direction="column">
+              <DxcHeading text="Forms" level={5} margin={{ bottom: "small" }} />
+              <DxcLink>Login / Sign-up</DxcLink>
+              <DxcLink>Subscribe</DxcLink>
+              <DxcLink>Unsubsicribe</DxcLink>
+            </DxcFlex>
+          </>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
