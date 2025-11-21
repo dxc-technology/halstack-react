@@ -23,16 +23,12 @@ const FooterContainer = styled.footer<{
 const MainContainer = styled.div<{ width: number }>`
   display: grid;
   grid-template-columns: 1fr 2fr;
-
-  ${(props) =>
-    getResponsiveStyles.isLargeScreen(props.width) &&
-    css`
-      min-height: 80px;
-    `}
+  min-height: 80px;
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
     css`
+      min-height: auto;
       grid-template-columns: 1fr;
       grid-template-rows: auto auto;
       gap: var(--spacing-gap-ml);
@@ -47,11 +43,12 @@ const LeftContainer = styled.div<{ width: number }>`
   gap: var(--spacing-gap-ml);
   color: var(--color-fg-neutral-dark);
   box-sizing: border-box;
+  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
 
   ${(props) =>
-    getResponsiveStyles.isLargeScreen(props.width) &&
+    getResponsiveStyles.isMediumScreen(props.width) &&
     css`
-      padding: var(--spacing-padding-l) var(--spacing-padding-xl);
+      padding: var(--spacing-padding-none);
     `}
 `;
 
@@ -80,17 +77,13 @@ const RightContainer = styled.div<{ width: number }>`
   flex-wrap: wrap;
   gap: var(--spacing-gap-xl);
   box-sizing: border-box;
-
-  ${(props) =>
-    getResponsiveStyles.isLargeScreen(props.width) &&
-    css`
-      padding: var(--spacing-padding-l) var(--spacing-padding-xl);
-    `}
+  padding: var(--spacing-padding-l) var(--spacing-padding-xl);
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
     css`
       justify-content: flex-start;
+      padding: var(--spacing-padding-none);
     `}
 `;
 const SocialLinks = styled.div`
@@ -146,35 +139,25 @@ const BottomContainer = styled.div<{ textColor: string; width: number }>`
       gap: var(--spacing-gap-ml);
       padding: var(--spacing-padding-m);
     `}
-
-  ${(props) =>
-    getResponsiveStyles.isSmallScreen(props.width) &&
-    css`
-      padding: var(--spacing-padding-m);
-    `}
 `;
 
 const BottomLinks = styled.div<{ textColor: string; width: number }>`
   height: 100%;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  align-self: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
   box-sizing: border-box;
+  padding-left: var(--spacing-padding-xxxs);
 
   ${(props) =>
-    getResponsiveStyles.isLargeScreen(props.width) &&
-    css`
-      flex-wrap: nowrap;
-      overflow: hidden;
-      padding-left: var(--spacing-padding-xxxs);
-    `}
-
-  ${(props) =>
-    getResponsiveStyles.isSmallScreen(props.width) &&
+    getResponsiveStyles.isMediumScreen(props.width) &&
     css`
       max-width: 100%;
       width: 100%;
+      flex-wrap: wrap;
+      overflow: visible;
+      padding-left: var(--spacing-padding-none);
     `}
 
   & > span {
@@ -202,18 +185,14 @@ const Copyright = styled.div<{ width: number }>`
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-
-  ${(props) =>
-    getResponsiveStyles.isLargeScreen(props.width) &&
-    css`
-      grid-column-start: 3;
-    `}
+  grid-column-start: 3;
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
     css`
       justify-content: flex-start;
       white-space: wrap;
+      grid-column-start: 1;
     `}
 `;
 
