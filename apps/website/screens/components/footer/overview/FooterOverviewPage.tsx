@@ -52,8 +52,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          To maintain consistency in layout flexibility and brand presentation, the footer offers three primary
-          variants: <strong>Default</strong>, <strong>With Navigation</strong>, and <strong>Small</strong>.
+          To maintain consistency in layout flexibility and brand presentation, the footer offers two primary variants:{" "}
+          <strong>Default</strong> and <strong>Small</strong>.
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
