@@ -92,7 +92,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const filteredSections = useMemo(() => {
     const sections = mapLinksToGroupItems(LinksSections);
     return filterSections(sections, filter);
-  }, [filter]);
+  }, [filter, currentPath]);
 
   return (
     <CacheProvider value={emotionCache}>

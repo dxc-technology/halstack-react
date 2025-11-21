@@ -87,12 +87,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                mode
-              </DxcFlex>
-            </td>
+            <td>mode</td>
             <td>
               <TableCode>'default' | 'reduced'</TableCode>
             </td>

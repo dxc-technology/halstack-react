@@ -40,6 +40,7 @@ export default function DxcNavigationTree({
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const NavigationTreeRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
+
   const contextValue = useMemo(
     () => ({
       selectedItemId,
@@ -55,8 +56,8 @@ export default function DxcNavigationTree({
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const NavigationTreeEl = NavigationTreeRef.current;
-      const selectedItemEl = NavigationTreeEl?.querySelector("[aria-pressed='true']");
-      if (selectedItemEl instanceof HTMLButtonElement) {
+      const selectedItemEl = NavigationTreeEl?.querySelector("[aria-pressed='true'], [aria-selected='true']");
+      if (selectedItemEl instanceof HTMLButtonElement || selectedItemEl instanceof HTMLAnchorElement) {
         NavigationTreeEl?.scrollTo?.({
           top: (selectedItemEl?.offsetTop ?? 0) - (NavigationTreeEl?.clientHeight ?? 0) / 2,
         });

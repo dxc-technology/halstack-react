@@ -6,7 +6,6 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorUsage from "./examples/errorHandling";
 import Code, { TableCode } from "@/common/Code";
-import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -219,12 +218,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                showControls
-              </DxcFlex>
-            </td>
+            <td>showControls</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
