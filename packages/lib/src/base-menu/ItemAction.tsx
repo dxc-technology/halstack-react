@@ -92,8 +92,8 @@ const ItemAction = memo(
       getWrapper,
     } = useItemAction(props);
     const { depthLevel, selected, href, label, icon, collapseIcon, ...rest } = props;
-    const ariaPressed = href ? !!selected : undefined;
-    const ariaSelected = !href ? !!selected : undefined;
+    const ariaPressed = !href ? !!selected : undefined;
+    const ariaSelected = href ? !!selected : undefined;
     return getWrapper(
       <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
         <Action
