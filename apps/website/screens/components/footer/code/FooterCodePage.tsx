@@ -172,7 +172,8 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> for all interactive elements, except those inside the custom area.
+              Value of the <Code>tabindex</Code> for all interactive elements, except those inside the leftContent and
+              rightContent.
             </td>
             <td>
               <TableCode>0</TableCode>

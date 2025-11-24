@@ -73,7 +73,7 @@ type FooterPropsType = {
   socialLinks?: SocialLink[];
   /**
    * Value of the tabindex for all interactive elements, except those
-   * inside the custom area.
+   * inside the leftContent and rightContent.
    */
   tabIndex?: number;
 };

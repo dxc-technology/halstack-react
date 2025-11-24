@@ -24,6 +24,7 @@ const MainContainer = styled.div<{ width: number }>`
   display: grid;
   grid-template-columns: 1fr 2fr;
   min-height: 80px;
+  border-top: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
@@ -103,7 +104,7 @@ const SocialAnchor = styled.a`
 
   &:focus,
   &:focus-visible {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     outline-offset: 0px;
   }
 `;
@@ -149,6 +150,9 @@ const BottomLinks = styled.div<{ textColor: string; width: number }>`
   overflow: hidden;
   box-sizing: border-box;
   padding-left: var(--spacing-padding-xxxs);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-body-s);
+  font-weight: var(--typography-label-regular);
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
