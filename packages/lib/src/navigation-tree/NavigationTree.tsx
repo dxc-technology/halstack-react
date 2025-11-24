@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import MenuItem from "../base-menu/MenuItem";
 import NavigationTreePropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
@@ -65,6 +65,11 @@ export default function DxcNavigationTree({
       setFirstUpdate(false);
     }
   }, [firstUpdate, selectedItemId]);
+
+  useEffect(() => {
+    setSelectedItemId(-1);
+    setFirstUpdate(true);
+  }, [itemsWithId]);
 
   return (
     <NavigationTreeContainer displayBorder={displayBorder} ref={NavigationTreeRef}>
