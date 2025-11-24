@@ -54,7 +54,6 @@ export default function DxcNavigationTree({
   );
 
   useLayoutEffect(() => {
-    console.log("!!!", items);
     if (selectedItemId !== -1 && firstUpdate) {
       const NavigationTreeEl = NavigationTreeRef.current;
       const selectedItemEl = NavigationTreeEl?.querySelector("[aria-pressed='true'], [aria-selected='true']");
