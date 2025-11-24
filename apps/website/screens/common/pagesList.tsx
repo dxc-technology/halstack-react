@@ -2,7 +2,7 @@ import componentsList from "./componentsList.json";
 
 export type ComponentStatus = "experimental" | "new" | "stable" | "legacy" | "deprecated";
 
-type LinkDetails = {
+export type LinkDetails = {
   label: string;
   path: string;
   status?: ComponentStatus;
@@ -10,7 +10,7 @@ type LinkDetails = {
 
 export type LinksSectionDetails = {
   label: string;
-  links: LinkDetails[];
+  links: LinkDetails[] | LinksSectionDetails[];
 };
 
 type NavigationLinks = {
@@ -48,11 +48,13 @@ const foundationsLinks: LinkDetails[] = [
   { label: "Typography", path: "/foundations/typography" },
 ];
 
-const migrationLinks: LinkDetails[] = [
+const v16Links: LinkDetails[] = [
   { label: "Modified components", path: "/migration/migrating-modified-apis" },
   { label: "Migrating to emotion", path: "/migration/migrating-to-emotion" },
   { label: "Migrating tokens", path: "/migration/migrating-tokens" },
 ];
+
+const migrationLinks: LinksSectionDetails[] = [{ label: "v16", links: v16Links }];
 
 const componentsLinks = componentsList as LinkDetails[];
 
@@ -65,25 +67,33 @@ export const LinksSections: LinksSectionDetails[] = [
   { label: "Components", links: componentsLinks },
 ];
 
+const isNavLink = (item: LinkDetails | LinksSectionDetails): item is LinkDetails => "path" in item;
+
+const flattenLinks = (items: (LinkDetails | LinksSectionDetails)[]): LinkDetails[] =>
+  items.flatMap((item) => (isNavLink(item) ? [item] : flattenLinks(item.links)));
+
 const getCurrentLinkIndex = (links: LinkDetails[], currentPath: string) => {
-  let currentLinkIndex = -1;
-  let matchedWords = 0;
-  links.forEach((link, index) => {
-    if (currentPath.startsWith(link.path) && link.path.length > matchedWords) {
-      currentLinkIndex = index;
-      matchedWords = link.path.length;
+  let current = -1;
+  let best = 0;
+
+  links.forEach((link, i) => {
+    if (currentPath.startsWith(link.path) && link.path.length > best) {
+      current = i;
+      best = link.path.length;
     }
   });
-  return currentLinkIndex;
+
+  return current;
 };
 
 export const getNavigationLinks = (currentPath: string): NavigationLinks => {
-  const links = LinksSections.flatMap((section) => section.links);
-  const currentLinkIndex = getCurrentLinkIndex(links, currentPath);
-  return currentLinkIndex === -1
-    ? {}
-    : {
-        nextLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
-        previousLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
-      };
+  const flatLinks = flattenLinks(LinksSections);
+
+  const index = getCurrentLinkIndex(flatLinks, currentPath);
+  if (index === -1) return {};
+
+  return {
+    previousLink: flatLinks[index - 1],
+    nextLink: flatLinks[index + 1],
+  };
 };

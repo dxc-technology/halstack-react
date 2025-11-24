@@ -5,7 +5,7 @@ import Head from "next/head";
 import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
-import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
+import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
 import createCache, { EmotionCache } from "@emotion/cache";
@@ -33,66 +33,70 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const [isExpanded, setIsExpanded] = useState(true);
   const { asPath: currentPath } = useRouter();
 
-  const filterSections = (sections: Section[], query: string): Section[] => {
-    const q = query.trim().toLowerCase();
-    if (!q) return sections;
-
-    const filterItem = (item: Item | GroupItem): Item | GroupItem | null => {
-      const labelMatches = item.label.toLowerCase().includes(q);
-
-      if (!isGroupItem(item)) return labelMatches ? item : null;
-
-      const items = item.items.reduce<(Item | GroupItem)[]>((acc, child) => {
-        const filtered = filterItem(child);
-        if (filtered) acc.push(filtered);
-        return acc;
-      }, []);
-
-      return labelMatches || items.length ? { ...item, items } : null;
-    };
-
-    return sections.reduce<Section[]>((acc, section) => {
-      const items = section.items.reduce<(Item | GroupItem)[]>((acc, item) => {
-        const filtered = filterItem(item);
-        if (filtered) acc.push(filtered);
-        return acc;
-      }, []);
-      if (items.length) acc.push({ ...section, items });
-      return acc;
-    }, []);
+  const matchPaths = (linkPath: string) => {
+    const desiredPaths = [linkPath, `${linkPath}/code`];
+    const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
+    return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
   };
 
-  const mapLinksToGroupItems = (sections: LinksSectionDetails[]): Section[] => {
-    const matchPaths = (linkPath: string) => {
-      const desiredPaths = [linkPath, `${linkPath}/code`];
-      const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
-      return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
-    };
+  const createNavItem = (link: LinkDetails): Item => ({
+    label: link.label,
+    href: link.path,
+    selected: matchPaths(link.path),
+    badge: link.status && link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
+    renderItem: ({ children }: { children: ReactNode }) => (
+      <Link href={link.path} passHref legacyBehavior>
+        {children}
+      </Link>
+    ),
+  });
 
-    return sections.map((section) => ({
-      title: section.label,
-      items: section.links.map((link) => ({
-        label: link.label,
-        href: link.path,
-        selected: matchPaths(link.path),
-        ...(link.status && {
-          badge: link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
-        }),
-        renderItem: ({ children }: { children: ReactNode }) => (
-          <Link key={link.path} href={link.path} passHref legacyBehavior>
-            {children}
-          </Link>
-        ),
-      })),
-    }));
+  const normalizeNavTabs = (links: LinkDetails[] | LinksSectionDetails[]): (Item | GroupItem)[] => {
+    return links.map((link) => {
+      if ("links" in link) {
+        return {
+          label: link.label,
+          items: normalizeNavTabs(link.links),
+        } as GroupItem;
+      }
+
+      return createNavItem(link);
+    });
   };
 
-  // TODO: ADD NEW CATEGORIZATION
+  const filterNavTree = (items: (Item | GroupItem)[], q: string): (Item | GroupItem)[] => {
+    const result: (Item | GroupItem)[] = [];
 
-  const filteredSections = useMemo(() => {
-    const sections = mapLinksToGroupItems(LinksSections);
-    return filterSections(sections, filter);
-  }, [filter, currentPath]);
+    for (const item of items) {
+      if (isGroupItem(item)) {
+        const filteredChildren = filterNavTree(item.items, q);
+        const matches = item.label.toLowerCase().includes(q);
+
+        if (matches || filteredChildren.length > 0) {
+          result.push({ ...item, items: filteredChildren });
+        }
+      } else {
+        if (item.label.toLowerCase().includes(q)) {
+          result.push(item);
+        }
+      }
+    }
+
+    return result;
+  };
+
+  const navItems: Section[] = useMemo(() => {
+    return LinksSections.map((section) => {
+      const baseItems = normalizeNavTabs(section.links);
+
+      const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
+
+      return {
+        title: section.label,
+        items,
+      };
+    });
+  }, [currentPath, filter]);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -103,14 +107,14 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         header={<DxcApplicationLayout.Header logo={{ src: dxcLogo, alt: "DXC Technology" }} />}
         sidenav={
           <DxcApplicationLayout.Sidenav
-            navItems={filteredSections}
+            navItems={navItems}
             branding={isExpanded && <SidenavLogo />}
             topContent={
               isExpanded && (
                 <DxcTextInput
                   placeholder="Search docs"
                   value={filter}
-                  onChange={({ value }: { value: string }) => {
+                  onChange={({ value }) => {
                     setFilter(value);
                   }}
                   size="fillParent"
