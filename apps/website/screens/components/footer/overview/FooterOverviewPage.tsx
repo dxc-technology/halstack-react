@@ -32,6 +32,10 @@ const sections = [
             reinforce company recognition across all pages.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
+            <strong>Border:</strong> Marks the upper boundary of the header to visually separate it from the main
+            content.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <strong>Social icons:</strong> A set of clickable icons linking to the company's social media platforms
             (e.g., LinkedIn, Facebook). Placed on the right side for easy visibility and access.
           </DxcBulletedList.Item>
@@ -43,6 +47,12 @@ const sections = [
             <strong>Company links:</strong> A horizontal list of navigational hyperlinks such as Privacy Policy, Terms &
             Conditions, etc. Offers users access to important legal or informational resources.
           </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Left slot:</strong> Commonly used for short informational paragraphs or contact details.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Right slot:</strong> Commonly used for additional links, buttons, forms, or call to action.
+          </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -53,15 +63,21 @@ const sections = [
       <>
         <DxcParagraph>
           To maintain consistency in layout flexibility and brand presentation, the footer offers two primary variants:{" "}
-          <strong>Default</strong> and <strong>Small</strong>.
+          <strong>Default</strong> and <strong>Reduced</strong>.
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <strong>Default:</strong> provides a balanced layout with branding and essential legal links. It offers a
             clean, uncluttered appearance suitable for most standard applications.
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                Users can add content to the Default view using custom code such as content sections, text, links, and
+                other components for increased customization based on their specific needs.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Small:</strong> offers a compact version of the footer, typically limited to branding and minimal
+            <strong>Reduced:</strong> offers a compact version of the footer, typically limited to branding and minimal
             legal text. It's best suited for lightweight experiences, login pages, or environments with constrained
             vertical space.
           </DxcBulletedList.Item>
