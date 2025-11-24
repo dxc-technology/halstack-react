@@ -4,11 +4,21 @@ import DocFooter from "@/common/DocFooter";
 import StatusBadge from "@/common/StatusBadge";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
+const bottomLinksTypeString = `{
+  href: string;
+  text: string;
+}[]`;
+
 const logoTypeString = `{
-  href?: string;
   src: string;
-  title?: string;
+  alt: string;
 }`;
+
+const socialLinkTypeString = `{
+  href: string;
+  title: string;
+  logo: string | SVG;
+}[]`;
 
 const sections = [
   {
@@ -27,7 +37,7 @@ const sections = [
           <tr>
             <td>bottomLinks</td>
             <td>
-              <TableCode>{"{ href: string; text: string; }[]"}</TableCode>
+              <ExtendedTableCode>{bottomLinksTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered at the bottom part of the footer. Each
@@ -46,9 +56,12 @@ const sections = [
           <tr>
             <td>children</td>
             <td>
-              <TableCode>React.ReactNode</TableCode>
+              <TableCode>ReactNode</TableCode>
             </td>
-            <td>The center section of the footer. Can be used to render custom content in this area.</td>
+            <td>
+              Contains DxcFooter.LeftContent and DxcFooter.RightContent components to customize the left and right
+              content of the footer respectively.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -63,33 +76,33 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
-                logo
+                leftContent
               </DxcFlex>
             </td>
             <td>
-              <td>
-                <TableCode>{"Logo"}</TableCode>
-                <p>
-                  being <Code>Logo</Code> an object with the following properties:
-                </p>
-                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
-              </td>
+              <TableCode>ReactNode</TableCode>
             </td>
-            <td>Logo to be displayed inside the header.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'</TableCode>
-            </td>
-            <td>Size of the top margin to be applied to the footer.</td>
+            <td>Content to be displayed on the left side of the footer under the logo.</td>
             <td>-</td>
           </tr>
           <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
+                logo
+              </DxcFlex>
+            </td>
+            <td>
+              <td>
+                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
+              </td>
+            </td>
+            <td>Logo to be displayed inside the footer.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 mode
               </DxcFlex>
             </td>
@@ -112,11 +125,22 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                rightContent
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>ReactNode</TableCode>
+            </td>
+            <td>Content to be displayed on the right side of the footer before the socialLinks if provided.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>socialLinks</td>
             <td>
-              <TableCode>
-                {`{ href: string; title: string; logo: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); }[]`}
-              </TableCode>
+              <ExtendedTableCode>{socialLinkTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered as icons at the top-right side of the
@@ -148,7 +172,8 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> for all interactive elements, except those inside the custom area.
+              Value of the <Code>tabindex</Code> for all interactive elements, except those inside the leftContent and
+              rightContent.
             </td>
             <td>
               <TableCode>0</TableCode>
@@ -157,29 +182,6 @@ const sections = [
         </tbody>
       </DxcTable>
     ),
-  },
-  {
-    title: "Examples",
-    subSections: [
-      {
-        title: "Footer in application layout",
-        content: (
-          <iframe
-            src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
-            style={{
-              width: "100%",
-              minHeight: "500px",
-              border: "0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-            title="Footer and header"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          />
-        ),
-      },
-    ],
   },
 ];
 

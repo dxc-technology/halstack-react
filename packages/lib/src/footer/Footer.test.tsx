@@ -1,5 +1,13 @@
 import { render } from "@testing-library/react";
 import DxcFooter from "./Footer";
+import { getContrastColor } from "./utils";
+
+// Mock ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const social = [
   {
@@ -27,40 +35,52 @@ describe("Footer component tests", () => {
   });
   test("Footer renders with bottom links", () => {
     const { getByText } = render(<DxcFooter bottomLinks={bottom} />);
-    const link = getByText("bottom-link-text");
-    expect(link.getAttribute("href")).toBe("https://www.test.com/bottom");
+    const link = getByText("bottom-link-text").closest("a");
+    expect(link?.getAttribute("href")).toBe("https://www.test.com/bottom");
   });
   test("Footer renders with copyright text", () => {
     const { getByText } = render(<DxcFooter copyright="test-copyright" />);
     expect(getByText("test-copyright")).toBeTruthy();
   });
-  test("Footer renders with correct children", () => {
+  test("Footer renders LeftContent correctly", () => {
     // We need to force the offsetWidth value
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
       value: 1024,
     });
-    const { getByText } = render(
-      <DxcFooter>
-        <p>footer-child-text</p>
-      </DxcFooter>
-    );
-    expect(getByText("footer-child-text")).toBeTruthy();
+    const { getByText } = render(<DxcFooter leftContent={<p>footer-left-text</p>} />);
+    expect(getByText("footer-left-text")).toBeTruthy();
   });
-  test("Footer renders with children in mobile", () => {
+  test("Footer renders RightContent correctly", () => {
+    // We need to force the offsetWidth value
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 1024,
+    });
+    const { getByText } = render(<DxcFooter rightContent={<p>footer-right-text</p>} />);
+    expect(getByText("footer-right-text")).toBeTruthy();
+  });
+  test("Footer renders LeftContent in mobile", () => {
     // 425 is mobile width
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
       value: 425,
     });
 
-    const { queryByText } = render(
-      <DxcFooter>
-        <p>footer-child-text</p>
-      </DxcFooter>
-    );
+    const { queryByText } = render(<DxcFooter leftContent={<p>footer-left-text</p>} />);
 
-    expect(queryByText("footer-child-text")).toBeTruthy();
+    expect(queryByText("footer-left-text")).toBeTruthy();
+  });
+  test("Footer renders RightContent in mobile", () => {
+    // 425 is mobile width
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 425,
+    });
+
+    const { queryByText } = render(<DxcFooter rightContent={<p>footer-right-text</p>} />);
+
+    expect(queryByText("footer-right-text")).toBeTruthy();
   });
   test("Footer is fully rendered", () => {
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
@@ -69,16 +89,37 @@ describe("Footer component tests", () => {
     });
 
     const { getAllByRole, getByText } = render(
-      <DxcFooter socialLinks={social} bottomLinks={bottom} copyright="test-copyright">
-        <p>footer-child-text</p>
-      </DxcFooter>
+      <DxcFooter
+        socialLinks={social}
+        bottomLinks={bottom}
+        copyright="test-copyright"
+        leftContent={<p>footer-left-text</p>}
+        rightContent={<p>footer-right-text</p>}
+      />
     );
     const socialIcon = getAllByRole("link")[0];
     expect(socialIcon?.getAttribute("href")).toBe("https://www.test.com/social");
     expect(socialIcon?.getAttribute("aria-label")).toBe("test");
-    const bottomLink = getByText("bottom-link-text");
-    expect(bottomLink.getAttribute("href")).toBe("https://www.test.com/bottom");
+    const bottomLink = getByText("bottom-link-text").closest("a");
+    expect(bottomLink?.getAttribute("href")).toBe("https://www.test.com/bottom");
     expect(getByText("test-copyright")).toBeTruthy();
-    expect(getByText("footer-child-text")).toBeTruthy();
+    expect(getByText("footer-left-text")).toBeTruthy();
+    expect(getByText("footer-right-text")).toBeTruthy();
+  });
+});
+
+describe("getContrastColor function", () => {
+  test("should return black color for light backgrounds", () => {
+    expect(getContrastColor("#FFFFFF")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("#F5F5F5")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("rgb(255, 255, 255)")).toBe("var(--color-fg-neutral-dark)");
+    expect(getContrastColor("rgb(245, 245, 245)")).toBe("var(--color-fg-neutral-dark)");
+  });
+
+  test("should return white color for dark backgrounds", () => {
+    expect(getContrastColor("#000000")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("#333333")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("rgb(0, 0, 0)")).toBe("var(--color-fg-neutral-bright)");
+    expect(getContrastColor("rgb(51, 51, 51)")).toBe("var(--color-fg-neutral-bright)");
   });
 });

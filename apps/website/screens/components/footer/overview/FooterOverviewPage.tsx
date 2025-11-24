@@ -32,6 +32,10 @@ const sections = [
             reinforce company recognition across all pages.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
+            <strong>Border:</strong> Marks the upper boundary of the header to visually separate it from the main
+            content.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <strong>Social icons:</strong> A set of clickable icons linking to the company's social media platforms
             (e.g., LinkedIn, Facebook). Placed on the right side for easy visibility and access.
           </DxcBulletedList.Item>
@@ -43,6 +47,12 @@ const sections = [
             <strong>Company links:</strong> A horizontal list of navigational hyperlinks such as Privacy Policy, Terms &
             Conditions, etc. Offers users access to important legal or informational resources.
           </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Left slot:</strong> Commonly used for short informational paragraphs or contact details.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Right slot:</strong> Commonly used for additional links, buttons, forms, or call to action.
+          </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -52,21 +62,22 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          To maintain consistency in layout flexibility and brand presentation, the footer offers three primary
-          variants: <strong>Default</strong>, <strong>With Navigation</strong>, and <strong>Small</strong>.
+          To maintain consistency in layout flexibility and brand presentation, the footer offers two primary variants:{" "}
+          <strong>Default</strong> and <strong>Reduced</strong>.
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <strong>Default:</strong> provides a balanced layout with branding and essential legal links. It offers a
             clean, uncluttered appearance suitable for most standard applications.
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                Users can add content to the Default view using custom code such as content sections, text, links, and
+                other components for increased customization based on their specific needs.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>With Navigation:</strong> includes additional navigational sections, enabling users to quickly
-            access key areas of the site. This layout is ideal for content-heavy pages or enterprise-level applications
-            requiring enhanced footer functionality.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Small:</strong> offers a compact version of the footer, typically limited to branding and minimal
+            <strong>Reduced:</strong> offers a compact version of the footer, typically limited to branding and minimal
             legal text. It's best suited for lightweight experiences, login pages, or environments with constrained
             vertical space.
           </DxcBulletedList.Item>
@@ -87,13 +98,15 @@ const sections = [
       <>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Dock the footer to the bottom of the page:</strong> the footer should remain fixed at the bottom
-            edge of the viewport and not scroll with the page content to maintain visibility and separation from dynamic
-            areas.
+            <strong>Dock the footer at the bottom of the page:</strong> The footer should appear after the content at
+            the bottom page at all times. If the page content exceeds the current view and the user needs to scroll to
+            reach the bottom of the content and see the footer.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Ensure full-width alignment:</strong> the footer container should always span the full width of the
-            screen to create a clean, structured boundary and support responsive behavior across breakpoints.
+            <strong>Ensure full-width alignment:</strong> By default, the footer spans the entire width of the page
+            excluding the Sidenav. For cases when the left Sidenav is not used, the footer container should always span
+            the full width of the screen to create a clean, structured boundary and support responsive behavior across
+            breakpoints.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Display copyright information on the right:</strong> consistently place legal disclaimers or
