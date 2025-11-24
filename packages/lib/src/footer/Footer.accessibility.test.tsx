@@ -2,6 +2,13 @@ import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcFooter from "./Footer";
 import rules from "../../test/accessibility/rules/specific/footer/disabledRules";
+import { vi } from "vitest";
+
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
 
 const disabledRules = {
   rules: formatRules(rules),
@@ -90,22 +97,31 @@ const bottom = [
 describe("Footer component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="default">
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={social}
+        bottomLinks={bottom}
+        mode="default"
+        leftContent={
+          <>
+            <div>
+              <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+            </div>
+          </>
+        }
+        rightContent={
+          <div>
+            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+          </div>
+        }
+      />
     );
     const results = await axe(container, disabledRules);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="reduced">
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} mode="reduced" />
     );
     const results = await axe(container, disabledRules);
     expect(results.violations).toHaveLength(0);
