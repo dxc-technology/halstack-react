@@ -172,7 +172,11 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
           placeItems="center"
         >
           <BrandingContainer>
-            <LogoContainer role={logo.onClick ? "button" : undefined} as={logo.href ? "a" : undefined}>
+            <LogoContainer
+              role={logo.onClick ? "button" : undefined}
+              onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
+              as={logo.href ? "a" : undefined}
+            >
               {typeof logo.src === "string" ? (
                 <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
               ) : (
