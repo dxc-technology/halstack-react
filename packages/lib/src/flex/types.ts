@@ -86,6 +86,10 @@ type Props = CommonProps & {
    */
   order?: number;
   /**
+   * If true, the flex container will take the full height of its parent.
+   */
+  fullHeight?: boolean;
+  /**
    * Sets the flex-grow CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
@@ -117,6 +121,7 @@ export type StyledProps = CommonProps & {
   $direction?: "row" | "row-reverse" | "column" | "column-reverse";
   $wrap?: "nowrap" | "wrap" | "wrap-reverse";
   $gap?: Gap;
+  $fullHeight?: boolean;
   $order?: number;
   $grow?: number;
   $shrink?: number;
