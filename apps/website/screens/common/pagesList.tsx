@@ -10,7 +10,7 @@ export type LinkDetails = {
 
 export type LinksSectionDetails = {
   label: string;
-  links: LinkDetails[] | LinksSectionDetails[];
+  links: (LinkDetails | LinksSectionDetails)[];
 };
 
 type NavigationLinks = {
@@ -37,14 +37,20 @@ const principlesLinks: LinkDetails[] = [
   { label: "Localization", path: "/principles/localization" },
 ];
 
-const foundationsLinks: LinkDetails[] = [
+const tokensLinks: LinkDetails[] = [
+  { label: "Overview", path: "/foundations/tokens" },
+  { label: "Core tokens", path: "/foundations/tokens/core" },
+  { label: "Alias tokens", path: "/foundations/tokens/alias" },
+];
+
+const foundationsLinks: (LinkDetails | LinksSectionDetails)[] = [
   { label: "Color", path: "/foundations/color" },
   { label: "Elevation", path: "/foundations/elevation" },
   { label: "Height", path: "/foundations/height" },
   { label: "Iconography", path: "/foundations/iconography" },
   { label: "Layout", path: "/foundations/layout" },
   { label: "Spacing", path: "/foundations/spacing" },
-  { label: "Tokens", path: "/foundations/tokens" },
+  { label: "Tokens", links: tokensLinks },
   { label: "Typography", path: "/foundations/typography" },
 ];
 

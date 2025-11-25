@@ -6,7 +6,6 @@ import DxcQuickNavContainer from "@/common/QuickNavContainer";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
-import TokensTable from "./tables/TokensTable";
 
 const sections = [
   {
@@ -44,7 +43,7 @@ const sections = [
         <DxcParagraph>
           When Halstack was first established, its token structure followed a two-tier model:{" "}
           <strong>primitive tokens</strong> (the raw foundational values) and <strong>component tokens</strong> (styles
-          appliedWIP at the component level.) The intermediate <strong>alias layer</strong> — commonly used to connect
+          applied at the component level.) The intermediate <strong>alias layer</strong> — commonly used to connect
           foundations to components — was missing.
         </DxcParagraph>
         <DxcParagraph>
@@ -285,7 +284,6 @@ const sections = [
           </>
         ),
       },
-      // TODO: SEPARATE ALIAS TOKENS AND CORE TOKENS IN DIFFERENT SECTIONS WITHIN THE NAVIGATION
       {
         title: "Tokens in Development",
         content: (
@@ -302,109 +300,21 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               The first layer (composed of core tokens) can be customized when using the opinionated theming approach.
-              Below is the list of available core tokens:
+              You can view the{" "}
+              <Link href="/foundations/tokens/core" passHref legacyBehavior>
+                <DxcLink>list of available core tokens</DxcLink>
+              </Link>
+              .
             </DxcParagraph>
-            <>
-              {/* Color Tokens */}
-              <DxcHeading level={4} text="Colors" />
-              <DxcHeading level={5} text="Absolute color tokens" />
-              <TokensTable categories={["color-absolutes"]} type="core" />
-              <DxcHeading level={5} text="Primary color tokens" />
-              <TokensTable categories={["color-primary"]} type="core" />
-              <DxcHeading level={5} text="Secondary color tokens" />
-              <TokensTable categories={["color-secondary"]} type="core" />
-              <DxcHeading level={5} text="Tertiary color tokens" />
-              <TokensTable categories={["color-tertiary"]} type="core" />
-              <DxcHeading level={5} text="Neutral color tokens" />
-              <TokensTable categories={["color-neutral"]} type="core" />
-              <DxcHeading level={5} text="Semantic 01 color tokens" />
-              <TokensTable categories={["color-semantic01"]} type="core" />
-              <DxcHeading level={5} text="Semantic 02 color tokens" />
-              <TokensTable categories={["color-semantic02"]} type="core" />
-              <DxcHeading level={5} text="Semantic 03 color tokens" />
-              <TokensTable categories={["color-semantic03"]} type="core" />
-              <DxcHeading level={5} text="Semantic 04 color tokens" />
-              <TokensTable categories={["color-semantic04"]} type="core" />
-              <DxcHeading level={5} text="Alpha color tokens" />
-              <TokensTable categories={["color-alpha"]} type="core" />
-            </>
-            <>
-              {/* Dimensions Tokens */}
-              <DxcHeading level={4} text="Dimensions" />
-              <TokensTable categories={["dimensions"]} type="core" />
-            </>
-            <>
-              {/* Font Tokens */}
-              <DxcHeading level={4} text="Font" />
-              <DxcHeading level={5} text="Font size tokens" />
-              <TokensTable categories={["font-size"]} type="core" />
-              <DxcHeading level={5} text="Font weight tokens" />
-              <TokensTable categories={["font-weight"]} type="core" />
-              <DxcHeading level={5} text="Font family tokens" />
-              <TokensTable categories={["font-family"]} type="core" />
-              <DxcHeading level={5} text="Font style tokens" />
-              <TokensTable categories={["font-style"]} type="core" />
-            </>
-            <>
-              {/* Border Tokens */}
-              <DxcHeading level={4} text="Border" />
-              <TokensTable categories={["line-style"]} type="core" />
-            </>
             <DxcParagraph>
               The second layer (composed of alias tokens) can be used to replace raw values such as colors, . Alias
               tokens act as an intermediate mapping between the low-level core values and the visual roles used by
-              components.
+              components. You can view the{" "}
+              <Link href="/foundations/tokens/alias" passHref legacyBehavior>
+                <DxcLink>list of available alias tokens</DxcLink>
+              </Link>
+              .
             </DxcParagraph>
-            <>
-              {/* Border Tokens */}
-              <DxcHeading level={4} text="Border" />
-              <DxcHeading level={5} text="Radius" />
-              <TokensTable categories={["border-radius"]} type="alias" />
-              <DxcHeading level={5} text="Style" />
-              <TokensTable categories={["border-style"]} type="alias" />
-              <DxcHeading level={5} text="Width" />
-              <TokensTable categories={["border-width"]} type="alias" />
-            </>
-            <>
-              {/* Color Tokens */}
-              <DxcHeading level={4} text="Color" />
-              <DxcHeading level={5} text="Border" />
-              <TokensTable categories={["border-color"]} type="alias" />
-              <DxcHeading level={5} text="Background" />
-              <TokensTable categories={["color-bg"]} type="alias" />
-              <DxcHeading level={5} text="Shadow" />
-              <TokensTable categories={["shadow-dark", "shadow-light"]} type="alias" />
-              <DxcHeading level={5} text="Text" />
-              <TokensTable categories={["color-fg"]} type="alias" />
-            </>
-            <>
-              {/* Dimensions Tokens */}
-              <DxcHeading level={4} text="Dimensions" />
-              <DxcHeading level={5} text="Height" />
-              <TokensTable categories={["height"]} type="alias" />
-              <DxcHeading level={5} text="Shadow" />
-              <TokensTable categories={["shadow-high", "shadow-mid", "shadow-low"]} type="alias" />
-              <DxcHeading level={5} text="Spacing" />
-              <TokensTable categories={["spacing-gap", "spacing-padding"]} type="alias" />
-            </>
-            <>
-              {/* Typography Tokens */}
-              <DxcHeading level={4} text="Typography" />
-              <DxcHeading level={5} text="Body" />
-              <TokensTable categories={["typography-body"]} type="alias" />
-              <DxcHeading level={5} text="Heading" />
-              <TokensTable categories={["typography-heading"]} type="alias" />
-              <DxcHeading level={5} text="Helper text" />
-              <TokensTable categories={["typography-helper"]} type="alias" />
-              <DxcHeading level={5} text="Label" />
-              <TokensTable categories={["typography-label"]} type="alias" />
-              <DxcHeading level={5} text="Link" />
-              <TokensTable categories={["typography-link"]} type="alias" />
-              <DxcHeading level={5} text="Title" />
-              <TokensTable categories={["typography-title"]} type="alias" />
-              <DxcHeading level={5} text="Font family" />
-              <TokensTable categories={["typography-font"]} type="alias" />
-            </>
             <DxcParagraph>The third layer (component tokens) is still under development.</DxcParagraph>
           </>
         ),
@@ -421,7 +331,7 @@ const TokensPage = () => (
       </DxcFlex>
     </PageHeading>
     <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokensPage.tsx" />
   </DxcFlex>
 );
 

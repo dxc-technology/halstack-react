@@ -106,7 +106,7 @@ const sections = [
               >
                 <DxcLink>this page</DxcLink>
               </Link>
-              .{/* TODO: SEPARATE THE NEWLY ADDED ALIAS TOKENS FROM THE CORE TOKENS IN A DIFFERENT PAGE */}
+              .
             </DxcParagraph>
           </>
         ),
