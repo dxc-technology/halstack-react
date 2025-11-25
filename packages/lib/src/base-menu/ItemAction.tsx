@@ -114,7 +114,7 @@ const ItemAction = memo(
                 <Icon>{collapseIcon}</Icon>
               </Control>
             )}
-            {(icon || hasPopOver) && (
+            {(((icon || hasPopOver) && !isHorizontal) || (isHorizontal && icon)) && (
               <TooltipWrapper condition={hasPopOver} label={label}>
                 <Icon>
                   {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}
