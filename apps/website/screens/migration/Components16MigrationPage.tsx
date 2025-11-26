@@ -159,7 +159,15 @@ const sections = [
           // TODO: CHECK PELAYO PR FOR THE NEW FOOTER API
           {
             title: "ApplicationLayout.Footer",
-            content: <DxcParagraph>TBD</DxcParagraph>,
+            content: (
+              <DxcParagraph>
+                The <Code>Footer</Code> component no longer accepts children. It now provides two different props,{" "}
+                <Code>leftContent</Code> and <Code>rightContent</Code>, for placing custom elements in their respective
+                areas. In <Code>reduced</Code> mode, the footer will no longer display custom content on the right side,
+                instead it will display the copyright statement. A new <Code>logo</Code> prop has also been added to be
+                able to support custom branding.
+              </DxcParagraph>
+            ),
           },
         ],
       },

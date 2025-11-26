@@ -42,7 +42,7 @@ const sections = [
                   </DxcFlex>
                 </td>
                 <td>
-                  <TableCode>ReactNode</TableCode>
+                  <TableCode>React.ReactNode</TableCode>
                 </td>
                 <td>
                   Tree of components from which the <Code>useToast</Code> hook can be triggered.

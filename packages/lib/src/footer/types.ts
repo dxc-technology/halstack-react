@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SVG, Space } from "../common/utils";
+import { SVG } from "../common/utils";
 
 type SocialLink = {
   /**
@@ -29,17 +29,13 @@ type BottomLink = {
 
 type Logo = {
   /**
-   * URL to navigate when the logo is clicked.
-   */
-  href?: string;
-  /**
    * Source of the logo image.
    */
   src: string;
   /**
    * Alternative text for the logo image.
    */
-  title?: string;
+  alt: string;
 };
 
 type FooterPropsType = {
@@ -49,22 +45,17 @@ type FooterPropsType = {
    */
   bottomLinks?: BottomLink[];
   /**
-   * The center section of the footer. Can be used to render custom
-   * content in this area.
-   */
-  children?: ReactNode;
-  /**
    * The text that will be displayed as copyright disclaimer.
    */
   copyright?: string;
   /**
+   * Content to be displayed on the left side of the footer under the logo.
+   */
+  leftContent?: ReactNode;
+  /**
    * Logo to be displayed inside the footer
    */
   logo?: Logo;
-  /**
-   * Size of the top margin to be applied to the footer.
-   */
-  margin?: Space;
   /**
    * Determines the visual style and layout
    * - "default": The default mode with full content and styling.
@@ -72,13 +63,17 @@ type FooterPropsType = {
    */
   mode?: "default" | "reduced";
   /**
+   * Content to be displayed on the right side of the footer before the socialLinks if provided.
+   */
+  rightContent?: ReactNode;
+  /**
    * An array of objects representing the links that will be rendered as
    * icons at the top-right side of the footer.
    */
   socialLinks?: SocialLink[];
   /**
    * Value of the tabindex for all interactive elements, except those
-   * inside the custom area.
+   * inside the leftContent and rightContent.
    */
   tabIndex?: number;
 };
