@@ -51,7 +51,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     ),
   });
 
-  const normalizeNavTabs = (links: LinkDetails[] | LinksSectionDetails[]): (Item | GroupItem)[] => {
+  const normalizeNavTabs = (links: (LinkDetails | LinksSectionDetails)[]): (Item | GroupItem)[] => {
     return links.map((link) => {
       if ("links" in link) {
         return {
