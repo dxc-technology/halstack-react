@@ -80,11 +80,7 @@ const sections = [
             <DxcParagraph>
               Core tokens define the raw, non-contextual values of the design system. They map directly to CSS
               variables. You can find a list with all the core tokens in{" "}
-              <Link
-                href="/foundations/tokens/#how-tokens-move-from-design-to-code-tokens-in-development"
-                passHref
-                legacyBehavior
-              >
+              <Link href="/foundations/tokens/core" passHref legacyBehavior>
                 <DxcLink>this page</DxcLink>
               </Link>
               .
@@ -99,11 +95,7 @@ const sections = [
             <DxcParagraph>
               Alias tokens map raw core values to semantic meanings such as background, foreground, or border tokens.
               They provide a shared vocabulary across components. You can find a list with all the alias tokens in{" "}
-              <Link
-                href="/foundations/tokens/#how-tokens-move-from-design-to-code-tokens-in-development"
-                passHref
-                legacyBehavior
-              >
+              <Link href="/foundations/tokens/alias" passHref legacyBehavior>
                 <DxcLink>this page</DxcLink>
               </Link>
               .
