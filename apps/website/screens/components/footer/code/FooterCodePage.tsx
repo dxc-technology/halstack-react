@@ -9,6 +9,11 @@ const bottomLinksTypeString = `{
   text: string;
 }[]`;
 
+const logoTypeString = `{
+  src: string;
+  alt: string;
+}`;
+
 const socialLinkTypeString = `{
   href: string;
   title: string;
@@ -67,6 +72,21 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>Content to be displayed on the left side of the footer under the logo.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                logo
+              </DxcFlex>
+            </td>
+            <td>
+              <td>
+                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
+              </td>
+            </td>
+            <td>Logo to be displayed inside the footer.</td>
             <td>-</td>
           </tr>
           <tr>
