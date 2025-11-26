@@ -4,7 +4,7 @@ import Components16MigrationPage from "screens/migration/Components16MigrationPa
 const Components16Migration = () => (
   <>
     <Head>
-      <title>Migrating component APIs — Halstack Design System</title>
+      <title>Component updates in v16 — Halstack Design System</title>
     </Head>
     <Components16MigrationPage />
   </>

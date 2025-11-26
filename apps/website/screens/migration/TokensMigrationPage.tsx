@@ -48,7 +48,7 @@ const sections = [
           <tr>
             <td>Naming consistency</td>
             <td>No token taxonomy, per-component styles</td>
-            <td>Core → Alias → Component 3-layer architecture</td>
+            <td>Core → Alias → Component (3-layer architecture)</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -266,11 +266,11 @@ const TokensMigrationPage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Migration to Tokens" />
+        <DxcHeading level={1} text="Migrating to Tokens" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/TokensMigrationPage.tsx" />
   </DxcFlex>
 );
 

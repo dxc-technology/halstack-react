@@ -86,9 +86,6 @@ const sections = [
             Local components using <Code>styled-components</Code>.
           </li>
           <li>
-            Overriding Halstack components with <Code>styled()</Code> wrappers.
-          </li>
-          <li>
             Server-side rendering setups relying on <Code>ServerStyleSheet</Code>.
           </li>
           <li>Build setups using the Babel plugin for styled-components.</li>
@@ -242,25 +239,6 @@ const GlobalStyles = (
     ),
   },
   {
-    title: "Overriding Halstack components",
-    content: (
-      <>
-        <DxcParagraph>
-          Emotion's <Code>styled</Code> API can still wrap Halstack components. Replace any previous SC wrappers with
-          Emotion's equivalent:
-        </DxcParagraph>
-        <CodeBlock>
-          {`import styled from "@emotion/styled";
-import { DxcButton } from "@dxc-technology/halstack-react";
-
-const CustomButton = styled(DxcButton)\`
-  --button-padding: 12px;
-\`;`}
-        </CodeBlock>
-      </>
-    ),
-  },
-  {
     title: "Removing styled-components from your build",
     content: (
       <>
@@ -285,7 +263,7 @@ const EmotionMigrationPage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Migration to Emotion" />
+        <DxcHeading level={1} text="Migrating to Emotion" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />

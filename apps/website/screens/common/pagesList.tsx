@@ -55,9 +55,9 @@ const foundationsLinks: (LinkDetails | LinksSectionDetails)[] = [
 ];
 
 const v16Links: LinkDetails[] = [
-  { label: "Modified components", path: "/migration/migrating-modified-apis" },
-  { label: "Migrating to emotion", path: "/migration/migrating-to-emotion" },
-  { label: "Migrating tokens", path: "/migration/migrating-tokens" },
+  { label: "Component updates", path: "/migration/16/component-updates" },
+  { label: "Migrating to Emotion", path: "/migration/16/migrating-to-emotion" },
+  { label: "Migrating tokens", path: "/migration/16/migrating-tokens" },
 ];
 
 const migrationLinks: LinksSectionDetails[] = [{ label: "v16", links: v16Links }];

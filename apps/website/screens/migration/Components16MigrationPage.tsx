@@ -2,7 +2,7 @@ import { DxcFlex, DxcParagraph, DxcHeading, DxcTable, DxcLink, DxcBulletedList }
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
-import Code from "@/common/Code";
+import Code, { ExtendedTableCode } from "@/common/Code";
 import Link from "next/link";
 
 const sections = [
@@ -55,7 +55,6 @@ const sections = [
         Several components were redesigned and now have a different API or behavior. See below for details.
       </DxcParagraph>
     ),
-    // TODO: ADD AN EXAMPLE CONVERTING THE OLD APIs TO THE NEW ONES OR REDIRECT TO THE COMPONENTS' PAGES?
     subSections: [
       {
         title: "ApplicationLayout",
@@ -76,18 +75,36 @@ const sections = [
                   The <Code>Header</Code> component has been redesigned. The new API provides a simpler and more
                   flexible approach:
                 </DxcParagraph>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    <strong>v15 (old)</strong>: The header was configured using props like <Code>underlined</Code>,
-                    <Code>content</Code>, and <Code>responsiveContent</Code>. Dropdowns were rendered using{" "}
-                    <Code>DxcHeader.Dropdown</Code>.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>v16</strong>: The new header uses <Code>branding</Code> for logo/app title,{" "}
-                    <Code>navItems</Code> for navigation links (with optional nested groups), <Code>sideContent</Code>{" "}
-                    for side elements, and <Code>responsiveBottomContent</Code> for mobile-specific content.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
+                <DxcTable>
+                  <thead>
+                    <tr>
+                      <th>Version</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>v15 (old)</strong>
+                      </td>
+                      <td>
+                        The header was configured using props like <Code>underlined</Code>,<Code>content</Code>, and{" "}
+                        <Code>responsiveContent</Code>. Dropdowns were rendered using <Code>DxcHeader.Dropdown</Code>.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>v16</strong>
+                      </td>
+                      <td>
+                        The new header uses <Code>logo</Code> and <Code>appTitle</Code> for the branding,{" "}
+                        <Code>navItems</Code> for navigation links (with optional nested groups),{" "}
+                        <Code>sideContent</Code> for side elements, and <Code>responsiveBottomContent</Code> for
+                        mobile-specific content.
+                      </td>
+                    </tr>
+                  </tbody>
+                </DxcTable>
                 <DxcParagraph>
                   When migrating, move your old <Code>content</Code> and dropdowns into the new <Code>logo</Code>,{" "}
                   <Code>appTitle</Code> and <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with{" "}
@@ -112,26 +129,55 @@ const sections = [
                   declarative <Code>navItems</Code> prop. This new API also features changes that improve the
                   responsiveness and flexibility of the component.
                 </DxcParagraph>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    <strong>v15 (old)</strong>: Nested components like <Code>DxcSidenav.Title</Code>,{" "}
-                    <Code>DxcSidenav.Section</Code>,<Code>DxcSidenav.Group</Code>, and <Code>DxcSidenav.Link</Code>{" "}
-                    defined the structure and links.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>v16</strong>: The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
-                    <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> can have a title, icon, collapsible
-                    flag, and children <Code>Item</Code> objects. Each <Code>Item</Code> has a <Code>label</Code>,
-                    optional <Code>icon</Code>, <Code>selected</Code>
-                    state, and an <Code>onSelect</Code> callback.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
+                <DxcTable>
+                  <thead>
+                    <tr>
+                      <th>Version</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>v15 (old)</strong>
+                      </td>
+                      <td>
+                        <Code>DxcSidenav.Section</Code>,<Code>DxcSidenav.Group</Code>, and <Code>DxcSidenav.Link</Code>{" "}
+                        defined the structure and links.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>v16</strong>
+                      </td>
+                      <td>
+                        <p>
+                          The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
+                          <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> has the following structure:
+                        </p>
+                        <ExtendedTableCode>{`{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  items: (Item)[];
+}`}</ExtendedTableCode>
+                        <p>
+                          Each <Code>Item</Code> has the following structure:
+                        </p>
+                        <ExtendedTableCode>{`{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  onSelect?: () => void;
+  selected?: boolean;
+}`}</ExtendedTableCode>
+                      </td>
+                    </tr>
+                  </tbody>
+                </DxcTable>
                 <DxcParagraph>
-                  This is the main changes but there are some new additional props that have been added in this version:
-                </DxcParagraph>
-                <DxcParagraph>
-                  To migrate, flatten your old <Code>Title</Code>, <Code>Section</Code>, <Code>Group</Code>, and
-                  <Code>Link</Code> structure into a single <Code>items</Code> array following the new typing.
+                  These are the main changes but there are some new additional props that have been added in this
+                  version.
                 </DxcParagraph>
                 <DxcParagraph>
                   When migrating:{" "}
@@ -141,7 +187,7 @@ const sections = [
                       <Code>Link</Code> structure into a single <Code>items</Code> array following the new typing.
                     </DxcBulletedList.Item>
                     <DxcBulletedList.Item>
-                      Move your old logo/app title into the new <Code>branding</Code>
+                      Move your old logo/app title into the new <Code>logo</Code> and <Code>appTitle</Code> props.
                     </DxcBulletedList.Item>
                     <DxcBulletedList.Item>
                       Include <Code>topContent</Code> and <Code>bottomContent</Code> as needed for further interaction
@@ -186,10 +232,13 @@ const sections = [
         title: "DataGrid",
         content: (
           <DxcParagraph>
-            This component has exited the experimental phase and is now fully supported, featuring new functionalities
-            like on-demand loading (thanks to the <Code>childrenTrigger</Code> prop), possibility to have rows expanded
-            by default and the possibility to render any page by default. To know more about these new features, please
-            refer to the updated documentation.
+            <Link href="/components/data-grid" passHref legacyBehavior>
+              <DxcLink>This component</DxcLink>
+            </Link>{" "}
+            has exited the experimental phase and is now fully supported, featuring new functionalities like on-demand
+            loading (thanks to the <Code>childrenTrigger</Code> prop), possibility to have rows expanded by default and
+            the possibility to render any page by default. To know more about these new features, please refer to the
+            updated documentation.
           </DxcParagraph>
         ),
       },
@@ -206,8 +255,8 @@ const sections = [
         title: "Slider",
         content: (
           <DxcParagraph>
-            <Code>tabIndex</Code> prop has been removed. The prop was not having any effect in the component and was not
-            included on purpose, so it is now removed.
+            <Code>tabIndex</Code> prop has been removed. The prop was not working as we intended, so in the meantime we
+            decided to remove it. We believe that, at some point, the component will need to set this prop.
           </DxcParagraph>
         ),
       },
@@ -217,7 +266,12 @@ const sections = [
           <DxcParagraph>
             The <Code>Tabs</Code> component no longer supports the legacy API. A more flexible approach using a Compound
             Component Pattern is now used instead to maintain a higher consistency with our existing{" "}
-            <Code>NavTabs</Code> and make the API much simpler.
+            <Code>NavTabs</Code> and make the API much simpler. Additionally, a few improvements have been made to
+            enhance responsiveness and controlled behavior. Please refer to the
+            <Link href="/components/tabs" passHref legacyBehavior>
+              <DxcLink>updated documentation</DxcLink>
+            </Link>{" "}
+            for more details.
           </DxcParagraph>
         ),
       },
@@ -309,7 +363,7 @@ const Components16MigrationPage = () => (
   <DxcFlex direction="column" gap="4rem">
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-        <DxcHeading level={1} text="Components' update in v16" />
+        <DxcHeading level={1} text="Component updates in v16" />
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
