@@ -16,11 +16,9 @@ const logoTypeString = `{
   src: string;
 }`;
 
-const commonItemTypeString = `{
-  badge?: ReactElement;
+const commonItemTypeString = `badge?: ReactElement;
   icon?: string | SVG;
-  label: string;
-}`;
+  label: string;`;
 
 const itemTypeString = `{ 
   ${commonItemTypeString}
