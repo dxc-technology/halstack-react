@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -288,9 +288,4 @@ const DxcFooter = ({
   );
 };
 
-const LeftContent = ({ children }: { children: ReactNode }) => <>{children}</>;
-const RightContent = ({ children }: { children: ReactNode }) => <>{children}</>;
-
-DxcFooter.LeftContent = LeftContent;
-DxcFooter.RightContent = RightContent;
 export default DxcFooter;
