@@ -136,6 +136,16 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>fullHeight</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the component will take the full height of its parent container.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>gap</td>
             <td>
               <TableCode>string | Gap</TableCode>
