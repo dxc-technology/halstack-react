@@ -79,7 +79,7 @@ const Container = () => (
         padding="var(--spacing-padding-m)"
         margin="var(--spacing-padding-l)"
       >
-        <b>Example text</b>
+        <strong>Example text</strong>
       </DxcContainer>
     </ExampleContainer>
     <Title title="Background image" level={4} />
@@ -115,7 +115,7 @@ const Container = () => (
           width="56px"
           height="var(--height-xxxl)"
         >
-          <b>1</b>
+          <strong>1</strong>
         </DxcContainer>
         <DxcContainer
           display="inline-block"
@@ -123,7 +123,7 @@ const Container = () => (
           width="56px"
           height="var(--height-xxxl)"
         >
-          <b>2</b>
+          <strong>2</strong>
         </DxcContainer>
         <DxcContainer
           display="inline-block"
@@ -134,7 +134,7 @@ const Container = () => (
           height="var(--height-xxxl)"
           zIndex={1}
         >
-          <b>3</b>
+          <strong>3</strong>
         </DxcContainer>
       </DxcContainer>
     </ExampleContainer>
@@ -155,7 +155,7 @@ const Container = () => (
           height="50px"
           margin={{ bottom: "var(--spacing-padding-m)" }}
         >
-          <b>1</b>
+          <strong>1</strong>
         </DxcContainer>
         <DxcContainer
           background={{ color: "var(--color-bg-primary-medium)" }}
@@ -163,7 +163,7 @@ const Container = () => (
           height="var(--height-xxxl)"
           margin={{ top: "var(--spacing-padding-l)" }}
         >
-          <b>2</b>
+          <strong>2</strong>
         </DxcContainer>
       </DxcContainer>
     </ExampleContainer>
@@ -180,7 +180,7 @@ const Container = () => (
           width="56px"
           height="var(--height-xxxl)"
         >
-          <b tabIndex={0}>1</b>
+          <strong tabIndex={0}>1</strong>
         </DxcContainer>
         <DxcContainer
           border={{
@@ -192,7 +192,7 @@ const Container = () => (
           width="56px"
           height="var(--height-xxxl)"
         >
-          <b tabIndex={0}>2</b>
+          <strong tabIndex={0}>2</strong>
         </DxcContainer>
         <DxcContainer
           border={{
@@ -204,7 +204,7 @@ const Container = () => (
           width="56px"
           height="var(--height-xxxl)"
         >
-          <b tabIndex={0}>3</b>
+          <strong tabIndex={0}>3</strong>
         </DxcContainer>
       </DxcContainer>
     </ExampleContainer>
@@ -224,7 +224,7 @@ const Container = () => (
           width="100px"
           height="100px"
         >
-          <b>Floating text</b>
+          <strong>Floating text</strong>
         </DxcContainer>
         <p style={{ margin: 0 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl

@@ -25,7 +25,7 @@ describe("Container component tests", () => {
         padding="var(--spacing-padding-m)"
         margin="var(--spacing-padding-l)"
       >
-        <b>Example text</b>
+        <strong>Example text</strong>
       </DxcContainer>
     );
     expect(getByText("Example text")).toBeTruthy();

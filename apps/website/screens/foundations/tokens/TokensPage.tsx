@@ -307,9 +307,9 @@ const sections = [
               .
             </DxcParagraph>
             <DxcParagraph>
-              The second layer (composed of alias tokens) can be used to replace raw values such as colors, . Alias
-              tokens act as an intermediate mapping between the low-level core values and the visual roles used by
-              components. You can view the{" "}
+              The second layer (composed of alias tokens) can be used to replace raw values such as colors, paddings,
+              sizes, etc. Alias tokens act as an intermediate mapping between the low-level core values and the visual
+              roles used by components. You can view the{" "}
               <Link href="/foundations/tokens/alias" passHref legacyBehavior>
                 <DxcLink>list of available alias tokens</DxcLink>
               </Link>

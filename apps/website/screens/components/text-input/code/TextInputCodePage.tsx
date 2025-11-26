@@ -313,11 +313,12 @@ const sections = [
               These are the options to be displayed as suggestions. It can be either an array or a function:
               <ul>
                 <li>
-                  <b>Array</b>: List of options that will be filtered by the user's input.
+                  <strong>Array</strong>: List of options that will be filtered by the user's input.
                 </li>
                 <li>
-                  <b>Function</b>: This function will be called when the user changes the value. It will receive the new
-                  value as a parameter and should return a promise that resolves to an array with the filtered options.
+                  <strong>Function</strong>: This function will be called when the user changes the value. It will
+                  receive the new value as a parameter and should return a promise that resolves to an array with the
+                  filtered options.
                 </li>
               </ul>
             </td>

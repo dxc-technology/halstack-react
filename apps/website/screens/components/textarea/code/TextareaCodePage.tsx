@@ -271,13 +271,13 @@ const sections = [
               Defines the textarea's ability to resize vertically. It can be:
               <ul>
                 <li>
-                  <b>'auto'</b>: The textarea grows or shrinks automatically in order to fit the content.
+                  <strong>'auto'</strong>: The textarea grows or shrinks automatically in order to fit the content.
                 </li>
                 <li>
-                  <b>'manual'</b>: The height of the textarea is enabled to be manually modified.
+                  <strong>'manual'</strong>: The height of the textarea is enabled to be manually modified.
                 </li>
                 <li>
-                  <b>'none'</b>: The textarea has a fixed height and can't be modified.
+                  <strong>'none'</strong>: The textarea has a fixed height and can't be modified.
                 </li>
               </ul>
             </td>

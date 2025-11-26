@@ -53,10 +53,12 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              bottomContent
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                bottomContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -64,10 +66,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              branding
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                branding
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"Branding | ReactNode"}</TableCode>
               <p>
@@ -83,10 +87,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              defaultExpanded
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                defaultExpanded
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -94,10 +100,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              displayGroupLines
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                displayGroupLines
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -105,10 +113,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              expanded
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                expanded
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -119,10 +129,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              navItems
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                navItems
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(Item | GroupItem)[] | Section[]"}</TableCode>
               <p>
@@ -145,10 +157,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              onExpandedChange
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onExpandedChange
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(value: boolean) => void"}</TableCode>
             </td>
@@ -156,10 +170,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-              <StatusBadge status="new" />
-              topContent
-            </DxcFlex>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                topContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>

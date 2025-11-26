@@ -39,23 +39,12 @@ const sections = [
               object has the following properties:
               <ul>
                 <li>
-                  <b>text</b>: Text for the link.
+                  <strong>text</strong>: Text for the link.
                 </li>
                 <li>
-                  <b>href</b>: URL of the page the link goes to.
+                  <strong>href</strong>: URL of the page the link goes to.
                 </li>
               </ul>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>
-              Contains DxcFooter.LeftContent and DxcFooter.RightContent components to customize the left and right
-              content of the footer respectively.
             </td>
             <td>-</td>
           </tr>
@@ -89,10 +78,10 @@ const sections = [
               The available footer modes:
               <ul>
                 <li>
-                  <b>default</b>: Footer with full content.
+                  <strong>default</strong>: Footer with full content.
                 </li>
                 <li>
-                  <b>reduced</b>: Smaller footer with minimal content.
+                  <strong>reduced</strong>: Smaller footer with minimal content.
                 </li>
               </ul>
             </td>
@@ -123,14 +112,14 @@ const sections = [
               footer. Each object has the following properties:
               <ul>
                 <li>
-                  <b>href</b>: URL of the page the link goes to.
+                  <strong>href</strong>: URL of the page the link goes to.
                 </li>
                 <li>
-                  <b>title</b>: Text representing advisory information related to the social link. Under the hood, it
-                  also serves as an accessible label for the icon.
+                  <strong>title</strong>: Text representing advisory information related to the social link. Under the
+                  hood, it also serves as an accessible label for the icon.
                 </li>
                 <li>
-                  <b>logo</b>:{" "}
+                  <strong>logo</strong>:{" "}
                   <DxcLink newWindow href="https://fonts.google.com/icons">
                     Material Symbol
                   </DxcLink>{" "}

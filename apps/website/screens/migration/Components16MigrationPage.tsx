@@ -78,20 +78,19 @@ const sections = [
                 </DxcParagraph>
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    <b>v15 (old)</b>: The header was configured using props like <Code>underlined</Code>,
+                    <strong>v15 (old)</strong>: The header was configured using props like <Code>underlined</Code>,
                     <Code>content</Code>, and <Code>responsiveContent</Code>. Dropdowns were rendered using{" "}
                     <Code>DxcHeader.Dropdown</Code>.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    <b>v16</b>: The new header uses <Code>branding</Code> for logo/app title, <Code>navItems</Code> for
-                    navigation links (with optional nested groups), <Code>sideContent</Code> for side elements, and
-                    <Code>responsiveBottomContent</Code> for mobile-specific content.
+                    <strong>v16</strong>: The new header uses <Code>branding</Code> for logo/app title,{" "}
+                    <Code>navItems</Code> for navigation links (with optional nested groups), <Code>sideContent</Code>{" "}
+                    for side elements, and <Code>responsiveBottomContent</Code> for mobile-specific content.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
                 <DxcParagraph>
                   When migrating, move your old <Code>content</Code> and dropdowns into the new <Code>branding</Code>{" "}
-                  and
-                  <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with
+                  and <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with{" "}
                   <Code>responsiveBottomContent</Code> and use <Code>sideContent</Code> as needed for further required
                   interaction.
                 </DxcParagraph>
@@ -110,18 +109,17 @@ const sections = [
               <>
                 <DxcParagraph>
                   The <Code>Sidenav</Code> component has also changed from a compound component structure to a
-                  declarative
-                  <Code>navItems</Code> prop. This new API also features changes that improve the responsiveness and
-                  flexibility of the component.
+                  declarative <Code>navItems</Code> prop. This new API also features changes that improve the
+                  responsiveness and flexibility of the component.
                 </DxcParagraph>
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    <b>v15 (old)</b>: Nested components like <Code>DxcSidenav.Title</Code>,{" "}
+                    <strong>v15 (old)</strong>: Nested components like <Code>DxcSidenav.Title</Code>,{" "}
                     <Code>DxcSidenav.Section</Code>,<Code>DxcSidenav.Group</Code>, and <Code>DxcSidenav.Link</Code>{" "}
                     defined the structure and links.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    <b>v16</b>: The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
+                    <strong>v16</strong>: The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
                     <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> can have a title, icon, collapsible
                     flag, and children <Code>Item</Code> objects. Each <Code>Item</Code> has a <Code>label</Code>,
                     optional <Code>icon</Code>, <Code>selected</Code>

@@ -78,17 +78,17 @@ const sections = [
               The mode of the alert. The possible values are:
               <ul>
                 <li>
-                  <b>inline:</b> The alert must be displayed in the same place where it is declared. The user can
-                  navigate between the messages if the message is an array.
+                  <strong>inline:</strong> The alert must be displayed in the same place where it is declared. The user
+                  can navigate between the messages if the message is an array.
                 </li>
                 <li>
-                  <b>modal:</b> The alert will be displayed in the middle of the screen with an overlay layer behind. In
-                  this mode, the user has the responsibility of hiding the alert with the <Code>onClose</Code> event of
-                  the message, otherwise the overlaid modal will remain visible.
+                  <strong>modal:</strong> The alert will be displayed in the middle of the screen with an overlay layer
+                  behind. In this mode, the user has the responsibility of hiding the alert with the{" "}
+                  <Code>onClose</Code> event of the message, otherwise the overlaid modal will remain visible.
                 </li>
                 <li>
-                  <b>banner:</b> The alert must be displayed at the top of the screen. The user can navigate between the
-                  messages if the message is an array.
+                  <strong>banner:</strong> The alert must be displayed at the top of the screen. The user can navigate
+                  between the messages if the message is an array.
                 </li>
               </ul>
             </td>

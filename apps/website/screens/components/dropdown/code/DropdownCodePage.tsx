@@ -132,10 +132,10 @@ const sections = [
                 An array of objects representing the options. Each object has the following properties:
                 <ul>
                   <li>
-                    <b>label</b>: Option display value.
+                    <strong>label</strong>: Option display value.
                   </li>
                   <li>
-                    <b>icon</b>:{" "}
+                    <strong>icon</strong>:{" "}
                     <DxcLink newWindow href="https://fonts.google.com/icons">
                       Material Symbol
                     </DxcLink>{" "}
@@ -144,7 +144,7 @@ const sections = [
                     prefix the symbol name with <TableCode>"filled_"</TableCode>.
                   </li>
                   <li>
-                    <b>value</b>: Option inner value.
+                    <strong>value</strong>: Option inner value.
                   </li>
                 </ul>
               </td>

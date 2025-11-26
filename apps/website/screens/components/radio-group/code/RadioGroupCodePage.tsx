@@ -150,14 +150,14 @@ const sections = [
               An array of objects representing the selectable options. Each object Option has the following properties:
               <ul>
                 <li>
-                  <b>label</b>: Label of the option placed next to the radio input.
+                  <strong>label</strong>: Label of the option placed next to the radio input.
                 </li>
                 <li>
-                  <b>value</b>: Value of the option. It should be unique and not an empty string, which is reserved to
-                  the optional item added by the <Code>optional</Code> prop.
+                  <strong>value</strong>: Value of the option. It should be unique and not an empty string, which is
+                  reserved to the optional item added by the <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>disabled</b>: disables the option.
+                  <strong>disabled</strong>: disables the option.
                 </li>
               </ul>
             </td>
