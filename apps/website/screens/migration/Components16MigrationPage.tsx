@@ -89,10 +89,10 @@ const sections = [
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
                 <DxcParagraph>
-                  When migrating, move your old <Code>content</Code> and dropdowns into the new <Code>branding</Code>{" "}
-                  and <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with{" "}
-                  <Code>responsiveBottomContent</Code> and use <Code>sideContent</Code> as needed for further required
-                  interaction.
+                  When migrating, move your old <Code>content</Code> and dropdowns into the new <Code>logo</Code>,{" "}
+                  <Code>appTitle</Code> and <Code>navItems</Code> props. Replace <Code>responsiveContent</Code> with{" "}
+                  <Code>responsiveBottomContent</Code> and <Code>sideContent</Code> based on the desired positioning.{" "}
+                  <Code>sideContent</Code> can receive a flag parameter that depends on responsiveness.
                 </DxcParagraph>
                 <DxcParagraph>
                   For further information regarding the new API, please refer to{" "}

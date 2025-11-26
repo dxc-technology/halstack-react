@@ -82,9 +82,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <td>
-                <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
-              </td>
+              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
             <td>Logo to be displayed inside the footer.</td>
             <td>-</td>

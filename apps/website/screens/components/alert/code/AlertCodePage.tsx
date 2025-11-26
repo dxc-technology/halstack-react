@@ -51,13 +51,11 @@ const sections = [
           <tr>
             <td>message</td>
             <td>
-              <td>
-                <TableCode>{"Message | Message[]"}</TableCode>
-                <p>
-                  being <Code>Message</Code> an object with the following properties:
-                </p>
-                <ExtendedTableCode>{messageTypeString}</ExtendedTableCode>
-              </td>
+              <TableCode>{"Message | Message[]"}</TableCode>
+              <p>
+                being <Code>Message</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{messageTypeString}</ExtendedTableCode>
             </td>
             <td>
               List of messages to be displayed. Each message has a close action that will, apart from remove from the
