@@ -16,12 +16,12 @@ describe("Avatar component tests", () => {
   });
   test("Avatar renders with image when src is passed", () => {
     const { getByRole } = render(
-      <DxcAvatar imageSrc="https://developer.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png" />
+      <DxcAvatar imageSrc="https://developer.assure.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png" />
     );
     const img = getByRole("img");
     expect(img).toHaveAttribute(
       "src",
-      "https://developer.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
+      "https://developer.assure.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
     );
   });
   test("Avatar renders with initials when label is passed", () => {
@@ -42,7 +42,7 @@ describe("Avatar component tests", () => {
   test("Avatar renders with image when src and label are passed", () => {
     const { getByRole, queryByText } = render(
       <DxcAvatar
-        imageSrc="https://developer.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
+        imageSrc="https://developer.assure.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
         label="John Doe"
       />
     );
@@ -55,7 +55,7 @@ describe("Avatar component tests", () => {
     const CustomIcon = () => <svg data-testid="custom-icon" />;
     const { rerender, getByRole, getByText, getByTestId, queryByRole, queryByText, queryByTestId } = render(
       <DxcAvatar
-        imageSrc="https://developer.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
+        imageSrc="https://developer.assure.dxc.com/halstack/next/_next/static/media/neutral_colors.e92a8be2.png"
         label="John Doe"
         icon={<CustomIcon />}
       />

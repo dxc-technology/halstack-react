@@ -92,7 +92,7 @@ const moveToBucket = (version) => {
 };
 
 const updateRedirectionToLatest = (version) => {
-  const redirection = `window.location.replace("https://developer.dxc.com/halstack/${version}/");`;
+  const redirection = `window.location.replace("https://developer.assure.dxc.com/halstack/${version}/");`;
   return new Promise((resolve, reject) => {
     exec(`echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}redirect.js`, (error, stdout, stderr) => {
       if (error) {
@@ -126,7 +126,7 @@ const updateAvailableVersions = async (versions, currentVersion) => {
     const currentItem = isNaN(version) ? "next" : version;
     return {
       versionNumber: currentItem,
-      versionURL: `https://developer.dxc.com/${
+      versionURL: `https://developer.assure.dxc.com/${
         isNaN(currentItem) && currentItem <= 5 ? "tools/react" : "halstack"
       }/${currentItem}/`,
       current: currentItem === currentVersion,
