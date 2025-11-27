@@ -95,7 +95,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         title: section.label,
         items,
       };
-    });
+    }).filter((section) => section.items.length > 0);
   }, [currentPath, filter]);
 
   return (
