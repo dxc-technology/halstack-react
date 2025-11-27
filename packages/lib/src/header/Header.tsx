@@ -54,9 +54,10 @@ const RightSideContainer = styled(SideContainer)`
   justify-content: flex-end;
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.div<{ isClickable: boolean }>`
   display: flex;
   align-items: center;
+  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
   svg {
     height: var(--height-m);
     width: auto;
@@ -176,6 +177,7 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
               role={logo.onClick ? "button" : undefined}
               onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
               as={logo.href ? "a" : undefined}
+              isClickable={!!(logo.onClick || logo.href)}
             >
               {typeof logo.src === "string" ? (
                 <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
@@ -202,10 +204,12 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
               />
             </MainNavContainer>
           )}
-          {sideContent && (
+          {(sideContent || isResponsive) && (
             <RightSideContainer>
-              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}{" "}
-              {isResponsive && <HamburguerButton onClick={toggleMenu} />}
+              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}
+              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
+                <HamburguerButton onClick={toggleMenu} />
+              )}
             </RightSideContainer>
           )}
         </DxcGrid>
