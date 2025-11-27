@@ -207,7 +207,9 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
           {sideContent && (
             <RightSideContainer>
               {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}{" "}
-              {isResponsive && <HamburguerButton onClick={toggleMenu} />}
+              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
+                <HamburguerButton onClick={toggleMenu} />
+              )}
             </RightSideContainer>
           )}
         </DxcGrid>
