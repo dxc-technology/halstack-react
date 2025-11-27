@@ -204,9 +204,9 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
               />
             </MainNavContainer>
           )}
-          {sideContent && (
+          {(sideContent || isResponsive) && (
             <RightSideContainer>
-              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}{" "}
+              {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}
               {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
                 <HamburguerButton onClick={toggleMenu} />
               )}
