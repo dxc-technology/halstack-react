@@ -14,7 +14,7 @@
     "test:watch": "turbo test:watch"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.9.0",
+    "@chromatic-com/storybook": "^4.1.1",
     "@storybook/addon-a11y": "^9.1.10",
     "@storybook/addon-links": "^9.1.10",
     "@types/color": "^4.2.0",
