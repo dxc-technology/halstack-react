@@ -17,12 +17,22 @@ export default [
   {
     plugins: { "only-warn": onlyWarn },
     languageOptions: {
-      globals: { React: true, JSX: true },
+      globals: { 
+        React: "readonly", 
+        JSX: "readonly" 
+      },
     },
     settings: {
+      react: {
+        version: "detect",
+      },
       "import/resolver": {
         typescript: { project },
       },
+    },
+    rules: {
+      // Basic React rules that don't require a plugin
+      "no-unused-vars": "warn",
     },
     files: ["**/*.{js,jsx,ts,tsx}"],
     ignores: [".*.js", "node_modules/", "dist/"],

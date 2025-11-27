@@ -1,12 +1,8 @@
 import reactInternal from "./react-internal.js";
-import vercelNext from "@vercel/style-guide/eslint/next";
-import { FlatCompat } from "@eslint/eslintrc";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import globals from "globals";
 import { join } from "path";
-
-const compat = new FlatCompat();
 
 /**
  * @param {{ tsconfigRootDir: string, tsconfigName?: string }} options
@@ -15,7 +11,20 @@ const compat = new FlatCompat();
 export default function nextConfig({ tsconfigRootDir, tsconfigName = "tsconfig.lint.json" } = {}) {
   return [
     ...reactInternal,
-    ...compat.config(vercelNext),
+    {
+      files: ["**/*.{js,jsx,ts,tsx}"],
+      languageOptions: {
+        globals: {
+          ...globals.browser,
+          ...globals.node,
+        },
+      },
+      rules: {
+        // Basic Next.js rules without requiring the plugin
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+      },
+    },
     {
       files: ["**/*.{ts,tsx}"],
       plugins: { "@typescript-eslint": tsPlugin },
