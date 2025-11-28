@@ -98,23 +98,23 @@ const sections = [
               An array of objects representing the steps. Each of them has the following properties:
               <ul>
                 <li>
-                  <b>label</b>: Step label.
+                  <strong>label</strong>: Step label.
                 </li>
                 <li>
-                  <b>description</b>: Description that will be placed next to the step.
+                  <strong>description</strong>: Description that will be placed next to the step.
                 </li>
                 <li>
-                  <b>icon</b>:{" "}
+                  <strong>icon</strong>:{" "}
                   <DxcLink newWindow href="https://fonts.google.com/icons">
                     Material Symbol
                   </DxcLink>{" "}
                   name or SVG element used as the icon displayed in the step.
                 </li>
                 <li>
-                  <b>disabled</b>: If true, the step will be disabled.
+                  <strong>disabled</strong>: If true, the step will be disabled.
                 </li>
                 <li>
-                  <b>valid</b>: Whether the step is valid or not.
+                  <strong>valid</strong>: Whether the step is valid or not.
                 </li>
               </ul>
             </td>

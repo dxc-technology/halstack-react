@@ -6,21 +6,6 @@ import DxcQuickNavContainer from "@/common/QuickNavContainer";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import componentTokens from "./images/component_tokens.gif";
-import {
-  AbsoluteTokens,
-  AlphaTokens,
-  NeutralTokens,
-  PrimaryTokens,
-  SecondaryTokens,
-  Semantic01Tokens,
-  Semantic02Tokens,
-  Semantic03Tokens,
-  Semantic04Tokens,
-  TertiaryTokens,
-} from "./tables/CoreColorTokens";
-import DimensionsTokens from "./tables/CoreDimensionsTokens";
-import { FontFamilyTokens, FontSizesTokens, FontStylesTokens, FontWeightTokens } from "./tables/CoreFontTokens";
-import BorderTokens from "./tables/CoreBorderTokens";
 
 const sections = [
   {
@@ -58,7 +43,7 @@ const sections = [
         <DxcParagraph>
           When Halstack was first established, its token structure followed a two-tier model:{" "}
           <strong>primitive tokens</strong> (the raw foundational values) and <strong>component tokens</strong> (styles
-          appliedWIP at the component level.) The intermediate <strong>alias layer</strong> — commonly used to connect
+          applied at the component level.) The intermediate <strong>alias layer</strong> — commonly used to connect
           foundations to components — was missing.
         </DxcParagraph>
         <DxcParagraph>
@@ -315,55 +300,22 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               The first layer (composed of core tokens) can be customized when using the opinionated theming approach.
-              Below is the list of available core tokens:
+              You can view the{" "}
+              <Link href="/foundations/tokens/core" passHref legacyBehavior>
+                <DxcLink>list of available core tokens</DxcLink>
+              </Link>
+              .
             </DxcParagraph>
-            <>
-              {/* Color Tokens */}
-              <DxcHeading level={4} text="Colors" />
-              <DxcHeading level={5} text="Absolute color tokens" />
-              <AbsoluteTokens />
-              <DxcHeading level={5} text="Primary color tokens" />
-              <PrimaryTokens />
-              <DxcHeading level={5} text="Secondary color tokens" />
-              <SecondaryTokens />
-              <DxcHeading level={5} text="Tertiary color tokens" />
-              <TertiaryTokens />
-              <DxcHeading level={5} text="Neutral color tokens" />
-              <NeutralTokens />
-              <DxcHeading level={5} text="Semantic 01 color tokens" />
-              <Semantic01Tokens />
-              <DxcHeading level={5} text="Semantic 02 color tokens" />
-              <Semantic02Tokens />
-              <DxcHeading level={5} text="Semantic 03 color tokens" />
-              <Semantic03Tokens />
-              <DxcHeading level={5} text="Semantic 04 color tokens" />
-              <Semantic04Tokens />
-              <DxcHeading level={5} text="Alpha color tokens" />
-              <AlphaTokens />
-            </>
-            <>
-              {/* Dimensions Tokens */}
-              <DxcHeading level={4} text="Dimensions" />
-              <DimensionsTokens />
-            </>
-            <>
-              {/* Font Tokens */}
-              <DxcHeading level={4} text="Font" />
-              <DxcHeading level={5} text="Font size tokens" />
-              <FontSizesTokens />
-              <DxcHeading level={5} text="Font weight tokens" />
-              <FontWeightTokens />
-              <DxcHeading level={5} text="Font family tokens" />
-              <FontFamilyTokens />
-              <DxcHeading level={5} text="Font style tokens" />
-              <FontStylesTokens />
-            </>
-            <>
-              {/* Border Tokens */}
-              <DxcHeading level={4} text="Border" />
-              <BorderTokens />
-            </>
-            <DxcParagraph>The component layer is still under development.</DxcParagraph>
+            <DxcParagraph>
+              The second layer (composed of alias tokens) can be used to replace raw values such as colors, paddings,
+              sizes, etc. Alias tokens act as an intermediate mapping between the low-level core values and the visual
+              roles used by components. You can view the{" "}
+              <Link href="/foundations/tokens/alias" passHref legacyBehavior>
+                <DxcLink>list of available alias tokens</DxcLink>
+              </Link>
+              .
+            </DxcParagraph>
+            <DxcParagraph>The third layer (component tokens) is still under development.</DxcParagraph>
           </>
         ),
       },
@@ -379,7 +331,7 @@ const TokensPage = () => (
       </DxcFlex>
     </PageHeading>
     <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokenPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/tokens/TokensPage.tsx" />
   </DxcFlex>
 );
 

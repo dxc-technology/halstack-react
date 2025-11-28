@@ -67,22 +67,17 @@ const sections = [
               An array of objects representing the columns of the table. Each object has the following properties:
               <ul>
                 <li>
-                  <b>displayValue</b>: Column display value.
+                  <strong>displayValue</strong>: Column display value.
                 </li>
                 <li>
-                  <b>isSortable</b>: Boolean value to indicate whether the column is sortable or not.
+                  <strong>isSortable</strong>: Boolean value to indicate whether the column is sortable or not.
                 </li>
               </ul>
             </td>
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                hidePaginator
-              </DxcFlex>
-            </td>
+            <td>hidePaginator</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -132,12 +127,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                mode
-              </DxcFlex>
-            </td>
+            <td>mode</td>
             <td>
               <TableCode>'default' | 'reduced'</TableCode>
             </td>
@@ -145,10 +135,10 @@ const sections = [
               The available table modes:
               <ul>
                 <li>
-                  <b>default</b>: Default table size.
+                  <strong>default</strong>: Default table size.
                 </li>
                 <li>
-                  <b>reduced</b>: More compact table with less spacing for high density information.
+                  <strong>reduced</strong>: More compact table with less spacing for high density information.
                 </li>
               </ul>
             </td>
@@ -176,10 +166,10 @@ const sections = [
               table. Each row is a set of cells that have the following properties:
               <ul>
                 <li>
-                  <b>displayValue</b>: Value to be displayed in the cell.
+                  <strong>displayValue</strong>: Value to be displayed in the cell.
                 </li>
                 <li>
-                  <b>sortValue</b>: Value to be used when sorting the table by that column. If not indicated
+                  <strong>sortValue</strong>: Value to be used when sorting the table by that column. If not indicated
                   displayValue will be used for sorting.
                 </li>
               </ul>

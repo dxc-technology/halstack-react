@@ -91,8 +91,9 @@ const ItemAction = memo(
       handleTextMouseEnter,
       getWrapper,
     } = useItemAction(props);
-    const { depthLevel, selected, href, label, icon, collapseIcon, "aria-pressed": ariaPressed, ...rest } = props;
-
+    const { depthLevel, selected, href, label, icon, collapseIcon, ...rest } = props;
+    const ariaPressed = !href ? !!selected : undefined;
+    const ariaSelected = href ? !!selected : undefined;
     return getWrapper(
       <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
         <Action
@@ -106,7 +107,8 @@ const ItemAction = memo(
           isHorizontal={isHorizontal}
           {...(href && { href })}
           {...rest}
-          aria-pressed={!href ? ariaPressed : undefined}
+          aria-pressed={ariaPressed}
+          aria-selected={ariaSelected}
         >
           <Label aria-label={hasPopOver ? label : undefined}>
             {!displayControlsAfter && collapseIcon && (

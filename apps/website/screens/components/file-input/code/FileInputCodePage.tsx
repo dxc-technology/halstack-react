@@ -214,14 +214,14 @@ const sections = [
               An array of files representing the selected files. Each file has the following properties:
               <ul>
                 <li>
-                  <b>file</b>: Selected file.
+                  <strong>file</strong>: Selected file.
                 </li>
                 <li>
-                  <b>error</b>: Error of the file. If it is defined, it will be shown and the file item will be mark as
-                  invalid.
+                  <strong>error</strong>: Error of the file. If it is defined, it will be shown and the file item will
+                  be mark as invalid.
                 </li>
                 <li>
-                  <b>preview</b>: Preview of the file.
+                  <strong>preview</strong>: Preview of the file.
                 </li>
               </ul>
             </td>

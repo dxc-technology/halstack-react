@@ -62,12 +62,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                mode
-              </DxcFlex>
-            </td>
+            <td>mode</td>
             <td>
               <TableCode>'default' | 'reduced'</TableCode>
             </td>
@@ -75,10 +70,10 @@ const sections = [
               The available table modes:
               <ul>
                 <li>
-                  <b>default</b>: Default table size.
+                  <strong>default</strong>: Default table size.
                 </li>
                 <li>
-                  <b>reduced</b>: More compact table with less spacing for high density information.
+                  <strong>reduced</strong>: More compact table with less spacing for high density information.
                 </li>
               </ul>
             </td>

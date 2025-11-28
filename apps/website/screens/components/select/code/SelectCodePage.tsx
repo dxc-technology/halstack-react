@@ -206,14 +206,14 @@ const sections = [
               <strong>Option</strong>
               <ul>
                 <li>
-                  <b>label</b>: Label of the option to be shown in the select's listbox.
+                  <strong>label</strong>: Label of the option to be shown in the select's listbox.
                 </li>
                 <li>
-                  <b>value</b>: Value of the option. It should be unique and not an empty string, which is reserved to
-                  the empty option added by <Code>optional</Code> prop.
+                  <strong>value</strong>: Value of the option. It should be unique and not an empty string, which is
+                  reserved to the empty option added by <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>icon</b>:{" "}
+                  <strong>icon</strong>:{" "}
                   <DxcLink newWindow href="https://fonts.google.com/icons">
                     Material Symbol
                   </DxcLink>{" "}
@@ -226,10 +226,10 @@ const sections = [
               <br />
               <ul>
                 <li>
-                  <b>label</b>: Label of the group to be shown in the select's listbox.
+                  <strong>label</strong>: Label of the group to be shown in the select's listbox.
                 </li>
                 <li>
-                  <b>options</b>: List of <Code>Option</Code> instances.
+                  <strong>options</strong>: List of <Code>Option</Code> instances.
                 </li>
               </ul>
               <br />

@@ -37,12 +37,12 @@ const sections = [
               navigation when appropriate. Each link has the following properties:
               <ul>
                 <li>
-                  <b>label</b>: Text to be shown in the link. The content must be wrapped with an id equal to the
-                  slugified label (in lower case and the white spaces replaced by &#39;-&#39;) in order to be able to
-                  navigate to the section that the label references.
+                  <strong>label</strong>: Text to be shown in the link. The content must be wrapped with an id equal to
+                  the slugified label (in lower case and the white spaces replaced by &#39;-&#39;) in order to be able
+                  to navigate to the section that the label references.
                 </li>
                 <li>
-                  <b>links</b>: Sublinks of the link.
+                  <strong>links</strong>: Sublinks of the link.
                 </li>
               </ul>
             </td>

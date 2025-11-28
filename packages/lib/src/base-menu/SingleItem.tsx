@@ -19,7 +19,6 @@ export default function SingleItem({ id, onSelect, selected = false, ...props }:
 
   return (
     <ItemAction
-      aria-pressed={selectedItemId === -1 ? selected : selectedItemId === id}
       onClick={handleClick}
       selected={selectedItemId != null && (selectedItemId === -1 ? (selected ?? false) : selectedItemId === id)}
       {...props}

@@ -94,31 +94,31 @@ const sections = [
               Each <Code>GridColumn</Code> object has the following properties:
               <ul>
                 <li>
-                  <b>key</b>: Key that will be rendered from each row in <TableCode>rows</TableCode>.
+                  <strong>key</strong>: Key that will be rendered from each row in <TableCode>rows</TableCode>.
                 </li>
                 <li>
-                  <b>label</b>: Label that will be used for the column header.
+                  <strong>label</strong>: Label that will be used for the column header.
                 </li>
                 <li>
-                  <b>resizable</b>: Whether the column is resizable or not.
+                  <strong>resizable</strong>: Whether the column is resizable or not.
                 </li>
                 <li>
-                  <b>sortable</b>: Whether the column is sortable or not.
+                  <strong>sortable</strong>: Whether the column is sortable or not.
                 </li>
                 <li>
-                  <b>sortFn</b>: Custom function with the criteria for the column sorting.
+                  <strong>sortFn</strong>: Custom function with the criteria for the column sorting.
                 </li>
                 <li>
-                  <b>draggable</b>: Whether the column can be dragged or not to another position or not.
+                  <strong>draggable</strong>: Whether the column can be dragged or not to another position or not.
                 </li>
                 <li>
-                  <b>textEditable</b>: Whether the column cells are editable or not.
+                  <strong>textEditable</strong>: Whether the column cells are editable or not.
                 </li>
                 <li>
-                  <b>summaryKey</b>: Value that will be rendered from the <TableCode>summaryRow</TableCode>
+                  <strong>summaryKey</strong>: Value that will be rendered from the <TableCode>summaryRow</TableCode>
                 </li>
                 <li>
-                  <b>alignment</b>: Sets the alignment inside the cells.
+                  <strong>alignment</strong>: Sets the alignment inside the cells.
                 </li>
               </ul>
             </td>

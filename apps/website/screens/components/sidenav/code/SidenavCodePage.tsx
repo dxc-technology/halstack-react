@@ -2,6 +2,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import StatusBadge from "@/common/StatusBadge";
 
 const brandingTypeString = `{
   logo?: Logo;
@@ -15,11 +16,9 @@ const logoTypeString = `{
   src: string;
 }`;
 
-const commonItemTypeString = `{
-  badge?: ReactElement;
+const commonItemTypeString = `badge?: ReactElement;
   icon?: string | SVG;
-  label: string;
-}`;
+  label: string;`;
 
 const itemTypeString = `{ 
   ${commonItemTypeString}
@@ -52,7 +51,12 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>bottomContent</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                bottomContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -60,7 +64,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>branding</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                branding
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"Branding | ReactNode"}</TableCode>
               <p>
@@ -76,7 +85,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>defaultExpanded</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                defaultExpanded
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -84,7 +98,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>displayGroupLines</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                displayGroupLines
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -92,7 +111,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>expanded</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                expanded
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -103,7 +127,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>navItems</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                navItems
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(Item | GroupItem)[] | Section[]"}</TableCode>
               <p>
@@ -126,7 +155,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onExpandedChange</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onExpandedChange
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(value: boolean) => void"}</TableCode>
             </td>
@@ -134,7 +168,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>topContent</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                topContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>

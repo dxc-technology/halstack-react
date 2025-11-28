@@ -115,10 +115,10 @@ const sections = [
               properties:
               <ul>
                 <li>
-                  <b>rowGap</b>: gutter between rows.
+                  <strong>rowGap</strong>: gutter between rows.
                 </li>
                 <li>
-                  <b>columnGap</b>: gutter between columns.
+                  <strong>columnGap</strong>: gutter between columns.
                 </li>
               </ul>
             </td>
@@ -143,10 +143,10 @@ const sections = [
               properties:
               <ul>
                 <li>
-                  <b>justifyContent</b>: aligns the grid along the inline (row) axis.
+                  <strong>justifyContent</strong>: aligns the grid along the inline (row) axis.
                 </li>
                 <li>
-                  <b>alignContent</b>: aligns the grid along the block (column) axis.
+                  <strong>alignContent</strong>: aligns the grid along the block (column) axis.
                 </li>
               </ul>
             </td>
@@ -168,10 +168,10 @@ const sections = [
               properties:
               <ul>
                 <li>
-                  <b>justifyItems</b>: aligns grid items along the inline (row) axis.
+                  <strong>justifyItems</strong>: aligns grid items along the inline (row) axis.
                 </li>
                 <li>
-                  <b>alignItems</b>: aligns grid items along the block (column) axis.
+                  <strong>alignItems</strong>: aligns grid items along the block (column) axis.
                 </li>
               </ul>
             </td>
@@ -303,10 +303,10 @@ const sections = [
                   properties:
                   <ul>
                     <li>
-                      <b>start</b>: starting position within the grid column.
+                      <strong>start</strong>: starting position within the grid column.
                     </li>
                     <li>
-                      <b>end</b>: ending position within the grid column.
+                      <strong>end</strong>: ending position within the grid column.
                     </li>
                   </ul>
                 </td>
@@ -326,10 +326,10 @@ const sections = [
                   properties:
                   <ul>
                     <li>
-                      <b>justifySelf</b>: aligns a grid item inside a cell along the inline (row) axis.
+                      <strong>justifySelf</strong>: aligns a grid item inside a cell along the inline (row) axis.
                     </li>
                     <li>
-                      <b>alignSelf</b>: aligns a grid item inside a cell along the block (column) axis.
+                      <strong>alignSelf</strong>: aligns a grid item inside a cell along the block (column) axis.
                     </li>
                   </ul>
                 </td>
@@ -351,10 +351,10 @@ const sections = [
                   properties:
                   <ul>
                     <li>
-                      <b>start</b>: starting position within the grid row.
+                      <strong>start</strong>: starting position within the grid row.
                     </li>
                     <li>
-                      <b>end</b>: ending position within the grid row.
+                      <strong>end</strong>: ending position within the grid row.
                     </li>
                   </ul>
                 </td>
