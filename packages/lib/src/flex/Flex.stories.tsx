@@ -113,6 +113,12 @@ const Flex = () => (
         </DxcFlex>
       </DxcFlex>
     </Container>
+    <Title title="Full Height" level={4} />
+    <div style={{ height: "300px", backgroundColor: "#f2eafa", margin: "2.5rem" }}>
+      <DxcFlex fullHeight justifyContent="center" alignItems="center">
+        <Placeholder />
+      </DxcFlex>
+    </div>
   </>
 );
 
