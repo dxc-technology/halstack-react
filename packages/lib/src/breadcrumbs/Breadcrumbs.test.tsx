@@ -93,4 +93,41 @@ describe("Breadcrumbs component tests", () => {
     userEvent.click(getByText("Preferences"));
     expect(onItemClick).toHaveBeenCalledWith("/");
   });
+  test("handleOnClick prevents default and calls onClick when href is provided", () => {
+    const onItemClick = jest.fn();
+    const { getByText } = render(
+      <DxcBreadcrumbs
+        onItemClick={onItemClick}
+        items={[
+          { label: "Home", href: "/home" },
+          { label: "Current Page", href: "" },
+        ]}
+      />
+    );
+    const homeLink = getByText("Home");
+    userEvent.click(homeLink);
+    expect(onItemClick).toHaveBeenCalledWith("/home");
+  });
+  test("handleOnMouseEnter sets title when text overflows", () => {
+    const { getByText } = render(
+      <DxcBreadcrumbs
+        items={[
+          { label: "Home", href: "/home" },
+          { label: "Very Long Current Page Label That Should Overflow", href: "" },
+        ]}
+      />
+    );
+
+    const currentPageElement = getByText("Very Long Current Page Label That Should Overflow");
+
+    // Mock element dimensions to simulate overflow
+    Object.defineProperty(currentPageElement, "scrollWidth", { value: 200, configurable: true });
+    Object.defineProperty(currentPageElement, "clientWidth", { value: 100, configurable: true });
+
+    // Simulate mouse enter
+    userEvent.hover(currentPageElement);
+
+    // Check if title is set when there's overflow
+    expect(currentPageElement.title).toBe("Very Long Current Page Label That Should Overflow");
+  });
 });

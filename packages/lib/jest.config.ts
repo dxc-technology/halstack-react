@@ -5,6 +5,7 @@ const config: Config = {
   coveragePathIgnorePatterns: [
     "utils.ts",
     "index.ts",
+    "test/mocks",
     ".*Context\\.tsx$", // Is deprecated and will be removed in the future
   ],
   moduleNameMapper: {
