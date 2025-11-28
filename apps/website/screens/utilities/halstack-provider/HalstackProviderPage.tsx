@@ -2,6 +2,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import customTranslations from "./examples/customTranslations";
+import customThemes from "./examples/customThemes";
 import {
   DxcFlex,
   DxcParagraph,
@@ -15,6 +16,7 @@ import {
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
 import Code, { TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -36,6 +38,19 @@ const sections = [
               <TableCode>TranslatedLabels</TableCode>
             </td>
             <td>Object with a given structure, specified below, for defining translations.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                opinionatedTheme
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>OpinionatedTheme</TableCode>
+            </td>
+            <td>Object with a given structure, specified below, for defining the opinionated theme.</td>
             <td>-</td>
           </tr>
         </tbody>
@@ -77,6 +92,23 @@ const sections = [
             *(to see the translated error message you should try to add any file on the <Code>DxcFileInput</Code>).
           </DxcTypography>
         </DxcBleed>
+      </>
+    ),
+  },
+  {
+    title: "Theming",
+    content: (
+      <>
+        <DxcParagraph>You can apply the opinionated theming strategy to customize the components.</DxcParagraph>
+        <DxcParagraph>
+          Below is an example of customizing the colours of a <Code>DxcButton</Code>:
+        </DxcParagraph>
+        <Example example={customThemes} defaultIsVisible />
+        <DxcParagraph>
+          We create a <Code>lightPalette</Code> and <Code>darkPalette</Code> objects with as many CSS variables as we
+          want and their respective values. Then we pass one of the objects based on the state of the <Code>theme</Code>{" "}
+          to the Halstack Provider, which wraps our components, through its <Code>opinionatedTheme</Code> property.
+        </DxcParagraph>
       </>
     ),
   },

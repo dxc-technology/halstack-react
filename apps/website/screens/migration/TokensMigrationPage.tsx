@@ -125,7 +125,7 @@ const sections = [
           <>
             <DxcParagraph>Old JSON-based color overrides must be replaced by CSS variable assignments.</DxcParagraph>
             <DxcParagraph>Previous version:</DxcParagraph>
-            <CodeBlock>{`const opinionatedTheme = {
+            <CodeBlock>{`const customTheme = {
   button: {
     "baseColor": "#2b470b",
     "primaryFontColor": "#ffffff",
@@ -145,7 +145,7 @@ return (
 }
 // ...
 return (
-  <HalstackProvider theme={customTheme}>
+  <HalstackProvider opinionatedTheme={opinionatedTheme}>
     <DxcButton label="Theme test" />
   </HalstackProvider>
 );`}
@@ -222,14 +222,18 @@ return (
     "--color-secondary-900": "#100b06",
   };
 
-  const [theme, setTheme] = useState(lightPalette);
+  const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === lightPalette ? darkPalette : lightPalette));
+    setTheme((prev) => {
+      const newTheme = prev === "light" ? "dark" : "light";
+      console.log("Toggling theme", newTheme);
+      return newTheme;
+    });
   };
 
   return (
-    <HalstackProvider theme={theme}>
+    <HalstackProvider opinionatedTheme={theme === "light" ? lightPalette : darkPalette}>
       <DxcButton label="Toggle theme" onClick={toggleTheme} />
     </HalstackProvider>
   );
