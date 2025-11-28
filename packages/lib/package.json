@@ -94,6 +94,7 @@
     "playwright": "^1.54.1",
     "storybook": "^9.1.10",
     "storybook-addon-pseudo-states": "^9.1.10",
+    "ts-node": "^10.9.2",
     "tsup": "^8.1.0",
     "typescript": "^5.6.3",
     "vitest": "^3.2.4",
