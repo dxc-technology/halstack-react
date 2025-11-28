@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://developer.dxc.com/halstack/">
+  <a href="https://developer.assure.dxc.com/halstack/">
     <img src="apps/website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
   </a>
 </p>
@@ -31,7 +31,7 @@ const App = () => (
 
 ## Where to start
 
-Learn everything you need to know about Halstack principles and components on the [official documentation site](https://developer.dxc.com/halstack/).
+Learn everything you need to know about Halstack principles and components on the [official documentation site](https://developer.assure.dxc.com/halstack/).
 
 ## Contributing
 
