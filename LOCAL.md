@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://developer.dxc.com/halstack/">
+  <a href="https://developer.assure.dxc.com/halstack/">
     <img src="apps/website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
   </a>
 </p>
@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Before start working
 
-Remember to read [the documentation site](https://developer.dxc.com/halstack/) carefully before trying to modify any Halstack implementation, documentation or examples.
+Remember to read [the documentation site](https://developer.assure.dxc.com/halstack/) carefully before trying to modify any Halstack implementation, documentation or examples.
 
 ## Monorepo structure
 
