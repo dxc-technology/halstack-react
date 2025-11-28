@@ -203,12 +203,12 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <DxcLink href="https://developer.dxc.com/tools/react" newWindow>
+            <DxcLink href="https://developer.assure.dxc.com/tools/react" newWindow>
               Previous React documentation
             </DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <DxcLink href="https://developer.dxc.com/tools/angular" newWindow>
+            <DxcLink href="https://developer.assure.dxc.com/tools/angular" newWindow>
               Previous Angular documentation
             </DxcLink>
           </DxcBulletedList.Item>
