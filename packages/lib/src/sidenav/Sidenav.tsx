@@ -52,6 +52,10 @@ const LogoContainer = styled.div<{
   align-items: center;
   text-decoration: none;
   cursor: ${(props) => (props.hasAction ? "pointer" : "default")};
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
 
 const DxcSidenav = ({
