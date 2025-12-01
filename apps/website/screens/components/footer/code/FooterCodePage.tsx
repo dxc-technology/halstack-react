@@ -166,6 +166,22 @@ const sections = [
       </DxcTable>
     ),
   },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Footer in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/3fjvd3?view=editor+%2B+preview&hidenavigation=1"
+            style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+            title="Footer in application layout"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          />
+        ),
+      },
+    ],
+  },
 ];
 
 const FooterCodePage = () => {
