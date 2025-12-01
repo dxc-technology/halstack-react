@@ -60,24 +60,12 @@ const dxcLogo = (
   </svg>
 );
 
-const logo = {
-  src: "https://picsum.photos/id/1000/104/34",
-  alt: "DXC Logo",
-  href: "https://www.dxc.com",
-};
-
 const dxcBrandedLogo = {
   src: dxcLogo,
   alt: "DXC Logo",
 };
 
 const longAppTitle = "This is a very long application title to test the header component behavior with long titles";
-
-const longLogo = {
-  src: "https://picsum.photos/id/1000/104/34",
-  alt: "DXC Logo",
-  href: "https://www.dxc.com",
-};
 
 const longSideContent = `Long side content that is intended to test how the header component handles situations where the side content exceeds the typical length. This content should ideally wrap or be truncated based on the design specifications of the header component within the application.`;
 
@@ -122,30 +110,26 @@ const longItems = [
 const Header = () => (
   <DxcFlex gap="var(--spacing-gap-m)" direction="column">
     <Title title="Default Header" theme="light" level={3} />
-    <DxcHeader logo={logo} />
-    <DxcHeader logo={logo} />
-    <DxcHeader logo={logo} sideContent={<div>Side Content</div>} />
-    <DxcHeader logo={logo} navItems={items} sideContent={<div>Side Content</div>} />
+    <DxcHeader />
+    <DxcHeader />
+    <DxcHeader sideContent={<div>Side Content</div>} />
+    <DxcHeader navItems={items} sideContent={<div>Side Content</div>} />
     <Title title="Header with long content" theme="light" level={3} />
-    <DxcHeader logo={logo} navItems={items} sideContent={<div>{longSideContent}</div>} />
-    <DxcHeader logo={longLogo} appTitle={longAppTitle} navItems={items} />
-    <DxcHeader logo={longLogo} appTitle={longAppTitle} navItems={items} sideContent={<div>{longSideContent}</div>} />
-    <DxcHeader logo={longLogo} appTitle={longAppTitle} sideContent={<div>{longSideContent}</div>} />
-    <DxcHeader logo={longLogo} appTitle={longAppTitle} navItems={longItems} />
-    <DxcHeader
-      logo={longLogo}
-      appTitle={longAppTitle}
-      navItems={longItems}
-      sideContent={<div>{longSideContent}</div>}
-    />
+    <DxcHeader navItems={items} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader appTitle={longAppTitle} navItems={items} />
+    <DxcHeader appTitle={longAppTitle} navItems={items} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader appTitle={longAppTitle} sideContent={<div>{longSideContent}</div>} />
+    <DxcHeader appTitle={longAppTitle} navItems={longItems} />
+    <DxcHeader appTitle={longAppTitle} navItems={longItems} sideContent={<div>{longSideContent}</div>} />
   </DxcFlex>
 );
 
 const HeaderInLayout = () => (
   <DxcApplicationLayout
+    logo={dxcBrandedLogo}
     header={
-      <DxcHeader
-        logo={dxcBrandedLogo}
+      <DxcApplicationLayout.Header
+        appTitle="Application Layout with Header"
         navItems={items}
         sideContent={(isResponsive) =>
           isResponsive ? (

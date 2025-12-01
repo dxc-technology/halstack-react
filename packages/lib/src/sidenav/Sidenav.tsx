@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import SidenavPropsType, { Logo } from "./types";
+import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
+import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
@@ -43,26 +44,32 @@ const SidenavTitle = styled.div`
 
 const LogoContainer = styled.div<{
   hasAction?: boolean;
-  href?: Logo["href"];
+  href?: string;
 }>`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  cursor: ${(props) => (props.hasAction ? "pointer" : "default")};
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
 
 const DxcSidenav = ({
   topContent,
   bottomContent,
   navItems,
-  branding,
+  appTitle,
   displayGroupLines = false,
   expanded,
   defaultExpanded = true,
   onExpandedChange,
 }: SidenavPropsType): JSX.Element => {
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const { logo, headerExists } = useContext(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
 
@@ -70,10 +77,6 @@ const DxcSidenav = ({
     const nextState = !isExpanded;
     if (!isControlled) setInternalExpanded(nextState);
     onExpandedChange?.(nextState);
-  };
-
-  const isBrandingObject = (branding: SidenavPropsType["branding"]): branding is { logo?: Logo; appTitle?: string } => {
-    return typeof branding === "object" && branding !== null && ("logo" in branding || "appTitle" in branding);
   };
 
   return (
@@ -91,25 +94,25 @@ const DxcSidenav = ({
           title={isExpanded ? "Collapse" : "Expand"}
           onClick={handleToggle}
         />
-        {isBrandingObject(branding) ? (
-          <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
-            {branding.logo && (
-              <LogoContainer
-                onClick={branding.logo.onClick}
-                hasAction={!!branding.logo.onClick || !!branding.logo.href}
-                role={branding.logo.onClick ? "button" : branding.logo.href ? "link" : "presentation"}
-                as={branding.logo.href ? "a" : undefined}
-                href={branding.logo.href}
-                aria-label={(branding.logo.onClick || branding.logo.href) && (branding.appTitle || "Avatar")}
-              >
-                <DxcImage alt={branding.logo.alt ?? ""} src={branding.logo.src} height="100%" width="100%" />
-              </LogoContainer>
-            )}
-            <SidenavTitle>{branding.appTitle}</SidenavTitle>
-          </DxcFlex>
-        ) : (
-          branding
-        )}
+
+        <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
+          {logo && !headerExists && (
+            <LogoContainer
+              onClick={logo.onClick}
+              hasAction={!!logo.onClick || !!logo.href}
+              role={logo.onClick ? "button" : logo.href ? "link" : "presentation"}
+              as={logo.href ? "a" : undefined}
+              href={logo.href}
+            >
+              {typeof logo.src === "string" ? (
+                <DxcImage alt={logo.alt ?? ""} src={logo.src} height="100%" width="100%" />
+              ) : (
+                logo.src
+              )}
+            </LogoContainer>
+          )}
+          <SidenavTitle>{appTitle}</SidenavTitle>
+        </DxcFlex>
       </DxcFlex>
       {topContent && (
         <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>

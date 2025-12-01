@@ -2,8 +2,15 @@ import { DxcParagraph, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halsta
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Link from "next/link";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+
+const logoTypeString = `{
+  src: string | SVG;
+  alt: string;
+  href?: string;
+  onClick?: () => void;
+}`;
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
@@ -58,6 +65,22 @@ const ApplicationLayoutPropsTable = () => (
             <DxcLink>here</DxcLink>
           </Link>
           .
+        </td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>
+          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+            <StatusBadge status="new" />
+            logo
+          </DxcFlex>
+        </td>
+        <td>
+          <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
+        </td>
+        <td>
+          Object used to configure the header logo. The logo will be placed in the header, but if no global app header
+          exists, it will be shown in the sidenav instead.
         </td>
         <td>-</td>
       </tr>

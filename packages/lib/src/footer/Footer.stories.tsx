@@ -468,9 +468,9 @@ const items = [
 
 const FooterInLayout = () => (
   <DxcApplicationLayout
+    logo={dxcBrandedLogo}
     header={
       <DxcHeader
-        logo={dxcBrandedLogo}
         navItems={items}
         sideContent={(isResponsive) =>
           isResponsive ? (
@@ -546,9 +546,9 @@ const FooterInLayout = () => (
 
 const ReducedFooterInLayout = () => (
   <DxcApplicationLayout
+    logo={dxcBrandedLogo}
     header={
       <DxcHeader
-        logo={dxcBrandedLogo}
         navItems={items}
         sideContent={(isResponsive) =>
           isResponsive ? (

@@ -88,9 +88,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const navItems: Section[] = useMemo(() => {
     return LinksSections.map((section) => {
       const baseItems = normalizeNavTabs(section.links);
-
       const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
-
       return {
         title: section.label,
         items,
@@ -104,11 +102,12 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <DxcApplicationLayout
-        header={<DxcApplicationLayout.Header logo={{ src: dxcLogo, alt: "DXC Technology" }} />}
+        logo={{ src: dxcLogo, alt: "DXC Technology" }}
+        header={<DxcApplicationLayout.Header />}
         sidenav={
           <DxcApplicationLayout.Sidenav
             navItems={navItems}
-            branding={isExpanded && <SidenavLogo />}
+            appTitle={isExpanded && <SidenavLogo />}
             topContent={
               isExpanded && (
                 <DxcTextInput

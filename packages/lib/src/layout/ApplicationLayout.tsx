@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
 import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
+import ApplicationLayoutContext from "./ApplicationLayoutContext";
 
 const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   top: 0;
@@ -62,29 +63,37 @@ const MainContentContainer = styled.main`
 
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
 
-const DxcApplicationLayout = ({ header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
+const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
+  const contextValue = useMemo(() => {
+    return {
+      logo,
+      headerExists: !!header,
+    };
+  }, [header, logo]);
   const ref = useRef(null);
 
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
-      {header && <HeaderContainer>{header}</HeaderContainer>}
-      <BodyContainer hasSidenav={!!sidenav}>
-        {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
-        <MainContainer>
-          <MainContentContainer>
-            {findChildType(children, Main)}
-            <FooterContainer>
-              {footer ?? (
-                <DxcFooter
-                  copyright={`© DXC Technology ${year}. All rights reserved.`}
-                  bottomLinks={bottomLinks}
-                  socialLinks={socialLinks}
-                />
-              )}
-            </FooterContainer>
-          </MainContentContainer>
-        </MainContainer>
-      </BodyContainer>
+      <ApplicationLayoutContext.Provider value={contextValue}>
+        {header && <HeaderContainer>{header}</HeaderContainer>}
+        <BodyContainer hasSidenav={!!sidenav}>
+          {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
+          <MainContainer>
+            <MainContentContainer>
+              {findChildType(children, Main)}
+              <FooterContainer>
+                {footer ?? (
+                  <DxcFooter
+                    copyright={`© DXC Technology ${year}. All rights reserved.`}
+                    bottomLinks={bottomLinks}
+                    socialLinks={socialLinks}
+                  />
+                )}
+              </FooterContainer>
+            </MainContentContainer>
+          </MainContainer>
+        </BodyContainer>
+      </ApplicationLayoutContext.Provider>
     </ApplicationLayoutContainer>
   );
 };

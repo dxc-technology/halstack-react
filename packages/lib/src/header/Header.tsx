@@ -6,11 +6,12 @@ import DxcDivider from "../divider/Divider";
 import DxcHeading from "../heading/Heading";
 import { isGroupItem } from "../base-menu/utils";
 import { GroupItem, Item } from "../base-menu/types";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";
 import scrollbarStyles from "../styles/scroll";
+import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
 
 const MAX_MAIN_NAV_SIZE = "60%";
 const LEVEL_LIMIT = 1;
@@ -54,10 +55,10 @@ const RightSideContainer = styled(SideContainer)`
   justify-content: flex-end;
 `;
 
-const LogoContainer = styled.div<{ isClickable: boolean }>`
+const LogoContainer = styled.div<{ hasAction?: boolean; href?: string }>`
   display: flex;
   align-items: center;
-  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
+  cursor: ${(props) => (props.hasAction ? "pointer" : "default")};
   svg {
     height: var(--height-m);
     width: auto;
@@ -131,9 +132,10 @@ const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (G
   return sanitizedItems;
 };
 
-const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
+const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const logo = useContext(ApplicationLayoutContext).logo || undefined;
 
   useEffect(() => {
     const handleResize = () => {
@@ -161,11 +163,7 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
         <DxcGrid
           templateColumns={
             !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
-              ? [
-                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
-                  `minmax(auto, ${MAX_MAIN_NAV_SIZE})`,
-                  `minmax(auto, calc((100% - ${MAX_MAIN_NAV_SIZE}) / 2))`,
-                ]
+              ? [`auto`, `minmax(auto, ${MAX_MAIN_NAV_SIZE})`, `auto`]
               : ["auto", "auto"]
           }
           templateRows={["var(--height-xxxl)"]}
@@ -173,21 +171,24 @@ const DxcHeader = ({ logo, appTitle, navItems, sideContent, responsiveBottomCont
           placeItems="center"
         >
           <BrandingContainer>
-            <LogoContainer
-              role={logo.onClick ? "button" : undefined}
-              onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
-              as={logo.href ? "a" : undefined}
-              isClickable={!!(logo.onClick || logo.href)}
-            >
-              {typeof logo.src === "string" ? (
-                <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
-              ) : (
-                logo.src
-              )}
-            </LogoContainer>
+            {logo && (
+              <LogoContainer
+                role={logo.onClick ? "button" : undefined}
+                onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
+                as={logo.href ? "a" : undefined}
+                href={logo.href}
+                hasAction={!!(logo.onClick || logo.href)}
+              >
+                {typeof logo.src === "string" ? (
+                  <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
+                ) : (
+                  logo.src
+                )}
+              </LogoContainer>
+            )}
             {appTitle && !isResponsive && (
               <>
-                <DxcDivider orientation="vertical" />
+                {logo && <DxcDivider orientation="vertical" />}
                 <DxcHeading text={appTitle} as="h1" level={5} />
               </>
             )}

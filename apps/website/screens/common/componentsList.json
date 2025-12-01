@@ -3,8 +3,16 @@
   { "label": "Alert", "path": "/components/alert", "status": "stable" },
   {
     "label": "Application layout",
-    "path": "/components/application-layout",
-    "status": "stable"
+    "links": [
+      {
+        "label": "Application layout",
+        "path": "/components/application-layout",
+        "status": "stable"
+      },
+      { "label": "Footer", "path": "/components/footer", "status": "stable" },
+      { "label": "Header", "path": "/components/header", "status": "stable" },
+      { "label": "Sidenav", "path": "/components/sidenav", "status": "stable" }
+    ]
   },
   {
     "label": "Avatar",
@@ -64,9 +72,7 @@
     "status": "stable"
   },
   { "label": "Flex", "path": "/components/flex", "status": "stable" },
-  { "label": "Footer", "path": "/components/footer", "status": "stable" },
   { "label": "Grid", "path": "/components/grid", "status": "stable" },
-  { "label": "Header", "path": "/components/header", "status": "stable" },
   { "label": "Heading", "path": "/components/heading", "status": "stable" },
   { "label": "Image", "path": "/components/image", "status": "stable" },
   { "label": "Inset", "path": "/components/inset", "status": "stable" },
@@ -101,7 +107,6 @@
     "status": "stable"
   },
   { "label": "Select", "path": "/components/select", "status": "stable" },
-  { "label": "Sidenav", "path": "/components/sidenav", "status": "stable" },
   { "label": "Slider", "path": "/components/slider", "status": "stable" },
   { "label": "Spinner", "path": "/components/spinner", "status": "stable" },
   {

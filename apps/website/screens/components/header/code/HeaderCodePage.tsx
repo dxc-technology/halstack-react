@@ -2,14 +2,6 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
-import StatusBadge from "@/common/StatusBadge";
-
-const logoTypeString = `{
-  src: string | SVG;
-  alt: string;
-  href?: string;
-  onClick?: () => void;
-}`;
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
 
@@ -48,19 +40,6 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>Object used to configure the header application title.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                logo
-              </DxcFlex>
-            </td>
-            <td>
-              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
-            </td>
-            <td>Object used to configure the header logo.</td>
             <td>-</td>
           </tr>
           <tr>

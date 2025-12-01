@@ -1,24 +1,5 @@
-import { MouseEvent, ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { SVG } from "../common/utils";
-
-export type Logo = {
-  /**
-   * Alternative text for the logo image.
-   */
-  alt: string;
-  /**
-   * URL to navigate when the logo is clicked.
-   */
-  href?: string;
-  /**
-   *  URL to navigate to when the logo is clicked. If not provided, the logo will not be clickable.
-   */
-  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-  /**
-   * URL of the image that will be placed in the logo.
-   */
-  src: string;
-};
 
 type Section = { items: (Item | GroupItem)[]; title?: string };
 
@@ -30,7 +11,7 @@ type Props = {
   /**
    * Object with the properties of the branding placed at the top of the sidenav.
    */
-  branding?: { logo?: Logo; appTitle?: string } | ReactNode;
+  appTitle?: string | ReactNode;
   /**
    * Initial state of the expansion of the sidenav, only when it is uncontrolled.
    */
