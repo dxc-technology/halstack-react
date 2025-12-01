@@ -47,18 +47,7 @@ describe("Sidenav component accessibility tests", () => {
         ],
       },
     ];
-    const { container } = render(
-      <DxcSidenav
-        navItems={groupItems}
-        branding={{
-          appTitle: "Application Name",
-          logo: {
-            src: "https://picsum.photos/id/1022/200/300",
-            alt: "Alt text",
-          },
-        }}
-      />
-    );
+    const { container } = render(<DxcSidenav navItems={groupItems} appTitle="Application Name" />);
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });

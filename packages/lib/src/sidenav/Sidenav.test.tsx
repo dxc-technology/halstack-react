@@ -17,7 +17,7 @@ describe("DxcSidenav component", () => {
   test("Sidenav renders title and children correctly", () => {
     const { getByText, getByRole } = render(
       <DxcSidenav
-        branding={{ appTitle: "Main Menu" }}
+        appTitle="Main Menu"
         topContent={<p>Custom top content</p>}
         bottomContent={<p>Custom bottom content</p>}
       />
@@ -31,7 +31,7 @@ describe("DxcSidenav component", () => {
   });
 
   test("Sidenav collapses and expands correctly on button click", () => {
-    const { getByRole } = render(<DxcSidenav branding={{ appTitle: "Main Menu" }} />);
+    const { getByRole } = render(<DxcSidenav appTitle="Main Menu" />);
 
     const collapseButton = getByRole("button", { name: "Collapse" });
     expect(collapseButton).toBeTruthy();
@@ -39,15 +39,6 @@ describe("DxcSidenav component", () => {
     const expandButton = getByRole("button", { name: "Expand" });
     expect(expandButton).toBeTruthy();
     fireEvent.click(expandButton);
-  });
-
-  test("Sidenav renders logo correctly when provided", () => {
-    const logo = { src: "logo.png", alt: "Company Logo", href: "https://example.com" };
-    const { getByRole, getByAltText } = render(<DxcSidenav branding={{ appTitle: "App", logo: logo }} />);
-
-    const link = getByRole("link");
-    expect(link).toHaveAttribute("href", "https://example.com");
-    expect(getByAltText("Company Logo")).toBeTruthy();
   });
 
   test("Sidenav renders contextual menu with items", () => {
@@ -87,7 +78,7 @@ describe("DxcSidenav component", () => {
   test("Sidenav uses controlled expanded prop instead of internal state", () => {
     const onExpandedChange = jest.fn();
     const { getByRole, rerender } = render(
-      <DxcSidenav branding={{ appTitle: "Controlled Menu" }} expanded={false} onExpandedChange={onExpandedChange} />
+      <DxcSidenav appTitle="Controlled Menu" expanded={false} onExpandedChange={onExpandedChange} />
     );
 
     const expandButton = getByRole("button", { name: "Expand" });
@@ -96,16 +87,14 @@ describe("DxcSidenav component", () => {
     fireEvent.click(expandButton);
     expect(onExpandedChange).toHaveBeenCalledWith(true);
 
-    rerender(
-      <DxcSidenav branding={{ appTitle: "Controlled Menu" }} expanded={true} onExpandedChange={onExpandedChange} />
-    );
+    rerender(<DxcSidenav appTitle="Controlled Menu" expanded={true} onExpandedChange={onExpandedChange} />);
 
     const collapseButton = getByRole("button", { name: "Collapse" });
     expect(collapseButton).toBeTruthy();
   });
 
   test("Sidenav toggles internal state correctly", () => {
-    const { getByRole } = render(<DxcSidenav branding={{ appTitle: "App" }} defaultExpanded={false} />);
+    const { getByRole } = render(<DxcSidenav appTitle="App" defaultExpanded={false} />);
 
     const expandButton = getByRole("button", { name: "Expand" });
     expect(expandButton).toBeTruthy();

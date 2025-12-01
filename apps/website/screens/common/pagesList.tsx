@@ -62,7 +62,7 @@ const v16Links: LinkDetails[] = [
 
 const migrationLinks: LinksSectionDetails[] = [{ label: "v16", links: v16Links }];
 
-const componentsLinks = componentsList as LinkDetails[];
+const componentsLinks = componentsList as (LinkDetails | LinksSectionDetails)[];
 
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },

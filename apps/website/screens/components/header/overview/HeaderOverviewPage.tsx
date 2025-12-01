@@ -37,7 +37,7 @@ const sections = [
             {/* It is also where the searchbar will be displayed once that feature is triggered. */}
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Right slot:</strong> it's the place where all utilities related to an application are hosted. It’s
+            <strong>Right slot:</strong> it's the place where all utilities related to an application are hosted. It's
             highly adaptable for each product's needs.
           </DxcBulletedList.Item>
         </DxcBulletedList>

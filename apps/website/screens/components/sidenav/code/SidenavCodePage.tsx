@@ -4,18 +4,6 @@ import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import StatusBadge from "@/common/StatusBadge";
 
-const brandingTypeString = `{
-  logo?: Logo;
-  appTitle?: string;
-}`;
-
-const logoTypeString = `{
-  alt: string;
-  href?: string;
-  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-  src: string;
-}`;
-
 const commonItemTypeString = `badge?: ReactElement;
   icon?: string | SVG;
   label: string;`;
@@ -61,27 +49,6 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>The content rendered in the bottom part of the sidenav, under the navigation menu.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                branding
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>{"Branding | ReactNode"}</TableCode>
-              <p>
-                being <Code>Branding</Code> an object with the following properties:
-              </p>
-              <ExtendedTableCode>{brandingTypeString}</ExtendedTableCode>
-              <p>
-                and <Code>Logo</Code> an object with the following properties:
-              </p>
-              <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
-            </td>
-            <td>Object with the properties of the branding placed at the top of the sidenav.</td>
             <td>-</td>
           </tr>
           <tr>

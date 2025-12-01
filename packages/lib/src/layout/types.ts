@@ -1,10 +1,30 @@
 import { ReactElement, ReactNode } from "react";
+import { SVG } from "../common/utils";
 
 export type AppLayoutMainPropsType = {
   /**
    * Everything between the tags will be displayed as the content of the main part of the application.
    */
   children: ReactNode;
+};
+
+type LogoPropsType = {
+  /**
+   * Alternative text for the logo image.
+   */
+  alt: string;
+  /**
+   * URL to navigate when the logo is clicked.
+   */
+  href?: string;
+  /**
+   * Function to be called on logo click.
+   */
+  onClick?: () => void;
+  /**
+   * URL or SVG of the image that will be placed in the logo.
+   */
+  src: string | SVG;
 };
 
 export type AppLayoutSidenavPropsType = {
@@ -18,7 +38,22 @@ export type AppLayoutSidenavPropsType = {
   title?: ReactNode;
 };
 
+export type ApplicationLayoutContextType = {
+  /**
+   * Logo properties.
+   */
+  logo?: LogoPropsType;
+  /**
+   * Indicates if the header exists.
+   */
+  headerExists: boolean;
+};
+
 type ApplicationLayoutPropsType = {
+  /**
+   * Logo properties.
+   */
+  logo?: LogoPropsType;
   /**
    * Header content.
    */

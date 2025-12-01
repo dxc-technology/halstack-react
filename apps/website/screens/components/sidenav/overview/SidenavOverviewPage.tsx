@@ -40,8 +40,7 @@ const sections = [
                 Contains <strong>collapse/expand toggle</strong> for the sidenav.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                If no global app header exists, this area should be used for <strong>branding</strong> (logo,
-                product/app name).
+                If no global app header exists, this area will be used for <strong>logo and application name</strong>.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </DxcBulletedList.Item>

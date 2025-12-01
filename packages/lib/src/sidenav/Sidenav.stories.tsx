@@ -139,13 +139,7 @@ const Sidenav = () => (
       <Title title="Default sidenav" theme="light" level={4} />
       <DxcSidenav
         navItems={groupItems}
-        branding={{
-          appTitle: "Application Name",
-          logo: {
-            src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-            alt: "TEST",
-          },
-        }}
+        appTitle="Application Name"
         bottomContent={
           <>
             <DetailedAvatar />
@@ -174,13 +168,7 @@ const Sidenav = () => (
       <Title title="Sidenav with group lines" theme="light" level={4} />
       <DxcSidenav
         navItems={groupItems}
-        branding={{
-          appTitle: "Application Name",
-          logo: {
-            src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-            alt: "TEST",
-          },
-        }}
+        appTitle="Application Name"
         bottomContent={
           <>
             <DetailedAvatar />
@@ -219,7 +207,7 @@ const Collapsed = () => {
         <Title title="Collapsed sidenav" theme="light" level={4} />
         <DxcSidenav
           navItems={groupItems}
-          branding={{ appTitle: "App Name" }}
+          appTitle="App Name"
           bottomContent={
             isExpanded ? (
               <>
@@ -272,7 +260,7 @@ const Collapsed = () => {
         <Title title="Collapsed sidenav with groups expanded (no lines)" theme="light" level={4} />
         <DxcSidenav
           navItems={groupItems}
-          branding={{ appTitle: "App Name" }}
+          appTitle="App Name"
           bottomContent={
             isExpandedGroupsNoLines ? (
               <>
@@ -325,7 +313,7 @@ const Collapsed = () => {
         <Title title="Collapsed sidenav with groups expanded (lines)" theme="light" level={4} />
         <DxcSidenav
           navItems={groupItems}
-          branding={{ appTitle: "App Name" }}
+          appTitle="App Name"
           bottomContent={
             isExpandedGroups ? (
               <>
@@ -384,13 +372,7 @@ const Hovered = () => (
     <Title title="Hover state for groups" theme="light" level={4} />
     <DxcSidenav
       navItems={groupItems}
-      branding={{
-        appTitle: "Application Name",
-        logo: {
-          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-          alt: "TEST",
-        },
-      }}
+      appTitle="Application Name"
       bottomContent={
         <>
           <DetailedAvatar />
@@ -422,13 +404,7 @@ const SelectedGroup = () => (
     <Title title="Default sidenav" theme="light" level={4} />
     <DxcSidenav
       navItems={selectedGroupItems}
-      branding={{
-        appTitle: "Application Name",
-        logo: {
-          src: "https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg",
-          alt: "TEST",
-        },
-      }}
+      appTitle="Application name"
       bottomContent={
         <>
           <DetailedAvatar />

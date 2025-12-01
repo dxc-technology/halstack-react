@@ -3,11 +3,6 @@ import "@testing-library/jest-dom";
 import DxcHeader from "./Header";
 import { Item, GroupItem } from "../base-menu/types";
 
-const defaultHeaderBranding = {
-  src: "url-to-dxc-logo",
-  alt: "DXC Logo",
-};
-
 describe("Header component tests", () => {
   const mockMatchMedia = jest.fn();
 
@@ -26,11 +21,6 @@ describe("Header component tests", () => {
     }));
   });
 
-  test("Header renders with default logo", () => {
-    const { getByAltText } = render(<DxcHeader logo={defaultHeaderBranding} />);
-    expect(getByAltText("DXC Logo")).toBeTruthy();
-  });
-
   test("hamburger button triggers onClick when clicked", () => {
     mockMatchMedia.mockImplementation(() => ({
       matches: true,
@@ -39,7 +29,7 @@ describe("Header component tests", () => {
     }));
 
     const navItems: Item[] = [{ label: "Home", onSelect: jest.fn() }];
-    render(<DxcHeader logo={defaultHeaderBranding} navItems={navItems} />);
+    render(<DxcHeader navItems={navItems} />);
 
     const menuButton = screen.getByRole("button", { name: /toggle menu/i });
     fireEvent.click(menuButton);
@@ -63,7 +53,7 @@ describe("Header component tests", () => {
       },
     ];
 
-    render(<DxcHeader logo={defaultHeaderBranding} navItems={deepNestedItems} />);
+    render(<DxcHeader navItems={deepNestedItems} />);
     expect(screen.getByText("Services")).toBeInTheDocument();
     expect(screen.queryByText("Development")).not.toBeInTheDocument();
     expect(screen.queryByText("Frontend")).not.toBeInTheDocument();
