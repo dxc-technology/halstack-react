@@ -35,6 +35,13 @@ const single_options = [
   { label: "Option 04", value: "4" },
 ];
 
+const starts_with_single_options = [
+  { label: "Option 01", value: "1" },
+  { label: "This is option 02", value: "2" },
+  { label: "Is option 03", value: "3" },
+  { label: "And Option 04", value: "4" },
+];
+
 const group_options = [
   {
     label: "Group 001",
@@ -564,6 +571,19 @@ const SearchableSelect = () => (
   </ExampleContainer>
 );
 
+const startsWithSearchableSelect = () => (
+  <ExampleContainer expanded>
+    <Title title="Searchable contains select" theme="light" level={4} />
+    <DxcSelect
+      label="Select Label"
+      searchable
+      searchByStartsWith
+      options={starts_with_single_options}
+      placeholder="Choose an option"
+    />
+  </ExampleContainer>
+);
+
 const SearchValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
@@ -708,6 +728,14 @@ export const Searchable: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.type(canvas.getByRole("combobox"), "r");
+  },
+};
+
+export const StartsWithSearchable: Story = {
+  render: startsWithSearchableSelect,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.type(await canvas.findByRole("combobox"), "t");
   },
 };
 

@@ -33,7 +33,7 @@ const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disab
 /**
  * Filters the options by the search value.
  */
-const filterOptionsBySearchValue = (
+const asdss = (
   options: ListOptionType[] | ListOptionGroupType[],
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
@@ -52,6 +52,32 @@ const filterOptionsBySearchValue = (
   } else {
     return [];
   }
+};
+
+const filterOptionsBySearchValue = (
+  options: ListOptionType[] | ListOptionGroupType[],
+  searchValue: string,
+  searchByStartsWith: boolean = false
+): ListOptionType[] | ListOptionGroupType[] => {
+  const matchesSearch = (label: string, search: string, searchByStartsWith: boolean) => {
+    const upperLabel = label.toUpperCase();
+    const upperSearch = search.toUpperCase();
+    return searchByStartsWith ? upperLabel.startsWith(upperSearch) : upperLabel.includes(upperSearch);
+  };
+
+  return options.length > 0
+    ? isArrayOfOptionGroups(options)
+      ? options.map((optionGroup) => {
+          const group = {
+            label: optionGroup.label,
+            options: optionGroup.options.filter((option) =>
+              matchesSearch(option.label, searchValue, searchByStartsWith)
+            ),
+          };
+          return group;
+        })
+      : options.filter((option) => matchesSearch(option.label, searchValue, searchByStartsWith))
+    : [];
 };
 
 /**

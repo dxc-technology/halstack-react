@@ -73,6 +73,12 @@ type CommonProps = {
    */
   searchable?: boolean;
   /**
+   * Defines the search mode when searchable is true.
+   * If true, matches options that start with the search text.
+   * If false, matches options that contain the search text anywhere in their label.
+   */
+  searchByStartsWith?: boolean;
+  /**
    * If it is a defined value and also a truthy string, the component will
    * change its appearance, showing the error below the select component.
    * If the defined value is an empty string, it will reserve a space below

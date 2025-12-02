@@ -46,6 +46,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       multiple = false,
       optional = false,
       searchable = false,
+      searchByStartsWith = false,
       onChange,
       onBlur,
       error,
@@ -73,7 +74,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = { label: placeholder, value: "" };
-    const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
+    const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue, searchByStartsWith), [options, searchValue, searchByStartsWith]);
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
       [options, filteredOptions, searchable, optional, multiple]

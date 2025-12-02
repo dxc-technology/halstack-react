@@ -151,6 +151,22 @@ const sections = [
             <td>
               <TableCode>false</TableCode>
             </td>
+            <tr>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusBadge status="new" />
+                  searchByStartsWith
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>boolean</TableCode>
+              </td>
+              <td>
+                Defines the search mode when searchable is true. If true, matches options that start with the search
+                text. If false, matches options that contain the search text anywhere in their label.
+              </td>
+              <td>false</td>
+            </tr>
           </tr>
           <tr>
             <td>multiple</td>
