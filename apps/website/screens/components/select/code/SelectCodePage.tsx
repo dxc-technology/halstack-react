@@ -256,6 +256,22 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                searchMode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'contains' | 'startsWith'</TableCode>
+            </td>
+            <td>
+              Defines the search mode when searchable is true.'contains' (default): Matches options that contain the
+              search text anywhere in their label. 'startsWith': Matches options that start with the search text.
+            </td>
+            <td>- </td>
+          </tr>
+          <tr>
             <td>size</td>
             <td>
               <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
