@@ -189,7 +189,7 @@ const Copyright = styled.div<{ width: number }>`
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  grid-column-start: 6;
+  grid-column-start: 3;
 
   ${(props) =>
     getResponsiveStyles.isMediumScreen(props.width) &&
