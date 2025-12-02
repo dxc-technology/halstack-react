@@ -51,20 +51,31 @@ export const canOpenListbox = (options: Props["options"], disabled: boolean) =>
 /**
  * Filters the options by the search value.
  */
-export const filterOptionsBySearchValue = (options: Props["options"], searchValue: string): Props["options"] =>
-  options.length > 0
+export const filterOptionsBySearchValue = (
+  options: Props["options"],
+  searchValue: string,
+  searchByStartsWith: Props["searchByStartsWith"] = false
+): Props["options"] => {
+  const matchesSearch = (label: string, search: string, searchByStartsWith: boolean) => {
+    const upperLabel = label.toUpperCase();
+    const upperSearch = search.toUpperCase();
+    return searchByStartsWith ? upperLabel.startsWith(upperSearch) : upperLabel.includes(upperSearch);
+  };
+
+  return options.length > 0
     ? isArrayOfGroupedOptions(options)
       ? options.map((optionGroup) => {
           const group = {
             label: optionGroup.label,
             options: optionGroup.options.filter((option) =>
-              option.label.toUpperCase().includes(searchValue.toUpperCase())
+              matchesSearch(option.label, searchValue, searchByStartsWith)
             ),
           };
           return group;
         })
-      : options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()))
+      : options.filter((option) => matchesSearch(option.label, searchValue, searchByStartsWith))
     : [];
+};
 
 /**
  * Returns the index of the last option, depending on several conditions.
