@@ -92,6 +92,12 @@ type CommonProps = {
    */
   searchable?: boolean;
   /**
+   * Defines the search mode when searchable is true.
+   * 'contains' (default): Matches options that contain the search text anywhere in their label.
+   * 'startsWith': Matches options that start with the search text.
+   */
+  searchMode?: "contains" | "startsWith";
+  /**
    * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent";
