@@ -606,7 +606,7 @@ const startsWithSearchableSelect = () => (
     <DxcSelect
       label="Select Label"
       searchable
-      searchMode="startsWith"
+      searchByStartsWith
       options={startsWithSingleOptions}
       placeholder="Choose an option"
     />

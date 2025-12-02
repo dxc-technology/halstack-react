@@ -54,12 +54,12 @@ export const canOpenListbox = (options: Props["options"], disabled: boolean) =>
 export const filterOptionsBySearchValue = (
   options: Props["options"],
   searchValue: string,
-  searchMode: Props["searchMode"] = "contains"
+  searchByStartsWith: Props["searchByStartsWith"] = false
 ): Props["options"] => {
-  const matchesSearch = (label: string, search: string, mode: Props["searchMode"]) => {
+  const matchesSearch = (label: string, search: string, searchByStartsWith: boolean) => {
     const upperLabel = label.toUpperCase();
     const upperSearch = search.toUpperCase();
-    return mode === "startsWith" ? upperLabel.startsWith(upperSearch) : upperLabel.includes(upperSearch);
+    return searchByStartsWith ? upperLabel.startsWith(upperSearch) : upperLabel.includes(upperSearch);
   };
 
   return options.length > 0
@@ -67,11 +67,13 @@ export const filterOptionsBySearchValue = (
       ? options.map((optionGroup) => {
           const group = {
             label: optionGroup.label,
-            options: optionGroup.options.filter((option) => matchesSearch(option.label, searchValue, searchMode)),
+            options: optionGroup.options.filter((option) =>
+              matchesSearch(option.label, searchValue, searchByStartsWith)
+            ),
           };
           return group;
         })
-      : options.filter((option) => matchesSearch(option.label, searchValue, searchMode))
+      : options.filter((option) => matchesSearch(option.label, searchValue, searchByStartsWith))
     : [];
 };
 

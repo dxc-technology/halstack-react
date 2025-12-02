@@ -191,7 +191,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       options,
       placeholder = "",
       searchable = false,
-      searchMode = "contains",
+      searchByStartsWith = false,
       size = "medium",
       tabIndex = 0,
       value,
@@ -219,8 +219,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
     const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
     const filteredOptions = useMemo(
-      () => filterOptionsBySearchValue(options, searchValue, searchMode),
-      [options, searchValue, searchMode]
+      () => filterOptionsBySearchValue(options, searchValue, searchByStartsWith),
+      [options, searchValue, searchByStartsWith]
     );
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple, enableSelectAll),
