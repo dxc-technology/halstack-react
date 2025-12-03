@@ -236,6 +236,16 @@ const sections = [
           <td>Custom content inside the flex container.</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>fullHeight</td>
+          <td>
+            <TableCode>boolean</TableCode>
+          </td>
+          <td>If true, the component will take the full height of its parent container.</td>
+          <td>
+            <TableCode>false</TableCode>
+          </td>
+        </tr>
       </DxcTable>
     ),
   },

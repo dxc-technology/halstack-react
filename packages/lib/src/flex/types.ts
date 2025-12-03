@@ -90,6 +90,10 @@ type Props = CommonProps & {
    */
   order?: number;
   /**
+   * If true, the flex container will take the full height of its parent.
+   */
+  fullHeight?: boolean;
+  /**
    * Sets the flex-grow CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow

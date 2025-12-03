@@ -361,6 +361,14 @@ const sections = [
           </td>
         </tr>
         <tr>
+          <td>ref</td>
+          <td>
+            <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+          </td>
+          <td>Reference to the component.</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td>width</td>
           <td>
             <TableCode>string</TableCode>

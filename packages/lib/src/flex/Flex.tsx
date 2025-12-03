@@ -19,16 +19,7 @@ const Flex = styled.div<StyledProps>`
   `}
 `;
 
-const DxcFlex = ({
-  basis,
-  direction,
-  gap,
-  grow,
-  order,
-  shrink,
-  wrap,
-  ...props
-}: FlexPropsType) => (
+const DxcFlex = ({ basis, direction, fullHeight = false, gap, grow, order, shrink, wrap, ...props }: FlexPropsType) => (
   <Flex
     $basis={basis}
     $direction={direction}
