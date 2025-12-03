@@ -88,7 +88,6 @@ const DxcTabs = ({
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
-  const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const [translateScroll, setTranslateScroll] = useState(0);
   const [scrollRightEnabled, setScrollRightEnabled] = useState(true);
@@ -194,8 +193,10 @@ const DxcTabs = ({
         });
         return total;
       });
-    scrollLimitCheck();
-  }, [viewWidth, totalTabsWidth]);
+    setTimeout(() => {
+      scrollLimitCheck();
+    }, 0);
+  }, [viewWidth, totalTabsWidth, activeTab]);
 
   return children ? (
     <>

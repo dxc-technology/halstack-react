@@ -5,6 +5,8 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
 import type { Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
+import DxcButton from "../button/Button";
+import { useState } from "react";
 
 export default {
   title: "Tabs",
@@ -322,35 +324,50 @@ const Scroll = () => (
   </>
 );
 
-const ResponsiveFocused = () => (
-  <>
-    <ExampleContainer>
-      <DxcTabs>
-        <DxcTabs.Tab label="Tab 1" title="test tooltip">
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 2">
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 3" disabled>
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 4">
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 6">
-          <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 7" defaultActive>
-          <></>
-        </DxcTabs.Tab>
-      </DxcTabs>
-    </ExampleContainer>
-  </>
-);
+const ResponsiveFocused = () => {
+  const [activeTab, setActiveTab] = useState("Tab 7");
+  return (
+    <>
+      <ExampleContainer>
+        <DxcTabs>
+          <DxcTabs.Tab
+            label="Tab 1"
+            title="test tooltip"
+            active={activeTab === "Tab 1"}
+            onClick={() => setActiveTab("Tab 1")}
+          >
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab 2" active={activeTab === "Tab 2"} onClick={() => setActiveTab("Tab 2")}>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab 3" disabled>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab 4" active={activeTab === "Tab 4"} onClick={() => setActiveTab("Tab 4")}>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab
+            label="Tab 5"
+            title="test tooltip 5"
+            active={activeTab === "Tab 5"}
+            onClick={() => setActiveTab("Tab 5")}
+          >
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab 6" active={activeTab === "Tab 6"} onClick={() => setActiveTab("Tab 6")}>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab 7" active={activeTab === "Tab 7"} onClick={() => setActiveTab("Tab 7")}>
+            <>
+              <DxcButton label="Focus Tab 2" onClick={() => setActiveTab("Tab 2")} />
+            </>
+          </DxcTabs.Tab>
+        </DxcTabs>
+      </ExampleContainer>
+    </>
+  );
+};
 
 type Story = StoryObj<typeof DxcTabs>;
 
