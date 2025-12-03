@@ -1,7 +1,8 @@
 name: Publish Release
 
 on:
-  push
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -11,10 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js 18.x
+      - name: Install Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
       - name: Configure AWS Credentials
@@ -41,20 +42,23 @@ jobs:
 
       - name: Publish RELEASE to npm
         run: |
-          sed -i "s#\"version\": \".*\"#\"version\": \"15.3.1\"#" ./packages/lib/package.json
+          sed -i "s#\"version\": \".*\"#\"version\": \"${TAG_NAME}\"#" ./packages/lib/package.json
           cd packages/lib
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: Install scripts dependencies
         run: cd scripts && npm install
 
       - name: Move RELEASE website to S3
-        run: node scripts/release-website.js 15.3.1
+        run: node scripts/release-website.js $TAG_NAME
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: Execute script version
-        run: node scripts/create-version.js 15.3.1
+        run: node scripts/create-version.js $TAG_NAME
 
       - name: Deploy version to S3 Bucket
         run: |
