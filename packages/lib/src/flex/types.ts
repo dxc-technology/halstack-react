@@ -126,6 +126,7 @@ export type StyledProps = CommonProps & {
   $wrap?: "nowrap" | "wrap" | "wrap-reverse";
   $gap?: CoreSpacingTokensType | Gap;
   $order?: number;
+  $fullHeight?: boolean;
   $grow?: number;
   $shrink?: number;
   $basis?: string;

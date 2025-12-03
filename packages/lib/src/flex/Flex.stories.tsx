@@ -26,6 +26,11 @@ const Placeholder = styled.div<{ minWidth?: string; width?: string }>`
 
 const Flex = () => (
   <>
+    <div style={{ height: "200px", backgroundColor: "#fabada" }}>
+      <DxcFlex fullHeight justifyContent="center" alignItems="center">
+        <Placeholder />
+      </DxcFlex>
+    </div>
     <Title title="Default" level={4} />
     <Container>
       <DxcFlex>
