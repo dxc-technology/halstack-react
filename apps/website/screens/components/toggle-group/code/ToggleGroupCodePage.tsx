@@ -92,7 +92,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>orientation</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                orientation
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>'horizontal' | 'vertical'</TableCode>
             </td>
