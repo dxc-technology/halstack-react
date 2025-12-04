@@ -6,6 +6,7 @@ import basicUsage from "./examples/basicUsage";
 import overlay from "./examples/overlay";
 import { TableCode } from "@/common/Code";
 import Code from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -35,7 +36,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>inheritColor</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                inheritColor
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
