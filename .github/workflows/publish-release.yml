@@ -32,6 +32,9 @@ jobs:
       - name: Build library and website
         run: npm run build
 
+      - name: Build website
+        run: cd packages/website && $env:NEXT_PUBLIC_SITE_VERSION = 16.0.0 && npm run build
+
       - name: Install scripts dependencies
         run: cd scripts && npm install
 
