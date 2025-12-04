@@ -33,7 +33,7 @@ jobs:
         run: npm run build
 
       - name: Build website
-        run: NEXT_PUBLIC_SITE_VERSION=16.0.0 cd packages/website && npm run build
+        run: NEXT_PUBLIC_SITE_VERSION=16.0.0 cd apps/website && npm run build
 
       - name: Install scripts dependencies
         run: cd scripts && npm install
