@@ -51,6 +51,7 @@ const buildSite = (version) => {
         throw new Error(error.message);
       }
       if (stderr) {
+        console.log(stderr);
         throw new Error(stderr);
       }
       resolve(stdout);
