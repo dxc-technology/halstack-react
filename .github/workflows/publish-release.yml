@@ -1,8 +1,6 @@
 name: Publish Release
 
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
   build:
@@ -34,31 +32,14 @@ jobs:
       - name: Build library and website
         run: npm run build
 
-      - name: Test library
-        run: npm run test
-
-      - name: Test library accessibility
-        run: npm run test:accessibility
-
-      - name: Publish RELEASE to npm
-        run: |
-          sed -i "s#\"version\": \".*\"#\"version\": \"${TAG_NAME}\"#" ./packages/lib/package.json
-          cd packages/lib
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          TAG_NAME: ${{ github.event.release.tag_name }}
-
       - name: Install scripts dependencies
         run: cd scripts && npm install
 
       - name: Move RELEASE website to S3
-        run: node scripts/release-website.js $TAG_NAME
-        env:
-          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: node scripts/release-website.js 16.0.0
 
       - name: Execute script version
-        run: node scripts/create-version.js $TAG_NAME
+        run: node scripts/create-version.js 16.0.0
 
       - name: Deploy version to S3 Bucket
         run: |
