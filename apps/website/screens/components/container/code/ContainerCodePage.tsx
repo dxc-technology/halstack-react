@@ -361,7 +361,12 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>ref</td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusBadge status="new" />
+              ref
+            </DxcFlex>
+          </td>
           <td>
             <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
           </td>
