@@ -29,7 +29,9 @@ const sections = [
             <td>
               Specifies a string to be used as the name for the textarea element when no <Code>label</Code> is provided.
             </td>
-            <td>'Text area'</td>
+            <td>
+              <TableCode>'Text area'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>autocomplete</td>

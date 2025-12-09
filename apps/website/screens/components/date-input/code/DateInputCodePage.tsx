@@ -31,7 +31,9 @@ const sections = [
               Specifies a string to be used as the name for the date input element when no <Code>label</Code> is
               provided.
             </td>
-            <td>'Date input'</td>
+            <td>
+              <TableCode>'Date input'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>autocomplete</td>
