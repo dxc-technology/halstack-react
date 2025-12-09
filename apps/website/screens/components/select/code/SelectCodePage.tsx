@@ -269,7 +269,9 @@ const sections = [
               Defines the search mode when searchable is true. If true, matches options that start with the search text.
               If false, matches options that contain the search text anywhere in their label.
             </td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>size</td>

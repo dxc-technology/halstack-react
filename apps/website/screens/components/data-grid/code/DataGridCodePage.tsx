@@ -146,7 +146,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>Number of items per page.</td>
-            <td>5</td>
+            <td>
+              <TableCode>5</TableCode>
+            </td>
           </tr>
           <tr>
             <td>itemsPerPageFunction</td>
@@ -270,7 +272,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, a select component for navigation between pages will be displayed.</td>
-            <td>true</td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
           <tr>
             <td>showPaginator</td>
@@ -278,7 +282,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, paginator will be displayed.</td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>summaryRow</td>
