@@ -20,7 +20,7 @@ const socialLinkTypeString = `{
   logo: string | SVG;
 }[]`;
 
-const defaultFooterLogoString = `{
+const defaultFooterLogo = `{
   src: DxcLogo,
   alt: "DXC Technology Logo"
 }`;
@@ -95,7 +95,7 @@ const sections = [
             </td>
             <td>Logo to be displayed inside the footer.</td>
             <td>
-              <ExtendedTableCode>{defaultFooterLogoString}</ExtendedTableCode>
+              <ExtendedTableCode>{defaultFooterLogo}</ExtendedTableCode>
             </td>
           </tr>
           <tr>
