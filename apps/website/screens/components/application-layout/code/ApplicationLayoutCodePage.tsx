@@ -45,7 +45,7 @@ const ApplicationLayoutPropsTable = () => (
         </td>
         <td>
           Footer of the application layout shown at the bottom of the screen. It is optional and if it is not specified,
-          the default header will be shown. Please check the Footer documentation{" "}
+          the default footer will be shown. Please check the Footer documentation{" "}
           <Link href="/components/footer" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
