@@ -56,6 +56,27 @@ const sections = [
     ),
   },
   {
+    title: "Usage of components",
+    content: (
+      <>
+        <DxcParagraph>
+          In our component props, instead of passing hardcoded values such as <Code>2rem</Code>, we should always use an
+          alias token whenever possible. Only if no suitable alias token exists, a core token or a hardcoded value may
+          be used.
+        </DxcParagraph>
+        <DxcParagraph>Previous version:</DxcParagraph>
+        <Example example={previousExample} defaultIsVisible />
+        <Example example={newExample} defaultIsVisible />
+        <DxcParagraph>
+          For more information about tokens refer to{" "}
+          <Link href="/foundations/tokens/overview" passHref legacyBehavior>
+            <DxcLink>its documentation</DxcLink>
+          </Link>
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "Added components",
     content: (
       <>
