@@ -70,6 +70,7 @@ const TextInput = styled.div<{
 const Input = styled.input<{
   alignment: TextInputPropsType["alignment"];
 }>`
+  max-width: 100%;
   background: none;
   border: none;
   outline: none;
