@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Components16MigrationPage from "screens/migration/Components16MigrationPage";
+import Components16MigrationPage from "screens/migration/components/Components16MigrationPage";
 
 const Components16Migration = () => (
   <>
