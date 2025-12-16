@@ -200,7 +200,6 @@ const sections = [
               </>
             ),
           },
-          // TODO: CHECK PELAYO PR FOR THE NEW FOOTER API
           {
             title: "ApplicationLayout.Footer",
             content: (
