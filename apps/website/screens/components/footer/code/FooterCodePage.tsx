@@ -20,10 +20,12 @@ const socialLinkTypeString = `{
   logo: string | SVG;
 }[]`;
 
-const defaultFooterLogo = `{
+const defaultFooterLogoString = `{
   src: DxcLogo,
   alt: "DXC Technology Logo"
 }`;
+
+const defaultCopyrightString = `"© DXC Technology \${year}. All rights reserved."`;
 
 const sections = [
   {
@@ -64,7 +66,9 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>The text that will be displayed as copyright disclaimer.</td>
-            <td>-</td>
+            <td>
+              <TableCode>{defaultCopyrightString}</TableCode>
+            </td>
           </tr>
           <tr>
             <td>
@@ -91,7 +95,7 @@ const sections = [
             </td>
             <td>Logo to be displayed inside the footer.</td>
             <td>
-              <ExtendedTableCode>{defaultFooterLogo}</ExtendedTableCode>
+              <ExtendedTableCode>{defaultFooterLogoString}</ExtendedTableCode>
             </td>
           </tr>
           <tr>
