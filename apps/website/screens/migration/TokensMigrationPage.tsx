@@ -66,6 +66,7 @@ const sections = [
           <li>Migrating color, spacing, and typography overrides to CSS tokens.</li>
           <li>Replacing any custom component overrides that referenced theme object values.</li>
           <li>Updating global styles to rely on CSS variables instead of hardcoded values.</li>
+          <li>Refactoring prop values to rely on alias tokens instead of hardcoded values.</li>
         </ul>
       </>
     ),
@@ -153,7 +154,8 @@ return (
             <DxcParagraph>
               This can be applied to colors, fonts, spacings and borders. However, keep in mind that, for now, only core
               tokens can be overwritten and they affect all the components which are wrapped within the{" "}
-              <Code>HalstackProvider</Code>.
+              <Code>HalstackProvider</Code>. Note that the former <Code>theme</Code> prop has been renamed to{" "}
+              <Code>opinionatedTheme</Code>.
             </DxcParagraph>
           </>
         ),
