@@ -52,7 +52,7 @@
   {
     "label": "Data grid",
     "path": "/components/data-grid",
-    "status": "new"
+    "status": "stable"
   },
   {
     "label": "Date input",
