@@ -4,6 +4,24 @@ import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import Code, { ExtendedTableCode } from "@/common/Code";
 import Link from "next/link";
+import Example from "@/common/example/Example";
+import previousExample from "./examples/previous";
+import newExample from "./examples/new";
+
+const groupItemType = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  items: (Item)[];
+}`;
+
+const itemType = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  onSelect?: () => void;
+  selected?: boolean;
+}`;
 
 const sections = [
   {
@@ -14,6 +32,27 @@ const sections = [
         the removal of deprecated elements. This guide details the main differences and how to migrate components from{" "}
         <Code>15.x.x</Code> to <Code>16.0.0</Code>.
       </DxcParagraph>
+    ),
+  },
+  {
+    title: "Usage of components",
+    content: (
+      <>
+        <DxcParagraph>
+          In our component props, instead of passing hardcoded values such as <Code>2rem</Code>, we should always use an
+          alias token whenever possible. Only if no suitable alias token exists, a core token or a hardcoded value may
+          be used.
+        </DxcParagraph>
+        <DxcParagraph>Previous version:</DxcParagraph>
+        <Example example={previousExample} defaultIsVisible />
+        <Example example={newExample} defaultIsVisible />
+        <DxcParagraph>
+          For more information about tokens refer to{" "}
+          <Link href="/foundations/tokens/overview" passHref legacyBehavior>
+            <DxcLink>its documentation</DxcLink>
+          </Link>
+        </DxcParagraph>
+      </>
     ),
   },
   {
@@ -155,22 +194,11 @@ const sections = [
                           The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
                           <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> has the following structure:
                         </p>
-                        <ExtendedTableCode>{`{
-  badge?: ReactElement;
-  icon?: string | SVG;
-  label: string;
-  items: (Item)[];
-}`}</ExtendedTableCode>
+                        <ExtendedTableCode>{groupItemType}</ExtendedTableCode>
                         <p>
                           Each <Code>Item</Code> has the following structure:
                         </p>
-                        <ExtendedTableCode>{`{
-  badge?: ReactElement;
-  icon?: string | SVG;
-  label: string;
-  onSelect?: () => void;
-  selected?: boolean;
-}`}</ExtendedTableCode>
+                        <ExtendedTableCode>{itemType}</ExtendedTableCode>
                       </td>
                     </tr>
                   </tbody>
@@ -366,7 +394,7 @@ const Components16MigrationPage = () => (
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/Components16Page.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/components/Components16MigrationPage.tsx" />
   </DxcFlex>
 );
 
