@@ -8,6 +8,21 @@ import Example from "@/common/example/Example";
 import previousExample from "./examples/previous";
 import newExample from "./examples/new";
 
+const groupItemType = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  items: (Item)[];
+}`;
+
+const itemType = `{
+  badge?: ReactElement;
+  icon?: string | SVG;
+  label: string;
+  onSelect?: () => void;
+  selected?: boolean;
+}`;
+
 const sections = [
   {
     title: "Introduction",
@@ -179,22 +194,11 @@ const sections = [
                           The <Code>navItems</Code> prop accepts an array of <Code>Item</Code> and
                           <Code>GroupItem</Code> objects. Each <Code>GroupItem</Code> has the following structure:
                         </p>
-                        <ExtendedTableCode>{`{
-  badge?: ReactElement;
-  icon?: string | SVG;
-  label: string;
-  items: (Item)[];
-}`}</ExtendedTableCode>
+                        <ExtendedTableCode>{groupItemType}</ExtendedTableCode>
                         <p>
                           Each <Code>Item</Code> has the following structure:
                         </p>
-                        <ExtendedTableCode>{`{
-  badge?: ReactElement;
-  icon?: string | SVG;
-  label: string;
-  onSelect?: () => void;
-  selected?: boolean;
-}`}</ExtendedTableCode>
+                        <ExtendedTableCode>{itemType}</ExtendedTableCode>
                       </td>
                     </tr>
                   </tbody>
@@ -390,7 +394,7 @@ const Components16MigrationPage = () => (
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/Components16Page.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/migration/components/Components16MigrationPage.tsx" />
   </DxcFlex>
 );
 
