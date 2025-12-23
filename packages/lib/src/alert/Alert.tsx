@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { useState, useId, useEffect, useCallback, useContext } from "react";
+import { useState, useId, useEffect, useCallback, useContext, useMemo } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcDivider from "../divider/Divider";
@@ -101,7 +101,7 @@ const DxcAlert = ({
   semantic = "info",
   title = "",
 }: AlertPropsType) => {
-  const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
+  const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
@@ -116,9 +116,6 @@ const DxcAlert = ({
 
   const handleOnClose = useCallback(() => {
     messages[currentIndex]?.onClose?.();
-    if (mode !== "modal") {
-      setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
-    }
   }, [messages, currentIndex, mode]);
 
   useEffect(() => {

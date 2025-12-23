@@ -40,9 +40,7 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              If true, the alert will have a close button that will remove the message from the alert, only in banner
-              and inline modes. The rest of the functionality will depend on the <Code>onClose</Code> event of each
-              message (e.g. closing the modal alert).
+              If true, the alert will have a close button that will call the <Code>onClose</Code>.
             </td>
             <td>
               <TableCode>true</TableCode>
@@ -58,9 +56,9 @@ const sections = [
               <ExtendedTableCode>{messageTypeString}</ExtendedTableCode>
             </td>
             <td>
-              List of messages to be displayed. Each message has a close action that will, apart from remove from the
-              alert the current message, call the <Code>onClose</Code> if it is defined. If the message is an array, the
-              alert will show a navigation bar to move between the messages. <br />
+              List of messages to be displayed. Each message has a close action that will call the <Code>onClose</Code>{" "}
+              if it is defined. If the message is an array, the alert will show a navigation bar to move between the
+              messages. <br />
               The <Code>modal</Code> mode only allows one message per alert. In this case, the message must be an object
               and the presence of the <Code>onClose</Code> attribute is mandatory, since the management of the closing
               of the alert relies completely on the user.
