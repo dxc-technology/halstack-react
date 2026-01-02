@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import DxcLink from "./Link";
 import DxcSearchBarTrigger from "./SearchBarTrigger";
 import { useState } from "react";
 import DxcSearchBar from "./SearchBar";
@@ -16,7 +15,7 @@ const Link = () => {
   const [showSearch, setShowSearch] = useState(false);
   return (
     <>
-      <Title title="With anchor" theme="light" level={2} />
+      <Title title="SearchBar component" theme="light" level={2} />
       <ExampleContainer>
         <DxcFlex alignItems="center">
           {!showSearch ? (
@@ -41,7 +40,7 @@ const Link = () => {
   );
 };
 
-type Story = StoryObj<typeof DxcLink>;
+type Story = StoryObj<typeof DxcSearchBar>;
 
 export const Chromatic: Story = {
   render: Link,
