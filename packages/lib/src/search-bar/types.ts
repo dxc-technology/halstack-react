@@ -10,6 +10,10 @@ export type SearchBarProps = {
    */
   autoFocus?: boolean;
   /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * Function invoked when the search bar loses focus.
    */
   onBlur?: (value: string) => void;
