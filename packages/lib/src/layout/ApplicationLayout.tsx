@@ -40,13 +40,22 @@ const SidenavContainer = styled.div`
   overflow: auto;
 `;
 
+const MainContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+`;
+
 const FooterContainer = styled.div`
   height: fit-content;
   width: 100%;
 `;
 
 const MainContentContainer = styled.main`
-  width: 100%;
   height: 100%;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -69,18 +78,20 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
         {header && <HeaderContainer>{header}</HeaderContainer>}
         <BodyContainer hasSidenav={!!sidenav}>
           {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
-          <MainContentContainer>
-            {findChildType(children, Main)}
-            <FooterContainer>
-              {footer ?? (
-                <DxcFooter
-                  copyright={`© DXC Technology ${year}. All rights reserved.`}
-                  bottomLinks={bottomLinks}
-                  socialLinks={socialLinks}
-                />
-              )}
-            </FooterContainer>
-          </MainContentContainer>
+          <MainContainer>
+            <MainContentContainer>
+              {findChildType(children, Main)}
+              <FooterContainer>
+                {footer ?? (
+                  <DxcFooter
+                    copyright={`© DXC Technology ${year}. All rights reserved.`}
+                    bottomLinks={bottomLinks}
+                    socialLinks={socialLinks}
+                  />
+                )}
+              </FooterContainer>
+            </MainContentContainer>
+          </MainContainer>
         </BodyContainer>
       </ApplicationLayoutContext.Provider>
     </ApplicationLayoutContainer>
