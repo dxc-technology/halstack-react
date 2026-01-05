@@ -59,4 +59,21 @@ describe("Header component tests", () => {
     expect(screen.queryByText("Frontend")).not.toBeInTheDocument();
     expect(screen.queryByText("Backend")).not.toBeInTheDocument();
   });
+
+  test("search bar appears and functions correctly", () => {
+    const onEnterMock = jest.fn();
+    const onCancelMock = jest.fn();
+    render(<DxcHeader searchBar={{ placeholder: "Search...", onEnter: onEnterMock, onCancel: onCancelMock }} />);
+    const searchIcon = screen.getByRole("button", { name: /search/i });
+    fireEvent.click(searchIcon);
+    const searchInput = screen.getByPlaceholderText("Search...");
+    expect(searchInput).toBeInTheDocument();
+    fireEvent.change(searchInput, { target: { value: "test query" } });
+    fireEvent.keyDown(searchInput, { key: "Enter", code: "Enter" });
+    expect(onEnterMock).toHaveBeenCalledWith("test query");
+    const cancelButton = screen.getByRole("button", { name: /cancel/i });
+    fireEvent.click(cancelButton);
+    expect(onCancelMock).toHaveBeenCalled();
+    expect(searchInput).not.toBeInTheDocument();
+  });
 });

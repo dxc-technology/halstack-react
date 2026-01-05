@@ -133,6 +133,7 @@ const HeaderInLayout = () => (
       <DxcApplicationLayout.Header
         appTitle="Application Layout with Header"
         navItems={items}
+        searchBar={{ placeholder: "Search..." }}
         sideContent={(isResponsive) =>
           isResponsive ? (
             <>

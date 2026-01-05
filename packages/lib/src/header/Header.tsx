@@ -214,7 +214,7 @@ const DxcHeader = ({
             </BrandingContainer>
           )}
 
-          {!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0 && (
+          {((!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0) || (!!searchBar && showSearch)) && (
             <MainNavContainer>
               {!!searchBar && showSearch ? (
                 <DxcSearchBar
@@ -239,7 +239,7 @@ const DxcHeader = ({
             </MainNavContainer>
           )}
 
-          {!showSearch && (sideContent || isResponsive) && (
+          {!showSearch && (sideContent || isResponsive || !!searchBar) && (
             <RightSideContainer>
               {!!searchBar && <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />}
               {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}

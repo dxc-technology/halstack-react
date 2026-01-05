@@ -59,6 +59,7 @@ describe("Header component accessibility tests", () => {
       <DxcHeader
         appTitle={appTitle}
         navItems={items}
+        searchBar={{ placeholder: "Search" }}
         sideContent={
           <DxcButton title="Settings" icon="settings" mode="tertiary" size={{ height: "medium" }} onClick={() => {}} />
         }
