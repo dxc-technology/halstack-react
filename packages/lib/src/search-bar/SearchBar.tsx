@@ -29,7 +29,8 @@ const SearchBarContainer = styled.div<{ disabled: Required<SearchBarProps>["disa
             border-color: var(--border-color-primary-strong);
           }
           &:focus,
-          &:focus-within {
+          &:focus-within,
+          &:focus-visible {
             border-color: transparent;
             outline-offset: -2px;
             outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
