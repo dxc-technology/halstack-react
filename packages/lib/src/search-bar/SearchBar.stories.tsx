@@ -40,7 +40,7 @@ const SearchBarComponent = () => {
 const SearchBar = () => {
   return (
     <>
-      <Title title="SearchBar component" theme="light" level={2} />
+      <Title title="Searchbar component" theme="light" level={2} />
       <ExampleContainer>
         <SearchBarComponent />
       </ExampleContainer>
@@ -100,10 +100,19 @@ const SearchBar = () => {
         />
       </ExampleContainer>
 
-      <Title title="Small SearchBar component" theme="light" level={2} />
+      <Title title="Small Searchbar" theme="light" level={2} />
       <ExampleContainer>
         <DxcContainer width="220px">
-          <SearchBarComponent />
+          <DxcSearchBar
+            placeholder="Search..."
+            onBlur={(value) => {
+              console.log("onBlur", value);
+            }}
+            onChange={(value) => console.log("onChange", value)}
+            onEnter={(value) => {
+              console.log("onEnter", value);
+            }}
+          />
         </DxcContainer>
       </ExampleContainer>
     </>
