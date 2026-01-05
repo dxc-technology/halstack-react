@@ -134,7 +134,13 @@ const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (G
   return sanitizedItems;
 };
 
-const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
+const DxcHeader = ({
+  appTitle,
+  navItems,
+  responsiveBottomContent,
+  searchBar,
+  sideContent,
+}: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -159,6 +165,13 @@ const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }:
     }
   };
   const sanitizedNavItems = useMemo(() => (navItems ? sanitizeNavItems(navItems) : []), [navItems]);
+
+  const handleCancelSearch = () => {
+    if (typeof searchBar?.onCancel === "function") {
+      searchBar.onCancel();
+    }
+    setShowSearch(false);
+  };
 
   return (
     <MainContainer isResponsive={isResponsive} isMenuVisible={isMenuVisible}>
@@ -203,8 +216,16 @@ const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }:
 
           {!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0 && (
             <MainNavContainer>
-              {showSearch ? (
-                <DxcSearchBar onCancel={() => setShowSearch(false)} />
+              {!!searchBar && showSearch ? (
+                <DxcSearchBar
+                  autoFocus={searchBar.autoFocus}
+                  disabled={searchBar.disabled}
+                  onBlur={searchBar.onBlur}
+                  onCancel={handleCancelSearch}
+                  onChange={searchBar.onChange}
+                  onEnter={searchBar.onEnter}
+                  placeholder={searchBar.placeholder}
+                />
               ) : (
                 <DxcNavigationTree
                   items={sanitizedNavItems}
@@ -220,7 +241,7 @@ const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }:
 
           {!showSearch && (sideContent || isResponsive) && (
             <RightSideContainer>
-              <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />
+              {!!searchBar && <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />}
               {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}
               {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
                 <HamburguerButton onClick={toggleMenu} />

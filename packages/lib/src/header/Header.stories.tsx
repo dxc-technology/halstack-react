@@ -114,6 +114,8 @@ const Header = () => (
     <DxcHeader />
     <DxcHeader sideContent={<div>Side Content</div>} />
     <DxcHeader navItems={items} sideContent={<div>Side Content</div>} />
+    <Title title="Header with searchbar" theme="light" level={3} />
+    <DxcHeader navItems={items} sideContent={<div>Side Content</div>} searchBar={{ placeholder: "Search..." }} />
     <Title title="Header with long content" theme="light" level={3} />
     <DxcHeader navItems={items} sideContent={<div>{longSideContent}</div>} />
     <DxcHeader appTitle={longAppTitle} navItems={items} />
