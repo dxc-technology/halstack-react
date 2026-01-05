@@ -229,6 +229,8 @@ export const Responsive: Story = {
     await userEvent.tab();
     await new Promise<void>((resolve) => setTimeout(resolve, 100));
     await userEvent.tab();
+    await new Promise<void>((resolve) => setTimeout(resolve, 100));
+    await userEvent.tab();
     await userEvent.keyboard("{Enter}");
     await canvas.findByText("Bottom content button");
   },
