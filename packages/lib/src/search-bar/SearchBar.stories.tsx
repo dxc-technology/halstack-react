@@ -8,7 +8,7 @@ import DxcFlex from "../flex/Flex";
 import DxcContainer from "../container/Container";
 
 export default {
-  title: "SearchBar",
+  title: "Searchbar",
   component: DxcSearchBar,
 } satisfies Meta<typeof DxcSearchBar>;
 
