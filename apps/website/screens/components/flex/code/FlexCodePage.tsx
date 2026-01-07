@@ -136,7 +136,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>fullHeight</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                fullHeight
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
