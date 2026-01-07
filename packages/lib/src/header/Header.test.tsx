@@ -63,7 +63,9 @@ describe("Header component tests", () => {
   test("search bar appears and functions correctly", () => {
     const onEnterMock = jest.fn();
     const onCancelMock = jest.fn();
+
     render(<DxcHeader searchBar={{ placeholder: "Search...", onEnter: onEnterMock, onCancel: onCancelMock }} />);
+
     const searchIcon = screen.getByRole("button", { name: /search/i });
     fireEvent.click(searchIcon);
     const searchInput = screen.getByPlaceholderText("Search...");
@@ -75,5 +77,22 @@ describe("Header component tests", () => {
     fireEvent.click(cancelButton);
     expect(onCancelMock).toHaveBeenCalled();
     expect(searchInput).not.toBeInTheDocument();
+  });
+
+  test("search bar appears correctly in responsive mode", () => {
+    mockMatchMedia.mockImplementation(() => ({
+      matches: true,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }));
+
+    render(<DxcHeader searchBar={{ placeholder: "Search..." }} />);
+
+    const menuButton = screen.getByRole("button", { name: /toggle menu/i });
+    fireEvent.click(menuButton);
+    const searchInput = screen.getByPlaceholderText("Search...");
+    expect(searchInput).toBeInTheDocument();
+    const cancelButton = screen.queryByRole("button", { name: /cancel/i });
+    expect(cancelButton).not.toBeInTheDocument();
   });
 });

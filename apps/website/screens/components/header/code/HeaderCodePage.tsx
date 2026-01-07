@@ -112,8 +112,12 @@ const sections = [
               <ExtendedTableCode>{searchBarTypeString}</ExtendedTableCode>
             </td>
             <td>
-              When provided, displays a searchbar trigger at the beginning of the side content. Clicking the trigger
-              expands the searchbar, allowing users to perform search operations.
+              When provided, a search bar trigger is shown at the start of the side content. Activating the trigger
+              expands the search bar, enabling search interactions.
+              <p>
+                In responsive mode, the search bar is displayed directly (without a trigger), and the{" "}
+                <Code>onCancel</Code> callback is not called.
+              </p>
             </td>
             <td>-</td>
           </tr>

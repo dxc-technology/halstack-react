@@ -178,7 +178,7 @@ const DxcHeader = ({
       <HeaderContainer>
         <DxcGrid
           templateColumns={
-            showSearch
+            showSearch && !isResponsive
               ? ["auto"]
               : !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
                 ? [`auto`, `minmax(auto, ${MAX_MAIN_NAV_SIZE})`, `auto`]
@@ -188,7 +188,7 @@ const DxcHeader = ({
           gap="var(--spacing-gap-ml)"
           placeItems="center"
         >
-          {!showSearch && (
+          {(!showSearch || isResponsive) && (
             <BrandingContainer>
               {logo && (
                 <LogoContainer
@@ -214,7 +214,7 @@ const DxcHeader = ({
             </BrandingContainer>
           )}
 
-          {((!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0) || (!!searchBar && showSearch)) && (
+          {!isResponsive && ((sanitizedNavItems && sanitizedNavItems.length > 0) || (!!searchBar && showSearch)) && (
             <MainNavContainer>
               {!!searchBar && showSearch ? (
                 <DxcSearchBar
@@ -239,11 +239,13 @@ const DxcHeader = ({
             </MainNavContainer>
           )}
 
-          {!showSearch && (sideContent || isResponsive || !!searchBar) && (
+          {(!showSearch || isResponsive) && (sideContent || isResponsive || !!searchBar) && (
             <RightSideContainer>
-              {!!searchBar && <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />}
+              {!!searchBar && !isResponsive && (
+                <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />
+              )}
               {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}
-              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
+              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent || !!searchBar) && (
                 <HamburguerButton onClick={toggleMenu} />
               )}
             </RightSideContainer>
@@ -254,6 +256,16 @@ const DxcHeader = ({
         <ResponsiveMenuContainer>
           <ResponsiveMenu>
             {appTitle && <DxcHeading text={appTitle} as="h1" level={5} />}
+            {!!searchBar && (
+              <DxcSearchBar
+                autoFocus={searchBar.autoFocus}
+                disabled={searchBar.disabled}
+                onBlur={searchBar.onBlur}
+                onChange={searchBar.onChange}
+                onEnter={searchBar.onEnter}
+                placeholder={searchBar.placeholder}
+              />
+            )}
             <DxcNavigationTree
               items={sanitizedNavItems}
               displayGroupLines={false}
