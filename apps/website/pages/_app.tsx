@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -108,19 +108,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
           <DxcApplicationLayout.Sidenav
             navItems={navItems}
             appTitle={isExpanded && <SidenavLogo />}
-            topContent={
-              isExpanded && (
-                <DxcTextInput
-                  placeholder="Search docs"
-                  value={filter}
-                  onChange={({ value }) => {
-                    setFilter(value);
-                  }}
-                  size="fillParent"
-                  clearable
-                />
-              )
-            }
+            searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
             expanded={isExpanded}
             onExpandedChange={() => {
               setIsExpanded((currentlyExpanded) => !currentlyExpanded);
