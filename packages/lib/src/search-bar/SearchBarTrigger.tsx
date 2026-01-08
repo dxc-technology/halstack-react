@@ -7,7 +7,6 @@ const DxcSearchBarTrigger = ({ onTriggerClick }: SearchBarTriggerProps) => (
     icon="Search"
     mode="tertiary"
     title="Search"
-    aria-label="Search"
     semantic="default"
     size={{ height: "medium" }}
   />
