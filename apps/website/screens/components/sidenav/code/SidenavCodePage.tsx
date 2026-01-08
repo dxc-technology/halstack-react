@@ -24,6 +24,15 @@ const sectionTypeString = `{
   title?: string };
 }`;
 
+const searchBarTypeString = `{
+  autoFocus?: boolean;
+  disabled?: boolean;
+  onBlur: (value: string) => void;
+  onChange: (value: string) => void;
+  onEnter: (value: string) => void;
+  placeholder?: string;
+}`;
+
 const sections = [
   {
     title: "Props",
@@ -145,6 +154,19 @@ const sections = [
               <TableCode>{"(value: boolean) => void"}</TableCode>
             </td>
             <td>Function called when the expansion state of the sidenav changes.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                searchBar
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{searchBarTypeString}</ExtendedTableCode>
+            </td>
+            <td>When provided, a search bar will be rendered at the top of the sidenav.</td>
             <td>-</td>
           </tr>
           <tr>

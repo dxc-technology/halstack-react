@@ -5,10 +5,12 @@ import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
+import DxcSearchBar from "../search-bar/SearchBar";
+import DxcSearchBarTrigger from "../search-bar/SearchBarTrigger";
 
 const SidenavContainer = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
@@ -67,16 +69,25 @@ const DxcSidenav = ({
   expanded,
   defaultExpanded = true,
   onExpandedChange,
+  searchBar,
 }: SidenavPropsType): JSX.Element => {
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
   const { logo, headerExists } = useContext(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
+  const searchBarRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     const nextState = !isExpanded;
     if (!isControlled) setInternalExpanded(nextState);
     onExpandedChange?.(nextState);
+  };
+
+  const handleExpandSearch = () => {
+    handleToggle();
+    setTimeout(() => {
+      searchBarRef.current?.querySelector("input")?.focus();
+    }, 1);
   };
 
   return (
@@ -114,8 +125,14 @@ const DxcSidenav = ({
           <SidenavTitle>{appTitle}</SidenavTitle>
         </DxcFlex>
       </DxcFlex>
-      {topContent && (
+      {(topContent || searchBar) && (
         <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+          {searchBar &&
+            (isExpanded ? (
+              <DxcSearchBar ref={searchBarRef} {...searchBar} />
+            ) : (
+              <DxcSearchBarTrigger onTriggerClick={handleExpandSearch} />
+            ))}
           {topContent}
         </DxcFlex>
       )}
