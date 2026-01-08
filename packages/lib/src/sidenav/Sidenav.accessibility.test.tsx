@@ -47,7 +47,9 @@ describe("Sidenav component accessibility tests", () => {
         ],
       },
     ];
-    const { container } = render(<DxcSidenav navItems={groupItems} appTitle="Application Name" />);
+    const { container } = render(
+      <DxcSidenav navItems={groupItems} appTitle="Application Name" searchBar={{ placeholder: "Search..." }} />
+    );
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
