@@ -116,6 +116,7 @@ const DxcSearchBar = ({
           onKeyDown={handleInputOnKeyDown}
           disabled={disabled}
           aria-label={translatedLabels.searchBar.inputAriaLabel}
+          autoFocus={autoFocus}
         />
         {!disabled && innerValue.length > 0 && (
           <DxcActionIcon
