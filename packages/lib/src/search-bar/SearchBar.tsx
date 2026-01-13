@@ -60,7 +60,7 @@ const SearchBarInput = styled.input<{ disabled: Required<SearchBarProps>["disabl
 `;
 
 const DxcSearchBar = ({
-  autoFocus,
+  autoFocus = false,
   disabled = false,
   onBlur,
   onCancel,
