@@ -4,6 +4,8 @@ import { SearchBarProps } from "../search-bar/types";
 
 type Section = { items: (Item | GroupItem)[]; title?: string };
 
+type SearchbarSidenavProps = Omit<SearchBarProps, "autoFocus" | "disabled" | "onCancel">;
+
 type Props = {
   /**
    * The content rendered in the bottom part of the sidenav, under the navigation menu.
@@ -38,7 +40,7 @@ type Props = {
   /**
    * When provided, a search bar will be rendered at the top of the sidenav.
    */
-  searchBar?: Omit<SearchBarProps, "onCancel">;
+  searchBar?: SearchbarSidenavProps;
   /**
    * The additional content rendered in the upper part of the sidenav, under the branding.
    */
