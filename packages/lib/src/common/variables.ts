@@ -109,6 +109,7 @@ export const defaultTranslatedComponentLabels = {
     clearFieldActionTitle: "Clear field",
     inputAriaLabel: "Search input",
     triggerTitle: "Search",
+    cancelButtonLabel: "Cancel",
   },
   select: {
     actionClearSelectionTitle: "Clear selection",
