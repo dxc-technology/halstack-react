@@ -105,7 +105,7 @@ const DxcSearchBar = ({
 
   return (
     <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
-      <SearchBarContainer disabled={disabled} autoFocus={autoFocus}>
+      <SearchBarContainer disabled={disabled}>
         <DxcIcon icon="search" aria-hidden="true" />
         <SearchBarInput
           ref={inputRef}
