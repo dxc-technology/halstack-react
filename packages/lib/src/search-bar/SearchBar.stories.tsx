@@ -22,7 +22,6 @@ const SearchBarComponent = () => {
         <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />
       ) : (
         <DxcSearchBar
-          placeholder="Search..."
           onBlur={(value) => {
             console.log("onBlur", value);
           }}
