@@ -28,16 +28,72 @@ const sections = [
         <Image src={anatomy} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Prefix</strong> <em>(Optional)</em>: the prefix can be an icon or an action icon that provides
-            additional context or functionality.
+            <strong>Container</strong> <em>(Required)</em>:
+            <DxcBulletedList>
+              <DxcBulletedList.Item>The outer wrapper of the chip.</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Defines:
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Overall size (Small / Medium / Large)</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    Interactive area (default, focus, hover, active and disabled)
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Acts as the main clickable surface when no action icon is present.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label:</strong> the primary text that conveys the chip's meaning, such as a tag name or a selected
-            option. It should be concise, clear, and relevant to the chip's function.
+            <strong>Left Element</strong> <em>(Optional)</em>: Supported types:
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>Icon</strong>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Allowed in Small, Medium and Large.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Used for status, category, or action hint.</DxcBulletedList.Item>
+                </DxcBulletedList>
+              </DxcBulletedList.Item>
+
+              <DxcBulletedList.Item>
+                <strong>Avatar</strong>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Allowed only in Medium and Large.</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Represents people, entities or profiles.</DxcBulletedList.Item>
+                </DxcBulletedList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+            Small size supports icons only to preserve compactness and clarity.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Suffix</strong> <em>(Optional)</em>: the suffix can be an icon or an action icon that enhances
-            interactivity.
+            <strong>Label</strong> <em>(Required)</em>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Text content displayed inside the chip</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Characteristics:
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>Short, concise text</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Single-line only(no-wrapping)</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Truncated when exceeding maximum width</DxcBulletedList.Item>
+                  <DxcBulletedList.Item>Tooltip appears on hover/focus when truncated</DxcBulletedList.Item>
+                </DxcBulletedList>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>Serves as the primary identifier of the chip.</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Action Icon</strong> <em>(Optional) -</em> Appears at the end of the chip. Common usage:
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Remove / clear action (✕)</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Secondary inline action (if applicable)</DxcBulletedList.Item>
+            </DxcBulletedList>
+            Behavior:
+            <DxcBulletedList>
+              <DxcBulletedList.Item>Has its own interaction target</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Does not trigger the main chip action</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Disabled when the chip is disabled</DxcBulletedList.Item>
+            </DxcBulletedList>
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>

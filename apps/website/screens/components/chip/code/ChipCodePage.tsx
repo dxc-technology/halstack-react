@@ -4,7 +4,23 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+
+const avatarTypeString = `{
+  color?: 'primary' | 'secondary' | 'tertiary' |
+    'success' | 'info' | 'neutral' | 'warning' | 'error';
+  disabled?: boolean;
+  icon?: string | SVG;
+  imgSrc?: string;
+  label?: string;
+  linkHref?: string;
+  onClick??: () => void;
+  shape?: 'circle' | 'square';
+  size?: 'xsmall' | 'small' | 'medium' |
+    'large' | 'xlarge' | 'xxlarge';
+  tabIndex?: number';
+  title?: string;
+}`;
 
 const sections = [
   {
@@ -20,6 +36,19 @@ const sections = [
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>avatar</td>
+            <td>
+              <ExtendedTableCode>{avatarTypeString}</ExtendedTableCode>
+            </td>
+            <td>
+              Avatar that will be placed before the chip label only when the chip size is <Code>'medium'</Code> or{" "}
+              <Code>'large'</Code>.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
           <tr>
             <td>disabled</td>
             <td>
@@ -80,9 +109,9 @@ const sections = [
               <DxcLink newWindow href="https://fonts.google.com/icons">
                 Material Symbol
               </DxcLink>{" "}
-              name or SVG element as the icon that will be placed before the chip label. When using Material Symbols,
-              replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>.
+              name or SVG element as the icon that will be placed before the chip label when an <Code>avatar</Code> is
+              not provided. When using Material Symbols, replace spaces with underscores. By default they are outlined
+              if you want it to be filled prefix the symbol name with <TableCode>"filled_"</TableCode>.
             </td>
             <td>-</td>
           </tr>

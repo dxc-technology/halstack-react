@@ -3,10 +3,25 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcChip from "./Chip";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent } from "storybook/internal/test";
+import { useEffect } from "react";
 
 export default {
   title: "Chip",
   component: DxcChip,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        const prev = document.body.style.cssText;
+        document.body.style.backgroundColor = "var(--color-bg-neutral-light)";
+        document.body.style.padding = "0";
+        return () => {
+          document.body.style.cssText = prev;
+        };
+      }, []);
+
+      return <Story />;
+    },
+  ],
 } satisfies Meta<typeof DxcChip>;
 
 const iconSVG = (
@@ -42,7 +57,7 @@ const Chip = () => (
   <>
     <ExampleContainer>
       <Title title="Basic chip" theme="light" level={4} />
-      <DxcChip label="Default Chip" />
+      <DxcChip label="Default Chip with lots of characteres" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with prefix SVG (small icon)" theme="light" level={4} />
@@ -51,6 +66,10 @@ const Chip = () => (
     <ExampleContainer>
       <Title title="Chip with suffix SVG (large icon)" theme="light" level={4} />
       <DxcChip label="Chip with suffix" suffixIcon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Chip with Avatar" theme="light" level={4} />
+      <DxcChip label="Default Chip with lots of characteres" size="small" avatar={{ color: "primary" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with prefix (SVG) and suffix (URL)" theme="light" level={4} />
