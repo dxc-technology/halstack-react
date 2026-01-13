@@ -116,6 +116,7 @@ const DxcSearchBar = ({
           onChange={(e) => handleSearchChangeValue(e.target.value)}
           onKeyDown={handleInputOnKeyDown}
           disabled={disabled}
+          autoFocus={autoFocus}
         />
         {!disabled && innerValue.length > 0 && (
           <DxcActionIcon
