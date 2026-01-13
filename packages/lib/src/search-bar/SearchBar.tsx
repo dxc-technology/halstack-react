@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
-import { RefType, SearchBarProps } from "./types";
+import { SearchBarProps } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { forwardRef, KeyboardEvent, useContext, useRef, useState } from "react";
+import { KeyboardEvent, useContext, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { css } from "@emotion/react";
 import DxcIcon from "../icon/Icon";
@@ -59,75 +59,81 @@ const SearchBarInput = styled.input<{ disabled: Required<SearchBarProps>["disabl
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
 `;
 
-const DxcSearchBar = forwardRef<RefType, SearchBarProps>(
-  ({ autoFocus, disabled = false, onBlur, onCancel, onChange, onEnter, placeholder }, ref) => {
-    const translatedLabels = useContext(HalstackLanguageContext);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const [innerValue, setInnerValue] = useState("");
+const DxcSearchBar = ({
+  autoFocus,
+  disabled = false,
+  onBlur,
+  onCancel,
+  onChange,
+  onEnter,
+  placeholder,
+}: SearchBarProps) => {
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [innerValue, setInnerValue] = useState("");
 
-    const handleClearActionOnClick = () => {
-      setInnerValue("");
-      inputRef.current?.focus();
-    };
+  const handleClearActionOnClick = () => {
+    setInnerValue("");
+    inputRef.current?.focus();
+  };
 
-    const handleSearchChangeValue = (value: string) => {
-      setInnerValue(value);
-      if (typeof onChange === "function") {
-        onChange(value);
-      }
-    };
+  const handleSearchChangeValue = (value: string) => {
+    setInnerValue(value);
+    if (typeof onChange === "function") {
+      onChange(value);
+    }
+  };
 
-    const handleInputOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-      switch (e.key) {
-        case "Esc":
-        case "Escape":
-          e.preventDefault();
-          if (innerValue.length > 0) {
-            handleClearActionOnClick();
-          }
-          break;
-        case "Enter":
-          if (typeof onEnter === "function") {
-            onEnter(innerValue);
-          }
-          break;
-        default:
-          break;
-      }
-    };
+  const handleInputOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    switch (e.key) {
+      case "Esc":
+      case "Escape":
+        e.preventDefault();
+        if (innerValue.length > 0) {
+          handleClearActionOnClick();
+        }
+        break;
+      case "Enter":
+        if (typeof onEnter === "function") {
+          onEnter(innerValue);
+        }
+        break;
+      default:
+        break;
+    }
+  };
 
-    return (
-      <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
-        <SearchBarContainer ref={ref} disabled={disabled}>
-          <DxcIcon icon="search" />
-          <SearchBarInput
-            autoFocus={autoFocus}
-            ref={inputRef}
-            value={innerValue}
-            placeholder={placeholder}
-            onBlur={(e) => typeof onBlur === "function" && onBlur(e.target.value)}
-            onChange={(e) => handleSearchChangeValue(e.target.value)}
-            onKeyDown={handleInputOnKeyDown}
-            disabled={disabled}
+  return (
+    <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
+      <SearchBarContainer disabled={disabled}>
+        <DxcIcon icon="search" />
+        <SearchBarInput
+          autoFocus={autoFocus}
+          ref={inputRef}
+          value={innerValue}
+          placeholder={placeholder}
+          onBlur={(e) => typeof onBlur === "function" && onBlur(e.target.value)}
+          onChange={(e) => handleSearchChangeValue(e.target.value)}
+          onKeyDown={handleInputOnKeyDown}
+          disabled={disabled}
+        />
+        {!disabled && innerValue.length > 0 && (
+          <DxcActionIcon
+            size="xsmall"
+            shape="circle"
+            icon="cancel"
+            onClick={handleClearActionOnClick}
+            tabIndex={0}
+            title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
           />
-          {!disabled && innerValue.length > 0 && (
-            <DxcActionIcon
-              size="xsmall"
-              shape="circle"
-              icon="cancel"
-              onClick={handleClearActionOnClick}
-              tabIndex={0}
-              title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
-            />
-          )}
-        </SearchBarContainer>
-
-        {typeof onCancel === "function" && (
-          <DxcButton label="Cancel" title="Cancel" onClick={onCancel} mode="tertiary" size={{ height: "medium" }} />
         )}
-      </DxcFlex>
-    );
-  }
-);
+      </SearchBarContainer>
+
+      {typeof onCancel === "function" && (
+        <DxcButton label="Cancel" title="Cancel" onClick={onCancel} mode="tertiary" size={{ height: "medium" }} />
+      )}
+    </DxcFlex>
+  );
+};
 
 export default DxcSearchBar;

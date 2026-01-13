@@ -4,7 +4,6 @@ export type SearchBarTriggerProps = {
    */
   onTriggerClick?: () => void;
 };
-export type RefType = HTMLDivElement;
 export type SearchBarProps = {
   /**
    * If true, the search bar input will be focused when rendered.

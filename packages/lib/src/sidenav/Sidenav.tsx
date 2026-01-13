@@ -75,7 +75,6 @@ const DxcSidenav = ({
   const { logo, headerExists } = useContext(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
-  const searchBarRef = useRef<HTMLDivElement>(null);
   const shouldFocusSearchBar = useRef(false);
 
   const handleToggle = () => {
@@ -131,7 +130,7 @@ const DxcSidenav = ({
         <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
           {searchBar &&
             (isExpanded ? (
-              <DxcSearchBar ref={searchBarRef} {...searchBar} autoFocus={shouldFocusSearchBar.current} />
+              <DxcSearchBar {...searchBar} autoFocus={shouldFocusSearchBar.current} />
             ) : (
               <DxcSearchBarTrigger onTriggerClick={handleExpandSearch} />
             ))}
