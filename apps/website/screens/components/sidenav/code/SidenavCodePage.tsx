@@ -25,8 +25,6 @@ const sectionTypeString = `{
 }`;
 
 const searchBarTypeString = `{
-  autoFocus?: boolean;
-  disabled?: boolean;
   onBlur: (value: string) => void;
   onChange: (value: string) => void;
   onEnter: (value: string) => void;
