@@ -108,7 +108,6 @@ const DxcSearchBar = ({
       <SearchBarContainer disabled={disabled}>
         <DxcIcon icon="search" />
         <SearchBarInput
-          autoFocus={autoFocus}
           ref={inputRef}
           value={innerValue}
           placeholder={placeholder}
