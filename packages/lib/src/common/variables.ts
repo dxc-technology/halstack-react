@@ -105,6 +105,11 @@ export const defaultTranslatedComponentLabels = {
   radioGroup: {
     optionalItemLabelDefault: "N/A",
   },
+  searchBar: {
+    clearFieldActionTitle: "Clear field",
+    inputAriaLabel: "Search input",
+    triggerTitle: "Search",
+  },
   select: {
     actionClearSelectionTitle: "Clear selection",
     actionClearSearchTitle: "Clear search",

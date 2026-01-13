@@ -552,6 +552,39 @@ const sections = [
         ),
       },
       {
+        title: "searchBar",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>clearFieldActionTitle</Code>
+                </td>
+                <td>Clear field</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>inputAriaLabel</Code>
+                </td>
+                <td>Search input</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>triggerTitle</Code>
+                </td>
+                <td>Search</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "select",
         content: (
           <DxcTable>
