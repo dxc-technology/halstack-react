@@ -105,7 +105,7 @@ const DxcSearchBar = ({
 
   return (
     <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
-      <SearchBarContainer disabled={disabled} autoFocus={autoFocus}>
+      <SearchBarContainer disabled={disabled}>
         <DxcIcon icon="search" />
         <SearchBarInput
           ref={inputRef}
@@ -115,6 +115,7 @@ const DxcSearchBar = ({
           onChange={(e) => handleSearchChangeValue(e.target.value)}
           onKeyDown={handleInputOnKeyDown}
           disabled={disabled}
+          autoFocus={autoFocus}
         />
         {!disabled && innerValue.length > 0 && (
           <DxcActionIcon
