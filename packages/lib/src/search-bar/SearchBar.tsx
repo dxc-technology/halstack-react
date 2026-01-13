@@ -98,9 +98,10 @@ const DxcSearchBar = forwardRef<RefType, SearchBarProps>(
 
     return (
       <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
-        <SearchBarContainer ref={ref} disabled={disabled} autoFocus={autoFocus}>
+        <SearchBarContainer ref={ref} disabled={disabled}>
           <DxcIcon icon="search" />
           <SearchBarInput
+            autoFocus={autoFocus}
             ref={inputRef}
             value={innerValue}
             placeholder={placeholder}

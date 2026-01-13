@@ -76,18 +76,20 @@ const DxcSidenav = ({
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
   const searchBarRef = useRef<HTMLDivElement>(null);
+  const shouldFocusSearchBar = useRef(false);
 
   const handleToggle = () => {
     const nextState = !isExpanded;
     if (!isControlled) setInternalExpanded(nextState);
     onExpandedChange?.(nextState);
+    if (searchBar && nextState === false) {
+      shouldFocusSearchBar.current = false;
+    }
   };
 
   const handleExpandSearch = () => {
+    shouldFocusSearchBar.current = true;
     handleToggle();
-    setTimeout(() => {
-      searchBarRef.current?.querySelector("input")?.focus();
-    }, 1);
   };
 
   return (
@@ -129,7 +131,7 @@ const DxcSidenav = ({
         <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
           {searchBar &&
             (isExpanded ? (
-              <DxcSearchBar ref={searchBarRef} {...searchBar} />
+              <DxcSearchBar ref={searchBarRef} {...searchBar} autoFocus={shouldFocusSearchBar.current} />
             ) : (
               <DxcSearchBarTrigger onTriggerClick={handleExpandSearch} />
             ))}
