@@ -22,8 +22,6 @@ const groupItemTypeString = `{
 }`;
 
 const searchBarTypeString = `{
-  autoFocus?: boolean;
-  disabled?: boolean;
   onBlur: (value: string) => void;
   onCancel: () => void;
   onChange: (value: string) => void;
