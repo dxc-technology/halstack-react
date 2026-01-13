@@ -106,7 +106,7 @@ const DxcSearchBar = ({
   return (
     <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
       <SearchBarContainer disabled={disabled} autoFocus={autoFocus}>
-        <DxcIcon icon="search" />
+        <DxcIcon icon="search" aria-hidden="true" />
         <SearchBarInput
           ref={inputRef}
           value={innerValue}
@@ -115,6 +115,7 @@ const DxcSearchBar = ({
           onChange={(e) => handleSearchChangeValue(e.target.value)}
           onKeyDown={handleInputOnKeyDown}
           disabled={disabled}
+          aria-label={translatedLabels.searchBar.inputAriaLabel}
         />
         {!disabled && innerValue.length > 0 && (
           <DxcActionIcon
@@ -123,7 +124,7 @@ const DxcSearchBar = ({
             icon="cancel"
             onClick={handleClearActionOnClick}
             tabIndex={0}
-            title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
+            title={!disabled ? translatedLabels.searchBar.clearFieldActionTitle : undefined}
           />
         )}
       </SearchBarContainer>
