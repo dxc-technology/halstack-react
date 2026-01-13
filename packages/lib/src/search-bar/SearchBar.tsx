@@ -131,7 +131,13 @@ const DxcSearchBar = ({
       </SearchBarContainer>
 
       {typeof onCancel === "function" && (
-        <DxcButton label="Cancel" title="Cancel" onClick={onCancel} mode="tertiary" size={{ height: "medium" }} />
+        <DxcButton
+          label={translatedLabels.searchBar.cancelButtonLabel}
+          title={translatedLabels.searchBar.cancelButtonLabel}
+          onClick={onCancel}
+          mode="tertiary"
+          size={{ height: "medium" }}
+        />
       )}
     </DxcFlex>
   );

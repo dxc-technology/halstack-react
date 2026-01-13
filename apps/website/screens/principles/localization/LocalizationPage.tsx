@@ -580,6 +580,12 @@ const sections = [
                 </td>
                 <td>Search</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>cancelButtonLabel</Code>
+                </td>
+                <td>Cancel</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
