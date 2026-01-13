@@ -8,11 +8,13 @@ type GroupItem = CommonItemProps & {
 
 type MainNavPropsType = (GroupItem | Item)[];
 
+type SearchBarHeaderProps = Omit<SearchBarProps, "autoFocus" | "disabled">;
+
 type Props = {
   appTitle?: string;
   navItems?: MainNavPropsType;
   responsiveBottomContent?: ReactNode;
-  searchBar?: SearchBarProps;
+  searchBar?: SearchBarHeaderProps;
   sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
 };
 

@@ -173,6 +173,10 @@ const DxcHeader = ({
     setShowSearch(false);
   };
 
+  useEffect(() => {
+    setShowSearch(false);
+  }, [isResponsive]);
+
   return (
     <MainContainer isResponsive={isResponsive} isMenuVisible={isMenuVisible}>
       <HeaderContainer>
@@ -218,8 +222,7 @@ const DxcHeader = ({
             <MainNavContainer>
               {!!searchBar && showSearch ? (
                 <DxcSearchBar
-                  autoFocus={searchBar.autoFocus}
-                  disabled={searchBar.disabled}
+                  autoFocus={true}
                   onBlur={searchBar.onBlur}
                   onCancel={handleCancelSearch}
                   onChange={searchBar.onChange}
@@ -258,8 +261,6 @@ const DxcHeader = ({
             {appTitle && <DxcHeading text={appTitle} as="h1" level={5} />}
             {!!searchBar && (
               <DxcSearchBar
-                autoFocus={searchBar.autoFocus}
-                disabled={searchBar.disabled}
                 onBlur={searchBar.onBlur}
                 onChange={searchBar.onChange}
                 onEnter={searchBar.onEnter}
