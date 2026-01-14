@@ -233,3 +233,13 @@ export const Responsive: Story = {
     await canvas.findByText("Bottom content button");
   },
 };
+
+export const OpenSearchBar: Story = {
+  render: HeaderInLayout,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const searchButton = canvas.getByRole("button", { name: "Search" });
+    await userEvent.click(searchButton);
+    await canvas.findByPlaceholderText("Search...");
+  },
+};
