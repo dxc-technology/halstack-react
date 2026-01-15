@@ -140,6 +140,7 @@ const Sidenav = () => (
       <DxcSidenav
         navItems={groupItems}
         appTitle="Application Name"
+        searchBar={{ placeholder: "Search..." }}
         bottomContent={
           <>
             <DetailedAvatar />
@@ -169,6 +170,7 @@ const Sidenav = () => (
       <DxcSidenav
         navItems={groupItems}
         appTitle="Application Name"
+        searchBar={{ placeholder: "Search..." }}
         bottomContent={
           <>
             <DetailedAvatar />
@@ -208,6 +210,7 @@ const Collapsed = () => {
         <DxcSidenav
           navItems={groupItems}
           appTitle="App Name"
+          searchBar={{ placeholder: "Search..." }}
           bottomContent={
             isExpanded ? (
               <>
@@ -261,6 +264,7 @@ const Collapsed = () => {
         <DxcSidenav
           navItems={groupItems}
           appTitle="App Name"
+          searchBar={{ placeholder: "Search..." }}
           bottomContent={
             isExpandedGroupsNoLines ? (
               <>
@@ -314,6 +318,7 @@ const Collapsed = () => {
         <DxcSidenav
           navItems={groupItems}
           appTitle="App Name"
+          searchBar={{ placeholder: "Search..." }}
           bottomContent={
             isExpandedGroups ? (
               <>
@@ -373,6 +378,7 @@ const Hovered = () => (
     <DxcSidenav
       navItems={groupItems}
       appTitle="Application Name"
+      searchBar={{ placeholder: "Search..." }}
       bottomContent={
         <>
           <DetailedAvatar />
@@ -405,6 +411,7 @@ const SelectedGroup = () => (
     <DxcSidenav
       navItems={selectedGroupItems}
       appTitle="Application name"
+      searchBar={{ placeholder: "Search..." }}
       bottomContent={
         <>
           <DetailedAvatar />

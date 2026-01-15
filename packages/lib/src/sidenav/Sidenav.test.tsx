@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import DxcSidenav from "./Sidenav";
 import { ReactNode } from "react";
 
@@ -102,5 +102,22 @@ describe("DxcSidenav component", () => {
     fireEvent.click(expandButton);
     const collapseButton = getByRole("button", { name: "Collapse" });
     expect(collapseButton).toBeTruthy();
+  });
+
+  test("Sidenav renders search bar when searchBar prop is provided", () => {
+    const { getByPlaceholderText } = render(<DxcSidenav searchBar={{ placeholder: "Search..." }} />);
+    expect(getByPlaceholderText("Search...")).toBeTruthy();
+  });
+
+  test("Sidenav expands and focuses search input when handleExpandSearch is called", async () => {
+    const { getByRole, getByPlaceholderText } = render(
+      <DxcSidenav searchBar={{ placeholder: "Search..." }} defaultExpanded={false} />
+    );
+    const expandButton = getByRole("button", { name: "Search" });
+    fireEvent.click(expandButton);
+    const searchInput = getByPlaceholderText("Search...") as HTMLInputElement;
+    await waitFor(() => {
+      expect(document.activeElement).toBe(searchInput);
+    });
   });
 });

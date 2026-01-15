@@ -114,6 +114,8 @@ const Header = () => (
     <DxcHeader />
     <DxcHeader sideContent={<div>Side Content</div>} />
     <DxcHeader navItems={items} sideContent={<div>Side Content</div>} />
+    <Title title="Header with searchbar" theme="light" level={3} />
+    <DxcHeader navItems={items} sideContent={<div>Side Content</div>} searchBar={{ placeholder: "Search..." }} />
     <Title title="Header with long content" theme="light" level={3} />
     <DxcHeader navItems={items} sideContent={<div>{longSideContent}</div>} />
     <DxcHeader appTitle={longAppTitle} navItems={items} />
@@ -131,6 +133,7 @@ const HeaderInLayout = () => (
       <DxcApplicationLayout.Header
         appTitle="Application Layout with Header"
         navItems={items}
+        searchBar={{ placeholder: "Search..." }}
         sideContent={(isResponsive) =>
           isResponsive ? (
             <>
@@ -228,5 +231,15 @@ export const Responsive: Story = {
     await userEvent.tab();
     await userEvent.keyboard("{Enter}");
     await canvas.findByText("Bottom content button");
+  },
+};
+
+export const OpenSearchBar: Story = {
+  render: HeaderInLayout,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const searchButton = canvas.getByRole("button", { name: "Search" });
+    await userEvent.click(searchButton);
+    await canvas.findByPlaceholderText("Search...");
   },
 };

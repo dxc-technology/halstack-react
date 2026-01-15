@@ -1,7 +1,10 @@
 import { ReactElement, ReactNode } from "react";
 import { SVG } from "../common/utils";
+import { SearchBarProps } from "../search-bar/types";
 
 type Section = { items: (Item | GroupItem)[]; title?: string };
+
+type SearchbarSidenavProps = Omit<SearchBarProps, "autoFocus" | "disabled" | "onCancel">;
 
 type Props = {
   /**
@@ -34,6 +37,10 @@ type Props = {
    * Function called when the expansion state of the sidenav changes.
    */
   onExpandedChange?: (value: boolean) => void;
+  /**
+   * When provided, a search bar will be rendered at the top of the sidenav.
+   */
+  searchBar?: SearchbarSidenavProps;
   /**
    * The additional content rendered in the upper part of the sidenav, under the branding.
    */
