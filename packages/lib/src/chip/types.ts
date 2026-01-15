@@ -2,9 +2,34 @@ import { Margin, SVG, Space } from "../common/utils";
 import AvatarProps from "../avatar/types";
 
 type Size = "small" | "medium" | "large";
+export type ChipAvatarType = {
+  color?: AvatarProps["color"];
+  profileName?: AvatarProps["label"];
+  imageSrc?: AvatarProps["imageSrc"];
+  icon?: AvatarProps["icon"];
+};
+type Action = {
+  /**
+   * Icon to be placed in the action.
+   */
+  icon: string | SVG;
+  /**
+   * This function will be called when the user clicks the action.
+   */
+  onClick: () => void;
+  /**
+   * Text representing advisory information related
+   * to the button's action. Under the hood, this prop also serves
+   * as an accessible label for the component.
+   */
+  title?: string;
+};
 
 type Props = {
-  avatar?: AvatarProps;
+  /**
+   * Action to be displayed on the right side of the chip after the label.
+   */
+  action?: Action;
   /**
    * If true, the component will be disabled.
    */
@@ -12,32 +37,21 @@ type Props = {
   /**
    * Text to be placed on the chip.
    */
-  label?: string;
+  label: string;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
-   * This function will be called when the prefix is clicked.
+   * Element, path or avatar used as icon to be placed before the chip label.
    */
-  onClickPrefix?: () => void;
-  /**
-   * This function will be called when the suffix is clicked.
-   */
-  onClickSuffix?: () => void;
-  /**
-   * Element or path used as icon to be placed before the chip label.
-   */
-  prefixIcon?: string | SVG;
+  prefix?: string | SVG | ChipAvatarType;
   /**
    * Size of the component.
    */
   size?: Size;
-  /**
-   * Element or path used as icon to be placed after the chip label.
-   */
-  suffixIcon?: string | SVG;
+
   /**
    * Value of the tabindex attribute.
    */

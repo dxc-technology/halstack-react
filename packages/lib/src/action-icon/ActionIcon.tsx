@@ -20,6 +20,7 @@ const ActionIconContainer = styled.div<
     hasAction?: boolean;
     size: ActionIconPropTypes["size"];
     disabled?: ActionIconPropTypes["disabled"];
+    isAvatar?: boolean;
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
   position: relative;
@@ -40,15 +41,12 @@ const ActionIconContainer = styled.div<
     color: inherit;
     outline: none;
   }
-  ${({ hasAction, disabled, size }) =>
+
+  ${({ hasAction, disabled, size, isAvatar }) =>
     !disabled &&
     hasAction &&
     css`
       cursor: pointer;
-      &:hover > div:first-child > div:first-child,
-      &:active > div:first-child > div:first-child {
-        display: block;
-      }
       &:focus:enabled > div:first-child,
       &:active:enabled > div:first-child {
         outline-style: solid;
@@ -59,15 +57,37 @@ const ActionIconContainer = styled.div<
       &:focus-visible:enabled {
         outline: none;
       }
+      ${isAvatar
+        ? css`
+            &:hover > div:first-child > div:first-child,
+            &:active > div:first-child > div:first-child {
+              display: block;
+            }
+          `
+        : css`
+            &:hover > div:first-child,
+            &:active > div:first-child {
+              background-color: var(--color-bg-alpha-light);
+            }
+          `}
     `}
-  ${({ disabled }) =>
+
+  ${({ disabled, isAvatar }) =>
     disabled &&
     css`
       cursor: not-allowed;
-      & > div:first-child > div:first-child {
-        display: block;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
+      ${isAvatar
+        ? css`
+            & > div:first-child > div:first-child {
+              display: block;
+              background-color: rgba(255, 255, 255, 0.5);
+            }
+          `
+        : css`
+            & > div:first-child > div:first-child {
+              color: var(--color-fg-neutral-medium);
+            }
+          `}
     `}
 `;
 
@@ -155,9 +175,10 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
           ref={ref}
+          isAvatar={color !== "transparent"}
         >
           <ActionIconWrapper shape={shape} color={color} size={size}>
-            {(!!onClick || !!linkHref) && <Overlay aria-hidden="true" />}
+            {color !== "transparent" && (!!onClick || !!linkHref || disabled) && <Overlay aria-hidden="true" />}
             {content ? (
               content
             ) : (

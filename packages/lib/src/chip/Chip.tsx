@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import ChipPropsType from "./types";
+import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
+import { isValidElement } from "react";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const Chip = styled.div<{
   margin: ChipPropsType["margin"];
@@ -38,7 +40,7 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-size: var(--typography-label-s);
   font-family: var(--typography-font-family);
   font-weight: var(--typography-label-regular);
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-lightest)" : "var(--color-fg-neutral-dark)")};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -58,55 +60,46 @@ const IconContainer = styled.div<{
   }
 `;
 
-const DxcChip = ({
-  avatar,
-  label,
-  suffixIcon,
-  prefixIcon,
-  onClickSuffix,
-  onClickPrefix,
-  disabled = false,
-  margin,
-  size = "medium",
-  tabIndex = 0,
-}: ChipPropsType) => (
-  <Chip disabled={disabled} margin={margin} size={size}>
-    {avatar && size != "small" ? (
-      <DxcAvatar {...avatar} size="xsmall" />
-    ) : (
-      prefixIcon &&
-      (typeof onClickPrefix === "function" ? (
-        <DxcActionIcon
-          size="xsmall"
-          disabled={disabled}
-          icon={prefixIcon}
-          onClick={onClickPrefix}
-          tabIndex={tabIndex}
-          title={!disabled ? "Prefix Action" : undefined}
-        />
-      ) : (
-        <IconContainer disabled={disabled}>
-          {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
-        </IconContainer>
-      ))
-    )}
-    {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
-    {suffixIcon &&
-      (typeof onClickSuffix === "function" ? (
-        <DxcActionIcon
-          size="xsmall"
-          disabled={disabled}
-          icon={suffixIcon}
-          onClick={onClickSuffix}
-          tabIndex={tabIndex}
-          title={!disabled ? "Suffix Action" : undefined}
-        />
-      ) : (
-        <IconContainer disabled={disabled}>
-          {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
-        </IconContainer>
-      ))}
-  </Chip>
-);
+const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
+  const isAvatarPrefix = (prefix: ChipPropsType["prefix"]): prefix is ChipAvatarType =>
+    typeof prefix === "object" && prefix !== null && "color" in prefix;
+
+  return (
+    <Tooltip label={label.length > 14 ? label : undefined}>
+      <Chip disabled={disabled} margin={margin} size={size}>
+        {prefix &&
+          (isAvatarPrefix(prefix) && size !== "small" ? (
+            <DxcAvatar
+              color={prefix.color}
+              label={prefix.profileName}
+              icon={prefix.icon}
+              imageSrc={prefix.imageSrc}
+              size="xsmall"
+              disabled={disabled}
+            />
+          ) : typeof prefix === "string" ? (
+            <IconContainer disabled={disabled}>
+              <DxcIcon icon={prefix} />
+            </IconContainer>
+          ) : (
+            isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
+          ))}
+
+        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
+
+        {action && (
+          <DxcActionIcon
+            size="xsmall"
+            disabled={disabled}
+            icon={action.icon}
+            onClick={action.onClick}
+            tabIndex={tabIndex}
+            title={!disabled ? action.title : undefined}
+          />
+        )}
+      </Chip>
+    </Tooltip>
+  );
+};
 
 export default DxcChip;
