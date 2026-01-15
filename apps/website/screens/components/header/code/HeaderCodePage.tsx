@@ -21,6 +21,14 @@ const groupItemTypeString = `{
   items: (Item)[];
 }`;
 
+const searchBarTypeString = `{
+  onBlur: (value: string) => void;
+  onCancel: () => void;
+  onChange: (value: string) => void;
+  onEnter: (value: string) => void;
+  placeholder?: string;
+}`;
+
 const sections = [
   {
     title: "Props",
@@ -95,6 +103,26 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
+                searchBar
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{searchBarTypeString}</ExtendedTableCode>
+            </td>
+            <td>
+              When provided, a search bar trigger is shown at the start of the side content. Activating the trigger
+              expands the search bar, enabling search interactions.
+              <p>
+                In responsive mode, the search bar is displayed directly (without a trigger), and the{" "}
+                <Code>onCancel</Code> callback is not called.
+              </p>
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
                 sideContent
               </DxcFlex>
             </td>
@@ -105,6 +133,7 @@ const sections = [
               Content to be displayed on the right side of the header. It can be a ReactNode or a function that receives
               a boolean indicating if the header is in responsive mode and returns a ReactNode.
             </td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
