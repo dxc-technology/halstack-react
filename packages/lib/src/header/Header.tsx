@@ -12,6 +12,8 @@ import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";
 import scrollbarStyles from "../styles/scroll";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
+import DxcSearchBarTrigger from "../search-bar/SearchBarTrigger";
+import DxcSearchBar from "../search-bar/SearchBar";
 
 const MAX_MAIN_NAV_SIZE = "60%";
 const LEVEL_LIMIT = 1;
@@ -132,9 +134,16 @@ const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (G
   return sanitizedItems;
 };
 
-const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }: HeaderProps): JSX.Element => {
+const DxcHeader = ({
+  appTitle,
+  navItems,
+  responsiveBottomContent,
+  searchBar,
+  sideContent,
+}: HeaderProps): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const logo = useContext(ApplicationLayoutContext).logo || undefined;
 
   useEffect(() => {
@@ -157,58 +166,89 @@ const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }:
   };
   const sanitizedNavItems = useMemo(() => (navItems ? sanitizeNavItems(navItems) : []), [navItems]);
 
+  const handleCancelSearch = () => {
+    if (typeof searchBar?.onCancel === "function") {
+      searchBar.onCancel();
+    }
+    setShowSearch(false);
+  };
+
+  useEffect(() => {
+    setShowSearch(false);
+  }, [isResponsive]);
+
   return (
     <MainContainer isResponsive={isResponsive} isMenuVisible={isMenuVisible}>
       <HeaderContainer>
         <DxcGrid
           templateColumns={
-            !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
-              ? [`auto`, `minmax(auto, ${MAX_MAIN_NAV_SIZE})`, `auto`]
-              : ["auto", "auto"]
+            showSearch && !isResponsive
+              ? ["auto"]
+              : !isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0
+                ? [`auto`, `minmax(auto, ${MAX_MAIN_NAV_SIZE})`, `auto`]
+                : ["auto", "auto"]
           }
           templateRows={["var(--height-xxxl)"]}
           gap="var(--spacing-gap-ml)"
           placeItems="center"
         >
-          <BrandingContainer>
-            {logo && (
-              <LogoContainer
-                role={logo.onClick ? "button" : undefined}
-                onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
-                as={logo.href ? "a" : undefined}
-                href={logo.href}
-                hasAction={!!(logo.onClick || logo.href)}
-              >
-                {typeof logo.src === "string" ? (
-                  <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
-                ) : (
-                  logo.src
-                )}
-              </LogoContainer>
-            )}
-            {appTitle && !isResponsive && (
-              <>
-                {logo && <DxcDivider orientation="vertical" />}
-                <DxcHeading text={appTitle} as="h1" level={5} />
-              </>
-            )}
-          </BrandingContainer>
-          {!isResponsive && sanitizedNavItems && sanitizedNavItems.length > 0 && (
+          {(!showSearch || isResponsive) && (
+            <BrandingContainer>
+              {logo && (
+                <LogoContainer
+                  role={logo.onClick ? "button" : undefined}
+                  onClick={typeof logo.onClick === "function" ? logo.onClick : undefined}
+                  as={logo.href ? "a" : undefined}
+                  href={logo.href}
+                  hasAction={!!(logo.onClick || logo.href)}
+                >
+                  {typeof logo.src === "string" ? (
+                    <DxcImage src={logo.src} alt={logo.alt} height="var(--height-m)" objectFit="contain" />
+                  ) : (
+                    logo.src
+                  )}
+                </LogoContainer>
+              )}
+              {appTitle && !isResponsive && (
+                <>
+                  {logo && <DxcDivider orientation="vertical" />}
+                  <DxcHeading text={appTitle} as="h1" level={5} />
+                </>
+              )}
+            </BrandingContainer>
+          )}
+
+          {!isResponsive && ((sanitizedNavItems && sanitizedNavItems.length > 0) || (!!searchBar && showSearch)) && (
             <MainNavContainer>
-              <DxcNavigationTree
-                items={sanitizedNavItems}
-                displayGroupLines={false}
-                displayBorder={false}
-                displayControlsAfter
-                hasPopOver
-                isHorizontal
-              />
+              {!!searchBar && showSearch ? (
+                <DxcSearchBar
+                  autoFocus={true}
+                  onBlur={searchBar.onBlur}
+                  onCancel={handleCancelSearch}
+                  onChange={searchBar.onChange}
+                  onEnter={searchBar.onEnter}
+                  placeholder={searchBar.placeholder}
+                />
+              ) : (
+                <DxcNavigationTree
+                  items={sanitizedNavItems}
+                  displayGroupLines={false}
+                  displayBorder={false}
+                  displayControlsAfter
+                  hasPopOver
+                  isHorizontal
+                />
+              )}
             </MainNavContainer>
           )}
-          {(sideContent || isResponsive) && (
+
+          {(!showSearch || isResponsive) && (sideContent || isResponsive || !!searchBar) && (
             <RightSideContainer>
+              {!!searchBar && !isResponsive && (
+                <DxcSearchBarTrigger onTriggerClick={() => setShowSearch(!showSearch)} />
+              )}
               {typeof sideContent === "function" ? sideContent(isResponsive) : sideContent}
-              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent) && (
+              {isResponsive && ((navItems && navItems.length) || responsiveBottomContent || !!searchBar) && (
                 <HamburguerButton onClick={toggleMenu} />
               )}
             </RightSideContainer>
@@ -219,6 +259,14 @@ const DxcHeader = ({ appTitle, navItems, sideContent, responsiveBottomContent }:
         <ResponsiveMenuContainer>
           <ResponsiveMenu>
             {appTitle && <DxcHeading text={appTitle} as="h1" level={5} />}
+            {!!searchBar && (
+              <DxcSearchBar
+                onBlur={searchBar.onBlur}
+                onChange={searchBar.onChange}
+                onEnter={searchBar.onEnter}
+                placeholder={searchBar.placeholder}
+              />
+            )}
             <DxcNavigationTree
               items={sanitizedNavItems}
               displayGroupLines={false}
