@@ -1,26 +1,30 @@
-import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
-const avatarTypeString = `{
-  color?: 'primary' | 'secondary' | 'tertiary' |
-    'success' | 'info' | 'neutral' | 'warning' | 'error';
-  disabled?: boolean;
-  icon?: string | SVG;
-  imgSrc?: string;
-  label?: string;
-  linkHref?: string;
-  onClick??: () => void;
-  shape?: 'circle' | 'square';
-  size?: 'xsmall' | 'small' | 'medium' |
-    'large' | 'xlarge' | 'xxlarge';
-  tabIndex?: number';
+const actionTypeString = `{
+  icon?: string | (React.ReactNode 
+    & React.SVGProps<SVGSVGElement>); 
+  onClick: () => void; 
   title?: string;
 }`;
+
+const prefixTypeString = `
+| string 
+| SVG
+| {
+    color?: 'primary' | 'secondary' | 'tertiary'
+      | 'success' | 'info' | 'neutral' | 'warning'
+      | 'error';
+    icon?: string | SVG;
+    imgSrc?: string;
+    label?: string;
+  }`;
 
 const sections = [
   {
@@ -37,17 +41,17 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>avatar</td>
             <td>
-              <ExtendedTableCode>{avatarTypeString}</ExtendedTableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                action
+              </DxcFlex>
             </td>
             <td>
-              Avatar that will be placed before the chip label only when the chip size is <Code>'medium'</Code> or{" "}
-              <Code>'large'</Code>.
+              <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
+            <td>Action to be displayed on the right side of the chip after the label.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>disabled</td>
@@ -60,7 +64,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>label</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                label
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>string</TableCode>
             </td>
@@ -79,54 +88,27 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onClickPrefix</td>
             <td>
-              <TableCode>{"() => void"}</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                prefix
+              </DxcFlex>
             </td>
             <td>
-              If defined, the prefix icon will be considered a button element. This function will be called when it is
-              clicked.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onClickSuffix</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>
-              If defined, the suffix icon will be considered a button element. This function will be called when it is
-              clicked.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>prefixIcon</td>
-            <td>
-              <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+              <ExtendedTableCode>{prefixTypeString}</ExtendedTableCode>
             </td>
             <td>
               <DxcLink newWindow href="https://fonts.google.com/icons">
                 Material Symbol
               </DxcLink>{" "}
-              name or SVG element as the icon that will be placed before the chip label when an <Code>avatar</Code> is
-              not provided. When using Material Symbols, replace spaces with underscores. By default they are outlined
-              if you want it to be filled prefix the symbol name with <TableCode>"filled_"</TableCode>.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>suffixIcon</td>
-            <td>
-              <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-            </td>
-            <td>
-              <DxcLink newWindow href="https://fonts.google.com/icons">
-                Material Symbol
-              </DxcLink>{" "}
-              name or SVG element as the icon that will be placed after the chip label. When using Material Symbols,
-              replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>.
+              name or SVG element used as the icon. When using Material Symbols, replace spaces with underscores. By
+              default, symbols are outlined; to use the filled version, prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
+              <DxcParagraph>
+                If a string or SVG is provided, it will be rendered as an icon placed before the chip label. If an
+                avatar props object is provided, a DxcAvatar will be displayed to the left of the label, only when the
+                chip size is medium or large.
+              </DxcParagraph>
             </td>
             <td>-</td>
           </tr>

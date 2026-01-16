@@ -2,9 +2,10 @@ import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/chip-anatomy.png";
-import Example from "@/common/example/Example";
-import categorization from "./examples/categorization";
-import filter from "./examples/filter";
+import categorization from "./images/chip-categorization.png";
+import searchFilter from "./images/chip-faceted-search-filter.png";
+import states from "./images/chip-states.png";
+import sizeVariants from "./images/chip-size.png";
 import spacing from "./images/chip-spacing.png";
 import Image from "@/common/Image";
 import Link from "next/link";
@@ -13,12 +14,18 @@ const sections = [
   {
     title: "Introduction",
     content: (
-      <DxcParagraph>
-        Chips are versatile components that allow users to display and manage information in a compact format. They are
-        commonly used to represent selected options, tags, filters, or interactive elements within an interface. Their
-        lightweight and flexible design makes them ideal for enhancing user experience by enabling quick and organized
-        interactions.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Chips are versatile UI components used to display and manage information in a compact, scannable format. They
+          commonly represent selected options, tags, filters, or contextual actions within an interface.
+        </DxcParagraph>
+        <DxcParagraph>
+          Chip component supports multiple sizes, optional leading elements (icon or avatar), and an optional action
+          icon, while maintaining a consistent structure and interaction model. Clear states, keyboard accessibility,
+          and controlled label length ensure the component remains lightweight, reusable, and adaptable across products
+          such as filters, forms, and the chatbot experience.
+        </DxcParagraph>
+      </>
     ),
   },
   {
@@ -28,72 +35,20 @@ const sections = [
         <Image src={anatomy} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Container</strong> <em>(Required)</em>:
-            <DxcBulletedList>
-              <DxcBulletedList.Item>The outer wrapper of the chip.</DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Defines:
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>Overall size (Small / Medium / Large)</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    Interactive area (default, focus, hover, active and disabled)
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Acts as the main clickable surface when no action icon is present.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
+            <strong>Container</strong>: the structural wrapper that holds the chip’s content and defines its visual
+            boundaries and spacing. It establishes the chip’s size and layout while remaining informational only.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Left Element</strong> <em>(Optional)</em>: Supported types:
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <strong>Icon</strong>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>Allowed in Small, Medium and Large.</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Used for status, category, or action hint.</DxcBulletedList.Item>
-                </DxcBulletedList>
-              </DxcBulletedList.Item>
-
-              <DxcBulletedList.Item>
-                <strong>Avatar</strong>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>Allowed only in Medium and Large.</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Represents people, entities or profiles.</DxcBulletedList.Item>
-                </DxcBulletedList>
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
-            Small size supports icons only to preserve compactness and clarity.
+            <strong>Left Element</strong> <em>(Optional)</em>: a leading visual element that adds contextual meaning to
+            the chip and helps users quickly recognize its purpose.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label</strong> <em>(Required)</em>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Text content displayed inside the chip</DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Characteristics:
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>Short, concise text</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Single-line only(no-wrapping)</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Truncated when exceeding maximum width</DxcBulletedList.Item>
-                  <DxcBulletedList.Item>Tooltip appears on hover/focus when truncated</DxcBulletedList.Item>
-                </DxcBulletedList>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Serves as the primary identifier of the chip.</DxcBulletedList.Item>
-            </DxcBulletedList>
+            <strong>Label</strong>: the text content inside the chip that identifies and describes the associated item
+            or value.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Action Icon</strong> <em>(Optional) -</em> Appears at the end of the chip. Common usage:
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Remove / clear action (✕)</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Secondary inline action (if applicable)</DxcBulletedList.Item>
-            </DxcBulletedList>
-            Behavior:
-            <DxcBulletedList>
-              <DxcBulletedList.Item>Has its own interaction target</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Does not trigger the main chip action</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Disabled when the chip is disabled</DxcBulletedList.Item>
-            </DxcBulletedList>
+            <strong>Action Icon</strong> <em>(Optional)</em>: a trailing control that enables direct interaction with
+            the chip without affecting the container itself.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -107,11 +62,17 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Chips are commonly used to organize content by grouping related topics, products, or subjects. They often
-              serve as a summary of the page's content. When using chips for categorization, ensure that they are
-              relevant to the displayed information to maintain clarity and usability.
+              Chips are used to organize and summarize related information such as topics, statuses, or attributes in a
+              compact and scannable way. They help users quickly understand key metadata without overwhelming the
+              interface.
             </DxcParagraph>
-            <Example example={categorization} />
+            <DxcParagraph>
+              With the redesigned Chip component, categorization chips support consistent sizing, optional leading
+              icons, and a clear visual structure while remaining informational and non-interactive. When using chips
+              for categorization, ensure labels are concise and relevant to the displayed content to maintain clarity
+              and usability.
+            </DxcParagraph>
+            <Image src={categorization} alt="Chip categorization" />
           </>
         ),
       },
@@ -120,12 +81,29 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              When used alongside the select component, chips serve as effective filter facets, allowing users to refine
-              search results by choosing and removing specific attributes. This combination enables users to include or
-              exclude preferences directly from their queries. For faceted filtering, chips should be dismissible,
-              ensuring effortless adjustments and a more intuitive selection experience.
+              When used alongside selection or filter controls, chips act as filter facets that allow users to review,
+              apply, and remove selected attributes. This enables users to refine results efficiently and maintain
+              visibility of their current selections.
             </DxcParagraph>
-            <Example example={filter} />
+            <DxcParagraph>
+              In the redesigned Chip component, faceted filter chips support dismissal through the action icon, which is
+              the primary interaction point. Clear visual states (hover, focus, active, disabled) help communicate
+              interactivity, while optional leading elements (icons or avatars, depending on size){" "}
+            </DxcParagraph>
+            <Image src={searchFilter} alt="Chip faceted search filters" />
+          </>
+        ),
+      },
+      {
+        title: "Chip states",
+        content: (
+          <>
+            <DxcParagraph>
+              Chip component, states are applied to the action icon only, including default, hover, focus, active, and
+              disabled. The container remains informational, ensuring interactions are clear, intentional, and
+              consistent across use cases.
+            </DxcParagraph>
+            <Image src={states} alt="Chip states" />
           </>
         ),
       },
@@ -169,6 +147,19 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
+          </>
+        ),
+      },
+      {
+        title: "Size variants",
+        content: (
+          <>
+            <DxcParagraph>
+              The Chip component is available in three size variants to support different interface densities and use
+              cases. Each size follows the same structural pattern while adjusting spacing and supported elements to
+              maintain clarity and usability.
+            </DxcParagraph>
+            <Image src={sizeVariants} alt="Chip size variants" />
           </>
         ),
       },
