@@ -3,7 +3,7 @@ import AvatarProps from "../avatar/types";
 
 type Size = "small" | "medium" | "large";
 export type ChipAvatarType = {
-  color?: AvatarProps["color"];
+  color: AvatarProps["color"];
   profileName?: AvatarProps["label"];
   imageSrc?: AvatarProps["imageSrc"];
   icon?: AvatarProps["icon"];

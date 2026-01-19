@@ -6,6 +6,7 @@ import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+import avatar from "./examples/avatar";
 
 const actionTypeString = `{
   icon?: string | (React.ReactNode 
@@ -18,7 +19,7 @@ const prefixTypeString = `
 | string 
 | SVG
 | {
-    color?: 'primary' | 'secondary' | 'tertiary'
+    color: 'primary' | 'secondary' | 'tertiary'
       | 'success' | 'info' | 'neutral' | 'warning'
       | 'error';
     icon?: string | SVG;
@@ -141,6 +142,14 @@ const sections = [
         content: (
           <>
             <Example example={icons} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Avatar",
+        content: (
+          <>
+            <Example example={avatar} defaultIsVisible />
           </>
         ),
       },

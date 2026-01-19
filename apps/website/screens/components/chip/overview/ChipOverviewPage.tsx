@@ -181,6 +181,10 @@ const sections = [
             <DxcBulletedList.Item>
               Use <strong>sentence case</strong> for readability (e.g., "New York" instead of "NEW YORK").
             </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Ensure the most important information appears at the beginning of the label, since long labels are
+              automatically truncated.
+            </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
       },
@@ -206,27 +210,22 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              While the component configuration is flexible enough to allow multiple icons or action icons, it is{" "}
-              <strong>not recommended</strong> to use two icons or two action icons within the same chip. Instead, a{" "}
-              <strong>balanced approach</strong> should be followed: pairing one <strong>icon</strong> (to provide
-              context) with one <strong>action icon</strong> (to enable an interaction).
+              Chip component may include <strong>one leading informational icon (or avatar)</strong> and{" "}
+              <strong>one action icon</strong>. Using multiple informational icons or multiple action icons within the
+              same chip is not supported.
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Icons should add value</strong> to the chip, not just be decorative.
+                Informational icons should <strong>add value</strong> to the chip, such as status or category.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Ensure that icons are <strong>easy to recognize and understand</strong> within the chip's context. The
-                selected icon should accurately represent the chip's purpose, while the action icon should clearly
-                indicate the interaction it triggers.
+                The <strong>action icon</strong> should clearly communicate its purpose (e.g., remove or clear).
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Icons <strong>should not compete for attention</strong> or convey conflicting messages. Instead, they
-                should complement each other to enhance usability.
+                Icons should be <strong>easy to recognize</strong> and not compete for attention.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid
-                using two icons of the same type.
+                Follow the guideline: <strong>one informational element + one action icon (if needed)</strong>.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
@@ -237,10 +236,12 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              If there are too many chips in a row, consider <strong>horizontal scrolling or wrapping</strong>.
+              When displaying many chips, consider <strong>wrapping or horizontal scrolling</strong> depending on layout
+              constraints.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              For dynamic content, provide a <strong>"Show more" option</strong> to avoid overwhelming the user.
+              For dynamic or long lists, provide a <strong>"Show more"</strong> or similar mechanism to prevent visual
+              clutter.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),

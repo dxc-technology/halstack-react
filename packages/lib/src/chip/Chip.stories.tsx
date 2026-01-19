@@ -85,6 +85,11 @@ const Chip = () => (
     <ExampleContainer>
       <Title title="Chip with prefix Avatar" theme="light" level={4} />
       <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary" }} />
+      <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary", profileName: "Michael Ramirez" }} />
+      <DxcChip
+        label="Chip with prefix Avatar"
+        prefix={{ color: "primary", imageSrc: "https://picsum.photos/id/1022/200/300" }}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with action SVG" theme="light" level={4} />
