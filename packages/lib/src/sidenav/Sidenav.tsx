@@ -5,20 +5,29 @@ import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
 import DxcSearchBar from "../search-bar/SearchBar";
 import DxcSearchBarTrigger from "../search-bar/SearchBarTrigger";
 
-const SidenavContainer = styled.div<{ expanded: boolean }>`
+const COLLAPSED_WIDTH = 56;
+const MIN_WIDTH = 240;
+const MAX_WIDTH = 320;
+const DEFAULT_WIDTH = 280;
+
+const SidenavContainer = styled.div<{
+  expanded: boolean;
+  width: number;
+}>`
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* TODO: IMPLEMENT RESIZABLE SIDENAV */
-  min-width: ${({ expanded }) => (expanded ? "240px" : "56px")};
-  max-width: ${({ expanded }) => (expanded ? "320px" : "56px")};
+
+  width: ${({ expanded, width }) => (expanded ? `${width}px` : `${COLLAPSED_WIDTH}px`)};
+  min-width: 56px;
   height: 100%;
   @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
@@ -33,6 +42,18 @@ const SidenavContainer = styled.div<{ expanded: boolean }>`
     padding-left: var(--spacing-padding-xs);
     padding-right: var(--spacing-padding-xs);
   }
+`;
+
+// TODO: REFACTOR IN CASE SIDEPANEL CAN GO RIGHT
+const ResizeHandle = styled.span<{ active: boolean }>`
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--spacing-padding-xs));
+  padding: var(--spacing-padding-xxs);
+  height: 100%;
+  z-index: 10;
+  cursor: ew-resize;
+  background-color: ${({ active }) => (active ? "var(--color-bg-neutral-medium)" : "var(--color-bg-neutral-light)")};
 `;
 
 const SidenavTitle = styled.div`
@@ -76,6 +97,39 @@ const DxcSidenav = ({
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
   const shouldFocusSearchBar = useRef(false);
+  const sidenavRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(DEFAULT_WIDTH);
+  const resizing = useRef(false);
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (!resizing.current || !sidenavRef.current) return;
+
+      const rect = sidenavRef?.current?.getBoundingClientRect();
+      const nextWidth = e.clientX - rect.left;
+
+      setWidth(() => Math.min(Math.max(nextWidth, MIN_WIDTH), MAX_WIDTH));
+    };
+
+    const stop = () => {
+      resizing.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", stop);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", stop);
+    };
+  }, []);
+
+  const startResize = () => {
+    resizing.current = true;
+    document.body.style.cursor = "ew-resize";
+    document.body.style.userSelect = "none";
+  };
 
   const handleToggle = () => {
     const nextState = !isExpanded;
@@ -92,7 +146,8 @@ const DxcSidenav = ({
   };
 
   return (
-    <SidenavContainer expanded={isExpanded}>
+    <SidenavContainer expanded={isExpanded} width={width} ref={sidenavRef}>
+      {isExpanded && <ResizeHandle active={resizing.current} onMouseDown={startResize} />}
       <DxcFlex
         justifyContent={isExpanded ? "normal" : "center"}
         gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
@@ -127,7 +182,7 @@ const DxcSidenav = ({
         </DxcFlex>
       </DxcFlex>
       {(topContent || searchBar) && (
-        <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+        <DxcFlex direction="column" gap="var(--spacing-gap-l)">
           {searchBar &&
             (isExpanded ? (
               <DxcSearchBar {...searchBar} autoFocus={shouldFocusSearchBar.current} />
@@ -151,7 +206,7 @@ const DxcSidenav = ({
           <DxcInset horizontal="var(--spacing-padding-xs)">
             <DxcDivider color="lightGrey" />
           </DxcInset>
-          <DxcFlex direction="column" gap={"var(--spacing-gap-l)"}>
+          <DxcFlex direction="column" gap="var(--spacing-gap-l)">
             {bottomContent}
           </DxcFlex>
         </>
