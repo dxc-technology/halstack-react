@@ -12,7 +12,6 @@ export default {
       useEffect(() => {
         const prev = document.body.style.cssText;
         document.body.style.backgroundColor = "var(--color-bg-neutral-light)";
-        document.body.style.padding = "0";
         return () => {
           document.body.style.cssText = prev;
         };
