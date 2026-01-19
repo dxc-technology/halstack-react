@@ -34,7 +34,7 @@ const DetailedAvatar = () => {
         <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
         <DxcFlex direction="column">
           <DxcTypography
-            color="var(--color-fg-neutral-dark"
+            color="var(--color-fg-neutral-dark)"
             fontFamily="var(--typography-font-family)"
             fontSize="var(--typography-label-l)"
             fontWeight="var(--typography-label-regular)"
@@ -42,7 +42,7 @@ const DetailedAvatar = () => {
             Michael Ramirez
           </DxcTypography>
           <DxcTypography
-            color="var(--color-fg-neutral-stronger"
+            color="var(--color-fg-neutral-stronger)"
             fontFamily="var(--typography-font-family)"
             fontSize="var(--typography-label-s)"
             fontWeight="var(--typography-label-regular)"
