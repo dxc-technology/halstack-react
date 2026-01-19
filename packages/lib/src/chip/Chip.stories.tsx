@@ -54,108 +54,113 @@ const smallIconSVG = (
 
 const Chip = () => (
   <>
+    <Title title="Basic chip" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Basic chip" theme="light" level={4} />
       <DxcChip label="Basic Chip" />
     </ExampleContainer>
 
     <Title title="Sizes" theme="light" level={2} />
+    <Title title="Small" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
       <DxcChip label="Small" size="small" />
     </ExampleContainer>
+    <Title title="Medium" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
       <DxcChip label="Medium" />
     </ExampleContainer>
+    <Title title="Large" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
       <DxcChip label="Large" size="large" />
     </ExampleContainer>
 
     <Title title="Variants" theme="light" level={2} />
+    <Title title="Chip with prefix SVG" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with prefix SVG" theme="light" level={4} />
       <DxcChip label="Chip with prefix SVG" prefix={smallIconSVG} />
     </ExampleContainer>
+    <Title title="Chip with prefix icon" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with prefix icon" theme="light" level={4} />
       <DxcChip label="Chip with prefix icon" prefix="settings" />
     </ExampleContainer>
+    <Title title="Chip with prefix Avatar" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with prefix Avatar" theme="light" level={4} />
       <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <ExampleContainer>
       <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary", profileName: "Michael Ramirez" }} />
+    </ExampleContainer>
+    <ExampleContainer>
       <DxcChip
         label="Chip with prefix Avatar"
         prefix={{ color: "primary", imageSrc: "https://picsum.photos/id/1022/200/300" }}
       />
     </ExampleContainer>
+    <Title title="Chip with action SVG" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with action SVG" theme="light" level={4} />
       <DxcChip label="Chip with action SVG" action={{ icon: iconSVG, onClick: () => console.log("action clicked") }} />
     </ExampleContainer>
+    <Title title="Chip with prefix (SVG) and action (URL)" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with prefix (SVG) and action (URL)" theme="light" level={4} />
       <DxcChip
         label="Chip with prefix and action"
         prefix={iconSVG}
         action={{ icon: "filled_check_circle", onClick: () => console.log("action clicked") }}
       />
     </ExampleContainer>
+    <Title title="Chip with ellipsis" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis" theme="light" level={4} />
       <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />
     </ExampleContainer>
+    <Title title="Chip with ellipsis and action" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis and action" theme="light" level={4} />
       <DxcChip
         action={{ icon: iconSVG, onClick: () => console.log("action clicked") }}
         label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
       />
     </ExampleContainer>
+    <Title title="Chip with ellipsis and prefix" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis and prefix" theme="light" level={4} />
       <DxcChip
         prefix={iconSVG}
         label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
       />
     </ExampleContainer>
+    <Title title="Chip with ellipsis, action and prefix" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis, action and prefix" theme="light" level={4} />
       <DxcChip
         prefix={iconSVG}
         action={{ icon: iconSVG, onClick: () => console.log("action clicked") }}
         label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasdf"
       />
     </ExampleContainer>
+
     <Title title="Margins" theme="light" level={2} />
+    <Title title="Xxsmall margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcChip label="xxsmall" margin="xxsmall" />
     </ExampleContainer>
+    <Title title="Xsmall margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xsmall margin" theme="light" level={4} />
       <DxcChip label="xsmall" margin="xsmall" />
     </ExampleContainer>
+    <Title title="Small margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Small margin" theme="light" level={4} />
       <DxcChip label="small" margin="small" />
     </ExampleContainer>
+    <Title title="Medium margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Medium margin" theme="light" level={4} />
       <DxcChip label="medium" margin="medium" />
     </ExampleContainer>
+    <Title title="Large margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Large margin" theme="light" level={4} />
       <DxcChip label="large" margin="large" />
     </ExampleContainer>
+    <Title title="Xlarge margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xlarge margin" theme="light" level={4} />
       <DxcChip label="xlarge" margin="xlarge" />
     </ExampleContainer>
+    <Title title="Xxlarge margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcChip label="xxlarge" margin="xxlarge" />
     </ExampleContainer>
   </>
