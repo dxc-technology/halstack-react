@@ -65,40 +65,42 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
     typeof prefix === "object" && prefix !== null && "color" in prefix;
 
   return (
-    <Tooltip label={label.length > 14 ? label : undefined}>
-      <Chip disabled={disabled} margin={margin} size={size}>
-        {prefix &&
-          (isAvatarPrefix(prefix) && size !== "small" ? (
-            <DxcAvatar
-              color={prefix.color}
-              label={prefix.profileName}
-              icon={prefix.icon}
-              imageSrc={prefix.imageSrc}
-              size="xsmall"
-              disabled={disabled}
-            />
-          ) : typeof prefix === "string" ? (
-            <IconContainer disabled={disabled}>
-              <DxcIcon icon={prefix} />
-            </IconContainer>
-          ) : (
-            isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
-          ))}
-
-        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
-
-        {action && (
-          <DxcActionIcon
+    <Chip disabled={disabled} margin={margin} size={size}>
+      {prefix &&
+        (isAvatarPrefix(prefix) && size !== "small" ? (
+          <DxcAvatar
+            color={prefix.color}
+            label={prefix.profileName}
+            icon={prefix.icon}
+            imageSrc={prefix.imageSrc}
             size="xsmall"
             disabled={disabled}
-            icon={action.icon}
-            onClick={action.onClick}
-            tabIndex={tabIndex}
-            title={!disabled ? action.title : undefined}
           />
-        )}
-      </Chip>
-    </Tooltip>
+        ) : typeof prefix === "string" ? (
+          <IconContainer disabled={disabled}>
+            <DxcIcon icon={prefix} />
+          </IconContainer>
+        ) : (
+          isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
+        ))}
+
+      {label && (
+        <Tooltip label={label.length > 14 ? label : undefined}>
+          <LabelContainer disabled={disabled}>{label}</LabelContainer>
+        </Tooltip>
+      )}
+
+      {action && (
+        <DxcActionIcon
+          size="xsmall"
+          disabled={disabled}
+          icon={action.icon}
+          onClick={action.onClick}
+          tabIndex={tabIndex}
+          title={!disabled ? action.title : undefined}
+        />
+      )}
+    </Chip>
   );
 };
 

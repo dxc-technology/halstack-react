@@ -167,29 +167,42 @@ const Chip = () => (
 
 const ChipActionStates = () => (
   <>
+    <Title title="Default" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
       <DxcChip label="Default" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
     </ExampleContainer>
+    <Title title="Hover" theme="light" level={4} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hover" theme="light" level={4} />
       <DxcChip label="Hover" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
     </ExampleContainer>
+    <Title title="Focus" theme="light" level={4} />
     <ExampleContainer pseudoState={["pseudo-focus", "pseudo-focus-within"]}>
-      <Title title="Focus" theme="light" level={4} />
       <DxcChip label="Focus" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
     </ExampleContainer>
+    <Title title="Active" theme="light" level={4} />
     <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active" theme="light" level={4} />
       <DxcChip label="Active" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
     </ExampleContainer>
+    <Title title="Disabled" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
       <DxcChip
         label="Disabled"
         action={{ icon: "filled_delete", onClick: () => {} }}
         prefix={{ color: "primary" }}
         disabled
+      />
+    </ExampleContainer>
+  </>
+);
+
+const ChipTooltip = () => (
+  <>
+    <Title title="Chip with Tooltip" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip
+        label="Default with tooltip"
+        action={{ icon: "filled_delete", onClick: () => {}, title: "Delete" }}
+        prefix={{ color: "primary" }}
       />
     </ExampleContainer>
   </>
@@ -203,4 +216,8 @@ export const Chromatic: Story = {
 
 export const ActionStates: Story = {
   render: ChipActionStates,
+};
+
+export const Tooltip: Story = {
+  render: ChipTooltip,
 };
