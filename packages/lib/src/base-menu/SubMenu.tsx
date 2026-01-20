@@ -15,23 +15,23 @@ const SubMenuContainer = styled.ul<{
   flex-direction: ${({ isHorizontal }) => (isHorizontal ? "row" : "column")};
   gap: ${({ isHorizontal }) => (isHorizontal ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
   list-style: none;
-  ${({ isPopOver }) =>
-    isPopOver &&
-    `
+  // TODO: CHECK PADDING, CAUSING OFFSET IN SIDENAV (ASK JIALE)
+  ${({ depthLevel, displayGroupLines, isPopOver }) =>
+    isPopOver
+      ? `
       min-width: 200px;
       max-width: 320px;
       padding: var(--spacing-padding-xs);
       background-color: var(--color-bg-neutral-lightest);
       border-radius: var(--border-radius-m);
       box-shadow: var(--shadow-100);
-    `}
-  ${({ depthLevel, displayGroupLines }) =>
-    displayGroupLines &&
-    depthLevel >= 0 &&
     `
+      : displayGroupLines &&
+        depthLevel >= 0 &&
+        `
       margin-left: calc(var(--spacing-padding-m) + ${depthLevel} * var(--spacing-padding-xs));
       border-left: var(--border-width-s) solid var(--border-color-neutral-lighter);
-    `};
+    `}
 `;
 
 export default function SubMenu({

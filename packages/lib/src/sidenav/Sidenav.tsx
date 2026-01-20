@@ -5,12 +5,13 @@ import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
 import DxcSearchBar from "../search-bar/SearchBar";
 import DxcSearchBarTrigger from "../search-bar/SearchBarTrigger";
+import useResize from "../utils/useResize";
 
 const COLLAPSED_WIDTH = 56;
 const MIN_WIDTH = 240;
@@ -97,39 +98,12 @@ const DxcSidenav = ({
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? !!expanded : internalExpanded;
   const shouldFocusSearchBar = useRef(false);
-  const sidenavRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(DEFAULT_WIDTH);
-  const resizing = useRef(false);
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      if (!resizing.current || !sidenavRef.current) return;
 
-      const rect = sidenavRef?.current?.getBoundingClientRect();
-      const nextWidth = e.clientX - rect.left;
-
-      setWidth(() => Math.min(Math.max(nextWidth, MIN_WIDTH), MAX_WIDTH));
-    };
-
-    const stop = () => {
-      resizing.current = false;
-      document.body.style.cursor = "";
-      document.body.style.userSelect = "";
-    };
-
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", stop);
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", stop);
-    };
-  }, []);
-
-  const startResize = () => {
-    resizing.current = true;
-    document.body.style.cursor = "ew-resize";
-    document.body.style.userSelect = "none";
-  };
+  const { width, sidenavRef, resizing, startResize } = useResize({
+    minWidth: MIN_WIDTH,
+    maxWidth: MAX_WIDTH,
+    defaultWidth: DEFAULT_WIDTH,
+  });
 
   const handleToggle = () => {
     const nextState = !isExpanded;
@@ -178,7 +152,7 @@ const DxcSidenav = ({
               )}
             </LogoContainer>
           )}
-          <SidenavTitle>{appTitle}</SidenavTitle>
+          {isExpanded && <SidenavTitle>{appTitle}</SidenavTitle>}
         </DxcFlex>
       </DxcFlex>
       {(topContent || searchBar) && (
