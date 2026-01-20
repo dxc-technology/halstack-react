@@ -51,6 +51,18 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
               sideOffset={isHorizontal ? 16 : 0}
               onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
             >
+              {!isHorizontal && props.depthLevel === 0 && (
+                <ItemAction
+                  aria-controls={isOpen ? groupMenuId : undefined}
+                  aria-expanded={isOpen ? true : undefined}
+                  aria-pressed={groupSelected && !isOpen}
+                  collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
+                  onClick={() => toggleOpen()}
+                  selected={groupSelected && !isOpen}
+                  {...props}
+                  icon={undefined}
+                />
+              )}
               <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
                 {items.map((item, index) => (
                   <MenuItem
