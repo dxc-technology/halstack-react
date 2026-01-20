@@ -4,8 +4,9 @@ import DxcIcon from "../icon/Icon";
 import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
-import { isValidElement } from "react";
+import { isValidElement, useRef, useMemo, useLayoutEffect, useState } from "react";
 import { Tooltip } from "../tooltip/Tooltip";
+import useWidth from "../utils/useWidth";
 
 const Chip = styled.div<{
   margin: ChipPropsType["margin"];
@@ -64,8 +65,51 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
   const isAvatarPrefix = (prefix: ChipPropsType["prefix"]): prefix is ChipAvatarType =>
     typeof prefix === "object" && prefix !== null && "color" in prefix;
 
+  const chipRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const chipWidth = useWidth(chipRef);
+  const [textWidth, setTextWidth] = useState(0);
+
+  // Measure the actual text width without ellipsis constraints
+  useLayoutEffect(() => {
+    if (label && labelRef.current) {
+      const measureElement = document.createElement("span");
+      measureElement.style.position = "absolute";
+      measureElement.style.visibility = "hidden";
+      measureElement.style.whiteSpace = "nowrap";
+      measureElement.style.fontSize = "var(--typography-label-s)";
+      measureElement.style.fontFamily = "var(--typography-font-family)";
+      measureElement.style.fontWeight = "var(--typography-label-regular)";
+      measureElement.textContent = label;
+
+      document.body.appendChild(measureElement);
+      setTextWidth(measureElement.getBoundingClientRect().width);
+      document.body.removeChild(measureElement);
+    }
+  }, [label]);
+
+  const shouldShowTooltip = useMemo(() => {
+    if (!chipWidth || !textWidth || !label) return false;
+
+    const chipPadding = size === "small" ? 8 : 12;
+    const gap = 4;
+
+    let usedSpace = chipPadding;
+
+    if (prefix) {
+      usedSpace += 24 + gap;
+    }
+
+    if (action) {
+      usedSpace += 24 + gap;
+    }
+
+    const availableSpace = chipWidth - usedSpace;
+    return textWidth > availableSpace;
+  }, [chipWidth, textWidth, label, prefix, action, size]);
+
   return (
-    <Chip disabled={disabled} margin={margin} size={size}>
+    <Chip disabled={disabled} margin={margin} size={size} ref={chipRef}>
       {prefix &&
         (isAvatarPrefix(prefix) && size !== "small" ? (
           <DxcAvatar
@@ -85,8 +129,10 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
         ))}
 
       {label && (
-        <Tooltip label={label.length > 14 ? label : undefined}>
-          <LabelContainer disabled={disabled}>{label}</LabelContainer>
+        <Tooltip label={shouldShowTooltip ? label : undefined}>
+          <LabelContainer disabled={disabled} ref={labelRef}>
+            {label}
+          </LabelContainer>
         </Tooltip>
       )}
 
