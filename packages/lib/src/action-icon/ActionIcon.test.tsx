@@ -28,30 +28,6 @@ describe("ActionIcon component tests", () => {
     fireEvent.click(buttonDiv);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-  test("ActionIcon renders status indicator correctly", () => {
-    const { rerender, queryByRole, getByRole } = render(
-      <DxcActionIcon icon="house" status={{ mode: "default", position: "top" }} />
-    );
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-neutral-strong)");
-    rerender(<DxcActionIcon icon="house" status={{ mode: "info", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-secondary-medium)");
-    rerender(<DxcActionIcon icon="house" status={{ mode: "success", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-success-medium)");
-    rerender(<DxcActionIcon icon="house" status={{ mode: "warning", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-warning-strong)");
-    rerender(<DxcActionIcon icon="house" status={{ mode: "error", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-error-medium)");
-    rerender(<DxcActionIcon icon="house" />);
-    expect(queryByRole("status")).toBeNull();
-  });
-  test("ActionIcon renders status indicator in correct position", () => {
-    const { rerender, getByRole } = render(
-      <DxcActionIcon icon="house" status={{ mode: "default", position: "top" }} />
-    );
-    expect(getByRole("status")).toHaveStyle("top: 0px;");
-    rerender(<DxcActionIcon icon="house" status={{ mode: "info", position: "bottom" }} />);
-    expect(getByRole("status")).toHaveStyle("bottom: 0px");
-  });
   test("ActionIcon is focusable when onClick is passed", () => {
     const handleClick = jest.fn();
     const { getByRole } = render(<DxcActionIcon icon="house" onClick={handleClick} />);

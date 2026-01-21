@@ -98,25 +98,25 @@ describe("Avatar component tests", () => {
     const { rerender, queryByRole, getByRole } = render(
       <DxcAvatar label="John Doe" status={{ mode: "default", position: "top" }} />
     );
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-neutral-strong)");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("background-color: var(--color-fg-neutral-strong)");
     rerender(<DxcAvatar label="John Doe" status={{ mode: "info", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-secondary-medium)");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("background-color: var(--color-fg-secondary-medium)");
     rerender(<DxcAvatar label="John Doe" status={{ mode: "success", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-success-medium)");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("background-color: var(--color-fg-success-medium)");
     rerender(<DxcAvatar label="John Doe" status={{ mode: "warning", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-warning-strong)");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("background-color: var(--color-fg-warning-strong)");
     rerender(<DxcAvatar label="John Doe" status={{ mode: "error", position: "top" }} />);
-    expect(getByRole("status")).toHaveStyle("background-color: var(--color-fg-error-medium)");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("background-color: var(--color-fg-error-medium)");
     rerender(<DxcAvatar label="John Doe" />);
-    expect(queryByRole("status")).toBeNull();
+    expect(queryByRole("status", { hidden: true })).toBeNull();
   });
   test("Avatar renders status indicator in correct position", () => {
     const { rerender, getByRole } = render(
       <DxcAvatar label="John Doe" status={{ mode: "default", position: "top" }} />
     );
-    expect(getByRole("status")).toHaveStyle("top: 0px;");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("top: 0px;");
     rerender(<DxcAvatar label="John Doe" status={{ mode: "info", position: "bottom" }} />);
-    expect(getByRole("status")).toHaveStyle("bottom: 0px");
+    expect(getByRole("status", { hidden: true })).toHaveStyle("bottom: 0px");
   });
   test("Avatar renders primaryText and secondaryText correctly", () => {
     const { rerender, getByText } = render(<DxcAvatar primaryText="Primary Text" secondaryText="Secondary Text" />);

@@ -111,7 +111,7 @@ const DxcAvatar = memo(
           </DxcTypography>
         )}
 
-        {status && <StatusContainer status={status} size={size} aria-hidden="true" />}
+        {status && <StatusContainer role="status" status={status} size={size} />}
       </ContentWrapper>
     );
 
