@@ -3,10 +3,11 @@ import AvatarPropsType from "./types";
 import { getBorderWidth, getFontSize, getInitials, getModeColor } from "./utils";
 import DxcTypography from "../typography/Typography";
 import DxcImage from "../image/Image";
-import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcActionIcon, { IconContainer } from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import DxcIcon from "../icon/Icon";
 
 const ContentWrapper = styled.div<{ hasAction: boolean }>`
   position: relative;
@@ -97,7 +98,7 @@ const DxcAvatar = memo(
             objectFit="cover"
             objectPosition="center"
           />
-        ) : (
+        ) : label ? (
           <DxcTypography
             as="span"
             fontFamily="var(--typography-font-family)"
@@ -109,6 +110,10 @@ const DxcAvatar = memo(
           >
             {initials}
           </DxcTypography>
+        ) : (
+          <IconContainer size={size} color={color}>
+            {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+          </IconContainer>
         )}
 
         {status && <StatusContainer role="status" status={status} size={size} />}
@@ -156,14 +161,13 @@ const DxcAvatar = memo(
       <LabelWrapper condition={!!(primaryText || secondaryText)}>
         <DxcActionIcon
           ariaLabel={label}
-          content={(imageSrc && !error) || initials ? content : undefined}
+          content={content}
           color={
             ["primary", "secondary", "tertiary", "success", "info", "neutral", "warning", "error"].includes(color)
               ? color
               : "neutral"
           }
           disabled={disabled}
-          icon={icon}
           linkHref={linkHref}
           onClick={onClick}
           shape={shape}
