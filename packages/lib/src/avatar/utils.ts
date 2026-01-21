@@ -9,6 +9,23 @@ const fontSizeMap = {
   xxlarge: "36px",
 };
 
+const borderWidthMap = {
+  xsmall: "var(--border-width-s)",
+  small: "var(--border-width-s)",
+  medium: "var(--border-width-s)",
+  large: "var(--border-width-m)",
+  xlarge: "var(--border-width-m)",
+  xxlarge: "var(--border-width-m)",
+};
+
+const modeColorMap = {
+  default: "var(--color-fg-neutral-strong)",
+  info: "var(--color-fg-secondary-medium)",
+  success: "var(--color-fg-success-medium)",
+  warning: "var(--color-fg-warning-strong)",
+  error: "var(--color-fg-error-medium)",
+};
+
 export const getFontSize = (size: AvatarPropsType["size"]) => (size ? fontSizeMap[size] : "var(--typography-label-l)");
 
 export const getInitials = (label?: string): string => {
@@ -22,3 +39,9 @@ export const getInitials = (label?: string): string => {
   const firstWord = words[0] ?? "";
   return firstWord.slice(0, 2).toUpperCase();
 };
+
+export const getBorderWidth = (size: AvatarPropsType["size"]) =>
+  size && borderWidthMap[size] ? borderWidthMap[size] : "var(--border-width-s)";
+
+export const getModeColor = (mode: Required<AvatarPropsType>["status"]["mode"]) =>
+  mode && modeColorMap[mode] ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";

@@ -99,7 +99,6 @@ const ActionIconRow = ({
                       size={size}
                       shape={shape}
                       color={color}
-                      status={position && mode ? { position, mode: mode } : undefined}
                       onClick={pseudoStatesEnabled ? () => console.log("") : undefined}
                       disabled={isDisabled}
                     />
@@ -163,29 +162,16 @@ export const Colors: Story = {
   ),
 };
 
-export const Statuses: Story = {
-  render: () => (
-    <>
-      <Title title="Statuses" theme="light" level={2} />
-      <ActionIconRow
-        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info", "transparent"]}
-        shapes={["circle"]}
-        statusModes={["default", "info", "success", "warning", "error"]}
-        statusPositions={["top", "bottom"]}
-        groupBy={["statusPosition", "statusMode", "color"]}
-      />
-    </>
-  ),
-};
-
 export const PseudoStates: Story = {
   render: () => (
     <>
       <Title title="Pseudo states" theme="light" level={2} />
+      <DxcActionIcon color="transparent" icon="settings" onClick={() => console.log("hello")} />
+
       <ActionIconRow
+        colors={["transparent"]}
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        shapes={["circle"]}
+        shapes={["square"]}
         statusModes={["success"]}
         statusPositions={[undefined, "top", "bottom"]}
         pseudoStates={[undefined, "pseudo-hover", "pseudo-focus", "pseudo-active", "disabled"]}
