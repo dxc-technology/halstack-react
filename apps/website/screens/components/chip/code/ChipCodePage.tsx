@@ -1,4 +1,4 @@
-import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
@@ -104,12 +104,9 @@ const sections = [
               </DxcLink>{" "}
               name or SVG element used as the icon. When using Material Symbols, replace spaces with underscores. By
               default, symbols are outlined; to use the filled version, prefix the symbol name with{" "}
-              <TableCode>"filled_"</TableCode>.
-              <DxcParagraph>
-                If a string or SVG is provided, it will be rendered as an icon placed before the chip label. If an
-                avatar props object is provided, a DxcAvatar will be displayed to the left of the label, only when the
-                chip size is medium or large.
-              </DxcParagraph>
+              <TableCode>"filled_"</TableCode>. If a string or SVG is provided, it will be rendered as an icon placed
+              before the chip label. If an avatar props object is provided, a DxcAvatar will be displayed to the left of
+              the label, only when the chip size is medium or large.
             </td>
             <td>-</td>
           </tr>

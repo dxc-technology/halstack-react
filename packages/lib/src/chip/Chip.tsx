@@ -10,7 +10,6 @@ import { Tooltip } from "../tooltip/Tooltip";
 const Chip = styled.div<{
   margin: ChipPropsType["margin"];
   size: ChipPropsType["size"];
-  disabled: ChipPropsType["disabled"];
 }>`
   height: ${({ size }) =>
     size === "small" ? "var(--height-s)" : size === "large" ? "var(--height-xl)" : "var(--height-m)"};
@@ -33,7 +32,6 @@ const Chip = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
 const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
@@ -72,7 +70,7 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
   }, [label]);
 
   return (
-    <Chip disabled={disabled} margin={margin} size={size}>
+    <Chip margin={margin} size={size}>
       {prefix &&
         (typeof prefix === "string" ? (
           <IconContainer disabled={disabled}>
