@@ -17,6 +17,7 @@ const ContentWrapper = styled.div<{ hasAction: boolean }>`
   align-items: center;
   justify-content: center;
   border-radius: inherit;
+  overflow: hidden;
 
   ${({ hasAction }) =>
     hasAction &&
@@ -85,39 +86,40 @@ const DxcAvatar = memo(
     const hasAction = !disabled && (!!onClick || !!linkHref);
 
     const content = (
-      <ContentWrapper hasAction={hasAction}>
-        {(!!onClick || !!linkHref || disabled) && <Overlay disabled={disabled} aria-hidden="true" />}
+      <>
+        <ContentWrapper hasAction={hasAction}>
+          {(!!onClick || !!linkHref || disabled) && <Overlay disabled={disabled} aria-hidden="true" />}
 
-        {imageSrc && !error ? (
-          <DxcImage
-            src={imageSrc}
-            alt={label || title || "Avatar"}
-            onError={handleError}
-            width="100%"
-            height="100%"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        ) : label ? (
-          <DxcTypography
-            as="span"
-            fontFamily="var(--typography-font-family)"
-            fontSize={getFontSize(size)}
-            fontWeight="var(--typography-label-semibold)"
-            fontStyle="normal"
-            lineHeight="normal"
-            color="inherit"
-          >
-            {initials}
-          </DxcTypography>
-        ) : (
-          <IconContainer size={size} color={color}>
-            {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
-          </IconContainer>
-        )}
-
+          {imageSrc && !error ? (
+            <DxcImage
+              src={imageSrc}
+              alt={label || title || "Avatar"}
+              onError={handleError}
+              width="100%"
+              height="100%"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          ) : label ? (
+            <DxcTypography
+              as="span"
+              fontFamily="var(--typography-font-family)"
+              fontSize={getFontSize(size)}
+              fontWeight="var(--typography-label-semibold)"
+              fontStyle="normal"
+              lineHeight="normal"
+              color="inherit"
+            >
+              {initials}
+            </DxcTypography>
+          ) : (
+            <IconContainer size={size} color={color}>
+              {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+            </IconContainer>
+          )}
+        </ContentWrapper>
         {status && <StatusContainer role="status" status={status} size={size} />}
-      </ContentWrapper>
+      </>
     );
 
     const LabelWrapper = ({ condition, children }: { condition: boolean; children: React.ReactNode }) =>
