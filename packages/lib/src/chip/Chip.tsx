@@ -61,9 +61,6 @@ const IconContainer = styled.div<{
 `;
 
 const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
-  const isAvatarPrefix = (prefix: ChipPropsType["prefix"]): prefix is ChipAvatarType =>
-    typeof prefix === "object" && prefix !== null && "color" in prefix;
-
   const labelRef = useRef<HTMLSpanElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -77,19 +74,19 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
   return (
     <Chip disabled={disabled} margin={margin} size={size}>
       {prefix &&
-        (isAvatarPrefix(prefix) && size !== "small" ? (
-          <DxcAvatar
-            color={prefix.color}
-            label={prefix.profileName}
-            icon={prefix.icon}
-            imageSrc={prefix.imageSrc}
-            size="xsmall"
-            disabled={disabled}
-          />
-        ) : typeof prefix === "string" ? (
+        (typeof prefix === "string" ? (
           <IconContainer disabled={disabled}>
             <DxcIcon icon={prefix} />
           </IconContainer>
+        ) : prefix.color && size !== "small" ? (
+          <DxcAvatar
+            color={(prefix as ChipAvatarType).color}
+            label={(prefix as ChipAvatarType).profileName}
+            icon={(prefix as ChipAvatarType).icon}
+            imageSrc={(prefix as ChipAvatarType).imageSrc}
+            size="xsmall"
+            disabled={disabled}
+          />
         ) : (
           isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
         ))}
