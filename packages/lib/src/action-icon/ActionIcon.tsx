@@ -84,7 +84,7 @@ const IconContainerWrapper = styled.div<{
     `}
 `;
 
-const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
+export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   display: flex;
   justify-content: center;
   align-items: center;
