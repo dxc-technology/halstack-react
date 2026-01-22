@@ -68,25 +68,24 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
       return;
     }
 
-    const measureTextWidth = () => {
-      const element = labelRef.current!;
-      const computedStyle = getComputedStyle(labelRef.current!);
+    const element = labelRef.current;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
 
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d")!;
+    if (!context) {
+      setShowTooltip(false);
+      return;
+    }
 
-      context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+    const computedStyle = getComputedStyle(element);
+    context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
 
-      const textWidth = context.measureText(label).width;
+    const textWidth = context.measureText(label).width;
+    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
+    const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+    const availableWidth = element.offsetWidth - paddingLeft - paddingRight;
 
-      const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-      const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
-      const availableWidth = element.offsetWidth - paddingLeft - paddingRight;
-
-      return textWidth > availableWidth;
-    };
-
-    setShowTooltip(measureTextWidth());
+    setShowTooltip(textWidth > availableWidth);
   }, [label, size, prefix, action]);
 
   return (
