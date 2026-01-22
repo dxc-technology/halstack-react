@@ -3,6 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcChip from "./Chip";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect } from "react";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Chip",
@@ -133,6 +134,32 @@ const Chip = () => (
       />
     </ExampleContainer>
 
+    <Title title="Default" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Default" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Hover" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcChip label="Hover" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Focus" theme="light" level={4} />
+    <ExampleContainer pseudoState={["pseudo-focus", "pseudo-focus-within"]}>
+      <DxcChip label="Focus" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Active" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcChip label="Active" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Disabled" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip
+        label="Disabled"
+        action={{ icon: "filled_delete", onClick: () => {} }}
+        prefix={{ color: "primary" }}
+        disabled
+      />
+    </ExampleContainer>
+
     <Title title="Margins" theme="light" level={2} />
     <Title title="Xxsmall margin" theme="light" level={4} />
     <ExampleContainer>
@@ -164,37 +191,6 @@ const Chip = () => (
     </ExampleContainer>
   </>
 );
-
-const ChipActionStates = () => (
-  <>
-    <Title title="Default" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcChip label="Default" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
-    </ExampleContainer>
-    <Title title="Hover" theme="light" level={4} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <DxcChip label="Hover" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
-    </ExampleContainer>
-    <Title title="Focus" theme="light" level={4} />
-    <ExampleContainer pseudoState={["pseudo-focus", "pseudo-focus-within"]}>
-      <DxcChip label="Focus" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
-    </ExampleContainer>
-    <Title title="Active" theme="light" level={4} />
-    <ExampleContainer pseudoState="pseudo-active">
-      <DxcChip label="Active" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
-    </ExampleContainer>
-    <Title title="Disabled" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcChip
-        label="Disabled"
-        action={{ icon: "filled_delete", onClick: () => {} }}
-        prefix={{ color: "primary" }}
-        disabled
-      />
-    </ExampleContainer>
-  </>
-);
-
 const ChipTooltip = () => (
   <>
     <Title title="Chip with Tooltip" theme="light" level={4} />
@@ -214,10 +210,11 @@ export const Chromatic: Story = {
   render: Chip,
 };
 
-export const ActionStates: Story = {
-  render: ChipActionStates,
-};
-
 export const Tooltip: Story = {
   render: ChipTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByText("Default with tooltip");
+    await userEvent.hover(button);
+  },
 };

@@ -64,8 +64,18 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
 
   useLayoutEffect(() => {
     if (labelRef.current && label) {
-      const isOverflowing = labelRef.current.scrollWidth > labelRef.current.clientWidth;
-      setShowTooltip(isOverflowing);
+      const element = labelRef.current;
+      const availableWidth = element.clientWidth;
+
+      element.style.overflow = "visible";
+      element.style.textOverflow = "initial";
+
+      const actualWidth = element.scrollWidth;
+
+      element.style.overflow = "hidden";
+      element.style.textOverflow = "ellipsis";
+
+      setShowTooltip(actualWidth > availableWidth);
     }
   }, [label]);
 
