@@ -1,10 +1,67 @@
 import { memo, useCallback, useMemo, useState } from "react";
 import AvatarPropsType from "./types";
-import { getFontSize, getInitials } from "./utils";
+import { getBorderWidth, getFontSize, getInitials, getModeColor } from "./utils";
 import DxcTypography from "../typography/Typography";
 import DxcImage from "../image/Image";
-import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcActionIcon, { IconContainer } from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import DxcIcon from "../icon/Icon";
+
+const ContentWrapper = styled.div<{ hasAction: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  overflow: hidden;
+
+  ${({ hasAction }) =>
+    hasAction &&
+    css`
+      &:hover > div:first-of-type,
+      &:active > div:first-of-type {
+        display: block;
+      }
+    `}
+`;
+
+const Overlay = styled.div<{ disabled: AvatarPropsType["disabled"] }>`
+  display: none;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background-color: var(--color-alpha-400-a);
+  pointer-events: none;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      display: block;
+      background-color: rgba(255, 255, 255, 0.5);
+    `}
+`;
+
+const StatusContainer = styled.div<{
+  status: AvatarPropsType["status"];
+  size: AvatarPropsType["size"];
+}>`
+  position: absolute;
+  right: 0px;
+  ${({ status }) => (status?.position === "top" ? "top: 0px;" : "bottom: 0px;")}
+  width: 25%;
+  height: 25%;
+  border-width: ${({ size }) => getBorderWidth(size)};
+  border-style: solid;
+  border-color: var(--border-color-neutral-brighter);
+  border-radius: 100%;
+  background-color: ${({ status }) => getModeColor(status!.mode)};
+`;
 
 const DxcAvatar = memo(
   ({
@@ -26,32 +83,42 @@ const DxcAvatar = memo(
     const [error, setError] = useState<boolean>(false);
     const initials = useMemo(() => getInitials(label), [label]);
     const handleError = useCallback(() => setError(true), []);
+    const hasAction = !disabled && (!!onClick || !!linkHref);
 
     const content = (
       <>
-        {imageSrc && !error ? (
-          <DxcImage
-            src={imageSrc}
-            alt={label || title || "Avatar"}
-            onError={handleError}
-            width="100%"
-            height="100%"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        ) : (
-          <DxcTypography
-            as="span"
-            fontFamily="var(--typography-font-family)"
-            fontSize={getFontSize(size)}
-            fontWeight="var(--typography-label-semibold)"
-            fontStyle="normal"
-            lineHeight="normal"
-            color="inherit"
-          >
-            {initials}
-          </DxcTypography>
-        )}
+        <ContentWrapper hasAction={hasAction}>
+          {(!!onClick || !!linkHref || disabled) && <Overlay disabled={disabled} aria-hidden="true" />}
+
+          {imageSrc && !error ? (
+            <DxcImage
+              src={imageSrc}
+              alt={label || title || "Avatar"}
+              onError={handleError}
+              width="100%"
+              height="100%"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          ) : label ? (
+            <DxcTypography
+              as="span"
+              fontFamily="var(--typography-font-family)"
+              fontSize={getFontSize(size)}
+              fontWeight="var(--typography-label-semibold)"
+              fontStyle="normal"
+              lineHeight="normal"
+              color="inherit"
+            >
+              {initials}
+            </DxcTypography>
+          ) : (
+            <IconContainer size={size} color={color}>
+              {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+            </IconContainer>
+          )}
+        </ContentWrapper>
+        {status && <StatusContainer role="status" status={status} size={size} />}
       </>
     );
 
@@ -96,19 +163,17 @@ const DxcAvatar = memo(
       <LabelWrapper condition={!!(primaryText || secondaryText)}>
         <DxcActionIcon
           ariaLabel={label}
-          content={(imageSrc && !error) || initials ? content : undefined}
+          content={content}
           color={
             ["primary", "secondary", "tertiary", "success", "info", "neutral", "warning", "error"].includes(color)
               ? color
               : "neutral"
           }
           disabled={disabled}
-          icon={icon}
           linkHref={linkHref}
           onClick={onClick}
           shape={shape}
           size={size}
-          status={status}
           tabIndex={tabIndex}
           title={title}
         />

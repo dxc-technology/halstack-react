@@ -2,27 +2,28 @@ import { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { ActionIconPropTypes, RefType } from "./types";
-import {
-  getBackgroundColor,
-  getBorderRadius,
-  getBorderWidth,
-  getColor,
-  getIconSize,
-  getModeColor,
-  getOutlineWidth,
-  getSize,
-} from "./utils";
+import { getBackgroundColor, getBorderRadius, getColor, getIconSize, getOutlineWidth, getSize } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const ActionIconContainer = styled.div<
   {
     hasAction?: boolean;
+    shape: ActionIconPropTypes["shape"];
     size: ActionIconPropTypes["size"];
     disabled?: ActionIconPropTypes["disabled"];
-    isAvatar?: boolean;
+    color: ActionIconPropTypes["color"];
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
+  /* Reset button default styles when rendered as button */
+  &[type="button"] {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    outline: none;
+  }
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -30,94 +31,58 @@ const ActionIconContainer = styled.div<
   height: ${({ size }) => getSize(size)};
   aspect-ratio: 1 / 1;
   text-decoration: none;
+  border-radius: ${({ shape, size }) => getBorderRadius(shape, size)};
+  background-color: ${({ color }) => getBackgroundColor(color)};
+  color: ${({ color }) => getColor(color)};
 
-  /* Reset button default styles when rendered as button */
-  &[type="button"] {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
-    outline: none;
-  }
-
-  ${({ hasAction, disabled, size, isAvatar }) =>
+  ${({ hasAction, disabled, size }) =>
     !disabled &&
     hasAction &&
     css`
       cursor: pointer;
-      &:focus:enabled > div:first-child,
-      &:active:enabled > div:first-child {
+
+      &:focus:enabled,
+      &:active:enabled {
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
         outline-color: var(--border-color-secondary-medium);
         outline-offset: -2px;
       }
-      &:focus-visible:enabled {
-        outline: none;
-      }
-      ${isAvatar
-        ? css`
-            &:hover > div:first-child > div:first-child,
-            &:active > div:first-child > div:first-child {
-              display: block;
-            }
-          `
-        : css`
-            &:hover > div:first-child,
-            &:active > div:first-child {
-              background-color: var(--color-bg-alpha-light);
-            }
-          `}
     `}
 
   ${({ disabled, isAvatar }) =>
     disabled &&
     css`
       cursor: not-allowed;
-      ${isAvatar
-        ? css`
-            & > div:first-child > div:first-child {
-              display: block;
-              background-color: rgba(255, 255, 255, 0.5);
-            }
-          `
-        : css`
-            & > div:first-child > div:first-child {
-              color: var(--color-fg-neutral-medium);
-            }
-          `}
+      & > div:first-child > div:first-child {
+        color: var(--color-fg-neutral-medium);
+      }
     `}
 `;
 
-const ActionIconWrapper = styled.div<{
-  shape: ActionIconPropTypes["shape"];
-  color: ActionIconPropTypes["color"];
-  size: ActionIconPropTypes["size"];
+const IconContainerWrapper = styled.div<{
+  hasAction?: boolean;
+  disabled: ActionIconPropTypes["disabled"];
 }>`
-  position: relative;
   height: 100%;
-  aspect-ratio: 1 / 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: ${({ color }) => getBackgroundColor(color)};
-  color: ${({ color }) => getColor(color)};
-  border-radius: ${({ shape, size }) => getBorderRadius(shape, size)};
+  border-radius: inherit;
+
+  ${({ hasAction, disabled }) =>
+    !disabled &&
+    hasAction &&
+    css`
+      &:hover,
+      &:active {
+        background-color: var(--color-bg-alpha-light);
+      }
+    `}
 `;
 
-const Overlay = styled.div`
-  display: none;
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--color-alpha-400-a);
-`;
-
-const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
+export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,22 +90,6 @@ const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   font-size: ${({ size }) => getIconSize(size)};
   height: ${({ size }) => getIconSize(size)};
   width: ${({ size }) => getIconSize(size)};
-`;
-
-const StatusContainer = styled.div<{
-  status: ActionIconPropTypes["status"];
-  size: ActionIconPropTypes["size"];
-}>`
-  position: absolute;
-  right: 0px;
-  ${({ status }) => (status?.position === "top" ? "top: 0px;" : "bottom: 0px;")}
-  width: 25%;
-  height: 25%;
-  border-width: ${({ size }) => getBorderWidth(size)};
-  border-style: solid;
-  border-color: var(--border-color-neutral-brighter);
-  border-radius: 100%;
-  background-color: ${({ status }) => getModeColor(status!.mode)};
 `;
 
 const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
@@ -155,7 +104,6 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
       onClick,
       shape = "square",
       size = "medium",
-      status,
       tabIndex = 0,
       title,
     },
@@ -175,19 +123,18 @@ const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
           aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
           disabled={disabled}
           ref={ref}
-          isAvatar={color !== "transparent"}
+          shape={shape}
+          color={color}
         >
-          <ActionIconWrapper shape={shape} color={color} size={size}>
-            {color !== "transparent" && (!!onClick || !!linkHref || disabled) && <Overlay aria-hidden="true" />}
-            {content ? (
-              content
-            ) : (
+          {content ? (
+            content
+          ) : (
+            <IconContainerWrapper disabled={disabled} hasAction={!!onClick || !!linkHref}>
               <IconContainer size={size} color={color}>
                 {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
               </IconContainer>
-            )}
-          </ActionIconWrapper>
-          {status && <StatusContainer role="status" size={size} status={status} />}
+            </IconContainerWrapper>
+          )}
         </ActionIconContainer>
       </Tooltip>
     );

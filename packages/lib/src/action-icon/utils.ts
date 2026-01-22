@@ -75,23 +75,6 @@ const outlineWidthMap = {
   xxlarge: "var(--border-width-l)",
 };
 
-const borderWidthMap = {
-  xsmall: "var(--border-width-s)",
-  small: "var(--border-width-s)",
-  medium: "var(--border-width-s)",
-  large: "var(--border-width-m)",
-  xlarge: "var(--border-width-m)",
-  xxlarge: "var(--border-width-m)",
-};
-
-const modeColorMap = {
-  default: "var(--color-fg-neutral-strong)",
-  info: "var(--color-fg-secondary-medium)",
-  success: "var(--color-fg-success-medium)",
-  warning: "var(--color-fg-warning-strong)",
-  error: "var(--color-fg-error-medium)",
-};
-
 export const getColor = (color: ActionIconPropTypes["color"]) =>
   color && contextualColorMap[color] ? contextualColorMap[color].text : contextualColorMap.transparent.text;
 
@@ -114,11 +97,5 @@ export const getSize = (size: ActionIconPropTypes["size"]) =>
 export const getIconSize = (size: ActionIconPropTypes["size"]) =>
   size && iconSizeMap[size] ? iconSizeMap[size] : "var(--height-s)";
 
-export const getBorderWidth = (size: ActionIconPropTypes["size"]) =>
-  size && borderWidthMap[size] ? borderWidthMap[size] : "var(--border-width-s)";
-
 export const getOutlineWidth = (size: ActionIconPropTypes["size"]) =>
   size && outlineWidthMap[size] ? outlineWidthMap[size] : "var(--border-width-m)";
-
-export const getModeColor = (mode: Required<ActionIconPropTypes>["status"]["mode"]) =>
-  mode && modeColorMap[mode] ? modeColorMap[mode] : "var(--color-fg-neutral-strong)";
