@@ -15,7 +15,6 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const contextValue = useContext(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(items, contextValue);
 
-  // TODO: SET A FIXED WIDTH TO PREVENT MOVING CONTENT WHEN EXPANDING/COLLAPSING IN RESPONSIVEVIEW
   return hasPopOver ? (
     <>
       <Popover.Root open={isOpen}>
@@ -47,8 +46,21 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
               }}
               align="start"
               side={isHorizontal ? "bottom" : "right"}
-              style={{ zIndex: "var(--z-contextualmenu)" }}
-              sideOffset={isHorizontal ? 16 : 0}
+              style={{
+                zIndex: "var(--z-contextualmenu)",
+                padding: "var(--spacing-padding-xs)",
+                boxShadow: "var(--shadow-100)",
+                backgroundColor: "var(--color-bg-neutral-lightest)",
+                borderRadius: "var(--border-radius-m)",
+                ...(isHorizontal
+                  ? {}
+                  : {
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "var(--spacing-gap-xxs)",
+                    }),
+              }}
+              sideOffset={16}
               onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
             >
               {!isHorizontal && props.depthLevel === 0 && (

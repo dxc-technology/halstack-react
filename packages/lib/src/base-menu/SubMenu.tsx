@@ -15,16 +15,11 @@ const SubMenuContainer = styled.ul<{
   flex-direction: ${({ isHorizontal }) => (isHorizontal ? "row" : "column")};
   gap: ${({ isHorizontal }) => (isHorizontal ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
   list-style: none;
-  // TODO: CHECK PADDING, CAUSING OFFSET IN SIDENAV (ASK JIALE)
   ${({ depthLevel, displayGroupLines, isPopOver }) =>
     isPopOver
       ? `
       min-width: 200px;
       max-width: 320px;
-      padding: var(--spacing-padding-xs);
-      background-color: var(--color-bg-neutral-lightest);
-      border-radius: var(--border-radius-m);
-      box-shadow: var(--shadow-100);
     `
       : displayGroupLines &&
         depthLevel >= 0 &&

@@ -6,6 +6,7 @@ import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
+import { useBreakpoint } from "../utils/useBreakpoint";
 
 const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   top: 0;
@@ -25,19 +26,19 @@ const HeaderContainer = styled.div`
   z-index: var(--z-app-layout-header);
 `;
 
-const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
+const BodyContainer = styled.div<{ singleColumn?: boolean }>`
   display: grid;
-  grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
+  grid-template-columns: ${({ singleColumn }) => (singleColumn ? "1fr" : "auto 1fr")};
   grid-template-rows: 1fr;
   overflow: hidden;
 `;
 
-const SidenavContainer = styled.div`
+const SidenavContainer = styled.div<{ singleColumn?: boolean }>`
   width: fit-content;
-  height: 100%;
-  z-index: var(--z-app-layout-sidenav);
   position: sticky;
   overflow: auto;
+  z-index: var(--z-app-layout-sidenav);
+  ${({ singleColumn }) => (singleColumn ? `min-height: var(--height-xxxl); height: fit-content;` : "height: 100%;")};
 `;
 
 const MainContainer = styled.div`
@@ -71,13 +72,14 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
     };
   }, [header, logo]);
   const ref = useRef(null);
+  const isBelowMedium = useBreakpoint("medium");
 
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
       <ApplicationLayoutContext.Provider value={contextValue}>
         {header && <HeaderContainer>{header}</HeaderContainer>}
-        <BodyContainer hasSidenav={!!sidenav}>
-          {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
+        <BodyContainer singleColumn={!sidenav || isBelowMedium}>
+          {sidenav && <SidenavContainer singleColumn={isBelowMedium}>{sidenav}</SidenavContainer>}
           <MainContainer>
             <MainContentContainer>
               {findChildType(children, Main)}
