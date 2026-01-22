@@ -50,7 +50,7 @@ const ActionIconContainer = styled.div<
       }
     `}
 
-  ${({ disabled, isAvatar }) =>
+  ${({ disabled }) =>
     disabled &&
     css`
       cursor: not-allowed;
