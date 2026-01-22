@@ -3,9 +3,17 @@ import { responsiveSizes } from "../common/variables";
 
 export const useBreakpoint = (breakpoint: keyof typeof responsiveSizes) => {
   const query = `(max-width: ${responsiveSizes[breakpoint]}rem)`;
-  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+
+  const [matches, setMatches] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia(query).matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const media = window.matchMedia(query);
     const handler = () => setMatches(media.matches);
 
