@@ -3,7 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcChip from "./Chip";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect } from "react";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within, waitFor } from "storybook/internal/test";
 
 export default {
   title: "Chip",
@@ -214,7 +214,9 @@ export const Tooltip: Story = {
   render: ChipTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = await canvas.findByText("Default with tooltip");
-    await userEvent.hover(button);
+    const chipLabel = await canvas.findByText("Default with tooltip");
+    await userEvent.hover(chipLabel);
+
+    await waitFor(() => document.querySelector('[role="tooltip"]'));
   },
 };
