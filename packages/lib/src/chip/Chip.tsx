@@ -63,21 +63,31 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
   const [showTooltip, setShowTooltip] = useState(false);
 
   useLayoutEffect(() => {
-    if (labelRef.current && label) {
-      const element = labelRef.current;
-      const availableWidth = element.clientWidth;
-
-      element.style.overflow = "visible";
-      element.style.textOverflow = "initial";
-
-      const actualWidth = element.scrollWidth;
-
-      element.style.overflow = "hidden";
-      element.style.textOverflow = "ellipsis";
-
-      setShowTooltip(actualWidth > availableWidth);
+    if (!labelRef.current || !label) {
+      setShowTooltip(false);
+      return;
     }
-  }, [label]);
+
+    const measureTextWidth = () => {
+      const element = labelRef.current!;
+      const computedStyle = getComputedStyle(labelRef.current!);
+
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d")!;
+
+      context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+
+      const textWidth = context.measureText(label).width;
+
+      const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
+      const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+      const availableWidth = element.offsetWidth - paddingLeft - paddingRight;
+
+      return textWidth > availableWidth;
+    };
+
+    setShowTooltip(measureTextWidth());
+  }, [label, size, prefix, action]);
 
   return (
     <Chip margin={margin} size={size}>
