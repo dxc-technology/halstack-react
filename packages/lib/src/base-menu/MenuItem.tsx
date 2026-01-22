@@ -6,7 +6,7 @@ import { isGroupItem } from "./utils";
 
 const MenuItemContainer = styled.li`
   display: grid;
-  gap: var(--spacing-gap-xs);
+  margin-right: var(--spacing-padding-xxs);
 `;
 
 export default function MenuItem({ item, depthLevel = 0 }: MenuItemProps) {

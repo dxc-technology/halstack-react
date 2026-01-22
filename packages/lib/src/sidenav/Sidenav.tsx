@@ -52,7 +52,7 @@ const SidenavContent = styled.div`
   & > div {
     box-sizing: border-box;
     padding-left: var(--spacing-padding-xs);
-    padding-right: var(--spacing-padding-xs);
+    margin-right: var(--spacing-padding-xs);
   }
 `;
 
