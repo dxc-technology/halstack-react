@@ -217,6 +217,8 @@ export const Tooltip: Story = {
     const chipLabel = await canvas.findByText("Default with tooltip");
     await userEvent.hover(chipLabel);
 
-    await waitFor(() => document.querySelector('[role="tooltip"]'));
+    await waitFor(() => document.querySelector('[role="tooltip"]'), { timeout: 3000 });
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
   },
 };
