@@ -220,6 +220,6 @@ export const Tooltip: Story = {
     await waitFor(() => {
       document.querySelector('[data-state="delayed-open"]');
     });
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 300));
   },
 };
