@@ -218,7 +218,7 @@ export const Tooltip: Story = {
     await userEvent.hover(chipLabel);
 
     await waitFor(() => {
-      document.querySelector('[data-state="delayed-open"]');
+      document.querySelector('[role="tooltip"]');
     });
     await new Promise((resolve) => setTimeout(resolve, 300));
   },
