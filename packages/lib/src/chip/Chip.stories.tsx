@@ -196,7 +196,7 @@ const ChipTooltip = () => (
     <Title title="Chip with Tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcChip
-        label="Default with tooltip"
+        label="Default with tooltip and very long text"
         action={{ icon: "filled_delete", onClick: () => {}, title: "Delete" }}
         prefix={{ color: "primary" }}
       />
@@ -214,11 +214,33 @@ export const Tooltip: Story = {
   render: ChipTooltip,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const chipLabel = await canvas.findByText("Default with tooltip");
+    const chipLabel = await canvas.findByText("Default with tooltip and very long text");
     await userEvent.hover(chipLabel);
 
-    await waitFor(() => document.querySelector('[role="tooltip"]'), { timeout: 3000 });
+    await new Promise((resolve) => setTimeout(resolve, 600));
 
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await waitFor(
+      () => {
+        const tooltip = document.querySelector('[role="tooltip"]');
+        if (!tooltip) throw new Error("Tooltip not found");
+
+        const computedStyle = window.getComputedStyle(tooltip);
+        if (
+          computedStyle.display === "none" ||
+          computedStyle.visibility === "hidden" ||
+          computedStyle.opacity === "0"
+        ) {
+          throw new Error("Tooltip is not visible");
+        }
+
+        return tooltip;
+      },
+      {
+        timeout: 3000,
+        interval: 100,
+      }
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 200));
   },
 };
