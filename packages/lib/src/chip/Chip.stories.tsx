@@ -217,7 +217,8 @@ export const Tooltip: Story = {
     const chipLabel = await canvas.findByText("Default with tooltip and very long text");
     await userEvent.hover(chipLabel);
 
-    await canvas.findByRole("tooltip");
+    const documentCanvas = within(document.body);
+    await documentCanvas.findByRole("tooltip");
   },
   parameters: { chromatic: { delay: 5000 } },
 };
