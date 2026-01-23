@@ -65,12 +65,14 @@ const isAvatarType = (value: string | SVG | ChipAvatarType): value is ChipAvatar
 
 const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
   const labelRef = useRef<HTMLSpanElement>(null);
-  const [isTruncated, setIsTruncated] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(true);
 
   useEffect(() => {
     const checkEllipsis = () => {
       if (labelRef.current) {
         setIsTruncated(labelRef.current.scrollWidth > labelRef.current.clientWidth);
+      } else {
+        setIsTruncated(false);
       }
     };
     checkEllipsis();
