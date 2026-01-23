@@ -63,21 +63,23 @@ const isAvatarType = (value: string | SVG | ChipAvatarType): value is ChipAvatar
   return typeof value === "object" && value !== null && "color" in value;
 };
 
+const checkEllipsis = (element: HTMLElement | null): boolean => {
+  if (!element) return false;
+  return element.scrollWidth > element.clientWidth;
+};
+
 const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
   const labelRef = useRef<HTMLSpanElement>(null);
   const [isTruncated, setIsTruncated] = useState(true);
 
   useEffect(() => {
-    const checkEllipsis = () => {
-      if (labelRef.current) {
-        setIsTruncated(labelRef.current.scrollWidth > labelRef.current.clientWidth);
-      } else {
-        setIsTruncated(false);
-      }
+    const handleEllipsisCheck = () => {
+      setIsTruncated(checkEllipsis(labelRef.current));
     };
-    checkEllipsis();
-    window.addEventListener("resize", checkEllipsis);
-    return () => window.removeEventListener("resize", checkEllipsis);
+
+    handleEllipsisCheck();
+    window.addEventListener("resize", handleEllipsisCheck);
+    return () => window.removeEventListener("resize", handleEllipsisCheck);
   }, []);
 
   return (

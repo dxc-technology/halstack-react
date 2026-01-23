@@ -90,6 +90,11 @@ export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   font-size: ${({ size }) => getIconSize(size)};
   height: ${({ size }) => getIconSize(size)};
   width: ${({ size }) => getIconSize(size)};
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
