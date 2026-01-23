@@ -219,5 +219,5 @@ export const Tooltip: Story = {
 
     await waitFor(() => document.querySelector('[role="tooltip"]'));
   },
-  parameters: { chromatic: { delay: 500 } },
+  parameters: { chromatic: { delay: 5000 } },
 };
