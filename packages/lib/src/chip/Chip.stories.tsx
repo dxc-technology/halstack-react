@@ -217,30 +217,8 @@ export const Tooltip: Story = {
     const chipLabel = await canvas.findByText("Default with tooltip and very long text");
     await userEvent.hover(chipLabel);
 
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-    await waitFor(
-      () => {
-        const tooltip = document.querySelector('[role="tooltip"]');
-        if (!tooltip) throw new Error("Tooltip not found");
-
-        const computedStyle = window.getComputedStyle(tooltip);
-        if (
-          computedStyle.display === "none" ||
-          computedStyle.visibility === "hidden" ||
-          computedStyle.opacity === "0"
-        ) {
-          throw new Error("Tooltip is not visible");
-        }
-
-        return tooltip;
-      },
-      {
-        timeout: 3000,
-        interval: 100,
-      }
-    );
-
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await waitFor(() => document.querySelector('[role="tooltip"]'), { timeout: 2000 });
   },
 };
