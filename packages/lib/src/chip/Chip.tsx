@@ -4,8 +4,9 @@ import DxcIcon from "../icon/Icon";
 import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
-import { isValidElement, useRef, useState, useLayoutEffect } from "react";
+import { isValidElement, useEffect, useRef, useState } from "react";
 import { Tooltip } from "../tooltip/Tooltip";
+import { SVG } from "../common/utils";
 
 const Chip = styled.div<{
   margin: ChipPropsType["margin"];
@@ -39,8 +40,8 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-family: var(--typography-font-family);
   font-weight: var(--typography-label-regular);
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-lightest)" : "var(--color-fg-neutral-dark)")};
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
 `;
 
@@ -58,35 +59,24 @@ const IconContainer = styled.div<{
   }
 `;
 
+const isAvatarType = (value: string | SVG | ChipAvatarType): value is ChipAvatarType => {
+  return typeof value === "object" && value !== null && "color" in value;
+};
+
 const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
   const labelRef = useRef<HTMLSpanElement>(null);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
 
-  useLayoutEffect(() => {
-    if (!labelRef.current || !label) {
-      setShowTooltip(false);
-      return;
-    }
-
-    const element = labelRef.current;
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-
-    if (!context) {
-      setShowTooltip(false);
-      return;
-    }
-
-    const computedStyle = getComputedStyle(element);
-    context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
-
-    const textWidth = context.measureText(label).width;
-    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-    const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
-    const availableWidth = element.offsetWidth - paddingLeft - paddingRight;
-
-    setShowTooltip(textWidth > availableWidth);
-  }, [label, size, prefix, action]);
+  useEffect(() => {
+    const checkEllipsis = () => {
+      if (labelRef.current) {
+        setIsTruncated(labelRef.current.scrollWidth > labelRef.current.clientWidth);
+      }
+    };
+    checkEllipsis();
+    window.addEventListener("resize", checkEllipsis);
+    return () => window.removeEventListener("resize", checkEllipsis);
+  }, []);
 
   return (
     <Chip margin={margin} size={size}>
@@ -95,12 +85,12 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
           <IconContainer disabled={disabled}>
             <DxcIcon icon={prefix} />
           </IconContainer>
-        ) : prefix.color && size !== "small" ? (
+        ) : isAvatarType(prefix) && size !== "small" ? (
           <DxcAvatar
-            color={(prefix as ChipAvatarType).color}
-            label={(prefix as ChipAvatarType).profileName}
-            icon={(prefix as ChipAvatarType).icon}
-            imageSrc={(prefix as ChipAvatarType).imageSrc}
+            color={prefix.color}
+            label={prefix.profileName}
+            icon={prefix.icon}
+            imageSrc={prefix.imageSrc}
             size="xsmall"
             disabled={disabled}
           />
@@ -109,7 +99,7 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
         ))}
 
       {label && (
-        <Tooltip label={showTooltip ? label : undefined}>
+        <Tooltip label={isTruncated ? label : undefined}>
           <LabelContainer disabled={disabled} ref={labelRef}>
             {label}
           </LabelContainer>
