@@ -11,6 +11,14 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
 }));
 
 describe("Sidenav component accessibility tests", () => {
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: vi.fn().mockImplementation(() => ({
+        matches: false,
+      })),
+    });
+  });
   it("Should not have basic accessibility issues", async () => {
     const groupItems = [
       {
