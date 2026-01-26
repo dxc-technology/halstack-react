@@ -7,6 +7,7 @@ import icons from "./examples/icons";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import avatar from "./examples/avatar";
+import Link from "next/link";
 
 const actionTypeString = `{
   icon?: string | (React.ReactNode 
@@ -15,17 +16,19 @@ const actionTypeString = `{
   title?: string;
 }`;
 
+const avatarPropsString = `{
+  color: 'primary' | 'secondary' | 'tertiary'
+    | 'success' | 'info' | 'neutral' | 'warning'
+    | 'error';
+  icon?: string | SVG;
+  imgSrc?: string;
+  label?: string;
+};`;
+
 const prefixTypeString = `
 | string 
 | SVG
-| {
-    color: 'primary' | 'secondary' | 'tertiary'
-      | 'success' | 'info' | 'neutral' | 'warning'
-      | 'error';
-    icon?: string | SVG;
-    imgSrc?: string;
-    label?: string;
-  }`;
+| ${avatarPropsString}`;
 
 const sections = [
   {
@@ -105,8 +108,11 @@ const sections = [
               name or SVG element used as the icon. When using Material Symbols, replace spaces with underscores. By
               default, symbols are outlined; to use the filled version, prefix the symbol name with{" "}
               <TableCode>"filled_"</TableCode>. If a string or SVG is provided, it will be rendered as an icon placed
-              before the chip label. If an avatar props object is provided, a DxcAvatar will be displayed to the left of
-              the label, only when the chip size is medium or large.
+              before the chip label. If an avatar props object is provided, a{" "}
+              <Link href="/components/avatar" passHref legacyBehavior>
+                <DxcLink>DxcAvatar</DxcLink>
+              </Link>{" "}
+              will be displayed to the left of the label, only when the chip size is medium or large.
             </td>
             <td>-</td>
           </tr>
