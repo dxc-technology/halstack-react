@@ -16,6 +16,11 @@ const actionTypeString = `{
   title?: string;
 }`;
 
+const prefixTypeString = `
+| string 
+| SVG
+| AvatarProps`;
+
 const avatarPropsString = `{
   color: 'primary' | 'secondary' | 'tertiary'
     | 'success' | 'info' | 'neutral' | 'warning'
@@ -24,11 +29,6 @@ const avatarPropsString = `{
   imgSrc?: string;
   label?: string;
 };`;
-
-const prefixTypeString = `
-| string 
-| SVG
-| ${avatarPropsString}`;
 
 const sections = [
   {
@@ -100,6 +100,10 @@ const sections = [
             </td>
             <td>
               <ExtendedTableCode>{prefixTypeString}</ExtendedTableCode>
+              <p>
+                being <Code>AvatarProps</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{avatarPropsString}</ExtendedTableCode>
             </td>
             <td>
               <DxcLink newWindow href="https://fonts.google.com/icons">
