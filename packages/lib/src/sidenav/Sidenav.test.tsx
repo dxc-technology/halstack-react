@@ -20,7 +20,11 @@ describe("DxcSidenav component", () => {
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockMatchMedia.mockImplementation(() => ({
+      matches: false,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }));
   });
 
   test("Sidenav renders title and children correctly", () => {
