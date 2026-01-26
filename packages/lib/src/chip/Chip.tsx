@@ -23,7 +23,8 @@ const Chip = styled.div<{
   gap: var(--spacing-gap-xs);
   background-color: var(--color-bg-primary-lightest);
   border-radius: var(--border-radius-xl);
-  padding: ${({ size }) => (size === "large" ? "var(--spacing-padding-xs)" : "var(--spacing-padding-xxs)")};
+  padding: ${({ size }) =>
+    size === "large" ? "var(--spacing-padding-xs)" : "var(--spacing-padding-xxs) var(--spacing-padding-xs)"};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
