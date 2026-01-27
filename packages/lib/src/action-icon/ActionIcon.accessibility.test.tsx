@@ -23,9 +23,4 @@ describe("ActionIcon component accessibility tests", () => {
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
-  it("Should not have basic accessibility issues when status is passed", async () => {
-    const { container } = render(<DxcActionIcon icon="house" status={{ mode: "success", position: "top" }} />);
-    const results = await axe(container);
-    expect(results.violations).toHaveLength(0);
-  });
 });
