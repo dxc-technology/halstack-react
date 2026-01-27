@@ -1,9 +1,13 @@
-import { DxcChip, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcChip, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcChip label="Experimental" />
+      <DxcFlex gap="var(--spacing-gap-m)" alignItems="center">
+        <DxcChip label="Small" size="small" />
+        <DxcChip label="Medium" />
+        <DxcChip label="Large" size="large" />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -11,6 +15,7 @@ const code = `() => {
 const scope = {
   DxcChip,
   DxcInset,
+  DxcFlex,
 };
 
 export default { code, scope };

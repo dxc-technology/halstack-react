@@ -2,9 +2,10 @@ import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import anatomy from "./images/chip-anatomy.png";
-import Example from "@/common/example/Example";
-import categorization from "./examples/categorization";
-import filter from "./examples/filter";
+import categorization from "./images/chip-categorization.png";
+import searchFilter from "./images/chip-faceted-search-filter.png";
+import states from "./images/chip-states.png";
+import sizeVariants from "./images/chip-size.png";
 import spacing from "./images/chip-spacing.png";
 import Image from "@/common/Image";
 import Link from "next/link";
@@ -13,12 +14,18 @@ const sections = [
   {
     title: "Introduction",
     content: (
-      <DxcParagraph>
-        Chips are versatile components that allow users to display and manage information in a compact format. They are
-        commonly used to represent selected options, tags, filters, or interactive elements within an interface. Their
-        lightweight and flexible design makes them ideal for enhancing user experience by enabling quick and organized
-        interactions.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Chips are versatile UI components used to display and manage information in a compact, scannable format. They
+          commonly represent selected options, tags, filters, or contextual actions within an interface.
+        </DxcParagraph>
+        <DxcParagraph>
+          Chip component supports multiple sizes, optional leading elements (icon or avatar), and an optional action
+          icon, while maintaining a consistent structure and interaction model. Clear states, keyboard accessibility,
+          and controlled label length ensure the component remains lightweight, reusable, and adaptable across products
+          such as filters, forms, and the chatbot experience.
+        </DxcParagraph>
+      </>
     ),
   },
   {
@@ -28,16 +35,20 @@ const sections = [
         <Image src={anatomy} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Prefix</strong> <em>(Optional)</em>: the prefix can be an icon or an action icon that provides
-            additional context or functionality.
+            <strong>Container</strong>: the structural wrapper that holds the chip’s content and defines its visual
+            boundaries and spacing. It establishes the chip’s size and layout while remaining informational only.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label:</strong> the primary text that conveys the chip's meaning, such as a tag name or a selected
-            option. It should be concise, clear, and relevant to the chip's function.
+            <strong>Left Element</strong> <em>(Optional)</em>: a leading visual element that adds contextual meaning to
+            the chip and helps users quickly recognize its purpose.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Suffix</strong> <em>(Optional)</em>: the suffix can be an icon or an action icon that enhances
-            interactivity.
+            <strong>Label</strong>: the text content inside the chip that identifies and describes the associated item
+            or value.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Action Icon</strong> <em>(Optional)</em>: a trailing control that enables direct interaction with
+            the chip without affecting the container itself.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -51,11 +62,17 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Chips are commonly used to organize content by grouping related topics, products, or subjects. They often
-              serve as a summary of the page's content. When using chips for categorization, ensure that they are
-              relevant to the displayed information to maintain clarity and usability.
+              Chips are used to organize and summarize related information such as topics, statuses, or attributes in a
+              compact and scannable way. They help users quickly understand key metadata without overwhelming the
+              interface.
             </DxcParagraph>
-            <Example example={categorization} />
+            <DxcParagraph>
+              With the redesigned Chip component, categorization chips support consistent sizing, optional leading
+              icons, and a clear visual structure while remaining informational and non-interactive. When using chips
+              for categorization, ensure labels are concise and relevant to the displayed content to maintain clarity
+              and usability.
+            </DxcParagraph>
+            <Image src={categorization} alt="Chip categorization" />
           </>
         ),
       },
@@ -64,12 +81,29 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              When used alongside the select component, chips serve as effective filter facets, allowing users to refine
-              search results by choosing and removing specific attributes. This combination enables users to include or
-              exclude preferences directly from their queries. For faceted filtering, chips should be dismissible,
-              ensuring effortless adjustments and a more intuitive selection experience.
+              When used alongside selection or filter controls, chips act as filter facets that allow users to review,
+              apply, and remove selected attributes. This enables users to refine results efficiently and maintain
+              visibility of their current selections.
             </DxcParagraph>
-            <Example example={filter} />
+            <DxcParagraph>
+              In the redesigned Chip component, faceted filter chips support dismissal through the action icon, which is
+              the primary interaction point. Clear visual states (hover, focus, active, disabled) help communicate
+              interactivity, while optional leading elements (icons or avatars, depending on size){" "}
+            </DxcParagraph>
+            <Image src={searchFilter} alt="Chip faceted search filters" />
+          </>
+        ),
+      },
+      {
+        title: "Chip states",
+        content: (
+          <>
+            <DxcParagraph>
+              Chip component, states are applied to the action icon only, including default, hover, focus, active, and
+              disabled. The container remains informational, ensuring interactions are clear, intentional, and
+              consistent across use cases.
+            </DxcParagraph>
+            <Image src={states} alt="Chip states" />
           </>
         ),
       },
@@ -116,6 +150,19 @@ const sections = [
           </>
         ),
       },
+      {
+        title: "Size variants",
+        content: (
+          <>
+            <DxcParagraph>
+              The Chip component is available in three size variants to support different interface densities and use
+              cases. Each size follows the same structural pattern while adjusting spacing and supported elements to
+              maintain clarity and usability.
+            </DxcParagraph>
+            <Image src={sizeVariants} alt="Chip size variants" />
+          </>
+        ),
+      },
     ],
   },
   {
@@ -133,6 +180,10 @@ const sections = [
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Use <strong>sentence case</strong> for readability (e.g., "New York" instead of "NEW YORK").
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Ensure the most important information appears at the beginning of the label, since long labels are
+              automatically truncated.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
@@ -159,27 +210,22 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              While the component configuration is flexible enough to allow multiple icons or action icons, it is{" "}
-              <strong>not recommended</strong> to use two icons or two action icons within the same chip. Instead, a{" "}
-              <strong>balanced approach</strong> should be followed: pairing one <strong>icon</strong> (to provide
-              context) with one <strong>action icon</strong> (to enable an interaction).
+              Chip component may include <strong>one leading informational icon (or avatar)</strong> and{" "}
+              <strong>one action icon</strong>. Using multiple informational icons or multiple action icons within the
+              same chip is not supported.
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Icons should add value</strong> to the chip, not just be decorative.
+                Informational icons should <strong>add value</strong> to the chip, such as status or category.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Ensure that icons are <strong>easy to recognize and understand</strong> within the chip's context. The
-                selected icon should accurately represent the chip's purpose, while the action icon should clearly
-                indicate the interaction it triggers.
+                The <strong>action icon</strong> should clearly communicate its purpose (e.g., remove or clear).
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Icons <strong>should not compete for attention</strong> or convey conflicting messages. Instead, they
-                should complement each other to enhance usability.
+                Icons should be <strong>easy to recognize</strong> and not compete for attention.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Follow the guideline: <strong>one informational icon + one action icon (if needed)</strong> — avoid
-                using two icons of the same type.
+                Follow the guideline: <strong>one informational element + one action icon (if needed)</strong>.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
@@ -190,10 +236,12 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              If there are too many chips in a row, consider <strong>horizontal scrolling or wrapping</strong>.
+              When displaying many chips, consider <strong>wrapping or horizontal scrolling</strong> depending on layout
+              constraints.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              For dynamic content, provide a <strong>"Show more" option</strong> to avoid overwhelming the user.
+              For dynamic or long lists, provide a <strong>"Show more"</strong> or similar mechanism to prevent visual
+              clutter.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
