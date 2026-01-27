@@ -16,8 +16,8 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-ml)">
-        <DxcChip label="Home" prefix="home"  />
-        <DxcChip label="Home" prefix="favorite"
+        <DxcChip label="User" prefix={{color: "primary", }}  />
+        <DxcChip label="User" prefix={{color: "primary", profileName: "Michael Ramirez"}}
           action={{ icon: icon, onClick: () => console.log("action clicked") }}
         />
       </DxcFlex>
