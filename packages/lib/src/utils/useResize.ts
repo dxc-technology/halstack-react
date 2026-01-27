@@ -9,7 +9,7 @@ type UseResizeProps = {
 const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
   const [width, setWidth] = useState(defaultWidth);
   const sidenavRef = useRef<HTMLDivElement>(null);
-  const [isResizing, setIsResizing] = useState(false); // <-- new state
+  const [isResizing, setIsResizing] = useState(false);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
