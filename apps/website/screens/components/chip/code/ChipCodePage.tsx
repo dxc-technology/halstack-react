@@ -4,7 +4,30 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
+import avatar from "./examples/avatar";
+import Link from "next/link";
+
+const actionTypeString = `{
+  icon?: string | (React.ReactNode 
+    & React.SVGProps<SVGSVGElement>); 
+  onClick: () => void; 
+  title?: string;
+}`;
+
+const prefixTypeString = `| string 
+| SVG
+| AvatarProps`;
+
+const avatarPropsString = `{
+  color: 'primary' | 'secondary' | 'tertiary'
+    | 'success' | 'info' | 'neutral' | 'warning'
+    | 'error';
+  icon?: string | SVG;
+  imgSrc?: string;
+  label?: string;
+};`;
 
 const sections = [
   {
@@ -21,6 +44,19 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                action
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
+            </td>
+            <td>Action to be displayed on the right side of the chip after the label.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>disabled</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -31,7 +67,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>label</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="required" />
+                label
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>string</TableCode>
             </td>
@@ -50,54 +91,31 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onClickPrefix</td>
             <td>
-              <TableCode>{"() => void"}</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                prefix
+              </DxcFlex>
             </td>
             <td>
-              If defined, the prefix icon will be considered a button element. This function will be called when it is
-              clicked.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onClickSuffix</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>
-              If defined, the suffix icon will be considered a button element. This function will be called when it is
-              clicked.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>prefixIcon</td>
-            <td>
-              <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+              <ExtendedTableCode>{prefixTypeString}</ExtendedTableCode>
+              <p>
+                being <Code>AvatarProps</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{avatarPropsString}</ExtendedTableCode>
             </td>
             <td>
               <DxcLink newWindow href="https://fonts.google.com/icons">
                 Material Symbol
               </DxcLink>{" "}
-              name or SVG element as the icon that will be placed before the chip label. When using Material Symbols,
-              replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>suffixIcon</td>
-            <td>
-              <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-            </td>
-            <td>
-              <DxcLink newWindow href="https://fonts.google.com/icons">
-                Material Symbol
-              </DxcLink>{" "}
-              name or SVG element as the icon that will be placed after the chip label. When using Material Symbols,
-              replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>.
+              name or SVG element used as the icon. When using Material Symbols, replace spaces with underscores. By
+              default, symbols are outlined; to use the filled version, prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>. If a string or SVG is provided, it will be rendered as an icon placed
+              before the chip label. If an avatar props object is provided, a{" "}
+              <Link href="/components/avatar" passHref legacyBehavior>
+                <DxcLink>DxcAvatar</DxcLink>
+              </Link>{" "}
+              will be displayed to the left of the label, only when the chip size is medium or large.
             </td>
             <td>-</td>
           </tr>
@@ -130,6 +148,14 @@ const sections = [
         content: (
           <>
             <Example example={icons} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Avatar",
+        content: (
+          <>
+            <Example example={avatar} defaultIsVisible />
           </>
         ),
       },

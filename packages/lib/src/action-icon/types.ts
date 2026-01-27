@@ -54,11 +54,6 @@ type CommonProps = {
    */
   size?: Size;
   /**
-   * Defines the color of the status indicator displayed on the Action Icon and where it will be placed.
-   * If not provided, no indicator will be rendered.
-   */
-  status?: Status;
-  /**
    * Value of the tabindex attribute. It will only apply when the onClick property is passed.
    */
   tabIndex?: number;

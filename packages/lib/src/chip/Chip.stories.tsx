@@ -2,11 +2,25 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcChip from "./Chip";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent } from "storybook/internal/test";
+import { useEffect } from "react";
+import { userEvent, within } from "storybook/internal/test";
 
 export default {
   title: "Chip",
   component: DxcChip,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        const prev = document.body.style.cssText;
+        document.body.style.backgroundColor = "var(--color-bg-neutral-light)";
+        return () => {
+          document.body.style.cssText = prev;
+        };
+      }, []);
+
+      return <Story />;
+    },
+  ],
 } satisfies Meta<typeof DxcChip>;
 
 const iconSVG = (
@@ -40,104 +54,154 @@ const smallIconSVG = (
 
 const Chip = () => (
   <>
+    <Title title="Basic chip" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Basic chip" theme="light" level={4} />
-      <DxcChip label="Default Chip" />
+      <DxcChip label="Basic Chip" />
+    </ExampleContainer>
+
+    <Title title="Sizes" theme="light" level={2} />
+    <Title title="Small" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Small" size="small" />
+    </ExampleContainer>
+    <Title title="Medium" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Medium" />
+    </ExampleContainer>
+    <Title title="Large" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Large" size="large" />
+    </ExampleContainer>
+
+    <Title title="Variants" theme="light" level={2} />
+    <Title title="Chip with prefix SVG" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Chip with prefix SVG" prefix={smallIconSVG} />
+    </ExampleContainer>
+    <Title title="Chip with prefix icon" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Chip with prefix icon" prefix="settings" />
+    </ExampleContainer>
+    <Title title="Chip with prefix Avatar" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary" }} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Chip with prefix SVG (small icon)" theme="light" level={4} />
-      <DxcChip label="Chip with prefix" prefixIcon={smallIconSVG} />
+      <DxcChip label="Chip with prefix Avatar" prefix={{ color: "primary", profileName: "Michael Ramirez" }} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Chip with suffix SVG (large icon)" theme="light" level={4} />
-      <DxcChip label="Chip with suffix" suffixIcon={iconSVG} />
+      <DxcChip
+        label="Chip with prefix Avatar"
+        prefix={{ color: "primary", imageSrc: "https://picsum.photos/id/1022/200/300" }}
+      />
     </ExampleContainer>
+    <Title title="Chip with action SVG" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with prefix (SVG) and suffix (URL)" theme="light" level={4} />
-      <DxcChip label="Chip with prefix and suffix" prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
+      <DxcChip label="Chip with action SVG" action={{ icon: iconSVG, onClick: () => console.log("action clicked") }} />
     </ExampleContainer>
+    <Title title="Chip with prefix (SVG) and action (URL)" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Disabled chip" theme="light" level={4} />
-      <DxcChip label="Disabled" disabled prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
+      <DxcChip
+        label="Chip with prefix and action"
+        prefix={iconSVG}
+        action={{ icon: "filled_check_circle", onClick: () => console.log("action clicked") }}
+      />
     </ExampleContainer>
+    <Title title="Chip with ellipsis" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis" theme="light" level={4} />
-      <div style={{ width: "200px" }}>
-        <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />
-      </div>
+      <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />
     </ExampleContainer>
+    <Title title="Chip with ellipsis and action" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis and suffix" theme="light" level={4} />
-      <div style={{ width: "200px" }}>
-        <DxcChip
-          suffixIcon={iconSVG}
-          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
-        />
-      </div>
+      <DxcChip
+        action={{ icon: iconSVG, onClick: () => console.log("action clicked") }}
+        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
+      />
     </ExampleContainer>
+    <Title title="Chip with ellipsis and prefix" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis and prefix" theme="light" level={4} />
-      <div style={{ width: "200px" }}>
-        <DxcChip
-          prefixIcon={iconSVG}
-          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
-        />
-      </div>
+      <DxcChip
+        prefix={iconSVG}
+        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
+      />
     </ExampleContainer>
+    <Title title="Chip with ellipsis, action and prefix" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Chip with ellipsis, suffix and prefix" theme="light" level={4} />
-      <div style={{ width: "200px" }}>
-        <DxcChip
-          prefixIcon={iconSVG}
-          suffixIcon={iconSVG}
-          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasdf"
-        />
-      </div>
+      <DxcChip
+        prefix={iconSVG}
+        action={{ icon: iconSVG, onClick: () => console.log("action clicked") }}
+        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasdf"
+      />
     </ExampleContainer>
+
+    <Title title="Default" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip label="Default" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Hover" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcChip label="Hover" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Focus" theme="light" level={4} />
+    <ExampleContainer pseudoState={["pseudo-focus", "pseudo-focus-within"]}>
+      <DxcChip label="Focus" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Active" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcChip label="Active" action={{ icon: "filled_delete", onClick: () => {} }} prefix={{ color: "primary" }} />
+    </ExampleContainer>
+    <Title title="Disabled" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip
+        label="Disabled"
+        action={{ icon: "filled_delete", onClick: () => {} }}
+        prefix={{ color: "primary" }}
+        disabled
+      />
+    </ExampleContainer>
+
     <Title title="Margins" theme="light" level={2} />
+    <Title title="Xxsmall margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcChip label="xxsmall" margin="xxsmall" />
     </ExampleContainer>
+    <Title title="Xsmall margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xsmall margin" theme="light" level={4} />
       <DxcChip label="xsmall" margin="xsmall" />
     </ExampleContainer>
+    <Title title="Small margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Small margin" theme="light" level={4} />
       <DxcChip label="small" margin="small" />
     </ExampleContainer>
+    <Title title="Medium margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Medium margin" theme="light" level={4} />
       <DxcChip label="medium" margin="medium" />
     </ExampleContainer>
+    <Title title="Large margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Large margin" theme="light" level={4} />
       <DxcChip label="large" margin="large" />
     </ExampleContainer>
+    <Title title="Xlarge margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xlarge margin" theme="light" level={4} />
       <DxcChip label="xlarge" margin="xlarge" />
     </ExampleContainer>
+    <Title title="Xxlarge margin" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcChip label="xxlarge" margin="xxlarge" />
     </ExampleContainer>
   </>
 );
-
-const ChipPrefixFocused = () => (
-  <ExampleContainer>
-    <Title title="Chip with prefix" theme="light" level={4} />
-    <DxcChip label="Chip with prefix" prefixIcon={iconSVG} onClickPrefix={() => {}} />
-  </ExampleContainer>
-);
-
-const ChipSuffixFocused = () => (
-  <ExampleContainer>
-    <Title title="Chip with suffix" theme="light" level={4} />
-    <DxcChip label="Chip with suffix" suffixIcon="filled_delete" onClickSuffix={() => {}} />
-  </ExampleContainer>
+const ChipTooltip = () => (
+  <>
+    <Title title="Chip with Tooltip" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcChip
+        label="Default with tooltip and very long text"
+        action={{ icon: "filled_delete", onClick: () => {}, title: "Delete" }}
+        prefix={{ color: "primary" }}
+      />
+    </ExampleContainer>
+  </>
 );
 
 type Story = StoryObj<typeof DxcChip>;
@@ -146,16 +210,15 @@ export const Chromatic: Story = {
   render: Chip,
 };
 
-export const PrefixFocused: Story = {
-  render: ChipPrefixFocused,
-  play: async () => {
-    await userEvent.tab();
-  },
-};
+export const Tooltip: Story = {
+  render: ChipTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const chipLabel = await canvas.findByText("Default with tooltip and very long text");
+    await userEvent.hover(chipLabel);
 
-export const SuffixFocused: Story = {
-  render: ChipSuffixFocused,
-  play: async () => {
-    await userEvent.tab();
+    const documentCanvas = within(document.body);
+    await documentCanvas.findByRole("tooltip");
   },
+  parameters: { chromatic: { delay: 5000 } },
 };
