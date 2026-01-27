@@ -16,8 +16,7 @@ const actionTypeString = `{
   title?: string;
 }`;
 
-const prefixTypeString = `
-| string 
+const prefixTypeString = `| string 
 | SVG
 | AvatarProps`;
 
