@@ -139,10 +139,10 @@ const DxcSidenav = ({
     >
       <SidenavContent>
         <DxcFlex
-          justifyContent={isExpanded ? "normal" : "center"}
+          justifyContent={isExpanded ? "flex-start" : "center"}
           gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
           direction={isExpanded ? "row" : "column-reverse"}
-          alignItems="flex-start"
+          alignItems="center"
         >
           <DxcButton
             icon={`left_panel_${isExpanded ? "close" : "open"}`}
