@@ -38,11 +38,10 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
             <Popover.Content
               aria-label="Group details"
-              onCloseAutoFocus={(event) => {
-                event.preventDefault();
-              }}
-              onOpenAutoFocus={(event) => {
-                event.preventDefault();
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  toggleOpen();
+                }
               }}
               align="start"
               side={isHorizontal ? "bottom" : "right"}
@@ -60,7 +59,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                       gap: "var(--spacing-gap-xxs)",
                     }),
               }}
-              sideOffset={16}
+              sideOffset={isHorizontal ? 16 : 0}
               onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
             >
               {!isHorizontal && props.depthLevel === 0 && (
