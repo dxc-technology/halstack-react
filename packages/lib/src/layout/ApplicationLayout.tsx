@@ -15,10 +15,12 @@ const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   height: 100vh;
   width: 100vw;
   position: absolute;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const HeaderContainer = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
   min-height: var(--height-xxxl);
   height: fit-content;
@@ -26,10 +28,10 @@ const HeaderContainer = styled.div`
 `;
 
 const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
+  position: relative;
   display: grid;
   grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   grid-template-rows: 1fr;
-  overflow: hidden;
 `;
 
 const SidenavContainer = styled.div`
@@ -37,28 +39,21 @@ const SidenavContainer = styled.div`
   height: 100%;
   z-index: var(--z-app-layout-sidenav);
   position: sticky;
+  top: var(--height-xxxl);
   overflow: auto;
+  max-height: calc(100vh - var(--height-xxxl));
 `;
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  position: relative;
+  display: grid;
   width: 100%;
   height: 100%;
-  position: relative;
-  overflow: auto;
 `;
 
 const FooterContainer = styled.div`
   height: fit-content;
   width: 100%;
-`;
-
-const MainContentContainer = styled.main`
-  height: 100%;
-  display: grid;
-  grid-template-rows: 1fr auto;
 `;
 
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
@@ -78,21 +73,17 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
         {header && <HeaderContainer>{header}</HeaderContainer>}
         <BodyContainer hasSidenav={!!sidenav}>
           {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
-          <MainContainer>
-            <MainContentContainer>
-              {findChildType(children, Main)}
-              <FooterContainer>
-                {footer ?? (
-                  <DxcFooter
-                    copyright={`© DXC Technology ${year}. All rights reserved.`}
-                    bottomLinks={bottomLinks}
-                    socialLinks={socialLinks}
-                  />
-                )}
-              </FooterContainer>
-            </MainContentContainer>
-          </MainContainer>
+          <MainContainer>{findChildType(children, Main)}</MainContainer>
         </BodyContainer>
+        <FooterContainer>
+          {footer ?? (
+            <DxcFooter
+              copyright={`© DXC Technology ${year}. All rights reserved.`}
+              bottomLinks={bottomLinks}
+              socialLinks={socialLinks}
+            />
+          )}
+        </FooterContainer>
       </ApplicationLayoutContext.Provider>
     </ApplicationLayoutContainer>
   );

@@ -31,7 +31,7 @@ type Logo = {
   /**
    * Source of the logo image.
    */
-  src: string;
+  src: string | SVG;
   /**
    * Alternative text for the logo image.
    */

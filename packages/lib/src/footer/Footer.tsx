@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -213,8 +213,10 @@ const DxcFooter = ({
   const translatedLabels = useContext(HalstackLanguageContext);
 
   const footerLogo = useMemo(() => {
-    if (logo) {
+    if (logo && typeof logo.src === "string") {
       return <LogoImg mode={mode} alt={logo.alt} src={logo.src} title={logo.alt} />;
+    } else if (isValidElement(logo?.src)) {
+      return logo.src;
     } else {
       return mode === "default" ? dxcLogo : dxcSmallLogo;
     }
