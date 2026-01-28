@@ -10,7 +10,7 @@ const bottomLinksTypeString = `{
 }[]`;
 
 const logoTypeString = `{
-  src: string;
+  src: string | SVG;
   alt: string;
 }`;
 
