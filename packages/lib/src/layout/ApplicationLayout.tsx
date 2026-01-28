@@ -7,7 +7,6 @@ import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
 import { useBreakpoint } from "../utils/useBreakpoint";
-import scrollbarStyles from "../styles/scroll";
 
 const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   top: 0;
@@ -17,9 +16,7 @@ const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   height: 100vh;
   width: 100vw;
   position: absolute;
-  overflow-y: auto;
-  overflow-x: hidden;
-  ${scrollbarStyles}
+  overflow: hidden;
 `;
 
 const HeaderContainer = styled.div`
