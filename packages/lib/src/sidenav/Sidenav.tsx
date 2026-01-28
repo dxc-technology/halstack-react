@@ -121,6 +121,7 @@ const DxcSidenav = ({
       )}
       {navItems && (
         <DxcNavigationTree
+          key={isExpanded ? "expanded" : "collapsed"}
           items={navItems}
           displayGroupLines={displayGroupLines}
           displayBorder={false}
