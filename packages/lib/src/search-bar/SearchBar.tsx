@@ -72,8 +72,8 @@ const DxcSearchBar = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [innerValue, setInnerValue] = useState("");
 
-  const handleClearActionOnClick = () => {
-    setInnerValue("");
+  const handleClearAction = () => {
+    handleSearchChangeValue("");
     inputRef.current?.focus();
   };
 
@@ -90,7 +90,7 @@ const DxcSearchBar = ({
       case "Escape":
         e.preventDefault();
         if (innerValue.length > 0) {
-          handleClearActionOnClick();
+          handleClearAction();
         }
         break;
       case "Enter":
@@ -123,7 +123,7 @@ const DxcSearchBar = ({
             size="xsmall"
             shape="circle"
             icon="cancel"
-            onClick={handleClearActionOnClick}
+            onClick={handleClearAction}
             tabIndex={0}
             title={!disabled ? translatedLabels.searchBar.clearFieldActionTitle : undefined}
           />
