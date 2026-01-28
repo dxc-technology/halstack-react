@@ -39,17 +39,16 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
           <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
             <Popover.Content
               aria-label="Group details"
-              onCloseAutoFocus={(event) => {
-                event.preventDefault();
-              }}
-              onOpenAutoFocus={(event) => {
-                event.preventDefault();
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  toggleOpen();
+                }
               }}
               align="start"
               side={isHorizontal ? "bottom" : "right"}
               style={{ zIndex: "var(--z-contextualmenu)" }}
               sideOffset={isHorizontal ? 16 : 0}
-              onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
+              onInteractOutside={() => toggleOpen()}
             >
               <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
                 {items.map((item, index) => (
