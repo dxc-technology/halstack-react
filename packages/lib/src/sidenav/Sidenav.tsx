@@ -52,16 +52,15 @@ const SidenavContent = styled.div`
   & > div {
     box-sizing: border-box;
     padding-left: var(--spacing-padding-xs);
-    margin-right: var(--spacing-padding-xs);
+    padding-right: var(--spacing-padding-xs);
   }
 `;
 
 const ResizeHandle = styled.span<{ active: boolean }>`
-  padding: var(--spacing-padding-none) var(--spacing-padding-xxs);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xxxs);
   height: 100%;
-  z-index: 10;
   cursor: ew-resize;
-  background-color: ${({ active }) => (active ? "var(--color-bg-neutral-medium)" : "var(--color-bg-neutral-light)")};
+  background-color: transparent;
 `;
 
 const SidenavTitle = styled.div`
