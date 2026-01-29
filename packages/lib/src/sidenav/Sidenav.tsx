@@ -4,7 +4,7 @@ import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
@@ -12,9 +12,10 @@ import DxcSearchBar from "../search-bar/SearchBar";
 import DxcSearchBarTrigger from "../search-bar/SearchBarTrigger";
 import useResize from "../utils/useResize";
 import { useBreakpoint } from "../utils/useBreakpoint";
+import { responsiveSizes } from "../common/variables";
 
 const COLLAPSED_WIDTH = 56;
-const MIN_WIDTH = 240;
+const MIN_WIDTH = 0;
 const MAX_WIDTH = 320;
 const DEFAULT_WIDTH = 280;
 
@@ -32,9 +33,17 @@ const SidenavContainer = styled.div<{
     showBorder &&
     `border-right: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);`}
   width: ${({ expanded, width }) => (expanded ? `${width}px` : `${COLLAPSED_WIDTH}px`)};
-  min-width: 56px;
+  min-width: ${({ expanded }) => (expanded ? "240px" : "56px")};
   height: 100%;
   background-color: var(--color-bg-neutral-lightest);
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    ${({ expanded }) =>
+      expanded &&
+      `
+      width: 100%;
+      height: 100vh;
+    `}
+  }
 `;
 
 const SidenavContent = styled.div`
@@ -59,7 +68,7 @@ const SidenavContent = styled.div`
 const ResizeHandle = styled.span<{ active: boolean }>`
   padding: var(--spacing-padding-none) var(--spacing-padding-xxxs);
   height: 100%;
-  cursor: ew-resize;
+  cursor: col-resize;
   background-color: transparent;
 `;
 
@@ -101,18 +110,24 @@ const DxcSidenav = ({
 }: SidenavPropsType): JSX.Element => {
   const isBelowLarge = useBreakpoint("large");
   const isBelowMedium = useBreakpoint("medium");
-
-  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded ?? !isBelowLarge);
   const { logo, headerExists } = useContext(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
-  const isExpanded = isControlled ? !!expanded : internalExpanded;
-  const shouldFocusSearchBar = useRef(false);
-
   const { width, sidenavRef, isResizing, startResize } = useResize({
     minWidth: MIN_WIDTH,
     maxWidth: MAX_WIDTH,
     defaultWidth: DEFAULT_WIDTH,
   });
+
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded ?? !isBelowLarge);
+
+  useEffect(() => {
+    if (!isControlled) {
+      setInternalExpanded(!isBelowLarge && width > COLLAPSED_WIDTH);
+    }
+  }, [isBelowLarge, width]);
+
+  const isExpanded = isControlled ? !!expanded : internalExpanded;
+  const shouldFocusSearchBar = useRef(false);
 
   const handleToggle = () => {
     const nextState = !isExpanded;
@@ -138,10 +153,10 @@ const DxcSidenav = ({
     >
       <SidenavContent>
         <DxcFlex
-          justifyContent={isExpanded ? "flex-start" : "center"}
+          justifyContent="flex-start"
           gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
           direction={isExpanded ? "row" : "column-reverse"}
-          alignItems="center"
+          alignItems={isExpanded ? "flex-start" : "center"}
         >
           <DxcButton
             icon={`left_panel_${isExpanded ? "close" : "open"}`}
@@ -152,7 +167,13 @@ const DxcSidenav = ({
           />
 
           {!(isBelowMedium && !isExpanded) && (
-            <DxcFlex direction="column" gap="var(--spacing-gap-m)" justifyContent="center" alignItems="flex-start">
+            <DxcFlex
+              direction="column"
+              gap="var(--spacing-gap-m)"
+              justifyContent="center"
+              alignItems="flex-start"
+              alignSelf="center"
+            >
               {logo && !headerExists && (
                 <LogoContainer
                   onClick={logo.onClick}

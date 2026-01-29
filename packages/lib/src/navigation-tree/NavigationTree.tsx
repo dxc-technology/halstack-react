@@ -13,12 +13,10 @@ const NavigationTreeContainer = styled.div<{ displayBorder: boolean }>`
   margin: 0;
   display: grid;
   gap: var(--spacing-gap-xs);
-  /* min-width: 248px; */
   max-height: 100%;
   background-color: var(--color-bg-neutral-lightest);
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-gutter: stable;
   ${scrollbarStyles};
   ${({ displayBorder }) =>
     displayBorder &&
@@ -27,9 +25,6 @@ const NavigationTreeContainer = styled.div<{ displayBorder: boolean }>`
       border-radius: var(--border-radius-s);
       padding: var(--spacing-padding-m) var(--spacing-padding-xs);
     `}
-  &:hover {
-    overflow-y: auto;
-  }
 `;
 
 export default function DxcNavigationTree({

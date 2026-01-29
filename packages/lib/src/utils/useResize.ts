@@ -38,7 +38,7 @@ const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
 
   const startResize = () => {
     setIsResizing(true);
-    document.body.style.cursor = "ew-resize";
+    document.body.style.cursor = "col-resize";
     document.body.style.userSelect = "none";
   };
 

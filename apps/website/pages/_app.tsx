@@ -107,7 +107,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         sidenav={
           <DxcApplicationLayout.Sidenav
             navItems={navItems}
-            appTitle={isExpanded && <SidenavLogo />}
+            appTitle={<SidenavLogo />}
             searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
             expanded={isExpanded}
             onExpandedChange={() => {
