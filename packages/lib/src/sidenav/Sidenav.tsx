@@ -121,7 +121,7 @@ const DxcSidenav = ({
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded ?? !isBelowLarge);
 
   useEffect(() => {
-    if (!isControlled) {
+    if (defaultExpanded === undefined) {
       setInternalExpanded(!isBelowLarge && width > COLLAPSED_WIDTH);
     }
   }, [isBelowLarge, width]);
