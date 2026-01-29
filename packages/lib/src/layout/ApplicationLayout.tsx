@@ -6,6 +6,7 @@ import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
+import { responsiveSizes } from "../common/variables";
 
 const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
   display: grid;
@@ -27,6 +28,13 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
   grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   grid-template-rows: 1fr;
   min-height: 100%;
+  overflow: hidden;
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    overflow-y: auto;
+  }
 `;
 
 const SidenavContainer = styled.div<{ headerHeight: string }>`
@@ -37,6 +45,10 @@ const SidenavContainer = styled.div<{ headerHeight: string }>`
   overflow: auto;
   z-index: var(--z-app-layout-sidenav);
   max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    width: 100%;
+  }
 `;
 
 const MainContainer = styled.main`
