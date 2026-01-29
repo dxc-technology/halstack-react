@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -34,14 +34,14 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
   grid-template-rows: 1fr;
 `;
 
-const SidenavContainer = styled.div`
+const SidenavContainer = styled.div<{ headerHeight: string }>`
   width: fit-content;
   height: 100%;
   z-index: var(--z-app-layout-sidenav);
   position: sticky;
-  top: var(--height-xxxl);
+  top: ${({ headerHeight }) => headerHeight || "0"};
   overflow: auto;
-  max-height: calc(100vh - var(--height-xxxl));
+  max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
 `;
 
 const MainContainer = styled.div`
@@ -59,6 +59,15 @@ const FooterContainer = styled.div`
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
 
 const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
+  const [headerHeight, setHeaderHeight] = useState("0px");
+
+  const handleHeaderHeight = useCallback((headerElement: HTMLDivElement | null) => {
+    if (headerElement) {
+      const height = headerElement.offsetHeight;
+      setHeaderHeight(`${height}px`);
+    }
+  }, []);
+
   const contextValue = useMemo(() => {
     return {
       logo,
@@ -70,9 +79,9 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
       <ApplicationLayoutContext.Provider value={contextValue}>
-        {header && <HeaderContainer>{header}</HeaderContainer>}
+        {header && <HeaderContainer ref={handleHeaderHeight}>{header}</HeaderContainer>}
         <BodyContainer hasSidenav={!!sidenav}>
-          {sidenav && <SidenavContainer>{sidenav}</SidenavContainer>}
+          {sidenav && <SidenavContainer headerHeight={headerHeight}>{sidenav}</SidenavContainer>}
           <MainContainer>{findChildType(children, Main)}</MainContainer>
         </BodyContainer>
         <FooterContainer>
