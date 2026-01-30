@@ -24,6 +24,7 @@ const SidenavContainer = styled.div<{
   width: number;
   showBorder?: boolean;
   side?: "left" | "right";
+  hasHeader: boolean;
 }>`
   position: relative;
   box-sizing: border-box;
@@ -38,7 +39,8 @@ const SidenavContainer = styled.div<{
   background-color: var(--color-bg-neutral-lightest);
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100%;
-    ${({ expanded }) => expanded && "height: 100vh;"}
+    ${({ expanded, hasHeader }) =>
+      expanded && (hasHeader ? "height: calc(100vh - var(--height-xxxl));" : "height: 100vh;")}
   }
 `;
 
@@ -146,12 +148,13 @@ const DxcSidenav = ({
       showBorder={!(isBelowMedium && !isExpanded)}
       ref={sidenavRef}
       side="left"
+      hasHeader={headerExists}
     >
       <SidenavContent>
         <DxcFlex
           justifyContent="flex-start"
           gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
-          direction={isExpanded ? "row" : "column-reverse"}
+          direction={isExpanded ? "row" : isBelowMedium ? "row" : "column-reverse"}
           alignItems={isExpanded || isBelowMedium ? "flex-start" : "center"}
         >
           <DxcButton
@@ -162,32 +165,30 @@ const DxcSidenav = ({
             onClick={handleToggle}
           />
 
-          {!(isBelowMedium && !isExpanded) && (
-            <DxcFlex
-              direction="column"
-              gap="var(--spacing-gap-m)"
-              justifyContent="center"
-              alignItems="flex-start"
-              alignSelf="center"
-            >
-              {logo && !headerExists && (
-                <LogoContainer
-                  onClick={logo.onClick}
-                  hasAction={!!logo.onClick || !!logo.href}
-                  role={logo.onClick ? "button" : logo.href ? "link" : "presentation"}
-                  as={logo.href ? "a" : undefined}
-                  href={logo.href}
-                >
-                  {typeof logo.src === "string" ? (
-                    <DxcImage alt={logo.alt ?? ""} src={logo.src} height="100%" width="100%" />
-                  ) : (
-                    logo.src
-                  )}
-                </LogoContainer>
-              )}
-              {isExpanded && <SidenavTitle>{appTitle}</SidenavTitle>}
-            </DxcFlex>
-          )}
+          <DxcFlex
+            direction="column"
+            gap="var(--spacing-gap-m)"
+            justifyContent="center"
+            alignItems="flex-start"
+            alignSelf="center"
+          >
+            {logo && !headerExists && (
+              <LogoContainer
+                onClick={logo.onClick}
+                hasAction={!!logo.onClick || !!logo.href}
+                role={logo.onClick ? "button" : logo.href ? "link" : "presentation"}
+                as={logo.href ? "a" : undefined}
+                href={logo.href}
+              >
+                {typeof logo.src === "string" ? (
+                  <DxcImage alt={logo.alt ?? ""} src={logo.src} height="100%" width="100%" />
+                ) : (
+                  logo.src
+                )}
+              </LogoContainer>
+            )}
+            {isExpanded && !isBelowMedium && <SidenavTitle>{appTitle}</SidenavTitle>}
+          </DxcFlex>
         </DxcFlex>
         {!(isBelowMedium && !isExpanded) && (
           <>
