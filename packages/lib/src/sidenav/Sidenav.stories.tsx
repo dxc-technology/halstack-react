@@ -10,13 +10,22 @@ import DxcAvatar from "../avatar/Avatar";
 import { userEvent, within } from "storybook/internal/test";
 import disabledRules from "../../test/accessibility/rules/specific/sidenav/disabledRules";
 import preview from "../../.storybook/preview";
-import { useState } from "react";
 import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcParagraph from "../paragraph/Paragraph";
+import { useEffect, useState } from "react";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        document.body.style.padding = "0";
+      }, []);
+
+      return <Story />;
+    },
+  ],
   parameters: {
     a11y: {
       config: {
