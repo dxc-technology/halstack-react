@@ -187,7 +187,7 @@ const DxcSidenav = ({
                 )}
               </LogoContainer>
             )}
-            {isExpanded && !isBelowMedium && <SidenavTitle>{appTitle}</SidenavTitle>}
+            {isExpanded && <SidenavTitle>{appTitle}</SidenavTitle>}
           </DxcFlex>
         </DxcFlex>
         {!(isBelowMedium && !isExpanded) && (
