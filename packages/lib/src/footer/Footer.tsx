@@ -65,6 +65,11 @@ const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
       justify-content: flex-start;
       align-items: center;
     `}
+
+  & > svg {
+    max-height: ${(props) => (props.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+    width: auto;
+  }
 `;
 
 const LogoImg = styled.img<{ mode: FooterPropsType["mode"] }>`

@@ -56,12 +56,15 @@ const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{childr
 const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
   const [headerHeight, setHeaderHeight] = useState("0px");
 
-  const handleHeaderHeight = useCallback((headerElement: HTMLDivElement | null) => {
-    if (headerElement) {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(`${height}px`);
-    }
-  }, []);
+  const handleHeaderHeight = useCallback(
+    (headerElement: HTMLDivElement | null) => {
+      if (headerElement) {
+        const height = headerElement.offsetHeight;
+        setHeaderHeight(`${height}px`);
+      }
+    },
+    [header]
+  );
 
   const contextValue = useMemo(() => {
     return {
