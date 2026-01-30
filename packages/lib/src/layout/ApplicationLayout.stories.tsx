@@ -2,10 +2,20 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
 import { userEvent, within } from "storybook/internal/test";
+import { useEffect } from "react";
 
 export default {
   title: "Application Layout",
   component: DxcApplicationLayout,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        document.body.style.padding = "0";
+      }, []);
+
+      return <Story />;
+    },
+  ],
 } satisfies Meta<typeof DxcApplicationLayout>;
 
 const dxcLogo = (
