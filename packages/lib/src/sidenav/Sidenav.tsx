@@ -17,7 +17,6 @@ import { responsiveSizes } from "../common/variables";
 const COLLAPSED_WIDTH = 56;
 const MIN_WIDTH = 0;
 const MAX_WIDTH = 320;
-const DEFAULT_WIDTH = 280;
 
 const SidenavContainer = styled.div<{
   expanded: boolean;
@@ -113,7 +112,7 @@ const DxcSidenav = ({
   const { width, sidenavRef, isResizing, startResize } = useResize({
     minWidth: MIN_WIDTH,
     maxWidth: MAX_WIDTH,
-    defaultWidth: DEFAULT_WIDTH,
+    defaultWidth: MIN_WIDTH,
   });
 
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded ?? !isBelowLarge);
