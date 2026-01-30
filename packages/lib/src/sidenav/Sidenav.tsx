@@ -24,7 +24,6 @@ const SidenavContainer = styled.div<{
   width: number;
   showBorder?: boolean;
   side?: "left" | "right";
-  hasHeader?: boolean;
 }>`
   position: relative;
   box-sizing: border-box;
@@ -39,8 +38,6 @@ const SidenavContainer = styled.div<{
   background-color: var(--color-bg-neutral-lightest);
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100%;
-    ${({ expanded, hasHeader }) =>
-      expanded && (hasHeader ? "height: calc(100vh - var(--height-xxxl));" : "height: 100vh;")}
   }
 `;
 
@@ -108,7 +105,7 @@ const DxcSidenav = ({
 }: SidenavPropsType): JSX.Element => {
   const isBelowLarge = useBreakpoint("large");
   const isBelowMedium = useBreakpoint("medium");
-  const { logo, headerExists } = useContext(ApplicationLayoutContext);
+  const { logo, headerExists, setHideMainContent } = useContext(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
   const { width, sidenavRef, isResizing, startResize } = useResize({
     minWidth: MIN_WIDTH,
@@ -126,6 +123,14 @@ const DxcSidenav = ({
 
   const isExpanded = isControlled ? !!expanded : internalExpanded;
   const shouldFocusSearchBar = useRef(false);
+
+  useEffect(() => {
+    if (isBelowMedium && isExpanded) {
+      setHideMainContent(true);
+    } else {
+      setHideMainContent(false);
+    }
+  }, [isBelowMedium, isExpanded]);
 
   const handleToggle = () => {
     const nextState = !isExpanded;
@@ -148,7 +153,6 @@ const DxcSidenav = ({
       showBorder={!(isBelowMedium && !isExpanded)}
       ref={sidenavRef}
       side="left"
-      hasHeader={headerExists}
     >
       <SidenavContent>
         <DxcFlex
