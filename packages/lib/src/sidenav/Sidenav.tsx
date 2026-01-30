@@ -24,7 +24,7 @@ const SidenavContainer = styled.div<{
   width: number;
   showBorder?: boolean;
   side?: "left" | "right";
-  hasHeader: boolean;
+  hasHeader?: boolean;
 }>`
   position: relative;
   box-sizing: border-box;
