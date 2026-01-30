@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useCallback } from "react";
+import React, { useMemo, useRef, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -8,21 +8,15 @@ import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
 
 const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
-  top: 0;
-  left: 0;
   display: grid;
-  grid-template-rows: ${({ header }) => (header ? "auto 1fr" : "1fr")};
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  overflow: auto;
+  grid-template-rows: ${({ header }) => (header ? "auto 1fr auto" : "1fr auto")};
+  min-height: 100vh;
 `;
 
 const HeaderContainer = styled.div`
   position: sticky;
   top: 0;
   width: 100%;
-  min-height: var(--height-xxxl);
   height: fit-content;
   z-index: var(--z-app-layout-header);
 `;
@@ -32,6 +26,7 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
   display: grid;
   grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   grid-template-rows: 1fr;
+  min-height: 100%;
 `;
 
 const SidenavContainer = styled.div<{ headerHeight: string }>`
@@ -44,7 +39,7 @@ const SidenavContainer = styled.div<{ headerHeight: string }>`
   max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
 `;
 
-const MainContainer = styled.div`
+const MainContainer = styled.main`
   position: relative;
   display: grid;
   width: 100%;

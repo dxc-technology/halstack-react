@@ -10,11 +10,20 @@ import DxcAvatar from "../avatar/Avatar";
 import { userEvent, within } from "storybook/internal/test";
 import disabledRules from "../../test/accessibility/rules/specific/sidenav/disabledRules";
 import preview from "../../.storybook/preview";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        document.body.style.padding = "0";
+      }, []);
+
+      return <Story />;
+    },
+  ],
   parameters: {
     a11y: {
       config: {
@@ -34,7 +43,7 @@ const DetailedAvatar = () => {
         <DxcAvatar color="primary" status={{ mode: "error", position: "bottom" }} title="Michael Ramirez" />
         <DxcFlex direction="column">
           <DxcTypography
-            color="var(--color-fg-neutral-dark"
+            color="var(--color-fg-neutral-dark)"
             fontFamily="var(--typography-font-family)"
             fontSize="var(--typography-label-l)"
             fontWeight="var(--typography-label-regular)"
@@ -42,7 +51,7 @@ const DetailedAvatar = () => {
             Michael Ramirez
           </DxcTypography>
           <DxcTypography
-            color="var(--color-fg-neutral-stronger"
+            color="var(--color-fg-neutral-stronger)"
             fontFamily="var(--typography-font-family)"
             fontSize="var(--typography-label-s)"
             fontWeight="var(--typography-label-regular)"
