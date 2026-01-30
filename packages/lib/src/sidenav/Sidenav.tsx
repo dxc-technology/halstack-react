@@ -37,12 +37,8 @@ const SidenavContainer = styled.div<{
   height: 100%;
   background-color: var(--color-bg-neutral-lightest);
   @media (max-width: ${responsiveSizes.medium}rem) {
-    ${({ expanded }) =>
-      expanded &&
-      `
-      width: 100%;
-      height: 100vh;
-    `}
+    width: 100%;
+    ${({ expanded }) => expanded && "height: 100vh;"}
   }
 `;
 
@@ -156,7 +152,7 @@ const DxcSidenav = ({
           justifyContent="flex-start"
           gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
           direction={isExpanded ? "row" : "column-reverse"}
-          alignItems={isExpanded ? "flex-start" : "center"}
+          alignItems={isExpanded || isBelowMedium ? "flex-start" : "center"}
         >
           <DxcButton
             icon={`left_panel_${isExpanded ? "close" : "open"}`}
