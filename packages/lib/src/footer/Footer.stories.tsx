@@ -7,6 +7,7 @@ import DxcFooter from "./Footer";
 import DxcLink from "../link/Link";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
+import { useEffect } from "react";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcHeading from "../heading/Heading";
 import DxcApplicationLayout from "../layout/ApplicationLayout";
@@ -17,6 +18,15 @@ import DxcButton from "../button/Button";
 export default {
   title: "Footer",
   component: DxcFooter,
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        document.body.style.padding = "0";
+      }, []);
+
+      return <Story />;
+    },
+  ],
   parameters: {
     a11y: {
       config: {
