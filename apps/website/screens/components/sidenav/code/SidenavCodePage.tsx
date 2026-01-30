@@ -95,7 +95,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true the nav menu will have lines marking the groups.</td>
-            <td>-</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>
