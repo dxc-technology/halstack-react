@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback } from "react";
+import { useMemo, useRef, useState, useCallback, ReactNode } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -6,8 +6,9 @@ import DxcSidenav from "../sidenav/Sidenav";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
+import { responsiveSizes } from "../common/variables";
 
-const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
+const ApplicationLayoutContainer = styled.div<{ header?: ReactNode }>`
   display: grid;
   grid-template-rows: ${({ header }) => (header ? "auto 1fr auto" : "1fr auto")};
   min-height: 100vh;
@@ -27,9 +28,14 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
   grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   grid-template-rows: 1fr;
   min-height: 100%;
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
 `;
 
-const SidenavContainer = styled.div<{ headerHeight: string }>`
+const SidenavContainer = styled.div<{ headerHeight: string; footerHeight: string }>`
   width: fit-content;
   height: 100%;
   z-index: var(--z-app-layout-sidenav);
@@ -37,6 +43,10 @@ const SidenavContainer = styled.div<{ headerHeight: string }>`
   top: ${({ headerHeight }) => headerHeight || "0"};
   overflow: auto;
   max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    width: 100%;
+    max-height: ${({ headerHeight, footerHeight }) => `calc(100vh - ${headerHeight || "0"} - ${footerHeight || "0"})`};
+  }
 `;
 
 const MainContainer = styled.main`
@@ -55,7 +65,8 @@ const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{childr
 
 const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
   const [headerHeight, setHeaderHeight] = useState("0px");
-
+  const [footerHeight, setFooterHeight] = useState("0px");
+  const [hideMainContent, setHideMainContent] = useState(false);
   const handleHeaderHeight = useCallback(
     (headerElement: HTMLDivElement | null) => {
       if (headerElement) {
@@ -66,10 +77,21 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
     [header]
   );
 
+  const handleFooterHeight = useCallback(
+    (footerElement: HTMLDivElement | null) => {
+      if (footerElement) {
+        const height = footerElement.offsetHeight;
+        setFooterHeight(`${height}px`);
+      }
+    },
+    [footer]
+  );
+
   const contextValue = useMemo(() => {
     return {
       logo,
       headerExists: !!header,
+      setHideMainContent,
     };
   }, [header, logo]);
   const ref = useRef(null);
@@ -79,10 +101,14 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
       <ApplicationLayoutContext.Provider value={contextValue}>
         {header && <HeaderContainer ref={handleHeaderHeight}>{header}</HeaderContainer>}
         <BodyContainer hasSidenav={!!sidenav}>
-          {sidenav && <SidenavContainer headerHeight={headerHeight}>{sidenav}</SidenavContainer>}
-          <MainContainer>{findChildType(children, Main)}</MainContainer>
+          {sidenav && (
+            <SidenavContainer headerHeight={headerHeight} footerHeight={footerHeight}>
+              {sidenav}
+            </SidenavContainer>
+          )}
+          {!hideMainContent && <MainContainer>{findChildType(children, Main)}</MainContainer>}
         </BodyContainer>
-        <FooterContainer>
+        <FooterContainer ref={handleFooterHeight}>
           {footer ?? (
             <DxcFooter
               copyright={`© DXC Technology ${year}. All rights reserved.`}

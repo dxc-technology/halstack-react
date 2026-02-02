@@ -47,6 +47,10 @@ export type ApplicationLayoutContextType = {
    * Indicates if the header exists.
    */
   headerExists: boolean;
+  /**
+   * Allows the sidenav to hide the main content when needed
+   */
+  setHideMainContent: (hide: boolean) => void;
 };
 
 type ApplicationLayoutPropsType = {

@@ -154,7 +154,9 @@ const ApplicationLayoutCustomFooter = () => (
 const Tooltip = () => (
   <DxcApplicationLayout
     logo={logo}
-    sidenav={<DxcApplicationLayout.Sidenav appTitle="Application layout with push sidenav" navItems={items} />}
+    sidenav={
+      <DxcApplicationLayout.Sidenav appTitle="Application layout with push sidenav" navItems={items} defaultExpanded />
+    }
   >
     <DxcApplicationLayout.Main>
       <p>Main Content</p>
