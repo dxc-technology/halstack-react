@@ -260,6 +260,12 @@
         "path": "/components/inset",
         "status": "stable",
         "icon": "padding"
+      },
+      {
+        "label": "Popover",
+        "path": "/components/popover",
+        "status": "experimental",
+        "icon": "chat_bubble" 
       }
     ]
   },
