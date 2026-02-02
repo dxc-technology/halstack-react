@@ -1,3 +1,4 @@
+import { SVG } from "../../../../packages/lib/src/common/utils";
 import componentsList from "./componentsList.json";
 
 export type ComponentStatus = "experimental" | "new" | "stable" | "legacy" | "deprecated";
@@ -6,11 +7,13 @@ export type LinkDetails = {
   label: string;
   path: string;
   status?: ComponentStatus;
+  icon?: string | SVG;
 };
 
 export type LinksSectionDetails = {
   label: string;
   links: (LinkDetails | LinksSectionDetails)[];
+  icon?: string | SVG;
 };
 
 type NavigationLinks = {
