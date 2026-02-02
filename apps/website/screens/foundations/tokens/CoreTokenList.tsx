@@ -7,56 +7,6 @@ import TokensTable from "./tables/TokensTable";
 const sections = [
   {
     title: "Colors",
-    content: (
-      <>
-        <>
-          {/* Color Tokens */}
-          <DxcHeading level={4} text="Colors" />
-          <DxcHeading level={5} text="Absolute color tokens" />
-          <TokensTable categories={["color-absolutes"]} type="core" />
-          <DxcHeading level={5} text="Primary color tokens" />
-          <TokensTable categories={["color-primary"]} type="core" />
-          <DxcHeading level={5} text="Secondary color tokens" />
-          <TokensTable categories={["color-secondary"]} type="core" />
-          <DxcHeading level={5} text="Tertiary color tokens" />
-          <TokensTable categories={["color-tertiary"]} type="core" />
-          <DxcHeading level={5} text="Neutral color tokens" />
-          <TokensTable categories={["color-neutral"]} type="core" />
-          <DxcHeading level={5} text="Semantic 01 color tokens" />
-          <TokensTable categories={["color-semantic01"]} type="core" />
-          <DxcHeading level={5} text="Semantic 02 color tokens" />
-          <TokensTable categories={["color-semantic02"]} type="core" />
-          <DxcHeading level={5} text="Semantic 03 color tokens" />
-          <TokensTable categories={["color-semantic03"]} type="core" />
-          <DxcHeading level={5} text="Semantic 04 color tokens" />
-          <TokensTable categories={["color-semantic04"]} type="core" />
-          <DxcHeading level={5} text="Alpha color tokens" />
-          <TokensTable categories={["color-alpha"]} type="core" />
-        </>
-        <>
-          {/* Dimensions Tokens */}
-          <DxcHeading level={4} text="Dimensions" />
-          <TokensTable categories={["dimensions"]} type="core" />
-        </>
-        <>
-          {/* Font Tokens */}
-          <DxcHeading level={4} text="Font" />
-          <DxcHeading level={5} text="Font size tokens" />
-          <TokensTable categories={["font-size"]} type="core" />
-          <DxcHeading level={5} text="Font weight tokens" />
-          <TokensTable categories={["font-weight"]} type="core" />
-          <DxcHeading level={5} text="Font family tokens" />
-          <TokensTable categories={["font-family"]} type="core" />
-          <DxcHeading level={5} text="Font style tokens" />
-          <TokensTable categories={["font-style"]} type="core" />
-        </>
-        <>
-          {/* Border Tokens */}
-          <DxcHeading level={4} text="Border" />
-          <TokensTable categories={["line-style"]} type="core" />
-        </>
-      </>
-    ),
     subSections: [
       { title: "Absolute", content: <TokensTable categories={["color-absolutes"]} type="core" /> },
       { title: "Primary", content: <TokensTable categories={["color-primary"]} type="core" /> },
@@ -73,7 +23,6 @@ const sections = [
   { title: "Dimensions", content: <TokensTable categories={["dimensions"]} type="core" /> },
   {
     title: "Font",
-    content: <TokensTable categories={["font-size", "font-weight", "font-family", "font-style"]} type="core" />,
     subSections: [
       {
         title: "Font size",
