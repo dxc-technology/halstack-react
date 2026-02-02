@@ -1,143 +1,320 @@
 [
-  { "label": "Accordion", "path": "/components/accordion", "status": "stable" },
-  { "label": "Alert", "path": "/components/alert", "status": "stable" },
+  {
+    "label": "Accordion",
+    "path": "/components/accordion",
+    "status": "stable",
+    "icon": "menu_open"
+  },
+  {
+    "label": "Alert",
+    "path": "/components/alert",
+    "status": "stable",
+    "icon": "filled_error"
+  },
   {
     "label": "Application layout",
+    "icon": "view_quilt",
     "links": [
       {
         "label": "Application layout",
         "path": "/components/application-layout",
-        "status": "stable"
+        "status": "stable",
+        "icon": "dashboard"
       },
-      { "label": "Footer", "path": "/components/footer", "status": "stable" },
-      { "label": "Header", "path": "/components/header", "status": "stable" },
-      { "label": "Sidenav", "path": "/components/sidenav", "status": "stable" }
+      {
+        "label": "Footer",
+        "path": "/components/footer",
+        "status": "stable",
+        "icon": "view_agenda"
+      },
+      {
+        "label": "Header",
+        "path": "/components/header",
+        "status": "stable",
+        "icon": "view_day"
+      },
+      {
+        "label": "Sidenav",
+        "path": "/components/sidenav",
+        "status": "stable",
+        "icon": "view_sidebar"
+      }
     ]
   },
   {
     "label": "Avatar",
     "path": "/components/avatar",
-    "status": "experimental"
+    "status": "experimental",
+    "icon": "filled_account_circle"
   },
   {
     "label": "Badge",
     "path": "/components/badge",
-    "status": "stable"
+    "status": "stable",
+    "icon": "filled_label"
   },
-  { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
+  {
+    "label": "Bleed",
+    "path": "/components/bleed",
+    "status": "stable",
+    "icon": "vertical_align_center"
+  },
   {
     "label": "Breadcrumbs",
     "path": "/components/breadcrumbs",
-    "status": "stable"
+    "status": "stable",
+    "icon": "arrow_back"
   },
   {
     "label": "Bulleted list",
     "path": "/components/bulleted-list",
-    "status": "stable"
+    "status": "stable",
+    "icon": "format_list_bulleted"
   },
-  { "label": "Button", "path": "/components/button", "status": "stable" },
-  { "label": "Card", "path": "/components/card", "status": "stable" },
-  { "label": "Checkbox", "path": "/components/checkbox", "status": "stable" },
-  { "label": "Chip", "path": "/components/chip", "status": "stable" },
+  {
+    "label": "Button",
+    "path": "/components/button",
+    "status": "stable",
+    "icon": "smart_button"
+  },
+  {
+    "label": "Card",
+    "path": "/components/card",
+    "status": "stable",
+    "icon": "credit_card"
+  },
+  {
+    "label": "Checkbox",
+    "path": "/components/checkbox",
+    "status": "stable",
+    "icon": "filled_check_box"
+  },
+  {
+    "label": "Chip",
+    "path": "/components/chip",
+    "status": "stable",
+    "icon": "toggle_off"
+  },
   {
     "label": "Container",
     "path": "/components/container",
-    "status": "stable"
+    "status": "stable",
+    "icon": "crop_square"
   },
   {
     "label": "Contextual menu",
     "path": "/components/contextual-menu",
-    "status": "stable"
+    "status": "stable",
+    "icon": "notes"
   },
   {
     "label": "Data grid",
     "path": "/components/data-grid",
-    "status": "new"
+    "status": "new",
+    "icon": "table_rows"
   },
   {
     "label": "Date input",
     "path": "/components/date-input",
-    "status": "stable"
+    "status": "stable",
+    "icon": "date_range"
   },
-  { "label": "Dialog", "path": "/components/dialog", "status": "stable" },
+  {
+    "label": "Dialog",
+    "path": "/components/dialog",
+    "status": "stable",
+    "icon": "open_in_new"
+  },
   {
     "label": "Divider",
     "path": "/components/divider",
-    "status": "stable"
+    "status": "stable",
+    "icon": "border_left"
   },
-  { "label": "Dropdown", "path": "/components/dropdown", "status": "stable" },
+  {
+    "label": "Dropdown",
+    "path": "/components/dropdown",
+    "status": "stable",
+    "icon": "south"
+  },
   {
     "label": "File input",
     "path": "/components/file-input",
-    "status": "stable"
+    "status": "stable",
+    "icon": "filled_file_upload"
   },
-  { "label": "Flex", "path": "/components/flex", "status": "stable" },
-  { "label": "Grid", "path": "/components/grid", "status": "stable" },
-  { "label": "Heading", "path": "/components/heading", "status": "stable" },
-  { "label": "Image", "path": "/components/image", "status": "stable" },
-  { "label": "Inset", "path": "/components/inset", "status": "stable" },
-  { "label": "Link", "path": "/components/link", "status": "stable" },
-  { "label": "Nav tabs", "path": "/components/nav-tabs", "status": "stable" },
+  {
+    "label": "Flex",
+    "path": "/components/flex",
+    "status": "stable",
+    "icon": "view_stream"
+  },
+  {
+    "label": "Grid",
+    "path": "/components/grid",
+    "status": "stable",
+    "icon": "grid_on"
+  },
+  {
+    "label": "Heading",
+    "path": "/components/heading",
+    "status": "stable",
+    "icon": "title"
+  },
+  {
+    "label": "Image",
+    "path": "/components/image",
+    "status": "stable",
+    "icon": "image"
+  },
+  {
+    "label": "Inset",
+    "path": "/components/inset",
+    "status": "stable",
+    "icon": "padding"
+  },
+  {
+    "label": "Link",
+    "path": "/components/link",
+    "status": "stable",
+    "icon": "link"
+  },
+  {
+    "label": "Nav tabs",
+    "path": "/components/nav-tabs",
+    "status": "stable",
+    "icon": "tab"
+  },
   {
     "label": "Number input",
     "path": "/components/number-input",
-    "status": "stable"
+    "status": "stable",
+    "icon": "pin"
   },
-  { "label": "Paginator", "path": "/components/paginator", "status": "stable" },
-  { "label": "Paragraph", "path": "/components/paragraph", "status": "stable" },
+  {
+    "label": "Paginator",
+    "path": "/components/paginator",
+    "status": "stable",
+    "icon": "last_page"
+  },
+  {
+    "label": "Paragraph",
+    "path": "/components/paragraph",
+    "status": "stable",
+    "icon": "notes"
+  },
   {
     "label": "Password input",
     "path": "/components/password-input",
-    "status": "stable"
+    "status": "stable",
+    "icon": "password"
   },
   {
     "label": "Progress bar",
     "path": "/components/progress-bar",
-    "status": "stable"
+    "status": "stable",
+    "icon": "linear_scale"
   },
-  { "label": "Quick nav", "path": "/components/quick-nav", "status": "stable" },
+  {
+    "label": "Quick nav",
+    "path": "/components/quick-nav",
+    "status": "stable",
+    "icon": "menu"
+  },
   {
     "label": "Radio group",
     "path": "/components/radio-group",
-    "status": "stable"
+    "status": "stable",
+    "icon": "radio_button_checked"
   },
   {
     "label": "Resultset table",
     "path": "/components/resultset-table",
-    "status": "stable"
+    "status": "stable",
+    "icon": "table_chart"
   },
-  { "label": "Select", "path": "/components/select", "status": "stable" },
-  { "label": "Slider", "path": "/components/slider", "status": "stable" },
-  { "label": "Spinner", "path": "/components/spinner", "status": "stable" },
+  {
+    "label": "Select",
+    "path": "/components/select",
+    "status": "stable",
+    "icon": "expand_circle_down"
+  },
+  {
+    "label": "Slider",
+    "path": "/components/slider",
+    "status": "stable",
+    "icon": "sliders"
+  },
+  {
+    "label": "Spinner",
+    "path": "/components/spinner",
+    "status": "stable",
+    "icon": "autorenew"
+  },
   {
     "label": "Status light",
     "path": "/components/status-light",
-    "status": "stable"
+    "status": "stable",
+    "icon": "filled_circle"
   },
-  { "label": "Switch", "path": "/components/switch", "status": "stable" },
-  { "label": "Table", "path": "/components/table", "status": "stable" },
-  { "label": "Tabs", "path": "/components/tabs", "status": "stable" },
+  {
+    "label": "Switch",
+    "path": "/components/switch",
+    "status": "stable",
+    "icon": "toggle_on"
+  },
+  {
+    "label": "Table",
+    "path": "/components/table",
+    "status": "stable",
+    "icon": "table_chart"
+  },
+  {
+    "label": "Tabs",
+    "path": "/components/tabs",
+    "status": "stable",
+    "icon": "tabs"
+  },
   {
     "label": "Text input",
     "path": "/components/text-input",
-    "status": "stable"
+    "status": "stable",
+    "icon": "input"
   },
-  { "label": "Textarea", "path": "/components/textarea", "status": "stable" },
-  { "label": "Toast", "path": "/components/toast", "status": "stable" },
+  {
+    "label": "Textarea",
+    "path": "/components/textarea",
+    "status": "stable",
+    "icon": "subject"
+  },
+  {
+    "label": "Toast",
+    "path": "/components/toast",
+    "status": "stable",
+    "icon": "chat_bubble"
+  },
   {
     "label": "Toggle group",
     "path": "/components/toggle-group",
-    "status": "stable"
+    "status": "stable",
+    "icon": "toggle_off"
   },
   {
     "label": "Tooltip",
     "path": "/components/tooltip",
-    "status": "stable"
+    "status": "stable",
+    "icon": "info"
   },
   {
     "label": "Typography",
     "path": "/components/typography",
-    "status": "stable"
+    "status": "stable",
+    "icon": "text_fields"
   },
-  { "label": "Wizard", "path": "/components/wizard", "status": "stable" }
+  {
+    "label": "Wizard",
+    "path": "/components/wizard",
+    "status": "stable",
+    "icon": "auto_fix_high"
+  }
 ]

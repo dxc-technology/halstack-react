@@ -43,6 +43,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     href: link.path,
     selected: matchPaths(link.path),
     badge: link.status && link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
+    icon: link.icon,
     renderItem: ({ children }: { children: ReactNode }) => (
       <Link href={link.path} passHref legacyBehavior>
         {children}
@@ -55,6 +56,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       if ("links" in link) {
         return {
           label: link.label,
+          icon: link.icon,
           items: normalizeNavTabs(link.links),
         } as GroupItem;
       }
