@@ -10,8 +10,21 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 }));
 
 describe("DxcSidenav component", () => {
+  const mockMatchMedia = jest.fn();
+
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: mockMatchMedia,
+    });
+  });
+
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockMatchMedia.mockImplementation(() => ({
+      matches: false,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }));
   });
 
   test("Sidenav renders title and children correctly", () => {
