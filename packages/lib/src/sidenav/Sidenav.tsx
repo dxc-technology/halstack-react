@@ -147,13 +147,7 @@ const DxcSidenav = ({
   };
 
   return (
-    <SidenavContainer
-      expanded={isExpanded}
-      width={width}
-      showBorder={!(isBelowMedium && !isExpanded)}
-      ref={sidenavRef}
-      side="left"
-    >
+    <SidenavContainer expanded={isExpanded} width={width} showBorder={!isBelowMedium} ref={sidenavRef} side="left">
       <SidenavContent>
         <DxcFlex
           justifyContent="flex-start"
