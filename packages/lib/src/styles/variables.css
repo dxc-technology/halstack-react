@@ -367,6 +367,7 @@
   --typography-helper-text-light: var(--font-weight-light);
   --typography-helper-text-regular: var(--font-weight-regular);
   --typography-helper-text-semibold: var(--font-weight-semibold);
+  --typography-helper-text-italic: var(--font-style-lightitalic);
   --typography-label-s: var(--font-size-12);
   --typography-label-m: var(--font-size-14);
   --typography-label-l: var(--font-size-16);
@@ -383,5 +384,4 @@
   --border-style-default: var(--line-style-solid);
   --border-style-outline: var(--line-style-dashed);
   --typography-font-family: var(--font-family-sans);
-  --typography-helper-text-italic: var(--font-style-lightitalic);
 }
