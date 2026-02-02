@@ -194,7 +194,7 @@ const sections = [
         title: "Application layout with sidenav",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/ysg7l5?view=editor+%2B+preview&hidenavigation=1"
+            src="https://codesandbox.io/p/sandbox/default-sidenav-cvxr3m"
             style={{
               width: "100%",
               minHeight: "500px",
