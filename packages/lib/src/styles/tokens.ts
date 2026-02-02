@@ -19,9 +19,9 @@ export const coreTokens: Record<string, string | number> = {
   "--z-contextualmenu": 340,
 
   /* Modals and overlays */
-  "--z-spinner-overlay": 400,
-  "--z-progressbar-overlay": 410,
-  "--z-dialog": 420,
+  "--z-dialog": 400,
+  "--z-spinner-overlay": 410,
+  "--z-progressbar-overlay": 420,
   "--z-alert": 430,
 
   /* Notifications */
@@ -33,6 +33,8 @@ export const coreTokens: Record<string, string | number> = {
   /************/
   /** TOKENS **/
   /************/
+
+  /* Core tokens */
   "--color-absolutes-black": "#000000",
   "--color-absolutes-white": "#ffffff",
   "--color-alpha-100-a": "#ebebeb1a",
@@ -167,6 +169,11 @@ export const coreTokens: Record<string, string | number> = {
 };
 
 export const aliasTokens: Record<string, string | number> = {
+  /************/
+  /** TOKENS **/
+  /************/
+
+  /* Alias tokens */
   "--border-color-info-lightest": "var(--color-semantic01-50)",
   "--border-color-info-lighter": "var(--color-semantic01-100)",
   "--border-color-info-light": "var(--color-semantic01-200)",
@@ -299,8 +306,6 @@ export const aliasTokens: Record<string, string | number> = {
   "--color-fg-secondary-strong": "var(--color-secondary-700)",
   "--color-fg-secondary-stronger": "var(--color-secondary-800)",
   "--color-fg-secondary-strongest": "var(--color-secondary-900)",
-  "--shadow-dark": "var(--color-alpha-400-a)",
-  "--shadow-light": "var(--color-alpha-300-a)",
   "--border-radius-none": "var(--dimensions-0)",
   "--border-radius-xs": "var(--dimensions-2)",
   "--border-radius-s": "var(--dimensions-4)",
@@ -320,22 +325,14 @@ export const aliasTokens: Record<string, string | number> = {
   "--height-xl": "var(--dimensions-40)",
   "--height-xxl": "var(--dimensions-48)",
   "--height-xxxl": "var(--dimensions-56)",
-  "--shadow-high-spread": "var(--dimensions-0)",
-  "--shadow-high-x-position": "var(--dimensions-0)",
-  "--shadow-high-blur": "var(--dimensions-24)",
-  "--shadow-high-y-position": "var(--dimensions-24)",
-  "--shadow-higher-spread": "var(--dimensions-0)",
-  "--shadow-higher-x-position": "var(--dimensions-0)",
-  "--shadow-higher-blur": "var(--dimensions-48)",
-  "--shadow-higher-y-position": "var(--dimensions-48)",
-  "--shadow-low-spread": "var(--dimensions-0)",
-  "--shadow-low-x-position": "var(--dimensions-0)",
-  "--shadow-low-blur": "var(--dimensions-2)",
-  "--shadow-low-y-position": "var(--dimensions-2)",
-  "--shadow-mid-spread": "var(--dimensions-0)",
-  "--shadow-mid-x-position": "var(--dimensions-0)",
-  "--shadow-mid-blur": "var(--dimensions-12)",
-  "--shadow-mid-y-position": "var(--dimensions-12)",
+  "--shadow-100":
+    "var(--dimensions-0) var(--dimensions-2) var(--dimensions-2) var(--dimensions-0) var(--color-alpha-400-a)",
+  "--shadow-200":
+    "var(--dimensions-0) var(--dimensions-12) var(--dimensions-12) var(--dimensions-0) var(--color-alpha-300-a)",
+  "--shadow-300":
+    "var(--dimensions-0) var(--dimensions-24) var(--dimensions-24) var(--dimensions-0) var(--color-alpha-300-a)",
+  "--shadow-400":
+    "var(--dimensions-0) var(--dimensions-48) var(--dimensions-48) var(--dimensions-0) var(--color-alpha-300-a)",
   "--spacing-gap-none": "var(--dimensions-0)",
   "--spacing-gap-xxs": "var(--dimensions-2)",
   "--spacing-gap-xs": "var(--dimensions-4)",
