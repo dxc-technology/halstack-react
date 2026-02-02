@@ -91,6 +91,11 @@
     "status": "stable"
   },
   {
+    "label": "Popover",
+    "path": "/components/popover",
+    "status": "experimental"
+  },
+  {
     "label": "Progress bar",
     "path": "/components/progress-bar",
     "status": "stable"
