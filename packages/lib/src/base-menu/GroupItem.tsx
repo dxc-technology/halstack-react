@@ -60,7 +60,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                     }),
               }}
               sideOffset={isHorizontal ? 16 : 0}
-              onInteractOutside={isHorizontal ? () => toggleOpen() : undefined}
+              onInteractOutside={() => toggleOpen()}
             >
               {!isHorizontal && props.depthLevel === 0 && (
                 <ItemAction
