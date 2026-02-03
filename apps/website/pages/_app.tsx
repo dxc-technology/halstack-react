@@ -92,7 +92,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
       return {
         title: section.label,
-        items,
+        items: section.label === "Components" ? items.map((item) => ({ ...item, defaultOpen: true })) : items,
       };
     }).filter((section) => section.items.length > 0);
   }, [currentPath, filter]);
