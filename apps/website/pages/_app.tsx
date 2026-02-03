@@ -30,7 +30,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
-  const [isExpanded, setIsExpanded] = useState(true);
   const { asPath: currentPath } = useRouter();
 
   const matchPaths = (linkPath: string) => {
@@ -107,12 +106,8 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
         sidenav={
           <DxcApplicationLayout.Sidenav
             navItems={navItems}
-            appTitle={isExpanded && <SidenavLogo />}
+            appTitle={<SidenavLogo />}
             searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
-            expanded={isExpanded}
-            onExpandedChange={() => {
-              setIsExpanded((currentlyExpanded) => !currentlyExpanded);
-            }}
           />
         }
       >

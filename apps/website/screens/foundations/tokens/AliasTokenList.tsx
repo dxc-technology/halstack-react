@@ -18,7 +18,6 @@ const sections = [
     subSections: [
       { title: "Border", content: <TokensTable categories={["border-color"]} type="alias" /> },
       { title: "Background", content: <TokensTable categories={["color-bg"]} type="alias" /> },
-      { title: "Shadow", content: <TokensTable categories={["shadow-dark", "shadow-light"]} type="alias" /> },
       { title: "Text", content: <TokensTable categories={["color-fg"]} type="alias" /> },
     ],
   },
@@ -26,12 +25,12 @@ const sections = [
     title: "Dimensions",
     subSections: [
       { title: "Height", content: <TokensTable categories={["height"]} type="alias" /> },
-      {
-        title: "Shadow",
-        content: <TokensTable categories={["shadow-high", "shadow-mid", "shadow-low"]} type="alias" />,
-      },
       { title: "Spacing", content: <TokensTable categories={["spacing-gap", "spacing-padding"]} type="alias" /> },
     ],
+  },
+  {
+    title: "Shadow",
+    content: <TokensTable categories={["shadow"]} type="alias" />,
   },
   {
     title: "Typography",
