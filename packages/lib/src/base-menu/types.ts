@@ -49,6 +49,7 @@ type Props = {
 type ItemWithId = Item & { id: number };
 type GroupItemWithId = {
   badge?: ReactElement;
+  defaultOpen?: boolean;
   icon: string | SVG;
   items: (ItemWithId | GroupItemWithId)[];
   label: string;
