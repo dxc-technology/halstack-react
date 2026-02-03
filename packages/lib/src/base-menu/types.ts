@@ -16,6 +16,7 @@ type Item = CommonItemProps & {
 
 type GroupItem = CommonItemProps & {
   items: (Item | GroupItem)[];
+  defaultOpen?: boolean;
 };
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
@@ -47,13 +48,11 @@ type Props = {
 };
 
 type ItemWithId = Item & { id: number };
-type GroupItemWithId = {
-  badge?: ReactElement;
-  defaultOpen?: boolean;
-  icon: string | SVG;
+
+type GroupItemWithId = Omit<GroupItem, "items"> & {
   items: (ItemWithId | GroupItemWithId)[];
-  label: string;
 };
+
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
 
 type SingleItemProps = ItemWithId & {
