@@ -122,7 +122,7 @@ const sections = [
         title: "Application layout with components",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/p4xxm3?view=editor+%2B+preview&module=%2Fsrc%2FApp.js"
+            src="https://codesandbox.io/p/sandbox/default-app-layout-s65j9x"
             style={{
               width: "100%",
               minHeight: "500px",
