@@ -32,6 +32,7 @@ export { default as DxcNumberInput } from "./number-input/NumberInput";
 export { default as DxcPaginator } from "./paginator/Paginator";
 export { default as DxcParagraph } from "./paragraph/Paragraph";
 export { default as DxcPasswordInput } from "./password-input/PasswordInput";
+export { default as DxcPopover } from "./popover/Popover";
 export { default as DxcProgressBar } from "./progress-bar/ProgressBar";
 export { default as DxcQuickNav } from "./quick-nav/QuickNav";
 export { default as DxcRadioGroup } from "./radio-group/RadioGroup";
