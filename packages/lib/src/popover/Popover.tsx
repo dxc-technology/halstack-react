@@ -31,7 +31,8 @@ const DxcPopover = ({
   children,
   hasTip = false,
   isOpen,
-  onTrigger,
+  onOpen,
+  onClose,
   actionToOpen = "click",
   popoverContent,
   side = "bottom",
@@ -46,20 +47,17 @@ const DxcPopover = ({
       <Popover.Root open={isControlled.current ? isOpen : opened}>
         <Popover.Trigger aria-controls={undefined} asChild>
           <div
+            aria-expanded={undefined}
             style={{ width: "fit-content" }}
             onClick={
-              actionToOpen === "click"
-                ? () => HandleTrigger(isControlled.current, setOpened, true, onTrigger)
-                : undefined
+              actionToOpen === "click" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
             onMouseEnter={
-              actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, true, onTrigger)
-                : undefined
+              actionToOpen === "hover" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
             onMouseLeave={
               actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, false, onTrigger)
+                ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
                 : undefined
             }
           >
@@ -72,20 +70,18 @@ const DxcPopover = ({
             side={side}
             sideOffset={4}
             style={{ zIndex: "var(--z-contextualMenu)" }}
-            onInteractOutside={() => HandleTrigger(isControlled.current, setOpened, false, onTrigger)}
-            onEscapeKeyDown={() => HandleTrigger(isControlled.current, setOpened, false, onTrigger)}
+            onInteractOutside={() => HandleTrigger(isControlled.current, setOpened, false, onClose)}
+            onEscapeKeyDown={() => HandleTrigger(isControlled.current, setOpened, false, onClose)}
             onMouseEnter={
-              actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, true, onTrigger)
-                : undefined
+              actionToOpen === "hover" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
             onMouseLeave={
               actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, false, onTrigger)
+                ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
                 : undefined
             }
           >
-            <PopoverContent>{popoverContent}</PopoverContent>
+            <PopoverContent id={popOverId}>{popoverContent}</PopoverContent>
             {hasTip && <Popover.Arrow style={{ fill: "var(--color-bg-neutral-lightest)" }} />}
           </Popover.Content>
         </Popover.Portal>
