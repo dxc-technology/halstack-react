@@ -109,7 +109,7 @@
         "label": "Tooltip",
         "path": "/components/tooltip",
         "status": "stable",
-        "icon": "info"
+        "icon": "question_answer"
       }
     ]
   },
