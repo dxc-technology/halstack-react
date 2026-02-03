@@ -89,7 +89,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const navItems: Section[] = useMemo(() => {
     return LinksSections.map((section) => {
       const baseItems = normalizeNavTabs(section.links);
-      console.log("BASEITEMS", baseItems);
       const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
       return {
         title: section.label,
