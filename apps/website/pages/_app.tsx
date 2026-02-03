@@ -70,11 +70,11 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
 
     for (const item of items) {
       if (isGroupItem(item)) {
-        const filteredChildren = filterNavTree(item.items, q);
         const matches = item.label.toLowerCase().includes(q);
+        const filteredChildren = matches ? item.items : filterNavTree(item.items, q);
 
         if (matches || filteredChildren.length > 0) {
-          result.push({ ...item, items: filteredChildren });
+          result.push({ ...item, items: filteredChildren, defaultOpen: true });
         }
       } else {
         if (item.label.toLowerCase().includes(q)) {
@@ -89,6 +89,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const navItems: Section[] = useMemo(() => {
     return LinksSections.map((section) => {
       const baseItems = normalizeNavTabs(section.links);
+      console.log("BASEITEMS", baseItems);
       const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
       return {
         title: section.label,
