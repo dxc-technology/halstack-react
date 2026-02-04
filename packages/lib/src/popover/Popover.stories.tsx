@@ -5,7 +5,6 @@ import DxcPopover from "./Popover";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcContainer from "../container/Container";
 import DxcButton from "../button/Button";
-import DxcTextInput from "../text-input/TextInput";
 import { useEffect } from "react";
 import DxcFlex from "../flex/Flex";
 
@@ -35,6 +34,7 @@ const popoverContent = (
       Vivamus id mauris et nisl mattis consequat et id lectus. Quisque mollis lacinia nisl. Suspendisse sed quam
       tincidunt, commodo dolor vel, tincidunt nisl.
     </DxcParagraph>
+    <DxcButton label="Example button" />
   </DxcContainer>
 );
 
@@ -44,97 +44,97 @@ const Paragraph = () => {
       <ExampleContainer expanded>
         <Title title="Default Popover" level={4} />
         <DxcPopover isOpen popoverContent={popoverContent}>
-          <DxcTextInput />
+          <DxcParagraph>Hover or click to open the popover</DxcParagraph>
         </DxcPopover>
       </ExampleContainer>
       <ExampleContainer expanded>
         <Title title="Popover with tip" level={4} />
         <DxcPopover isOpen hasTip popoverContent={popoverContent}>
-          <DxcTextInput />
+          <DxcParagraph>Hover or click to open the popover</DxcParagraph>
         </DxcPopover>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcPopover isOpen hasTip popoverContent={popoverContent} side="right" align="start">
-          <DxcTextInput />
+          <DxcParagraph>Hover or click to open the popover</DxcParagraph>
         </DxcPopover>
       </ExampleContainer>
       <ExampleContainer expanded>
         <Title title="Side Popover" level={4} />
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="right" popoverContent={popoverContent}>
-            <DxcButton label="right" />
+          <DxcPopover isOpen side="right" popoverContent={popoverContent} asChild>
+            <button>right</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="right" popoverContent={popoverContent} align="start">
-            <DxcButton label="right" />
+          <DxcPopover isOpen side="right" popoverContent={popoverContent} align="start" asChild>
+            <button>right</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="right" popoverContent={popoverContent} align="end">
-            <DxcButton label="right" />
+          <DxcPopover isOpen side="right" popoverContent={popoverContent} align="end" asChild>
+            <button>right</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="left" popoverContent={popoverContent}>
-            <DxcButton label="left" />
+          <DxcPopover isOpen side="left" popoverContent={popoverContent} asChild>
+            <button>left</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="left" popoverContent={popoverContent} align="start">
-            <DxcButton label="left" />
+          <DxcPopover isOpen side="left" popoverContent={popoverContent} align="start" asChild>
+            <button>left</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="left" popoverContent={popoverContent} align="end">
-            <DxcButton label="left" />
+          <DxcPopover isOpen side="left" popoverContent={popoverContent} align="end" asChild>
+            <button>left</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="top" popoverContent={popoverContent}>
-            <DxcButton label="top" />
+          <DxcPopover isOpen side="top" popoverContent={popoverContent} asChild>
+            <button>top</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="top" popoverContent={popoverContent} align="start">
-            <DxcButton label="top" />
+          <DxcPopover isOpen side="top" popoverContent={popoverContent} align="start" asChild>
+            <button>top</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
         <DxcFlex alignItems="center" justifyContent="center">
-          <DxcPopover isOpen side="top" popoverContent={popoverContent} align="end">
-            <DxcButton label="top" />
+          <DxcPopover isOpen side="top" popoverContent={popoverContent} align="end" asChild>
+            <button>top</button>
           </DxcPopover>
         </DxcFlex>
       </ExampleContainer>
       <ExampleContainer expanded>
-        <DxcPopover isOpen side="left" popoverContent={popoverContent}>
-          <DxcButton label="left" />
+        <DxcPopover isOpen side="left" popoverContent={popoverContent} asChild>
+          <button>left</button>
         </DxcPopover>
       </ExampleContainer>
       <ExampleContainer expanded>
-        <DxcPopover isOpen side="left" popoverContent={popoverContent} align="start">
-          <DxcButton label="left" />
+        <DxcPopover isOpen side="left" popoverContent={popoverContent} align="start" asChild>
+          <button>left</button>
         </DxcPopover>
       </ExampleContainer>
       <ExampleContainer expanded>
-        <DxcPopover isOpen side="left" popoverContent={popoverContent} align="end">
-          <DxcButton label="left" />
+        <DxcPopover isOpen side="left" popoverContent={popoverContent} align="end" asChild>
+          <button>left</button>
         </DxcPopover>
       </ExampleContainer>
     </>

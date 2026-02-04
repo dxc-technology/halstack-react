@@ -1,4 +1,4 @@
-import { DxcButton, DxcContainer, DxcParagraph, DxcPopover } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcParagraph, DxcPopover } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -7,15 +7,11 @@ const [isOpen, setIsOpen] = useState(false);
     <DxcContainer height="100px" padding="var(--spacing-padding-m)" boxSizing="border-box">
       <DxcPopover
         isOpen={isOpen}
+        onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
         popoverContent={<DxcParagraph>Popover content.</DxcParagraph>}
       >
-        <DxcButton
-          label="Open popover"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        />
+        <DxcParagraph>Click me to see the popover.</DxcParagraph>
       </DxcPopover>
     </DxcContainer>
   );
@@ -24,7 +20,6 @@ const [isOpen, setIsOpen] = useState(false);
 const scope = {
   useState,
   DxcContainer,
-  DxcButton,
   DxcParagraph,
   DxcPopover,
 };

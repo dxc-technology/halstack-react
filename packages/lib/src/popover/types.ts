@@ -5,6 +5,8 @@ export type PopoverPropsType = {
   actionToOpen?: "click" | "hover";
   /** Alignment of the popover relative to the trigger element. */
   align?: "start" | "center" | "end";
+  /** Set to true if child controls the events. It will render the child directly without wrapping it. */
+  asChild?: boolean;
   /** Element that triggers the popover and works as the anchor. */
   children: React.ReactNode;
   /** Whether the popover should display a tip (arrow). */

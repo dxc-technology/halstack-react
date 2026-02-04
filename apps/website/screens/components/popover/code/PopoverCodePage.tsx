@@ -42,6 +42,14 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>asChild</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Set to true if child controls the events. It will render the child directly without wrapping it.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="required" />
