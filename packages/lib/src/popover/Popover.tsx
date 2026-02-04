@@ -27,13 +27,14 @@ const HandleTrigger = (
 };
 
 const DxcPopover = ({
+  actionToOpen = "click",
   align = "center",
+  asChild,
   children,
   hasTip = false,
   isOpen,
   onOpen,
   onClose,
-  actionToOpen = "click",
   popoverContent,
   side = "bottom",
 }: PopoverPropsType): JSX.Element => {
@@ -46,26 +47,35 @@ const DxcPopover = ({
     <>
       <Popover.Root open={isControlled.current ? isOpen : opened}>
         <Popover.Trigger aria-controls={undefined} asChild>
-          <div
-            aria-expanded={undefined}
-            style={{ width: "fit-content" }}
-            onClick={
-              actionToOpen === "click" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
-            }
-            onMouseEnter={
-              actionToOpen === "hover" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
-            }
-            onMouseLeave={
-              actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
-                : undefined
-            }
-          >
-            {children}
-          </div>
+          {asChild ? (
+            children
+          ) : (
+            <div
+              role="button"
+              style={{ width: "fit-content" }}
+              onClick={
+                actionToOpen === "click"
+                  ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen)
+                  : undefined
+              }
+              onMouseEnter={
+                actionToOpen === "hover"
+                  ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen)
+                  : undefined
+              }
+              onMouseLeave={
+                actionToOpen === "hover"
+                  ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
+                  : undefined
+              }
+            >
+              {children}
+            </div>
+          )}
         </Popover.Trigger>
         <Popover.Portal container={document.getElementById(`${popOverId}-portal`)}>
           <Popover.Content
+            aria-label="Popover content"
             align={align}
             side={side}
             sideOffset={4}
