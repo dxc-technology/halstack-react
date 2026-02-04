@@ -16,6 +16,7 @@ const itemTypeString = `{
 
 const groupItemTypeString = `{ 
   ${commonItemTypeString}
+  defaultOpen?: boolean;
   items: (Item | GroupItem)[];
 }`;
 

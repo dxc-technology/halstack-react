@@ -1,3 +1,4 @@
+import { SVG } from "../../../../packages/lib/src/common/utils";
 import componentsList from "./componentsList.json";
 
 export type ComponentStatus = "experimental" | "new" | "stable" | "legacy" | "deprecated";
@@ -6,11 +7,13 @@ export type LinkDetails = {
   label: string;
   path: string;
   status?: ComponentStatus;
+  icon?: string | SVG;
 };
 
 export type LinksSectionDetails = {
   label: string;
   links: (LinkDetails | LinksSectionDetails)[];
+  icon?: string | SVG;
 };
 
 type NavigationLinks = {
@@ -19,22 +22,23 @@ type NavigationLinks = {
 };
 
 const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction" },
-  { label: "Installation", path: "/overview/installation" },
-  { label: "Component lifecycle", path: "/overview/component-lifecycle" },
-  { label: "Releases", path: "/overview/releases" },
+  { label: "Introduction", path: "/overview/introduction", icon: "info" },
+  { label: "Installation", path: "/overview/installation", icon: "download" },
+  { label: "Component lifecycle", path: "/overview/component-lifecycle", icon: "cycle" },
+  { label: "Releases", path: "/overview/releases", icon: "deployed_code" },
 ];
 
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack provider",
     path: "/utilities/halstack-provider",
+    icon: "integration_instructions",
   },
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Data visualization", path: "/principles/data-visualization" },
-  { label: "Localization", path: "/principles/localization" },
+  { label: "Data visualization", path: "/principles/data-visualization", icon: "insert_chart" },
+  { label: "Localization", path: "/principles/localization", icon: "language" },
 ];
 
 const tokensLinks: LinkDetails[] = [
@@ -44,14 +48,14 @@ const tokensLinks: LinkDetails[] = [
 ];
 
 const foundationsLinks: (LinkDetails | LinksSectionDetails)[] = [
-  { label: "Color", path: "/foundations/color" },
-  { label: "Elevation", path: "/foundations/elevation" },
-  { label: "Height", path: "/foundations/height" },
-  { label: "Iconography", path: "/foundations/iconography" },
-  { label: "Layout", path: "/foundations/layout" },
-  { label: "Spacing", path: "/foundations/spacing" },
-  { label: "Tokens", links: tokensLinks },
-  { label: "Typography", path: "/foundations/typography" },
+  { label: "Color", path: "/foundations/color", icon: "palette" },
+  { label: "Elevation", path: "/foundations/elevation", icon: "layers" },
+  { label: "Height", path: "/foundations/height", icon: "height" },
+  { label: "Iconography", path: "/foundations/iconography", icon: "emoji_symbols" },
+  { label: "Layout", path: "/foundations/layout", icon: "grid_on" },
+  { label: "Spacing", path: "/foundations/spacing", icon: "space_bar" },
+  { label: "Tokens", links: tokensLinks, icon: "token" },
+  { label: "Typography", path: "/foundations/typography", icon: "font_download" },
 ];
 
 const v16Links: LinkDetails[] = [
@@ -60,7 +64,7 @@ const v16Links: LinkDetails[] = [
   { label: "Migrating tokens", path: "/migration/16/migrating-tokens" },
 ];
 
-const migrationLinks: LinksSectionDetails[] = [{ label: "v16", links: v16Links }];
+const migrationLinks: LinksSectionDetails[] = [{ label: "v16", links: v16Links, icon: "deployed_code_update" }];
 
 const componentsLinks = componentsList as (LinkDetails | LinksSectionDetails)[];
 

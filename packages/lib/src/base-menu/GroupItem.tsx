@@ -13,7 +13,11 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
 
   const NavigationTreeId = `sidenav-${useId()}`;
   const contextValue = useContext(BaseMenuContext) ?? {};
-  const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(items, contextValue);
+  const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(
+    items,
+    contextValue,
+    props.defaultOpen
+  );
 
   return hasPopOver ? (
     <>

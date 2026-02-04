@@ -43,6 +43,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     href: link.path,
     selected: matchPaths(link.path),
     badge: link.status && link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
+    icon: link.icon,
     renderItem: ({ children }: { children: ReactNode }) => (
       <Link href={link.path} passHref legacyBehavior>
         {children}
@@ -55,6 +56,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       if ("links" in link) {
         return {
           label: link.label,
+          icon: link.icon,
           items: normalizeNavTabs(link.links),
         } as GroupItem;
       }
@@ -68,11 +70,11 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
 
     for (const item of items) {
       if (isGroupItem(item)) {
-        const filteredChildren = filterNavTree(item.items, q);
         const matches = item.label.toLowerCase().includes(q);
+        const filteredChildren = matches ? item.items : filterNavTree(item.items, q);
 
         if (matches || filteredChildren.length > 0) {
-          result.push({ ...item, items: filteredChildren });
+          result.push({ ...item, items: filteredChildren, defaultOpen: true });
         }
       } else {
         if (item.label.toLowerCase().includes(q)) {
@@ -85,12 +87,17 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   };
 
   const navItems: Section[] = useMemo(() => {
+    const q = filter.trim().toLowerCase();
+
     return LinksSections.map((section) => {
       const baseItems = normalizeNavTabs(section.links);
-      const items = filter ? filterNavTree(baseItems, filter.trim().toLowerCase()) : baseItems;
+      const sectionMatches = section.label.toLowerCase().includes(q);
+
+      const items = filter ? (sectionMatches ? baseItems : filterNavTree(baseItems, q)) : baseItems;
+
       return {
         title: section.label,
-        items,
+        items: section.label === "Components" ? items.map((item) => ({ ...item, defaultOpen: true })) : items,
       };
     }).filter((section) => section.items.length > 0);
   }, [currentPath, filter]);
