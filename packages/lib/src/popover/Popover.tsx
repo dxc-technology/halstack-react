@@ -11,7 +11,7 @@ const PopoverContent = styled.div`
   background-color: var(--color-bg-neutral-lightest);
 `;
 
-const HandleTrigger = (
+const handleTrigger = (
   isControlled: boolean,
   setOpened: React.Dispatch<React.SetStateAction<boolean>>,
   open: boolean,
@@ -55,17 +55,17 @@ const DxcPopover = ({
               style={{ width: "fit-content" }}
               onClick={
                 actionToOpen === "click"
-                  ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen)
+                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
                   : undefined
               }
               onMouseEnter={
                 actionToOpen === "hover"
-                  ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen)
+                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
                   : undefined
               }
               onMouseLeave={
                 actionToOpen === "hover"
-                  ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
+                  ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
                   : undefined
               }
             >
@@ -80,14 +80,14 @@ const DxcPopover = ({
             side={side}
             sideOffset={4}
             style={{ zIndex: "var(--z-contextualMenu)" }}
-            onInteractOutside={() => HandleTrigger(isControlled.current, setOpened, false, onClose)}
-            onEscapeKeyDown={() => HandleTrigger(isControlled.current, setOpened, false, onClose)}
+            onInteractOutside={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
+            onEscapeKeyDown={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
             onMouseEnter={
-              actionToOpen === "hover" ? () => HandleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
+              actionToOpen === "hover" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
             onMouseLeave={
               actionToOpen === "hover"
-                ? () => HandleTrigger(isControlled.current, setOpened, false, onClose)
+                ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
                 : undefined
             }
           >

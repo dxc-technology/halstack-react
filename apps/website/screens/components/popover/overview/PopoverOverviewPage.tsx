@@ -47,8 +47,8 @@ const sections = [
             understand where the content comes from.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Content area:</strong> the main area where information and actions are displayed. It can contain non
-            interactive content, interactive elements such as toggles or buttons, or structured elements like menu
+            <strong>Content area:</strong> the main area where information and actions are displayed. It can contain
+            non-interactive content, interactive elements such as toggles or buttons, or structured elements like menu
             items, depending on the use case.
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -73,7 +73,7 @@ const sections = [
         <DxcParagraph>
           A popover always requires a <strong>trigger element</strong> to appear. It is anchored to a reference element
           in the interface, which defines its position and context. This trigger can be{" "}
-          <strong>interactive, such as a button or icon, or non interactive</strong>, such as a text label or avatar,
+          <strong>interactive, such as a button or icon, or non-interactive</strong>, such as a text label or avatar,
           depending on the use case and interaction model.
         </DxcParagraph>
       </>
@@ -106,7 +106,7 @@ const sections = [
                     <strong>Popover</strong>
                   </td>
                   <td>Displays contextual content associated with a specific element</td>
-                  <td>Can contain interactive and non interactive elements</td>
+                  <td>Can contain interactive and non-interactive elements</td>
                   <td>Non-blocking</td>
                   <td>Secondary actions, contextual menus, configuration panels, supplementary information</td>
                   <td>
@@ -119,7 +119,7 @@ const sections = [
                     <strong>Tooltip</strong>
                   </td>
                   <td>Provides brief, descriptive information about an element</td>
-                  <td>Non interactive</td>
+                  <td>Non-interactive</td>
                   <td>Non-blocking</td>
                   <td>Text hints</td>
                   <td>Used to clarify the meaning or purpose of an element without introducing actions</td>
@@ -154,7 +154,7 @@ const sections = [
               Popover supports <strong>dynamic positioning with automatic fallback</strong>, allowing it to change its
               placement when there is not enough space in the preferred direction. This behavior ensures that the
               popover remains visible, accessible, and fully contained within the browser boundaries, preventing content
-              from being clipped or rendered off screen.
+              from being clipped or rendered off-screen.
             </DxcParagraph>
             <Figure caption="Popover position: bottom and top">
               <Image src={positionVertical} alt="Popover vertical position" />
@@ -226,15 +226,14 @@ const sections = [
           exceeds this threshold, a different pattern such as dialog should be considered.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use popover only for non critical, contextual content:</strong> Popover is intended to{" "}
+          <strong>Use popover only for non-critical, contextual content:</strong> Popover is intended to{" "}
           <strong>complement the interface, not to interrupt it</strong>. It should not be used for critical flows,
           mandatory decisions, or complex tasks that require full user attention.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Keep content focused and lightweight:</strong> Popover works best with{" "}
-          <strong>concise, clearly scoped content</strong>. Long forms, dense data tables, or multi step processes
-          reduce readability and weaken the contextual content. Long forms, dense data tables, or multi step processes
-          reduce readability and weaken the contextual nature of the component.
+          <strong>concise, clearly scoped content</strong>. Long forms, dense data tables, or multi-step processes
+          reduce readability and weaken the contextual content.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Ensure a clear relationship with the trigger:</strong> The trigger element{" "}

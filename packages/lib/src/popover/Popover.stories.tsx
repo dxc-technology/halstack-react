@@ -38,7 +38,7 @@ const popoverContent = (
   </DxcContainer>
 );
 
-const Paragraph = () => {
+const Popover = () => {
   return (
     <>
       <ExampleContainer expanded>
@@ -144,5 +144,5 @@ const Paragraph = () => {
 type Story = StoryObj<typeof DxcPopover>;
 
 export const Chromatic: Story = {
-  render: Paragraph,
+  render: Popover,
 };
