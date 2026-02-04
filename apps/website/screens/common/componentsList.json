@@ -103,7 +103,7 @@
         "label": "Toast",
         "path": "/components/toast",
         "status": "stable",
-        "icon": "chat_bubble"
+        "icon": "toast"
       },
       {
         "label": "Tooltip",
@@ -264,7 +264,8 @@
       {
         "label": "Popover",
         "path": "/components/popover",
-        "status": "experimental"
+        "status": "experimental",
+        "icon": "chat_bubble" 
       }
     ]
   },
