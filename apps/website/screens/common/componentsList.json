@@ -54,7 +54,7 @@
       {
         "label": "Data grid",
         "path": "/components/data-grid",
-        "status": "new",
+        "status": "stable",
         "icon": "table_rows"
       },
       {
