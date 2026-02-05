@@ -20,7 +20,6 @@ const Chip = styled.div<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-gap-xs);
   background-color: var(--color-bg-primary-lightest);
   border-radius: var(--border-radius-xl);
   padding: ${({ size }) =>
@@ -34,6 +33,12 @@ const Chip = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
+
+const LeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-xxs);
 `;
 
 const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
@@ -85,31 +90,33 @@ const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medi
 
   return (
     <Chip margin={margin} size={size}>
-      {prefix &&
-        (typeof prefix === "string" ? (
-          <IconContainer disabled={disabled}>
-            <DxcIcon icon={prefix} />
-          </IconContainer>
-        ) : isAvatarType(prefix) && size !== "small" ? (
-          <DxcAvatar
-            color={prefix.color}
-            label={prefix.profileName}
-            icon={prefix.icon}
-            imageSrc={prefix.imageSrc}
-            size="xsmall"
-            disabled={disabled}
-          />
-        ) : (
-          isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
-        ))}
+      <LeftContainer>
+        {prefix &&
+          (typeof prefix === "string" ? (
+            <IconContainer disabled={disabled}>
+              <DxcIcon icon={prefix} />
+            </IconContainer>
+          ) : isAvatarType(prefix) && size !== "small" ? (
+            <DxcAvatar
+              color={prefix.color}
+              label={prefix.profileName}
+              icon={prefix.icon}
+              imageSrc={prefix.imageSrc}
+              size="xsmall"
+              disabled={disabled}
+            />
+          ) : (
+            isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
+          ))}
 
-      {label && (
-        <Tooltip label={isTruncated ? label : undefined}>
-          <LabelContainer disabled={disabled} ref={labelRef}>
-            {label}
-          </LabelContainer>
-        </Tooltip>
-      )}
+        {label && (
+          <Tooltip label={isTruncated ? label : undefined}>
+            <LabelContainer disabled={disabled} ref={labelRef}>
+              {label}
+            </LabelContainer>
+          </Tooltip>
+        )}
+      </LeftContainer>
 
       {action && (
         <DxcActionIcon
