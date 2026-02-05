@@ -39,6 +39,7 @@ const LeftContainer = styled.div`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-xxs);
+  overflow: hidden;
 `;
 
 const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
