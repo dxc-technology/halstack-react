@@ -35,7 +35,6 @@ const utilitiesLinks: LinkDetails[] = [
 const principlesLinks: LinkDetails[] = [
   { label: "Data visualization", path: "/principles/data-visualization" },
   { label: "Localization", path: "/principles/localization" },
-  { label: "Validation guidelines", path: "/principles/validation-guidelines" },
 ];
 
 const tokensLinks: LinkDetails[] = [
