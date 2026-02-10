@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
@@ -9,6 +9,7 @@ import customAction from "./examples/customAction";
 import anatomy from "./images/text_input_anatomy.png";
 import textInputClearContent from "./images/text_input_clear_content.png";
 import textInputAutosuggest from "./images/text_input_autosuggest.png";
+import phoneNumberValidation from "../code/examples/phoneNumberValidation";
 
 const sections = [
   {
@@ -321,6 +322,25 @@ const sections = [
               entries, clearly indicate this behavior and validate accordingly.
             </DxcBulletedList.Item>
           </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Phone Number Validation",
+        content: (
+          <>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>Follow ITU-E.164 standards:</strong> when validating phone numbers, we recommend following the
+                <DxcLink href="https://www.itu.int/rec/T-REC-E.164/en" newWindow>
+                  ITU-E.164
+                </DxcLink>{" "}
+                international standard and country-specific requirements. The standard defines phone numbers as a
+                country code followed by a national number, with a maximum of 15 digits in total.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+
+            <Example example={phoneNumberValidation} />
+          </>
         ),
       },
     ],
