@@ -39,7 +39,6 @@ const utilitiesLinks: LinkDetails[] = [
 const principlesLinks: LinkDetails[] = [
   { label: "Data visualization", path: "/principles/data-visualization", icon: "insert_chart" },
   { label: "Localization", path: "/principles/localization", icon: "language" },
-  { label: "Validation guidelines", path: "/principles/validation-guidelines", icon: "check_circle" },
 ];
 
 const tokensLinks: LinkDetails[] = [
