@@ -2,8 +2,8 @@ import { useState } from "react";
 import { DxcBadge, DxcButton, DxcContainer, DxcFileInput, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { FileData } from "../../../../../../packages/lib/src/file-input/types";
-import { Color, Colors } from "pages/utilities/theme-generator";
 import { ColorCard } from "./ColorCard";
+import { Color, Colors } from "../ThemeGeneratorPage";
 
 const ThemeSettingsWrapper = styled.div`
   width: 100%;
@@ -39,7 +39,7 @@ const ButtonsWrapper = styled.div`
 const RightButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--spacing-gap-s);
+  gap: var(--spacing-gap-m);
 `;
 
 const steps = [{ label: "Core colors" }, { label: "Branding" }, { label: "Export" }];

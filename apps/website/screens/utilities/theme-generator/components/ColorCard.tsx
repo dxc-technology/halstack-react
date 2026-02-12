@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { DxcHeading, DxcPopover, DxcTextInput } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
@@ -21,12 +21,14 @@ const ContentWrapper = styled.div`
   gap: var(--spacing-gap-xs);
 `;
 
-const ColorBox = styled.div<{ color: string }>`
+const ColorBox = styled.button<{ color: string }>`
   width: 124px;
   height: 32px;
   border-radius: var(--border-radius-s);
   background-color: ${(props) => props.color};
   cursor: pointer;
+
+  border: none;
 `;
 
 const ColorText = styled.div`
@@ -48,6 +50,7 @@ export const ColorCard = ({
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState("");
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleChange = useCallback(
     (newColor: { hex: string }) => {
@@ -95,11 +98,26 @@ export const ColorCard = ({
         <DxcHeading level={4} text={label} />
         <DxcPopover
           isOpen={isOpen}
-          onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
-          popoverContent={<SketchPicker color={color} disableAlpha={true} onChange={handleChange} />}
+          popoverContent={
+            <SketchPicker
+              styles={{
+                default: {
+                  picker: {
+                    backgroundColor: "var(--color-bg-neutral-lightest)",
+                  },
+                },
+              }}
+              color={color}
+              disableAlpha={true}
+              onChange={handleChange}
+            />
+          }
+          hasTip
+          side="bottom"
+          asChild
         >
-          <ColorBox color={color} />
+          <ColorBox onClick={() => setIsOpen((prev) => !prev)} ref={buttonRef} color={color} />
         </DxcPopover>
         <ColorText>
           <DxcTextInput
