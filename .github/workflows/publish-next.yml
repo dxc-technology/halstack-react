@@ -21,16 +21,6 @@ jobs:
           node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
-          role-duration-seconds: 3600
-          role-skip-session-tagging: true
-
       - name: Install dependencies
         run: npm install
 
@@ -52,8 +42,3 @@ jobs:
           npm publish --tag next --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-      - name: Move NEXT website to S3
-        run: |
-          aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
-          aws s3 cp ./apps/website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
