@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcCheckbox, DxcInset } from "@dxc-technology/halstack-react";
 const CheckboxPreview = () => {
   return (

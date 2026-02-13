@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcAccordion, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const AccordionPreview = () => {

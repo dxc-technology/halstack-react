@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcInset, DxcBreadcrumbs } from "@dxc-technology/halstack-react";
 const BreadcrumbPreview = () => {
   return (

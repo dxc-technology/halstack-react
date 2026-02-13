@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcAvatar } from "@dxc-technology/halstack-react";
 
 const AvatarPreview = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
 const ButtonPreview = () => {
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 const BadgePreview = () => {
   return (
