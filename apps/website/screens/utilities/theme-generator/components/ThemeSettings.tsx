@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { DxcBadge, DxcButton, DxcContainer, DxcFileInput, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
-import { FileData } from "../../../../../../packages/lib/src/file-input/types";
 import { ColorCard } from "./ColorCard";
-import { Color, Colors } from "../ThemeGeneratorPage";
+import { useThemeGenerator, Color } from "../context/ThemeGeneratorContext";
 
 const ThemeSettingsWrapper = styled.div`
   width: 100%;
@@ -44,20 +42,8 @@ const RightButtonsWrapper = styled.div`
 
 const steps = [{ label: "Core colors" }, { label: "Branding" }, { label: "Export" }];
 
-export const ThemeSettings = ({
-  currentStep,
-  setCurrentStep,
-  colors,
-  setColors,
-}: {
-  currentStep: 0 | 1 | 2;
-  setCurrentStep: React.Dispatch<React.SetStateAction<0 | 1 | 2>>;
-  colors: Colors;
-  setColors: React.Dispatch<React.SetStateAction<Colors>>;
-}) => {
-  const [mainLogo, setMainLogo] = useState<FileData[]>([]);
-  const [footerLogo, setFooterLogo] = useState<FileData[]>([]);
-  const [favicon, setFavicon] = useState<FileData[]>([]);
+export const ThemeSettings = () => {
+  const { currentStep, setCurrentStep, colors, updateColor, getLogoValue, updateLogoValue } = useThemeGenerator();
 
   return (
     <ThemeSettingsWrapper>
@@ -74,8 +60,7 @@ export const ThemeSettings = ({
                 label={color.name}
                 color={color.value}
                 onChange={(newColor) => {
-                  const updatedColors = colors.map((c) => (c.name === color.name ? { ...c, value: newColor } : c));
-                  setColors(updatedColors);
+                  updateColor(color.name, newColor);
                 }}
               />
             ))}
@@ -90,8 +75,8 @@ export const ThemeSettings = ({
                 accept="image/*"
                 showPreview
                 multiple={false}
-                callbackFile={setMainLogo}
-                value={mainLogo}
+                callbackFile={(files) => updateLogoValue("mainLogo", files)}
+                value={getLogoValue("mainLogo")}
                 maxSize={4718592}
               />
               <DxcBadge icon="info" color="neutral" label="Maximum image size: 4.5MB" />
@@ -105,8 +90,8 @@ export const ThemeSettings = ({
                 accept="image/*"
                 showPreview
                 multiple={false}
-                callbackFile={setFooterLogo}
-                value={footerLogo}
+                callbackFile={(files) => updateLogoValue("footerLogo", files)}
+                value={getLogoValue("footerLogo")}
                 maxSize={4718592}
               />
               <DxcBadge icon="info" color="neutral" label="Maximum image size: 4.5MB" />
@@ -120,8 +105,8 @@ export const ThemeSettings = ({
                 accept="image/*"
                 showPreview
                 multiple={false}
-                callbackFile={setFavicon}
-                value={favicon}
+                callbackFile={(files) => updateLogoValue("favicon", files)}
+                value={getLogoValue("favicon")}
                 maxSize={4718592}
               />
               <DxcBadge icon="info" color="neutral" label="Maximum image size: 4.5MB" />
