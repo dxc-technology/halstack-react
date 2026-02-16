@@ -1,4 +1,4 @@
-import { DxcFlex, DxcParagraph, DxcBulletedList } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcBulletedList, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -8,6 +8,7 @@ import Example from "@/common/example/Example";
 import Figure from "@/common/Figure";
 import prefixSuffix from "./examples/prefixSuffix";
 import Code from "@/common/Code";
+import Link from "next/link";
 
 const sections = [
   {
@@ -270,6 +271,18 @@ const sections = [
               Don't overload the field with unnecessary UI elements.
             </DxcBulletedList.Item>
           </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Phone number validation",
+        content: (
+          <DxcParagraph>
+            For more information about this, please go to{" "}
+            <Link href="/components/text-input/#best-practices-phone-number-validation" passHref>
+              <DxcLink newWindow>Phone Number Validation Guide</DxcLink>
+            </Link>
+            .
+          </DxcParagraph>
         ),
       },
     ],

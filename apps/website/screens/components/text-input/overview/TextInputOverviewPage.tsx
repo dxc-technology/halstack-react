@@ -9,7 +9,7 @@ import customAction from "./examples/customAction";
 import anatomy from "./images/text_input_anatomy.png";
 import textInputClearContent from "./images/text_input_clear_content.png";
 import textInputAutosuggest from "./images/text_input_autosuggest.png";
-import phoneNumberValidation from "../code/examples/phoneNumberValidation";
+import phoneNumberValidation from "./examples/phoneNumberValidation";
 
 const sections = [
   {
