@@ -1,44 +1,42 @@
-import styled from "@emotion/styled";
-import { ThemeSettings } from "screens/utilities/theme-generator/components/ThemeSettings";
-import { BottomButtons } from "screens/utilities/theme-generator/components/BottomButtons";
-import { PreviewArea } from "./components/PreviewArea";
-import { PreviewSidenav } from "./components/PreviewSidenav";
-import { DxcFlex } from "@dxc-technology/halstack-react";
-import { ThemeGeneratorProvider, useThemeGenerator } from "./context/ThemeGeneratorContext";
-
-const PreviewWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-gap-ml);
-  padding: var(--spacing-padding-l);
-`;
-
-const ThemeGeneratorContent = () => {
-  const { currentStep, setCurrentStep, activeComponents, setActiveComponents } = useThemeGenerator();
-
-  return (
-    <DxcFlex alignItems="flex-start" gap="var(--spacing-gap-ml)" alignSelf="stretch">
-      <PreviewSidenav />
-
-      <PreviewWrapper>
-        <ThemeSettings />
-
-        <PreviewArea components={activeComponents} setActiveComponents={setActiveComponents} />
-
-        <BottomButtons currentStep={currentStep} setCurrentStep={setCurrentStep} />
-      </PreviewWrapper>
-    </DxcFlex>
-  );
-};
+import { useState } from "react";
+import { DxcContainer } from "@dxc-technology/halstack-react";
+import { PageHeading } from "./components/PageHeading";
+import { ThemeGeneratorWizard } from "./components/ThemeGeneratorWizard";
+import { BottomButtons } from "./components/BottomButtons";
 
 const ThemeGeneratorPage = () => {
+  const [currentStep, setCurrentStep] = useState<0 | 1 | 2>(0);
+
+  const handleChangeStep = (step: 0 | 1 | 2) => {
+    setCurrentStep(step);
+  };
+
   return (
-    <ThemeGeneratorProvider>
-      <ThemeGeneratorContent />
-    </ThemeGeneratorProvider>
+    <>
+      <ThemeGeneratorWizard currentStep={currentStep} onChangeStep={handleChangeStep} />
+
+      <DxcContainer>
+        <PageHeading
+          title={
+            currentStep === 0
+              ? "Add your theme specifics"
+              : currentStep === 1
+                ? "Preview how your theme applies"
+                : "Review and export your theme"
+          }
+          subtitle={
+            currentStep === 0
+              ? "Review your uploaded theme or define your brand colors and logos to preview them in real life. "
+              : currentStep === 1
+                ? "Choose components or examples from Halstack catalogue to see how your theme behaves."
+                : "Check your colors and branding assets before exporting your Halstack theme."
+          }
+        />
+        {currentStep === 0 && <DxcContainer width="1112px"></DxcContainer>}
+      </DxcContainer>
+
+      <BottomButtons currentStep={currentStep} onChangeStep={handleChangeStep} />
+    </>
   );
 };
 

@@ -1,7 +1,8 @@
-import { DxcButton, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex, DxcHeading, DxcParagraph, HalstackProvider } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { ComponentPreview } from "./ComponentPreview";
+import type { CssColor } from "@adobe/leonardo-contrast-colors";
 
 const PreviewWrapper = styled.div`
   min-height: 160px;
@@ -20,9 +21,11 @@ const PreviewWrapper = styled.div`
 export const PreviewArea = ({
   components,
   setActiveComponents,
+  customTheme,
 }: {
   components: { name: string; preview: ReactNode }[];
   setActiveComponents: React.Dispatch<React.SetStateAction<{ name: string; preview: ReactNode }[]>>;
+  customTheme: Record<string, CssColor>;
 }) => {
   const handleRemoveComponent = (name: string) => {
     setActiveComponents((prev) => prev.filter((component) => component.name !== name));
@@ -44,13 +47,15 @@ export const PreviewArea = ({
               <DxcButton mode="tertiary" label="Remove all" icon="delete" semantic="error" onClick={handleRemoveAll} />
             </DxcFlex>
 
-            {components.map((component) => (
-              <ComponentPreview
-                key={component.name}
-                component={component}
-                onDelete={() => handleRemoveComponent(component.name)}
-              />
-            ))}
+            <HalstackProvider opinionatedTheme={customTheme}>
+              {components.map((component) => (
+                <ComponentPreview
+                  key={component.name}
+                  component={component}
+                  onDelete={() => handleRemoveComponent(component.name)}
+                />
+              ))}
+            </HalstackProvider>
           </>
         )}
       </DxcFlex>

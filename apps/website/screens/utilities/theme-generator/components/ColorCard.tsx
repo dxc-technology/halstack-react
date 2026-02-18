@@ -22,31 +22,23 @@ const ContentWrapper = styled.div`
 `;
 
 const ColorBox = styled.button<{ color: string }>`
-  width: 124px;
-  height: 32px;
-  border-radius: var(--border-radius-s);
+  width: 71px;
+  height: 71px;
+  border-radius: var(--border-radius-m);
   background-color: ${(props) => props.color};
   cursor: pointer;
 
   border: none;
 `;
 
-const ColorText = styled.div`
-  width: 124px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ColorCard = ({
-  label,
-  color,
-  onChange,
-}: {
+interface ColorCardProps {
   label: string;
+  helperText: string;
   color: string;
   onChange: (color: string) => void;
-}) => {
+}
+
+export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState("");
@@ -105,6 +97,7 @@ export const ColorCard = ({
                 default: {
                   picker: {
                     backgroundColor: "var(--color-bg-neutral-lightest)",
+                    boxShadow: "none ",
                   },
                 },
               }}
@@ -119,16 +112,16 @@ export const ColorCard = ({
         >
           <ColorBox onClick={() => setIsOpen((prev) => !prev)} ref={buttonRef} color={color} />
         </DxcPopover>
-        <ColorText>
-          <DxcTextInput
-            value={inputValue}
-            onChange={handleInputChange}
-            size="fillParent"
-            pattern="^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$"
-            error={error}
-            onBlur={onBlur}
-          />
-        </ColorText>
+        <DxcTextInput
+          label={label}
+          helperText={helperText}
+          value={inputValue}
+          onChange={handleInputChange}
+          size="fillParent"
+          pattern="^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$"
+          error={error}
+          onBlur={onBlur}
+        />
       </ContentWrapper>
     </CardWrapper>
   );
