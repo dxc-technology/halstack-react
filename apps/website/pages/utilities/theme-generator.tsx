@@ -52,10 +52,6 @@ const MainContent = styled.div`
   grid-template-rows: auto 1fr auto;
   align-items: center;
   gap: var(--spacing-gap-xl);
-  padding: var(--spacing-padding-none) var(--spacing-padding-ml);
-  box-sizing: border-box;
-  padding-top: var(--spacing-padding-s);
-  margin: var(--spacing-gap-xl) auto;
 `;
 
 const Index = () => {
