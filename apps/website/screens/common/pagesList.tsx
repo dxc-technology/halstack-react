@@ -34,11 +34,6 @@ const utilitiesLinks: LinkDetails[] = [
     path: "/utilities/halstack-provider",
     icon: "integration_instructions",
   },
-  {
-    label: "Theme generator",
-    path: "/utilities/theme-generator",
-    icon: "colorize",
-  },
 ];
 
 const principlesLinks: LinkDetails[] = [

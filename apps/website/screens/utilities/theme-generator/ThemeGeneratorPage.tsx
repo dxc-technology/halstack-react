@@ -1,11 +1,4 @@
-import { DxcContainer } from "@dxc-technology/halstack-react";
-
 const ThemeGeneratorPage = () => {
-  return (
-    <>
-      <DxcContainer></DxcContainer>
-    </>
-  );
+  return <></>;
 };
-
 export default ThemeGeneratorPage;
