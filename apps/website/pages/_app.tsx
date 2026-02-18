@@ -24,7 +24,17 @@ type AppPropsWithLayout = AppProps & {
   emotionCache?: EmotionCache;
 };
 
+type ApplicationLayoutWrapperProps = {
+  condition: boolean;
+  wrapper: (_children: ReactNode) => JSX.Element;
+  children: ReactNode;
+};
+
 const clientSideEmotionCache = createCache({ key: "css", prepend: true });
+
+const ApplicationLayoutWrapper = ({ condition, wrapper, children }: ApplicationLayoutWrapperProps): JSX.Element => (
+  <>{condition ? wrapper(children) : children}</>
+);
 
 export default function App({ Component, pageProps, emotionCache = clientSideEmotionCache }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
@@ -107,23 +117,30 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
-      <DxcApplicationLayout
-        logo={{ src: dxcLogo, alt: "DXC Technology" }}
-        header={<DxcApplicationLayout.Header />}
-        sidenav={
-          <DxcApplicationLayout.Sidenav
-            navItems={navItems}
-            appTitle={<SidenavLogo />}
-            searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
-          />
-        }
+      <ApplicationLayoutWrapper
+        condition={!currentPath.includes("/theme-generator")}
+        wrapper={(children) => (
+          <DxcApplicationLayout
+            logo={{ src: dxcLogo, alt: "DXC Technology" }}
+            header={<DxcApplicationLayout.Header />}
+            sidenav={
+              <DxcApplicationLayout.Sidenav
+                navItems={navItems}
+                appTitle={<SidenavLogo />}
+                searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
+              />
+            }
+          >
+            <DxcApplicationLayout.Main>
+              <DxcToastsQueue duration={7000}>
+                <MainContent>{children}</MainContent>
+              </DxcToastsQueue>
+            </DxcApplicationLayout.Main>
+          </DxcApplicationLayout>
+        )}
       >
-        <DxcApplicationLayout.Main>
-          <DxcToastsQueue duration={7000}>
-            <MainContent>{componentWithLayout}</MainContent>
-          </DxcToastsQueue>
-        </DxcApplicationLayout.Main>
-      </DxcApplicationLayout>
+        {componentWithLayout}
+      </ApplicationLayoutWrapper>
     </CacheProvider>
   );
 }
