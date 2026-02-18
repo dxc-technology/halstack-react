@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcButton, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -31,6 +31,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
+  const isThemeGenerator = currentPath.includes("/theme-generator");
 
   const matchPaths = (linkPath: string) => {
     const desiredPaths = [linkPath, `${linkPath}/code`];
@@ -109,14 +110,35 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       </Head>
       <DxcApplicationLayout
         logo={{ src: dxcLogo, alt: "DXC Technology" }}
-        header={<DxcApplicationLayout.Header />}
-        sidenav={
-          <DxcApplicationLayout.Sidenav
-            navItems={navItems}
-            appTitle={<SidenavLogo />}
-            searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
-          />
+        header={
+          isThemeGenerator ? (
+            <DxcApplicationLayout.Header
+              appTitle="Theme Generator"
+              sideContent={
+                <Link href="/utilities/theme-generator/user-guide">
+                  <DxcButton
+                    label="Halstack Design System"
+                    icon="description"
+                    mode="secondary"
+                    size={{ height: "large", width: "fitContent" }}
+                  />
+                </Link>
+              }
+            />
+          ) : (
+            <DxcApplicationLayout.Header />
+          )
         }
+        sidenav={
+          !isThemeGenerator && (
+            <DxcApplicationLayout.Sidenav
+              navItems={navItems}
+              appTitle={<SidenavLogo />}
+              searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
+            />
+          )
+        }
+        footer={isThemeGenerator && <DxcApplicationLayout.Footer mode="reduced" />}
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
