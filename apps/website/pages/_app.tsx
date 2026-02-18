@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcButton, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -24,23 +24,14 @@ type AppPropsWithLayout = AppProps & {
   emotionCache?: EmotionCache;
 };
 
-type ApplicationLayoutWrapperProps = {
-  condition: boolean;
-  wrapper: (_children: ReactNode) => JSX.Element;
-  children: ReactNode;
-};
-
 const clientSideEmotionCache = createCache({ key: "css", prepend: true });
-
-const ApplicationLayoutWrapper = ({ condition, wrapper, children }: ApplicationLayoutWrapperProps): JSX.Element => (
-  <>{condition ? wrapper(children) : children}</>
-);
 
 export default function App({ Component, pageProps, emotionCache = clientSideEmotionCache }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
+  const isThemeGenerator = currentPath.includes("/theme-generator");
 
   const matchPaths = (linkPath: string) => {
     const desiredPaths = [linkPath, `${linkPath}/code`];
@@ -117,30 +108,44 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
-      <ApplicationLayoutWrapper
-        condition={!currentPath.includes("/theme-generator")}
-        wrapper={(children) => (
-          <DxcApplicationLayout
-            logo={{ src: dxcLogo, alt: "DXC Technology" }}
-            header={<DxcApplicationLayout.Header />}
-            sidenav={
-              <DxcApplicationLayout.Sidenav
-                navItems={navItems}
-                appTitle={<SidenavLogo />}
-                searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
-              />
-            }
-          >
-            <DxcApplicationLayout.Main>
-              <DxcToastsQueue duration={7000}>
-                <MainContent>{children}</MainContent>
-              </DxcToastsQueue>
-            </DxcApplicationLayout.Main>
-          </DxcApplicationLayout>
-        )}
+      <DxcApplicationLayout
+        logo={{ src: dxcLogo, alt: "DXC Technology" }}
+        header={
+          isThemeGenerator ? (
+            <DxcApplicationLayout.Header
+              appTitle="Theme Generator"
+              sideContent={
+                <Link href="/utilities/theme-generator/user-guide">
+                  <DxcButton
+                    label="Halstack Design System"
+                    icon="description"
+                    mode="secondary"
+                    size={{ height: "large", width: "fitContent" }}
+                  />
+                </Link>
+              }
+            />
+          ) : (
+            <DxcApplicationLayout.Header />
+          )
+        }
+        sidenav={
+          !isThemeGenerator && (
+            <DxcApplicationLayout.Sidenav
+              navItems={navItems}
+              appTitle={<SidenavLogo />}
+              searchBar={{ placeholder: "Search docs", onChange: (value) => setFilter(value) }}
+            />
+          )
+        }
+        footer={isThemeGenerator && <DxcApplicationLayout.Footer mode="reduced" />}
       >
-        {componentWithLayout}
-      </ApplicationLayoutWrapper>
+        <DxcApplicationLayout.Main>
+          <DxcToastsQueue duration={7000}>
+            <MainContent>{componentWithLayout}</MainContent>
+          </DxcToastsQueue>
+        </DxcApplicationLayout.Main>
+      </DxcApplicationLayout>
     </CacheProvider>
   );
 }
