@@ -54,7 +54,7 @@ const LeftContainer = styled.div<{ width: number }>`
 `;
 
 const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
+  max-height: ${(props) => (props?.mode === "default" ? "var(--height-xl)" : "var(--height-xxs)")};
   width: fit-content;
   text-align: center;
 
@@ -65,6 +65,11 @@ const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
       justify-content: flex-start;
       align-items: center;
     `}
+
+  svg {
+    height: ${(props) => (props.mode === "default" ? "var(--height-xl)" : "var(--height-xxs)")};
+    width: auto;
+  }
 `;
 
 const LogoImg = styled.img<{ mode: FooterPropsType["mode"] }>`
