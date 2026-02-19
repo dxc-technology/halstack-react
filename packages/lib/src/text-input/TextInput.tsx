@@ -84,6 +84,7 @@ const Input = styled.input<{
   text-overflow: ellipsis;
   white-space: nowrap;
   ${({ alignment }) => `text-align: ${alignment}`};
+  width: 100%;
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
