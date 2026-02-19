@@ -103,7 +103,7 @@ const DxcPopover = ({
           </Popover.Portal>
         </Popover.Root>
       )}
-      <div id={`${popOverId}-portal`} style={{ zIndex: "var(--z-contextualmenu)" }} />
+      <div id={`${popOverId}-portal`} style={{ zIndex: "var(--z-contextualmenu)", position: "absolute" }} />
     </>
   );
 };
