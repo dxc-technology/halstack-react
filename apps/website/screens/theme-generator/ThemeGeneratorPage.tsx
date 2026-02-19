@@ -10,7 +10,6 @@ const ThemeGeneratorPage = () => {
         background={{
           image: "url(/theme-generator-landing-bg.jpg)",
           position: "0px 500px",
-          color: "lightgrey 50%",
         }}
         minHeight="328px"
         height="fit-content"
@@ -24,7 +23,7 @@ const ThemeGeneratorPage = () => {
               see in real time how your theme works across components, layouts, and real product scenarios.
             </DxcParagraph>
           </DxcContainer>
-          {/* to be correctly placed */}
+          {/* to be correctly placed based on new landing page design*/}
           <DxcButton label="Start configuration" />
         </DxcFlex>
       </DxcContainer>
