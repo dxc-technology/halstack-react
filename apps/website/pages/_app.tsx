@@ -115,12 +115,13 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             <DxcApplicationLayout.Header
               appTitle="Theme Generator"
               sideContent={
-                <Link href="/utilities/theme-generator/user-guide">
+                // Will navigate to a documentation page that will probably be open in a different tab.
+                <Link href="">
                   <DxcButton
                     label="Halstack Design System"
                     icon="description"
                     mode="secondary"
-                    size={{ height: "large", width: "fitContent" }}
+                    size={{ height: "medium", width: "fitContent" }}
                   />
                 </Link>
               }
@@ -142,7 +143,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
-            <MainContent>{componentWithLayout}</MainContent>
+            {!isThemeGenerator ? <MainContent>{componentWithLayout}</MainContent> : <>{componentWithLayout}</>}
           </DxcToastsQueue>
         </DxcApplicationLayout.Main>
       </DxcApplicationLayout>
