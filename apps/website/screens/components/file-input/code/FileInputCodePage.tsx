@@ -198,7 +198,7 @@ const sections = [
             <td>
               <TableCode>'medium' | 'fillParent'</TableCode>
             </td>
-            <td>If true, the component will take all the width of its container.</td>
+            <td>Size of the component.</td>
             <td>
               <TableCode>'medium'</TableCode>
             </td>
