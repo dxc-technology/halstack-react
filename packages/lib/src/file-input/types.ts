@@ -34,6 +34,10 @@ type CommonProps = {
    */
   disabled?: boolean;
   /**
+   * If true, the component will take all the width of its container.
+   */
+  fillParent?: boolean;
+  /**
    * Helper text to be placed above the component.
    */
   helperText?: string;
