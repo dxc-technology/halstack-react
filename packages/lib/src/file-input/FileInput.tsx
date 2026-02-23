@@ -12,7 +12,7 @@ import Label from "../styles/forms/Label";
 const FileInputContainer = styled.div<{
   margin: FileInputPropsType["margin"];
   mode: FileInputPropsType["mode"];
-  fillParent: FileInputPropsType["fillParent"];
+  size: FileInputPropsType["size"];
 }>`
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ const FileInputContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  width: ${(props) => (props.mode !== "file" && props.fillParent ? "100%" : "fit-content")};
+  width: ${(props) => (props.mode !== "file" && props.size === "fillParent" ? "100%" : "320px")};
 `;
 
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
@@ -45,6 +45,7 @@ const FileItemListContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-gap-xs);
+  width: 100%;
 `;
 
 const Container = styled.div`
@@ -58,7 +59,7 @@ const DragDropArea = styled.div<{
   mode: FileInputPropsType["mode"];
   disabled: FileInputPropsType["disabled"];
   isDragging: boolean;
-  fillParent: FileInputPropsType["fillParent"];
+  size: FileInputPropsType["size"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -67,7 +68,7 @@ const DragDropArea = styled.div<{
       ? "flex-direction: row; column-gap: var(--spacing-gap-s);"
       : "justify-content: center; flex-direction: column; row-gap: var(--spacing-gap-s); height: 160px;"}
   align-items: center;
-  width: ${(props) => (props.fillParent ? "100%" : "320px")};
+  width: ${(props) => props.size === "fillParent" && "100%"};
   padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-padding-xxs)` : "var(--spacing-padding-m)")};
   overflow: hidden;
   border-radius: var(--border-radius-m);
@@ -114,7 +115,6 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       buttonLabel,
       dropAreaLabel,
       helperText = "",
-      fillParent = false,
       accept,
       minSize,
       maxSize,
@@ -122,6 +122,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       multiple = true,
       disabled = false,
       callbackFile,
+      size = "medium",
       value,
       margin,
       tabIndex = 0,
@@ -236,7 +237,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <FileInputContainer margin={margin} ref={ref} mode={mode} fillParent={fillParent}>
+      <FileInputContainer margin={margin} ref={ref} mode={mode} size={size}>
         {label && (
           <Label disabled={disabled} hasMargin={!helperText} htmlFor={fileInputId}>
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
@@ -281,6 +282,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                     onDelete={onDelete}
                     tabIndex={tabIndex}
                     key={`file-${index}`}
+                    size={size}
                   />
                 ))}
               </FileItemListContainer>
@@ -301,7 +303,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             <DragDropArea
               isDragging={isDragging}
               disabled={disabled}
-              fillParent={fillParent}
+              size={size}
               mode={mode}
               onDrop={handleDrop}
               onDragEnter={handleDragIn}
@@ -344,6 +346,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                     onDelete={onDelete}
                     tabIndex={tabIndex}
                     key={`file-${index}`}
+                    size={size}
                   />
                 ))}
               </FileItemListContainer>
