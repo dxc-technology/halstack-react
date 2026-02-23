@@ -80,21 +80,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                fillParent
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the component will take all the width of its container.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>helperText</td>
             <td>
               <TableCode>string</TableCode>
@@ -201,6 +186,21 @@ const sections = [
             </td>
             <td>
               <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                size
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'medium' | 'fillParent'</TableCode>
+            </td>
+            <td>If true, the component will take all the width of its container.</td>
+            <td>
+              <TableCode>'medium'</TableCode>
             </td>
           </tr>
           <tr>

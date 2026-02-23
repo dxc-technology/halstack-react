@@ -18,12 +18,13 @@ const MainContainer = styled.div<{
   error: FileItemProps["error"];
   singleFileMode: FileItemProps["singleFileMode"];
   showPreview: FileItemProps["showPreview"];
+  size: FileItemProps["size"];
 }>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-m);
-  width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+  width: ${(props) => (props.size === "fillParent" ? "100%" : props.singleFileMode ? "230px" : "320px")};
   height: ${(props) => (props.singleFileMode || !props.showPreview) && "var(--height-m)"};
   padding: ${(props) =>
     props.showPreview && !props.singleFileMode
@@ -80,12 +81,15 @@ const FileName = styled.span`
   text-overflow: ellipsis;
 `;
 
-const ErrorMessageContainer = styled.div<{ singleFileMode: FileItemProps["singleFileMode"] }>`
+const ErrorMessageContainer = styled.div<{
+  singleFileMode: FileItemProps["singleFileMode"];
+  size: FileItemProps["size"];
+}>`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-xs);
   color: var(--color-fg-error-medium);
-  max-width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+  max-width: ${(props) => (props.size === "fillParent" ? "100%" : props.singleFileMode ? "230px" : "320px")};
 `;
 const ErrorIcon = styled.span`
   display: flex;
@@ -114,6 +118,7 @@ const FileItem = ({
   type,
   onDelete,
   tabIndex,
+  size = "medium",
 }: FileItemProps): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const [hasTooltip, setHasTooltip] = useState(false);
@@ -126,7 +131,7 @@ const FileItem = ({
 
   return (
     <ListItem>
-      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
+      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview} size={size}>
         {showPreview &&
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={`Preview of ${fileName}`} />
@@ -150,7 +155,7 @@ const FileItem = ({
       </MainContainer>
       {error && (
         <TooltipWrapper condition={hasTooltip} label={error}>
-          <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode}>
+          <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode} size={size}>
             <ErrorIcon>
               <DxcIcon icon="filled_error" />
             </ErrorIcon>

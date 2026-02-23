@@ -34,10 +34,6 @@ type CommonProps = {
    */
   disabled?: boolean;
   /**
-   * If true, the component will take all the width of its container.
-   */
-  fillParent?: boolean;
-  /**
    * Helper text to be placed above the component.
    */
   helperText?: string;
@@ -72,6 +68,10 @@ type CommonProps = {
    * If true, if the file is an image, a preview of it will be shown. If not, an icon refering to the file type will be shown.
    */
   showPreview?: boolean;
+  /**
+   * Size of the component.
+   */
+  size?: "medium" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */
@@ -129,6 +129,7 @@ export type FileItemProps = {
   singleFileMode: boolean;
   tabIndex: number;
   type: string;
+  size: "medium" | "fillParent";
 };
 
 export default Props;
