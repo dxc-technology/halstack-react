@@ -189,6 +189,21 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                size
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'medium' | 'fillParent'</TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'medium'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
