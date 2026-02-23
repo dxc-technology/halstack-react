@@ -25,7 +25,7 @@ const FileInputContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  width: ${(props) => (props.mode !== "file" && props.size === "fillParent" ? "100%" : "320px")};
+  width: ${(props) => (props.mode !== "file" && props.size === "fillParent" ? "100%" : "fit-content")};
 `;
 
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
@@ -68,7 +68,7 @@ const DragDropArea = styled.div<{
       ? "flex-direction: row; column-gap: var(--spacing-gap-s);"
       : "justify-content: center; flex-direction: column; row-gap: var(--spacing-gap-s); height: 160px;"}
   align-items: center;
-  width: ${(props) => props.size === "fillParent" && "100%"};
+  width: ${(props) => (props.size === "fillParent" ? "100%" : "320px")};
   padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-padding-xxs)` : "var(--spacing-padding-m)")};
   overflow: hidden;
   border-radius: var(--border-radius-m);
