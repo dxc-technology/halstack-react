@@ -38,7 +38,6 @@ const ThemeGeneratorPage = () => {
   return (
     <DxcContainer
       height="100%"
-      minHeight="100%"
       boxSizing="border-box"
       padding={{ top: "var(--spacing-padding-xl)" }}
       background={{ color: "var(--color-bg-neutral-lighter)" }}

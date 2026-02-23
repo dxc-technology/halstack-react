@@ -25,7 +25,7 @@ export const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps)
   return (
     <DxcContainer
       width="100%"
-      padding="var(--spacing-padding-s)"
+      padding="var(--spacing-padding-s) var(--spacing-padding-l)"
       background={{ color: "var(--color-bg-neutral-lightest)" }}
       boxSizing="border-box"
     >
