@@ -24,25 +24,25 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
 
   return hasPopOver ? (
     <>
-      {portalContainer && (
-        <Popover.Root open={isOpen}>
-          <Popover.Trigger
-            aria-controls={undefined}
-            aria-expanded={undefined}
-            aria-haspopup={undefined}
-            asChild
-            type={undefined}
-          >
-            <ItemAction
-              aria-controls={isOpen ? groupMenuId : undefined}
-              aria-expanded={isOpen ? true : undefined}
-              collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-              onClick={() => toggleOpen()}
-              selected={groupSelected && !isOpen}
-              {...props}
-            />
-          </Popover.Trigger>
-          <Popover.Portal container={document.getElementById(`${navigationTreeId}-portal`)}>
+      <Popover.Root open={isOpen}>
+        <Popover.Trigger
+          aria-controls={undefined}
+          aria-expanded={undefined}
+          aria-haspopup={undefined}
+          asChild
+          type={undefined}
+        >
+          <ItemAction
+            aria-controls={isOpen ? groupMenuId : undefined}
+            aria-expanded={isOpen ? true : undefined}
+            collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
+            onClick={() => toggleOpen()}
+            selected={groupSelected && !isOpen}
+            {...props}
+          />
+        </Popover.Trigger>
+        {portalContainer && (
+          <Popover.Portal container={portalContainer}>
             <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
               <Popover.Content
                 aria-label="Group details"
@@ -96,8 +96,8 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
               </Popover.Content>
             </BaseMenuContext.Provider>
           </Popover.Portal>
-        </Popover.Root>
-      )}
+        )}
+      </Popover.Root>
       <div id={`${navigationTreeId}-portal`} style={{ position: "absolute" }} />
     </>
   ) : (

@@ -65,7 +65,7 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
               />
             ))}
           </ToastsQueue>,
-          document.getElementById(`toasts-${id}-portal`) || document.body
+          portalContainer || document.body
         )}
       {children}
     </ToastContext.Provider>
