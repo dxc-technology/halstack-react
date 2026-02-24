@@ -133,7 +133,7 @@ const DxcDropdown = ({
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   useEffect(() => {
-    setPortalContainer(document?.getElementById(`${triggerId}-portal`));
+    setPortalContainer(document?.getElementById(`${id}-portal`));
   }, []);
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
