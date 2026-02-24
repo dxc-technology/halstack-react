@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ThemeGeneratorPage from "screens/theme-generator/ThemeGeneratorPage";
+import ThemeGeneratorPage from "screens/theme-generator/ThemeGeneratorConfigPage";
 
 const Index = () => {
   return (
