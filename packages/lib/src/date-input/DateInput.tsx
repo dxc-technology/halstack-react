@@ -292,48 +292,48 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
 
     return (
       <>
-        {portalContainer && (
-          <DateInputContainer margin={margin} size={size} ref={ref}>
-            {label && (
-              <Label
-                htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
+        <DateInputContainer margin={margin} size={size} ref={ref}>
+          {label && (
+            <Label
+              htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
+              disabled={disabled}
+              hasHelperText={!!helperText}
+            >
+              {label}{" "}
+              {optional && (
+                <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
+              )}
+            </Label>
+          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+          <Popover.Root open={isOpen}>
+            <Popover.Trigger asChild aria-controls={undefined}>
+              <DxcTextInput
+                name={name}
+                defaultValue={defaultValue}
+                value={value ?? innerValue}
+                placeholder={placeholder ? format.toUpperCase() : undefined}
+                action={{
+                  onClick: openCalendar,
+                  icon: "filled_calendar_today",
+                  title: "Select date",
+                }}
+                clearable={clearable}
                 disabled={disabled}
-                hasHelperText={!!helperText}
-              >
-                {label}{" "}
-                {optional && (
-                  <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
-                )}
-              </Label>
-            )}
-            {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-            <Popover.Root open={isOpen}>
-              <Popover.Trigger asChild aria-controls={undefined}>
-                <DxcTextInput
-                  name={name}
-                  defaultValue={defaultValue}
-                  value={value ?? innerValue}
-                  placeholder={placeholder ? format.toUpperCase() : undefined}
-                  action={{
-                    onClick: openCalendar,
-                    icon: "filled_calendar_today",
-                    title: "Select date",
-                  }}
-                  clearable={clearable}
-                  disabled={disabled}
-                  readOnly={readOnly}
-                  optional={optional}
-                  onChange={handleOnChange}
-                  onBlur={handleOnBlur}
-                  error={error}
-                  autocomplete={autocomplete}
-                  size={size}
-                  tabIndex={tabIndex}
-                  ref={dateRef}
-                  ariaLabel={ariaLabel}
-                />
-              </Popover.Trigger>
-              <Popover.Portal container={document.getElementById(`${calendarId}-portal`)}>
+                readOnly={readOnly}
+                optional={optional}
+                onChange={handleOnChange}
+                onBlur={handleOnBlur}
+                error={error}
+                autocomplete={autocomplete}
+                size={size}
+                tabIndex={tabIndex}
+                ref={dateRef}
+                ariaLabel={ariaLabel}
+              />
+            </Popover.Trigger>
+            {portalContainer && (
+              <Popover.Portal container={portalContainer}>
                 <StyledPopoverContent
                   sideOffset={sideOffset}
                   align="end"
@@ -345,9 +345,10 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                   <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
                 </StyledPopoverContent>
               </Popover.Portal>
-            </Popover.Root>
-          </DateInputContainer>
-        )}
+            )}
+          </Popover.Root>
+        </DateInputContainer>
+
         <div id={`${calendarId}-portal`} style={{ position: "absolute" }} />
       </>
     );
