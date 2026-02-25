@@ -65,7 +65,7 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
               />
             ))}
           </ToastsQueue>,
-          portalContainer || document.body
+          portalContainer
         )}
       {children}
     </ToastContext.Provider>
