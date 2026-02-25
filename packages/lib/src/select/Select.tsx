@@ -267,7 +267,6 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               });
             } else {
               // controlled mode: just call onChange
-              console.log("VALUE", value);
               const newValue = computeNewValue((value ?? innerValue) as string[], newOption);
               onChange?.({
                 value: newValue as string & string[],
