@@ -224,12 +224,22 @@ export const getSelectableOptionsValues = (options: Props["options"]) =>
     : options.map((option) => option.value);
 
 /**
- * (Un)Selects the option passed as parameter.
- * @param currentValue
- * @param newOption
- * @returns
+ * (Un)Selects one or multiple options passed as parameter.
+ * @param currentValue Current selected values
+ * @param newOptions Option or array of options to toggle
+ * @returns Updated array of values
  */
-export const computeNewValue = (currentValue: string[], newOption: ListOptionType) =>
-  currentValue.includes(newOption.value)
-    ? currentValue.filter((val) => val !== newOption.value)
-    : [...currentValue, newOption.value];
+export const computeNewValue = (currentValue: string[], newOptions: ListOptionType | ListOptionType[]) => {
+  const optionsArray = Array.isArray(newOptions) ? newOptions : [newOptions];
+  let updatedValue = [...currentValue];
+
+  optionsArray.forEach((option) => {
+    if (updatedValue.includes(option.value)) {
+      updatedValue = updatedValue.filter((val) => val !== option.value);
+    } else {
+      updatedValue.push(option.value);
+    }
+  });
+
+  return updatedValue;
+};

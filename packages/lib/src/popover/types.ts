@@ -1,5 +1,3 @@
-import React from "react";
-
 export type PopoverPropsType = {
   /** Action that triggers the popover to open. */
   actionToOpen?: "click" | "hover";
