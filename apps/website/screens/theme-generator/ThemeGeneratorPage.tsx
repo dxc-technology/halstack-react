@@ -1,4 +1,5 @@
-import { DxcButton, DxcContainer, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcContainer, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 
 const ThemeGeneratorPage = () => {
   return (
@@ -23,8 +24,9 @@ const ThemeGeneratorPage = () => {
               see in real time how your theme works across components, layouts, and real product scenarios.
             </DxcParagraph>
           </DxcContainer>
-          {/* to be correctly placed based on new landing page design*/}
-          <DxcButton label="Start configuration" />
+          <Link href="" passHref legacyBehavior>
+            <DxcLink icon="arrow_forward">Start your theme</DxcLink>
+          </Link>
         </DxcFlex>
       </DxcContainer>
     </>
