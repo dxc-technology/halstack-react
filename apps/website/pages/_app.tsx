@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcButton, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcLink, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -117,12 +117,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
               sideContent={
                 // Will navigate to a documentation page that will probably be open in a different tab.
                 <Link href="">
-                  <DxcButton
-                    label="Halstack Design System"
-                    icon="description"
-                    mode="secondary"
-                    size={{ height: "medium", width: "fitContent" }}
-                  />
+                  <DxcLink icon="description">Documentation</DxcLink>
                 </Link>
               }
             />
