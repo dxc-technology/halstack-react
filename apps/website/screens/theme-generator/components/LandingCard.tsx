@@ -1,0 +1,19 @@
+import { DxcContainer, DxcFlex, DxcHeading, DxcTypography, DxcAvatar } from "@dxc-technology/halstack-react";
+
+const LandingCard = ({ icon, title, description }: { icon: string; title: string; description: string }) => {
+  return (
+    <DxcContainer width="345px" padding="var(--spacing-padding-m)" boxShadow="var(--shadow-100)">
+      <DxcFlex direction="column" gap="var(--spacing-gap-ml)" justifyContent="center">
+        <DxcFlex>
+          <DxcAvatar icon={icon} color="primary" size="large" shape="square" />
+        </DxcFlex>
+        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+          <DxcHeading text={title} level={5} />
+          <DxcTypography fontSize="var(--typography-body-s)">{description}</DxcTypography>
+        </DxcFlex>
+      </DxcFlex>
+    </DxcContainer>
+  );
+};
+
+export default LandingCard;
