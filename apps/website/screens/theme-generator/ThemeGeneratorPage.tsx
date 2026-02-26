@@ -67,7 +67,7 @@ const ThemeGeneratorPage = () => {
           </DxcContainer>
         </DxcFlex>
       </DxcContainer>
-      <DxcInset top="72px" bottom="48px">
+      <DxcInset top="72px" bottom="var(--spacing-gap-xxl)">
         <DxcFlex justifyContent="center" alignItems="center">
           <DxcGrid gap="var(--spacing-gap-xl)">
             <DxcContainer width="60%">
