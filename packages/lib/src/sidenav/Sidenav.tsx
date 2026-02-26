@@ -87,8 +87,8 @@ const LogoContainer = styled.div<{
   text-decoration: none;
   cursor: ${(props) => (props.hasAction ? "pointer" : "default")};
   svg {
-    max-width: 100%;
-    max-height: 100%;
+    width: auto;
+    height: var(--height-m);
   }
 `;
 
@@ -185,7 +185,7 @@ const DxcSidenav = ({
                 )}
               </LogoContainer>
             )}
-            {isExpanded && <SidenavTitle>{appTitle}</SidenavTitle>}
+            {isExpanded && appTitle && <SidenavTitle>{appTitle}</SidenavTitle>}
           </DxcFlex>
         </DxcFlex>
         {!(isBelowMedium && !isExpanded) && (
