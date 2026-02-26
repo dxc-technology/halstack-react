@@ -1,6 +1,6 @@
 import { DxcToggleGroup } from "@dxc-technology/halstack-react";
 
-const TogglePreview = () => {
+const ToggleGroupPreview = () => {
   const optionsWithIcons = [
     {
       value: 1,
@@ -16,4 +16,4 @@ const TogglePreview = () => {
   return <DxcToggleGroup options={optionsWithIcons} />;
 };
 
-export default TogglePreview;
+export default ToggleGroupPreview;

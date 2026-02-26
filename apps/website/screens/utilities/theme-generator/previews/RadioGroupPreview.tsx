@@ -1,6 +1,6 @@
 import { DxcRadioGroup, DxcFlex } from "@dxc-technology/halstack-react";
 
-const RadioPreview = () => {
+const RadioGroupPreview = () => {
   const options = [
     { label: "Option 1", value: "1" },
     { label: "Option 2", value: "2" },
@@ -15,4 +15,4 @@ const RadioPreview = () => {
   );
 };
 
-export default RadioPreview;
+export default RadioGroupPreview;
