@@ -15,9 +15,11 @@ const LandingStep = ({ index, title, description }: { index: number; title: stri
         <DxcFlex>
           <DxcAvatar label={`${index}`} color="primary" size="large" />
         </DxcFlex>
-        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
           <DxcHeading text={title} level={5} />
-          <DxcTypography fontSize="var(--typography-body-s)">{description}</DxcTypography>
+          <DxcTypography textAlign="center" fontSize="var(--typography-body-s)">
+            {description}
+          </DxcTypography>
         </DxcFlex>
       </DxcFlex>
     </DxcContainer>

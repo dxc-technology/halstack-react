@@ -14,21 +14,20 @@ import LandingSteps from "./components/LandingSteps";
 
 const steps = [
   {
-    title: "Define your core colors",
-    description: "Start with your brand's core colors, including primary, secondary, and neutral tones.",
+    title: "Define your brand",
+    description: "Choose your core and semantic colors to set the foundation of your theme.",
   },
   {
-    title: "Generate your theme",
-    description: "Let the generator create a structured set of design tokens based on your core colors.",
+    title: "Let the system do the rest",
+    description: "The generator creates a complete set of tokens based on your colors.",
   },
   {
-    title: "Preview and iterate",
-    description:
-      "Apply your generated tokens to real Halstack components and layouts to validate your color choices in context.",
+    title: "See it in real components",
+    description: "Preview your theme applied to real Halstack components and layouts.",
   },
   {
-    title: "Export and implement",
-    description: "Export a ready-to-use theme file and integrate it into your development workflow.",
+    title: "Export and use it",
+    description: "Review your theme and export it as a ready-to-use JSON file.",
   },
 ];
 
@@ -123,10 +122,12 @@ const ThemeGeneratorPage = () => {
           <DxcFlex direction="column" alignItems="center" justifyContent="center" gap="var(--spacing-gap-m)">
             <DxcHeading text="Your brand, fully expressed in Halstack" />
             <DxcContainer width="70%">
-              <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
-                Turn your brand into a living part of your products. Keep every interface aligned, consistent, and
-                easier to evolve as your needs grow.
-              </DxcTypography>
+              <DxcFlex>
+                <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
+                  Turn your brand into a living part of your products. Keep every interface aligned, consistent, and
+                  easier to evolve as your needs grow.
+                </DxcTypography>
+              </DxcFlex>
             </DxcContainer>
           </DxcFlex>
           <DxcFlex gap="var(--spacing-gap-l)">
