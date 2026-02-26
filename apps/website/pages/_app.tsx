@@ -138,7 +138,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
-            {isThemeGenerator ? <>{componentWithLayout}</> : <MainContent>{componentWithLayout}</MainContent>}
+            {!isThemeGenerator ? <MainContent>{componentWithLayout}</MainContent> : <>{componentWithLayout}</>}
           </DxcToastsQueue>
         </DxcApplicationLayout.Main>
       </DxcApplicationLayout>
