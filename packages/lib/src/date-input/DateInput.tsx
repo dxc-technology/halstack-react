@@ -150,6 +150,8 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
+    const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+
     const translatedLabels = useContext(HalstackLanguageContext);
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
@@ -258,6 +260,9 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         closeCalendar();
       }
     };
+    useEffect(() => {
+      setPortalContainer(document?.getElementById(`${calendarId}-portal`));
+    }, []);
 
     useEffect(() => {
       window.addEventListener("scroll", adjustSideOffset);
@@ -327,20 +332,23 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 ariaLabel={ariaLabel}
               />
             </Popover.Trigger>
-            <Popover.Portal container={document.getElementById(`${calendarId}-portal`)}>
-              <StyledPopoverContent
-                sideOffset={sideOffset}
-                align="end"
-                aria-modal
-                onBlur={handleDatePickerOnBlur}
-                onKeyDown={handleDatePickerEscKeydown}
-                ref={popoverContentRef}
-              >
-                <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
-              </StyledPopoverContent>
-            </Popover.Portal>
+            {portalContainer && (
+              <Popover.Portal container={portalContainer}>
+                <StyledPopoverContent
+                  sideOffset={sideOffset}
+                  align="end"
+                  aria-modal
+                  onBlur={handleDatePickerOnBlur}
+                  onKeyDown={handleDatePickerEscKeydown}
+                  ref={popoverContentRef}
+                >
+                  <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+                </StyledPopoverContent>
+              </Popover.Portal>
+            )}
           </Popover.Root>
         </DateInputContainer>
+
         <div id={`${calendarId}-portal`} style={{ position: "absolute" }} />
       </>
     );
