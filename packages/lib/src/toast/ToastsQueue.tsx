@@ -27,7 +27,7 @@ const ToastsQueue = styled.section`
 
 export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueuePropsType) {
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
-  const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   const adjustedDuration = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
   const id = useId();
 
@@ -45,13 +45,13 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
   );
 
   useEffect(() => {
-    setIsMounted(true);
+    setPortalContainer(document?.getElementById(`toasts-${id}-portal`));
   }, []);
 
   return (
     <ToastContext.Provider value={add}>
       <div id={`toasts-${id}-portal`} style={{ position: "absolute" }} />
-      {isMounted &&
+      {portalContainer &&
         createPortal(
           <ToastsQueue>
             {toasts.map((t) => (
@@ -65,7 +65,7 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
               />
             ))}
           </ToastsQueue>,
-          document.getElementById(`toasts-${id}-portal`) || document.body
+          portalContainer
         )}
       {children}
     </ToastContext.Provider>
