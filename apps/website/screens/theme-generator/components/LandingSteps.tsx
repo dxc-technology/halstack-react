@@ -11,7 +11,7 @@ import {
 const LandingStep = ({ index, title, description }: { index: number; title: string; description: string }) => {
   return (
     <DxcContainer width="224px">
-      <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-l)" justifyContent="center">
+      <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-l)">
         <DxcFlex>
           <DxcAvatar label={`${index}`} color="primary" size="large" />
         </DxcFlex>
@@ -29,13 +29,15 @@ const LandingStep = ({ index, title, description }: { index: number; title: stri
 const LandingSteps = ({ steps }: { steps: { title: string; description: string }[] }) => {
   return (
     <DxcInset bottom="var(--spacing-gap-xxl)">
-      <DxcFlex gap="var(--spacing-gap-l)" wrap="wrap" justifyContent="center" alignItems="center">
+      <DxcFlex gap="var(--spacing-gap-l)" wrap="wrap" justifyContent="center">
         {steps.map((step, index) => (
           <>
             <LandingStep key={index} index={index + 1} title={step.title} description={step.description} />
             {index !== steps.length - 1 && (
               <DxcContainer width="48px">
-                <DxcDivider />
+                <DxcFlex fullHeight alignItems="center" justifyContent="center">
+                  <DxcDivider />
+                </DxcFlex>
               </DxcContainer>
             )}
           </>
