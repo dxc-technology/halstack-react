@@ -10,7 +10,7 @@ const steps = [
   { label: "Export theme", description: "Review and export" },
 ];
 
-const ThemeGeneratorPage = () => {
+const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<0 | 1 | 2>(0);
   // Descomentar cuándo se implementen las funcionalidades de cada paso
   /** const [colors, setColors] = useState({
@@ -89,4 +89,4 @@ const ThemeGeneratorPage = () => {
   );
 };
 
-export default ThemeGeneratorPage;
+export default ThemeGeneratorConfigPage;
