@@ -69,6 +69,10 @@ type CommonProps = {
    */
   showPreview?: boolean;
   /**
+   * Size of the component.
+   */
+  size?: "medium" | "fillParent";
+  /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
@@ -125,6 +129,7 @@ export type FileItemProps = {
   singleFileMode: boolean;
   tabIndex: number;
   type: string;
+  size: "medium" | "fillParent";
 };
 
 export default Props;
