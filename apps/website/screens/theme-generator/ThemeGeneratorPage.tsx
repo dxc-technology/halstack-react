@@ -110,11 +110,9 @@ const ThemeGeneratorPage = () => {
         width="100%"
         boxSizing="border-box"
         background={{
-          image: "url(/theme-generator-landing-bg.png)",
-          position: "0px 50%",
+          image: "url(/theme-generator-landing-bg-flipped.png)",
           size: "cover",
         }}
-        borderRadius="0% 0% 640px 0%"
         height="305px"
         margin={{ top: "42px" }}
       >
