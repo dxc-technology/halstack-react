@@ -563,6 +563,16 @@ export const Responsive: Story = {
   },
 };
 
+export const CollapsedResponsiveSidenav: Story = {
+  render: SidenavInLayout,
+  parameters: {
+    chromatic: { viewports: [540] },
+  },
+  globals: {
+    viewport: { value: "pixel", isRotated: false },
+  },
+};
+
 type Story = StoryObj<typeof DxcSidenav>;
 
 export const Chromatic: Story = {
