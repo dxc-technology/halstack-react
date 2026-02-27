@@ -8,7 +8,7 @@ interface PageHeadingProps {
 export const PageHeading = ({ title, subtitle }: PageHeadingProps) => (
   <DxcContainer width="711px">
     <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
-      <DxcHeading level={2} text={title} />
+      <DxcHeading level={3} text={title} />
       <DxcParagraph>{subtitle}</DxcParagraph>
     </DxcFlex>
   </DxcContainer>
