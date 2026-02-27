@@ -1,20 +1,26 @@
-import { DxcDialog, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcDialog, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 
 const DialogPreview = () => {
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const handleClick = () => {
+    setDialogVisible(!isDialogVisible);
+  };
   return (
-    <DxcDialog overlay={false}>
-      <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-        placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-        elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-        tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-        eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
-        enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
-        fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
-        augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
-        dignissim, pharetra neque molestie, molestie lectus.
-      </DxcParagraph>
-    </DxcDialog>
+    <>
+      <DxcButton label="Trigger dialog" onClick={handleClick} />
+      {isDialogVisible && (
+        <DxcDialog onBackgroundClick={handleClick} onCloseClick={handleClick}>
+          <DxcInset space="var(--spacing-padding-l)">
+            <DxcParagraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi optio quia quisquam id iusto consequuntur
+              repudiandae. Aspernatur nisi dolore veniam, repellendus odio excepturi aperiam harum unde similique rerum
+              fuga qui?
+            </DxcParagraph>
+          </DxcInset>
+        </DxcDialog>
+      )}
+    </>
   );
 };
 

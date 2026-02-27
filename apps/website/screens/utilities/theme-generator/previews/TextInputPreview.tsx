@@ -1,12 +1,6 @@
 import { DxcTextInput } from "@dxc-technology/halstack-react";
 const TextInputPreview = () => {
-  return (
-    <DxcTextInput
-      label="Helper Text"
-      placeholder="Input with helper"
-      helperText="This is helper text to guide the user"
-    />
-  );
+  return <DxcTextInput label="Label" placeholder="Input" helperText="Helper Text" />;
 };
 
 export default TextInputPreview;
