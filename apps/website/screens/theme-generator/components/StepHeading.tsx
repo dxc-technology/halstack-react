@@ -5,7 +5,7 @@ interface PageHeadingProps {
   subtitle: string;
 }
 
-export const StepHeading = ({ title, subtitle }: PageHeadingProps) => (
+const StepHeading = ({ title, subtitle }: PageHeadingProps) => (
   <DxcContainer width="100%" maxWidth="711px">
     <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
       <DxcHeading level={3} text={title} />
@@ -15,3 +15,5 @@ export const StepHeading = ({ title, subtitle }: PageHeadingProps) => (
     </DxcFlex>
   </DxcContainer>
 );
+
+export default StepHeading;
