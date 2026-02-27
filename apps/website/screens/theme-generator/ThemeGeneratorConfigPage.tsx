@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
-import { PageHeading } from "./components/PageHeading";
+import { StepHeading } from "./components/StepHeading";
 import { BottomButtons } from "./components/BottomButtons";
 // import { FileData } from "../../../../packages/lib/src/file-input/types";
 
@@ -63,7 +63,7 @@ const ThemeGeneratorConfigPage = () => {
           margin={{ left: "auto", right: "auto" }}
         >
           <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
-            <PageHeading
+            <StepHeading
               title={
                 currentStep === 0
                   ? "Add your theme specifics"
