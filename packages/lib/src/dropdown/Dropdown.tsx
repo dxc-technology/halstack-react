@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
+import { FocusEvent, KeyboardEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -131,6 +131,10 @@ const DxcDropdown = ({
   const menuId = `menu-${id}`;
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setPortalContainer(document?.getElementById(`${id}-portal`));
+  }, []);
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
@@ -300,23 +304,26 @@ const DxcDropdown = ({
               </DropdownTrigger>
             </Popover.Trigger>
           </Tooltip>
-          <Popover.Portal container={document.getElementById(`${id}-portal`)}>
-            <Popover.Content aria-label="Dropdown options" asChild sideOffset={1}>
-              <DropdownMenu
-                id={menuId}
-                dropdownTriggerId={triggerId}
-                options={options}
-                iconsPosition={optionsIconPosition}
-                visualFocusIndex={visualFocusIndex}
-                menuItemOnClick={handleMenuItemOnClick}
-                onKeyDown={handleMenuOnKeyDown}
-                styles={{ width }}
-                ref={menuRef}
-              />
-            </Popover.Content>
-          </Popover.Portal>
+          {portalContainer && (
+            <Popover.Portal container={portalContainer}>
+              <Popover.Content aria-label="Dropdown options" asChild sideOffset={1}>
+                <DropdownMenu
+                  id={menuId}
+                  dropdownTriggerId={triggerId}
+                  options={options}
+                  iconsPosition={optionsIconPosition}
+                  visualFocusIndex={visualFocusIndex}
+                  menuItemOnClick={handleMenuItemOnClick}
+                  onKeyDown={handleMenuOnKeyDown}
+                  styles={{ width }}
+                  ref={menuRef}
+                />
+              </Popover.Content>
+            </Popover.Portal>
+          )}
         </Popover.Root>
       </DropdownContainer>
+
       <div id={`${id}-portal`} style={{ position: "absolute" }} />
     </>
   );
