@@ -14,12 +14,16 @@ const ToastButtons = () => {
   const showInfoToast = () => {
     toast.info({ message: "Info: Here's some information." });
   };
+  const showLoadingToast = () => {
+    toast.loading({ message: "Loading: Please wait." });
+  };
 
   return (
     <DxcFlex gap="1rem" wrap="wrap">
-      <DxcButton label="Success Toast" onClick={showSuccessToast} mode="primary" />
+      <DxcButton label="Success Toast" onClick={showSuccessToast} mode="primary" semantic="success" />
       <DxcButton label="Warning Toast" onClick={showWarningToast} mode="primary" semantic="warning" />
-      <DxcButton label="Info Toast" onClick={showInfoToast} mode="primary" />
+      <DxcButton label="Info Toast" onClick={showInfoToast} mode="primary" semantic="info" />
+      <DxcButton label="Loading Toast" onClick={showLoadingToast} mode="secondary" semantic="info" />
     </DxcFlex>
   );
 };

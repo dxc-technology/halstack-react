@@ -1,4 +1,4 @@
-import { DxcContainer, DxcFlex, DxcSelect, DxcToggleGroup } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcContainer, DxcFlex, DxcSelect, DxcToggleGroup } from "@dxc-technology/halstack-react";
 import { useEffect, useMemo, useState } from "react";
 import componentsList from "../../common/componentsList.json";
 import { ListOptionType } from "../../../../../packages/lib/src/select/types";
@@ -74,41 +74,43 @@ const ThemeGeneratorPage = () => {
   ////////////////////////////////////////
 
   return (
-    <>
-      <DxcToggleGroup
-        options={[
-          { label: "Components", icon: "category", value: 1 },
-          { label: "Layout examples", icon: "dashboard", value: 2 },
-        ]}
-        value={mode === "components" ? 1 : 2}
-        onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
-      />
-
-      {mode === "components" && (
-        <DxcSelect
-          placeholder="Select components"
-          options={componentOptions}
-          multiple
-          value={selectedComponents}
-          onChange={({ value }) => {
-            setSelectedComponents(value);
-          }}
-          enableSelectAll // Should this be included?
+    <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
+      <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
+        <DxcToggleGroup
+          options={[
+            { label: "Components", icon: "category", value: 1 },
+            { label: "Layout examples", icon: "dashboard", value: 2 },
+          ]}
+          value={mode === "components" ? 1 : 2}
+          onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
         />
-      )}
 
-      {mode === "examples" && (
-        <DxcSelect
-          placeholder="Select examples"
-          options={options}
-          multiple
-          value={selectedExamples}
-          onChange={({ value }) => {
-            setSelectedExamples(value);
-          }}
-          enableSelectAll // Should this be included?
-        />
-      )}
+        {mode === "components" && (
+          <DxcSelect
+            placeholder="Select components"
+            options={componentOptions}
+            multiple
+            value={selectedComponents}
+            onChange={({ value }) => {
+              setSelectedComponents(value);
+            }}
+            enableSelectAll
+          />
+        )}
+
+        {mode === "examples" && (
+          <DxcSelect
+            placeholder="Select examples"
+            options={options}
+            multiple
+            value={selectedExamples}
+            onChange={({ value }) => {
+              setSelectedExamples(value);
+            }}
+            enableSelectAll
+          />
+        )}
+      </DxcFlex>
       {/* TODO: Turn this into a separate componente called PreviewArea or similar */}
       <DxcContainer
         borderRadius="var(--border-radius-l)"
@@ -118,18 +120,37 @@ const ThemeGeneratorPage = () => {
           style: "var(--border-style-default)",
         }}
         background={{ color: "var(--color-bg-neutral-lightest)" }}
-        minHeight="500px"
-        padding="var(--spacing-padding-l)"
+        padding="var(--spacing-padding-s)"
         overflow="auto"
+        height="100%"
       >
         <DxcFlex direction="column" gap="1rem">
-          {selectedComponents.map((component) => {
-            const ComponentPreview = componentsRegistry[component as keyof typeof componentsRegistry];
-            return ComponentPreview ? <ComponentPreview key={component} /> : null;
-          })}
+          <DxcFlex justifyContent="flex-end">
+            <DxcButton
+              icon="filled_delete"
+              size={{ height: "medium" }}
+              title="Delete selection"
+              onClick={() => {
+                if (mode === "components") {
+                  setSelectedComponents([]);
+                } else {
+                  setSelectedExamples([]);
+                }
+              }}
+              mode="secondary"
+              semantic="error"
+              disabled={mode === "components" ? selectedComponents.length === 0 : selectedExamples.length === 0}
+            />
+          </DxcFlex>
+          <DxcContainer overflow="auto" maxHeight="100%">
+            {selectedComponents.map((component) => {
+              const ComponentPreview = componentsRegistry[component as keyof typeof componentsRegistry];
+              return ComponentPreview ? <ComponentPreview key={component} /> : null;
+            })}
+          </DxcContainer>
         </DxcFlex>
       </DxcContainer>
-    </>
+    </DxcFlex>
   );
 };
 
