@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
-import { StepHeading } from "./components/StepHeading";
-import { BottomButtons } from "./components/BottomButtons";
+import StepHeading from "./components/StepHeading";
+import BottomButtons from "./components/BottomButtons";
 // import { FileData } from "../../../../packages/lib/src/file-input/types";
+
+export type Step = 0 | 1 | 2;
 
 const steps = [
   { label: "Configure theme", description: "Branding details" },
@@ -10,9 +12,24 @@ const steps = [
   { label: "Export theme", description: "Review and export" },
 ];
 
+const stepHeadings = [
+  {
+    title: "Add your theme specifics",
+    subtitle: "Review your uploaded theme or define your brand colors and logos to preview them in real life. ",
+  },
+  {
+    title: "Preview how your theme applies",
+    subtitle: "Choose components or examples from Halstack catalogue to see how your theme behaves.",
+  },
+  {
+    title: "Review and export your theme",
+    subtitle: "Check your colors and branding assets before exporting your Halstack theme.",
+  },
+];
+
 const ThemeGeneratorConfigPage = () => {
-  const [currentStep, setCurrentStep] = useState<0 | 1 | 2>(0);
-  // Descomentar cuándo se implementen las funcionalidades de cada paso
+  const [currentStep, setCurrentStep] = useState<Step>(0);
+  // Uncomment when implementing the Branding details screen
   /** const [colors, setColors] = useState({
     primary: "#5f249f",
     secondary: "#00b4d8",
@@ -31,7 +48,7 @@ const ThemeGeneratorConfigPage = () => {
   });
   */
 
-  const handleChangeStep = (step: 0 | 1 | 2) => {
+  const handleChangeStep = (step: Step) => {
     setCurrentStep(step);
   };
 
@@ -48,9 +65,7 @@ const ThemeGeneratorConfigPage = () => {
             steps={steps}
             currentStep={currentStep}
             onStepClick={(i) => {
-              if (i === 0) handleChangeStep(0);
-              else if (i === 1) handleChangeStep(1);
-              else if (i === 2) handleChangeStep(2);
+              handleChangeStep(i as Step);
             }}
           />
         </DxcContainer>
@@ -63,22 +78,7 @@ const ThemeGeneratorConfigPage = () => {
           margin={{ left: "auto", right: "auto" }}
         >
           <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
-            <StepHeading
-              title={
-                currentStep === 0
-                  ? "Add your theme specifics"
-                  : currentStep === 1
-                    ? "Preview how your theme applies"
-                    : "Review and export your theme"
-              }
-              subtitle={
-                currentStep === 0
-                  ? "Review your uploaded theme or define your brand colors and logos to preview them in real life. "
-                  : currentStep === 1
-                    ? "Choose components or examples from Halstack catalogue to see how your theme behaves."
-                    : "Check your colors and branding assets before exporting your Halstack theme."
-              }
-            />
+            <StepHeading title={stepHeadings[currentStep]!.title} subtitle={stepHeadings[currentStep]!.subtitle} />
             {currentStep === 0 ? <></> : currentStep === 1 ? <></> : <></>}
           </DxcFlex>
         </DxcContainer>

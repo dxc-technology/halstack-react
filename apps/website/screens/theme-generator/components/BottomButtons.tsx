@@ -1,24 +1,18 @@
 import { DxcButton, DxcContainer, DxcFlex } from "@dxc-technology/halstack-react";
+import { Step } from "../ThemeGeneratorConfigPage";
+
+const MIN_STEP: Step = 0;
+const MAX_STEP: Step = 2;
 
 interface BottomButtonsProps {
-  currentStep: 0 | 1 | 2;
-  onChangeStep: (step: 0 | 1 | 2) => void;
+  currentStep: Step;
+  onChangeStep: (step: Step) => void;
 }
 
-export const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps) => {
-  const handlePrevious = () => {
-    if (currentStep === 1) {
-      onChangeStep(0);
-    } else if (currentStep === 2) {
-      onChangeStep(1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentStep === 0) {
-      onChangeStep(1);
-    } else if (currentStep === 1) {
-      onChangeStep(2);
+const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps) => {
+  const goToStep = (step: number) => {
+    if (step >= MIN_STEP && step <= MAX_STEP) {
+      onChangeStep(step as Step);
     }
   };
 
@@ -33,23 +27,22 @@ export const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps)
         <DxcButton
           label="Back"
           icon="arrow_back"
-          mode="secondary"
-          onClick={handlePrevious}
+          mode="tertiary"
+          onClick={() => goToStep(currentStep - 1)}
           disabled={currentStep === 0}
           size={{ height: "medium", width: "fitContent" }}
         />
         {currentStep === 2 ? (
           <DxcButton
-            label="Export"
+            label="Export theme"
             icon="download"
-            onClick={handleNext}
+            onClick={() => console.log("download theme")}
             size={{ height: "medium", width: "fitContent" }}
           />
         ) : (
           <DxcButton
             label="Next"
-            icon="arrow_forward"
-            onClick={handleNext}
+            onClick={() => goToStep(currentStep + 1)}
             size={{ height: "medium", width: "fitContent" }}
           />
         )}
@@ -57,3 +50,5 @@ export const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps)
     </DxcContainer>
   );
 };
+
+export default BottomButtons;
