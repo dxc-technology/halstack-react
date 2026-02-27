@@ -571,29 +571,6 @@ export const CollapsedResponsiveSidenav: Story = {
   globals: {
     viewport: { value: "pixel", isRotated: false },
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const collapseButtons = await canvas.findAllByRole("button", { name: "Collapse" });
-    for (const button of collapseButtons) {
-      await userEvent.click(button);
-    }
-    const menuItem1 = (await canvas.findAllByRole("button"))[9];
-    if (menuItem1) {
-      await userEvent.click(menuItem1);
-    }
-    const menuItem2 = (await canvas.findAllByRole("button"))[11];
-    if (menuItem2) {
-      await userEvent.click(menuItem2);
-    }
-    const menuItem3 = (await canvas.findAllByRole("button"))[21];
-    if (menuItem3) {
-      await userEvent.click(menuItem3);
-    }
-    const menuItem4 = (await canvas.findAllByRole("button"))[23];
-    if (menuItem4) {
-      await userEvent.click(menuItem4);
-    }
-  },
 };
 
 type Story = StoryObj<typeof DxcSidenav>;
