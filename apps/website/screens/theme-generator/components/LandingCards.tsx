@@ -1,4 +1,4 @@
-import { DxcContainer, DxcFlex, DxcHeading, DxcTypography, DxcAvatar } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFlex, DxcTypography, DxcAvatar } from "@dxc-technology/halstack-react";
 
 const LandingCard = ({ icon, title, description }: { icon: string; title: string; description: string }) => {
   return (
@@ -8,7 +8,7 @@ const LandingCard = ({ icon, title, description }: { icon: string; title: string
           <DxcAvatar icon={icon} color="primary" size="large" shape="square" />
         </DxcFlex>
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-          <DxcHeading text={title} level={5} />
+          <DxcTypography fontWeight="var(--typography-title-bold)">{title}</DxcTypography>
           <DxcTypography fontSize="var(--typography-body-s)">{description}</DxcTypography>
         </DxcFlex>
       </DxcFlex>
@@ -16,4 +16,14 @@ const LandingCard = ({ icon, title, description }: { icon: string; title: string
   );
 };
 
-export default LandingCard;
+const LandingCards = ({ cards }: { cards: { icon: string; title: string; description: string }[] }) => {
+  return (
+    <DxcFlex gap="var(--spacing-gap-l)" wrap="wrap">
+      {cards.map((card, index) => (
+        <LandingCard key={index} {...card} />
+      ))}
+    </DxcFlex>
+  );
+};
+
+export default LandingCards;

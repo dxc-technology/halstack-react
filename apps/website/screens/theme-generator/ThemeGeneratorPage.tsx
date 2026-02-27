@@ -9,7 +9,7 @@ import {
   DxcGrid,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import LandingCard from "./components/LandingCard";
+import LandingCards from "./components/LandingCards";
 import LandingSteps from "./components/LandingSteps";
 
 const steps = [
@@ -28,6 +28,26 @@ const steps = [
   {
     title: "Export and use it",
     description: "Review your theme and export it as a ready-to-use JSON file.",
+  },
+];
+
+const cards = [
+  {
+    icon: "filled_palette",
+    title: "From brand colors to design tokens",
+    description: "Define your core and semantic colors and let the generator create a structured set of design tokens.",
+  },
+  {
+    icon: "preview",
+    title: "Preview your theme in real components",
+    description:
+      "Apply your generated tokens to real Halstack components and layouts to validate your color choices in context.",
+  },
+  {
+    icon: "accessibility",
+    title: "Accessible and ready to implement",
+    description:
+      "The generator adjusts color combinations to aim for strong contrast and readability. Export a ready-to-use theme file and integrate it into your development workflow.",
   },
 ];
 
@@ -74,28 +94,12 @@ const ThemeGeneratorPage = () => {
               <DxcFlex direction="column" justifyContent="center" gap="var(--spacing-gap-m)">
                 <DxcHeading text="Everything you need to theme at scale" level={3} />
                 <DxcParagraph>
-                  Theme Generators <strong>removes the complexity</strong> of brand customization so your team can move
+                  Theme Generator <strong>removes the complexity</strong> of brand customization so your team can move
                   faster, stay consistent, and ship with confidence.
                 </DxcParagraph>
               </DxcFlex>
             </DxcContainer>
-            <DxcFlex gap="var(--spacing-gap-l)" wrap="wrap">
-              <LandingCard
-                icon="filled_palette"
-                title="From brand colors to design tokens"
-                description="Define your core and semantic colors and let the generator create a structured set of design tokens."
-              />
-              <LandingCard
-                icon="preview"
-                title="Preview your theme in real components"
-                description="Apply your generated tokens to real Halstack components and layouts to validate your color choices in context."
-              />
-              <LandingCard
-                icon="accessibility"
-                title="Accessible and ready to implement"
-                description="The generator adjusts color combinations to aim for strong contrast and readability. Export a ready-to-use theme file and integrate it into your development workflow."
-              />
-            </DxcFlex>
+            <LandingCards cards={cards} />
           </DxcGrid>
         </DxcFlex>
       </DxcInset>
@@ -113,15 +117,17 @@ const ThemeGeneratorPage = () => {
           image: "url(/theme-generator-landing-bg-flipped.png)",
           size: "cover",
         }}
-        height="305px"
+        height="329px"
         margin={{ top: "42px" }}
       >
         <DxcFlex direction="column" fullHeight alignItems="center" justifyContent="center" gap="var(--spacing-gap-ml)">
           <DxcFlex direction="column" alignItems="center" justifyContent="center" gap="var(--spacing-gap-m)">
-            <DxcHeading text="Your brand, fully expressed in Halstack" />
+            <DxcTypography fontWeight="var(--typography-heading-semibold)" fontSize="var(--typography-heading-xl)">
+              Your brand, fully expressed in Halstack
+            </DxcTypography>
             <DxcContainer width="70%">
               <DxcFlex>
-                <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
+                <DxcTypography fontSize="var(--typography-body-l)" textAlign="center">
                   Turn your brand into a living part of your products. Keep every interface aligned, consistent, and
                   easier to evolve as your needs grow.
                 </DxcTypography>
