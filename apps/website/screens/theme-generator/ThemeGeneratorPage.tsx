@@ -127,7 +127,11 @@ const ThemeGeneratorPage = () => {
             </DxcTypography>
             <DxcContainer width="70%">
               <DxcFlex>
-                <DxcTypography fontSize="var(--typography-body-l)" textAlign="center">
+                <DxcTypography
+                  fontSize="var(--typography-body-l)"
+                  textAlign="center"
+                  color="var(--color-fg-neutral-strongest)"
+                >
                   Turn your brand into a living part of your products. Keep every interface aligned, consistent, and
                   easier to evolve as your needs grow.
                 </DxcTypography>
