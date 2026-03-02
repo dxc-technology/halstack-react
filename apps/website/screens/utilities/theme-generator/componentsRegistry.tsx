@@ -42,9 +42,9 @@ import {
   TooltipPreview,
   TypographyPreview,
   WizardPreview,
-} from "./previews";
+} from "./previews/components";
 
-export const componentsRegistry = {
+const ComponentsRegistry = {
   "/components/accordion": AccordionPreview,
   "/components/avatar": AvatarPreview,
   "/components/card": CardPreview,
@@ -101,3 +101,5 @@ export const componentsRegistry = {
   "/components/paragraph": ParagraphPreview,
   "/components/typography": TypographyPreview,
 };
+
+export default ComponentsRegistry;

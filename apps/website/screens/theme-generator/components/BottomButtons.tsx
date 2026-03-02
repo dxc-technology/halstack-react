@@ -7,10 +7,9 @@ const MAX_STEP: Step = 2;
 interface BottomButtonsProps {
   currentStep: Step;
   onChangeStep: (step: Step) => void;
-  onExport: () => void;
 }
 
-const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsProps) => {
+const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps) => {
   const goToStep = (step: number) => {
     if (step >= MIN_STEP && step <= MAX_STEP) {
       onChangeStep(step as Step);
@@ -34,7 +33,12 @@ const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsPro
           size={{ height: "medium", width: "fitContent" }}
         />
         {currentStep === 2 ? (
-          <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium", width: "fitContent" }} />
+          <DxcButton
+            label="Export theme"
+            //TODO: replace with actual export functionality
+            onClick={() => console.log("download theme")}
+            size={{ height: "medium", width: "fitContent" }}
+          />
         ) : (
           <DxcButton
             label="Next"
