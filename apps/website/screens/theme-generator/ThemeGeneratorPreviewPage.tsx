@@ -1,8 +1,8 @@
 import { DxcButton, DxcContainer, DxcFlex, DxcSelect, DxcToggleGroup } from "@dxc-technology/halstack-react";
 import { useEffect, useMemo, useState } from "react";
-import componentsList from "../../common/componentsList.json";
-import { ListOptionType } from "../../../../../packages/lib/src/select/types";
-import { componentsRegistry } from "./componentsRegistry";
+import componentsList from "../common/componentsList.json";
+import componentsRegistry from "screens/utilities/theme-generator/componentsRegistry";
+import { ListOptionType } from "../../../../packages/lib/src/select/types";
 
 // JSON Structure type, this should go in the json file or somewhere else
 
@@ -41,7 +41,7 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPage = () => {
+const ThemeGeneratorPreviewPage = () => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
@@ -154,4 +154,4 @@ const ThemeGeneratorPage = () => {
   );
 };
 
-export default ThemeGeneratorPage;
+export default ThemeGeneratorPreviewPage;

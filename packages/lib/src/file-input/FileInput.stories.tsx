@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFileInput from "./FileInput";
+import DxcContainer from "../container/Container";
 
 export default {
   title: "File Input",
@@ -509,6 +510,33 @@ const FileInput = () => (
         mode="dropzone"
         margin="xxlarge"
       />
+    </ExampleContainer>
+    <Title title="Sizes" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="fillParent size" theme="light" level={4} />
+      <DxcContainer width="200px">
+        <DxcFileInput
+          label="File input"
+          helperText="Please select files"
+          value={fileExample}
+          callbackFile={() => {}}
+          mode="filedrop"
+          size="fillParent"
+        />
+      </DxcContainer>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="fillParent size" theme="light" level={4} />
+      <DxcContainer width="200px">
+        <DxcFileInput
+          label="File input"
+          helperText="Please select files"
+          value={fileExample}
+          callbackFile={() => {}}
+          mode="dropzone"
+          size="fillParent"
+        />
+      </DxcContainer>
     </ExampleContainer>
   </>
 );

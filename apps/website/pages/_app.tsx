@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcButton, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcLink, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -115,13 +115,9 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             <DxcApplicationLayout.Header
               appTitle="Theme Generator"
               sideContent={
-                <Link href="/utilities/theme-generator/user-guide">
-                  <DxcButton
-                    label="Halstack Design System"
-                    icon="description"
-                    mode="secondary"
-                    size={{ height: "large", width: "fitContent" }}
-                  />
+                // Will navigate to a documentation page that will probably be open in a different tab.
+                <Link href="" legacyBehavior passHref>
+                  <DxcLink icon="description">Documentation</DxcLink>
                 </Link>
               }
             />
@@ -142,7 +138,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
-            <MainContent>{componentWithLayout}</MainContent>
+            {!isThemeGenerator ? <MainContent>{componentWithLayout}</MainContent> : <>{componentWithLayout}</>}
           </DxcToastsQueue>
         </DxcApplicationLayout.Main>
       </DxcApplicationLayout>
