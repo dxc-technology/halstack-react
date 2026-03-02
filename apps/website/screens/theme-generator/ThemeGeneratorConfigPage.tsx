@@ -64,7 +64,6 @@ const ThemeGeneratorConfigPage = () => {
   });
   const [tokens, setTokens] = useState<Record<string, string>>({});
 
-  // Generate tokens when step change
   useEffect(() => {
     const generateTokensFromColors = () => {
       try {
@@ -82,7 +81,6 @@ const ThemeGeneratorConfigPage = () => {
         const generatedTokens = generateTokens(mappedColors);
 
         setTokens(generatedTokens);
-        console.log("Generated tokens:", generatedTokens);
       } catch (error) {
         console.error("Error generating tokens:", error);
       }
