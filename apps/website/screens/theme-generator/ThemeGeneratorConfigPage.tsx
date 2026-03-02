@@ -27,6 +27,11 @@ const steps = [
   },
 ] as const;
 
+const wizardSteps = steps.map(({ label, description }) => ({
+  label,
+  description,
+}));
+
 const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
   // Uncomment when implementing the Branding details screen
@@ -51,11 +56,6 @@ const ThemeGeneratorConfigPage = () => {
   const handleChangeStep = (step: Step) => {
     setCurrentStep(step);
   };
-
-  const wizardSteps = steps.map(({ label, description }) => ({
-    label,
-    description,
-  }));
 
   return (
     <DxcContainer
