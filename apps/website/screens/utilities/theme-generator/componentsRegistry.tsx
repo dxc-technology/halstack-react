@@ -43,13 +43,7 @@ import {
   TypographyPreview,
   WizardPreview,
 } from "./previews/components";
-// import {
-//   ApplicationPreview,
-//   BasicApplicationLayoutPreview,
-//   DashboardPreview,
-//   FormPreview,
-//   LoginPreview,
-// } from "./previews/examples";
+import { ApplicationPreview, DashboardPreview, FormPreview, LoginPreview } from "./previews/examples";
 
 export const componentsRegistry = {
   "/components/accordion": AccordionPreview,
@@ -109,10 +103,9 @@ export const componentsRegistry = {
   "/components/typography": TypographyPreview,
 };
 
-// export const examplesRegistry = {
-//   "/examples/application": ApplicationPreview,
-//   "/examples/basic-application-layout": BasicApplicationLayoutPreview,
-//   "/examples/dashboard": DashboardPreview,
-//   "/examples/form": FormPreview,
-//   "/examples/login": LoginPreview,
-// };
+export const examplesRegistry = {
+  "/examples/application": ApplicationPreview,
+  "/examples/dashboard": DashboardPreview,
+  "/examples/form": FormPreview,
+  "/examples/login": LoginPreview,
+};
