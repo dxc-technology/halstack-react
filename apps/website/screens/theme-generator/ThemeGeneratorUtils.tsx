@@ -34,7 +34,7 @@ export const generatePalette = (hex: CssColor): string[] => {
       name: "custom",
       colorKeys: [hex],
       ratios: CONTRAST_RATIOS,
-      colorspace: "LCH",
+      colorSpace: "RGB",
       smooth: false,
     });
     const theme = new Theme({
