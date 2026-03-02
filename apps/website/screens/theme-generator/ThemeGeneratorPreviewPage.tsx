@@ -1,7 +1,7 @@
 import { DxcButton, DxcContainer, DxcFlex, DxcSelect, DxcToggleGroup } from "@dxc-technology/halstack-react";
 import { useMemo, useState } from "react";
 import componentsList from "../common/componentsList.json";
-import { componentsRegistry } from "screens/utilities/theme-generator/componentsRegistry";
+import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
 import { ListOptionType } from "../../../../packages/lib/src/select/types";
 
 // JSON Structure type, this should go in the json file or somewhere else
@@ -45,19 +45,32 @@ const ThemeGeneratorPreviewPage = () => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
-  const [selectedExamples, setSelectedExamples] = useState<string[]>([]);
+  const [selectedExample, setSelectedExample] = useState<string>("");
 
   const componentOptions = useMemo(() => {
     return mapToSelectGroups(componentsList as ComponentItem[]);
   }, []);
 
-  const options = [
+  const exampleOptions = [
     {
-      label: "Layout examples",
-      options: [
-        { label: "Dashboard", value: "dashboard", icon: "dashboard" },
-        { label: "Form page", value: "form", icon: "description" },
-      ],
+      label: "Application example",
+      value: "/examples/application",
+      icon: "settings",
+    },
+    {
+      label: "Dashboard example",
+      value: "/examples/dashboard",
+      icon: "dashboard",
+    },
+    {
+      label: "Form example",
+      value: "/examples/form",
+      icon: "description",
+    },
+    {
+      label: "Login example",
+      value: "/examples/login",
+      icon: "login",
     },
   ];
 
@@ -69,15 +82,13 @@ const ThemeGeneratorPreviewPage = () => {
       });
     }
 
-    // if (mode === "examples") {
-    //   return selectedExamples.map((example) => {
-    //     const ExamplePreview = examplesRegistry[example as keyof typeof examplesRegistry];
-    //     return ExamplePreview ? <ExamplePreview key={example} /> : null;
-    //   });
-    // }
+    if (mode === "examples") {
+      const ExamplePreview = examplesRegistry[selectedExample as keyof typeof examplesRegistry];
+      return ExamplePreview ? <ExamplePreview key={selectedExample} /> : null;
+    }
 
     return null;
-  }, [mode, selectedComponents, selectedExamples]);
+  }, [mode, selectedComponents, selectedExample]);
 
   return (
     <DxcContainer width="100%" height="100%">
@@ -108,13 +119,11 @@ const ThemeGeneratorPreviewPage = () => {
           {mode === "examples" && (
             <DxcSelect
               placeholder="Select examples"
-              options={options}
-              multiple
-              value={selectedExamples}
+              options={exampleOptions}
+              value={selectedExample}
               onChange={({ value }) => {
-                setSelectedExamples(value);
+                setSelectedExample(value);
               }}
-              enableSelectAll
             />
           )}
         </DxcFlex>
@@ -141,12 +150,12 @@ const ThemeGeneratorPreviewPage = () => {
                   if (mode === "components") {
                     setSelectedComponents([]);
                   } else {
-                    setSelectedExamples([]);
+                    setSelectedExample("");
                   }
                 }}
                 mode="secondary"
                 semantic="error"
-                disabled={mode === "components" ? selectedComponents.length === 0 : selectedExamples.length === 0}
+                disabled={mode === "components" ? selectedComponents.length === 0 : !!selectedExample}
               />
             </DxcFlex>
             {displayedPreview}
