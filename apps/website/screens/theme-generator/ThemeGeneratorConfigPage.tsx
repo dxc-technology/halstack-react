@@ -3,7 +3,7 @@ import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import { FileData } from "../../../../packages/lib/src/file-input/types";
-import { generateTokens, updateCSSVariables } from "./ThemeGeneratorUtils";
+import { generateTokens } from "./ThemeGeneratorUtils";
 import { type CssColor } from "@adobe/leonardo-contrast-colors";
 import { BrandingDetails } from "./steps/BrandingDetails";
 
@@ -72,31 +72,23 @@ const ThemeGeneratorConfigPage = () => {
           primary: colors.primary,
           secondary: colors.secondary,
           tertiary: colors.tertiary,
-          neutral: colors.neutral,
           semantic01: colors.info,
           semantic02: colors.success,
           semantic03: colors.warning,
           semantic04: colors.error,
+          neutral: colors.neutral,
         };
 
-        const themeData = { baseColors: mappedColors };
-        const originalThemeData = { baseColors: mappedColors };
-        const generatedTokens = generateTokens(themeData, originalThemeData);
+        const generatedTokens = generateTokens(mappedColors);
 
         setTokens(generatedTokens);
+        console.log("Generated tokens:", generatedTokens);
       } catch (error) {
         console.error("Error generating tokens:", error);
       }
     };
 
     generateTokensFromColors();
-  }, [currentStep]);
-
-  // Update CSS variables when colors change
-  useEffect(() => {
-    Object.entries(colors).forEach(([colorName, colorValue]) => {
-      updateCSSVariables(colorName, colorValue);
-    });
   }, [colors]);
 
   const handleChangeStep = (step: 0 | 1 | 2) => {
