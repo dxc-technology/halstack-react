@@ -47,9 +47,9 @@ const ThemeGeneratorConfigPage = () => {
     error: CssColor;
     warning: CssColor;
   }>({
-    primary: "#5f249f",
-    secondary: "#00b4d8",
-    tertiary: "#ffa500",
+    primary: "#5F249F",
+    secondary: "#00B4D8",
+    tertiary: "#FFA500",
     neutral: "#666666",
     info: "#0095FF",
     success: "#2FD05D",
@@ -84,11 +84,6 @@ const ThemeGeneratorConfigPage = () => {
         const generatedTokens = generateTokens(themeData, originalThemeData);
 
         setTokens(generatedTokens);
-
-        // Apply generated tokens to CSS
-        Object.entries(generatedTokens).forEach(([key, value]) => {
-          document.documentElement.style.setProperty(key, value, "important");
-        });
       } catch (error) {
         console.error("Error generating tokens:", error);
       }

@@ -1,11 +1,4 @@
-import {
-  DxcContainer,
-  DxcFileInput,
-  DxcFlex,
-  DxcGrid,
-  DxcHeading,
-  DxcTypography,
-} from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFileInput, DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
 import { ColorCard } from "../components/ColorCard";
 import { type CssColor } from "@adobe/leonardo-contrast-colors";
 import { FileData } from "../../../../../packages/lib/src/file-input/types";
@@ -64,6 +57,7 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
     <DxcContainer
       boxSizing="border-box"
       width="100%"
+      maxWidth="1112px"
       padding="var(--spacing-padding-m)"
       borderRadius="var(--border-radius-l)"
       background={{ color: "var(--color-bg-neutral-lightest)" }}
@@ -80,11 +74,18 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
             >
               <DxcIcon icon="filled_palette" />
             </DxcTypography>
-            <DxcHeading level={4} text="Core colors" />
+            <DxcTypography
+              as="h3"
+              fontSize="var(--typography-title-l)"
+              fontWeight="var(--typography-title-bold)"
+              lineHeight="normal"
+            >
+              Core colors
+            </DxcTypography>
           </DxcFlex>
           <DxcGrid
-            templateColumns={["repeat(auto-fit, minmax(min(260px, 100%), 1fr))"]}
-            gap="var(--spacing-gap-ml)"
+            templateColumns={["repeat(auto-fit, 261px)"]}
+            gap="var(--spacing-gap-m)"
             autoFlow="row"
             placeSelf="stretch"
           >
@@ -103,14 +104,14 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
 
             <ColorCard
               label="Tertiary"
-              helperText="Accents and highlight"
+              helperText="Accents and highlights"
               color={colors.tertiary}
               onChange={handleColorChange("tertiary")}
             />
 
             <ColorCard
               label="Neutral"
-              helperText="Background and text"
+              helperText="Backgrounds and text"
               color={colors.neutral}
               onChange={handleColorChange("neutral")}
             />
@@ -127,11 +128,18 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
             >
               <DxcIcon icon="filled_info" />
             </DxcTypography>
-            <DxcHeading level={4} text="Semantic colors" />
+            <DxcTypography
+              as="h3"
+              fontSize="var(--typography-title-l)"
+              fontWeight="var(--typography-title-bold)"
+              lineHeight="normal"
+            >
+              Semantic colors
+            </DxcTypography>
           </DxcFlex>
           <DxcGrid
-            templateColumns={["repeat(auto-fit, minmax(min(260px, 100%), 1fr))"]}
-            gap="var(--spacing-gap-ml)"
+            templateColumns={["repeat(auto-fit, 261px)"]}
+            gap="var(--spacing-gap-m)"
             autoFlow="row"
             placeSelf="stretch"
           >
@@ -174,11 +182,18 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
             >
               <DxcIcon icon="filled_branding_watermark" />
             </DxcTypography>
-            <DxcHeading level={4} text="Branding details" />
+            <DxcTypography
+              as="h3"
+              fontSize="var(--typography-title-l)"
+              fontWeight="var(--typography-title-bold)"
+              lineHeight="normal"
+            >
+              Branding details
+            </DxcTypography>
           </DxcFlex>
           <DxcGrid
-            templateColumns={["repeat(auto-fit, minmax(min(260px, 100%), 1fr))"]}
-            gap="var(--spacing-gap-ml)"
+            templateColumns={["repeat(auto-fit, 261px)"]}
+            gap="var(--spacing-gap-m)"
             autoFlow="row"
             placeSelf="stretch"
           >
