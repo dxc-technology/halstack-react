@@ -31,7 +31,7 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   }
 `;
 

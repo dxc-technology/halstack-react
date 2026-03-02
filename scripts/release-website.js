@@ -1,5 +1,7 @@
 const { exec } = require("child_process");
-const AWS = require("aws-sdk");
+const {
+  S3,
+} = require("@aws-sdk/client-s3");
 
 const BUCKET_NAME = "design-system-react-cdk-site";
 const DIRECTORY = "halstack/";
@@ -21,7 +23,7 @@ const getVersionsInS3Bucket = async () => {
   };
 
   const versionsFromPrevDirectory = await new Promise((resolve, reject) => {
-    new AWS.S3().listObjectsV2({ ...params, Prefix: PREVDIRECTORY }, (error, data) => {
+    new S3().listObjectsV2({ ...params, Prefix: PREVDIRECTORY }, (error, data) => {
       if (error) {
         reject(new Error(error));
       } else {
@@ -31,7 +33,7 @@ const getVersionsInS3Bucket = async () => {
   });
 
   const versions = await new Promise((resolve, reject) => {
-    new AWS.S3().listObjectsV2({ ...params, Prefix: DIRECTORY }, (error, data) => {
+    new S3().listObjectsV2({ ...params, Prefix: DIRECTORY }, (error, data) => {
       if (error) {
         reject(new Error(error));
       } else {
