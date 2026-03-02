@@ -1,4 +1,3 @@
-//
 // import {
 //   DxcFlex,
 //   DxcTypography,
@@ -27,28 +26,14 @@
 //             )}
 
 //             <TitleContainer>
-//               <DxcTypography
-//                 fontSize="1.25rem"
-//                 fontWeight="400"
-//                 textAlign="center"
-//               >
+//               <DxcTypography fontSize="1.25rem" fontWeight="400" textAlign="center">
 //                 Sign in to your account
 //               </DxcTypography>
 //             </TitleContainer>
 
 //             <DxcFlex direction="column" gap="1rem">
-//               <DxcTextInput
-//                 label="Username"
-//                 value=""
-//                 size="fillParent"
-//                 placeholder=""
-//               />
-//               <DxcPasswordInput
-//                 label="Password"
-//                 value=""
-//                 size="fillParent"
-//                 placeholder=""
-//               />
+//               <DxcTextInput label="Username" value="" size="fillParent" placeholder="" />
+//               <DxcPasswordInput label="Password" value="" size="fillParent" placeholder="" />
 //             </DxcFlex>
 
 //             <DxcFlex justifyContent="flex-end">
@@ -57,11 +42,7 @@
 //               </DxcLink>
 //             </DxcFlex>
 
-//             <DxcButton
-//               mode="primary"
-//               label="Sign in"
-//               size={{ width: "fillParent" }}
-//             />
+//             <DxcButton mode="primary" label="Sign in" size={{ width: "fillParent" }} />
 //           </DxcFlex>
 //         </LoginCard>
 //       </LoginContainer>
@@ -75,13 +56,11 @@
 //   display: flex;
 //   align-items: center;
 //   justify-content: center;
-//   background-image: ${(props) =>
-//     props.backgroundImage ? `url(${props.backgroundImage})` : "none"};
+//   background-image: ${(props) => (props.backgroundImage ? `url(${props.backgroundImage})` : "none")};
 //   background-size: cover;
 //   background-position: center;
 //   background-repeat: no-repeat;
-//   background-color: ${(props) =>
-//     props.backgroundImage ? "transparent" : "#f5f5f5"};
+//   background-color: ${(props) => (props.backgroundImage ? "transparent" : "#f5f5f5")};
 //   position: relative;
 // `;
 

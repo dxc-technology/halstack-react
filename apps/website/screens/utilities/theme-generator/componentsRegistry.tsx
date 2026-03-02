@@ -43,8 +43,15 @@ import {
   TypographyPreview,
   WizardPreview,
 } from "./previews/components";
+// import {
+//   ApplicationPreview,
+//   BasicApplicationLayoutPreview,
+//   DashboardPreview,
+//   FormPreview,
+//   LoginPreview,
+// } from "./previews/examples";
 
-const ComponentsRegistry = {
+export const componentsRegistry = {
   "/components/accordion": AccordionPreview,
   "/components/avatar": AvatarPreview,
   "/components/card": CardPreview,
@@ -102,4 +109,10 @@ const ComponentsRegistry = {
   "/components/typography": TypographyPreview,
 };
 
-export default ComponentsRegistry;
+// export const examplesRegistry = {
+//   "/examples/application": ApplicationPreview,
+//   "/examples/basic-application-layout": BasicApplicationLayoutPreview,
+//   "/examples/dashboard": DashboardPreview,
+//   "/examples/form": FormPreview,
+//   "/examples/login": LoginPreview,
+// };

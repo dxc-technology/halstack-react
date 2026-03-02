@@ -37,14 +37,7 @@ export { default as TabsPreview } from "./TabsPreview";
 export { default as TextareaPreview } from "./TextareaPreview";
 export { default as TextInputPreview } from "./TextInputPreview";
 export { default as ToastPreview } from "./ToastPreview";
-export { default as TooltipPreview } from "./TooltipPreview";
 export { default as ToggleGroupPreview } from "./ToggleGroupPreview";
+export { default as TooltipPreview } from "./TooltipPreview";
 export { default as TypographyPreview } from "./TypographyPreview";
 export { default as WizardPreview } from "./WizardPreview";
-
-// Other
-// export { default as FormPreview } from "./FormPreview";
-// export { default as BasicApplicationLayoutPreview } from "./BasicApplicationLayoutPreview";
-// export { default as ApplicationPreview } from "./ApplicationPreview";
-// export { default as LoginPreview } from "./LoginPreview";
-// export { default as DashboardPreview } from "./DashboardPreview";
