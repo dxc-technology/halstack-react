@@ -7,25 +7,25 @@ import BottomButtons from "./components/BottomButtons";
 export type Step = 0 | 1 | 2;
 
 const steps = [
-  { label: "Configure theme", description: "Branding details" },
-  { label: "Preview", description: "Components and templates" },
-  { label: "Export theme", description: "Review and export" },
-];
-
-const stepHeadings = [
   {
+    label: "Configure theme",
+    description: "Branding details",
     title: "Add your theme specifics",
     subtitle: "Review your uploaded theme or define your brand colors and logos to preview them in real life. ",
   },
   {
+    label: "Preview",
+    description: "Components and templates",
     title: "Preview how your theme applies",
     subtitle: "Choose components or examples from Halstack catalogue to see how your theme behaves.",
   },
   {
+    label: "Export theme",
+    description: "Review and export",
     title: "Review and export your theme",
     subtitle: "Check your colors and branding assets before exporting your Halstack theme.",
   },
-];
+] as const;
 
 const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
@@ -52,6 +52,11 @@ const ThemeGeneratorConfigPage = () => {
     setCurrentStep(step);
   };
 
+  const wizardSteps = steps.map(({ label, description }) => ({
+    label,
+    description,
+  }));
+
   return (
     <DxcContainer
       height="100%"
@@ -62,7 +67,7 @@ const ThemeGeneratorConfigPage = () => {
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>
         <DxcContainer width="80%" maxWidth="1112px" margin={{ left: "auto", right: "auto" }}>
           <DxcWizard
-            steps={steps}
+            steps={wizardSteps}
             currentStep={currentStep}
             onStepClick={(i) => {
               handleChangeStep(i as Step);
@@ -78,7 +83,7 @@ const ThemeGeneratorConfigPage = () => {
           margin={{ left: "auto", right: "auto" }}
         >
           <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
-            <StepHeading title={stepHeadings[currentStep]!.title} subtitle={stepHeadings[currentStep]!.subtitle} />
+            <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
             {currentStep === 0 ? <></> : currentStep === 1 ? <></> : <></>}
           </DxcFlex>
         </DxcContainer>

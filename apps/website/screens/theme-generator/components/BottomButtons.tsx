@@ -35,7 +35,7 @@ const BottomButtons = ({ currentStep, onChangeStep }: BottomButtonsProps) => {
         {currentStep === 2 ? (
           <DxcButton
             label="Export theme"
-            icon="download"
+            //TODO: replace with actual export functionality
             onClick={() => console.log("download theme")}
             size={{ height: "medium", width: "fitContent" }}
           />
