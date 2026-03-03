@@ -31,16 +31,12 @@ const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsPro
           mode="tertiary"
           onClick={() => goToStep(currentStep - 1)}
           disabled={currentStep === 0}
-          size={{ height: "medium", width: "fitContent" }}
+          size={{ height: "medium" }}
         />
         {currentStep === 2 ? (
-          <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium", width: "fitContent" }} />
+          <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium" }} />
         ) : (
-          <DxcButton
-            label="Next"
-            onClick={() => goToStep(currentStep + 1)}
-            size={{ height: "medium", width: "fitContent" }}
-          />
+          <DxcButton label="Next" onClick={() => goToStep(currentStep + 1)} size={{ height: "medium" }} />
         )}
       </DxcFlex>
     </DxcContainer>
