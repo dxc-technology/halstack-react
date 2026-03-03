@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
+import { handleCopy } from "../utils";
 
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1 / 1;
@@ -36,12 +37,6 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
     }
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(color).catch(() => {
-      setError("Could not copy to clipboard");
-    });
-  };
-
   return (
     <DxcContainer
       height="fit-content"
@@ -53,7 +48,7 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
       }}
       padding="var(--spacing-padding-s)"
     >
-      <DxcFlex alignItems="stretch" gap="var(--spacing-gap-s)" fullHeight>
+      <DxcFlex gap="var(--spacing-gap-s)">
         <DxcPopover
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -92,7 +87,7 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
           onBlur={handleBlur}
           action={{
             icon: "Content_Copy",
-            onClick: handleCopy,
+            onClick: () => handleCopy(inputValue),
             title: "Copy the hex value",
           }}
         />

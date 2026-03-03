@@ -4,6 +4,31 @@ import { FileData } from "../../../../../packages/lib/src/file-input/types";
 import DxcIcon from "../../../../../packages/lib/src/icon/Icon";
 import { ColorCard } from "../components/ColorCard";
 
+const coreColors = [
+  { id: "primary" as const, label: "Primary", helperText: "Main brand actions" },
+  { id: "secondary" as const, label: "Secondary", helperText: "Supporting interactions" },
+  { id: "tertiary" as const, label: "Tertiary", helperText: "Accents and highlights" },
+  { id: "neutral" as const, label: "Neutral", helperText: "Backgrounds and text" },
+];
+
+const sematicColors = [
+  { id: "info" as const, label: "Info", helperText: "Informational feedback" },
+  { id: "success" as const, label: "Success", helperText: "Positive outcomes" },
+  { id: "error" as const, label: "Error", helperText: "Errors and failures" },
+  { id: "warning" as const, label: "Warning", helperText: "Alerts and cautions" },
+];
+
+const brandingDetails = [
+  { id: "mainLogo" as const, label: "Main logo", helperText: "Primary brand logo across the application" },
+  { id: "footerLogo" as const, label: "Default footer logo", helperText: "Default variant of the footer" },
+  {
+    id: "footerReducedLogo" as const,
+    label: "Reduced footer logo",
+    helperText: "For cluttered interfaces with reduced footer",
+  },
+  { id: "favicon" as const, label: "Favicon", helperText: "For browser tabs and bookmarks" },
+];
+
 interface BrandingDetailsProps {
   colors: {
     primary: CssColor;
@@ -65,7 +90,7 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
     >
       <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-xl)">
         <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)" alignSelf="stretch">
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
             <DxcTypography
               as="div"
               color="var(--color-fg-primary-strong)"
@@ -83,43 +108,21 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
               Core colors
             </DxcTypography>
           </DxcFlex>
-          <DxcGrid
-            templateColumns={["repeat(auto-fit, 261px)"]}
-            gap="var(--spacing-gap-m)"
-            autoFlow="row"
-            placeSelf="stretch"
-          >
-            <ColorCard
-              label="Primary"
-              helperText="Main brand actions"
-              color={colors.primary}
-              onChange={handleColorChange("primary")}
-            />
-            <ColorCard
-              label="Secondary"
-              helperText="Supporting interactions"
-              color={colors.secondary}
-              onChange={handleColorChange("secondary")}
-            />
-
-            <ColorCard
-              label="Tertiary"
-              helperText="Accents and highlights"
-              color={colors.tertiary}
-              onChange={handleColorChange("tertiary")}
-            />
-
-            <ColorCard
-              label="Neutral"
-              helperText="Backgrounds and text"
-              color={colors.neutral}
-              onChange={handleColorChange("neutral")}
-            />
+          <DxcGrid templateColumns={["repeat(auto-fit, 261px)"]} gap="var(--spacing-gap-m)" placeSelf="stretch">
+            {coreColors.map(({ id, label, helperText }) => (
+              <ColorCard
+                key={id}
+                label={label}
+                helperText={helperText}
+                color={colors[id]}
+                onChange={handleColorChange(id)}
+              />
+            ))}
           </DxcGrid>
         </DxcFlex>
 
         <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)" alignSelf="stretch">
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
             <DxcTypography
               as="div"
               color="var(--color-fg-primary-strong)"
@@ -137,43 +140,21 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
               Semantic colors
             </DxcTypography>
           </DxcFlex>
-          <DxcGrid
-            templateColumns={["repeat(auto-fit, 261px)"]}
-            gap="var(--spacing-gap-m)"
-            autoFlow="row"
-            placeSelf="stretch"
-          >
-            <ColorCard
-              label="Info"
-              helperText="Informational feedback"
-              color={colors.info}
-              onChange={handleColorChange("info")}
-            />
-            <ColorCard
-              label="Success"
-              helperText="Positive outcomes"
-              color={colors.success}
-              onChange={handleColorChange("success")}
-            />
-
-            <ColorCard
-              label="Error"
-              helperText="Errors and failures"
-              color={colors.error}
-              onChange={handleColorChange("error")}
-            />
-
-            <ColorCard
-              label="Warning"
-              helperText="Alerts and cautions"
-              color={colors.warning}
-              onChange={handleColorChange("warning")}
-            />
+          <DxcGrid templateColumns={["repeat(auto-fit, 261px)"]} gap="var(--spacing-gap-m)" placeSelf="stretch">
+            {sematicColors.map(({ id, label, helperText }) => (
+              <ColorCard
+                key={id}
+                label={label}
+                helperText={helperText}
+                color={colors[id]}
+                onChange={handleColorChange(id)}
+              />
+            ))}
           </DxcGrid>
         </DxcFlex>
 
         <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)" alignSelf="stretch">
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
             <DxcTypography
               as="div"
               color="var(--color-fg-primary-strong)"
@@ -191,56 +172,22 @@ export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }
               Branding details
             </DxcTypography>
           </DxcFlex>
-          <DxcGrid
-            templateColumns={["repeat(auto-fit, 261px)"]}
-            gap="var(--spacing-gap-m)"
-            autoFlow="row"
-            placeSelf="stretch"
-          >
-            <DxcFileInput
-              size="fillParent"
-              label="Main logo"
-              helperText="Primary brand logo across the application"
-              mode="filedrop"
-              accept="image/*"
-              showPreview
-              multiple={false}
-              callbackFile={(files) => updateLogoValue("mainLogo", files)}
-              value={logos.mainLogo}
-            />
-            <DxcFileInput
-              size="fillParent"
-              label="Footer logo default"
-              helperText="For the default variant of our footer"
-              mode="filedrop"
-              accept="image/*"
-              showPreview
-              multiple={false}
-              callbackFile={(files) => updateLogoValue("footerLogo", files)}
-              value={logos.footerLogo}
-            />
-            <DxcFileInput
-              size="fillParent"
-              label="Footer logo reduced"
-              helperText="For cluttered interfaces with reduced footer"
-              mode="filedrop"
-              accept="image/*"
-              showPreview
-              multiple={false}
-              callbackFile={(files) => updateLogoValue("footerReducedLogo", files)}
-              value={logos.footerReducedLogo}
-            />
-            <DxcFileInput
-              size="fillParent"
-              label="Favicon"
-              helperText="For browser tabs and bookmarks"
-              mode="filedrop"
-              accept="image/*"
-              showPreview
-              multiple={false}
-              callbackFile={(files) => updateLogoValue("favicon", files)}
-              value={logos.favicon}
-            />
+          <DxcGrid templateColumns={["repeat(auto-fit, 261px)"]} gap="var(--spacing-gap-m)" placeSelf="stretch">
+            {brandingDetails.map(({ id, label, helperText }) => (
+              <DxcFileInput
+                key={id}
+                size="fillParent"
+                label={label}
+                helperText={helperText}
+                buttonLabel="Select file"
+                mode="filedrop"
+                accept="image/*"
+                showPreview
+                multiple={false}
+                callbackFile={(files) => updateLogoValue(id, files)}
+                value={logos[id]}
+              />
+            ))}
           </DxcGrid>
         </DxcFlex>
       </DxcFlex>
