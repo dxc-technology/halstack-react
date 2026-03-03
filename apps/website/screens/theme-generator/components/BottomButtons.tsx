@@ -12,9 +12,7 @@ interface BottomButtonsProps {
 
 const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsProps) => {
   const goToStep = (step: number) => {
-    if (step >= MIN_STEP && step <= MAX_STEP) {
-      onChangeStep(step as Step);
-    }
+    onChangeStep(step as Step);
   };
 
   return (
@@ -30,10 +28,10 @@ const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsPro
           icon="arrow_back"
           mode="tertiary"
           onClick={() => goToStep(currentStep - 1)}
-          disabled={currentStep === 0}
+          disabled={currentStep === MIN_STEP}
           size={{ height: "medium" }}
         />
-        {currentStep === 2 ? (
+        {currentStep === MAX_STEP ? (
           <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium" }} />
         ) : (
           <DxcButton label="Next" onClick={() => goToStep(currentStep + 1)} size={{ height: "medium" }} />

@@ -32,7 +32,7 @@ export const generatePalette = (hex: CssColor): string[] => {
       name: "custom",
       colorKeys: [hex],
       ratios: CONTRAST_RATIOS,
-      colorSpace: "RGB",
+      colorspace: "LCH",
       smooth: false,
     });
     const theme = new Theme({
@@ -91,14 +91,22 @@ const generateTokensObject = (baseColors: BaseColors): Tokens => {
   return allTokensObj;
 };
 
-export const updateCSSVariables = (colorName: string, newHex: CssColor): void => {
-  const palette = generatePalette(newHex);
-  palette.forEach((color, i) => {
-    const tokenName = `color-${colorName.toLowerCase()}-${SHADE_VALUES[i]}`;
-    document.documentElement.style.setProperty(`--${tokenName}`, color, "important");
-  });
-};
-
 export const generateTokens = (baseColors: BaseColors): Tokens => {
   return generateTokensObject(baseColors);
+};
+
+export const handleExport = (tokens: Tokens) => {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tokens, null, 2));
+  const downloadAnchorNode = document.createElement("a");
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "halstack-theme-tokens.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+};
+
+export const handleCopy = (value: string) => {
+  navigator.clipboard.writeText(value).catch(() => {
+    console.error("Could not copy to clipboard");
+  });
 };
