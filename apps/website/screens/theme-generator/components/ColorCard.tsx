@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput, useToast } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
-import { handleCopy } from "../utils";
 
 const ColorBox = styled.button<{ color: string }>`
-  aspect-ratio: 1 / 1;
-  height: 72.8px;
+  aspect-ratio: 1;
+  width: 100%;
   border-radius: var(--border-radius-m);
   background-color: ${(props) => props.color};
   cursor: pointer;
@@ -14,27 +13,38 @@ const ColorBox = styled.button<{ color: string }>`
   padding: var(--spacing-padding-none);
 `;
 
-interface ColorCardProps {
+export const ColorCard = ({
+  label,
+  helperText,
+  color,
+  onChange,
+}: {
   label: string;
   helperText: string;
   color: string;
   onChange: (color: string) => void;
-}
-
-export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps) => {
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState<string>();
-
-  const handleInputChange = ({ value }: { value: string }) => {
-    setInputValue(value);
-  };
+  const toast = useToast();
 
   const handleBlur = ({ value, error }: { value: string; error?: string }) => {
     setError(error);
     if (!error) {
       onChange(value);
     }
+  };
+
+  const handleCopy = (value: string) => {
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        toast.success({ message: "Copied to clipboard" });
+      })
+      .catch(() => {
+        toast.warning({ message: "Failed to copy to clipboard" });
+      });
   };
 
   return (
@@ -48,7 +58,7 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
       }}
       padding="var(--spacing-padding-s)"
     >
-      <DxcFlex gap="var(--spacing-gap-s)">
+      <DxcFlex alignItems="start" gap="var(--spacing-gap-s)">
         <DxcPopover
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -76,21 +86,23 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
         >
           <ColorBox onClick={() => setIsOpen((prev) => !prev)} color={color} />
         </DxcPopover>
-        <DxcTextInput
-          label={label}
-          helperText={helperText}
-          value={inputValue}
-          onChange={handleInputChange}
-          size="fillParent"
-          pattern="^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$"
-          error={error}
-          onBlur={handleBlur}
-          action={{
-            icon: "Content_Copy",
-            onClick: () => handleCopy(inputValue),
-            title: "Copy the hex value",
-          }}
-        />
+        <DxcContainer minWidth="155px">
+          <DxcTextInput
+            label={label}
+            helperText={helperText}
+            value={inputValue}
+            onChange={({ value }) => setInputValue(value)}
+            size="fillParent"
+            pattern="^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$"
+            error={error}
+            onBlur={handleBlur}
+            action={{
+              icon: "Content_Copy",
+              onClick: () => handleCopy(inputValue),
+              title: "Copy the hex value",
+            }}
+          />
+        </DxcContainer>
       </DxcFlex>
     </DxcContainer>
   );
