@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { Colors, FileData, Step } from "./types";
-import { generateTokens } from "./utils";
+import { generateTokens, handleExport } from "./utils";
 
 const steps = [
   {
@@ -36,13 +36,13 @@ const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
   const [colors, setColors] = useState<Colors>({
     primary: "#5F249F",
-    secondary: "#00B4D8",
-    tertiary: "#FFA500",
-    neutral: "#666666",
-    info: "#0095FF",
-    success: "#2FD05D",
-    error: "#FE0123",
-    warning: "#F38F20",
+    secondary: "#0067B3",
+    tertiary: "#F7C72B",
+    neutral: "#999999",
+    info: "#0067B3",
+    success: "#59D97D",
+    error: "#FE344F",
+    warning: "#F59F3D",
   });
   const [logos, setLogos] = useState({
     mainLogo: [] as FileData[],
@@ -51,44 +51,46 @@ const ThemeGeneratorConfigPage = () => {
     favicon: [] as FileData[],
   });
   const [tokens, setTokens] = useState<Record<string, string>>({});
+  const lastGeneratedColorsRef = useRef<string>("");
 
-  useEffect(() => {
-    const generateTokensFromColors = () => {
-      try {
-        const mappedColors = {
-          primary: colors.primary,
-          secondary: colors.secondary,
-          tertiary: colors.tertiary,
-          semantic01: colors.info,
-          semantic02: colors.success,
-          semantic03: colors.warning,
-          semantic04: colors.error,
-          neutral: colors.neutral,
-        };
+  const generateTokensFromColors = () => {
+    try {
+      const mappedColors = {
+        primary: colors.primary,
+        secondary: colors.secondary,
+        tertiary: colors.tertiary,
+        semantic01: colors.info,
+        semantic02: colors.success,
+        semantic03: colors.warning,
+        semantic04: colors.error,
+        neutral: colors.neutral,
+      };
 
-        const generatedTokens = generateTokens(mappedColors);
+      const generatedTokens = generateTokens(mappedColors);
 
-        setTokens(generatedTokens);
-      } catch (error) {
-        console.error("Error generating tokens:", error);
-      }
-    };
-
-    generateTokensFromColors();
-  }, [colors]);
+      setTokens(generatedTokens);
+      lastGeneratedColorsRef.current = JSON.stringify(colors);
+    } catch (error) {
+      console.error("Error generating tokens:", error);
+    }
+  };
 
   const handleChangeStep = (step: 0 | 1 | 2) => {
+    if (currentStep === 0 && JSON.stringify(colors) !== lastGeneratedColorsRef.current) {
+      generateTokensFromColors();
+    }
     setCurrentStep(step);
   };
 
-  const handleExport = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tokens, null, 2));
-    const downloadAnchorNode = document.createElement("a");
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "halstack-theme-tokens.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
+      case 1:
+        return <></>;
+      case 2:
+        return <></>;
+    }
   };
 
   return (
@@ -118,17 +120,15 @@ const ThemeGeneratorConfigPage = () => {
         >
           <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
             <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
-            {currentStep === 0 ? (
-              <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />
-            ) : currentStep === 1 ? (
-              <></>
-            ) : (
-              <></>
-            )}
+            {renderStepContent()}
           </DxcFlex>
         </DxcContainer>
 
-        <BottomButtons currentStep={currentStep} onChangeStep={handleChangeStep} onExport={handleExport} />
+        <BottomButtons
+          currentStep={currentStep}
+          onChangeStep={handleChangeStep}
+          onExport={() => handleExport(tokens)}
+        />
       </DxcFlex>
     </DxcContainer>
   );
