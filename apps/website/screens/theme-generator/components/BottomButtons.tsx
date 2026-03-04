@@ -4,13 +4,15 @@ import { Step } from "../types";
 const MIN_STEP: Step = 0;
 const MAX_STEP: Step = 2;
 
-interface BottomButtonsProps {
+const BottomButtons = ({
+  currentStep,
+  onChangeStep,
+  onExport,
+}: {
   currentStep: Step;
   onChangeStep: (step: Step) => void;
   onExport: () => void;
-}
-
-const BottomButtons = ({ currentStep, onChangeStep, onExport }: BottomButtonsProps) => (
+}) => (
   <DxcContainer
     width="100%"
     padding="var(--spacing-padding-s) var(--spacing-padding-l)"

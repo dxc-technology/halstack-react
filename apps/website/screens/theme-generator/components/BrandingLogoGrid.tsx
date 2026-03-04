@@ -1,17 +1,6 @@
 import { DxcFileInput, DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
-import { ReactNode } from "react";
-import { Field, FileData, Logos } from "../types";
-
-interface BrandingLogoGridProps {
-  section: {
-    id: string;
-    title: string;
-    icon: ReactNode;
-    fields: Field[];
-  };
-  logos: Logos;
-  onLogoChange: (logoType: string, files: FileData[]) => void;
-}
+import { Logos } from "../types";
+import BrandingLogoGridProps from "./BrandingLogoGrid.types";
 
 const BrandingLogoGrid = ({ section, logos, onLogoChange }: BrandingLogoGridProps) => (
   <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">

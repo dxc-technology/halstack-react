@@ -1,18 +1,7 @@
 import { DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
-import { ReactNode } from "react";
 import { ColorCard } from "./ColorCard";
-import { Colors, Field } from "../types";
-
-interface BrandingColorGridProps {
-  section: {
-    id: string;
-    title: string;
-    icon: ReactNode;
-    fields: Field[];
-  };
-  colors: Colors;
-  onColorChange: (colorType: string) => (newColor: string) => void;
-}
+import { Colors } from "../types";
+import BrandingColorGridProps from "./BrandingColorGrid.types";
 
 const BrandingColorGrid = ({ section, colors, onColorChange }: BrandingColorGridProps) => (
   <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">

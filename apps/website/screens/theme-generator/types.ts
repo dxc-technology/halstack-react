@@ -1,4 +1,5 @@
 import { CssColor } from "@adobe/leonardo-contrast-colors";
+import { ReactNode } from "react";
 
 export type Tokens = Record<string, string>;
 export type BaseColors = Record<string, CssColor>;
@@ -29,4 +30,10 @@ export type Field = {
   id: string;
   label: string;
   helperText: string;
+};
+export type BrandingDetailsSection = {
+  id: string;
+  title: string;
+  icon: ReactNode;
+  fields: Field[];
 };

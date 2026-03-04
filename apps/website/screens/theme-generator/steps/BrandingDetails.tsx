@@ -5,13 +5,6 @@ import { brandingIcon, infoIcon, paletteIcon } from "./icons";
 import BrandingColorGrid from "../components/BrandingColorGrid";
 import BrandingLogoGrid from "../components/BrandingLogoGrid";
 
-interface BrandingDetailsProps {
-  colors: Colors;
-  onColorsChange: (colors: Colors) => void;
-  logos: Logos;
-  onLogosChange: (logos: Logos) => void;
-}
-
 const coreColors = {
   id: "core",
   title: "Core colors",
@@ -52,7 +45,17 @@ const brandingDetails = {
   ],
 };
 
-export const BrandingDetails = ({ colors, onColorsChange, logos, onLogosChange }: BrandingDetailsProps) => {
+export const BrandingDetails = ({
+  colors,
+  onColorsChange,
+  logos,
+  onLogosChange,
+}: {
+  colors: Colors;
+  onColorsChange: (colors: Colors) => void;
+  logos: Logos;
+  onLogosChange: (logos: Logos) => void;
+}) => {
   const handleColorChange = (colorType: string) => (newColor: string) => {
     onColorsChange({
       ...colors,

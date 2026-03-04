@@ -3,13 +3,6 @@ import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput, useToast } from "@dxc-
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
 
-interface ColorCardProps {
-  label: string;
-  helperText: string;
-  color: string;
-  onChange: (color: string) => void;
-}
-
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1;
   width: 100%;
@@ -20,7 +13,17 @@ const ColorBox = styled.button<{ color: string }>`
   padding: var(--spacing-padding-none);
 `;
 
-export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps) => {
+export const ColorCard = ({
+  label,
+  helperText,
+  color,
+  onChange,
+}: {
+  label: string;
+  helperText: string;
+  color: string;
+  onChange: (color: string) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState<string>();
