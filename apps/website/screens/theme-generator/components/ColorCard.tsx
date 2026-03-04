@@ -11,6 +11,14 @@ const ColorBox = styled.button<{ color: string }>`
   cursor: pointer;
   border: none;
   padding: var(--spacing-padding-none);
+
+  &:focus-visible,
+  &:focus {
+    outline-style: solid;
+    outline-width: var(--border-width-m);
+    outline-color: var(--border-color-secondary-medium);
+    outline-offset: 2px;
+  }
 `;
 
 export const ColorCard = ({
@@ -61,6 +69,7 @@ export const ColorCard = ({
       <DxcFlex alignItems="start" gap="var(--spacing-gap-s)">
         <DxcPopover
           isOpen={isOpen}
+          onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
           popoverContent={
             <SketchPicker
@@ -84,7 +93,14 @@ export const ColorCard = ({
           side="bottom"
           asChild
         >
-          <ColorBox onClick={() => setIsOpen((prev) => !prev)} color={color} />
+          <ColorBox
+            onClick={() => setIsOpen((prev) => !prev)}
+            color={color}
+            tabIndex={0}
+            aria-label={`Open color picker for ${label}`}
+            aria-expanded={isOpen}
+            aria-haspopup="dialog"
+          />
         </DxcPopover>
         <DxcContainer minWidth="155px">
           <DxcTextInput
