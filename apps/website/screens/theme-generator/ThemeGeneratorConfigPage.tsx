@@ -1,33 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
-import { generateTokens, handleExport } from "./utils";
-import { type CssColor } from "@adobe/leonardo-contrast-colors";
 import { BrandingDetails } from "./steps/BrandingDetails";
-
-export type Step = 0 | 1 | 2;
-export type Colors = {
-  primary: CssColor;
-  secondary: CssColor;
-  tertiary: CssColor;
-  neutral: CssColor;
-  info: CssColor;
-  success: CssColor;
-  error: CssColor;
-  warning: CssColor;
-};
-export type FileData = {
-  error?: string;
-  file: File;
-  preview?: string;
-};
-export type Logos = {
-  mainLogo: FileData[];
-  footerLogo: FileData[];
-  footerReducedLogo: FileData[];
-  favicon: FileData[];
-};
+import { generateTokens, handleExport } from "./utils";
+import { Colors, FileData, Step } from "./types";
 
 const steps = [
   {

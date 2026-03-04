@@ -1,7 +1,5 @@
 import { Color, BackgroundColor, Theme, type CssColor } from "@adobe/leonardo-contrast-colors";
-
-type Tokens = Record<string, string>;
-type BaseColors = Record<string, CssColor>;
+import { BaseColors, Tokens } from "./types";
 
 /**
  * Contrast ratios for generating color shades
@@ -24,15 +22,17 @@ const ALPHA_VALUES = ["1a", "33", "4d", "66", "80", "99", "b2", "cc", "e5"];
 export const generatePalette = (hex: CssColor): string[] => {
   try {
     const bg = new BackgroundColor({
+      //Definir color de fondo blanco
       name: "bg",
       colorKeys: ["#fff"],
       ratios: CONTRAST_RATIOS,
     });
     const color = new Color({
+      //Definir color base
       name: "custom",
       colorKeys: [hex],
       ratios: CONTRAST_RATIOS,
-      colorspace: "LCH",
+      colorSpace: "RGB",
       smooth: false,
     });
     const theme = new Theme({
@@ -103,10 +103,4 @@ export const handleExport = (tokens: Tokens) => {
   document.body.appendChild(downloadAnchorNode);
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
-};
-
-export const handleCopy = (value: string) => {
-  navigator.clipboard.writeText(value).catch(() => {
-    console.error("Could not copy to clipboard");
-  });
 };
