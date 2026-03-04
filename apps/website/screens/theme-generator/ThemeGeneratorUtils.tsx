@@ -1,7 +1,5 @@
 import { Color, BackgroundColor, Theme, type CssColor } from "@adobe/leonardo-contrast-colors";
-
-type Tokens = Record<string, string>;
-type BaseColors = Record<string, CssColor>;
+import { BaseColors, Tokens } from "./types";
 
 /**
  * Contrast ratios for generating color shades

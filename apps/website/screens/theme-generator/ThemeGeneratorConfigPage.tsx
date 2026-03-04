@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
-import { FileData } from "../../../../packages/lib/src/file-input/types";
-import { generateTokens } from "./ThemeGeneratorUtils";
-import { type CssColor } from "@adobe/leonardo-contrast-colors";
 import { BrandingDetails } from "./steps/BrandingDetails";
-
-export type Step = 0 | 1 | 2;
+import { Colors, FileData, Step } from "./types";
+import { generateTokens } from "./utils";
 
 const steps = [
   {
@@ -37,16 +34,7 @@ const wizardSteps = steps.map(({ label, description }) => ({
 
 const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
-  const [colors, setColors] = useState<{
-    primary: CssColor;
-    secondary: CssColor;
-    tertiary: CssColor;
-    neutral: CssColor;
-    info: CssColor;
-    success: CssColor;
-    error: CssColor;
-    warning: CssColor;
-  }>({
+  const [colors, setColors] = useState<Colors>({
     primary: "#5F249F",
     secondary: "#00B4D8",
     tertiary: "#FFA500",

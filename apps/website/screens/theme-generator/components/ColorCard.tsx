@@ -1,7 +1,14 @@
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
+
+interface ColorCardProps {
+  label: string;
+  helperText: string;
+  color: string;
+  onChange: (color: string) => void;
+}
 
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1 / 1;
@@ -13,57 +20,17 @@ const ColorBox = styled.button<{ color: string }>`
   padding: var(--spacing-padding-none);
 `;
 
-interface ColorCardProps {
-  label: string;
-  helperText: string;
-  color: string;
-  onChange: (color: string) => void;
-}
-
 export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState<string | undefined>(undefined);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const updateColor = useCallback(
-    (newColor: string) => {
-      setInputValue(newColor);
-      onChange(newColor);
-      setError(undefined);
-    },
-    [onChange]
-  );
-
-  const handleInputChange = useCallback(
-    ({ value }: { value: string }) => {
-      setInputValue(value);
-      // Solo propagar si es un hexadecimal válido (el patrón lo valida el DxcTextInput)
-      const hexPattern = /^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/;
-      if (hexPattern.test(value)) {
-        updateColor(value);
-      }
-    },
-    [updateColor]
-  );
-
-  const onBlur = useCallback(
-    ({ value, error }: { value: string; error?: string }) => {
-      let normalizedValue = value;
-      if (value && !value.startsWith("#")) {
-        normalizedValue = "#" + value;
-        setInputValue(normalizedValue);
-
-        const hexPattern = /^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/;
-        if (hexPattern.test(normalizedValue)) {
-          updateColor(normalizedValue);
-          return;
-        }
-      }
-      setError(error || undefined);
-    },
-    [updateColor]
-  );
+  const handleBlur = ({ value, error }: { value: string; error?: string }) => {
+    setError(error);
+    if (!error) {
+      onChange(value);
+    }
+  };
 
   return (
     <DxcContainer
@@ -92,24 +59,27 @@ export const ColorCard = ({ label, helperText, color, onChange }: ColorCardProps
               }}
               color={color}
               disableAlpha={true}
-              onChange={(newColor) => updateColor(newColor.hex)}
+              onChange={(newColor) => {
+                setInputValue(newColor.hex);
+                onChange(newColor.hex);
+              }}
             />
           }
           hasTip
           side="bottom"
           asChild
         >
-          <ColorBox onClick={() => setIsOpen((prev) => !prev)} ref={buttonRef} color={color} />
+          <ColorBox onClick={() => setIsOpen((prev) => !prev)} color={color} />
         </DxcPopover>
         <DxcTextInput
           label={label}
           helperText={helperText}
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={({ value }) => setInputValue(value)}
           size="fillParent"
           pattern="^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$"
           error={error}
-          onBlur={onBlur}
+          onBlur={handleBlur}
           action={{
             icon: "Content_Copy",
             onClick: () => {
