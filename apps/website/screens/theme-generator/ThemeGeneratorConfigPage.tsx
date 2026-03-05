@@ -37,7 +37,7 @@ const ThemeGeneratorConfigPage = () => {
   const [colors, setColors] = useState<Colors>({
     primary: "#5F249F",
     secondary: "#0067B3",
-    tertiary: "#F7C72B",
+    tertiary: "#F7CF2B",
     neutral: "#999999",
     info: "#0067B3",
     success: "#59D97D",
