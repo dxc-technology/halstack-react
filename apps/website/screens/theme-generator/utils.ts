@@ -104,3 +104,7 @@ export const handleExport = (tokens: Tokens) => {
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
 };
+
+export const copyToClipboard = (value: string) => {
+  return navigator.clipboard.writeText(value);
+};
