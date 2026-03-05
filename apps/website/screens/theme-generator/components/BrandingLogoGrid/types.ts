@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Colors, Field } from "../types";
+import { Field, FileData, Logos } from "../../types";
 
 type Props = {
   section: {
@@ -8,8 +8,8 @@ type Props = {
     icon: ReactNode;
     fields: Field[];
   };
-  colors: Colors;
-  onColorChange: (colorType: string) => (newColor: string) => void;
+  logos: Logos;
+  onLogoChange: (logoType: string, files: FileData[]) => void;
 };
 
 export default Props;
