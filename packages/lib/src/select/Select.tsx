@@ -7,6 +7,7 @@ import {
   MouseEvent,
   useCallback,
   useContext,
+  useEffect,
   useId,
   useMemo,
   useRef,
@@ -210,6 +211,10 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
+    const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+    useEffect(() => {
+      setPortalContainer(document?.getElementById(`${id}-portal`));
+    }, []);
 
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
@@ -596,44 +601,47 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 </DxcFlex>
               </Select>
             </Popover.Trigger>
-            <Popover.Portal container={document.getElementById(`${id}-portal`)}>
-              <Popover.Content
-                aria-label="Select options"
-                onCloseAutoFocus={(event) => {
-                  // Avoid select to lose focus when the list is closed
-                  event.preventDefault();
-                }}
-                onOpenAutoFocus={(event) => {
-                  // Avoid select to lose focus when the list is opened
-                  event.preventDefault();
-                }}
-                sideOffset={4}
-                style={{ zIndex: "var(--z-dropdown)" }}
-              >
-                <Listbox
-                  ariaLabelledBy={labelId}
-                  currentValue={value ?? innerValue}
-                  enableSelectAll={enableSelectAll}
-                  handleOptionOnClick={handleOptionOnClick}
-                  handleGroupOnClick={handleSelectAllGroup}
-                  handleSelectAllOnClick={handleSelectAllOnClick}
-                  virtualizedHeight={virtualizedHeight}
-                  id={listboxId}
-                  lastOptionIndex={lastOptionIndex}
-                  multiple={multiple}
-                  optional={optional}
-                  optionalItem={optionalItem}
-                  options={searchable ? filteredOptions : options}
-                  searchable={searchable}
-                  selectionType={selectionType}
-                  styles={{ width }}
-                  visualFocusIndex={visualFocusIndex}
-                />
-              </Popover.Content>
-            </Popover.Portal>
+            {portalContainer && (
+              <Popover.Portal container={portalContainer}>
+                <Popover.Content
+                  aria-label="Select options"
+                  onCloseAutoFocus={(event) => {
+                    // Avoid select to lose focus when the list is closed
+                    event.preventDefault();
+                  }}
+                  onOpenAutoFocus={(event) => {
+                    // Avoid select to lose focus when the list is opened
+                    event.preventDefault();
+                  }}
+                  sideOffset={4}
+                  style={{ zIndex: "var(--z-dropdown)" }}
+                >
+                  <Listbox
+                    ariaLabelledBy={labelId}
+                    currentValue={value ?? innerValue}
+                    enableSelectAll={enableSelectAll}
+                    handleOptionOnClick={handleOptionOnClick}
+                    handleGroupOnClick={handleSelectAllGroup}
+                    handleSelectAllOnClick={handleSelectAllOnClick}
+                    virtualizedHeight={virtualizedHeight}
+                    id={listboxId}
+                    lastOptionIndex={lastOptionIndex}
+                    multiple={multiple}
+                    optional={optional}
+                    optionalItem={optionalItem}
+                    options={searchable ? filteredOptions : options}
+                    searchable={searchable}
+                    selectionType={selectionType}
+                    styles={{ width }}
+                    visualFocusIndex={visualFocusIndex}
+                  />
+                </Popover.Content>
+              </Popover.Portal>
+            )}
           </Popover.Root>
           {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </SelectContainer>
+
         <div id={`${id}-portal`} style={{ position: "absolute" }} />
       </>
     );

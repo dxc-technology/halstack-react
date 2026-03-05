@@ -57,6 +57,7 @@ type Item = CommonItemProps & {
   selected?: boolean;
 };
 type GroupItem = CommonItemProps & {
+  defaultOpen?: boolean;
   items: (Item | GroupItem)[];
 };
 

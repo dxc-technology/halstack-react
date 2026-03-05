@@ -84,6 +84,7 @@ const Input = styled.input<{
   text-overflow: ellipsis;
   white-space: nowrap;
   ${({ alignment }) => `text-align: ${alignment}`};
+  width: 100%;
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
@@ -153,7 +154,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
+    const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
     const width = useWidth(inputContainerRef);
+    useEffect(() => {
+      setPortalContainer(document?.getElementById(`${inputId}-portal`));
+    }, []);
 
     const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
@@ -166,36 +171,38 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         >
           {children}
         </Popover.Trigger>
-        <Popover.Portal container={document.getElementById(`${inputId}-portal`)}>
-          <Popover.Content
-            aria-label="Suggestions"
-            onCloseAutoFocus={(event) => {
-              // Avoid select to lose focus when the list is closed
-              event.preventDefault();
-            }}
-            onOpenAutoFocus={(event) => {
-              // Avoid select to lose focus when the list is opened
-              event.preventDefault();
-            }}
-            sideOffset={4}
-            style={{ zIndex: "var(--z-textinput)" }}
-          >
-            <Suggestions
-              highlightedSuggestions={typeof suggestions !== "function"}
-              id={autosuggestId}
-              isSearching={isSearching}
-              searchHasErrors={isAutosuggestError}
-              suggestionOnClick={(suggestion) => {
-                changeValue(suggestion);
-                closeSuggestions();
+        {portalContainer && (
+          <Popover.Portal container={portalContainer}>
+            <Popover.Content
+              aria-label="Suggestions"
+              onCloseAutoFocus={(event) => {
+                // Avoid select to lose focus when the list is closed
+                event.preventDefault();
               }}
-              suggestions={filteredSuggestions}
-              styles={{ width }}
-              value={value ?? innerValue}
-              visualFocusIndex={visualFocusIndex}
-            />
-          </Popover.Content>
-        </Popover.Portal>
+              onOpenAutoFocus={(event) => {
+                // Avoid select to lose focus when the list is opened
+                event.preventDefault();
+              }}
+              sideOffset={4}
+              style={{ zIndex: "var(--z-textinput)" }}
+            >
+              <Suggestions
+                highlightedSuggestions={typeof suggestions !== "function"}
+                id={autosuggestId}
+                isSearching={isSearching}
+                searchHasErrors={isAutosuggestError}
+                suggestionOnClick={(suggestion) => {
+                  changeValue(suggestion);
+                  closeSuggestions();
+                }}
+                suggestions={filteredSuggestions}
+                styles={{ width }}
+                value={value ?? innerValue}
+                visualFocusIndex={visualFocusIndex}
+              />
+            </Popover.Content>
+          </Popover.Portal>
+        )}
       </Popover.Root>
     );
 
@@ -601,7 +608,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </TextInputContainer>
-        <div id={`${inputId}-portal`} style={{ position: "absolute" }} />
+        {hasSuggestions(suggestions) && <div id={`${inputId}-portal`} style={{ position: "absolute" }} />}
       </>
     );
   }

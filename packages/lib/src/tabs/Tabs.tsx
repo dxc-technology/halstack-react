@@ -96,7 +96,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
       (child) => (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
     const initialTab = activeChild ?? childrenArray.find((child) => !child.props.disabled);
-    return initialTab?.props.label ?? initialTab?.props.tabId ?? "";
+    return initialTab?.props.tabId ?? initialTab?.props.label ?? "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
@@ -110,7 +110,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {
       activeTabId: activeTabId,
-      focusedTabId: isValidElement(focusedChild) ? (focusedChild.props.label ?? focusedChild.props.tabId) : "",
+      focusedTabId: isValidElement(focusedChild) ? (focusedChild.props.tabId ?? focusedChild.props.label) : "",
       iconPosition,
       isControlled: childrenArray.some((child) => typeof child.props.active !== "undefined"),
       setActiveTabId: setActiveTabId,
@@ -146,7 +146,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child) => (child.props.label ?? child.props.tabId) === activeTabId);
+    const activeTab = childrenArray.findIndex((child) => (child.props.tabId ?? child.props.label) === activeTabId);
     let index;
     switch (event.key) {
       case "Left":
@@ -231,7 +231,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         </Tabs>
       </TabsContainer>
       {Children.map(children, (child) =>
-        isTabElement(child) && child.props.tabId === activeTabId ? child.props.children : null
+        isTabElement(child) && (child.props.tabId ?? child.props.label) === activeTabId ? child.props.children : null
       )}
     </>
   );

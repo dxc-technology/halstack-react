@@ -146,7 +146,7 @@ const sections = [
         title: "Header in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/6m6hdj?view=editor+%2B+preview&module=%2Fsrc%2FApp.js&hidenavigation=1"
+            src="https://codesandbox.io/p/sandbox/default-header-qpz6dj"
             style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
             title="Header in application layout"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
