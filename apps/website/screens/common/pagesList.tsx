@@ -56,6 +56,7 @@ const foundationsLinks: (LinkDetails | LinksSectionDetails)[] = [
   { label: "Spacing", path: "/foundations/spacing", icon: "space_bar" },
   { label: "Tokens", links: tokensLinks, icon: "token" },
   { label: "Typography", path: "/foundations/typography", icon: "font_download" },
+  { label: "Themes", path: "/foundations/themes", icon: "format_paint" },
 ];
 
 const v16Links: LinkDetails[] = [
