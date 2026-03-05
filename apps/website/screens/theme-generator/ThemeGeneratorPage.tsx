@@ -78,7 +78,7 @@ const ThemeGeneratorPage = () => {
                   </DxcTypography>
                 </DxcContainer>
               </DxcFlex>
-              <Link href="" passHref legacyBehavior>
+              <Link href="/theme-generator/configuration" passHref legacyBehavior>
                 <DxcLink icon="arrow_forward" iconPosition="after">
                   Start your theme
                 </DxcLink>
@@ -139,7 +139,7 @@ const ThemeGeneratorPage = () => {
             </DxcContainer>
           </DxcFlex>
           <DxcFlex gap="var(--spacing-gap-l)">
-            <Link href="" passHref legacyBehavior>
+            <Link href="/theme-generator/configuration" passHref legacyBehavior>
               <DxcLink icon="arrow_forward" iconPosition="after">
                 Open Theme Generator
               </DxcLink>
