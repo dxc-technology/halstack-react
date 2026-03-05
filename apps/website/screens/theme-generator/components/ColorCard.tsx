@@ -2,10 +2,11 @@ import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput, useToast } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
+import { copyToClipboard } from "../utils";
 
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1;
-  width: 100%;
+  height: 72px;
   border-radius: var(--border-radius-m);
   background-color: ${(props) => props.color};
   cursor: pointer;
@@ -45,8 +46,7 @@ export const ColorCard = ({
   };
 
   const handleCopy = (value: string) => {
-    navigator.clipboard
-      .writeText(value)
+    copyToClipboard(value)
       .then(() => {
         toast.success({ message: "Copied to clipboard" });
       })
