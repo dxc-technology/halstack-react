@@ -83,7 +83,7 @@ const ThemeGeneratorConfigPage = () => {
           boxSizing="border-box"
           margin={{ left: "auto", right: "auto" }}
         >
-          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
+          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
             <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
             {currentStep === 0 ? <></> : currentStep === 1 ? <ThemeGeneratorPreviewPage /> : <></>}
           </DxcFlex>

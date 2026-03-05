@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
 import { ListOptionType } from "../../../../packages/lib/src/select/types";
+import styled from "@emotion/styled";
 
 // JSON Structure type, this should go in the json file or somewhere else
 
@@ -127,7 +128,7 @@ const ThemeGeneratorPreviewPage = () => {
             />
           )}
         </DxcFlex>
-        {/* TODO: Turn this into a separate componente called PreviewArea or similar */}
+        {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
         <DxcContainer
           borderRadius="var(--border-radius-l)"
           border={{
@@ -137,10 +138,9 @@ const ThemeGeneratorPreviewPage = () => {
           }}
           background={{ color: "var(--color-bg-neutral-lightest)" }}
           padding="var(--spacing-padding-s)"
-          overflow="auto"
           height="100%"
         >
-          <DxcFlex direction="column" gap="var(--spacing-gap-l)">
+          <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
             <DxcFlex justifyContent="flex-end">
               <DxcButton
                 icon="filled_delete"
@@ -158,12 +158,20 @@ const ThemeGeneratorPreviewPage = () => {
                 disabled={mode === "components" ? selectedComponents.length === 0 : !!selectedExample}
               />
             </DxcFlex>
-            {displayedPreview}
+            <CustomPreviewArea direction="column" gap="var(--spacing-gap-l)" grow={1} shrink={1} basis="0">
+              {displayedPreview}
+            </CustomPreviewArea>
           </DxcFlex>
         </DxcContainer>
       </DxcFlex>
     </DxcContainer>
   );
 };
+
+// TODO: this is just a quick solution to make the preview area scrollable when the content is too big, I don't know what other approach that doesn't
+// involve adding custom styles could be used. (fullHeight does not do anything here either)
+const CustomPreviewArea = styled(DxcFlex)`
+  overflow: auto;
+`;
 
 export default ThemeGeneratorPreviewPage;
