@@ -22,13 +22,11 @@ const ALPHA_VALUES = ["1a", "33", "4d", "66", "80", "99", "b2", "cc", "e5"];
 export const generatePalette = (hex: CssColor): string[] => {
   try {
     const bg = new BackgroundColor({
-      //Definir color de fondo blanco
       name: "bg",
       colorKeys: ["#fff"],
       ratios: CONTRAST_RATIOS,
     });
     const color = new Color({
-      //Definir color base
       name: "custom",
       colorKeys: [hex],
       ratios: CONTRAST_RATIOS,

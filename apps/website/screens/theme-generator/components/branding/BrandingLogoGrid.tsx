@@ -1,9 +1,8 @@
-import { DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
-import { ColorCard } from "./ColorCard";
-import { Colors } from "../../types";
-import BrandingColorGridProps from "./types";
+import { DxcFileInput, DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
+import { Logos } from "../../types";
+import { BrandingLogoGridProps } from "./types";
 
-const BrandingColorGrid = ({ section, colors, onColorChange }: BrandingColorGridProps) => (
+const BrandingLogoGrid = ({ section, logos, onLogoChange }: BrandingLogoGridProps) => (
   <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-m)" alignSelf="stretch">
     <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
       <DxcTypography
@@ -23,18 +22,24 @@ const BrandingColorGrid = ({ section, colors, onColorChange }: BrandingColorGrid
         {section.title}
       </DxcTypography>
     </DxcFlex>
-    <DxcGrid placeSelf="stretch" templateColumns={["repeat(4, 1fr)"]} gap="var(--spacing-gap-m)">
+    <DxcGrid templateColumns={["repeat(4, 1fr)"]} gap="var(--spacing-gap-m)" placeSelf="stretch">
       {section.fields.map(({ id, label, helperText }) => (
-        <ColorCard
+        <DxcFileInput
           key={id}
+          size="fillParent"
           label={label}
           helperText={helperText}
-          color={colors[id as keyof Colors]}
-          onChange={onColorChange(id)}
+          buttonLabel="Select file"
+          mode="filedrop"
+          accept="image/*"
+          showPreview
+          multiple={false}
+          callbackFile={(files) => onLogoChange(id, files)}
+          value={logos[id as keyof Logos]}
         />
       ))}
     </DxcGrid>
   </DxcFlex>
 );
 
-export default BrandingColorGrid;
+export default BrandingLogoGrid;

@@ -1,9 +1,9 @@
 import { DxcContainer, DxcFlex } from "@dxc-technology/halstack-react";
 import { FileData } from "../../../../../packages/lib/src/file-input/types";
 import { Colors, Logos } from "../types";
-import BrandingLogoGrid from "../components/BrandingLogoGrid/BrandingLogoGrid";
+import BrandingLogoGrid from "../components/branding/BrandingLogoGrid";
 import { brandingIcon, infoIcon, paletteIcon } from "./icons";
-import BrandingColorGrid from "../components/BrandingColorGrid/BrandingColorgrid";
+import BrandingColorGrid from "../components/branding/BrandingColorgrid";
 
 const coreColors = {
   id: "core",
