@@ -1,46 +1,14 @@
-import PageHeading from "@/common/PageHeading";
+import Figure from "@/common/Figure";
+import Image from "@/common/Image";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
-import { DxcContainer, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
+import step1 from "./images/Step_1.png";
+import step2 from "./images/Step_2.png";
+import step3 from "./images/Step_3.png";
 
 const sections = [
   {
-    title: "Introduction",
-    content: (
-      <>
-        <DxcParagraph>
-          In order to understand what a theme is, we need to recognize that the definition of colors, sizes, and shapes
-          is an intrinsic part of a design system. Because these parameters are essential for guaranteeing accessibility
-          and a solid user experience, having the ability to change them must be handled carefully. In simpler terms:
-          themes are basically a list of properties that allow you to override fundamental decisions of the design
-          system.
-        </DxcParagraph>
-        <DxcParagraph>
-          Color and logos are some fundamental elements of any design system. It communicates brand identity, guides
-          user interaction, and establishes visual hierarchy. A well-structured foundation of colors and logos ensures
-          consistency across interfaces, reinforces accessibility, and enhances the emotional impact of the product.
-        </DxcParagraph>
-        <DxcParagraph>
-          The Theme Generator is designed to take the manual work out of setting up tokens by allowing you to adapt core
-          elements—like colors and logos—without compromising the structural integrity of the design system. Instead of
-          picking dozens of individual values by hand, you simply provide your core colors (Primary, Secondary,
-          Tertiary, and Neutral) along with your Semantic colors (Info, Success, Warning, and Error), and the tool does
-          the rest. It automatically builds a complete list of ready-to-use tokens and provides the ability to configure
-          your brand logos.
-        </DxcParagraph>
-        <DxcParagraph>
-          The tool tries to ensure optimal contrast ratios for readability and accessibility, aligning as closely as
-          possible with WCAG 2.1 standards. It automatically adjusts the generated tokens to aim for the right contrast
-          levels, helping you build interfaces that are inclusive and easy to read for all users.
-        </DxcParagraph>
-        <DxcParagraph>
-          By combining these scalable palettes with a logical naming system, the generator creates a "plug-and-play"
-          theme that is easier to implement and maintain.
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
-    title: "How to use the Theme Generator",
+    title: "Theme Generator User Guide",
     content: (
       <DxcParagraph>
         Building a custom theme is a simple three-step process. You can navigate between these steps at any time using
@@ -56,10 +24,14 @@ const sections = [
             title: "Core colors and semantic colors",
             content: (
               <DxcParagraph>
-                You can select your desired values using the color picker or entering the specific hex values for your
-                core colors (Primary, Secondary, Tertiary, and Neutral) along with your semantic colors (Info, Success,
-                Warning, and Error). These values will be used to generate the list of tokens that can be seen applied
-                in the next step.
+                You can select the desired values using the <strong>color picker</strong> or entering the specific{" "}
+                <strong>hex values</strong> for your core colors (
+                <strong>Primary, Secondary, Tertiary, and Neutral</strong>) along with your semantic colors (
+                <strong>Info, Success, Warning, and Error</strong>). These values will be used to generate the list of
+                tokens that can be seen applied in the next step. These will be the <strong>base colors</strong> used to
+                generate the rest of the tokens, so you can get a good idea of how your theme will look by just setting
+                these few values. You can always go back and tweak them if you want to see how a different shade of a
+                specific color looks in the preview step.
               </DxcParagraph>
             ),
           },
@@ -68,16 +40,20 @@ const sections = [
             content: (
               <>
                 <DxcParagraph>
-                  Brand logos can be uploaded to see how they appear within our application layout components and the
-                  favicon can also be uploaded. The main logo will be assigned to the Header (or the Sidenav if the
-                  Header is not available). The Footer logo is divided into two versions (default and reduced
-                  footer),and the final slot is reserved for the favicon.
+                  Brand logos can be uploaded to see how they appear within our{" "}
+                  <strong>application layout components</strong> and a favicon can also be uploaded. The{" "}
+                  <strong>main logo</strong> will be assigned to the Header (or the Sidenav if the Header is not
+                  available). The <strong>footer logo</strong> is divided into two (default and reduced footer) one for
+                  each mode of the footer, and the final slot is reserved for the favicon.
                 </DxcParagraph>
                 <DxcParagraph>
-                  <strong>Note:</strong> Since we do not host these images, they are for visualization purposes only.
-                  They help to see the theme in context, but they will be left as empty in the exported theme file to be
-                  replaced with the correct asset paths.
+                  <strong>Note:</strong> Since we do not host these images, they are{" "}
+                  <strong>for visualization purposes only</strong>. They help to see the theme in context, but they will
+                  be left as empty strings in the exported theme file to be replaced with the correct asset paths.
                 </DxcParagraph>
+                <Figure caption="Select your colors and branding details in the first step of the theme generator.">
+                  <Image src={step1} alt="Theme generator step 1" />
+                </Figure>
               </>
             ),
           },
@@ -88,36 +64,64 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Once colors are set, you can move to the next step to see your theme in action. By applying your newly
-              generated tokens to actual components and layouts, you can get a good sense of the look and feel of the
-              chosen colors and logos in a live environment.
+              Once colors are set, you can move to the next step to see your theme in action. By applying the newly
+              generated tokens to real <strong>components and layouts</strong>, you will get a clear sense of the look
+              and feel of the chosen colors and logos in a live environment.
             </DxcParagraph>
             <DxcParagraph>
-              In this screen, you can add individual components or choose from premade layout examples to see exactly
-              how the theme applies to a live interface. Note that you can visualize either individual components or
-              layouts, but not both at the same time. Use the toggle switch to choose your preferred view, and use the
-              selection menu to pick the specific elements you want to appear in the preview area. It is also possible
-              to clean up the whole preview area using the remove button inside it.
-            </DxcParagraph>
-            <DxcParagraph>
-              At any point of the process if a color doesn't look quite right in a specific layout, you can jump back to
-              the previous step at any time to tweak your core or semantic color values.
+              Remember that at any point of the process if a color doesn't look quite right in a specific layout, you
+              can jump back to the previous step at any time to tweak your core or semantic color values.
             </DxcParagraph>
           </>
         ),
+        subSections: [
+          {
+            title: "Component preview mode",
+            content: (
+              <>
+                <DxcParagraph>
+                  In this mode, you can add <strong>individual components</strong> to the preview area to see how your
+                  specific tokens—such as primary button colors or semantic alerts—behave in isolation. Use the
+                  selection menu to pick the specific elements you want to inspect.
+                </DxcParagraph>
+                <Figure caption="Preview your theme by applying the generated tokens to actual components.">
+                  <Image src={step2} alt="Theme generator step 2 components" />
+                </Figure>
+              </>
+            ),
+          },
+          {
+            title: "Layout preview mode",
+            content: (
+              <>
+                <DxcParagraph>
+                  This mode allows you to see how your theme looks when applied to different{" "}
+                  <strong>layout options</strong>. You can see how the components look in different contexts and get a
+                  better sense of the overall feel of your theme. You can switch between the available layouts to see
+                  how your theme looks in each of them.
+                </DxcParagraph>
+                {/* TODO: add image of the layout preview mode. */}
+              </>
+            ),
+          },
+        ],
       },
       {
         title: "Step 3: Review and export",
         content: (
           <>
             <DxcParagraph>
-              In the third and last step, you can perform a final review of your configuration.
+              In the third and last step, you can perform a <strong>final review</strong> of your configuration.
             </DxcParagraph>
             <DxcParagraph>
-              This step displays a full list of the generated tokens so you can take a final look and review them. They
-              can be copied directly to the clipboard or exported as a file. If you need to make a change after you've
-              exported, you can still go back and keep tweaking the configurations.
+              This step displays a full <strong>list of the generated tokens</strong> so you can take a final look and
+              review them. They can be <strong>copied</strong> directly to the clipboard or <strong>exported</strong> as
+              a file. If you need to make a change after you've exported, you can still go back and keep tweaking the
+              configurations.
             </DxcParagraph>
+            <Figure caption="Review and export your theme in the third step of the theme generator">
+              <Image src={step3} alt="Theme generator step 3" />
+            </Figure>
           </>
         ),
       },
@@ -129,10 +133,7 @@ const ThemeGeneratorUserGuidePage = () => {
     <DxcFlex justifyContent="center" alignItems="center">
       <DxcContainer maxWidth="80%" margin={{ top: "80px", bottom: "80px" }}>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
-          <PageHeading>
-            <DxcHeading level={1} text="Theme Generator User Guide" />
-          </PageHeading>
-          <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
+          <DxcQuickNavContainer sections={sections} startHeadingLevel={1} />
         </DxcFlex>
       </DxcContainer>
     </DxcFlex>
