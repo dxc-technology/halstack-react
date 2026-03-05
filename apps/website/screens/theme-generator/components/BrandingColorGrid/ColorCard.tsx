@@ -2,7 +2,7 @@ import { useState } from "react";
 import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput, useToast } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
-import { copyToClipboard } from "../utils";
+import { copyToClipboard } from "../../utils";
 
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1;
