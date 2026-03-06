@@ -144,8 +144,8 @@ const ThemeGeneratorPage = () => {
                 Open Theme Generator
               </DxcLink>
             </Link>
-            <Link href="" passHref legacyBehavior>
-              <DxcLink>View documentation</DxcLink>
+            <Link href="/theme-generator/user-guide" passHref legacyBehavior>
+              <DxcLink newWindow>View documentation</DxcLink>
             </Link>
           </DxcFlex>
         </DxcFlex>
