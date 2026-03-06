@@ -17,6 +17,29 @@ type ComponentItem = {
 
 /////////////////////////////////////
 
+const exampleOptions = [
+  {
+    label: "Application example",
+    value: "/examples/application",
+    icon: "settings",
+  },
+  {
+    label: "Dashboard example",
+    value: "/examples/dashboard",
+    icon: "dashboard",
+  },
+  {
+    label: "Form example",
+    value: "/examples/form",
+    icon: "description",
+  },
+  {
+    label: "Login example",
+    value: "/examples/login",
+    icon: "login",
+  },
+];
+
 const mapToSelectGroups = (data: ComponentItem[]) => {
   const collectOptions = (items: ComponentItem[]): ListOptionType[] => {
     return items.flatMap((item) => {
@@ -51,29 +74,6 @@ const ThemeGeneratorPreviewPage = () => {
   const componentOptions = useMemo(() => {
     return mapToSelectGroups(componentsList as ComponentItem[]);
   }, []);
-
-  const exampleOptions = [
-    {
-      label: "Application example",
-      value: "/examples/application",
-      icon: "settings",
-    },
-    {
-      label: "Dashboard example",
-      value: "/examples/dashboard",
-      icon: "dashboard",
-    },
-    {
-      label: "Form example",
-      value: "/examples/form",
-      icon: "description",
-    },
-    {
-      label: "Login example",
-      value: "/examples/login",
-      icon: "login",
-    },
-  ];
 
   const displayedPreview = useMemo(() => {
     if (mode === "components") {
@@ -158,9 +158,7 @@ const ThemeGeneratorPreviewPage = () => {
                 disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
               />
             </DxcFlex>
-            <CustomPreviewArea direction="column" gap="var(--spacing-gap-l)" grow={1} shrink={1} basis="0">
-              {displayedPreview}
-            </CustomPreviewArea>
+            <CustomPreviewArea>{displayedPreview}</CustomPreviewArea>
           </DxcFlex>
         </DxcContainer>
       </DxcFlex>
@@ -170,7 +168,11 @@ const ThemeGeneratorPreviewPage = () => {
 
 // TODO: this is just a quick solution to make the preview area scrollable when the content is too big, I don't know what other approach that doesn't
 // involve adding custom styles could be used. (fullHeight does not do anything here either)
-const CustomPreviewArea = styled(DxcFlex)`
+const CustomPreviewArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-l);
+  flex: 1 1 0;
   overflow: auto;
 `;
 
