@@ -12,6 +12,7 @@ import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
 import { ListOptionType } from "../../../../packages/lib/src/select/types";
 import styled from "@emotion/styled";
+import { Logos } from "./types";
 
 // JSON Structure type, this should go in the json file or somewhere else
 
@@ -40,11 +41,6 @@ const exampleOptions = [
     label: "Form example",
     value: "/examples/form",
     icon: "description",
-  },
-  {
-    label: "Login example",
-    value: "/examples/login",
-    icon: "login",
   },
 ];
 
@@ -94,7 +90,7 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> }) => {
+const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, string>; logos: Logos }) => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
@@ -114,7 +110,7 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
 
     if (mode === "examples") {
       const ExamplePreview = examplesRegistry[selectedExample as keyof typeof examplesRegistry];
-      return ExamplePreview ? <ExamplePreview key={selectedExample} /> : null;
+      return ExamplePreview ? <ExamplePreview logos={logos} key={selectedExample} /> : null;
     }
 
     return null;
@@ -192,7 +188,7 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
                     disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
                   />
                 </DxcFlex>
-                <CustomPreviewArea>{displayedPreview}</CustomPreviewArea>
+                <CustomPreviewArea mode={mode}>{displayedPreview}</CustomPreviewArea>
               </DxcFlex>
             </HalstackProvider>
           ) : (
@@ -215,13 +211,13 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
 
 // TODO: this is just a quick solution to make the preview area scrollable when the content is too big, I don't know what other approach that doesn't
 // involve adding custom styles could be used. (fullHeight does not do anything here either)
-const CustomPreviewArea = styled.div`
+const CustomPreviewArea = styled.div<{ mode: string }>`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-gap-l);
   flex: 1 1 0;
   overflow: auto;
-  align-items: flex-start;
+  align-items: ${(props) => (props.mode === "components" ? "flex-start" : "center")};
 `;
 
 export default ThemeGeneratorPreviewPage;

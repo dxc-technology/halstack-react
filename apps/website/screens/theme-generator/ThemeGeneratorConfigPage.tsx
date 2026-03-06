@@ -90,7 +90,7 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <ThemeGeneratorPreviewPage tokens={tokens} />;
+        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
       case 2:
         return <></>;
     }
