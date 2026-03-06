@@ -144,6 +144,7 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
               }}
               enableSelectAll
               searchable
+              size="small"
             />
           )}
 
