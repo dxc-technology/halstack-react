@@ -14,12 +14,12 @@ export const dxcLogo = (
         gradientTransform="matrix(402.422 -113.55 49.0928 173.987 432 120.032)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FFB87E" />
+        <stop stopColor="#FFB87E" />
         <stop offset="0.163458" stopColor="#FFA962" />
         <stop offset="0.337937" stopColor="#FEA15F" />
         <stop offset="0.557693" stopColor="#FF7E51" />
         <stop offset="0.839777" stopColor="#B88A99" />
-        <stop offset="1" stop-color="#6399F0" />
+        <stop offset="1" stopColor="#6399F0" />
       </radialGradient>
     </defs>
   </svg>
