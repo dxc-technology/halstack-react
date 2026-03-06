@@ -155,7 +155,7 @@ const ThemeGeneratorPreviewPage = () => {
                 }}
                 mode="secondary"
                 semantic="error"
-                disabled={mode === "components" ? selectedComponents.length === 0 : !!selectedExample}
+                disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
               />
             </DxcFlex>
             <CustomPreviewArea direction="column" gap="var(--spacing-gap-l)" grow={1} shrink={1} basis="0">
