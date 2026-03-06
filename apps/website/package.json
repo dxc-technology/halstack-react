@@ -8,6 +8,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.0.0",
     "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
     "@emotion/cache": "^11.14.0",
