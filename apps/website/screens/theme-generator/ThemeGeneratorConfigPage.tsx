@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
+import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
 import { Colors, FileData, Step } from "./types";
@@ -88,7 +89,7 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <></>;
+        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
       case 2:
         return <ReviewDetails generatedTokens={tokens} logos={logos} />;
     }
