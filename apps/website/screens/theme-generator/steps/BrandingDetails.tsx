@@ -3,7 +3,7 @@ import { FileData } from "../../../../../packages/lib/src/file-input/types";
 import { Colors, Logos } from "../types";
 import BrandingLogoGrid from "../components/branding/BrandingLogoGrid";
 import { brandingIcon, infoIcon, paletteIcon } from "./icons";
-import BrandingColorGrid from "../components/branding/BrandingColorgrid";
+import BrandingColorGrid from "../components/branding/BrandingColorGrid";
 
 const coreColors = {
   id: "core",
@@ -72,8 +72,7 @@ export const BrandingDetails = ({
   return (
     <DxcContainer
       boxSizing="border-box"
-      width="100%"
-      maxWidth="1112px"
+      width="1112px"
       padding="var(--spacing-padding-m)"
       borderRadius="var(--border-radius-l)"
       background={{ color: "var(--color-bg-neutral-lightest)" }}

@@ -15,10 +15,10 @@ export const dxcLogo = (
         gradientUnits="userSpaceOnUse"
       >
         <stop stop-color="#FFB87E" />
-        <stop offset="0.163458" stop-color="#FFA962" />
-        <stop offset="0.337937" stop-color="#FEA15F" />
-        <stop offset="0.557693" stop-color="#FF7E51" />
-        <stop offset="0.839777" stop-color="#B88A99" />
+        <stop offset="0.163458" stopColor="#FFA962" />
+        <stop offset="0.337937" stopColor="#FEA15F" />
+        <stop offset="0.557693" stopColor="#FF7E51" />
+        <stop offset="0.839777" stopColor="#B88A99" />
         <stop offset="1" stop-color="#6399F0" />
       </radialGradient>
     </defs>
