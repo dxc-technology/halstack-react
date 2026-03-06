@@ -53,6 +53,19 @@ const sections = [
             <td>Object with a given structure, specified below, for defining the opinionated theme.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                style
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.CSSProperties</TableCode>
+            </td>
+            <td>CSS properties for styling the provider.</td>
+            <td>-</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
