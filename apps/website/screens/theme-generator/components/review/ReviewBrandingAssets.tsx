@@ -13,9 +13,11 @@ const BrandingAsset = ({ label, logo }: { label: string; logo: string }) => {
           background={{ color: "var(--color-bg-neutral-light)" }}
           borderRadius="var(--border-radius-m)"
         >
-          <DxcFlex alignItems="center" justifyContent="center" fullHeight>
-            <DxcImage width="100%" height="100%" objectFit="contain" src={logo} alt={label} />
-          </DxcFlex>
+          {logo && (
+            <DxcFlex alignItems="center" justifyContent="center" fullHeight>
+              <DxcImage width="100%" height="100%" objectFit="contain" src={logo} alt={label} />
+            </DxcFlex>
+          )}
         </DxcContainer>
       </DxcFlex>
     </DxcContainer>
@@ -25,12 +27,10 @@ const BrandingAsset = ({ label, logo }: { label: string; logo: string }) => {
 const ReviewBrandingAssets = ({ logos }: { logos: Logos }) => {
   return (
     <DxcGrid templateColumns={["repeat(4, 1fr)"]} templateRows={["156px"]} gap="var(--spacing-gap-m)">
-      {logos.mainLogo[0]?.preview && <BrandingAsset label="Main Logo" logo={logos.mainLogo[0]?.preview} />}
-      {logos.footerLogo[0]?.preview && <BrandingAsset label="Footer logo" logo={logos.footerLogo[0]?.preview} />}
-      {logos.footerReducedLogo[0]?.preview && (
-        <BrandingAsset label="Reduced footer logo" logo={logos.footerReducedLogo[0]?.preview} />
-      )}
-      {logos.favicon[0]?.preview && <BrandingAsset label="Favicon" logo={logos.favicon[0]?.preview} />}
+      <BrandingAsset label="Main Logo" logo={logos.mainLogo[0]?.preview || ""} />
+      <BrandingAsset label="Footer logo" logo={logos.footerLogo[0]?.preview || ""} />
+      <BrandingAsset label="Reduced footer logo" logo={logos.footerReducedLogo[0]?.preview || ""} />
+      <BrandingAsset label="Favicon" logo={logos.favicon[0]?.preview || ""} />
     </DxcGrid>
   );
 };
