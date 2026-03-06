@@ -1,14 +1,30 @@
-import { DxcButton, DxcContainer, DxcFlex, DxcGrid, DxcTypography, useToast } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex, DxcGrid, DxcTypography, useToast } from "@dxc-technology/halstack-react";
 import { Logos, Tokens } from "../types";
-import ReviewTokensGrid from "screens/theme-generator/components/review/ReviewTokensGrid";
-import ReviewTokensList from "screens/theme-generator/components/review/ReviewTokensList";
+import ReviewTokensGrid from "../components/review/ReviewTokensGrid";
+import ReviewTokensList from "../components/review/ReviewTokensList";
 import ReviewBrandingAssets from "../components/review/ReviewBrandingAssets";
 import { copyToClipboard } from "../utils";
+import { useMemo } from "react";
+import ReviewSectionContainer from "../components/review/ReviewSectionContainer";
 
 const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; logos: Logos }) => {
   const toast = useToast();
-  const handleCopy = (value: string) => {
-    copyToClipboard(value)
+
+  const themeJson = useMemo(() => {
+    const themeObject = {
+      tokens: generatedTokens,
+      logos: {
+        mainLogo: "",
+        footerLogo: "",
+        footerReducedLogo: "",
+        favicon: "",
+      },
+    };
+    return JSON.stringify(themeObject, null, 2);
+  }, [generatedTokens]);
+
+  const handleCopy = () => {
+    copyToClipboard(themeJson)
       .then(() => {
         toast.success({ message: "Copied to clipboard" });
       })
@@ -16,53 +32,35 @@ const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; lo
         toast.warning({ message: "Failed to copy to clipboard" });
       });
   };
+
   return (
     <>
-      <DxcContainer
-        boxSizing="border-box"
-        width="100%"
-        maxWidth="1112px"
-        padding="var(--spacing-padding-ml)"
-        borderRadius="var(--border-radius-m)"
-        background={{ color: "var(--color-bg-neutral-lightest)" }}
-        boxShadow="var(--shadow-100)"
-      >
-        <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+      <ReviewSectionContainer
+        title={
           <DxcFlex justifyContent="space-between" alignItems="center">
             <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
               Color palette & theme
             </DxcTypography>
-            <DxcButton
-              mode="secondary"
-              icon="content_copy"
-              size={{ height: "medium" }}
-              onClick={() => handleCopy(JSON.stringify(generatedTokens))}
-            />
+            <DxcButton mode="secondary" icon="content_copy" size={{ height: "medium" }} onClick={handleCopy} />
           </DxcFlex>
-          <DxcGrid templateColumns={["2fr", "1fr"]} templateRows={["368px"]} gap="var(--spacing-gap-m)">
-            <DxcFlex justifyContent="center">
-              <ReviewTokensGrid generatedTokens={generatedTokens} />
-            </DxcFlex>
-            <ReviewTokensList generatedTokens={generatedTokens} />
-          </DxcGrid>
-        </DxcFlex>
-      </DxcContainer>
-      <DxcContainer
-        boxSizing="border-box"
-        width="100%"
-        maxWidth="1112px"
-        padding="var(--spacing-padding-ml)"
-        borderRadius="var(--border-radius-m)"
-        background={{ color: "var(--color-bg-neutral-lightest)" }}
-        boxShadow="var(--shadow-100)"
+        }
       >
-        <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+        <DxcGrid templateColumns={["2fr", "1fr"]} templateRows={["368px"]} gap="var(--spacing-gap-m)">
+          <DxcFlex justifyContent="center">
+            <ReviewTokensGrid generatedTokens={generatedTokens} />
+          </DxcFlex>
+          <ReviewTokensList themeJson={themeJson} />
+        </DxcGrid>
+      </ReviewSectionContainer>
+      <ReviewSectionContainer
+        title={
           <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
-            Branding Assets
+            Branding assets
           </DxcTypography>
-          <ReviewBrandingAssets logos={logos} />
-        </DxcFlex>
-      </DxcContainer>
+        }
+      >
+        <ReviewBrandingAssets logos={logos} />
+      </ReviewSectionContainer>
     </>
   );
 };

@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { divideColorTokens, SHADE_VALUES } from "../../utils";
 
 const ReviewTokensGrid = ({ generatedTokens }: { generatedTokens: Tokens }) => {
-  const colorGroups = useMemo(() => divideColorTokens(generatedTokens), [generatedTokens]);
+  const tokenGroups = useMemo(() => divideColorTokens(generatedTokens), [generatedTokens]);
   return (
     <DxcGrid
       templateColumns={["100px", "repeat(10, 1fr)"]}
@@ -13,7 +13,7 @@ const ReviewTokensGrid = ({ generatedTokens }: { generatedTokens: Tokens }) => {
     >
       {SHADE_VALUES.map((value, index) =>
         index === 0 ? (
-          <DxcGrid.Item column={"2/3"}>
+          <DxcGrid.Item column={"2/3"} key={"shade_" + value}>
             <DxcTypography
               fontSize="var(--typography-body-s)"
               color="var(--color-fg-neutral-strong)"
@@ -23,19 +23,26 @@ const ReviewTokensGrid = ({ generatedTokens }: { generatedTokens: Tokens }) => {
             </DxcTypography>
           </DxcGrid.Item>
         ) : (
-          <DxcTypography fontSize="var(--typography-body-s)" color="var(--color-fg-neutral-strong)" textAlign="center">
+          <DxcTypography
+            key={"shade_" + value}
+            fontSize="var(--typography-body-s)"
+            color="var(--color-fg-neutral-strong)"
+            textAlign="center"
+          >
             {value}
           </DxcTypography>
         )
       )}
-      {Object.entries(colorGroups).map(([group, colors]) => (
+      {Object.entries(tokenGroups).map(([group, colors]) => (
         <React.Fragment key={group}>
           <DxcFlex alignItems="center">
-            <DxcTypography fontWeight="var(--typography-label-semibold)">{group}</DxcTypography>
+            <DxcTypography fontWeight="var(--typography-label-semibold)">
+              {group.charAt(0).toUpperCase() + group.slice(1)}
+            </DxcTypography>
           </DxcFlex>
           {colors.map((color: string, index: number) => (
             <div
-              key={index}
+              key={group + "_" + SHADE_VALUES[index]}
               style={{
                 backgroundColor: color,
                 width: "100%",

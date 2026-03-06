@@ -17,7 +17,7 @@ export type Colors = {
   warning: CssColor;
 };
 
-export type ColorGroups = {
+export type TokenGroups = {
   primary: string[];
   secondary: string[];
   tertiary: string[];
