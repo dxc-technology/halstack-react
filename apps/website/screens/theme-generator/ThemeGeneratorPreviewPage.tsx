@@ -143,6 +143,7 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
                 setSelectedComponents(value);
               }}
               enableSelectAll
+              searchable
             />
           )}
 
@@ -154,6 +155,7 @@ const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> 
               onChange={({ value }) => {
                 setSelectedExample(value);
               }}
+              searchable
             />
           )}
         </DxcFlex>
