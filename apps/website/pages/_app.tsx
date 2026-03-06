@@ -115,10 +115,13 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             <DxcApplicationLayout.Header
               appTitle="Theme Generator"
               sideContent={
-                // Will navigate to a documentation page that will probably be open in a different tab.
-                <Link href="" legacyBehavior passHref>
-                  <DxcLink icon="description">Documentation</DxcLink>
-                </Link>
+                !currentPath.includes("/theme-generator/user-guide") && (
+                  <Link href="/theme-generator/user-guide" legacyBehavior passHref>
+                    <DxcLink newWindow icon="description">
+                      User guide
+                    </DxcLink>
+                  </Link>
+                )
               }
             />
           ) : (
