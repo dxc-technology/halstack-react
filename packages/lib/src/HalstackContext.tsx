@@ -35,6 +35,7 @@ type HalstackProviderPropsType = {
   labels?: DeepPartial<TranslatedLabels>;
   children: ReactNode;
   opinionatedTheme?: ThemeType;
+  style?: React.CSSProperties;
 };
 
 const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
@@ -63,7 +64,7 @@ const createCoreTheme = (opinionatedTheme: ThemeType | undefined = {}) => {
   return newTheme;
 };
 
-const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProviderPropsType): JSX.Element => {
+const HalstackProvider = ({ labels, children, opinionatedTheme, style }: HalstackProviderPropsType): JSX.Element => {
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : null), [labels]);
   const parsedCoreTheme = useMemo(() => {
     const theme = createCoreTheme(opinionatedTheme);
@@ -71,7 +72,7 @@ const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProvid
   }, [opinionatedTheme]);
 
   return (
-    <HalstackThemed coreTheme={parsedCoreTheme}>
+    <HalstackThemed coreTheme={parsedCoreTheme} style={style}>
       {parsedLabels ? (
         <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
       ) : (
