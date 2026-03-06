@@ -1,4 +1,11 @@
-import { DxcButton, DxcContainer, DxcFlex, DxcSelect, DxcToggleGroup } from "@dxc-technology/halstack-react";
+import {
+  DxcButton,
+  DxcContainer,
+  DxcFlex,
+  DxcSelect,
+  DxcToggleGroup,
+  HalstackProvider,
+} from "@dxc-technology/halstack-react";
 import { useMemo, useState } from "react";
 import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
@@ -86,7 +93,7 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPreviewPage = () => {
+const ThemeGeneratorPreviewPage = ({ tokens }: { tokens: Record<string, string> }) => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
@@ -150,38 +157,40 @@ const ThemeGeneratorPreviewPage = () => {
           )}
         </DxcFlex>
         {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
-        <DxcContainer
-          borderRadius="var(--border-radius-l)"
-          border={{
-            width: "var(--border-width-s)",
-            color: "var(--border-color-neutral-medium)",
-            style: "var(--border-style-default)",
-          }}
-          background={{ color: "var(--color-bg-neutral-lightest)" }}
-          padding="var(--spacing-padding-s)"
-          height="100%"
-        >
-          <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
-            <DxcFlex justifyContent="flex-end">
-              <DxcButton
-                icon="filled_delete"
-                size={{ height: "medium" }}
-                title="Delete selection"
-                onClick={() => {
-                  if (mode === "components") {
-                    setSelectedComponents([]);
-                  } else {
-                    setSelectedExample("");
-                  }
-                }}
-                mode="secondary"
-                semantic="error"
-                disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
-              />
+        <HalstackProvider opinionatedTheme={tokens}>
+          <DxcContainer
+            borderRadius="var(--border-radius-l)"
+            border={{
+              width: "var(--border-width-s)",
+              color: "var(--border-color-neutral-medium)",
+              style: "var(--border-style-default)",
+            }}
+            background={{ color: "var(--color-bg-neutral-lightest)" }}
+            padding="var(--spacing-padding-s)"
+            height="100%"
+          >
+            <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
+              <DxcFlex justifyContent="flex-end">
+                <DxcButton
+                  icon="filled_delete"
+                  size={{ height: "medium" }}
+                  title="Delete selection"
+                  onClick={() => {
+                    if (mode === "components") {
+                      setSelectedComponents([]);
+                    } else {
+                      setSelectedExample("");
+                    }
+                  }}
+                  mode="secondary"
+                  semantic="error"
+                  disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
+                />
+              </DxcFlex>
+              <CustomPreviewArea>{displayedPreview}</CustomPreviewArea>
             </DxcFlex>
-            <CustomPreviewArea>{displayedPreview}</CustomPreviewArea>
-          </DxcFlex>
-        </DxcContainer>
+          </DxcContainer>
+        </HalstackProvider>
       </DxcFlex>
     </DxcContainer>
   );

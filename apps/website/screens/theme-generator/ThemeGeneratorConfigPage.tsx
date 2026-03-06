@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
 // import { FileData } from "../../../../packages/lib/src/file-input/types";
 
-export type Step = 0 | 1 | 2;
+import { BrandingDetails } from "./steps/BrandingDetails";
+import { generateTokens, handleExport } from "./utils";
+import { Colors, FileData, Step } from "./types";
 
 const steps = [
   {
@@ -35,16 +37,15 @@ const wizardSteps = steps.map(({ label, description }) => ({
 
 const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
-  // Uncomment when implementing the Branding details screen
-  /** const [colors, setColors] = useState({
-    primary: "#5f249f",
-    secondary: "#00b4d8",
-    tertiary: "#ffa500",
-    neutral: "#666666",
-    info: "#0095FF",
-    success: "#2FD05D",
-    error: "#FE0123",
-    warning: "#F38F20",
+  const [colors, setColors] = useState<Colors>({
+    primary: "#5F249F",
+    secondary: "#0067B3",
+    tertiary: "#F7CF2B",
+    neutral: "#999999",
+    info: "#0067B3",
+    success: "#59D97D",
+    error: "#FE344F",
+    warning: "#F59F3D",
   });
   const [logos, setLogos] = useState({
     mainLogo: [] as FileData[],
@@ -52,10 +53,47 @@ const ThemeGeneratorConfigPage = () => {
     footerReducedLogo: [] as FileData[],
     favicon: [] as FileData[],
   });
-  */
+  const [tokens, setTokens] = useState<Record<string, string>>({});
+  const lastGeneratedColorsRef = useRef<string>("");
 
-  const handleChangeStep = (step: Step) => {
+  const generateTokensFromColors = () => {
+    try {
+      const mappedColors = {
+        primary: colors.primary,
+        secondary: colors.secondary,
+        tertiary: colors.tertiary,
+        semantic01: colors.info,
+        semantic02: colors.success,
+        semantic03: colors.warning,
+        semantic04: colors.error,
+        neutral: colors.neutral,
+      };
+
+      const generatedTokens = generateTokens(mappedColors);
+
+      setTokens(generatedTokens);
+      lastGeneratedColorsRef.current = JSON.stringify(colors);
+    } catch (error) {
+      console.error("Error generating tokens:", error);
+    }
+  };
+
+  const handleChangeStep = (step: 0 | 1 | 2) => {
+    if (currentStep === 0 && JSON.stringify(colors) !== lastGeneratedColorsRef.current) {
+      generateTokensFromColors();
+    }
     setCurrentStep(step);
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
+      case 1:
+        return <ThemeGeneratorPreviewPage tokens={tokens} />;
+      case 2:
+        return <></>;
+    }
   };
 
   return (
@@ -85,11 +123,15 @@ const ThemeGeneratorConfigPage = () => {
         >
           <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
             <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
-            {currentStep === 0 ? <></> : currentStep === 1 ? <ThemeGeneratorPreviewPage /> : <></>}
+            {renderStepContent()}
           </DxcFlex>
         </DxcContainer>
 
-        <BottomButtons currentStep={currentStep} onChangeStep={handleChangeStep} />
+        <BottomButtons
+          currentStep={currentStep}
+          onChangeStep={handleChangeStep}
+          onExport={() => handleExport(tokens)}
+        />
       </DxcFlex>
     </DxcContainer>
   );
