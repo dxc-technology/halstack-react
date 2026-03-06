@@ -1,5 +1,5 @@
 import { Color, BackgroundColor, Theme, type CssColor } from "@adobe/leonardo-contrast-colors";
-import { BaseColors, Tokens } from "./types";
+import { BaseColors, TokenGroups, Tokens } from "./types";
 
 /**
  * Contrast ratios for generating color shades
@@ -105,4 +105,31 @@ export const handleExport = (tokens: Tokens) => {
 
 export const copyToClipboard = (value: string) => {
   return navigator.clipboard.writeText(value);
+};
+
+export const divideColorTokens = (tokens: Tokens) => {
+  const groups: TokenGroups = {
+    primary: [],
+    secondary: [],
+    tertiary: [],
+    semantic01: [],
+    semantic02: [],
+    semantic03: [],
+    semantic04: [],
+    neutral: [],
+    alpha: [],
+  };
+
+  for (const [key, value] of Object.entries(tokens)) {
+    // divides tokens names into 3 sections
+    const sections = key.match(/^--color-([a-z0-9]+)-(.+)$/);
+    if (sections) {
+      // the second section indicates the group (primary, secondary, etc.)
+      const group = sections[1];
+      if (group && group in groups) {
+        groups[group as keyof TokenGroups].push(value);
+      }
+    }
+  }
+  return groups;
 };
