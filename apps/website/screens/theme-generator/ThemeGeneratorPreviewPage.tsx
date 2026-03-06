@@ -40,18 +40,39 @@ const exampleOptions = [
   },
 ];
 
+const componentsExceptions = [
+  "/components/application-layout",
+  "/components/bleed",
+  "/components/bulleted-list",
+  "/components/card",
+  "/components/container",
+  "/components/dialog",
+  "/components/flex",
+  "/components/footer",
+  "/components/grid",
+  "/components/header",
+  "/components/heading",
+  "/components/image",
+  "/components/inset",
+  "/components/paragraph",
+  "/components/popover",
+  "/components/sidenav",
+  "/components/typography",
+];
+
 const mapToSelectGroups = (data: ComponentItem[]) => {
   const collectOptions = (items: ComponentItem[]): ListOptionType[] => {
     return items.flatMap((item) => {
-      const current: ListOptionType[] = item.path
-        ? [
-            {
-              label: item.label,
-              value: item.path,
-              icon: item.icon,
-            },
-          ]
-        : [];
+      const current: ListOptionType[] =
+        item.path && !componentsExceptions.includes(item.path)
+          ? [
+              {
+                label: item.label,
+                value: item.path,
+                icon: item.icon,
+              },
+            ]
+          : [];
 
       const nested = item.links ? collectOptions(item.links) : [];
 
@@ -174,6 +195,7 @@ const CustomPreviewArea = styled.div`
   gap: var(--spacing-gap-l);
   flex: 1 1 0;
   overflow: auto;
+  align-items: flex-start;
 `;
 
 export default ThemeGeneratorPreviewPage;

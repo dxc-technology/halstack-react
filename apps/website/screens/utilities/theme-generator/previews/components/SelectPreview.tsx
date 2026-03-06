@@ -4,17 +4,15 @@ const SelectPreview = () => {
   const options = [
     {
       value: "1",
-      label: "3G Mobile",
-      icon: "3g_mobiledata",
+      label: "Option 1",
     },
     {
       value: "2",
-      label: "Ebay",
-      icon: "settings_backup_restore",
+      label: "Option 2",
     },
   ];
 
-  return <DxcSelect label="Choose an option" options={options} />;
+  return <DxcSelect label="Choose an option" options={options} defaultValue={"1"} />;
 };
 
 export default SelectPreview;
