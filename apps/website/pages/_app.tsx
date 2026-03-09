@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcLink, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcInset, DxcLink, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -116,11 +116,13 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
               appTitle="Theme Generator"
               sideContent={
                 !currentPath.includes("/theme-generator/user-guide") && (
-                  <Link href="/theme-generator/user-guide" legacyBehavior passHref>
-                    <DxcLink newWindow icon="description">
-                      User guide
-                    </DxcLink>
-                  </Link>
+                  <DxcInset horizontal="var(--spacing-padding-xs)">
+                    <Link href="/theme-generator/user-guide" legacyBehavior passHref>
+                      <DxcLink newWindow icon="description">
+                        User guide
+                      </DxcLink>
+                    </Link>
+                  </DxcInset>
                 )
               }
             />
@@ -137,7 +139,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             />
           )
         }
-        footer={isThemeGenerator && <DxcApplicationLayout.Footer mode="reduced" />}
+        footer={isThemeGenerator ? <DxcApplicationLayout.Footer mode="reduced" /> : undefined}
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>

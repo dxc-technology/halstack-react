@@ -15,7 +15,7 @@ const BottomButtons = ({
 }) => (
   <DxcContainer
     width="100%"
-    padding="var(--spacing-padding-s) var(--spacing-padding-l)"
+    padding="var(--spacing-padding-s) var(--spacing-padding-xl)"
     background={{ color: "var(--color-bg-neutral-lightest)" }}
     boxSizing="border-box"
   >

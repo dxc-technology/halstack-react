@@ -5,6 +5,7 @@ import BottomButtons from "./components/BottomButtons";
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
 import { Colors, FileData, Step } from "./types";
+import ReviewDetails from "./steps/ReviewDetails";
 
 const steps = [
   {
@@ -89,7 +90,7 @@ const ThemeGeneratorConfigPage = () => {
       case 1:
         return <></>;
       case 2:
-        return <></>;
+        return <ReviewDetails generatedTokens={tokens} logos={logos} />;
     }
   };
 
