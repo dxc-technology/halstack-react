@@ -4,7 +4,7 @@ import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
-import { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext, HalstackLogosContext } from "../HalstackContext";
 import { getContrastColor, getResponsiveStyles } from "./utils";
 import DxcLink from "../link/Link";
 import useWidth from "../utils/useWidth";
@@ -216,6 +216,7 @@ const DxcFooter = ({
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
+  const themedLogos = useContext(HalstackLogosContext);
 
   const footerLogo = useMemo(() => {
     if (logo && typeof logo.src === "string") {
@@ -223,9 +224,19 @@ const DxcFooter = ({
     } else if (isValidElement(logo?.src)) {
       return logo.src;
     } else {
-      return mode === "default" ? dxcLogo : dxcSmallLogo;
+      return mode === "default" ? (
+        themedLogos.footerLogo ? (
+          <LogoImg mode={mode} alt={"Footer logo"} src={themedLogos.footerLogo} title={"Footer logo"} />
+        ) : (
+          dxcLogo
+        )
+      ) : themedLogos.footerReducedLogo ? (
+        <LogoImg mode={mode} alt={"Footer logo"} src={themedLogos.footerReducedLogo} title={"Footer logo"} />
+      ) : (
+        dxcSmallLogo
+      );
     }
-  }, [mode, logo]);
+  }, [mode, logo, themedLogos]);
 
   const footerRef = useRef<HTMLDivElement>(null);
   const width = useWidth(footerRef);

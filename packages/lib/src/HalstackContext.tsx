@@ -2,7 +2,7 @@ import { createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
-import { TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
+import { ThemedLogos, TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
 
 /**
  * This type is used to allow labels objects to be passed to the HalstackProvider.
@@ -12,6 +12,7 @@ export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
 const HalstackLanguageContext = createContext<TranslatedLabels>(defaultTranslatedComponentLabels);
+const HalstackLogosContext = createContext<Record<string, string | undefined>>(ThemedLogos);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = defaultTranslatedComponentLabels;
@@ -29,7 +30,7 @@ const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels =>
   });
   return parsedLabels;
 };
-type ThemeType = Record<string, string | number>;
+type ThemeType = { tokens?: Record<string, string | number>; logos?: Record<string, string | undefined> };
 
 type HalstackProviderPropsType = {
   labels?: DeepPartial<TranslatedLabels>;
@@ -37,7 +38,7 @@ type HalstackProviderPropsType = {
   opinionatedTheme?: ThemeType;
 };
 
-const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
+const HalstackThemed = styled.div<{ coreTheme?: ThemeType["tokens"] }>`
   ${(props) => {
     if (props.coreTheme)
       return css`
@@ -55,8 +56,13 @@ const HalstackThemed = styled.div<{ coreTheme?: ThemeType }>`
   }}
 `;
 
-const createCoreTheme = (opinionatedTheme: ThemeType | undefined = {}) => {
-  const newTheme: ThemeType = {};
+/**
+ * This function creates a theme object that will be used in the HalstackThemed component.
+ * It takes the opinionatedTheme tokens and overrides the coreTokens with them.
+ * If a token is not provided in the opinionatedTheme, it will use the value from coreTokens.
+ */
+const createCoreTheme = (opinionatedTheme: ThemeType["tokens"] | undefined = {}) => {
+  const newTheme: ThemeType["tokens"] = {};
   Object.entries(coreTokens).forEach(([key, value]) => {
     newTheme[key] = opinionatedTheme[key] ?? value;
   });
@@ -66,19 +72,21 @@ const createCoreTheme = (opinionatedTheme: ThemeType | undefined = {}) => {
 const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProviderPropsType): JSX.Element => {
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : null), [labels]);
   const parsedCoreTheme = useMemo(() => {
-    const theme = createCoreTheme(opinionatedTheme);
+    const theme = createCoreTheme(opinionatedTheme?.tokens);
     return theme;
   }, [opinionatedTheme]);
 
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
-      {parsedLabels ? (
-        <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
-      ) : (
-        children
-      )}
+      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? ThemedLogos}>
+        {parsedLabels ? (
+          <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
+        ) : (
+          children
+        )}
+      </HalstackLogosContext.Provider>
     </HalstackThemed>
   );
 };
 
-export { HalstackProvider, HalstackLanguageContext };
+export { HalstackProvider, HalstackLanguageContext, HalstackLogosContext };
