@@ -1,15 +1,13 @@
-import { DxcButton, DxcFlex, DxcGrid, DxcTypography, useToast } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex, DxcGrid, DxcTypography } from "@dxc-technology/halstack-react";
 import { Logos, Tokens } from "../types";
 import ReviewTokensGrid from "../components/review/ReviewTokensGrid";
 import ReviewTokensList from "../components/review/ReviewTokensList";
 import ReviewBrandingAssets from "../components/review/ReviewBrandingAssets";
-import { copyToClipboard } from "../utils";
+import useCopyToClipboard from "hooks/useCopyToClipboard";
 import { useMemo } from "react";
 import ReviewSectionContainer from "../components/review/ReviewSectionContainer";
 
 const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; logos: Logos }) => {
-  const toast = useToast();
-
   const themeJson = useMemo(() => {
     const themeObject = {
       tokens: generatedTokens,
@@ -23,15 +21,7 @@ const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; lo
     return JSON.stringify(themeObject, null, 2);
   }, [generatedTokens]);
 
-  const handleCopy = () => {
-    copyToClipboard(themeJson)
-      .then(() => {
-        toast.success({ message: "Copied to clipboard" });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy to clipboard" });
-      });
-  };
+  const handleCopy = useCopyToClipboard();
 
   return (
     <>
@@ -41,7 +31,12 @@ const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; lo
             <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
               Color palette & theme
             </DxcTypography>
-            <DxcButton mode="secondary" icon="content_copy" size={{ height: "medium" }} onClick={handleCopy} />
+            <DxcButton
+              mode="secondary"
+              icon="content_copy"
+              size={{ height: "medium" }}
+              onClick={() => handleCopy(themeJson)}
+            />
           </DxcFlex>
         }
       >

@@ -103,10 +103,6 @@ export const handleExport = (tokens: Tokens) => {
   downloadAnchorNode.remove();
 };
 
-export const copyToClipboard = (value: string) => {
-  return navigator.clipboard.writeText(value);
-};
-
 export const divideColorTokens = (tokens: Tokens) => {
   const groups: TokenGroups = {
     primary: [],
