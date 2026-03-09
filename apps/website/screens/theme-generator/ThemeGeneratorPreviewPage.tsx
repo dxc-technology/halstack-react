@@ -13,6 +13,7 @@ import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-ge
 import styled from "@emotion/styled";
 import { ComponentItem, Logos } from "./types";
 
+// TODO: Both of these types should be exported by @dxc-technology/halstack-react when they are available
 type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type ListOptionType = {
@@ -196,7 +197,7 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
           height="100%"
         >
           {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
-            <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
+            <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
               <DxcFlex justifyContent="flex-end">
                 <DxcButton
                   icon="filled_delete"

@@ -83,21 +83,21 @@ const FormPreview = ({ logos }: { logos: Logos }) => {
     >
       <DxcApplicationLayout.Main>
         <DxcInset space="var(--spacing-padding-m)">
-          <DxcFlex direction="column" gap="1rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
             <DxcHeading level={5} text="Simple Form Composition" />
             <DxcContainer
-              padding="2rem"
+              padding="var(--spacing-padding-xl)"
               background={{ color: "color_white" }}
               borderRadius="12px"
               border={{ color: "#e8e8e8", width: "2px", style: "solid" }}
               boxShadow="0 2px 8px rgba(0,0,0,0.1)"
             >
-              <DxcFlex direction="column" gap="1.5rem">
+              <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
                 <DxcTypography fontSize="1.125rem" fontWeight="600">
                   Contact Information
                 </DxcTypography>
 
-                <DxcFlex direction="column" gap="1rem">
+                <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
                   <DxcTextInput
                     label="Full Name"
                     placeholder="Enter your full name..."
@@ -108,7 +108,7 @@ const FormPreview = ({ logos }: { logos: Logos }) => {
                     placeholder="your@email.com"
                     helperText="We'll use this to contact you"
                   />
-                  <DxcFlex justifyContent="flex-end" gap="1rem">
+                  <DxcFlex justifyContent="flex-end" gap="var(--spacing-gap-ml)">
                     <DxcButton label="Clear" mode="secondary" onClick={() => {}} />
                     <DxcButton label="Submit Form" onClick={() => {}} />
                   </DxcFlex>

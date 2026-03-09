@@ -16,7 +16,7 @@ const FileInputPreview = () => {
     },
   ];
   return (
-    <DxcFlex gap="2rem">
+    <DxcFlex gap="var(--spacing-gap-ml)">
       <DxcFileInput label="Upload file" mode="filedrop" callbackFile={() => {}} value={fileExample} />
       <DxcFileInput label="Upload file - Error" mode="filedrop" callbackFile={() => {}} value={fileExampleError} />
     </DxcFlex>

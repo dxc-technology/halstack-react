@@ -2,7 +2,7 @@ import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
 
 const ButtonPreview = () => {
   return (
-    <DxcFlex gap="1rem" wrap="wrap">
+    <DxcFlex gap="var(--spacing-gap-ml)" wrap="wrap">
       <DxcButton label="Primary Button" />
       <DxcButton label="Secondary Button" mode="secondary" />
       <DxcButton label="Text Button" mode="tertiary" />

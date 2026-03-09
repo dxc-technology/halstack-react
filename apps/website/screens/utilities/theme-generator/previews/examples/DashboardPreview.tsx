@@ -46,8 +46,8 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
     >
       <DxcApplicationLayout.Main>
         <DxcInset space="var(--spacing-padding-m)">
-          <DxcFlex direction="column" gap="2rem">
-            <DxcFlex gap="2rem">
+          <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+            <DxcFlex gap="var(--spacing-gap-ml)">
               <DxcContainer
                 width="50%"
                 background={{ color: "var(--border-color-neutral-brighter)" }}
@@ -172,7 +172,7 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
               </DxcContainer>
             </DxcFlex>
 
-            <DxcFlex gap="2rem" justifyContent="center">
+            <DxcFlex gap="var(--spacing-gap-ml)" justifyContent="center">
               <DxcContainer
                 width="32%"
                 background={{ color: "var(--border-color-neutral-brighter)" }}
@@ -189,7 +189,7 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
                   }}
                 >
                   <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                    <DxcFlex justifyContent="center" gap="1rem">
+                    <DxcFlex justifyContent="center" gap="var(--spacing-gap-ml)">
                       <DxcHeading text={"Access management"} level={3} />
                       <DxcButton mode="tertiary" icon="open_in_new" />
                     </DxcFlex>
@@ -245,7 +245,7 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
                   }}
                 >
                   <DxcFlex direction="column" gap="var(--spacing-gap-m)">
-                    <DxcFlex justifyContent="center" gap="1rem">
+                    <DxcFlex justifyContent="center" gap="var(--spacing-gap-ml)">
                       <DxcHeading text={"API"} level={3} />
                       <DxcButton mode="tertiary" icon="open_in_new" />
                     </DxcFlex>
@@ -283,8 +283,8 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
                 boxShadow="var(--shadow-200)"
               >
                 <DxcInset space="var(--spacing-padding-xs)">
-                  <DxcFlex direction="column" gap="1rem">
-                    <DxcFlex alignItems="center" gap="0.5rem">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+                    <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
                       <DxcHeading text={"Insights"} level={3} />
                     </DxcFlex>
                     <DxcTypography fontSize="var(--font-size-xs)">
