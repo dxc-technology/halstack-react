@@ -7,6 +7,7 @@ import TooltipContext from "./TooltipContext";
 const TooltipTriggerContainer = styled.div`
   position: relative;
   display: inline-flex;
+  width: fit-content;
 `;
 
 const StyledTooltipContent = styled(Content)`

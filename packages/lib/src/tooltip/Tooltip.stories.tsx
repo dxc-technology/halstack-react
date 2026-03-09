@@ -6,6 +6,7 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import { userEvent, within } from "storybook/internal/test";
+import styled from "@emotion/styled";
 
 export default {
   title: "Tooltip",
@@ -75,6 +76,19 @@ const RightTooltip = () => (
   </>
 );
 
+const FullWidthTooltip = () => (
+  <>
+    <Title title="Full-width tooltip" theme="light" level={4} />
+    <ExampleContainer>
+      <FullWidthContainer>
+        <DxcTooltip label="Tooltip Test">
+          <DxcButton label="Hoverable button" />
+        </DxcTooltip>
+      </FullWidthContainer>
+    </ExampleContainer>
+  </>
+);
+
 type Story = StoryObj<typeof DxcTooltip>;
 
 export const Chromatic: Story = {
@@ -121,3 +135,18 @@ export const TooltipPositionRight: Story = {
     await userEvent.hover(button);
   },
 };
+
+export const TooltipFullWidth: Story = {
+  render: FullWidthTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button");
+    await userEvent.hover(button);
+  },
+};
+
+const FullWidthContainer = styled.div`
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+`;
