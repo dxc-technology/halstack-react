@@ -119,11 +119,26 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
     return mapToSelectGroups(componentsList as ComponentItem[]);
   }, []);
 
+  const getLabelFromValue = (value: string) =>
+    componentOptions.flatMap((group) => group.options).find((opt) => opt.value === value)?.label;
+
   const displayedPreview = useMemo(() => {
     if (mode === "components") {
       return selectedComponents.map((component) => {
         const ComponentPreview = componentsRegistry[component as keyof typeof componentsRegistry];
-        return ComponentPreview ? <ComponentPreview key={component} /> : null;
+        return ComponentPreview ? (
+          <DxcFlex direction="column" gap="var(--spacing-gap-s)" key={component}>
+            <DxcTypography
+              color="var(--color-fg-neutral-strongest)"
+              fontFamily="var(--typography-font-family)"
+              fontSize="var(--typography-title-s)"
+              fontWeight="var(--typography-title-bold)"
+            >
+              {getLabelFromValue(component)}
+            </DxcTypography>
+            <ComponentPreview key={component} />
+          </DxcFlex>
+        ) : null;
       });
     }
 
