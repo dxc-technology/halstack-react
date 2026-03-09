@@ -1,9 +1,8 @@
-import { DxcContainer, DxcFlex, DxcGrid, DxcImage, DxcTypography } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFlex, DxcGrid, DxcImage, DxcParagraph, DxcTypography } from "@dxc-technology/halstack-react";
 import { useMemo } from "react";
 import { Logos } from "../../types";
 
 const BrandingAsset = ({ label, logo }: { label: string; logo?: string }) => {
-  if (!logo) return null;
   return (
     <DxcContainer width="250px" height="100%">
       <DxcFlex direction="column" gap="var(--spacing-gap-xs)" fullHeight>
@@ -14,9 +13,15 @@ const BrandingAsset = ({ label, logo }: { label: string; logo?: string }) => {
           height="130px"
           background={{ color: "var(--color-bg-neutral-light)" }}
           borderRadius="var(--border-radius-m)"
+          padding="var(--spacing-padding-m)"
+          boxSizing="border-box"
         >
           <DxcFlex alignItems="center" justifyContent="center" fullHeight>
-            <DxcImage width="100%" height="100%" objectFit="contain" src={logo} alt={label} />
+            {logo ? (
+              <DxcImage width="100%" height="100%" objectFit="contain" src={logo} alt={label} />
+            ) : (
+              <DxcParagraph>No asset selected.</DxcParagraph>
+            )}
           </DxcFlex>
         </DxcContainer>
       </DxcFlex>
@@ -36,8 +41,11 @@ const ReviewBrandingAssets = ({ logos }: { logos: Logos }) => {
 
   return (
     <DxcGrid templateColumns={["repeat(4, 1fr)"]} templateRows={["1fr"]} gap="var(--spacing-gap-ml)">
-      {brandingAssets.length &&
-        brandingAssets.map(({ label, logo }) => <BrandingAsset key={label} label={label} logo={logo} />)}
+      {brandingAssets.some((asset) => asset.logo) ? (
+        brandingAssets.map((asset) => <BrandingAsset key={asset.label} label={asset.label} logo={asset.logo} />)
+      ) : (
+        <DxcParagraph>No branding assets uploaded.</DxcParagraph>
+      )}
     </DxcGrid>
   );
 };
