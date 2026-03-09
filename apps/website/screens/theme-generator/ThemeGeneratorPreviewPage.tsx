@@ -189,16 +189,19 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
             />
           )}
         </DxcFlex>
-        <DxcFlex gap="var(--spacing-gap-xs)">
-          {informationIcon}
-          <DxcTypography
-            color="var(--color-fg-neutral-strongest)"
-            fontSize="var(--typography-label-m)"
-            fontWeight="var(--typography-label-regular)"
-          >
-            Some components and layouts are for demonstration purposes only and do not represent actual components
-          </DxcTypography>
-        </DxcFlex>
+        {mode === "examples" && (
+          <DxcFlex gap="var(--spacing-gap-xs)">
+            {informationIcon}
+            <DxcTypography
+              color="var(--color-fg-neutral-strongest)"
+              fontSize="var(--typography-label-m)"
+              fontWeight="var(--typography-label-regular)"
+            >
+              Some components are presentational examples. The layouts shown are for demonstration purposes only and do
+              not represent actual components.
+            </DxcTypography>
+          </DxcFlex>
+        )}
         {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
         <DxcContainer
           borderRadius="var(--border-radius-l)"
@@ -232,11 +235,7 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
               </DxcFlex>
               <PreviewAreaContainer>
                 <HalstackProvider opinionatedTheme={tokens}>
-                  <DxcFlex
-                    direction="column"
-                    gap="var(--spacing-gap-l)"
-                    alignItems={mode === "components" ? "flex-start" : "center"}
-                  >
+                  <DxcFlex direction="column" gap="var(--spacing-gap-l)">
                     {displayedPreview}
                   </DxcFlex>
                 </HalstackProvider>
