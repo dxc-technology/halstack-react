@@ -44,7 +44,7 @@ const ReviewBrandingAssets = ({ logos }: { logos: Logos }) => {
       {brandingAssets.some((asset) => asset.logo) ? (
         brandingAssets.map((asset) => <BrandingAsset key={asset.label} label={asset.label} logo={asset.logo} />)
       ) : (
-        <DxcParagraph>No branding assets uploaded.</DxcParagraph>
+        <DxcParagraph>No branding assets selected.</DxcParagraph>
       )}
     </DxcGrid>
   );
