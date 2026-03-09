@@ -1,4 +1,4 @@
-import { DxcContextualMenu, DxcBadge } from "@dxc-technology/halstack-react";
+import { DxcContextualMenu, DxcBadge, DxcContainer } from "@dxc-technology/halstack-react";
 
 const contextualMenuItems = [
   {
@@ -40,7 +40,11 @@ const contextualMenuItems = [
 ];
 
 const ContextualMenuPreview = () => {
-  return <DxcContextualMenu items={contextualMenuItems} />;
+  return (
+    <DxcContainer width="fit-content">
+      <DxcContextualMenu items={contextualMenuItems} />
+    </DxcContainer>
+  );
 };
 
 export default ContextualMenuPreview;
