@@ -8,7 +8,7 @@ const RadioGroupPreview = () => {
   ];
 
   return (
-    <DxcFlex gap="2rem">
+    <DxcFlex gap="var(--spacing-gap-ml)">
       <DxcRadioGroup label="Select an option" options={options} />
       <DxcRadioGroup label="Error" options={options} error="Error message." />
     </DxcFlex>

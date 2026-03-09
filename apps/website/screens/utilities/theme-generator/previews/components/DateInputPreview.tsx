@@ -2,7 +2,7 @@ import { DxcDateInput, DxcFlex } from "@dxc-technology/halstack-react";
 
 const DateInputPreview = () => {
   return (
-    <DxcFlex gap="2rem">
+    <DxcFlex gap="var(--spacing-gap-ml)">
       <DxcDateInput
         label="Start date"
         helperText="Please enter the start date."
