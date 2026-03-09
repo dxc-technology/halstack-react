@@ -14,6 +14,15 @@ import { ListOptionType } from "../../../../packages/lib/src/select/types";
 import styled from "@emotion/styled";
 import { ComponentItem, Logos } from "./types";
 
+const informationIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M11 7H13V9H11V7ZM11 11H13V17H11V11ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+      fill="#494949"
+    />
+  </svg>
+);
+
 const exampleOptions = [
   {
     label: "Application example",
@@ -116,7 +125,6 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
             value={mode === "components" ? 1 : 2}
             onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
           />
-
           {mode === "components" && (
             <DxcSelect
               placeholder="Select components"
@@ -143,6 +151,16 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
               searchable
             />
           )}
+        </DxcFlex>
+        <DxcFlex gap="var(--spacing-gap-xs)">
+          {informationIcon}
+          <DxcTypography
+            color="var(--color-fg-neutral-strongest)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-regular)"
+          >
+            Some components and layouts are for demonstration purposes only and do not represent actual components
+          </DxcTypography>
         </DxcFlex>
         {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
         <DxcContainer
