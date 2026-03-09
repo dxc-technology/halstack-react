@@ -139,7 +139,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             />
           )
         }
-        footer={isThemeGenerator && <DxcApplicationLayout.Footer mode="reduced" />}
+        footer={isThemeGenerator ? <DxcApplicationLayout.Footer mode="reduced" /> : undefined}
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
