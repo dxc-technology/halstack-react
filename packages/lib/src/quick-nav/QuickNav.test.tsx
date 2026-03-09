@@ -31,13 +31,8 @@ describe("QuickNav component tests", () => {
   });
 
   test("should call scrollIntoView when clicking on a link in hash router mode", () => {
-    // Mock window.location.href to simulate hash router
-    Object.defineProperty(window, "location", {
-      value: {
-        href: "http://localhost:3000/#/components",
-      },
-      writable: true,
-    });
+    // Simulate hash router
+    window.history.pushState({}, "", "#/components");
 
     // Mock document.getElementById and scrollIntoView
     const mockScrollIntoView = jest.fn();
@@ -55,13 +50,8 @@ describe("QuickNav component tests", () => {
   });
 
   test("should call scrollIntoView when clicking on a sublink in hash router mode", () => {
-    // Mock window.location.href to simulate hash router
-    Object.defineProperty(window, "location", {
-      value: {
-        href: "http://localhost:3000/#/components",
-      },
-      writable: true,
-    });
+    // Simulate hash router
+    window.history.pushState({}, "", "#/components");
 
     // Mock document.getElementById and scrollIntoView
     const mockScrollIntoView = jest.fn();
