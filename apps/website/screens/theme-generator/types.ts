@@ -37,3 +37,11 @@ export type BrandingDetailsSection = {
   icon: ReactNode;
   fields: Field[];
 };
+
+export type ComponentItem = {
+  label: string;
+  icon?: string;
+  path?: string;
+  status?: string;
+  links?: ComponentItem[];
+};

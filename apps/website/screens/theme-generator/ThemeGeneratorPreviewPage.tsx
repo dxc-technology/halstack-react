@@ -12,19 +12,7 @@ import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
 import { ListOptionType } from "../../../../packages/lib/src/select/types";
 import styled from "@emotion/styled";
-import { Logos } from "./types";
-
-// JSON Structure type, this should go in the json file or somewhere else
-
-type ComponentItem = {
-  label: string;
-  icon?: string;
-  path?: string;
-  status?: string;
-  links?: ComponentItem[];
-};
-
-/////////////////////////////////////
+import { ComponentItem, Logos } from "./types";
 
 const exampleOptions = [
   {
@@ -169,28 +157,36 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
           height="100%"
         >
           {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
-            <HalstackProvider opinionatedTheme={tokens} style={{ height: "100%" }}>
-              <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
-                <DxcFlex justifyContent="flex-end">
-                  <DxcButton
-                    icon="filled_delete"
-                    size={{ height: "medium" }}
-                    title="Delete selection"
-                    onClick={() => {
-                      if (mode === "components") {
-                        setSelectedComponents([]);
-                      } else {
-                        setSelectedExample("");
-                      }
-                    }}
-                    mode="secondary"
-                    semantic="error"
-                    disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
-                  />
-                </DxcFlex>
-                <CustomPreviewArea mode={mode}>{displayedPreview}</CustomPreviewArea>
+            <DxcFlex direction="column" gap="var(--spacing-gap-l)" fullHeight>
+              <DxcFlex justifyContent="flex-end">
+                <DxcButton
+                  icon="filled_delete"
+                  size={{ height: "medium" }}
+                  title="Delete selection"
+                  onClick={() => {
+                    if (mode === "components") {
+                      setSelectedComponents([]);
+                    } else {
+                      setSelectedExample("");
+                    }
+                  }}
+                  mode="secondary"
+                  semantic="error"
+                  disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
+                />
               </DxcFlex>
-            </HalstackProvider>
+              <PreviewAreaContainer>
+                <HalstackProvider opinionatedTheme={tokens}>
+                  <DxcFlex
+                    direction="column"
+                    gap="var(--spacing-gap-l)"
+                    alignItems={mode === "components" ? "flex-start" : "center"}
+                  >
+                    {displayedPreview}
+                  </DxcFlex>
+                </HalstackProvider>
+              </PreviewAreaContainer>
+            </DxcFlex>
           ) : (
             <DxcFlex alignItems="center" justifyContent="center" fullHeight>
               <DxcTypography
@@ -209,15 +205,9 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
   );
 };
 
-// TODO: this is just a quick solution to make the preview area scrollable when the content is too big, I don't know what other approach that doesn't
-// involve adding custom styles could be used. (fullHeight does not do anything here either)
-const CustomPreviewArea = styled.div<{ mode: string }>`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-gap-l);
+const PreviewAreaContainer = styled.div`
   flex: 1 1 0;
   overflow: auto;
-  align-items: ${(props) => (props.mode === "components" ? "flex-start" : "center")};
 `;
 
 export default ThemeGeneratorPreviewPage;
