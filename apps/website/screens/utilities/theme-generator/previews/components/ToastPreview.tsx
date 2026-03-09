@@ -20,10 +20,10 @@ const ToastButtons = () => {
 
   return (
     <DxcFlex gap="var(--spacing-gap-ml)" wrap="wrap">
-      <DxcButton label="Success Toast" onClick={showSuccessToast} mode="primary" semantic="success" />
-      <DxcButton label="Warning Toast" onClick={showWarningToast} mode="primary" semantic="warning" />
-      <DxcButton label="Info Toast" onClick={showInfoToast} mode="primary" semantic="info" />
-      <DxcButton label="Loading Toast" onClick={showLoadingToast} mode="secondary" semantic="info" />
+      <DxcButton label="Show Success Notification" onClick={showSuccessToast} mode="primary" semantic="success" />
+      <DxcButton label="Show Warning Notification" onClick={showWarningToast} mode="primary" semantic="warning" />
+      <DxcButton label="Show Information Notification" onClick={showInfoToast} mode="primary" semantic="info" />
+      <DxcButton label="Show Loading Notification" onClick={showLoadingToast} mode="secondary" semantic="info" />
     </DxcFlex>
   );
 };

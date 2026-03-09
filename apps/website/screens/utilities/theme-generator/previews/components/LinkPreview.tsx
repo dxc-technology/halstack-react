@@ -3,7 +3,7 @@ import { DxcLink } from "@dxc-technology/halstack-react";
 const LinkPreview = () => {
   return (
     <DxcLink href="#" newWindow>
-      Link
+      View Documentation
     </DxcLink>
   );
 };

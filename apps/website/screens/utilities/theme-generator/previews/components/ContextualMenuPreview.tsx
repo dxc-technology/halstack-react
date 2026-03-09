@@ -2,39 +2,39 @@ import { DxcContextualMenu, DxcBadge } from "@dxc-technology/halstack-react";
 
 const contextualMenuItems = [
   {
-    title: "Section 1",
+    title: "File",
     items: [
       {
-        label: "Grouped Item 1",
-        icon: "favorite",
+        label: "New",
+        icon: "note_add",
         items: [
-          { label: "Item 1" },
+          { label: "Project" },
           {
-            label: "Grouped Item 2",
+            label: "Template",
             items: [
               {
-                label: "Item 2",
-                icon: "bookmark",
-                badge: <DxcBadge color="primary" label="Experimental" />,
+                label: "Web Template",
+                icon: "web",
+                badge: <DxcBadge color="primary" label="Beta" />,
               },
-              { label: "Selected Item 3", selectedByDefault: true },
+              { label: "Mobile Template", selectedByDefault: true },
             ],
           },
         ],
         badge: <DxcBadge color="success" label="New" />,
       },
-      { label: "Item 4", icon: "key" },
+      { label: "Open", icon: "folder_open" },
     ],
   },
   {
-    title: "Section 2",
+    title: "Edit",
     items: [
-      { label: "Item 5" },
+      { label: "Undo" },
       {
-        label: "Grouped Item 6",
-        items: [{ label: "Item 7" }, { label: "Item 8" }],
+        label: "Preferences",
+        items: [{ label: "Theme" }, { label: "Notifications" }],
       },
-      { label: "Item 9" },
+      { label: "Redo" },
     ],
   },
 ];
