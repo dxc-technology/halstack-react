@@ -1,7 +1,7 @@
 import { DxcBreadcrumbs } from "@dxc-technology/halstack-react";
 
 const BreadcrumbsPreview = () => {
-  return <DxcBreadcrumbs items={[{ label: "Group 1" }, { label: "Group 2" }, { label: "Group 3" }]} />;
+  return <DxcBreadcrumbs items={[{ label: "Home" }, { label: "Projects" }, { label: "Project Alpha" }]} />;
 };
 
 export default BreadcrumbsPreview;

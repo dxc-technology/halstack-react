@@ -3,25 +3,25 @@ import { DxcWizard } from "@dxc-technology/halstack-react";
 const WizardPreview = () => {
   const stepsWithIcons = [
     {
-      label: "First step",
-      description: "Not validated step",
-      valid: false,
+      label: "Account setup",
+      description: "Create your account credentials",
+      valid: true,
       icon: "person",
     },
     {
-      label: "Second step",
-      description: "Validated step",
+      label: "Address information",
+      description: "Provide your home address details",
       valid: true,
       icon: "home",
     },
     {
-      label: "Third step",
-      description: "Another step description",
+      label: "Employment details",
+      description: "Add your current job information",
       icon: "work",
     },
     {
-      label: "Forth step",
-      description: "Disable step",
+      label: "Review and submit",
+      description: "Confirm all information before submission",
       disabled: true,
       icon: "thumb_up",
     },

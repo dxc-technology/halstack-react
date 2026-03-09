@@ -3,17 +3,20 @@ import { DxcNavTabs } from "@dxc-technology/halstack-react";
 const TabsPreview = () => {
   return (
     <DxcNavTabs iconPosition="left">
-      <DxcNavTabs.Tab href="#" active icon="favorite" notificationNumber onClick={() => {}}>
-        Tab 1
+      <DxcNavTabs.Tab href="#dashboard" active icon="dashboard" notificationNumber={2} onClick={() => {}}>
+        Dashboard
       </DxcNavTabs.Tab>
-      <DxcNavTabs.Tab href="#" disabled icon="favorite" notificationNumber={5} onClick={() => {}}>
-        Tab 2
+
+      <DxcNavTabs.Tab href="#messages" disabled icon="message" notificationNumber={5} onClick={() => {}}>
+        Messages
       </DxcNavTabs.Tab>
-      <DxcNavTabs.Tab href="#" icon="favorite" notificationNumber={120} onClick={() => {}}>
-        Tab 3
+
+      <DxcNavTabs.Tab href="#notifications" icon="notifications" notificationNumber={120} onClick={() => {}}>
+        Notifications
       </DxcNavTabs.Tab>
-      <DxcNavTabs.Tab href="#" icon="favorite">
-        Tab 4
+
+      <DxcNavTabs.Tab href="#settings" icon="settings" onClick={() => {}}>
+        Settings
       </DxcNavTabs.Tab>
     </DxcNavTabs>
   );

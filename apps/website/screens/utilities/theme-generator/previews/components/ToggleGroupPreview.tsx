@@ -4,15 +4,16 @@ const ToggleGroupPreview = () => {
   const optionsWithIcons = [
     {
       value: 1,
-      label: "Toggle option 1",
-      icon: "filled_thumb_up",
+      label: "Light Mode",
+      icon: "wb_sunny",
     },
     {
       value: 2,
-      label: "Toggle option 2",
-      icon: "filled_thumb_down",
+      label: "Dark Mode",
+      icon: "nights_stay",
     },
   ];
+
   return <DxcToggleGroup options={optionsWithIcons} defaultValue={1} />;
 };
 

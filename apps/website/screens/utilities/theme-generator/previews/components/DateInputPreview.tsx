@@ -4,24 +4,24 @@ const DateInputPreview = () => {
   return (
     <DxcFlex gap="var(--spacing-gap-ml)">
       <DxcDateInput
-        label="Start date"
-        helperText="Please enter the start date."
+        label="Project start date"
+        helperText="Select the date when the project begins."
         format="MM/dd/yyyy"
         clearable
         placeholder
       />
       <DxcDateInput
-        label="Start date - disabled"
-        helperText="Please enter the start date."
+        label="Project start date - disabled"
+        helperText="Cannot change the start date at this stage."
         format="MM/dd/yyyy"
         clearable
         placeholder
         disabled
-        error="Invalid date format."
+        error="Date cannot be modified."
       />
       <DxcDateInput
-        label="Start date - Error"
-        helperText="Please enter the start date."
+        label="Project start date - Error"
+        helperText="Select the correct start date."
         format="MM/dd/yyyy"
         clearable
         placeholder

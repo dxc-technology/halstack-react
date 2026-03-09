@@ -19,7 +19,7 @@ const DropdownPreview = () => {
     },
   ];
 
-  return <DxcDropdown options={iconOptions} onSelectOption={() => {}} icon="download" label="Dropdown with icons" />;
+  return <DxcDropdown options={iconOptions} onSelectOption={() => {}} icon="download" label="Device" />;
 };
 
 export default DropdownPreview;
