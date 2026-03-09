@@ -7,12 +7,33 @@ import {
   DxcTypography,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
-import { useMemo, useState } from "react";
+import { ReactNode, SVGProps, useMemo, useState } from "react";
 import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
-import { ListOptionType } from "../../../../packages/lib/src/select/types";
 import styled from "@emotion/styled";
 import { ComponentItem, Logos } from "./types";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
+
+type ListOptionType = {
+  /**
+   * Element used as the icon that will be placed before the option label.
+   * It can be an inline SVG or Material Symbol name. If the url option
+   * is the chosen one, take into account that the component's
+   * color styling tokens will not be applied to the image.
+   */
+  icon?: string | SVG;
+  /**
+   * Label of the option to be shown in the select's listbox.
+   */
+  label: string;
+  /**
+   * Value of the option. It should be unique and
+   * not an empty string, which is reserved to the empty option added
+   * by optional prop.
+   */
+  value: string;
+};
 
 const informationIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
