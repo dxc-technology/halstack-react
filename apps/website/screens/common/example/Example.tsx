@@ -2,7 +2,8 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
-import { DxcButton, DxcFlex, useToast } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
+import useCopyToClipboard from "hooks/useCopyToClipboard";
 
 const StyledPreview = styled.div`
   background-color: var(--color-bg-neutral-lightest);
@@ -49,24 +50,13 @@ type ExamplePropTypes = {
 };
 //
 const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
-  const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [liveCode, setLiveCode] = useState(example.code);
 
   const handleCodeOnClick = () => {
     changeIsCodeVisible(!isCodeVisible);
   };
-
-  const handleCopy = () => {
-    navigator.clipboard
-      .writeText(liveCode)
-      .then(() => {
-        toast.success({ message: "Code copied to the clipboard." });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy the text to the clipboard." });
-      });
-  };
+  const handleCopy = useCopyToClipboard();
 
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-m)">
@@ -79,7 +69,16 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
         </StyledPreview>
         {actionsVisible && (
           <DxcFlex gap="var(--spacing-gap-s)" justifyContent="flex-end">
-            {isCodeVisible && <DxcButton icon="content_copy" label="Copy code" mode="tertiary" onClick={handleCopy} />}
+            {isCodeVisible && (
+              <DxcButton
+                icon="content_copy"
+                label="Copy code"
+                mode="tertiary"
+                onClick={() => {
+                  handleCopy(liveCode);
+                }}
+              />
+            )}
             <DxcButton
               icon={isCodeVisible ? "code_off" : "code"}
               label={isCodeVisible ? "Hide code" : "View code"}

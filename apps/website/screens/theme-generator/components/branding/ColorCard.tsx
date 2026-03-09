@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput, useToast } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcFlex, DxcPopover, DxcTextInput } from "@dxc-technology/halstack-react";
 import styled from "@emotion/styled";
 import { SketchPicker } from "react-color";
-import { copyToClipboard } from "../../utils";
+import useCopyToClipboard from "hooks/useCopyToClipboard";
 
 const ColorBox = styled.button<{ color: string }>`
   aspect-ratio: 1;
@@ -36,7 +36,6 @@ export const ColorCard = ({
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(color);
   const [error, setError] = useState<string>();
-  const toast = useToast();
 
   const handleBlur = ({ value, error }: { value: string; error?: string }) => {
     setError(error);
@@ -45,15 +44,7 @@ export const ColorCard = ({
     }
   };
 
-  const handleCopy = (value: string) => {
-    copyToClipboard(value)
-      .then(() => {
-        toast.success({ message: "Copied to clipboard" });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy to clipboard" });
-      });
-  };
+  const handleCopy = useCopyToClipboard();
 
   return (
     <DxcContainer
