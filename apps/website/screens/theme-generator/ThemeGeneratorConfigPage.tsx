@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
+import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
+// import { FileData } from "../../../../packages/lib/src/file-input/types";
+
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
 import { Colors, FileData, Step } from "./types";
@@ -88,7 +91,7 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <></>;
+        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
       case 2:
         return <ReviewDetails generatedTokens={tokens} logos={logos} />;
     }
@@ -119,7 +122,7 @@ const ThemeGeneratorConfigPage = () => {
           boxSizing="border-box"
           margin={{ left: "auto", right: "auto" }}
         >
-          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)">
+          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
             <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
             {renderStepContent()}
           </DxcFlex>
