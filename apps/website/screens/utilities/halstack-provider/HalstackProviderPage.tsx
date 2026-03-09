@@ -71,7 +71,7 @@ const sections = [
             text: (
               <>
                 To find out the list of labels that are translatable we should refer to the documentation in the{" "}
-                <Link href="/principles/localization" passHref legacyBehavior>
+                <Link href="/guidelines/localization" passHref legacyBehavior>
                   <DxcLink>Localization</DxcLink>
                 </Link>{" "}
                 section.

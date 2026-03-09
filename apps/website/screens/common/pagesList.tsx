@@ -39,8 +39,7 @@ const utilitiesLinks: LinkDetails[] = [
 const guidelinesLinks: LinkDetails[] = [
   { label: "Data visualization", path: "/guidelines/data-visualization", icon: "insert_chart" },
   { label: "Localization", path: "/guidelines/localization", icon: "language" },
-  // TODO: update icon
-  { label: "Themes", path: "/guidelines/themes", icon: "format_paint" },
+  { label: "Themes", path: "/guidelines/themes", icon: "colors" },
 ];
 
 const tokensLinks: LinkDetails[] = [
