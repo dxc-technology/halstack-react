@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ThemesPage from "screens/foundations/themes/ThemesPage";
+import ThemesPage from "screens/guidelines/themes/ThemesPage";
 
 const Themes = () => (
   <>
