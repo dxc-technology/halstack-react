@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 import styled from "@emotion/styled";
 
 const Paragraph = styled.p`
-  display: "block";
+  display: block;
   font-family: var(--typography-font-family);
   font-size: var(--typography-body-m);
   font-weight: var(--typography-body-regular);
   letter-spacing: var(--spacing-gap-none);
   line-height: var(--height-s);
-  text-align: "left";
+  text-align: left;
   color: var(--color-fg-neutral-dark);
   text-decoration: none;
   text-overflow: unset;
