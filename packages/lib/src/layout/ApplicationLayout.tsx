@@ -81,7 +81,7 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
 
   const contextValue = useMemo(() => {
     const logoToUse: ApplicationLayoutPropsType["logo"] = {
-      src: logo?.src || themedLogos.mainLogo || "",
+      src: logo?.src || themedLogos?.mainLogo || "",
       alt: logo?.alt || "",
     };
     return {

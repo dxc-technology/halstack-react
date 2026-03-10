@@ -225,12 +225,12 @@ const DxcFooter = ({
       return logo.src;
     } else {
       return mode === "default" ? (
-        themedLogos.footerLogo ? (
+        themedLogos?.footerLogo ? (
           <LogoImg mode={mode} alt={"Footer logo"} src={themedLogos.footerLogo} title={"Footer logo"} />
         ) : (
           dxcLogo
         )
-      ) : themedLogos.footerReducedLogo ? (
+      ) : themedLogos?.footerReducedLogo ? (
         <LogoImg mode={mode} alt={"Footer logo"} src={themedLogos.footerReducedLogo} title={"Footer logo"} />
       ) : (
         dxcSmallLogo
