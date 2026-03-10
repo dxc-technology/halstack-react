@@ -1,7 +1,7 @@
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
-import { DxcBulletedList, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
 const sections = [
@@ -12,7 +12,7 @@ const sections = [
         <DxcParagraph>
           In Halstack, a theme is a <strong>structured set of properties</strong> that defines how your brand is
           expressed across the design system. These properties allow you to adapt core visual decisions such as colors
-          and logos, while preserving the consistency, accesibility, and usability standards degined by Halstack.
+          and logos, while preserving the consistency, accessibility, and usability standards defined by Halstack.
         </DxcParagraph>
         <DxcParagraph>
           To understand what a theme is, it is important to recognize that the definition of colors, sizes, shapes, and
@@ -21,9 +21,9 @@ const sections = [
           controlled and intentional way.
         </DxcParagraph>
         <DxcParagraph>
-          Themes provide this controlled flexibility. The allow teams to override specific foundational decisions os the
-          Halstack Design System in order to adapt product to different brand identities, while still benefiting from
-          the structure and scalability of the system.
+          Themes provide this controlled flexibility. They allow teams to override specific foundational decisions of
+          the Halstack Design System in order to adapt product to different brand identities, while still benefiting
+          from the structure and scalability of the system.
         </DxcParagraph>
       </>
     ),
@@ -57,7 +57,7 @@ const sections = [
       <>
         <DxcParagraph>
           Halstack approaches theming through <strong>design tokens</strong>. Instead of manually adjusting styles in
-          each component, you define a set of core and semantic values that are applied accross the system.
+          each component, you define a set of core and semantic values that are applied across the system.
         </DxcParagraph>
         <DxcParagraph>The main customizable aspects include:</DxcParagraph>
         <DxcBulletedList>
@@ -65,7 +65,7 @@ const sections = [
             <strong>Core brand colors</strong> such as primary, secondary, tertiary, and neutral
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Semantinc colors</strong> such as info, success, warning, and error
+            <strong>Semantic colors</strong> such as info, success, warning, and error
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Brand assets</strong> such as logos and favicons
@@ -80,25 +80,11 @@ const sections = [
   {
     title: "Where to manage your themes",
     content: (
-      <>
-        <DxcParagraph>Depending on your context, there are two ways to work with themes in Halstack.</DxcParagraph>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            <strong>If you are part of the platform</strong>
-            <DxcParagraph>
-              Themes managed through UXConfig. This approach is typically used in internal platfom enviroments where
-              configuration and deployement are integrated into the product lifecycle.
-            </DxcParagraph>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>If you are not part of the platform</strong>
-            <DxcParagraph>
-              You can use the <Link href="/theme-generator/">Theme Generator</Link> tool. This is the recommended way
-              for most teams to create and manage themes in a structured and scalable way.
-            </DxcParagraph>
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-      </>
+      <DxcParagraph>
+        To create and manage themes in Halstack, you can use the Theme Generator tool. You can preview how your theme
+        behaves across real Halstack components, validate contrast and readability, and export a structured file ready
+        to be integrated into your project.
+      </DxcParagraph>
     ),
   },
   {
@@ -106,9 +92,11 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          <Link href="/theme-generator/">Theme Generator</Link> helps you create Halstack themes without manual token
-          configuration. Instead of defining dozens of values, you provide your core and semantic colors, and the tool
-          generates a complete, ready-to-use token structure.
+          <Link href="/theme-generator/" passHref legacyBehavior>
+            <DxcLink>Theme Generator</DxcLink>
+          </Link>{" "}
+          helps you create Halstack themes without manual token configuration. Instead of defining dozens of values, you
+          provide your core and semantic colors, and the tool generates a complete, ready-to-use token structure.
         </DxcParagraph>
         <DxcParagraph>
           You can also preview how your theme behaves in real Halstack components and layouts, validate contrast and
@@ -120,7 +108,9 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           For more details about how the tool works, visit the{" "}
-          <Link href="/theme-generator/user-guide/">Theme Generator documentation</Link>
+          <Link href="/theme-generator/user-guide/" passHref legacyBehavior>
+            <DxcLink>Theme Generator user guide</DxcLink>
+          </Link>
         </DxcParagraph>
       </>
     ),
@@ -135,7 +125,7 @@ const ThemesPage = () => (
       </DxcFlex>
     </PageHeading>
     <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/foundations/themes/ThemesPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/guidelines/themes/ThemesPage.tsx" />
   </DxcFlex>
 );
 
