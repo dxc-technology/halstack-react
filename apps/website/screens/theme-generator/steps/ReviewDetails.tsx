@@ -4,23 +4,9 @@ import ReviewTokensGrid from "../components/review/ReviewTokensGrid";
 import ReviewTokensList from "../components/review/ReviewTokensList";
 import ReviewBrandingAssets from "../components/review/ReviewBrandingAssets";
 import useCopyToClipboard from "hooks/useCopyToClipboard";
-import { useMemo } from "react";
 import ReviewSectionContainer from "../components/review/ReviewSectionContainer";
 
-const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; logos: Logos }) => {
-  const themeJson = useMemo(() => {
-    const themeObject = {
-      tokens: generatedTokens,
-      logos: {
-        mainLogo: "",
-        footerLogo: "",
-        footerReducedLogo: "",
-        favicon: "",
-      },
-    };
-    return JSON.stringify(themeObject, null, 2);
-  }, [generatedTokens]);
-
+const ReviewDetails = ({ tokens, logos, themeJson }: { tokens: Tokens; logos: Logos; themeJson: string }) => {
   const handleCopy = useCopyToClipboard();
 
   return (
@@ -42,7 +28,7 @@ const ReviewDetails = ({ generatedTokens, logos }: { generatedTokens: Tokens; lo
       >
         <DxcGrid templateColumns={["2fr", "1fr"]} templateRows={["368px"]} gap="var(--spacing-gap-m)">
           <DxcFlex justifyContent="center">
-            <ReviewTokensGrid generatedTokens={generatedTokens} />
+            <ReviewTokensGrid tokens={tokens} />
           </DxcFlex>
           <ReviewTokensList themeJson={themeJson} />
         </DxcGrid>
