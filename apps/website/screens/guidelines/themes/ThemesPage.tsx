@@ -111,6 +111,7 @@ const sections = [
           <Link href="/theme-generator/user-guide/" passHref legacyBehavior>
             <DxcLink>Theme Generator user guide</DxcLink>
           </Link>
+          .
         </DxcParagraph>
       </>
     ),
