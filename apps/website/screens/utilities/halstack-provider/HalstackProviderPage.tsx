@@ -109,6 +109,14 @@ const sections = [
           want and their respective values. Then we pass one of the objects based on the state of the <Code>theme</Code>{" "}
           to the Halstack Provider, which wraps our components, through its <Code>opinionatedTheme</Code> property.
         </DxcParagraph>
+        <DxcParagraph>
+          Themes can be created with the{" "}
+          <Link href="/theme-generator/" passHref legacyBehavior>
+            <DxcLink>Theme Generator</DxcLink>
+          </Link>{" "}
+          tool, which allows you to define your brand colors and export a ready-to-use token structure to pass through
+          the <Code>opinionatedTheme</Code> prop.
+        </DxcParagraph>
       </>
     ),
   },
