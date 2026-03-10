@@ -3,8 +3,8 @@ import { Tokens } from "../../types";
 import React, { useMemo } from "react";
 import { divideColorTokens, SHADE_VALUES } from "../../utils";
 
-const ReviewTokensGrid = ({ generatedTokens }: { generatedTokens: Tokens }) => {
-  const tokenGroups = useMemo(() => divideColorTokens(generatedTokens), [generatedTokens]);
+const ReviewTokensGrid = ({ tokens }: { tokens: Tokens }) => {
+  const tokenGroups = useMemo(() => divideColorTokens(tokens), [tokens]);
   return (
     <DxcGrid
       templateColumns={["100px", "repeat(10, 1fr)"]}

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
@@ -57,6 +57,19 @@ const ThemeGeneratorConfigPage = () => {
   const [tokens, setTokens] = useState<Record<string, string>>({});
   const lastGeneratedColorsRef = useRef<string>("");
 
+  const themeJson = useMemo(() => {
+    const themeObject = {
+      tokens: tokens,
+      logos: {
+        mainLogo: "",
+        footerLogo: "",
+        footerReducedLogo: "",
+        favicon: "",
+      },
+    };
+    return JSON.stringify(themeObject, null, 2);
+  }, [tokens]);
+
   const generateTokensFromColors = () => {
     try {
       const mappedColors = {
@@ -93,7 +106,7 @@ const ThemeGeneratorConfigPage = () => {
       case 1:
         return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
       case 2:
-        return <ReviewDetails generatedTokens={tokens} logos={logos} />;
+        return <ReviewDetails tokens={tokens} logos={logos} themeJson={themeJson} />;
     }
   };
 
@@ -131,7 +144,7 @@ const ThemeGeneratorConfigPage = () => {
         <BottomButtons
           currentStep={currentStep}
           onChangeStep={handleChangeStep}
-          onExport={() => handleExport(tokens)}
+          onExport={() => handleExport(themeJson)}
         />
       </DxcFlex>
     </DxcContainer>
