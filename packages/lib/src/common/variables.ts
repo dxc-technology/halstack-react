@@ -132,3 +132,10 @@ export const defaultTranslatedComponentLabels = {
 };
 
 export type TranslatedLabels = typeof defaultTranslatedComponentLabels;
+
+export const ThemedLogos = {
+  mainLogo: undefined,
+  footerLogo: undefined,
+  footerReducedLogo: undefined,
+  favicon: undefined,
+};

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useCallback, ReactNode } from "react";
+import { useMemo, useRef, useState, useCallback, ReactNode, useContext } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -7,6 +7,7 @@ import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
 import { responsiveSizes } from "../common/variables";
+import { HalstackLogosContext } from "../HalstackContext";
 
 const ApplicationLayoutContainer = styled.div<{ header?: ReactNode }>`
   display: grid;
@@ -66,6 +67,8 @@ const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{childr
 const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
   const [headerHeight, setHeaderHeight] = useState("0px");
   const [hideMainContent, setHideMainContent] = useState(false);
+  const themedLogos = useContext(HalstackLogosContext);
+
   const handleHeaderHeight = useCallback(
     (headerElement: HTMLDivElement | null) => {
       if (headerElement) {
@@ -77,12 +80,16 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
   );
 
   const contextValue = useMemo(() => {
+    const logoToUse: ApplicationLayoutPropsType["logo"] = {
+      src: logo?.src || themedLogos?.mainLogo || "",
+      alt: logo?.alt || "",
+    };
     return {
-      logo,
+      logo: logoToUse,
       headerExists: !!header,
       setHideMainContent,
     };
-  }, [header, logo]);
+  }, [header, logo, themedLogos]);
   const ref = useRef(null);
 
   return (
