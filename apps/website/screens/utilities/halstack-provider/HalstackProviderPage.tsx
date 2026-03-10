@@ -115,7 +115,7 @@ const sections = [
             <DxcLink>Theme Generator</DxcLink>
           </Link>{" "}
           tool, which allows you to define your brand colors and export a ready-to-use token structure to pass through
-          the <Code>opinionatedTheme</Code> prop.
+          the <Code>opinionatedTheme</Code> property.
         </DxcParagraph>
       </>
     ),
