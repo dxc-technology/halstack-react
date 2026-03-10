@@ -93,8 +93,8 @@ export const generateTokens = (baseColors: BaseColors): Tokens => {
   return generateTokensObject(baseColors);
 };
 
-export const handleExport = (tokens: Tokens) => {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tokens, null, 2));
+export const handleExport = (themeJson: string) => {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(themeJson);
   const downloadAnchorNode = document.createElement("a");
   downloadAnchorNode.setAttribute("href", dataStr);
   downloadAnchorNode.setAttribute("download", "halstack-theme-tokens.json");
