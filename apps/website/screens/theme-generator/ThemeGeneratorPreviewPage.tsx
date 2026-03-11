@@ -150,6 +150,15 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
     return null;
   }, [mode, selectedComponents, selectedExample]);
 
+  const processedLogos = useMemo(() => {
+    return {
+      mainLogo: logos.mainLogo?.[0]?.preview,
+      footerLogo: logos.footerLogo?.[0]?.preview,
+      footerReducedLogo: logos.footerReducedLogo?.[0]?.preview,
+      favicon: logos.favicon?.[0]?.preview,
+    };
+  }, [logos]);
+
   return (
     <DxcContainer width="100%" height="100%">
       <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
@@ -234,7 +243,7 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
                 />
               </DxcFlex>
               <PreviewAreaContainer>
-                <HalstackProvider opinionatedTheme={tokens}>
+                <HalstackProvider opinionatedTheme={{ tokens, logos: processedLogos }}>
                   <DxcFlex direction="column" gap="var(--spacing-gap-l)">
                     {displayedPreview}
                   </DxcFlex>
