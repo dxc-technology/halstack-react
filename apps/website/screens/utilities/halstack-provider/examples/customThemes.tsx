@@ -63,7 +63,8 @@ const code = `() => {
   };
 
   return (
-    <HalstackProvider opinionatedTheme={theme === "light" ? lightPalette : darkPalette}>
+    <HalstackProvider opinionatedTheme={theme === "light" ? 
+    {tokens: lightPalette} : {tokens: darkPalette}}>
       <DxcButton label="Toggle theme" onClick={toggleTheme} />
     </HalstackProvider>
   );
