@@ -133,7 +133,7 @@ export const defaultTranslatedComponentLabels = {
 
 export type TranslatedLabels = typeof defaultTranslatedComponentLabels;
 
-export const ThemedLogos = {
+export const DefaultThemedLogos = {
   mainLogo: undefined,
   footerLogo: undefined,
   footerReducedLogo: undefined,
