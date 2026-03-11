@@ -14,6 +14,7 @@ import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcHeader from "../header/Header";
 import DxcBadge from "../badge/Badge";
 import DxcButton from "../button/Button";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Footer",
@@ -421,6 +422,21 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="Reduced with custom logo" theme="light" level={4} />
       <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Themed footer" theme="light" level={4} />
+      <HalstackProvider
+        opinionatedTheme={{
+          logos: {
+            footerLogo: "https://picsum.photos/id/17/104/50",
+            footerReducedLogo: "https://picsum.photos/id/17/104/34",
+          },
+        }}
+      >
+        <DxcFooter />
+        <DxcFooter mode="reduced" />
+        <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
