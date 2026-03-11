@@ -3,6 +3,7 @@ import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
 import { userEvent, within } from "storybook/internal/test";
 import { useEffect } from "react";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Application Layout",
@@ -171,6 +172,51 @@ const Tooltip = () => (
   </DxcApplicationLayout>
 );
 
+const SidenavThemed = () => (
+  <HalstackProvider
+    opinionatedTheme={{
+      logos: {
+        mainLogo: "https://picsum.photos/id/16/100/50",
+        footerLogo: "https://picsum.photos/id/17/200/40",
+      },
+    }}
+  >
+    <DxcApplicationLayout sidenav={<DxcApplicationLayout.Sidenav navItems={items} />}>
+      <DxcApplicationLayout.Main>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  </HalstackProvider>
+);
+
+const HeaderThemed = () => (
+  <HalstackProvider
+    opinionatedTheme={{
+      logos: {
+        mainLogo: "https://picsum.photos/id/16/100/50",
+        footerLogo: "https://picsum.photos/id/17/200/40",
+        footerReducedLogo: "https://picsum.photos/id/10/200/40",
+      },
+    }}
+  >
+    <DxcApplicationLayout
+      header={<DxcApplicationLayout.Header />}
+      sidenav={<DxcApplicationLayout.Sidenav navItems={items} />}
+      footer={<DxcApplicationLayout.Footer mode="reduced" />}
+    >
+      <DxcApplicationLayout.Main>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  </HalstackProvider>
+);
+
 type Story = StoryObj<typeof DxcApplicationLayout>;
 
 export const DefaultApplicationLayout: Story = {
@@ -219,4 +265,12 @@ export const ApplicationLayoutTooltip: Story = {
       await userEvent.hover(collapseButton);
     }
   },
+};
+
+export const ApplicationLayoutSidenavThemed: Story = {
+  render: SidenavThemed,
+};
+
+export const ApplicationLayoutHeaderThemed: Story = {
+  render: HeaderThemed,
 };
