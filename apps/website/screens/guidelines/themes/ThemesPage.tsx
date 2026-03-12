@@ -1,7 +1,7 @@
 import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
-import { DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
 const sections = [
@@ -93,7 +93,9 @@ const sections = [
       <>
         <DxcParagraph>
           <Link href="/theme-generator/" passHref legacyBehavior>
-            <DxcLink>Theme Generator</DxcLink>
+            <DxcLink newWindow icon="Link">
+              Theme Generator
+            </DxcLink>
           </Link>{" "}
           helps you create Halstack themes without manual token configuration. Instead of defining dozens of values, you
           provide your core and semantic colors, and the tool generates a complete, ready-to-use token structure.
@@ -109,7 +111,9 @@ const sections = [
         <DxcParagraph>
           For more details about how the tool works, visit the{" "}
           <Link href="/theme-generator/user-guide/" passHref legacyBehavior>
-            <DxcLink>Theme Generator user guide</DxcLink>
+            <DxcLink newWindow icon="link">
+              Theme Generator user guide
+            </DxcLink>
           </Link>
           .
         </DxcParagraph>
@@ -123,6 +127,22 @@ const ThemesPage = () => (
     <PageHeading>
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
         <DxcHeading level={1} text="Themes" />
+        <DxcAlert
+          title="Theme generator"
+          closable={false}
+          message={{
+            text: (
+              <DxcParagraph>
+                You can start configuring your own themes using the{" "}
+                <Link href="/theme-generator/" passHref legacyBehavior>
+                  <DxcLink newWindow iconPosition="after" icon="arrow_right_alt">
+                    Theme Generator
+                  </DxcLink>
+                </Link>
+              </DxcParagraph>
+            ),
+          }}
+        />
       </DxcFlex>
     </PageHeading>
     <DxcQuickNavContainer sections={sections} startHeadingLevel={2} />
