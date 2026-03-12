@@ -3,7 +3,8 @@ import Image from "@/common/Image";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
 import { DxcContainer, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import step1 from "./images/Step_1.png";
-import step2 from "./images/Step_2.png";
+import step2Components from "./images/Step_2_components.png";
+import step2Layout from "./images/Step_2_layout.png";
 import step3 from "./images/Step_3.png";
 
 const sections = [
@@ -84,8 +85,8 @@ const sections = [
                   specific tokens—such as primary button colors or semantic alerts—behave in isolation. Use the
                   selection menu to pick the specific elements you want to inspect.
                 </DxcParagraph>
-                <Figure caption="Preview your theme by applying the generated tokens to actual components.">
-                  <Image src={step2} alt="Theme generator step 2 components" />
+                <Figure caption="Preview your theme by applying the generated tokens to real components.">
+                  <Image src={step2Components} alt="Theme generator step 2 components" />
                 </Figure>
               </>
             ),
@@ -100,7 +101,9 @@ const sections = [
                   better sense of the overall feel of your theme. You can switch between the available layouts to see
                   how your theme looks in each of them.
                 </DxcParagraph>
-                {/* TODO: add image of the layout preview mode. */}
+                <Figure caption="Preview your theme by applying the generated tokens to different layout examples.">
+                  <Image src={step2Layout} alt="Theme generator step 2 layout" />
+                </Figure>
               </>
             ),
           },
