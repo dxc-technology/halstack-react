@@ -27,14 +27,22 @@ c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.11
 
 describe("Chip component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
-    const { container } = render(<DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" />);
+    const { container } = render(<DxcChip prefix={iconSVG} label="Chip" />);
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+  it("Should not have basic accessibility issues when avatar is rendered", async () => {
+    const { container } = render(<DxcChip prefix={{ color: "primary" }} label="Chip" />);
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+  it("Should not have basic accessibility issues for dismissible mode", async () => {
+    const { container } = render(<DxcChip prefix={iconSVG} label="Chip" mode="dismissible" />);
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
-    const { container } = render(
-      <DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" disabled />
-    );
+    const { container } = render(<DxcChip prefix={iconSVG} label="Chip" disabled />);
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });

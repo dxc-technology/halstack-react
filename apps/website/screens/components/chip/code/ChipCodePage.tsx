@@ -2,19 +2,11 @@ import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
-import icons from "./examples/icons";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import avatar from "./examples/avatar";
 import Link from "next/link";
-
-const actionTypeString = `{
-  icon?: string | (React.ReactNode 
-    & React.SVGProps<SVGSVGElement>); 
-  onClick: () => void; 
-  title?: string;
-}`;
+import dismissible from "./examples/dismissible";
+import selectable from "./examples/selectable";
 
 const prefixTypeString = `| string 
 | SVG
@@ -26,7 +18,7 @@ const avatarPropsString = `{
     | 'error';
   icon?: string | SVG;
   imgSrc?: string;
-  label?: string;
+  profileName?: string;
 };`;
 
 const sections = [
@@ -43,19 +35,6 @@ const sections = [
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                action
-              </DxcFlex>
-            </td>
-            <td>
-              <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
-            </td>
-            <td>Action to be displayed on the right side of the chip after the label.</td>
-            <td>-</td>
-          </tr>
           <tr>
             <td>disabled</td>
             <td>
@@ -80,14 +59,31 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>margin</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                mode
+              </DxcFlex>
             </td>
             <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
+              <TableCode>"selectable" | "dismissible"</TableCode>
             </td>
+            <td>Determines the visual style and layout of the chip.</td>
+            <td>
+              <TableCode>"selectable"</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onClick
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>Function to be called when the chip is clicked or the dismiss action is triggered.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -120,6 +116,22 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                selected
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the component will be selected. If undefined, the component manages its own internal state
+              (uncontrolled mode). This property is only applicable when the mode is "selectable".
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
@@ -140,22 +152,14 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
+        title: "Selectable",
+        content: <Example example={selectable} defaultIsVisible />,
       },
       {
-        title: "Icons",
+        title: "Dismissible",
         content: (
           <>
-            <Example example={icons} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Avatar",
-        content: (
-          <>
-            <Example example={avatar} defaultIsVisible />
+            <Example example={dismissible} defaultIsVisible />
           </>
         ),
       },

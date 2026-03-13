@@ -16,8 +16,7 @@ const ChipPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Chip" />
           <DxcParagraph>
-            A chip is a compact, interactive UI element used to represent small pieces of information, actions, or
-            selections.
+            A chip is a compact element used to label, filter or represent pieces of information within an interface.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>

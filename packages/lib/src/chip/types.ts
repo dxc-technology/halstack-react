@@ -1,35 +1,14 @@
-import { Margin, SVG, Space } from "../common/utils";
+import { SVG } from "../common/utils";
 import AvatarProps from "../avatar/types";
 
-type Size = "small" | "medium" | "large";
 export type ChipAvatarType = {
   color: AvatarProps["color"];
   profileName?: AvatarProps["label"];
   imageSrc?: AvatarProps["imageSrc"];
   icon?: AvatarProps["icon"];
 };
-type Action = {
-  /**
-   * Icon to be placed in the action.
-   */
-  icon: string | SVG;
-  /**
-   * This function will be called when the user clicks the action.
-   */
-  onClick: () => void;
-  /**
-   * Text representing advisory information related
-   * to the button's action. Under the hood, this prop also serves
-   * as an accessible label for the component.
-   */
-  title?: string;
-};
 
 type Props = {
-  /**
-   * Action to be displayed on the right side of the chip after the label.
-   */
-  action?: Action;
   /**
    * If true, the component will be disabled.
    */
@@ -39,19 +18,24 @@ type Props = {
    */
   label: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+   * Determines the visual style and layout
+   * - "selectable": The default mode with full content and styling.
+   * - "dismissible": A reduced mode with minimal content and styling.
    */
-  margin?: Space | Margin;
+  mode?: "selectable" | "dismissible";
+  /**
+   * Function to be called when the chip is clicked or the dismiss action is triggered.
+   */
+  onClick?: () => void;
   /**
    * Element, path or avatar used as icon to be placed before the chip label.
    */
   prefix?: string | SVG | ChipAvatarType;
   /**
-   * Size of the component.
+   * If true, the component will be selected. This property is only applicable when the mode is "selectable".
+   * If undefined, the component manages its own internal state (uncontrolled mode).
    */
-  size?: Size;
-
+  selected?: boolean;
   /**
    * Value of the tabindex attribute.
    */

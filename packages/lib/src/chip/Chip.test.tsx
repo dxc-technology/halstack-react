@@ -16,16 +16,24 @@ describe("Chip component tests", () => {
     const avatar = getByRole("img", { hidden: true });
     expect(avatar).toBeTruthy();
   });
-  test("Chip doesn't render avatar when size is small", () => {
-    const { queryByRole } = render(<DxcChip label="Chip" prefix={{ color: "primary" }} size="small" />);
-    const avatar = queryByRole("img", { hidden: true });
-    expect(avatar).not.toBeTruthy();
+  test("Chip renders correctly in dismissible mode", () => {
+    const onClick = jest.fn();
+    const { getByText, getByRole } = render(<DxcChip label="Dismissible chip" mode="dismissible" onClick={onClick} />);
+    expect(getByText("Dismissible chip")).toBeTruthy();
+    expect(getByRole("button", { name: "Clear" })).toBeTruthy();
+  });
+  test("Calls correct function when clicking on Chip", () => {
+    const onClick = jest.fn();
+    const { getByText, getByRole } = render(<DxcChip label="Chip" onClick={onClick} />);
+    expect(getByText("Chip")).toBeTruthy();
+    fireEvent.click(getByRole("button"));
+    expect(onClick).toHaveBeenCalled();
   });
   test("Calls correct function when clicking on action icon", () => {
     const onClick = jest.fn();
-    const { getByText, getByRole } = render(<DxcChip label="Chip" action={{ icon: "nutrition", onClick: onClick }} />);
+    const { getByText, getByRole } = render(<DxcChip label="Chip" onClick={onClick} mode="dismissible" />);
     expect(getByText("Chip")).toBeTruthy();
-    fireEvent.click(getByRole("button"));
+    fireEvent.click(getByRole("button", { name: "Clear" }));
     expect(onClick).toHaveBeenCalled();
   });
 });
