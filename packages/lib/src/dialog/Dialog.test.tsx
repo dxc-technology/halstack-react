@@ -310,11 +310,7 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     userEvent.keyboard("{Enter}");
     expect(getAllByRole("dialog")[1]).toBeTruthy();
-    const dialog = getAllByRole("dialog")[0];
-    if (dialog != null) {
-      userEvent.click(dialog);
-    }
-    userEvent.tab();
+    userEvent.keyboard("{Escape}");
     userEvent.tab();
     userEvent.tab();
     userEvent.tab();
