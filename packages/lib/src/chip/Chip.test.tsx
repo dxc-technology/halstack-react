@@ -11,10 +11,24 @@ describe("Chip component tests", () => {
     const avatar = getByRole("img", { hidden: true });
     expect(avatar).toBeTruthy();
   });
+  test("Chip renders correctly with custom SVG prefix", () => {
+    const customSVG = (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" data-testid="custom-svg">
+        <path d="M10 10" />
+      </svg>
+    );
+    const { getByTestId } = render(<DxcChip label="Chip" prefix={customSVG} />);
+    expect(getByTestId("custom-svg")).toBeTruthy();
+  });
   test("Chip renders correctly with avatar", () => {
     const { getByRole } = render(<DxcChip label="Chip" prefix={{ color: "primary" }} />);
     const avatar = getByRole("img", { hidden: true });
     expect(avatar).toBeTruthy();
+  });
+  test("Chip doesn't render with avatar and without label", () => {
+    const { queryByRole } = render(<DxcChip prefix={{ color: "primary" }} />);
+    const avatar = queryByRole("img", { hidden: true });
+    expect(avatar).toBeNull();
   });
   test("Chip renders correctly in dismissible mode", () => {
     const onClick = jest.fn();
