@@ -146,6 +146,44 @@ const Chip = () => (
       </ExampleContainer>
     </DxcFlex>
 
+    <Title title="Only icon" theme="light" level={3} />
+    <Title title="Unselected" theme="light" level={4} />
+    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
+      <ExampleContainer>
+        <DxcChip prefix="home" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <DxcChip prefix="home" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <DxcChip prefix="home" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <DxcChip prefix="home" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <DxcChip prefix="home" disabled />
+      </ExampleContainer>
+    </DxcFlex>
+    <Title title="Selected" theme="light" level={4} />
+    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
+      <ExampleContainer>
+        <DxcChip prefix="home" selected />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <DxcChip prefix="home" selected />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <DxcChip prefix="home" selected />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <DxcChip prefix="home" selected />
+      </ExampleContainer>
+      <ExampleContainer>
+        <DxcChip prefix="home" selected disabled />
+      </ExampleContainer>
+    </DxcFlex>
+
     <Title title="Dismissible Chip" theme="light" level={2} />
     <Title title="With icon" theme="light" level={4} />
     <ExampleContainer>

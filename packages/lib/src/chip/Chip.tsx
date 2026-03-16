@@ -137,13 +137,17 @@ const renderPrefix = (prefix: string | SVG | ChipAvatarType | undefined, disable
 const DxcChip = ({
   disabled = false,
   label,
+  mode = "selectable",
   onClick,
   prefix,
   selected,
   tabIndex = 0,
-  mode = "selectable",
 }: ChipPropsType) => {
   const [innerSelected, setInnerSelected] = useState(false);
+
+  if (mode === "selectable" && isAvatarType(prefix) && !label) {
+    return null;
+  }
 
   const handleSelectableClick = () => {
     if (selected == null) {
@@ -157,6 +161,7 @@ const DxcChip = ({
   return (
     <Chip
       as={mode === "selectable" ? "button" : "div"}
+      aria-label={mode === "selectable" ? label || "Chip" : label}
       aria-pressed={mode === "selectable" ? isSelected : undefined}
       disabled={disabled}
       isAvatar={isAvatarType(prefix)}

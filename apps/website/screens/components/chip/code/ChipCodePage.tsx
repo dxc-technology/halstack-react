@@ -48,7 +48,6 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
                 label
               </DxcFlex>
             </td>
