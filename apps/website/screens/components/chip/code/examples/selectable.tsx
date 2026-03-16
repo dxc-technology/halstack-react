@@ -3,54 +3,54 @@ import { useState, useMemo } from "react";
 
 const code = `() => {
   const [selectedFilters, setSelectedFilters] = useState({
-    frontend: true,
-    backend: false,
-    database: false,
-    devops: false,
+    sports: true,
+    art: false,
+    music: false,
+    reading: false,
   });
 
   const filters = [
-    { key: "frontend", label: "Frontend", icon: "web" },
-    { key: "backend", label: "Backend", icon: "dns" },
-    { key: "database", label: "Database", icon: "storage" },
-    { key: "devops", label: "DevOps", icon: "settings" },
+    { key: "sports", label: "Sports", icon: "fitness_center" },
+    { key: "art", label: "Art", icon: "palette" },
+    { key: "music", label: "Music", icon: "music_note" },
+    { key: "reading", label: "Reading", icon: "menu_book" },
   ];
 
-  const allProjects = [
-    { id: 1, name: "E-commerce Website", category: "frontend", status: "Active", team: 5 },
-    { id: 2, name: "API Gateway", category: "backend", status: "Active", team: 3 },
-    { id: 3, name: "Mobile App UI", category: "frontend", status: "Planning", team: 4 },
-    { id: 4, name: "PostgreSQL Migration", category: "database", status: "Active", team: 2 },
-    { id: 5, name: "CI/CD Pipeline", category: "devops", status: "Completed", team: 3 },
-    { id: 6, name: "Dashboard React", category: "frontend", status: "Active", team: 6 },
-    { id: 7, name: "Microservices", category: "backend", status: "Planning", team: 8 },
-    { id: 8, name: "MongoDB Cluster", category: "database", status: "Active", team: 2 },
-    { id: 9, name: "Kubernetes Setup", category: "devops", status: "Active", team: 4 },
-    { id: 10, name: "REST API", category: "backend", status: "Completed", team: 3 },
+  const allActivities = [
+    { id: 1, name: "Morning Yoga", category: "sports", duration: "1h", participants: 12 },
+    { id: 2, name: "Watercolor Workshop", category: "art", duration: "2h", participants: 8 },
+    { id: 3, name: "Basketball Practice", category: "sports", duration: "1.5h", participants: 10 },
+    { id: 4, name: "Guitar Lessons", category: "music", duration: "1h", participants: 5 },
+    { id: 5, name: "Book Club Meeting", category: "reading", duration: "2h", participants: 15 },
+    { id: 6, name: "Swimming Session", category: "sports", duration: "1h", participants: 8 },
+    { id: 7, name: "Pottery Class", category: "art", duration: "2h", participants: 10 },
+    { id: 8, name: "Piano Recital", category: "music", duration: "1.5h", participants: 20 },
+    { id: 9, name: "Poetry Reading", category: "reading", duration: "1h", participants: 12 },
+    { id: 10, name: "Jazz Band Rehearsal", category: "music", duration: "2h", participants: 6 },
   ];
 
   const handleToggle = (key) => {
     setSelectedFilters((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const filteredProjects = useMemo(() => {
+  const filteredActivities = useMemo(() => {
     const activeFilters = Object.keys(selectedFilters).filter(key => selectedFilters[key]);
     if (activeFilters.length === 0) return [];
-    return allProjects.filter(project => activeFilters.includes(project.category));
+    return allActivities.filter(activity => activeFilters.includes(activity.category));
   }, [selectedFilters]);
 
   const columns = [
-    { displayValue: "Project Name" },
+    { displayValue: "Activity" },
     { displayValue: "Category" },
-    { displayValue: "Status" },
-    { displayValue: "Team Size" },
+    { displayValue: "Duration" },
+    { displayValue: "Participants" },
   ];
 
-  const rows = filteredProjects.map(project => [
-    project.name,
-    project.category.charAt(0).toUpperCase() + project.category.slice(1),
-    project.status,
-    project.team,
+  const rows = filteredActivities.map(activity => [
+    activity.name,
+    activity.category.charAt(0).toUpperCase() + activity.category.slice(1),
+    activity.duration,
+    activity.participants,
   ]);
 
   return (
@@ -88,7 +88,7 @@ const code = `() => {
             ) : (
               <tr>
                 <td colSpan={columns.length}>
-                  No projects found. Select at least one filter.
+                  No activities found. Select at least one category.
                 </td>
               </tr>
             )}
