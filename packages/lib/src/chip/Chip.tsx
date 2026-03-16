@@ -12,6 +12,7 @@ const Chip = styled.div<{
   mode: ChipPropsType["mode"];
   selected: ChipPropsType["selected"];
   isAvatar?: boolean;
+  type?: string;
 }>`
   height: var(--height-m);
   box-sizing: border-box;
@@ -161,6 +162,7 @@ const DxcChip = ({
   return (
     <Chip
       as={mode === "selectable" ? "button" : "div"}
+      type={mode === "selectable" ? "button" : undefined}
       aria-label={mode === "selectable" ? label || "Chip" : label}
       aria-pressed={mode === "selectable" ? isSelected : undefined}
       disabled={disabled}
