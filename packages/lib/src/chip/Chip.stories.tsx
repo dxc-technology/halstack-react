@@ -32,180 +32,217 @@ const smallIconSVG = (
 const Chip = () => (
   <>
     <Title title="Selectable Chip" theme="light" level={2} />
-    <Title title="With icon" theme="light" level={3} />
-    <Title title="Unselected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
+    <Title title="Unselected" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcFlex gap="var(--spacing-gap-m)">
         <DxcChip label="Chip" prefix={smallIconSVG} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
+        <DxcChip label="Chip" prefix={{ color: "primary" }} />
+        <DxcChip label="Chip" />
+        <DxcChip prefix="home" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcFlex gap="var(--spacing-gap-m)">
         <DxcChip label="Chip" prefix={smallIconSVG} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
+        <DxcChip label="Chip" prefix={{ color: "primary" }} />
+        <DxcChip label="Chip" />
+        <DxcChip prefix="home" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcFlex gap="var(--spacing-gap-m)">
         <DxcChip label="Chip" prefix={smallIconSVG} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
+        <DxcChip label="Chip" prefix={{ color: "primary" }} />
+        <DxcChip label="Chip" />
+        <DxcChip prefix="home" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
+      <DxcFlex gap="var(--spacing-gap-m)">
         <DxcChip label="Chip" prefix={smallIconSVG} />
-      </ExampleContainer>
-      <ExampleContainer>
+        <DxcChip label="Chip" prefix={{ color: "primary" }} />
+        <DxcChip label="Chip" />
+        <DxcChip prefix="home" />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <DxcFlex gap="var(--spacing-gap-m)">
         <DxcChip label="Chip" prefix={smallIconSVG} disabled />
-      </ExampleContainer>
-    </DxcFlex>
-    <Title title="Selected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip label="Chip" prefix={smallIconSVG} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip label="Chip" prefix={smallIconSVG} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip label="Chip" prefix={smallIconSVG} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip label="Chip" prefix={smallIconSVG} selected />
-      </ExampleContainer>
-      <ExampleContainer>
-        <DxcChip label="Chip" prefix={smallIconSVG} selected disabled />
-      </ExampleContainer>
-    </DxcFlex>
-
-    <Title title="With Avatar" theme="light" level={3} />
-    <Title title="Unselected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip label="Chip" prefix={{ color: "primary" }} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} />
-      </ExampleContainer>
-      <ExampleContainer>
         <DxcChip label="Chip" prefix={{ color: "primary" }} disabled />
-      </ExampleContainer>
-    </DxcFlex>
-    <Title title="Selected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
-      </ExampleContainer>
-      <ExampleContainer>
-        <DxcChip label="Chip" prefix={{ color: "primary" }} selected disabled />
-      </ExampleContainer>
-    </DxcFlex>
-
-    <Title title="Only label" theme="light" level={3} />
-    <Title title="Unselected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip label="Chip" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip label="Chip" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip label="Chip" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip label="Chip" />
-      </ExampleContainer>
-      <ExampleContainer>
         <DxcChip label="Chip" disabled />
-      </ExampleContainer>
-    </DxcFlex>
-    <Title title="Selected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip label="Chip" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip label="Chip" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip label="Chip" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip label="Chip" selected />
-      </ExampleContainer>
-      <ExampleContainer>
-        <DxcChip label="Chip" selected disabled />
-      </ExampleContainer>
-    </DxcFlex>
-
-    <Title title="Only icon" theme="light" level={3} />
-    <Title title="Unselected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
-        <DxcChip prefix="home" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
-        <DxcChip prefix="home" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
-        <DxcChip prefix="home" />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <DxcChip prefix="home" />
-      </ExampleContainer>
-      <ExampleContainer>
         <DxcChip prefix="home" disabled />
-      </ExampleContainer>
-    </DxcFlex>
-    <Title title="Selected" theme="light" level={4} />
-    <DxcFlex alignItems="center" gap="var(--spacing-gap-xxs)">
-      <ExampleContainer>
+      </DxcFlex>
+    </ExampleContainer>
+
+    <Title title="Selected" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="Chip" prefix={smallIconSVG} selected />
+        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
+        <DxcChip label="Chip" selected />
         <DxcChip prefix="home" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-hover">
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="Chip" prefix={smallIconSVG} selected />
+        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
+        <DxcChip label="Chip" selected />
         <DxcChip prefix="home" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="Chip" prefix={smallIconSVG} selected />
+        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
+        <DxcChip label="Chip" selected />
         <DxcChip prefix="home" selected />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="Chip" prefix={smallIconSVG} selected />
+        <DxcChip label="Chip" prefix={{ color: "primary" }} selected />
+        <DxcChip label="Chip" selected />
         <DxcChip prefix="home" selected />
-      </ExampleContainer>
-      <ExampleContainer>
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="Chip" prefix={smallIconSVG} selected disabled />
+        <DxcChip label="Chip" prefix={{ color: "primary" }} selected disabled />
+        <DxcChip label="Chip" selected disabled />
         <DxcChip prefix="home" selected disabled />
-      </ExampleContainer>
-    </DxcFlex>
+      </DxcFlex>
+    </ExampleContainer>
 
     <Title title="Dismissible Chip" theme="light" level={2} />
-    <Title title="With icon" theme="light" level={4} />
     <ExampleContainer>
-      <DxcChip
-        mode="dismissible"
-        label="Dismissible chip"
-        prefix={smallIconSVG}
-        onClick={() => console.log("Dismissible chip")}
-      />
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip
+          mode="dismissible"
+          label="Dismissible chip"
+          prefix={smallIconSVG}
+          onClick={() => console.log("Dismissible chip")}
+        />
+        <DxcChip
+          mode="dismissible"
+          label="Dismissible chip"
+          prefix={{ color: "primary" }}
+          onClick={() => console.log("Dismissible chip")}
+        />
+        <DxcChip mode="dismissible" label="Dismissible chip" onClick={() => console.log("Dismissible chip")} />
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="With avatar" theme="light" level={4} />
+
+    <Title title="With Ellipsis" theme="light" level={2} />
+    <Title title="Long content" theme="light" level={3} />
     <ExampleContainer>
-      <DxcChip
-        mode="dismissible"
-        label="Dismissible chip"
-        prefix={{ color: "primary" }}
-        onClick={() => console.log("Dismissible chip")}
-      />
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="This is a very long chip label that will be truncated with ellipsis" />
+        <DxcChip label="This is a very long chip label that will be truncated with ellipsis" prefix={smallIconSVG} />
+        <DxcChip
+          label="This is a very long chip label that will be truncated with ellipsis"
+          prefix={{ color: "primary" }}
+        />
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Only label" theme="light" level={4} />
     <ExampleContainer>
-      <DxcChip mode="dismissible" label="Dismissible chip" onClick={() => console.log("Dismissible chip")} />
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip label="This is a very long chip label that will be truncated with ellipsis" selected />
+        <DxcChip
+          label="This is a very long chip label that will be truncated with ellipsis"
+          prefix={smallIconSVG}
+          selected
+        />
+        <DxcChip
+          label="This is a very long chip label that will be truncated with ellipsis"
+          prefix={{ color: "primary" }}
+          selected
+        />
+      </DxcFlex>
+    </ExampleContainer>
+    <ExampleContainer>
+      <DxcFlex gap="var(--spacing-gap-m)">
+        <DxcChip
+          mode="dismissible"
+          label="This is a very long chip label that will be truncated with ellipsis"
+          onClick={() => console.log("Dismissible chip")}
+        />
+        <DxcChip
+          mode="dismissible"
+          label="This is a very long chip label that will be truncated with ellipsis"
+          prefix={smallIconSVG}
+          onClick={() => console.log("Dismissible chip")}
+        />
+        <DxcChip
+          mode="dismissible"
+          label="This is a very long chip label that will be truncated with ellipsis"
+          prefix={{ color: "primary" }}
+          onClick={() => console.log("Dismissible chip")}
+        />
+      </DxcFlex>
+    </ExampleContainer>
+
+    <Title title="Constrained by parent container" theme="light" level={3} />
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" prefix={smallIconSVG} />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" prefix={{ color: "primary" }} />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" selected />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" prefix={smallIconSVG} selected />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip label="Chip label constrained by parent" prefix={{ color: "primary" }} selected />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          mode="dismissible"
+          label="Chip label constrained by parent"
+          onClick={() => console.log("Dismissible chip")}
+        />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          mode="dismissible"
+          label="Chip label constrained by parent"
+          prefix={smallIconSVG}
+          onClick={() => console.log("Dismissible chip")}
+        />
+      </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          mode="dismissible"
+          label="Chip label constrained by parent"
+          prefix={{ color: "primary" }}
+          onClick={() => console.log("Dismissible chip")}
+        />
+      </div>
     </ExampleContainer>
   </>
 );

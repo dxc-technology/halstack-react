@@ -10,10 +10,6 @@ export type ChipAvatarType = {
 
 type CommonProps = {
   /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
-  /**
    * Function to be called when the chip is clicked or the dismiss action is triggered.
    */
   onClick?: () => void;
@@ -24,6 +20,10 @@ type CommonProps = {
 };
 
 type SelectableChipProps = CommonProps & {
+  /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
   /**
    * The whole chip is an interactive element that allows users to activate or clear options directly within the interface.
    */
@@ -77,6 +77,7 @@ type DismissibleChipProps = CommonProps & {
    */
   prefix?: string | SVG | ChipAvatarType;
   selected?: never;
+  disabled?: never;
 };
 
 type Props = SelectableChipProps | DismissibleChipProps;

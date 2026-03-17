@@ -5,7 +5,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
 import { isValidElement, ReactNode, useState } from "react";
 import { SVG } from "../common/utils";
-import { css } from "@emotion/react";
+import { getChipStyles } from "./utils";
 
 const Chip = styled.div<{
   disabled: ChipPropsType["disabled"];
@@ -18,7 +18,6 @@ const Chip = styled.div<{
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: var(--spacing-gap-xxs);
   padding: ${({ isAvatar }) =>
     isAvatar
@@ -28,53 +27,8 @@ const Chip = styled.div<{
   border-radius: var(--border-radius-xl);
   border-width: var(--border-width-s);
   border-style: var(--border-style-default);
-  border-color: ${({ mode }) =>
-    mode === "selectable" ? "var(--border-color-primary-stronger)" : "var(--border-color-neutral-lighter)"};
-  background-color: ${({ selected }) =>
-    selected ? "var(--color-bg-primary-strong)" : "var(--color-bg-neutral-lightest)"};
-  color: ${({ mode, selected }) =>
-    mode === "dismissible"
-      ? "var(--color-fg-neutral-strongest)"
-      : selected
-        ? "var(--color-fg-neutral-bright)"
-        : "var(--color-fg-primary-strongest)"};
-  fill: currentColor;
 
-  ${({ mode, selected }) =>
-    mode === "selectable" &&
-    css`
-      &:hover {
-        background-color: ${selected ? "var(--color-bg-primary-strongest)" : "var(--color-bg-primary-strong)"};
-        border-color: transparent;
-        color: var(--color-fg-neutral-bright);
-      }
-
-      &:focus {
-        border-color: transparent;
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      }
-
-      &:active {
-        background-color: var(--color-bg-primary-strongest);
-        border-color: transparent;
-        color: var(--color-fg-neutral-bright);
-
-        ${selected
-          ? css`
-              outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-            `
-          : css`
-              outline-width: var(--border-width-none);
-            `}
-      }
-
-      &:disabled {
-        color: var(--color-fg-neutral-medium);
-        background-color: var(--color-bg-neutral-lighter);
-        border-color: var(--border-color-neutral-medium);
-        cursor: not-allowed;
-      }
-    `}
+  ${({ mode, selected }) => getChipStyles(mode, selected)}
 `;
 
 const ContentWrapper = styled.div`
@@ -100,7 +54,7 @@ const IconContainer = styled.div`
   font-size: var(--height-xxs);
   svg {
     height: var(--height-xxs);
-    width: var(--height-xxs);
+    width: 100%;
   }
 `;
 
@@ -109,8 +63,6 @@ const isAvatarType = (value: string | SVG | ChipAvatarType | undefined): value i
 };
 
 const renderPrefix = (prefix: string | SVG | ChipAvatarType | undefined, disabled: boolean): ReactNode | undefined => {
-  if (!prefix) return undefined;
-
   if (typeof prefix === "string") {
     return (
       <IconContainer>
@@ -173,7 +125,7 @@ const DxcChip = ({
       mode={mode}
     >
       <ContentWrapper>
-        {renderPrefix(prefix, disabled)}
+        {prefix && renderPrefix(prefix, disabled)}
         {label && <LabelContainer>{label}</LabelContainer>}
       </ContentWrapper>
 

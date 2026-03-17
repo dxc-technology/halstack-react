@@ -46,15 +46,14 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                label
-              </DxcFlex>
-            </td>
+            <td>label</td>
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Text to be placed on the chip.</td>
+            <td>
+              Text to be placed on the chip. When using an avatar as prefix, the label is required to ensure proper
+              accessibility.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -138,7 +137,7 @@ const sections = [
             </td>
             <td>
               If true, the component will be selected. If undefined, the component manages its own internal state
-              (uncontrolled mode). This property is only applicable when the mode is "selectable".
+              (uncontrolled mode). This property is only applicable when the mode is <Code>"selectable"</Code>.
             </td>
             <td>-</td>
           </tr>
@@ -148,8 +147,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> attribute applied to both the component and the prefix and suffix icons
-              when a function is given.
+              Value of the <Code>tabindex</Code> attribute applied to the component when mode is{" "}
+              <Code>"selectable"</Code> and clear icon when mode is <Code>"dismissible"</Code>. when a function is
+              given.
             </td>
             <td>
               <TableCode>0</TableCode>

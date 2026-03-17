@@ -13,12 +13,12 @@ describe("Chip component tests", () => {
   });
   test("Chip renders correctly with custom SVG prefix", () => {
     const customSVG = (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" data-testid="custom-svg">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path d="M10 10" />
       </svg>
     );
-    const { getByTestId } = render(<DxcChip label="Chip" prefix={customSVG} />);
-    expect(getByTestId("custom-svg")).toBeTruthy();
+    const { getByRole } = render(<DxcChip label="Chip" prefix={customSVG} />);
+    expect(getByRole("img")).toBeTruthy();
   });
   test("Chip renders correctly with avatar", () => {
     const { getByRole } = render(<DxcChip label="Chip" prefix={{ color: "primary" }} />);
@@ -38,16 +38,50 @@ describe("Chip component tests", () => {
   });
   test("Calls correct function when clicking on Chip", () => {
     const onClick = jest.fn();
-    const { getByText, getByRole } = render(<DxcChip label="Chip" onClick={onClick} />);
-    expect(getByText("Chip")).toBeTruthy();
-    fireEvent.click(getByRole("button"));
+    const { getByText } = render(<DxcChip label="Chip" onClick={onClick} />);
+    const chip = getByText("Chip");
+    expect(chip).toBeTruthy();
+    fireEvent.click(chip);
     expect(onClick).toHaveBeenCalled();
   });
   test("Calls correct function when clicking on action icon", () => {
     const onClick = jest.fn();
     const { getByText, getByRole } = render(<DxcChip label="Chip" onClick={onClick} mode="dismissible" />);
-    expect(getByText("Chip")).toBeTruthy();
+    const chipText = getByText("Chip");
+    expect(chipText).toBeTruthy();
+    fireEvent.click(chipText);
+    expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(getByRole("button", { name: "Clear" }));
     expect(onClick).toHaveBeenCalled();
+  });
+  test("Selectable chip has correct aria-pressed when not selected", () => {
+    const { getByRole } = render(<DxcChip label="Test Chip" mode="selectable" />);
+    const chip = getByRole("button", { name: "Test Chip" });
+    expect(chip.getAttribute("aria-pressed")).toBe("false");
+  });
+  test("Selectable chip has correct aria-pressed when selected", () => {
+    const { getByRole } = render(<DxcChip label="Test Chip" mode="selectable" selected={true} />);
+    const chip = getByRole("button", { name: "Test Chip" });
+    expect(chip.getAttribute("aria-pressed")).toBe("true");
+  });
+  test("Selectable chip has correct aria-label", () => {
+    const { getByRole } = render(<DxcChip label="My Chip" mode="selectable" />);
+    const chip = getByRole("button", { name: "My Chip" });
+    expect(chip.getAttribute("aria-label")).toBe("My Chip");
+  });
+  test("Selectable chip without label has default aria-label", () => {
+    const { getByRole } = render(<DxcChip mode="selectable" prefix="home" />);
+    const chip = getByRole("button", { name: "Chip" });
+    expect(chip.getAttribute("aria-label")).toBe("Chip");
+  });
+  test("Dismissible chip does not have aria-pressed", () => {
+    const { getByText } = render(<DxcChip label="Dismissible Chip" mode="dismissible" />);
+    const chip = getByText("Dismissible Chip").parentElement?.parentElement;
+    expect(chip?.getAttribute("aria-pressed")).toBeNull();
+  });
+  test("Dismissible chip has correct aria-label", () => {
+    const { getByText } = render(<DxcChip label="Dismissible Chip" mode="dismissible" />);
+    const chip = getByText("Dismissible Chip").parentElement?.parentElement;
+    expect(chip?.getAttribute("aria-label")).toBe("Dismissible Chip");
   });
 });
