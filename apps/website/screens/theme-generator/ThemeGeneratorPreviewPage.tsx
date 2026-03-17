@@ -9,7 +9,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import { ReactNode, SVGProps, useMemo, useState } from "react";
 import componentsList from "../common/componentsList.json";
-import { componentsRegistry, examplesRegistry } from "screens/utilities/theme-generator/componentsRegistry";
+import { componentsRegistry, examplesRegistry } from "screens/theme-generator/componentsRegistry";
 import styled from "@emotion/styled";
 import { ComponentItem, Logos } from "./types";
 
