@@ -51,8 +51,8 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Text to be placed on the chip. When using an avatar as prefix, the label is required to ensure proper
-              accessibility.
+              Text to be placed on the chip. When using an avatar as prefix or when mode is <Code>"dismissible"</Code>,
+              the label is required to ensure proper accessibility.
             </td>
             <td>-</td>
           </tr>
@@ -148,8 +148,7 @@ const sections = [
             </td>
             <td>
               Value of the <Code>tabindex</Code> attribute applied to the component when mode is{" "}
-              <Code>"selectable"</Code> and clear icon when mode is <Code>"dismissible"</Code>. when a function is
-              given.
+              <Code>"selectable"</Code> and clear icon when mode is <Code>"dismissible"</Code>.
             </td>
             <td>
               <TableCode>0</TableCode>

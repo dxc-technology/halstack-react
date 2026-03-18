@@ -14,6 +14,7 @@ const Chip = styled.div<{
   isAvatar?: boolean;
   type?: string;
 }>`
+  max-width: min(100%, 320px);
   height: var(--height-m);
   box-sizing: border-box;
   display: inline-flex;
@@ -31,8 +32,8 @@ const Chip = styled.div<{
   ${({ mode, selected }) => getChipStyles(mode, selected)}
 `;
 
-const ContentWrapper = styled.div`
-  max-width: 320px;
+const ContentWrapper = styled.div<{ mode: ChipPropsType["mode"] }>`
+  max-width: ${({ mode }) => (mode === "dismissible" ? "calc(100% - var(--spacing-gap-xxs) - 24px)" : "100%")};
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-gap-xs);
@@ -54,7 +55,6 @@ const IconContainer = styled.div`
   font-size: var(--height-xxs);
   svg {
     height: var(--height-xxs);
-    width: 100%;
   }
 `;
 
@@ -121,10 +121,10 @@ const DxcChip = ({
       isAvatar={isAvatarType(prefix)}
       onClick={mode === "selectable" && !disabled ? handleSelectableClick : undefined}
       selected={isSelected}
-      tabIndex={!disabled ? tabIndex : -1}
+      tabIndex={mode === "selectable" && !disabled ? tabIndex : -1}
       mode={mode}
     >
-      <ContentWrapper>
+      <ContentWrapper mode={mode}>
         {prefix && renderPrefix(prefix, disabled)}
         {label && <LabelContainer>{label}</LabelContainer>}
       </ContentWrapper>
