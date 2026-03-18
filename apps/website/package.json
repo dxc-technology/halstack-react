@@ -8,6 +8,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.0.0",
     "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
     "@emotion/cache": "^11.14.0",
@@ -16,7 +17,7 @@
     "@emotion/styled": "^11.14.1",
     "@radix-ui/react-popover": "^1.0.7",
     "cross-env": "^7.0.3",
-    "next": "^16.1.5",
+    "next": "^16.1.7",
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-color": "^2.19.3",

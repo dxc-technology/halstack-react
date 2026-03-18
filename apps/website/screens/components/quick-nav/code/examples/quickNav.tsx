@@ -6,7 +6,7 @@ const code = `() => {
       label: "Overview",
     },
     {
-      label: "Principles",
+      label: "Foundations",
       links: [
         { label: "Color" },
         { label: "Spacing" },

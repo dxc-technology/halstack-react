@@ -88,7 +88,7 @@ const sections = [
     title: "What's next?",
     content: (
       <DxcParagraph>
-        Before you continue developing your project with Halstack, we encourage you to read our principles. This will
+        Before you continue developing your project with Halstack, we encourage you to read our guidelines. This will
         help you understand the design foundations behind the components and how to use them effectively.
       </DxcParagraph>
     ),
