@@ -330,7 +330,7 @@
       {
         "label": "Chip",
         "path": "/components/chip",
-        "status": "stable",
+        "status": "experimental",
         "icon": "toggle_off"
       },
       {
