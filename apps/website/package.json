@@ -38,5 +38,8 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.8",
     "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "mout": "1.2.4"
   }
 }

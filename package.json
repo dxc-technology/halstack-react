@@ -33,5 +33,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "overrides": {
+    "mout": "1.2.4"
+  }
 }
+
