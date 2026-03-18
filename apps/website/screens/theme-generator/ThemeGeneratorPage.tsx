@@ -11,8 +11,8 @@ import {
 import Link from "next/link";
 import LandingCards from "./components/LandingCards";
 import LandingSteps from "./components/LandingSteps";
-import landingImage from "../images/theme-generator-landing-bg.png";
-import landingImageFlipped from "../images/theme-generator-landing-bg-flipped.png";
+import landingImage from "./images/theme-generator-landing-bg.png";
+import landingImageFlipped from "./images/theme-generator-landing-bg-flipped.png";
 
 const steps = [
   {
