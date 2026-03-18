@@ -36,9 +36,10 @@ const utilitiesLinks: LinkDetails[] = [
   },
 ];
 
-const principlesLinks: LinkDetails[] = [
-  { label: "Data visualization", path: "/principles/data-visualization", icon: "insert_chart" },
-  { label: "Localization", path: "/principles/localization", icon: "language" },
+const guidelinesLinks: LinkDetails[] = [
+  { label: "Data visualization", path: "/guidelines/data-visualization", icon: "insert_chart" },
+  { label: "Localization", path: "/guidelines/localization", icon: "language" },
+  { label: "Themes", path: "/guidelines/themes", icon: "colors" },
 ];
 
 const tokensLinks: LinkDetails[] = [
@@ -70,7 +71,7 @@ const componentsLinks = componentsList as (LinkDetails | LinksSectionDetails)[];
 
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },
-  { label: "Principles", links: principlesLinks },
+  { label: "Guidelines", links: guidelinesLinks },
   { label: "Foundations", links: foundationsLinks },
   { label: "Migration", links: migrationLinks },
   { label: "Utilities", links: utilitiesLinks },

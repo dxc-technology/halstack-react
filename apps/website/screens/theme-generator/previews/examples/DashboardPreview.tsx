@@ -1,0 +1,306 @@
+import React from "react";
+import {
+  DxcContainer,
+  DxcFlex,
+  DxcTypography,
+  DxcHeading,
+  DxcInset,
+  DxcSpinner,
+  DxcDivider,
+  DxcButton,
+  DxcApplicationLayout,
+} from "@dxc-technology/halstack-react";
+import { Logos } from "screens/theme-generator/types";
+
+const DashboardPreview = ({ logos }: { logos: Logos }) => {
+  return (
+    <DxcApplicationLayout
+      logo={logos.mainLogo && logos.mainLogo[0] ? { src: logos.mainLogo[0].preview!, alt: "Main logo" } : undefined}
+      sidenav={
+        <DxcApplicationLayout.Sidenav
+          navItems={[
+            {
+              label: "Sidenav Content",
+              icon: "tab",
+              selected: true,
+            },
+            {
+              label: "Sidenav Content",
+              icon: "capture",
+            },
+            {
+              label: "Sidenav Content",
+              icon: "folder",
+            },
+            {
+              label: "Sidenav Content",
+              icon: "picture_in_picture_mobile",
+            },
+            {
+              label: "Sidenav Content",
+              icon: "picture_as_pdf",
+            },
+          ]}
+        />
+      }
+    >
+      <DxcApplicationLayout.Main>
+        <DxcInset space="var(--spacing-padding-m)">
+          <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+            <DxcFlex gap="var(--spacing-gap-ml)">
+              <DxcContainer
+                width="50%"
+                background={{ color: "var(--border-color-neutral-brighter)" }}
+                height="430px"
+                borderRadius="var(--border-radius-s)"
+                boxShadow="var(--shadow-200)"
+              >
+                <DxcInset space="var(--spacing-padding-xs)">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xl)" alignItems="center">
+                    <DxcContainer width="100%">
+                      <DxcFlex justifyContent="space-between">
+                        <DxcHeading text={"Availability"} level={3} />
+                        <DxcButton mode="tertiary" icon="open_in_new" />
+                      </DxcFlex>
+                    </DxcContainer>
+                    <DxcSpinner value={70} showValue />
+                    <DxcTypography
+                      fontSize="var(--font-size-xs)"
+                      color="var(--text-color-neutral)"
+                      fontWeight="var(--font-weight-semibold)"
+                    >
+                      Uptime over the last 24 hours
+                    </DxcTypography>
+                  </DxcFlex>
+                  <DxcInset horizontal="var(--spacing-padding-xl)">
+                    <DxcInset top="var(--spacing-padding-xl)">
+                      <DxcDivider orientation="horizontal" color="mediumGrey" />
+                    </DxcInset>
+                    <DxcInset space="var(--spacing-padding-xs)" top="var(--spacing-padding-xl)">
+                      <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)" alignSelf="stretch">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-semibold)"
+                          color="#37A526"
+                        >
+                          0
+                        </DxcTypography>
+                        <DxcTypography
+                          fontSize="var(--font-size-xs)"
+                          fontWeight="var(--font-weight-semibold)"
+                          color="var(--text-color-neutral)"
+                        >
+                          Detected outages in the last 24 hours
+                        </DxcTypography>
+                      </DxcFlex>
+                    </DxcInset>
+                  </DxcInset>
+                </DxcInset>
+              </DxcContainer>
+
+              <DxcContainer
+                width="50%"
+                background={{ color: "var(--border-color-neutral-brighter)" }}
+                height="430px"
+                borderRadius="var(--border-radius-s)"
+                boxShadow="var(--shadow-200)"
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DxcFlex direction="column" gap="var(--spacing-gap-xl)" alignItems="center">
+                    <DxcFlex justifyContent="space-between">
+                      <DxcHeading text={"Performance"} level={3} />
+                      <DxcButton mode="tertiary" icon="open_in_new" />
+                    </DxcFlex>
+
+                    <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-l)">
+                      <DxcTypography
+                        fontSize="var(--font-size-48)"
+                        fontWeight="var(--font-weight-bold)"
+                        color="#D06C18"
+                      >
+                        N/A
+                      </DxcTypography>
+                      <DxcTypography fontSize="var(--font-size-xs)" color="var(--text-color-neutral)">
+                        95th pctl. response time
+                      </DxcTypography>
+                    </DxcFlex>
+                    <DxcContainer width="100%">
+                      <DxcInset top="var(--spacing-padding-xl)">
+                        <DxcFlex justifyContent="space-around" gap="var(--spacing-gap-l)">
+                          <DxcFlex direction="column" alignItems="center">
+                            <DxcTypography
+                              fontSize="var(--font-size-24)"
+                              fontWeight="var(--font-weight-bold)"
+                              color="#D06C18"
+                            >
+                              N/A
+                            </DxcTypography>
+                            <DxcTypography fontSize="var(--font-size-xs)">Avg actions per session</DxcTypography>
+                          </DxcFlex>
+                          <DxcFlex direction="column" alignItems="center">
+                            <DxcTypography
+                              fontSize="var(--font-size-24)"
+                              fontWeight="var(--font-weight-bold)"
+                              color="#D06C18"
+                            >
+                              N/A
+                            </DxcTypography>
+                            <DxcTypography fontSize="var(--font-size-xs)">Bounce rate</DxcTypography>
+                          </DxcFlex>
+                          <DxcFlex direction="column" alignItems="center">
+                            <DxcTypography
+                              fontSize="var(--font-size-24)"
+                              fontWeight="var(--font-weight-bold)"
+                              color="#D06C18"
+                            >
+                              N/A
+                            </DxcTypography>
+                            <DxcTypography fontSize="var(--font-size-xs)">User sessions</DxcTypography>
+                          </DxcFlex>
+                        </DxcFlex>
+                      </DxcInset>
+                    </DxcContainer>
+                  </DxcFlex>
+                </div>
+              </DxcContainer>
+            </DxcFlex>
+
+            <DxcFlex gap="var(--spacing-gap-ml)" justifyContent="center">
+              <DxcContainer
+                width="32%"
+                background={{ color: "var(--border-color-neutral-brighter)" }}
+                height="200px"
+                borderRadius="var(--border-radius-s)"
+                boxShadow="var(--shadow-200)"
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                    <DxcFlex justifyContent="center" gap="var(--spacing-gap-ml)">
+                      <DxcHeading text={"Access management"} level={3} />
+                      <DxcButton mode="tertiary" icon="open_in_new" />
+                    </DxcFlex>
+                    <DxcFlex justifyContent="space-around" gap="var(--spacing-gap-l)">
+                      <DxcFlex direction="column" alignItems="center">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-bold)"
+                          color="#37A526"
+                        >
+                          3
+                        </DxcTypography>
+                        <DxcTypography fontSize="var(--font-size-xs)">Total users</DxcTypography>
+                      </DxcFlex>
+                      <DxcFlex direction="column" alignItems="center">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-bold)"
+                          color="var(--text-color-neutral)"
+                        >
+                          0
+                        </DxcTypography>
+                        <DxcTypography fontSize="var(--font-size-xs)">MFA enrollments</DxcTypography>
+                      </DxcFlex>
+                      <DxcFlex direction="column" alignItems="center">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-bold)"
+                          color="var(--text-color-neutral)"
+                        >
+                          0
+                        </DxcTypography>
+                        <DxcTypography fontSize="var(--font-size-xs)">Login success</DxcTypography>
+                      </DxcFlex>
+                    </DxcFlex>
+                  </DxcFlex>
+                </div>
+              </DxcContainer>
+
+              <DxcContainer
+                width="32%"
+                background={{ color: "var(--border-color-neutral-brighter)" }}
+                height="200px"
+                borderRadius="var(--border-radius-s)"
+                boxShadow="var(--shadow-200)"
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DxcFlex direction="column" gap="var(--spacing-gap-m)">
+                    <DxcFlex justifyContent="center" gap="var(--spacing-gap-ml)">
+                      <DxcHeading text={"API"} level={3} />
+                      <DxcButton mode="tertiary" icon="open_in_new" />
+                    </DxcFlex>
+                    <DxcFlex justifyContent="space-around" gap="var(--spacing-gap-l)">
+                      <DxcFlex direction="column" alignItems="center">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-bold)"
+                          color="var(--text-color-neutral)"
+                        >
+                          N/A
+                        </DxcTypography>
+                        <DxcTypography fontSize="var(--font-size-xs)">Secure API calls</DxcTypography>
+                      </DxcFlex>
+                      <DxcFlex direction="column" alignItems="center">
+                        <DxcTypography
+                          fontSize="var(--font-size-24)"
+                          fontWeight="var(--font-weight-bold)"
+                          color="var(--text-color-neutral)"
+                        >
+                          N/A
+                        </DxcTypography>
+                        <DxcTypography fontSize="var(--font-size-xs)">API calls failed</DxcTypography>
+                      </DxcFlex>
+                    </DxcFlex>
+                  </DxcFlex>
+                </div>
+              </DxcContainer>
+
+              <DxcContainer
+                width="32%"
+                background={{ color: "var(--border-color-neutral-brighter)" }}
+                height="430px"
+                borderRadius="var(--border-radius-s)"
+                boxShadow="var(--shadow-200)"
+              >
+                <DxcInset space="var(--spacing-padding-xs)">
+                  <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
+                    <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+                      <DxcHeading text={"Insights"} level={3} />
+                    </DxcFlex>
+                    <DxcTypography fontSize="var(--font-size-xs)">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas veritatis ipsa tenetur ut fugiat
+                      ratione similique facere, vitae hic, impedit amet quasi dolore velit odit officia. Incidunt
+                      corporis sit rem.
+                    </DxcTypography>
+                  </DxcFlex>
+                </DxcInset>
+              </DxcContainer>
+            </DxcFlex>
+          </DxcFlex>
+        </DxcInset>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  );
+};
+
+export default DashboardPreview;

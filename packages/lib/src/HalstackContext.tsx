@@ -2,7 +2,7 @@ import { createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
-import { ThemedLogos, TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
+import { defaultThemedLogos, TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
 
 /**
  * This type is used to allow labels objects to be passed to the HalstackProvider.
@@ -12,7 +12,7 @@ export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
 const HalstackLanguageContext = createContext<TranslatedLabels>(defaultTranslatedComponentLabels);
-const HalstackLogosContext = createContext<Record<string, string | undefined>>(ThemedLogos);
+const HalstackLogosContext = createContext<Record<string, string | undefined>>(defaultThemedLogos);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = defaultTranslatedComponentLabels;
@@ -78,7 +78,7 @@ const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProvid
 
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
-      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? ThemedLogos}>
+      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? defaultThemedLogos}>
         {parsedLabels ? (
           <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
         ) : (
