@@ -1,18 +1,6 @@
-import "@testing-library/jest-dom/jest-globals";
-import React from "react";
+import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, jest } from "@jest/globals";
 import BottomButtons from "../../screens/theme-generator/components/BottomButtons";
-
-jest.mock("@dxc-technology/halstack-react", () => ({
-  DxcContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DxcFlex: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DxcButton: ({ label, onClick, disabled }: { label: string; onClick?: () => void; disabled?: boolean }) => (
-    <button type="button" onClick={onClick} disabled={disabled}>
-      {label}
-    </button>
-  ),
-}));
 
 describe("BottomButtons", () => {
   it("shows Back disabled and Next enabled on first step", () => {

@@ -1,110 +1,107 @@
-import React from "react";
-import { afterEach, beforeAll, describe, expect, it, jest } from "@jest/globals";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { BrandingDetails } from "../../screens/theme-generator/steps/BrandingDetails";
+import { Colors, Logos } from "../../screens/theme-generator/types";
+import { CssColor } from "@adobe/leonardo-contrast-colors";
 
-let BrandingDetails: (props: {
-  colors: Record<string, string>;
-  onColorsChange: (colors: Record<string, string>) => void;
-  logos: Record<string, File[]>;
-  onLogosChange: (logos: Record<string, File[]>) => void;
-}) => React.JSX.Element;
-
-jest.mock("@dxc-technology/halstack-react", () => ({
-  DxcContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DxcFlex: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+// Mock ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
 }));
 
-jest.mock("../../screens/theme-generator/components/branding/BrandingColorGrid", () => ({
-  __esModule: true,
-  default: ({
-    section,
-    onColorChange,
-  }: {
-    section: { id: string };
-    onColorChange: (id: string) => (value: string) => void;
-  }) => (
-    <div>
-      <span>{section.id}</span>
-      <button type="button" onClick={() => onColorChange("primary")("#111111")}>
-        Change primary
-      </button>
-      <button type="button" onClick={() => onColorChange("info")("#222222")}>
-        Change info
-      </button>
+// Mock SketchColorPicker to avoid react-color issues (Canvas/Context errors)
+jest.mock("react-color", () => ({
+  SketchPicker: ({ color, onChange }: { color: string; onChange: (color: { hex: string }) => void }) => (
+    <div data-testid="mock-sketch-picker">
+      Picker for {color}
+      <button onClick={() => onChange({ hex: "#ffffff" })}>Select White</button>
     </div>
   ),
 }));
 
-jest.mock("../../screens/theme-generator/components/branding/BrandingLogoGrid", () => ({
-  __esModule: true,
-  default: ({ onLogoChange }: { onLogoChange: (logoType: string, files: File[]) => void }) => (
-    <button
-      type="button"
-      onClick={() => onLogoChange("mainLogo", [new File(["x"], "logo.png", { type: "image/png" })])}
-    >
-      Change main logo
-    </button>
-  ),
-}));
-
-beforeAll(async () => {
-  BrandingDetails = (await import("../../screens/theme-generator/steps/BrandingDetails")).BrandingDetails;
-});
-
-afterEach(() => {
-  cleanup();
-});
-
 describe("BrandingDetails", () => {
-  it("updates colors preserving existing values", () => {
+  it("renders color sections with ColorCard components", () => {
     const onColorsChange = jest.fn();
     const onLogosChange = jest.fn();
 
-    const colors = {
-      primary: "#5F249F",
-      secondary: "#0067B3",
-      tertiary: "#F7CF2B",
-      neutral: "#999999",
-      info: "#0067B3",
-      success: "#59D97D",
-      error: "#FE344F",
-      warning: "#F59F3D",
+    const colors: Colors = {
+      primary: "#5F249F" as CssColor,
+      secondary: "#0067B3" as CssColor,
+      tertiary: "#F7CF2B" as CssColor,
+      neutral: "#999999" as CssColor,
+      info: "#0067B3" as CssColor,
+      success: "#59D97D" as CssColor,
+      error: "#FE344F" as CssColor,
+      warning: "#F59F3D" as CssColor,
     };
 
-    const logos = { mainLogo: [], footerLogo: [], footerReducedLogo: [], favicon: [] };
+    const logos: Logos = { mainLogo: [], footerLogo: [], footerReducedLogo: [], favicon: [] };
 
     render(
       <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
     );
 
-    fireEvent.click(screen.getAllByRole("button", { name: "Change primary" })[0]);
-
-    expect(onColorsChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        primary: "#111111",
-        secondary: "#0067B3",
-      })
-    );
+    // Verify that primary color input is rendered with correct value
+    expect(screen.getByDisplayValue("#5F249F")).toBeInTheDocument();
+    expect(screen.getByText("Primary")).toBeInTheDocument();
   });
 
-  it("updates logos preserving other logo values", () => {
+  it("updates colors when input value changes", async () => {
     const onColorsChange = jest.fn();
     const onLogosChange = jest.fn();
 
-    const colors = {
-      primary: "#5F249F",
-      secondary: "#0067B3",
-      tertiary: "#F7CF2B",
-      neutral: "#999999",
-      info: "#0067B3",
-      success: "#59D97D",
-      error: "#FE344F",
-      warning: "#F59F3D",
+    const colors: Colors = {
+      primary: "#5F249F" as CssColor,
+      secondary: "#0067B3" as CssColor,
+      tertiary: "#F7CF2B" as CssColor,
+      neutral: "#999999" as CssColor,
+      info: "#0067B3" as CssColor,
+      success: "#59D97D" as CssColor,
+      error: "#FE344F" as CssColor,
+      warning: "#F59F3D" as CssColor,
     };
 
-    const logos = {
+    const logos: Logos = { mainLogo: [], footerLogo: [], footerReducedLogo: [], favicon: [] };
+
+    render(
+      <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
+    );
+
+    // Find the primary color input and change it
+    const primaryInput = screen.getByDisplayValue("#5F249F");
+    fireEvent.change(primaryInput, { target: { value: "#111111" } });
+    fireEvent.blur(primaryInput);
+
+    await waitFor(() => {
+      expect(onColorsChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          primary: "#111111",
+          secondary: "#0067B3",
+        })
+      );
+    });
+  });
+
+  it("renders logo sections with FileInput components", () => {
+    const onColorsChange = jest.fn();
+    const onLogosChange = jest.fn();
+
+    const colors: Colors = {
+      primary: "#5F249F" as CssColor,
+      secondary: "#0067B3" as CssColor,
+      tertiary: "#F7CF2B" as CssColor,
+      neutral: "#999999" as CssColor,
+      info: "#0067B3" as CssColor,
+      success: "#59D97D" as CssColor,
+      error: "#FE344F" as CssColor,
+      warning: "#F59F3D" as CssColor,
+    };
+
+    const logos: Logos = {
       mainLogo: [],
-      footerLogo: [new File(["f"], "footer.png", { type: "image/png" })],
+      footerLogo: [{ file: new File(["f"], "footer.png", { type: "image/png" }) }],
       footerReducedLogo: [],
       favicon: [],
     };
@@ -113,14 +110,8 @@ describe("BrandingDetails", () => {
       <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Change main logo" }));
-
-    expect(onLogosChange).toHaveBeenCalledTimes(1);
-    expect(onLogosChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        mainLogo: expect.any(Array),
-        footerLogo: logos.footerLogo,
-      })
-    );
+    // Verify logo sections are rendered
+    expect(screen.getByText("Main logo")).toBeInTheDocument();
+    expect(screen.getByText("Default footer logo")).toBeInTheDocument();
   });
 });

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";

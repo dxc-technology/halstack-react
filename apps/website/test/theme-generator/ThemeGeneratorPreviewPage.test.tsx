@@ -1,24 +1,6 @@
-import "@testing-library/jest-dom/jest-globals";
-import React from "react";
-import { afterEach, beforeAll, describe, expect, it, jest } from "@jest/globals";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-
-let ThemeGeneratorPreviewPage: (props: {
-  tokens: Record<string, string>;
-  logos: {
-    mainLogo: Array<{ file: File; preview?: string }>;
-    footerLogo: Array<unknown>;
-    footerReducedLogo: Array<unknown>;
-    favicon: Array<unknown>;
-  };
-}) => React.JSX.Element;
-
-jest.mock("../../screens/common/componentsList.json", () => [
-  {
-    label: "General",
-    links: [{ label: "Button", path: "/components/button", icon: "click" }],
-  },
-]);
+import "@testing-library/jest-dom";
+import { fireEvent, render, screen } from "@testing-library/react";
+import ThemeGeneratorPreviewPage from "../../screens/theme-generator/ThemeGeneratorPreviewPage";
 
 jest.mock("screens/utilities/theme-generator/componentsRegistry", () => ({
   componentsRegistry: {
@@ -68,14 +50,6 @@ jest.mock("@dxc-technology/halstack-react", () => ({
   DxcTypography: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   HalstackProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
-
-beforeAll(async () => {
-  ThemeGeneratorPreviewPage = (await import("../../screens/theme-generator/ThemeGeneratorPreviewPage")).default;
-});
-
-afterEach(() => {
-  cleanup();
-});
 
 describe("ThemeGeneratorPreviewPage", () => {
   it("shows empty state and renders component preview after selection", () => {
