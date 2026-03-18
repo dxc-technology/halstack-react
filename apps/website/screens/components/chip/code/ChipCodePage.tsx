@@ -42,7 +42,7 @@ const sections = [
             </td>
             <td>
               If true, the component will be disabled. When mode is <Code>"dismissible"</Code>, the chip cannot be
-              disabled .
+              disabled.
             </td>
             <td>
               <TableCode>false</TableCode>
