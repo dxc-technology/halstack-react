@@ -71,7 +71,7 @@ const sections = [
             text: (
               <>
                 To find out the list of labels that are translatable we should refer to the documentation in the{" "}
-                <Link href="/principles/localization" passHref legacyBehavior>
+                <Link href="/guidelines/localization" passHref legacyBehavior>
                   <DxcLink>Localization</DxcLink>
                 </Link>{" "}
                 section.
@@ -108,6 +108,14 @@ const sections = [
           We create a <Code>lightPalette</Code> and <Code>darkPalette</Code> objects with as many CSS variables as we
           want and their respective values. Then we pass one of the objects based on the state of the <Code>theme</Code>{" "}
           to the Halstack Provider, which wraps our components, through its <Code>opinionatedTheme</Code> property.
+        </DxcParagraph>
+        <DxcParagraph>
+          Themes can be created with the{" "}
+          <Link href="/theme-generator/" passHref legacyBehavior>
+            <DxcLink>Theme Generator</DxcLink>
+          </Link>{" "}
+          tool, which allows you to define your brand colors and export a ready-to-use token structure to pass through
+          the <Code>opinionatedTheme</Code> property.
         </DxcParagraph>
       </>
     ),
