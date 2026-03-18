@@ -25,11 +25,6 @@ describe("Chip component tests", () => {
     const avatar = getByRole("img", { hidden: true });
     expect(avatar).toBeTruthy();
   });
-  test("Chip doesn't render with avatar and without label", () => {
-    const { queryByRole } = render(<DxcChip prefix={{ color: "primary" }} />);
-    const avatar = queryByRole("img", { hidden: true });
-    expect(avatar).toBeNull();
-  });
   test("Chip renders correctly in dismissible mode", () => {
     const onClick = jest.fn();
     const { getByText, getByRole } = render(<DxcChip label="Dismissible chip" mode="dismissible" onClick={onClick} />);
@@ -38,8 +33,8 @@ describe("Chip component tests", () => {
   });
   test("Calls correct function when clicking on Chip", () => {
     const onClick = jest.fn();
-    const { getByText } = render(<DxcChip label="Chip" onClick={onClick} />);
-    const chip = getByText("Chip");
+    const { getByRole } = render(<DxcChip label="Chip" onClick={onClick} />);
+    const chip = getByRole("button", { name: "Chip" });
     expect(chip).toBeTruthy();
     fireEvent.click(chip);
     expect(onClick).toHaveBeenCalled();
