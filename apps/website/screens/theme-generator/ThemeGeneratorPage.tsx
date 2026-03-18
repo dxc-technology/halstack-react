@@ -11,6 +11,8 @@ import {
 import Link from "next/link";
 import LandingCards from "./components/LandingCards";
 import LandingSteps from "./components/LandingSteps";
+import landingImage from "../images/theme-generator-landing-bg.png";
+import landingImageFlipped from "../images/theme-generator-landing-bg-flipped.png";
 
 const steps = [
   {
@@ -58,7 +60,7 @@ const ThemeGeneratorPage = () => {
         width="100%"
         boxSizing="border-box"
         background={{
-          image: "url(/theme-generator-landing-bg.png)",
+          image: `url(${landingImage.src})`,
           position: "0px 50%",
           size: "cover",
         }}
@@ -114,7 +116,7 @@ const ThemeGeneratorPage = () => {
         width="100%"
         boxSizing="border-box"
         background={{
-          image: "url(/theme-generator-landing-bg-flipped.png)",
+          image: `url(${landingImageFlipped.src})`,
           size: "cover",
         }}
         height="329px"
