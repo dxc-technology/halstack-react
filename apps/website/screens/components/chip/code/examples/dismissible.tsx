@@ -26,8 +26,8 @@ const TransportSelect = ({ selectedOptions, onChange }: TransportSelectProps) =>
 
   return (
     <DxcSelect
-      label="Select your favourite hobbies"
-      placeholder="Choose your hobbies"
+      label="Select your favourite vehicles"
+      placeholder="Choose your vehicles"
       options={options}
       onChange={handleSelectChange}
       value={selectedOptions.map((opt) => opt.value)}
