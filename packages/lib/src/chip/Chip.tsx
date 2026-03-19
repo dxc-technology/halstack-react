@@ -1,124 +1,142 @@
 import styled from "@emotion/styled";
-import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
-import { isValidElement, useEffect, useRef, useState } from "react";
-import { Tooltip } from "../tooltip/Tooltip";
+import { isValidElement, ReactNode, useState } from "react";
 import { SVG } from "../common/utils";
+import { getChipStyles } from "./utils";
 
 const Chip = styled.div<{
-  margin: ChipPropsType["margin"];
-  size: ChipPropsType["size"];
+  disabled: ChipPropsType["disabled"];
+  mode: ChipPropsType["mode"];
+  selected: ChipPropsType["selected"];
+  isAvatar?: boolean;
+  type?: string;
 }>`
-  height: ${({ size }) =>
-    size === "small" ? "var(--height-s)" : size === "large" ? "var(--height-xl)" : "var(--height-m)"};
-  min-width: ${({ size }) => (size === "small" ? "60px" : "80px")};
-  max-width: 172px;
+  max-width: min(100%, 320px);
+  height: var(--height-m);
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--spacing-gap-xs);
-  background-color: var(--color-bg-primary-lightest);
+  gap: var(--spacing-gap-xxs);
+  padding: ${({ isAvatar }) =>
+    isAvatar
+      ? "var(--spacing-padding-none) var(--spacing-padding-xs) var(--spacing-padding-none) var(--spacing-padding-xxs)"
+      : "var(--spacing-padding-none) var(--spacing-padding-xs)"};
+  cursor: ${({ mode }) => (mode === "selectable" ? "pointer" : "default")};
   border-radius: var(--border-radius-xl);
-  padding: ${({ size }) =>
-    size === "large" ? "var(--spacing-padding-xs)" : "var(--spacing-padding-xxs) var(--spacing-padding-xs)"};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  border-width: var(--border-width-s);
+  border-style: var(--border-style-default);
+
+  ${({ mode, selected }) => getChipStyles(mode, selected)}
 `;
 
-const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
+const ContentWrapper = styled.div<{ mode: ChipPropsType["mode"] }>`
+  max-width: ${({ mode }) => (mode === "dismissible" ? "calc(100% - var(--spacing-gap-xxs) - 24px)" : "100%")};
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-gap-xs);
+`;
+
+const LabelContainer = styled.span`
   font-size: var(--typography-label-s);
   font-family: var(--typography-font-family);
   font-weight: var(--typography-label-regular);
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-lightest)" : "var(--color-fg-neutral-dark)")};
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 `;
 
-const IconContainer = styled.div<{
-  disabled: ChipPropsType["disabled"];
-}>`
+const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-size: var(--height-xxs);
   svg {
     height: var(--height-xxs);
-    width: var(--height-xxs);
   }
 `;
 
-const isAvatarType = (value: string | SVG | ChipAvatarType): value is ChipAvatarType => {
+const isAvatarType = (value: string | SVG | ChipAvatarType | undefined): value is ChipAvatarType => {
   return typeof value === "object" && value !== null && "color" in value;
 };
 
-const checkEllipsis = (element: HTMLElement | null): boolean => {
-  if (!element) return false;
-  return element.scrollWidth > element.clientWidth;
+const renderPrefix = (prefix: string | SVG | ChipAvatarType | undefined, disabled: boolean): ReactNode | undefined => {
+  if (typeof prefix === "string") {
+    return (
+      <IconContainer>
+        <DxcIcon icon={prefix} />
+      </IconContainer>
+    );
+  }
+
+  if (isAvatarType(prefix)) {
+    return (
+      <DxcAvatar
+        color={prefix.color}
+        label={prefix.profileName}
+        icon={prefix.icon}
+        imageSrc={prefix.imageSrc}
+        size="xsmall"
+        disabled={disabled}
+      />
+    );
+  }
+
+  return isValidElement(prefix) ? <IconContainer>{prefix}</IconContainer> : undefined;
 };
 
-const DxcChip = ({ action, disabled = false, label, margin, prefix, size = "medium", tabIndex = 0 }: ChipPropsType) => {
-  const labelRef = useRef<HTMLSpanElement>(null);
-  const [isTruncated, setIsTruncated] = useState(true);
+const DxcChip = ({
+  disabled = false,
+  label,
+  mode = "selectable",
+  onClick,
+  prefix,
+  selected,
+  tabIndex = 0,
+}: ChipPropsType) => {
+  const [innerSelected, setInnerSelected] = useState(false);
 
-  useEffect(() => {
-    const handleEllipsisCheck = () => {
-      setIsTruncated(checkEllipsis(labelRef.current));
-    };
+  if (mode === "selectable" && isAvatarType(prefix) && !label) {
+    return null;
+  }
 
-    handleEllipsisCheck();
-    window.addEventListener("resize", handleEllipsisCheck);
-    return () => window.removeEventListener("resize", handleEllipsisCheck);
-  }, []);
+  const handleSelectableClick = () => {
+    if (selected == null) {
+      setInnerSelected((prev) => !prev);
+    }
+    onClick?.();
+  };
+
+  const isSelected = selected ?? innerSelected;
 
   return (
-    <Chip margin={margin} size={size}>
-      {prefix &&
-        (typeof prefix === "string" ? (
-          <IconContainer disabled={disabled}>
-            <DxcIcon icon={prefix} />
-          </IconContainer>
-        ) : isAvatarType(prefix) && size !== "small" ? (
-          <DxcAvatar
-            color={prefix.color}
-            label={prefix.profileName}
-            icon={prefix.icon}
-            imageSrc={prefix.imageSrc}
-            size="xsmall"
-            disabled={disabled}
-          />
-        ) : (
-          isValidElement(prefix) && <IconContainer disabled={disabled}>{prefix}</IconContainer>
-        ))}
+    <Chip
+      as={mode === "selectable" ? "button" : "div"}
+      type={mode === "selectable" ? "button" : undefined}
+      aria-label={mode === "selectable" ? label || "Chip" : label}
+      aria-pressed={mode === "selectable" ? isSelected : undefined}
+      disabled={disabled}
+      isAvatar={isAvatarType(prefix)}
+      onClick={mode === "selectable" && !disabled ? handleSelectableClick : undefined}
+      selected={isSelected}
+      tabIndex={mode === "selectable" && !disabled ? tabIndex : -1}
+      mode={mode}
+    >
+      <ContentWrapper mode={mode}>
+        {prefix && renderPrefix(prefix, disabled)}
+        {label && <LabelContainer>{label}</LabelContainer>}
+      </ContentWrapper>
 
-      {label && (
-        <Tooltip label={isTruncated ? label : undefined}>
-          <LabelContainer disabled={disabled} ref={labelRef}>
-            {label}
-          </LabelContainer>
-        </Tooltip>
-      )}
-
-      {action && (
+      {mode === "dismissible" && (
         <DxcActionIcon
           size="xsmall"
           disabled={disabled}
-          icon={action.icon}
-          onClick={action.onClick}
+          icon="clear"
+          onClick={onClick}
           tabIndex={tabIndex}
-          title={!disabled ? action.title : undefined}
+          title={!disabled ? "Clear" : undefined}
         />
       )}
     </Chip>
