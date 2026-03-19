@@ -124,7 +124,7 @@ const sections = [
               <Link href="/components/avatar" passHref legacyBehavior>
                 <DxcLink>DxcAvatar</DxcLink>
               </Link>{" "}
-              will be displayed to the left of the label, only when the chip size is medium or large.
+              will be displayed to the left of the label.
             </td>
             <td>-</td>
           </tr>
