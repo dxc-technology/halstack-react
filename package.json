@@ -33,5 +33,14 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "overrides": {
+    "mout": "1.2.4",
+    "ciebase": {
+      "mout": "1.2.4"
+    },
+    "ciecam02": {
+      "mout": "1.2.4"
+    }
+  }
 }

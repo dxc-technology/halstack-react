@@ -12,8 +12,8 @@ import {
   DxcBadge,
   DxcInset,
 } from "@dxc-technology/halstack-react";
-import { GridRow } from "../../../../../../../packages/lib/src/data-grid/types";
 import { Logos } from "screens/theme-generator/types";
+import { GridRow } from "../../../../../../packages/lib/src/data-grid/types";
 
 const columnsDatagrid = [
   {
