@@ -47,7 +47,7 @@ jest.mock("react-color", () => ({
 }));
 
 // Mock componentsRegistry and examplesRegistry
-jest.mock("../../screens/utilities/theme-generator/componentsRegistry", () => ({
+jest.mock("../../screens/theme-generator/componentsRegistry", () => ({
   componentsRegistry: {},
   examplesRegistry: {},
 }));
@@ -113,7 +113,6 @@ describe("ThemeGeneratorConfigPage", () => {
   it("regenerates tokens with updated colors", async () => {
     render(<ThemeGeneratorConfigPage />);
 
-    // Change primary color by finding the primary color input and changing it
     const primaryInput = screen.getByLabelText("Primary");
     fireEvent.change(primaryInput, { target: { value: "#123456" } });
     fireEvent.blur(primaryInput);
@@ -149,7 +148,6 @@ describe("ThemeGeneratorConfigPage", () => {
       expect(screen.getByText("Review and export your theme")).toBeInTheDocument();
     });
 
-    // Click export button
     const exportButton = screen.getByRole("button", { name: "Export theme" });
     fireEvent.click(exportButton);
 

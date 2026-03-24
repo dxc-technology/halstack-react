@@ -185,7 +185,7 @@ describe("theme-generator utils", () => {
 
     it("should set correct download attribute", () => {
       handleExport('{"tokens":{}}');
-      expect(anchor.getAttribute("download")).toBe("halstack-theme-tokens.json");
+      expect(anchor.getAttribute("download")).toBe("halstack-theme.json");
     });
 
     it("should set href with encoded JSON data", () => {

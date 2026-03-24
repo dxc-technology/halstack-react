@@ -43,7 +43,6 @@ describe("BrandingDetails", () => {
       <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
     );
 
-    // Verify that primary color input is rendered with correct value
     expect(screen.getByDisplayValue("#5F249F")).toBeInTheDocument();
     expect(screen.getByText("Primary")).toBeInTheDocument();
   });
@@ -69,7 +68,6 @@ describe("BrandingDetails", () => {
       <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
     );
 
-    // Find the primary color input and change it
     const primaryInput = screen.getByDisplayValue("#5F249F");
     fireEvent.change(primaryInput, { target: { value: "#111111" } });
     fireEvent.blur(primaryInput);
@@ -110,7 +108,6 @@ describe("BrandingDetails", () => {
       <BrandingDetails colors={colors} onColorsChange={onColorsChange} logos={logos} onLogosChange={onLogosChange} />
     );
 
-    // Verify logo sections are rendered
     expect(screen.getByText("Main logo")).toBeInTheDocument();
     expect(screen.getByText("Default footer logo")).toBeInTheDocument();
   });

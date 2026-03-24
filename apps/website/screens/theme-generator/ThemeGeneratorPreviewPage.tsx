@@ -45,7 +45,7 @@ const informationIcon = (
   </svg>
 );
 
-const exampleOptions = [
+export const exampleOptions = [
   {
     label: "Application example",
     value: "/examples/application",
@@ -63,7 +63,7 @@ const exampleOptions = [
   },
 ];
 
-const componentsExceptions = [
+export const componentsExceptions = [
   "/components/application-layout",
   "/components/bleed",
   "/components/bulleted-list",
@@ -83,7 +83,7 @@ const componentsExceptions = [
   "/components/typography",
 ];
 
-const mapToSelectGroups = (data: ComponentItem[]) => {
+export const mapToSelectGroups = (data: ComponentItem[]) => {
   const collectOptions = (items: ComponentItem[]): ListOptionType[] => {
     return items.flatMap((item) => {
       const current: ListOptionType[] =
@@ -108,6 +108,13 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
     options: collectOptions(category.links ?? []),
   }));
 };
+
+export const processLogos = (logos: Logos) => ({
+  mainLogo: logos.mainLogo?.[0]?.preview,
+  footerLogo: logos.footerLogo?.[0]?.preview,
+  footerReducedLogo: logos.footerReducedLogo?.[0]?.preview,
+  favicon: logos.favicon?.[0]?.preview,
+});
 
 const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, string>; logos: Logos }) => {
   const [mode, setMode] = useState<"components" | "examples">("components");
@@ -150,14 +157,7 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
     return null;
   }, [mode, selectedComponents, selectedExample]);
 
-  const processedLogos = useMemo(() => {
-    return {
-      mainLogo: logos.mainLogo?.[0]?.preview,
-      footerLogo: logos.footerLogo?.[0]?.preview,
-      footerReducedLogo: logos.footerReducedLogo?.[0]?.preview,
-      favicon: logos.favicon?.[0]?.preview,
-    };
-  }, [logos]);
+  const processedLogos = useMemo(() => processLogos(logos), [logos]);
 
   return (
     <DxcContainer width="100%" height="100%">

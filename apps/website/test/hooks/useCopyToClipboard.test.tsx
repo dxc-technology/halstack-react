@@ -1,7 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { HalstackProvider } from "@dxc-technology/halstack-react";
 import useCopyToClipboard from "../../hooks/useCopyToClipboard";
-import React from "react";
 
 describe("useCopyToClipboard", () => {
   const wrapper = ({ children }: { children: React.ReactNode }) => <HalstackProvider>{children}</HalstackProvider>;
@@ -52,7 +51,6 @@ describe("useCopyToClipboard", () => {
 
     expect(mockWriteText).toHaveBeenCalledWith(testText);
 
-    // Wait for the rejected promise to resolve
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
 

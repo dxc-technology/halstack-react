@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcButton, DxcContainer, DxcFlex } from "@dxc-technology/halstack-react";
 import { Step } from "../types";
 

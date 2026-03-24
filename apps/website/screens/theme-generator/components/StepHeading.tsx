@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcFlex, DxcHeading, DxcContainer, DxcTypography } from "@dxc-technology/halstack-react";
 
 const StepHeading = ({ title, subtitle }: { title: string; subtitle: string }) => (

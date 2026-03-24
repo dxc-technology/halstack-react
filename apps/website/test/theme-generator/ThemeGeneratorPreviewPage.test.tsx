@@ -1,54 +1,25 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import ThemeGeneratorPreviewPage from "../../screens/theme-generator/ThemeGeneratorPreviewPage";
+import { Logos } from "../../screens/theme-generator/types";
 
-jest.mock("screens/utilities/theme-generator/componentsRegistry", () => ({
-  componentsRegistry: {
-    "/components/button": () => <div>Button Preview</div>,
-  },
-  examplesRegistry: {
-    "/examples/application": ({ logos }: { logos: { mainLogo?: Array<{ preview?: string }> } }) => (
-      <div>{`Example with ${logos.mainLogo?.[0]?.preview ?? "no-logo"}`}</div>
-    ),
-  },
+// Mock ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
 }));
 
-jest.mock("@dxc-technology/halstack-react", () => ({
-  DxcButton: ({ title, onClick }: { title?: string; onClick?: () => void }) => (
-    <button type="button" onClick={onClick}>
-      {title ?? "Button"}
-    </button>
-  ),
-  DxcContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DxcFlex: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DxcSelect: ({
-    placeholder,
-    multiple,
-    onChange,
-  }: {
-    placeholder: string;
-    multiple?: boolean;
-    onChange: (v: { value: string | string[] }) => void;
-  }) => (
-    <button
-      type="button"
-      onClick={() => onChange({ value: multiple ? ["/components/button"] : "/examples/application" })}
-    >
-      {placeholder}
-    </button>
-  ),
-  DxcToggleGroup: ({ onChange }: { onChange: (value: number) => void }) => (
-    <div>
-      <button type="button" onClick={() => onChange(1)}>
-        Components mode
-      </button>
-      <button type="button" onClick={() => onChange(2)}>
-        Examples mode
-      </button>
-    </div>
-  ),
-  DxcTypography: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  HalstackProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+jest.mock("screens/theme-generator/componentsRegistry", () => ({
+  componentsRegistry: {
+    "/components/button": () => <div>Button Component</div>,
+  },
+  examplesRegistry: {
+    "/examples/application": ({ logos }: { logos: Logos }) => {
+      const mainLogoPreview = logos.mainLogo[0]?.preview ?? "no-logo";
+      return <div>Application Example {mainLogoPreview}</div>;
+    },
+  },
 }));
 
 describe("ThemeGeneratorPreviewPage", () => {
@@ -59,10 +30,12 @@ describe("ThemeGeneratorPreviewPage", () => {
 
     expect(screen.getByText("Select a component to preview")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Select components" }));
+    fireEvent.click(screen.getByRole("combobox", { name: "Select" }));
 
-    expect(screen.getByText("Button")).toBeInTheDocument();
-    expect(screen.getByText("Button Preview")).toBeInTheDocument();
+    const buttonOption = screen.getByText("Button");
+    fireEvent.click(buttonOption);
+
+    expect(screen.getByText("Button Component")).toBeInTheDocument();
   });
 
   it("switches to examples mode and renders selected example", () => {
@@ -75,10 +48,13 @@ describe("ThemeGeneratorPreviewPage", () => {
 
     render(<ThemeGeneratorPreviewPage tokens={{}} logos={logos} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Examples mode" }));
-    fireEvent.click(screen.getByRole("button", { name: "Select examples" }));
+    fireEvent.click(screen.getByRole("button", { name: "Layout examples" }));
 
-    expect(screen.getByText(/Some components are presentational examples\./)).toBeInTheDocument();
-    expect(screen.getByText("Example with main-preview")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("combobox", { name: "Select" }));
+
+    const appExample = screen.getByText("Application example");
+    fireEvent.click(appExample);
+
+    expect(screen.getByText("Application Example main-preview")).toBeInTheDocument();
   });
 });
