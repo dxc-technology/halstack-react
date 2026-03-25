@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import ThemeGeneratorConfigPage from "../../screens/theme-generator/ThemeGeneratorConfigPage";
 
 const mockGenerateTokens = jest.fn((_: Record<string, string>) => ({ "--color-primary-500": "#101010" }));
@@ -67,15 +67,13 @@ describe("ThemeGeneratorConfigPage", () => {
     expect(screen.getByLabelText("Primary")).toBeInTheDocument();
   });
 
-  it("generates tokens when leaving step 0", async () => {
+  it("generates tokens when leaving step 0", () => {
     render(<ThemeGeneratorConfigPage />);
 
     const nextButton = screen.getByRole("button", { name: "Next" });
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
-    });
+    expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
 
     expect(mockGenerateTokens).toHaveBeenCalledWith({
       primary: "#5F249F",
@@ -91,26 +89,22 @@ describe("ThemeGeneratorConfigPage", () => {
     expect(screen.getByText("Preview how your theme applies")).toBeInTheDocument();
   });
 
-  it("does not regenerate tokens when moving from step 1 to step 2 with unchanged colors", async () => {
+  it("does not regenerate tokens when moving from step 1 to step 2 with unchanged colors", () => {
     render(<ThemeGeneratorConfigPage />);
 
     const nextButton = screen.getByRole("button", { name: "Next" });
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
-    });
+    expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
 
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(screen.getByText("Review and export your theme")).toBeInTheDocument();
-    });
+    expect(screen.getByText("Review and export your theme")).toBeInTheDocument();
 
     expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
   });
 
-  it("regenerates tokens with updated colors", async () => {
+  it("regenerates tokens with updated colors", () => {
     render(<ThemeGeneratorConfigPage />);
 
     const primaryInput = screen.getByLabelText("Primary");
@@ -120,9 +114,7 @@ describe("ThemeGeneratorConfigPage", () => {
     const nextButton = screen.getByRole("button", { name: "Next" });
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
-    });
+    expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
 
     expect(mockGenerateTokens).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -131,22 +123,18 @@ describe("ThemeGeneratorConfigPage", () => {
     );
   });
 
-  it("exports the generated theme json", async () => {
+  it("exports the generated theme json", () => {
     render(<ThemeGeneratorConfigPage />);
 
     // Navigate to step 2
     const nextButton = screen.getByRole("button", { name: "Next" });
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
-    });
+    expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
 
     fireEvent.click(nextButton);
 
-    await waitFor(() => {
-      expect(screen.getByText("Review and export your theme")).toBeInTheDocument();
-    });
+    expect(screen.getByText("Review and export your theme")).toBeInTheDocument();
 
     const exportButton = screen.getByRole("button", { name: "Export theme" });
     fireEvent.click(exportButton);
@@ -154,7 +142,6 @@ describe("ThemeGeneratorConfigPage", () => {
     expect(mockHandleExport).toHaveBeenCalledTimes(1);
     const exportedTheme = mockHandleExport.mock.calls.at(0)?.[0];
     expect(exportedTheme).toBeDefined();
-    if (!exportedTheme) return;
 
     expect(exportedTheme).toContain('"tokens": {');
     expect(exportedTheme).toContain('"--color-primary-500": "#101010"');
