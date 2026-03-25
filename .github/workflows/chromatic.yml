@@ -43,4 +43,6 @@ jobs:
           cd packages/lib
           echo "Chromatic URL: ${{ steps.chromatic_publish.outputs.storybookUrl }}"
           npx playwright install --with-deps
-          npm run storybook:accessibility:ci -- --url "${{ steps.chromatic_publish.outputs.storybookUrl }}"
+          npm run storybook:accessibility:ci
+        env:
+          TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
