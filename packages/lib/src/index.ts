@@ -1,5 +1,6 @@
 import "./styles/fonts.css";
 // import "./styles/variables.css";
+import "./styles/injectFonts";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAlert } from "./alert/Alert";

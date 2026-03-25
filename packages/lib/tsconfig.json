@@ -4,6 +4,6 @@
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "test", ".", ".storybook/**/*"],
-  "exclude": ["node_modules", "dist", ".turbo"]
+  "include": ["src", "test", ".", ".storybook/**/*", "src/global.d.ts"],
+  "exclude": ["node_modules", "dist", "coverage", ".turbo"]
 }
