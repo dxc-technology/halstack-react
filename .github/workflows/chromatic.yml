@@ -44,4 +44,4 @@ jobs:
           npx playwright install --with-deps
           npm run storybook:accessibility:ci
         env:
-          TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
+          STORYBOOK_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
