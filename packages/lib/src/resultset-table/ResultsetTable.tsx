@@ -122,7 +122,7 @@ const DxcResultsetTable = ({
   );
 
   const renderPaginator = () =>
-    !hidePaginator && rows.length > itemsPerPage ? (
+    !hidePaginator && (rows.length > itemsPerPage || !!itemsPerPageOptions?.length || itemsPerPageFunction != null) ? (
       <DxcPaginator
         currentPage={page}
         itemsPerPage={itemsPerPage}
