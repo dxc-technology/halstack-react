@@ -7,10 +7,16 @@ import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
 import { userEvent, within } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
   title: "Button",
   component: DxcButton,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof DxcButton>;
 
 const facebookIcon = (
@@ -4993,6 +4999,12 @@ type Story = StoryObj<typeof DxcButton>;
 
 export const Chromatic: Story = {
   render: Button,
+  parameters: {
+    viewport: {
+      defaultViewport: "ipad12p",
+    },
+    chromatic: { viewports: [1024] },
+  },
 };
 
 export const ButtonTooltip: Story = {
