@@ -4,12 +4,7 @@ import viteReact from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [
-    viteReact({
-      jsxImportSource: "@emotion/react",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-      },
-    }),
+    viteReact(),
   ],
   test: {
     globals: true,

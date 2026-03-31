@@ -53,8 +53,6 @@
     "@chromatic-com/storybook": "^4.1.1",
     "@dxc-technology/eslint-config": "*",
     "@dxc-technology/typescript-config": "*",
-    "@emotion/babel-plugin": "^11.13.5",
-    "@emotion/react": "^11.14.0",
     "@storybook/addon-a11y": "9.1.20",
     "@storybook/addon-links": "9.1.20",
     "@storybook/addon-vitest": "9.1.20",
