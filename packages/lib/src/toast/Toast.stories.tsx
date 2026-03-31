@@ -1,4 +1,4 @@
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
@@ -6,7 +6,6 @@ import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { Meta, StoryObj } from "@storybook/react";
 
 export default {
@@ -279,9 +278,9 @@ export const MobileScreenToast: Story = {
   render: ToastsQueue,
   play: playFunc,
   parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "iphonex",
-    },
+    chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

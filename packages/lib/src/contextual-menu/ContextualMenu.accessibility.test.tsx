@@ -74,17 +74,15 @@ const items = [
           {
             label: "Sales performance",
           },
-          { 
-            label: "Key metrics" 
+          {
+            label: "Key metrics",
           },
         ],
       },
     ],
   },
   {
-    items: [
-      { label: "Support", icon: "support_agent" },
-    ],
+    items: [{ label: "Support", icon: "support_agent" }],
   },
 ];
 
@@ -92,11 +90,11 @@ describe("Context menu accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={itemsWithTruncatedText} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("A complex contextual menu should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={items} />);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -1,4 +1,3 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -8,11 +7,6 @@ import { Meta, StoryObj } from "@storybook/react/*";
 export default {
   title: "Tabs Legacy",
   component: DxcTabsLegacy,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
 } as Meta<typeof DxcTabsLegacy>;
 
 const iconSVG = (
@@ -231,9 +225,9 @@ export const ChromaticLegacy: Story = {
 export const ScrollableTabsLegacy: Story = {
   render: Scrollable,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375], delay: 5000 },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };

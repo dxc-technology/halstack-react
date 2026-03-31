@@ -3,7 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
 import { Meta, StoryObj } from "@storybook/react";
@@ -193,6 +193,6 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dropdowns = canvas.getAllByRole("button");
-    dropdowns[2] != null && await userEvent.click(dropdowns[2]);
+    dropdowns[2] != null && (await userEvent.click(dropdowns[2]));
   },
 };

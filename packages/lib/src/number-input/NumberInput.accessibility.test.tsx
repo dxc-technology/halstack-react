@@ -32,7 +32,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     const { container } = render(
@@ -53,7 +53,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     const { container } = render(
@@ -74,7 +74,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
@@ -95,7 +95,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
     const { container } = render(
@@ -116,7 +116,7 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     const { container } = render(
@@ -137,6 +137,6 @@ describe("Number input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

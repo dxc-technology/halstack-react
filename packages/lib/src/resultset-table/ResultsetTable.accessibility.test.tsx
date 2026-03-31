@@ -266,7 +266,7 @@ describe("Resultset Table input component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
@@ -281,6 +281,6 @@ describe("Resultset Table input component accessibility tests", () => {
       />
     );
     const results = await axe(container, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

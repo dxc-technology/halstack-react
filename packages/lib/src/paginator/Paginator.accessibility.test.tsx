@@ -32,6 +32,6 @@ describe("Paginator component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

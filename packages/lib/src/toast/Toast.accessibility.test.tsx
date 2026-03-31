@@ -37,7 +37,7 @@ describe("Toast component accessibility tests", () => {
     const results = await axe(container);
     const button = container.querySelector("button");
     button && userEvent.click(button);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
@@ -51,7 +51,7 @@ describe("Toast component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have accessibility issues when loading", async () => {
     const { container } = render(
@@ -65,6 +65,6 @@ describe("Toast component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

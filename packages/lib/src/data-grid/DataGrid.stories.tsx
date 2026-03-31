@@ -6,9 +6,9 @@ import { GridColumn, GridRow, HierarchyGridRow } from "./types";
 import { isValidElement, useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 import DxcBadge from "../badge/Badge";
-import { ActionsCellPropsType } from "../table/types";
+import { ActionCellsPropsType } from "../table/types";
 import { Meta, StoryObj } from "@storybook/react";
 import { isKeyOfRow } from "./utils";
 
@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof DxcDataGrid>;
 
-const actions: ActionsCellPropsType["actions"] = [
+const actions: ActionCellsPropsType["actions"] = [
   {
     title: "icon",
     onClick: (value?) => {

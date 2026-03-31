@@ -61,7 +61,7 @@ describe("Dropdown component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     // baseElement is needed when using React Portals
@@ -79,7 +79,7 @@ describe("Dropdown component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for caret-hidden mode", async () => {
     // baseElement is needed when using React Portals
@@ -97,7 +97,7 @@ describe("Dropdown component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for expand-on-hover mode", async () => {
     // baseElement is needed when using React Portals
@@ -115,6 +115,6 @@ describe("Dropdown component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

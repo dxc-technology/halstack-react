@@ -7,10 +7,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
     "storybook": "turbo storybook",
-    "storybook:accessibility": "turbo storybook:accessibility",
-    "storybook:accessibility:ci": "turbo storybook:accessibility:ci",
     "test": "turbo test",
     "test:accessibility": "turbo test:accessibility",
+    "test-storybook": "turbo test-storybook",
     "test:watch": "turbo test:watch"
   },
   "devDependencies": {

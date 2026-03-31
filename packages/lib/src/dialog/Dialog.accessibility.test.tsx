@@ -17,16 +17,16 @@ describe("Dialog component accessibility tests", () => {
     // baseElement is needed when using React Portals
     const { baseElement } = render(<DxcDialog>Dialog text</DxcDialog>);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for close button not visible", async () => {
     const { baseElement } = render(<DxcDialog closable={false}>Dialog text</DxcDialog>);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for overlay not visible", async () => {
     const { baseElement } = render(<DxcDialog overlay={false}>Dialog text</DxcDialog>);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

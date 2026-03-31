@@ -12,7 +12,7 @@ describe("Spinner component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for large mode", async () => {
     const { container } = render(
@@ -22,7 +22,7 @@ describe("Spinner component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for small mode", async () => {
     const { container } = render(
@@ -32,6 +32,6 @@ describe("Spinner component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

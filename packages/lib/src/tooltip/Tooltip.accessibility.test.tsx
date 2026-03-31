@@ -25,7 +25,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for top position", async () => {
     // baseElement is needed when using React Portals
@@ -37,7 +37,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for left position", async () => {
     // baseElement is needed when using React Portals
@@ -49,7 +49,7 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for right position", async () => {
     // baseElement is needed when using React Portals
@@ -61,6 +61,6 @@ describe("Tooltip component accessibility tests", () => {
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
     const results = await axe(baseElement);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

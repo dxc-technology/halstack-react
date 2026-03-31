@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within } from "storybook/internal/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import preview from "../../.storybook/preview";

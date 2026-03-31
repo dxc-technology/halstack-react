@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { fireEvent, screen, userEvent, within } from "@storybook/test";
+import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
 import dayjs from "dayjs";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";

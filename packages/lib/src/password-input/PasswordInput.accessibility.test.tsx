@@ -29,7 +29,7 @@ describe("Password input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for pattern mode", async () => {
     const { container } = render(
@@ -47,7 +47,7 @@ describe("Password input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for clearable mode", async () => {
     const { container } = render(
@@ -65,7 +65,7 @@ describe("Password input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     const { container } = render(
@@ -82,6 +82,6 @@ describe("Password input component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

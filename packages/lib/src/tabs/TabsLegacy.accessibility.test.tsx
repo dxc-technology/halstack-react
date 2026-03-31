@@ -34,6 +34,6 @@ describe("Tabs component accessibility tests", () => {
       <DxcTabsLegacy tabs={sampleTabs} margin="medium" iconPosition="left" defaultActiveTabIndex={0}></DxcTabsLegacy>
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -15,7 +15,7 @@ describe("Tag component accessibility tests", () => {
       <DxcTag label="tag-test" icon={icon} iconBgColor="#fabada" margin="medium" size="medium" labelPosition="before" />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for new-window mode", async () => {
     const { container } = render(
@@ -30,6 +30,6 @@ describe("Tag component accessibility tests", () => {
       />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

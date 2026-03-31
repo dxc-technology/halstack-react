@@ -1,4 +1,4 @@
-import { userEvent } from "@storybook/test";
+import { userEvent } from "storybook/internal/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";

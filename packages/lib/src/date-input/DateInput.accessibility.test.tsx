@@ -37,7 +37,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
     // baseElement is needed when using React Portals
@@ -55,7 +55,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
     // baseElement is needed when using React Portals
@@ -73,7 +73,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
     // baseElement is needed when using React Portals
@@ -92,7 +92,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
     // baseElement is needed when using React Portals
@@ -112,7 +112,7 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     // baseElement is needed when using React Portals
@@ -132,6 +132,6 @@ describe("DateInput component accessibility tests", () => {
       />
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

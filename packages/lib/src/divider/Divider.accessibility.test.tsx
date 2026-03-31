@@ -8,6 +8,6 @@ describe("Divider accessibility tests", () => {
       <DxcDivider orientation="vertical" color="darkGrey" decorative={false} weight="strong" />
     );
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

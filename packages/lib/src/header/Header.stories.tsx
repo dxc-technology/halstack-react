@@ -1,5 +1,4 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { userEvent, waitFor, within } from "@storybook/test";
+import { userEvent, waitFor, within } from "storybook/internal/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -22,9 +21,6 @@ export default {
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },
-    },
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
     },
   },
 } as Meta<typeof DxcHeader>;
@@ -205,20 +201,20 @@ export const Chromatic: Story = {
 export const ResponsiveHeader: Story = {
   render: Responsive,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
 };
 
 export const ResponsiveHeaderFocus: Story = {
   render: RespHeaderFocus,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -229,10 +225,10 @@ export const ResponsiveHeaderFocus: Story = {
 export const ResponsiveHeaderHover: Story = {
   render: RespHeaderHover,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -243,10 +239,10 @@ export const ResponsiveHeaderHover: Story = {
 export const ResponsiveHeaderMenuMobile: Story = {
   render: RespHeaderMenuMobile,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -258,10 +254,10 @@ export const ResponsiveHeaderMenuMobile: Story = {
 export const ResponsiveHeaderMenuTablet: Story = {
   render: RespHeaderMenuTablet,
   parameters: {
-    viewport: {
-      defaultViewport: "pixelxl",
-    },
     chromatic: { viewports: [720] },
+  },
+  globals: {
+    viewport: { value: "pixelxl", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -273,10 +269,10 @@ export const ResponsiveHeaderMenuTablet: Story = {
 export const ResponsiveHeaderMenuOpinionated: Story = {
   render: RespHeaderMenuOpinionated,
   parameters: {
-    viewport: {
-      defaultViewport: "pixelxl",
-    },
     chromatic: { viewports: [720] },
+  },
+  globals: {
+    viewport: { value: "pixelxl", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -288,10 +284,10 @@ export const ResponsiveHeaderMenuOpinionated: Story = {
 export const ResponsiveHeaderTooltip: Story = {
   render: RespHeaderMenuMobile,
   parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
-    },
     chromatic: { viewports: [375] },
+  },
+  globals: {
+    viewport: { value: "iphonex", isRotated: false },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

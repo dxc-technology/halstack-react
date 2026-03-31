@@ -35,6 +35,6 @@ describe("Tabs component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(sampleTabs);
     const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

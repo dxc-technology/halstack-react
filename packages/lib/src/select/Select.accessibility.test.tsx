@@ -116,7 +116,7 @@ describe("Select component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for group mode", async () => {
     // baseElement is needed when using React Portals
@@ -151,6 +151,6 @@ describe("Select component accessibility tests", () => {
       </DxcFlex>
     );
     const results = await axe(baseElement, disabledRules);
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });
