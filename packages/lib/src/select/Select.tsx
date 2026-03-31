@@ -420,6 +420,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               <Popover.Content
                 sideOffset={4}
                 style={{ zIndex: "310" }}
+                aria-label="Select options"
                 onOpenAutoFocus={(event) => {
                   // Avoid select to lose focus when the list is opened
                   event.preventDefault();

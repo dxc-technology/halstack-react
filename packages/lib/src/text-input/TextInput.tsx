@@ -574,6 +574,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                   <Popover.Content
                     sideOffset={5}
                     style={{ zIndex: "320" }}
+                    aria-label="Suggestions"
                     onOpenAutoFocus={(event) => {
                       // Avoid select to lose focus when the list is opened
                       event.preventDefault();
