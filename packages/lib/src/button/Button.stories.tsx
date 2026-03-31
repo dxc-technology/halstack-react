@@ -778,29 +778,27 @@ const Button = () => (
         <DxcFlex>
           <DxcFlex direction="column">
             <Title title="Margin" theme="light" level={4} />
-            <DxcFlex>
-              <ExampleContainer>
-                <DxcButton label="xxsmall" size={{ height: "large" }} margin="xxsmall" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="xsmall" size={{ height: "large" }} margin="xsmall" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="small" size={{ height: "large" }} margin="small" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="medium" size={{ height: "large" }} margin="medium" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="large" size={{ height: "large" }} margin="large" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="xlarge" size={{ height: "large" }} margin="xlarge" />
-              </ExampleContainer>
-              <ExampleContainer>
-                <DxcButton label="xxlarge" size={{ height: "large" }} margin="xxlarge" />
-              </ExampleContainer>
-            </DxcFlex>
+            <ExampleContainer>
+              <DxcButton label="xxsmall" size={{ height: "large" }} margin="xxsmall" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="xsmall" size={{ height: "large" }} margin="xsmall" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="small" size={{ height: "large" }} margin="small" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="medium" size={{ height: "large" }} margin="medium" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="large" size={{ height: "large" }} margin="large" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="xlarge" size={{ height: "large" }} margin="xlarge" />
+            </ExampleContainer>
+            <ExampleContainer>
+              <DxcButton label="xxlarge" size={{ height: "large" }} margin="xxlarge" />
+            </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
         <Title title="Secondary" theme="light" level={3} />
@@ -4993,6 +4991,12 @@ type Story = StoryObj<typeof DxcButton>;
 
 export const Chromatic: Story = {
   render: Button,
+  parameters: {
+    chromatic: { viewports: [1024] },
+  },
+  globals: {
+    viewport: { value: "ipad12p", isRotated: false },
+  },
 };
 
 export const ButtonTooltip: Story = {

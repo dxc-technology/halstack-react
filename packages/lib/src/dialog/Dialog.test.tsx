@@ -267,9 +267,10 @@ describe("Dialog component: Focus lock tests", () => {
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
-  test("Focus travels correctly in a complex tab sequence", () => {
+test("Focus travels correctly in a complex tab sequence", () => {
+    const onClick = jest.fn();
     const { getAllByRole, queryByRole, getByRole } = render(
-      <DxcDialog>
+      <DxcDialog onCloseClick={onClick}>
         <DxcSelect label="Accept" options={options} />
         <DxcDateInput label="Older age" />
         <DxcTooltip label="Text input tooltip label">
@@ -288,15 +289,15 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const select = getAllByRole("combobox")[0];
     expect(document.activeElement).toEqual(select);
-    select != null && fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    if (select != null) {
+      fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    }
     expect(queryByRole("listbox")).toBeTruthy();
     userEvent.tab();
     userEvent.tab();
     userEvent.keyboard("{Enter}");
     expect(getAllByRole("dialog")[1]).toBeTruthy();
-    const dialog = getAllByRole("dialog")[0];
-    dialog != null && userEvent.click(dialog);
-    userEvent.tab();
+    userEvent.keyboard("{Escape}");
     userEvent.tab();
     userEvent.tab();
     userEvent.tab();
