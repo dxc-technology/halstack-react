@@ -1,4 +1,3 @@
-import "./styles/fonts.css";
 import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
