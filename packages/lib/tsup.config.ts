@@ -11,6 +11,9 @@ export default defineConfig({
       filter: /\.[jt]sx?$/,
     }),
   ],
+  loader: {
+    ".woff2": "dataurl",
+  },
   external: ["react", "react-data-grid", "react-dom", "@emotion/react", "@emotion/styled"],
   format: ["cjs", "esm"],
   injectStyle: true,
