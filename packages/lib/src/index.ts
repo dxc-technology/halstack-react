@@ -1,3 +1,4 @@
+import "./styles/injectFonts";
 import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
