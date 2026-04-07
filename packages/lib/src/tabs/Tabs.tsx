@@ -182,6 +182,11 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
         refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab, index) => {
           if (tab.ariaSelected === "true" && viewWidth && viewWidth < totalTabsWidth) {
             setInnerFocusIndex(index);
+            tab.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
           }
           total += (tab as HTMLElement).offsetWidth;
         });
