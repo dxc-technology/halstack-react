@@ -82,7 +82,7 @@ if (typeof document !== "undefined" && !document.getElementById(FONT_FACE_ID)) {
     @font-face {
         font-family: 'Open Sans';
         font-style: italic;
-        font-weight: 300;
+        font-weight: 300 800;
         font-stretch: 100%;
         font-display: swap;
         src: url(${openSansLatinExt}) format('woff2');
@@ -93,7 +93,7 @@ if (typeof document !== "undefined" && !document.getElementById(FONT_FACE_ID)) {
     @font-face {
         font-family: 'Open Sans';
         font-style: italic;
-        font-weight: 300;
+        font-weight: 300 800;
         font-stretch: 100%;
         font-display: swap;
         src: url(${openSansLatin}) format('woff2');
