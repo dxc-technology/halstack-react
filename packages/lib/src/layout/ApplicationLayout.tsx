@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback } from "react";
+import { useMemo, useRef, useState, useCallback, ReactNode } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -8,7 +8,7 @@ import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
 import { responsiveSizes } from "../common/variables";
 
-const ApplicationLayoutContainer = styled.div<{ header?: React.ReactNode }>`
+const ApplicationLayoutContainer = styled.div<{ header?: ReactNode }>`
   display: grid;
   grid-template-rows: ${({ header }) => (header ? "auto 1fr auto" : "1fr auto")};
   min-height: 100vh;
@@ -28,7 +28,6 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
   grid-template-columns: ${({ hasSidenav }) => (hasSidenav ? "auto 1fr" : "1fr")};
   grid-template-rows: 1fr;
   min-height: 100%;
-  overflow: hidden;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     grid-template-columns: 1fr;
@@ -39,12 +38,11 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
 const SidenavContainer = styled.div<{ headerHeight: string }>`
   width: fit-content;
   height: 100%;
+  z-index: var(--z-app-layout-sidenav);
   position: sticky;
   top: ${({ headerHeight }) => headerHeight || "0"};
   overflow: auto;
-  z-index: var(--z-app-layout-sidenav);
   max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
-
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100%;
     max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
