@@ -32,10 +32,10 @@ const BodyContainer = styled.div<{ hasSidenav?: boolean }>`
 const SidenavContainer = styled.div<{ headerHeight: string }>`
   width: fit-content;
   height: 100%;
-  z-index: var(--z-app-layout-sidenav);
   position: sticky;
   top: ${({ headerHeight }) => headerHeight || "0"};
   overflow: auto;
+  z-index: var(--z-app-layout-sidenav);
   max-height: ${({ headerHeight }) => `calc(100vh - ${headerHeight || "0"})`};
 `;
 

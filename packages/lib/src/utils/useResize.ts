@@ -9,11 +9,11 @@ type UseResizeProps = {
 const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
   const [width, setWidth] = useState(defaultWidth);
   const sidenavRef = useRef<HTMLDivElement>(null);
-  const resizing = useRef(false);
+  const [isResizing, setIsResizing] = useState(false); // <-- new state
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      if (!resizing.current || !sidenavRef.current) return;
+      if (!isResizing || !sidenavRef.current) return;
 
       const rect = sidenavRef.current.getBoundingClientRect();
       const nextWidth = e.clientX - rect.left;
@@ -22,7 +22,7 @@ const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
     };
 
     const stop = () => {
-      resizing.current = false;
+      setIsResizing(false);
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
     };
@@ -34,10 +34,10 @@ const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", stop);
     };
-  }, [minWidth, maxWidth]);
+  }, [minWidth, maxWidth, isResizing]);
 
   const startResize = () => {
-    resizing.current = true;
+    setIsResizing(true);
     document.body.style.cursor = "ew-resize";
     document.body.style.userSelect = "none";
   };
@@ -45,7 +45,7 @@ const useResize = ({ minWidth, maxWidth, defaultWidth }: UseResizeProps) => {
   return {
     width,
     sidenavRef,
-    resizing,
+    isResizing,
     startResize,
   };
 };
