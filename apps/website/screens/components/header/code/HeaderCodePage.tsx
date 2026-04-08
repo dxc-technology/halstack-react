@@ -12,6 +12,8 @@ const itemTypeString = `{
   label: string;
   onSelect?: () => void;
   selected?: boolean;
+  href?: string;
+  renderItem?: (props: { children: ReactNode }) => ReactNode;
 }`;
 
 const groupItemTypeString = `{
