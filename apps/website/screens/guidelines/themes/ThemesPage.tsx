@@ -67,9 +67,6 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Semantic colors</strong> such as info, success, warning, and error
           </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Brand assets</strong> such as logos and favicons
-          </DxcBulletedList.Item>
         </DxcBulletedList>
         <DxcParagraph>
           This approach ensures that customization remains predictable, accessible, and easy to maintain over time.

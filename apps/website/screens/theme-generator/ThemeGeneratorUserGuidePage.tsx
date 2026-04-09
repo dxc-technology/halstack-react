@@ -50,7 +50,7 @@ const sections = [
                 <DxcParagraph>
                   <strong>Note:</strong> Since we do not host these images, they are{" "}
                   <strong>for visualization purposes only</strong>. They help to see the theme in context, but they will
-                  be left as empty strings in the exported theme file to be replaced with the correct asset paths.
+                  not be included in the exported theme file or the theme configuration.
                 </DxcParagraph>
                 <Figure caption="Select your colors and branding details in the first step of the theme generator.">
                   <Image src={step1} alt="Theme generator step 1" />

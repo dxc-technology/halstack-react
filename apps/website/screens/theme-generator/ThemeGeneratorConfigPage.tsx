@@ -58,16 +58,7 @@ const ThemeGeneratorConfigPage = () => {
   const lastGeneratedColorsRef = useRef<string>("");
 
   const themeJson = useMemo(() => {
-    const themeObject = {
-      tokens: tokens,
-      logos: {
-        mainLogo: "",
-        footerLogo: "",
-        footerReducedLogo: "",
-        favicon: "",
-      },
-    };
-    return JSON.stringify(themeObject, null, 2);
+    return JSON.stringify(tokens, null, 2);
   }, [tokens]);
 
   const generateTokensFromColors = () => {
