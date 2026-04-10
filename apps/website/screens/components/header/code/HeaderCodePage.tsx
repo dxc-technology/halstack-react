@@ -68,6 +68,10 @@ const sections = [
               </p>
               <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
               <p>
+                The <Code>renderItem</Code> property allows wrapping the item with custom routing components (e.g.,
+                Next.js <Code>Link</Code>) that require children to be passed.
+              </p>
+              <p>
                 and <Code>GroupItem</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
