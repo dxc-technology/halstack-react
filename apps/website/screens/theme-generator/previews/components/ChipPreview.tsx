@@ -5,7 +5,7 @@ const ChipPreview = () => {
   return (
     <DxcFlex gap="var(--spacing-gap-ml)" wrap="wrap">
       <DxcChip label="Task Completed" />
-      <DxcChip label="High Priority" prefix={{ icon: "priority_high", color: "primary" }} />
+      <DxcChip label="High Priority" prefixIcon="priority_high" />
       <DxcChip label="Archived" disabled />
     </DxcFlex>
   );
