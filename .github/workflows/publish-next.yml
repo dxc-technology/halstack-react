@@ -21,15 +21,15 @@ jobs:
           node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
-          role-duration-seconds: 3600
-          role-skip-session-tagging: true
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: us-west-2
+      #     role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+      #     role-duration-seconds: 3600
+      #     role-skip-session-tagging: true
 
       - name: Install dependencies
         run: npm install
@@ -45,13 +45,13 @@ jobs:
       - name: Test library accessibility
         run: npm run test:accessibility
 
-      # - name: Publish NEXT version to npm
-      #   run: |
-      #     sed -i "s#\"version\": \".*\"#\"version\": \"$(jq -r .version ./packages/lib/package.json)-${GITHUB_SHA:0:7}\"#" ./packages/lib/package.json
-      #     cd packages/lib
-      #     npm publish --tag next --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: Publish NEXT version to npm
+        run: |
+          sed -i "s#\"version\": \".*\"#\"version\": \"$(jq -r .version ./packages/lib/package.json)-${GITHUB_SHA:0:7}\"#" ./packages/lib/package.json
+          cd packages/lib
+          npm publish --tag next --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       # - name: Move NEXT website to S3
       #   run: |
