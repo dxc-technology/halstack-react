@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { ReactNode } from "react";
+import { GroupItem, Item } from "../base-menu/types";
 
 type Section = { items: (Item | GroupItem)[]; title?: string };
 
@@ -38,19 +38,6 @@ type Props = {
    * The additional content rendered in the upper part of the sidenav, under the branding.
    */
   topContent?: ReactNode;
-};
-
-type CommonItemProps = {
-  badge?: ReactElement;
-  icon?: string | SVG;
-  label: string;
-};
-type Item = CommonItemProps & {
-  onSelect?: () => void;
-  selected?: boolean;
-};
-type GroupItem = CommonItemProps & {
-  items: (Item | GroupItem)[];
 };
 
 export default Props;
