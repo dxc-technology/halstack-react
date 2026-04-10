@@ -12,6 +12,10 @@ const itemTypeString = `{
   ${commonItemTypeString}
   onSelect?: () => void;
   selected?: boolean;
+  href?: string;
+  renderItem?:
+    (props: { children: ReactNode })
+    => ReactNode;
 }`;
 
 const groupItemTypeString = `{ 
@@ -125,10 +129,18 @@ const sections = [
             </td>
             <td>
               <TableCode>{"(Item | GroupItem)[] | Section[]"}</TableCode>
+            </td>
+            <td>
+              Array of items to be displayed in the navigation menu. Each item can be a single/simple item, a group item
+              or a section.
               <p>
-                being <Code>Item</Code> an object with the following properties:
+                Being <Code>Item</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
+              <p>
+                The <Code>renderItem</Code> property allows wrapping the item with custom routing components (e.g.,
+                Next.js <Code>Link</Code>) that require children to be passed.
+              </p>
               <p>
                 , <Code>GroupItem</Code> an object with the following properties:
               </p>
@@ -137,10 +149,6 @@ const sections = [
                 and <Code>Section</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{sectionTypeString}</ExtendedTableCode>
-            </td>
-            <td>
-              Array of items to be displayed in the navigation menu. Each item can be a single/simple item, a group item
-              or a section.
             </td>
             <td>-</td>
           </tr>
