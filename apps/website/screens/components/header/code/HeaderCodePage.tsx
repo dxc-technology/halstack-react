@@ -13,7 +13,9 @@ const itemTypeString = `{
   onSelect?: () => void;
   selected?: boolean;
   href?: string;
-  renderItem?: (props: { children: ReactNode }) => ReactNode;
+  renderItem?:
+    (props: { children: ReactNode })
+    => ReactNode;
 }`;
 
 const groupItemTypeString = `{
