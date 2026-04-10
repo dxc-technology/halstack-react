@@ -332,7 +332,7 @@ const DataVisualizationPage = () => (
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/data-visualization/DataVisualizationPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/guidelines/data-visualization/DataVisualizationPage.tsx" />
   </DxcFlex>
 );
 

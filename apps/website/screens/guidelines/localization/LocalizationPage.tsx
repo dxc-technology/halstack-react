@@ -662,7 +662,7 @@ const LocalizationPage = () => (
       </DxcFlex>
     </PageHeading>
     <QuickNavContainer sections={sections} startHeadingLevel={2} />
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/localization/LocalizationPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/guidelines/localization/LocalizationPage.tsx" />
   </DxcFlex>
 );
 
