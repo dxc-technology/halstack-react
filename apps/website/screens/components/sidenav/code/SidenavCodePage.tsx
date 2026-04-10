@@ -12,6 +12,8 @@ const itemTypeString = `{
   ${commonItemTypeString}
   onSelect?: () => void;
   selected?: boolean;
+  href?: string;
+  renderItem?: (props: { children: ReactNode }) => ReactNode;
 }`;
 
 const groupItemTypeString = `{ 
@@ -133,6 +135,10 @@ const sections = [
                 Being <Code>Item</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
+              <p>
+                The <Code>renderItem</Code> property allows wrapping the item with custom routing components (e.g.,
+                Next.js <Code>Link</Code>) that require children to be passed.
+              </p>
               <p>
                 , <Code>GroupItem</Code> an object with the following properties:
               </p>

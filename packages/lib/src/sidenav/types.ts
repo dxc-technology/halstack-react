@@ -1,15 +1,10 @@
 import { ReactNode } from "react";
 import { SearchBarProps } from "../search-bar/types";
-import { CommonItemProps, GroupItem } from "../base-menu/types";
+import { GroupItem, Item } from "../base-menu/types";
 
 type Section = { items: (Item | GroupItem)[]; title?: string };
 
 type SearchbarSidenavProps = Omit<SearchBarProps, "autoFocus" | "disabled" | "onCancel">;
-
-type Item = CommonItemProps & {
-  onSelect?: () => void;
-  selected?: boolean;
-};
 
 type Props = {
   /**
