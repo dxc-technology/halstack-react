@@ -3,7 +3,6 @@ import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
-// import { FileData } from "../../../../packages/lib/src/file-input/types";
 
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
