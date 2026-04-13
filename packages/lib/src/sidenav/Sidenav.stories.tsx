@@ -556,7 +556,7 @@ export const CollapsedResponsiveSidenav: Story = {
     await canvas.findByLabelText("Collapse");
     await userEvent.tab();
     await userEvent.keyboard("{Enter}");
-    await canvas.findByLabelText("Collapse");
+    await canvas.findByLabelText("Expand");
   },
 };
 
