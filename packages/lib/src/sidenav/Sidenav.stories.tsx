@@ -540,14 +540,6 @@ export const Responsive: Story = {
   globals: {
     viewport: { value: "iphonex", isRotated: false },
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await new Promise<void>((resolve) => setTimeout(resolve, 100));
-    await canvas.findByLabelText("Expand");
-    await userEvent.tab();
-    await userEvent.keyboard("{Enter}");
-    await canvas.findByLabelText("Collapse");
-  },
 };
 
 export const CollapsedResponsiveSidenav: Story = {
@@ -557,6 +549,14 @@ export const CollapsedResponsiveSidenav: Story = {
   },
   globals: {
     viewport: { value: "pixel", isRotated: false },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await new Promise<void>((resolve) => setTimeout(resolve, 100));
+    await canvas.findByLabelText("Collapse");
+    await userEvent.tab();
+    await userEvent.keyboard("{Enter}");
+    await canvas.findByLabelText("Expand");
   },
 };
 
