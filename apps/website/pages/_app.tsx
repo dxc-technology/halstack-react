@@ -58,6 +58,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       if ("links" in link) {
         return {
           label: link.label,
+          icon: link.icon,
           items: normalizeNavTabs(link.links),
         } as GroupItem;
       }
