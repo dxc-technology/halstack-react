@@ -70,6 +70,7 @@ const TextInput = styled.div<{
 const Input = styled.input<{
   alignment: TextInputPropsType["alignment"];
 }>`
+  max-width: 100%;
   background: none;
   border: none;
   outline: none;
@@ -83,6 +84,7 @@ const Input = styled.input<{
   text-overflow: ellipsis;
   white-space: nowrap;
   ${({ alignment }) => `text-align: ${alignment}`};
+  width: 100%;
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};

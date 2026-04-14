@@ -10,7 +10,7 @@ const bottomLinksTypeString = `{
 }[]`;
 
 const logoTypeString = `{
-  src: string;
+  src: string | SVG;
   alt: string;
 }`;
 
@@ -19,6 +19,13 @@ const socialLinkTypeString = `{
   title: string;
   logo: string | SVG;
 }[]`;
+
+const defaultFooterLogoString = `{
+  src: DxcLogo,
+  alt: "DXC Technology Logo"
+}`;
+
+const defaultCopyrightString = `"© DXC Technology \${year}. All rights reserved."`;
 
 const sections = [
   {
@@ -59,7 +66,9 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>The text that will be displayed as copyright disclaimer.</td>
-            <td>-</td>
+            <td>
+              <TableCode>{defaultCopyrightString}</TableCode>
+            </td>
           </tr>
           <tr>
             <td>
@@ -85,7 +94,9 @@ const sections = [
               <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
             <td>Logo to be displayed inside the footer.</td>
-            <td>-</td>
+            <td>
+              <ExtendedTableCode>{defaultFooterLogoString}</ExtendedTableCode>
+            </td>
           </tr>
           <tr>
             <td>mode</td>

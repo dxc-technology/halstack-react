@@ -1,3 +1,4 @@
+import "../src/styles/injectFonts";
 import "../src/styles/variables.css";
 import disabledRules from "../test/accessibility/rules/common/disabledRules";
 import { CacheProvider } from "@emotion/react";

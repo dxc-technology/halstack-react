@@ -291,13 +291,13 @@ const ResponsiveFocused = () => (
         <DxcTabs.Tab label="Tab 4">
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 5" title="test tooltip 5">
+        <DxcTabs.Tab label="Tab 5" title="test tooltip 5" defaultActive>
           <></>
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Tab 6">
           <></>
         </DxcTabs.Tab>
-        <DxcTabs.Tab label="Tab 7" defaultActive>
+        <DxcTabs.Tab label="Tab 7">
           <></>
         </DxcTabs.Tab>
       </DxcTabs>

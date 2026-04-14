@@ -250,7 +250,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     };
 
     const handleOnChangeValue = useCallback(
-      (newOption?: ListOptionType) => {
+      (newOption?: ListOptionType | ListOptionType[]) => {
         if (newOption) {
           if (multiple) {
             if (value == null) {
@@ -276,13 +276,15 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               });
             }
           } else {
-            if (value == null) setInnerValue(newOption.value);
-            onChange?.({
-              value: newOption.value as string & string[],
-              error: notOptionalCheck(newOption.value, multiple, optional)
-                ? translatedLabels.formFields.requiredValueErrorMessage
-                : undefined,
-            });
+            if (!Array.isArray(newOption)) {
+              if (value == null) setInnerValue(newOption.value);
+              onChange?.({
+                value: newOption.value as string & string[],
+                error: notOptionalCheck(newOption.value, multiple, optional)
+                  ? translatedLabels.formFields.requiredValueErrorMessage
+                  : undefined,
+              });
+            }
           }
         }
       },
@@ -453,7 +455,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     };
 
     const handleOptionOnClick = useCallback(
-      (option: ListOptionType) => {
+      (option: ListOptionType | ListOptionType[]) => {
         handleOnChangeValue(option);
         if (!multiple) closeListbox();
         setSearchValue("");
@@ -472,11 +474,11 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleSelectAllGroup = useCallback(
       (group: ListOptionGroupType) => {
         const groupSelectionType = getGroupSelectionType(group.options, (value ?? innerValue) as string[]);
-        if (groupSelectionType === "indeterminate")
-          group.options.forEach(
-            (option) => !(value ?? innerValue).includes(option.value) && handleOptionOnClick(option)
-          );
-        else group.options.forEach((option) => handleOptionOnClick(option));
+        handleOptionOnClick(
+          groupSelectionType === "indeterminate"
+            ? group.options.filter((option) => !(value ?? innerValue).includes(option.value))
+            : group.options
+        );
       },
       [handleOptionOnClick, innerValue, value]
     );

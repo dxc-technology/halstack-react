@@ -54,7 +54,7 @@ const sections = [
             </td>
             <td>Color of the text.</td>
             <td>
-              <TableCode>var(--color-fg-neutral-dark)</TableCode>
+              <TableCode>'var(--color-fg-neutral-dark)'</TableCode>
             </td>
           </tr>
           <tr>
@@ -78,7 +78,7 @@ const sections = [
               Specifies the <Code>font-family</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>var(--typography-font-family)</TableCode>
+              <TableCode>'var(--typography-font-family)'</TableCode>
             </td>
           </tr>
           <tr>
@@ -90,7 +90,7 @@ const sections = [
               Specifies the <Code>font-size</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>var(--typography-body-m)</TableCode>
+              <TableCode>'var(--typography-body-m)'</TableCode>
             </td>
           </tr>
           <tr>
@@ -114,7 +114,7 @@ const sections = [
               Specifies the <Code>font-weight</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>var(--typography-body-regular)</TableCode>
+              <TableCode>'var(--typography-body-regular)'</TableCode>
             </td>
           </tr>
           <tr>
@@ -126,7 +126,7 @@ const sections = [
               Specifies the <Code>letter-spacing</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>var(--spacing-gap-none)</TableCode>
+              <TableCode>'var(--spacing-gap-none)'</TableCode>
             </td>
           </tr>
           <tr>
@@ -138,7 +138,7 @@ const sections = [
               Specifies the <Code>line-height</Code> CSS property of the component.
             </td>
             <td>
-              <TableCode>var(--height-s)</TableCode>
+              <TableCode>'var(--height-s)'</TableCode>
             </td>
           </tr>
           <tr>

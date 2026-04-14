@@ -53,8 +53,8 @@ const LogoContainer = styled.div<{
   text-decoration: none;
   cursor: ${(props) => (props.hasAction ? "pointer" : "default")};
   svg {
-    max-width: 100%;
-    max-height: 100%;
+    width: auto;
+    height: var(--height-m);
   }
 `;
 
@@ -111,7 +111,7 @@ const DxcSidenav = ({
               )}
             </LogoContainer>
           )}
-          <SidenavTitle>{appTitle}</SidenavTitle>
+          {isExpanded && appTitle && <SidenavTitle>{appTitle}</SidenavTitle>}
         </DxcFlex>
       </DxcFlex>
       {topContent && (
@@ -121,6 +121,7 @@ const DxcSidenav = ({
       )}
       {navItems && (
         <DxcNavigationTree
+          key={isExpanded ? "expanded" : "collapsed"}
           items={navItems}
           displayGroupLines={displayGroupLines}
           displayBorder={false}

@@ -2,6 +2,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
 
@@ -11,6 +12,10 @@ const itemTypeString = `{
   label: string;
   onSelect?: () => void;
   selected?: boolean;
+  href?: string;
+  renderItem?:
+    (props: { children: ReactNode })
+    => ReactNode;
 }`;
 
 const groupItemTypeString = `{
@@ -35,15 +40,25 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>appTitle</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                appTitle
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Object used to configure the header application title.</td>
+            <td>String used to configure the header application title.</td>
             <td>-</td>
           </tr>
           <tr>
-            <td>navItems</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                navItems
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{navItemsTypeString}</TableCode>
             </td>
@@ -55,6 +70,10 @@ const sections = [
               </p>
               <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
               <p>
+                The <Code>renderItem</Code> property allows wrapping the item with custom routing components (e.g.,
+                Next.js <Code>Link</Code>) that require children to be passed.
+              </p>
+              <p>
                 and <Code>GroupItem</Code> an object with the following properties:
               </p>
               <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
@@ -65,7 +84,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>responsiveBottomContent</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                responsiveBottomContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -76,7 +100,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>sideContent</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                sideContent
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"React.ReactNode | (isResponsive: boolean) => React.ReactNode"}</TableCode>
             </td>

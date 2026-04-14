@@ -248,7 +248,7 @@ const sections = [
             multiples of 8px for visual harmony.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>imit 4px adjustments:</strong> Reserve finer increments only for edge cases like icon alignment or
+            <strong>Imit 4px adjustments:</strong> Reserve finer increments only for edge cases like icon alignment or
             typography.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

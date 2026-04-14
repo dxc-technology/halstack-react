@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcInset, DxcLink, DxcTextInput, DxcToastsQueue } from "@dxc-technology/halstack-react";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinkDetails, LinksSectionDetails, LinksSections } from "@/common/pagesList";
@@ -32,6 +32,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const [filter, setFilter] = useState("");
   const [isExpanded, setIsExpanded] = useState(true);
   const { asPath: currentPath } = useRouter();
+  const isThemeGenerator = currentPath.includes("/theme-generator");
 
   const matchPaths = (linkPath: string) => {
     const desiredPaths = [linkPath, `${linkPath}/code`];
@@ -42,6 +43,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const createNavItem = (link: LinkDetails): Item => ({
     label: link.label,
     href: link.path,
+    icon: link.icon,
     selected: matchPaths(link.path),
     badge: link.status && link.status !== "stable" ? <StatusBadge hasTitle status={link.status} /> : undefined,
     renderItem: ({ children }: { children: ReactNode }) => (
@@ -56,6 +58,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       if ("links" in link) {
         return {
           label: link.label,
+          icon: link.icon,
           items: normalizeNavTabs(link.links),
         } as GroupItem;
       }
@@ -103,34 +106,55 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       </Head>
       <DxcApplicationLayout
         logo={{ src: dxcLogo, alt: "DXC Technology" }}
-        header={<DxcApplicationLayout.Header />}
+        header={
+          isThemeGenerator ? (
+            <DxcApplicationLayout.Header
+              appTitle="Theme Generator"
+              sideContent={
+                !currentPath.includes("/theme-generator/user-guide") && (
+                  <DxcInset horizontal="var(--spacing-padding-xs)">
+                    <Link href="/theme-generator/user-guide" legacyBehavior passHref>
+                      <DxcLink newWindow icon="description">
+                        User guide
+                      </DxcLink>
+                    </Link>
+                  </DxcInset>
+                )
+              }
+            />
+          ) : (
+            <DxcApplicationLayout.Header />
+          )
+        }
         sidenav={
-          <DxcApplicationLayout.Sidenav
-            navItems={navItems}
-            appTitle={isExpanded && <SidenavLogo />}
-            topContent={
-              isExpanded && (
-                <DxcTextInput
-                  placeholder="Search docs"
-                  value={filter}
-                  onChange={({ value }) => {
-                    setFilter(value);
-                  }}
-                  size="fillParent"
-                  clearable
-                />
-              )
-            }
-            expanded={isExpanded}
-            onExpandedChange={() => {
-              setIsExpanded((currentlyExpanded) => !currentlyExpanded);
-            }}
-          />
+          !isThemeGenerator && (
+            <DxcApplicationLayout.Sidenav
+              navItems={navItems}
+              appTitle={isExpanded && <SidenavLogo />}
+              topContent={
+                isExpanded && (
+                  <DxcTextInput
+                    placeholder="Search docs"
+                    value={filter}
+                    onChange={({ value }) => {
+                      setFilter(value);
+                    }}
+                    size="fillParent"
+                    clearable
+                  />
+                )
+              }
+              expanded={isExpanded}
+              onExpandedChange={() => {
+                setIsExpanded((currentlyExpanded) => !currentlyExpanded);
+              }}
+            />
+          )
         }
       >
         <DxcApplicationLayout.Main>
           <DxcToastsQueue duration={7000}>
-            <MainContent>{componentWithLayout}</MainContent>
+            {!isThemeGenerator ? <MainContent>{componentWithLayout}</MainContent> : <>{componentWithLayout}</>}
           </DxcToastsQueue>
         </DxcApplicationLayout.Main>
       </DxcApplicationLayout>
