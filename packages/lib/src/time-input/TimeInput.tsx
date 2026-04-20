@@ -78,8 +78,22 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const minuteRef = useRef<HTMLSpanElement>(null);
     const secondRef = useRef<HTMLSpanElement>(null);
     const dayPeriodRef = useRef<HTMLSpanElement>(null);
-    // const isControlled = useRef(value !== undefined);
+    const isControlled = useRef(value !== undefined);
     const translatedLabels = useContext(HalstackLanguageContext);
+
+    const generateEventValue = ({
+      hour,
+      minute,
+      second,
+      dayPeriod,
+    }: {
+      hour?: number;
+      minute?: number;
+      second?: number;
+      dayPeriod?: number;
+    }) => {
+      return `${hour ?? hourValue}:${minute ?? minuteValue}${showSeconds ? `:${second ?? secondValue}` : ""}${timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : dayPeriod && dayPeriod === 0 ? "AM" : "PM"}` : ""}`;
+    };
 
     useEffect(() => {
       const time = value || defaultValue;
@@ -94,29 +108,49 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       }
     }, [value, defaultValue]);
 
-    // useEffect(() => {
-    //   let valueToEmit = `${hourValue}:${minuteValue}`;
-    //   if (showSeconds) {
-    //     valueToEmit += `:${secondValue}`;
-    //   }
-    //   if (timeFormat === "12") {
-    //     valueToEmit += dayPeriod;
-    //   }
-    //   if (typeof onChange === "function") {
-    //     onChange(valueToEmit);
-    //   }
-    // }, [hourValue, minuteValue, secondValue, dayPeriod]);
-
     return (
       <>
         <DxcPopover
           popoverContent={
             <TimePicker
-              onSelecthours={setHourValue}
-              onSelectMinutes={setMinuteValue}
-              onSelectSeconds={setSecondValue}
+              onSelecthours={(value) => {
+                if (!isControlled.current) {
+                  setHourValue(value);
+                }
+                if (typeof onChange === "function") {
+                  onChange(generateEventValue({ hour: value }));
+                }
+              }}
+              onSelectMinutes={(value) => {
+                if (!isControlled.current) {
+                  setMinuteValue(value);
+                }
+                if (typeof onChange === "function") {
+                  onChange(generateEventValue({ minute: value }));
+                }
+              }}
+              onSelectSeconds={(value) => {
+                if (!isControlled.current) {
+                  setSecondValue(value);
+                }
+                if (typeof onChange === "function") {
+                  onChange(generateEventValue({ second: value }));
+                }
+              }}
+              onSelectDayPeriod={(isAM) => {
+                if (!isControlled.current) {
+                  setDayPeriod(isAM ? 0 : 1);
+                }
+                if (typeof onChange === "function") {
+                  onChange(generateEventValue({ dayPeriod: isAM ? 0 : 1 }));
+                }
+              }}
               timeFormat={timeFormat}
               showSeconds={showSeconds}
+              hourValue={hourValue}
+              minuteValue={minuteValue}
+              secondValue={secondValue}
+              dayPeriod={dayPeriod}
             />
           }
           asChild
@@ -132,15 +166,13 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             onBlur={() => {
               if (typeof onBlur === "function") {
                 onBlur({
-                  value: `${hourValue}:${minuteValue}${showSeconds ? `:${secondValue}` : ""}${timeFormat === "12" ? ` ${dayPeriod === 0 ? "AM" : "PM"}` : ""}`,
+                  value: generateEventValue({}),
                 });
               }
             }}
             onChange={() => {
               if (typeof onChange === "function") {
-                onChange(
-                  `${hourValue}:${minuteValue}${showSeconds ? `:${secondValue}` : ""}${timeFormat === "12" ? ` ${dayPeriod === 0 ? "AM" : "PM"}` : ""}`
-                );
+                onChange(generateEventValue({}));
               }
             }}
           >
@@ -168,6 +200,19 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                         minuteRef.current.focus();
                       }
                     }}
+                    onChange={(value) => {
+                      if (!isControlled.current) {
+                        setHourValue(value);
+                      }
+                      if (typeof onChange === "function") {
+                        onChange(generateEventValue({ hour: value }));
+                      }
+                    }}
+                    onNext={() => {
+                      if (minuteRef.current) {
+                        minuteRef.current.focus();
+                      }
+                    }}
                     ref={hourRef}
                   />
                   <ColonContainer>:</ColonContainer>
@@ -184,6 +229,24 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                         secondRef.current.focus();
                       } else if (timeFormat === "12" && dayPeriodRef.current) {
                         dayPeriodRef.current.focus();
+                      }
+                    }}
+                    onChange={(value) => {
+                      if (!isControlled.current) {
+                        setMinuteValue(value);
+                      }
+                      onChange?.(generateEventValue({ minute: value }));
+                    }}
+                    onNext={() => {
+                      if (showSeconds && secondRef.current) {
+                        secondRef.current.focus();
+                      } else if (timeFormat === "12" && dayPeriodRef.current) {
+                        dayPeriodRef.current.focus();
+                      }
+                    }}
+                    onPrevious={() => {
+                      if (hourRef.current) {
+                        hourRef.current.focus();
                       }
                     }}
                     ref={minuteRef}
@@ -204,6 +267,22 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                             dayPeriodRef.current.focus();
                           }
                         }}
+                        onChange={(value) => {
+                          if (!isControlled.current) {
+                            setSecondValue(value);
+                          }
+                          onChange?.(generateEventValue({ second: value }));
+                        }}
+                        onNext={() => {
+                          if (timeFormat === "12" && dayPeriodRef.current) {
+                            dayPeriodRef.current.focus();
+                          }
+                        }}
+                        onPrevious={() => {
+                          if (minuteRef.current) {
+                            minuteRef.current.focus();
+                          }
+                        }}
                         ref={secondRef}
                       />
                     </>
@@ -218,6 +297,19 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     tabIndex={tabIndex}
                     dataType="dayPeriod"
                     interactive={!disabled && !readOnly}
+                    onChange={(value) => {
+                      if (!isControlled.current) {
+                        setDayPeriod(value);
+                      }
+                      onChange?.(generateEventValue({ dayPeriod: value }));
+                    }}
+                    onPrevious={() => {
+                      if (showSeconds && secondRef.current) {
+                        secondRef.current.focus();
+                      } else if (minuteRef.current) {
+                        minuteRef.current.focus();
+                      }
+                    }}
                     ref={dayPeriodRef}
                   />
                 )}

@@ -49,6 +49,10 @@ const TimePicker = ({
   onSelectDayPeriod,
   timeFormat,
   showSeconds,
+  hourValue,
+  minuteValue,
+  secondValue,
+  dayPeriod,
 }: TimePickerPropsType) => {
   const hours = timeFormat === "12" ? 12 : 24;
   return (
@@ -58,8 +62,10 @@ const TimePicker = ({
           {Array.from({ length: hours }, (_, index) => (
             <TimePickerOption
               key={index}
-              selected={false}
-              onClick={() => onSelecthours(index + 1 === 24 ? 0 : index + 1)}
+              selected={hourValue === (index + 1 === 24 ? 0 : index + 1)}
+              onClick={() => {
+                onSelecthours(index + 1 === 24 ? 0 : index + 1);
+              }}
             >
               {index + 1 === 24 ? "00" : index + 1 < 10 ? `0${index + 1}` : index + 1}
             </TimePickerOption>
@@ -69,7 +75,7 @@ const TimePicker = ({
       <DxcContainer maxHeight="100%" overflow="auto">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           {Array.from({ length: 60 }, (_, index) => (
-            <TimePickerOption key={index} selected={false} onClick={() => onSelectMinutes(index)}>
+            <TimePickerOption key={index} selected={minuteValue === index} onClick={() => onSelectMinutes(index)}>
               {index < 10 ? `0${index}` : index}
             </TimePickerOption>
           ))}
@@ -79,7 +85,7 @@ const TimePicker = ({
         <DxcContainer maxHeight="100%" overflow="auto">
           <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
             {Array.from({ length: 60 }, (_, index) => (
-              <TimePickerOption key={index} selected={false} onClick={() => onSelectSeconds(index)}>
+              <TimePickerOption key={index} selected={secondValue === index} onClick={() => onSelectSeconds(index)}>
                 {index < 10 ? `0${index}` : index}
               </TimePickerOption>
             ))}
@@ -92,7 +98,7 @@ const TimePicker = ({
             {["AM", "PM"].map((period) => (
               <TimePickerOption
                 key={period}
-                selected={false}
+                selected={dayPeriod === (period === "AM" ? 0 : 1)}
                 onClick={() => {
                   if (typeof onSelectDayPeriod === "function") {
                     onSelectDayPeriod(period === "AM");

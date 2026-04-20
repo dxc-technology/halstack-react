@@ -47,6 +47,10 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
       spanRef.current.textContent = displayValue;
     }, [innerValue, placeholder, maxValue, dataType]);
 
+    useEffect(() => {
+      setInnerValue(value);
+    }, [value]);
+
     // Value used to track the raw input before it's resolved to a valid value.
     const rawInput = useRef<string>("");
     const newDigit = useRef<string>("");

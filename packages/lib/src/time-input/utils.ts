@@ -39,6 +39,7 @@ export const handleKeyDown = (
   onPrevious?: () => void
 ) => {
   const input = event.currentTarget;
+  let newValue: number | undefined = innerValue;
   if (event.key === "Backspace" || event.key === "Delete") {
     event.preventDefault();
     rawInput.current = rawInput.current.slice(0, -1);
@@ -60,7 +61,7 @@ export const handleKeyDown = (
     // Number input
     newDigit.current = event.key;
     rawInput.current = (rawInput.current + newDigit.current).slice(-maxValue.toString().length);
-    const newValue = resolveValue(rawInput.current, maxValue, minValue);
+    newValue = resolveValue(rawInput.current, maxValue, minValue);
     // If the raw input has reached the max length or exceeds the max value with the new digit, consider it complete and move to the next field.
     if (checkCompletion(rawInput.current, maxValue)) {
       const newStringValue = newValue.toString();
@@ -75,30 +76,29 @@ export const handleKeyDown = (
       }
     }
     input.textContent = rawInput.current;
-    setInnerValue(newValue);
-    if (typeof onChange === "function") {
-      onChange(newValue);
-    }
   } else if (event.key === "ArrowUp") {
     if (innerValue == null || innerValue >= maxValue) {
-      setInnerValue(minValue);
+      newValue = minValue;
     } else {
-      const newValue = resolveValue(innerValue + 1, maxValue, minValue);
-      setInnerValue(newValue);
+      newValue = resolveValue(innerValue + 1, maxValue, minValue);
     }
   } else if (event.key === "ArrowDown") {
     if (innerValue == null || innerValue <= minValue) {
-      setInnerValue(maxValue);
+      newValue = maxValue;
     } else {
-      const newValue = resolveValue(innerValue - 1, maxValue, minValue);
-      setInnerValue(newValue);
+      newValue = resolveValue(innerValue - 1, maxValue, minValue);
     }
   } else if (isDayPeriod && /[apAP01]/.test(event.key)) {
     // AM/PM input
     const isAM = /[aA0]/.test(event.key);
-    setInnerValue(isAM ? 0 : 1);
+    newValue = isAM ? 0 : 1;
   }
-
+  setInnerValue((prevValue) => {
+    if (typeof onChange === "function") {
+      onChange(newValue);
+    }
+    return prevValue !== newValue ? newValue : prevValue;
+  });
   if (event.key === "ArrowRight" && typeof onNext === "function") {
     onNext();
   } else if (event.key === "ArrowLeft" && typeof onPrevious === "function") {
