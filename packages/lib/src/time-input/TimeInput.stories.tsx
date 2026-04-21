@@ -27,6 +27,15 @@ const TimeInput = () => (
       <DxcTimeInput label="Time" helperText="Helper text" />
       <DxcTimeInput label="Time" helperText="Helper text" showSeconds />
       <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
+      <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds />
+      <DxcTimeInput
+        label="Time"
+        helperText="Helper text"
+        timeFormat="24"
+        clearable
+        value="12:00"
+        onChange={(val) => console.log(val)}
+      />
     </ExampleContainer>
   </>
 );

@@ -10,8 +10,8 @@ import TimeSpinButton from "./TimeSpinButton";
 import DxcFlex from "../flex/Flex";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcPopover from "../popover/Popover";
-import { handleClearActionOnClick } from "./utils";
 import TimePicker from "./TimePicker";
+import { pad } from "./utils";
 
 const TimeInputContainer = styled.div<{
   size: TimeInputPropsType["size"];
@@ -92,7 +92,10 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       second?: number;
       dayPeriod?: number;
     }) => {
-      return `${hour ?? hourValue}:${minute ?? minuteValue}${showSeconds ? `:${second ?? secondValue}` : ""}${timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : dayPeriod && dayPeriod === 0 ? "AM" : "PM"}` : ""}`;
+      if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
+        return "";
+      }
+      return `${pad(hour ?? hourValue)}:${pad(minute ?? minuteValue)}${showSeconds ? `:${pad(second ?? secondValue)}` : ""}${timeFormat === "12" ? `${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : dayPeriod && dayPeriod === 0 ? "AM" : "PM"}` : ""}`;
     };
 
     useEffect(() => {
@@ -107,6 +110,18 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         }
       }
     }, [value, defaultValue]);
+
+    const handleClearActionOnClick = () => {
+      if (!isControlled.current) {
+        setHourValue(undefined);
+        setMinuteValue(undefined);
+        setSecondValue(undefined);
+        setDayPeriod(undefined);
+      }
+      if (typeof onChange === "function") {
+        onChange(generateEventValue({ hour: undefined, minute: undefined, second: undefined, dayPeriod: undefined }));
+      }
+    };
 
     return (
       <>
@@ -195,6 +210,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     tabIndex={tabIndex}
                     dataType="hour"
                     interactive={!disabled && !readOnly}
+                    isControlled={isControlled.current}
                     onComplete={() => {
                       if (minuteRef.current) {
                         minuteRef.current.focus();
@@ -224,6 +240,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     tabIndex={tabIndex}
                     dataType="minute"
                     interactive={!disabled && !readOnly}
+                    isControlled={isControlled.current}
                     onComplete={() => {
                       if (showSeconds && secondRef.current) {
                         secondRef.current.focus();
@@ -262,6 +279,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                         tabIndex={tabIndex}
                         dataType="second"
                         interactive={!disabled && !readOnly}
+                        isControlled={isControlled.current}
                         onComplete={() => {
                           if (timeFormat === "12" && dayPeriodRef.current) {
                             dayPeriodRef.current.focus();
@@ -297,6 +315,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     tabIndex={tabIndex}
                     dataType="dayPeriod"
                     interactive={!disabled && !readOnly}
+                    isControlled={isControlled.current}
                     onChange={(value) => {
                       if (!isControlled.current) {
                         setDayPeriod(value);
@@ -314,7 +333,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   />
                 )}
               </DxcFlex>
-              <span>
+              <DxcFlex>
                 {clearable && (
                   <DxcActionIcon
                     size="xsmall"
@@ -331,7 +350,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   title="Select time"
                   onClick={() => setIsOpen(true)}
                 />
-              </span>
+              </DxcFlex>
             </TimeInputField>
           </TimeInputContainer>
         </DxcPopover>
@@ -339,7 +358,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           aria-label={ariaLabel}
           type="hidden"
           name={name}
-          value={`${hourValue}:${minuteValue}${showSeconds ? `:${secondValue}` : ""}${timeFormat === "12" ? ` ${dayPeriod === 0 ? "AM" : "PM"}` : ""}`}
+          value={`${hourValue}:${minuteValue}${showSeconds ? `:${secondValue}` : ""}${timeFormat === "12" ? `${dayPeriod === 0 ? "AM" : "PM"}` : ""}`}
         />
       </>
     );

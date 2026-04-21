@@ -63,6 +63,7 @@ const TimePicker = ({
             <TimePickerOption
               key={index}
               selected={hourValue === (index + 1 === 24 ? 0 : index + 1)}
+              autoFocus={hourValue === (index + 1 === 24 ? 0 : index + 1)}
               onClick={() => {
                 onSelecthours(index + 1 === 24 ? 0 : index + 1);
               }}
@@ -75,7 +76,12 @@ const TimePicker = ({
       <DxcContainer maxHeight="100%" overflow="auto">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           {Array.from({ length: 60 }, (_, index) => (
-            <TimePickerOption key={index} selected={minuteValue === index} onClick={() => onSelectMinutes(index)}>
+            <TimePickerOption
+              key={index}
+              selected={minuteValue === index}
+              autoFocus={minuteValue === index}
+              onClick={() => onSelectMinutes(index)}
+            >
               {index < 10 ? `0${index}` : index}
             </TimePickerOption>
           ))}
@@ -85,7 +91,12 @@ const TimePicker = ({
         <DxcContainer maxHeight="100%" overflow="auto">
           <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
             {Array.from({ length: 60 }, (_, index) => (
-              <TimePickerOption key={index} selected={secondValue === index} onClick={() => onSelectSeconds(index)}>
+              <TimePickerOption
+                key={index}
+                selected={secondValue === index}
+                autoFocus={secondValue === index}
+                onClick={() => onSelectSeconds(index)}
+              >
                 {index < 10 ? `0${index}` : index}
               </TimePickerOption>
             ))}
@@ -99,6 +110,7 @@ const TimePicker = ({
               <TimePickerOption
                 key={period}
                 selected={dayPeriod === (period === "AM" ? 0 : 1)}
+                autoFocus={dayPeriod === (period === "AM" ? 0 : 1)}
                 onClick={() => {
                   if (typeof onSelectDayPeriod === "function") {
                     onSelectDayPeriod(period === "AM");

@@ -12,9 +12,37 @@ const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean }>`
   }
 `;
 
+const generateDisplayValue = (
+  dataType: "hour" | "minute" | "second" | "dayPeriod" | undefined,
+  value: number | undefined,
+  placeholder: string,
+  maxValue: number
+) => {
+  let displayValue;
+  if (dataType === "dayPeriod") {
+    displayValue = value === 0 ? "AM" : value === 1 ? "PM" : placeholder;
+  } else {
+    displayValue = value != null ? value.toString().padStart(maxValue.toString().length, "0") : placeholder;
+  }
+  return displayValue;
+};
+
 const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
   (
-    { value, minValue, maxValue, inputId, tabIndex, dataType, interactive, onChange, onComplete, onNext, onPrevious },
+    {
+      value,
+      minValue,
+      maxValue,
+      inputId,
+      tabIndex,
+      dataType,
+      interactive,
+      isControlled,
+      onChange,
+      onComplete,
+      onNext,
+      onPrevious,
+    },
     ref
   ) => {
     const [innerValue, setInnerValue] = useState<number | undefined>(value);
@@ -37,18 +65,18 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
 
     useEffect(() => {
       if (!spanRef.current) return;
-      let displayValue;
-      if (dataType === "dayPeriod") {
-        displayValue = innerValue === 0 ? "AM" : innerValue === 1 ? "PM" : placeholder;
+      if (!isControlled) {
+        spanRef.current.textContent = generateDisplayValue(dataType, innerValue, placeholder, maxValue);
       } else {
-        displayValue =
-          innerValue != null ? innerValue.toString().padStart(maxValue.toString().length, "0") : placeholder;
+        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue);
       }
-      spanRef.current.textContent = displayValue;
-    }, [innerValue, placeholder, maxValue, dataType]);
+    }, [innerValue, placeholder, maxValue, dataType, isControlled]);
 
     useEffect(() => {
       setInnerValue(value);
+      if (spanRef.current) {
+        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue);
+      }
     }, [value]);
 
     // Value used to track the raw input before it's resolved to a valid value.
@@ -88,7 +116,6 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
             spanRef,
             setInnerValue,
             innerValue,
-            placeholder,
             maxValue,
             minValue,
             dataType === "dayPeriod",

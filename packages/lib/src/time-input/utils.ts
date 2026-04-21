@@ -1,3 +1,5 @@
+export const pad = (num?: number) => (num !== undefined && num < 10 ? `0${num}` : `${num}`);
+
 const resolveValue = (value: string | number, maxValue: number, minValue: number) => {
   const input = typeof value === "string" ? parseInt(value, 10) : value;
   if (input > maxValue) {
@@ -29,7 +31,6 @@ export const handleKeyDown = (
   spanRef: React.MutableRefObject<HTMLSpanElement | null>,
   setInnerValue: React.Dispatch<React.SetStateAction<number | undefined>>,
   innerValue: number | undefined,
-  placeholder: string,
   maxValue: number,
   minValue: number,
   isDayPeriod?: boolean,
@@ -45,14 +46,10 @@ export const handleKeyDown = (
     rawInput.current = rawInput.current.slice(0, -1);
     if (!spanRef.current) return;
     if (rawInput.current === "") {
-      setInnerValue(undefined);
-      spanRef.current.textContent = placeholder;
+      newValue = undefined;
     } else {
-      const numericValue = parseInt(rawInput.current, 10);
-      setInnerValue(numericValue);
-      spanRef.current.textContent = rawInput.current;
+      newValue = parseInt(rawInput.current, 10);
     }
-    return;
   }
 
   if (!["Tab", "Enter"].includes(event.key)) event.preventDefault();
@@ -94,18 +91,14 @@ export const handleKeyDown = (
     newValue = isAM ? 0 : 1;
   }
   setInnerValue((prevValue) => {
-    if (typeof onChange === "function") {
-      onChange(newValue);
-    }
     return prevValue !== newValue ? newValue : prevValue;
   });
+  if (typeof onChange === "function") {
+    onChange(newValue);
+  }
   if (event.key === "ArrowRight" && typeof onNext === "function") {
     onNext();
   } else if (event.key === "ArrowLeft" && typeof onPrevious === "function") {
     onPrevious();
   }
-};
-
-export const handleClearActionOnClick = () => {
-  console.log("clear action on click");
 };
