@@ -10,39 +10,43 @@ const ReviewDetails = ({ tokens, logos, themeJson }: { tokens: Tokens; logos: Lo
   const handleCopy = useCopyToClipboard();
 
   return (
-    <>
-      <ReviewSectionContainer
-        title={
-          <DxcFlex justifyContent="space-between" alignItems="center">
+    <div id="fourth-step">
+      <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
+        <ReviewSectionContainer
+          title={
+            <DxcFlex justifyContent="space-between" alignItems="center">
+              <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
+                Color palette & theme
+              </DxcTypography>
+              <div id="fifth-step">
+                <DxcButton
+                  mode="secondary"
+                  icon="content_copy"
+                  size={{ height: "medium" }}
+                  onClick={() => handleCopy(themeJson)}
+                />
+              </div>
+            </DxcFlex>
+          }
+        >
+          <DxcGrid templateColumns={["2fr", "1fr"]} templateRows={["368px"]} gap="var(--spacing-gap-m)">
+            <DxcFlex justifyContent="center">
+              <ReviewTokensGrid tokens={tokens} />
+            </DxcFlex>
+            <ReviewTokensList themeJson={themeJson} />
+          </DxcGrid>
+        </ReviewSectionContainer>
+        <ReviewSectionContainer
+          title={
             <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
-              Color palette & theme
+              Branding assets
             </DxcTypography>
-            <DxcButton
-              mode="secondary"
-              icon="content_copy"
-              size={{ height: "medium" }}
-              onClick={() => handleCopy(themeJson)}
-            />
-          </DxcFlex>
-        }
-      >
-        <DxcGrid templateColumns={["2fr", "1fr"]} templateRows={["368px"]} gap="var(--spacing-gap-m)">
-          <DxcFlex justifyContent="center">
-            <ReviewTokensGrid tokens={tokens} />
-          </DxcFlex>
-          <ReviewTokensList themeJson={themeJson} />
-        </DxcGrid>
-      </ReviewSectionContainer>
-      <ReviewSectionContainer
-        title={
-          <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
-            Branding assets
-          </DxcTypography>
-        }
-      >
-        <ReviewBrandingAssets logos={logos} />
-      </ReviewSectionContainer>
-    </>
+          }
+        >
+          <ReviewBrandingAssets logos={logos} />
+        </ReviewSectionContainer>
+      </DxcFlex>
+    </div>
   );
 };
 

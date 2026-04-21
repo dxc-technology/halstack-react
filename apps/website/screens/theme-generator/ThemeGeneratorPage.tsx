@@ -7,8 +7,10 @@ import {
   DxcParagraph,
   DxcInset,
   DxcGrid,
+  DxcButton,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import LandingCards from "./components/LandingCards";
 import LandingSteps from "./components/LandingSteps";
 import landingImage from "./images/theme-generator-landing-bg.png";
@@ -54,6 +56,15 @@ const cards = [
 ];
 
 const ThemeGeneratorPage = () => {
+  const router = useRouter();
+
+  const handleStartTour = () => {
+    void router.push({
+      pathname: "/theme-generator/configuration",
+      query: { tour: "true" },
+    });
+  };
+
   return (
     <>
       <DxcContainer
@@ -80,6 +91,7 @@ const ThemeGeneratorPage = () => {
                   </DxcTypography>
                 </DxcContainer>
               </DxcFlex>
+              <DxcButton label="Take a tour" icon="play_arrow" iconPosition="after" onClick={handleStartTour} />
               <Link href="/theme-generator/configuration" passHref legacyBehavior>
                 <DxcLink icon="arrow_forward" iconPosition="after">
                   Start your theme

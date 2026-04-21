@@ -29,7 +29,9 @@ const BottomButtons = ({
         size={{ height: "medium" }}
       />
       {currentStep === MAX_STEP ? (
-        <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium" }} />
+        <div id="sixth-step">
+          <DxcButton label="Export theme" onClick={onExport} size={{ height: "medium" }} />
+        </div>
       ) : (
         <DxcButton label="Next" onClick={() => onChangeStep((currentStep + 1) as Step)} size={{ height: "medium" }} />
       )}

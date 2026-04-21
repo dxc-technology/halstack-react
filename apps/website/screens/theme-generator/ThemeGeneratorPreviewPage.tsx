@@ -161,109 +161,111 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
 
   return (
     <DxcContainer width="100%" height="100%">
-      <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
-        <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
-          <DxcToggleGroup
-            options={[
-              { label: "Components", icon: "category", value: 1 },
-              { label: "Layout examples", icon: "dashboard", value: 2 },
-            ]}
-            value={mode === "components" ? 1 : 2}
-            onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
-          />
-          {mode === "components" && (
-            <DxcSelect
-              placeholder="Select components"
-              options={componentOptions}
-              multiple
-              value={selectedComponents}
-              onChange={({ value }) => {
-                setSelectedComponents(value);
-              }}
-              enableSelectAll
-              searchable
-              size="small"
+      <div id="third-step" style={{ width: "100%", height: "100%" }}>
+        <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
+          <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
+            <DxcToggleGroup
+              options={[
+                { label: "Components", icon: "category", value: 1 },
+                { label: "Layout examples", icon: "dashboard", value: 2 },
+              ]}
+              value={mode === "components" ? 1 : 2}
+              onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
             />
-          )}
+            {mode === "components" && (
+              <DxcSelect
+                placeholder="Select components"
+                options={componentOptions}
+                multiple
+                value={selectedComponents}
+                onChange={({ value }) => {
+                  setSelectedComponents(value);
+                }}
+                enableSelectAll
+                searchable
+                size="small"
+              />
+            )}
 
-          {mode === "examples" && (
-            <DxcSelect
-              placeholder="Select examples"
-              options={exampleOptions}
-              value={selectedExample}
-              onChange={({ value }) => {
-                setSelectedExample(value);
-              }}
-              searchable
-            />
-          )}
-        </DxcFlex>
-        {mode === "examples" && (
-          <DxcFlex gap="var(--spacing-gap-xs)">
-            {informationIcon}
-            <DxcTypography
-              color="var(--color-fg-neutral-strongest)"
-              fontSize="var(--typography-label-m)"
-              fontWeight="var(--typography-label-regular)"
-            >
-              Some components are presentational examples. The layouts shown are for demonstration purposes only and do
-              not represent actual components.
-            </DxcTypography>
+            {mode === "examples" && (
+              <DxcSelect
+                placeholder="Select examples"
+                options={exampleOptions}
+                value={selectedExample}
+                onChange={({ value }) => {
+                  setSelectedExample(value);
+                }}
+                searchable
+              />
+            )}
           </DxcFlex>
-        )}
-        {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
-        <DxcContainer
-          borderRadius="var(--border-radius-l)"
-          border={{
-            width: "var(--border-width-s)",
-            color: "var(--border-color-neutral-medium)",
-            style: "var(--border-style-default)",
-          }}
-          background={{ color: "var(--color-bg-neutral-lightest)" }}
-          padding="var(--spacing-padding-s)"
-          height="100%"
-        >
-          {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
-            <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
-              <DxcFlex justifyContent="flex-end">
-                <DxcButton
-                  icon="filled_delete"
-                  size={{ height: "medium" }}
-                  title="Delete selection"
-                  onClick={() => {
-                    if (mode === "components") {
-                      setSelectedComponents([]);
-                    } else {
-                      setSelectedExample("");
-                    }
-                  }}
-                  mode="secondary"
-                  semantic="error"
-                  disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
-                />
-              </DxcFlex>
-              <PreviewAreaContainer>
-                <HalstackProvider opinionatedTheme={{ tokens, logos: processedLogos }}>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-l)">
-                    {displayedPreview}
-                  </DxcFlex>
-                </HalstackProvider>
-              </PreviewAreaContainer>
-            </DxcFlex>
-          ) : (
-            <DxcFlex alignItems="center" justifyContent="center" fullHeight>
+          {mode === "examples" && (
+            <DxcFlex gap="var(--spacing-gap-xs)">
+              {informationIcon}
               <DxcTypography
-                color="var(--color-fg-neutral-dark)"
-                fontFamily="var(--typography-font-family)"
-                fontSize="var(--typography-body-s)"
-                fontWeight="var(--typography-body-regular)"
+                color="var(--color-fg-neutral-strongest)"
+                fontSize="var(--typography-label-m)"
+                fontWeight="var(--typography-label-regular)"
               >
-                Select {mode === "components" ? "a component" : "an example"} to preview
+                Some components are presentational examples. The layouts shown are for demonstration purposes only and
+                do not represent actual components.
               </DxcTypography>
             </DxcFlex>
           )}
-        </DxcContainer>
-      </DxcFlex>
+          {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
+          <DxcContainer
+            borderRadius="var(--border-radius-l)"
+            border={{
+              width: "var(--border-width-s)",
+              color: "var(--border-color-neutral-medium)",
+              style: "var(--border-style-default)",
+            }}
+            background={{ color: "var(--color-bg-neutral-lightest)" }}
+            padding="var(--spacing-padding-s)"
+            height="100%"
+          >
+            {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
+              <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
+                <DxcFlex justifyContent="flex-end">
+                  <DxcButton
+                    icon="filled_delete"
+                    size={{ height: "medium" }}
+                    title="Delete selection"
+                    onClick={() => {
+                      if (mode === "components") {
+                        setSelectedComponents([]);
+                      } else {
+                        setSelectedExample("");
+                      }
+                    }}
+                    mode="secondary"
+                    semantic="error"
+                    disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
+                  />
+                </DxcFlex>
+                <PreviewAreaContainer>
+                  <HalstackProvider opinionatedTheme={{ tokens, logos: processedLogos }}>
+                    <DxcFlex direction="column" gap="var(--spacing-gap-l)">
+                      {displayedPreview}
+                    </DxcFlex>
+                  </HalstackProvider>
+                </PreviewAreaContainer>
+              </DxcFlex>
+            ) : (
+              <DxcFlex alignItems="center" justifyContent="center" fullHeight>
+                <DxcTypography
+                  color="var(--color-fg-neutral-dark)"
+                  fontFamily="var(--typography-font-family)"
+                  fontSize="var(--typography-body-s)"
+                  fontWeight="var(--typography-body-regular)"
+                >
+                  Select {mode === "components" ? "a component" : "an example"} to preview
+                </DxcTypography>
+              </DxcFlex>
+            )}
+          </DxcContainer>
+        </DxcFlex>
+      </div>
     </DxcContainer>
   );
 };
