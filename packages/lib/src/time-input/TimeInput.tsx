@@ -125,80 +125,82 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
 
     return (
       <>
-        <DxcPopover
-          popoverContent={
-            <TimePicker
-              onSelecthours={(value) => {
-                if (!isControlled.current) {
-                  setHourValue(value);
-                }
-                if (typeof onChange === "function") {
-                  onChange(generateEventValue({ hour: value }));
-                }
-              }}
-              onSelectMinutes={(value) => {
-                if (!isControlled.current) {
-                  setMinuteValue(value);
-                }
-                if (typeof onChange === "function") {
-                  onChange(generateEventValue({ minute: value }));
-                }
-              }}
-              onSelectSeconds={(value) => {
-                if (!isControlled.current) {
-                  setSecondValue(value);
-                }
-                if (typeof onChange === "function") {
-                  onChange(generateEventValue({ second: value }));
-                }
-              }}
-              onSelectDayPeriod={(isAM) => {
-                if (!isControlled.current) {
-                  setDayPeriod(isAM ? 0 : 1);
-                }
-                if (typeof onChange === "function") {
-                  onChange(generateEventValue({ dayPeriod: isAM ? 0 : 1 }));
-                }
-              }}
-              timeFormat={timeFormat}
-              showSeconds={showSeconds}
-              hourValue={hourValue}
-              minuteValue={minuteValue}
-              secondValue={secondValue}
-              dayPeriod={dayPeriod}
-            />
-          }
-          asChild
-          isOpen={isOpen}
-          onClose={() => {
-            setIsOpen(false);
+        <TimeInputContainer
+          size={size}
+          ref={ref}
+          onBlur={() => {
+            if (typeof onBlur === "function") {
+              onBlur({
+                value: generateEventValue({}),
+              });
+            }
           }}
-          align="end"
+          onChange={() => {
+            if (typeof onChange === "function") {
+              onChange(generateEventValue({}));
+            }
+          }}
         >
-          <TimeInputContainer
-            size={size}
-            ref={ref}
-            onBlur={() => {
-              if (typeof onBlur === "function") {
-                onBlur({
-                  value: generateEventValue({}),
-                });
-              }
+          <Label disabled={disabled} hasMargin={!helperText} htmlFor={inputId}>
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+          {helperText && (
+            <HelperText disabled={disabled} hasMargin>
+              {helperText}
+            </HelperText>
+          )}
+          <DxcPopover
+            popoverContent={
+              <TimePicker
+                onSelecthours={(value) => {
+                  if (!isControlled.current) {
+                    setHourValue(value);
+                  }
+                  if (typeof onChange === "function") {
+                    onChange(generateEventValue({ hour: value }));
+                  }
+                }}
+                onSelectMinutes={(value) => {
+                  if (!isControlled.current) {
+                    setMinuteValue(value);
+                  }
+                  if (typeof onChange === "function") {
+                    onChange(generateEventValue({ minute: value }));
+                  }
+                }}
+                onSelectSeconds={(value) => {
+                  if (!isControlled.current) {
+                    setSecondValue(value);
+                  }
+                  if (typeof onChange === "function") {
+                    onChange(generateEventValue({ second: value }));
+                  }
+                }}
+                onSelectDayPeriod={(value: number) => {
+                  if (!isControlled.current) {
+                    setDayPeriod(value ? 1 : 0);
+                  }
+                  if (typeof onChange === "function") {
+                    onChange(generateEventValue({ dayPeriod: value ? 1 : 0 }));
+                  }
+                }}
+                timeFormat={timeFormat}
+                showSeconds={showSeconds}
+                hourValue={hourValue}
+                minuteValue={minuteValue}
+                secondValue={secondValue}
+                dayPeriod={dayPeriod}
+                id={inputId}
+                tabIndex={tabIndex}
+              />
+            }
+            asChild
+            isOpen={isOpen}
+            onClose={() => {
+              setIsOpen(false);
             }}
-            onChange={() => {
-              if (typeof onChange === "function") {
-                onChange(generateEventValue({}));
-              }
-            }}
+            align="end"
           >
-            <Label disabled={disabled} hasMargin={!helperText} htmlFor={inputId}>
-              {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-            </Label>
-            {helperText && (
-              <HelperText disabled={disabled} hasMargin>
-                {helperText}
-              </HelperText>
-            )}
             <TimeInputField disabled={disabled} error={!!error} readOnly={readOnly}>
               <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center">
                 <DxcFlex gap="var(--spacing-gap-xxs)" alignItems="center">
@@ -352,8 +354,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                 />
               </DxcFlex>
             </TimeInputField>
-          </TimeInputContainer>
-        </DxcPopover>
+          </DxcPopover>
+        </TimeInputContainer>
         <input
           aria-label={ariaLabel}
           type="hidden"

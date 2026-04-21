@@ -114,13 +114,15 @@ export type TimePickerPropsType = {
   onSelecthours: (hours: number) => void;
   onSelectMinutes: (minutes: number) => void;
   onSelectSeconds: (seconds: number) => void;
-  onSelectDayPeriod?: (isAM: boolean) => void;
+  onSelectDayPeriod?: (isPM: number) => void;
   timeFormat: "12" | "24";
   showSeconds: boolean;
   hourValue?: number;
   minuteValue?: number;
   secondValue?: number;
   dayPeriod?: number;
+  id?: string;
+  tabIndex?: number;
 };
 
 export default Props;

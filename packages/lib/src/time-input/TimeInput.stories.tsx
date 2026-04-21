@@ -33,7 +33,7 @@ const TimeInput = () => (
         helperText="Helper text"
         timeFormat="24"
         clearable
-        value="12:00"
+        value="18:30"
         onChange={(val) => console.log(val)}
       />
     </ExampleContainer>
