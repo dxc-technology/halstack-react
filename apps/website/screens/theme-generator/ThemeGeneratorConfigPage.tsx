@@ -298,13 +298,14 @@ const ThemeGeneratorConfigPage = () => {
           overlayClickAction: false,
           hideOverlay: false,
           blockTargetInteraction: false,
-          spotlightPadding: 12,
-          overlayColor: "rgba(51, 51, 51, 0.9)",
+          spotlightPadding: 4,
+          overlayColor: "var(--color-bg-alpha-strong)",
           zIndex: 10000,
           arrowBase: 12,
           arrowSize: 6,
           offset: 0,
         }}
+        styles={{ overlay: { maxHeight: stepIndex === 6 ? "100%" : "auto" } }}
       />
 
       <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>

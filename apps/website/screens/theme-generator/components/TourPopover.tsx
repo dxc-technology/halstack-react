@@ -12,7 +12,7 @@ interface TooltipContainerProps {
   role: string;
 }
 
-interface HalstackTourTooltipProps {
+interface TourPopoverProps {
   step: TourStep;
   index: number;
   size: number;
@@ -44,7 +44,7 @@ const TourPopover = ({
   onRestart,
   controls,
   tooltipProps,
-}: HalstackTourTooltipProps) => {
+}: TourPopoverProps) => {
   return (
     <PopoverContainer {...tooltipProps}>
       <DxcContainer width="320px">

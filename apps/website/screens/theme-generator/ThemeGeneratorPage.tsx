@@ -80,23 +80,41 @@ const ThemeGeneratorPage = () => {
       >
         <DxcFlex direction="column" fullHeight alignItems="center" justifyContent="center">
           <DxcContainer width="80%">
-            <DxcFlex direction="column" fullHeight justifyContent="center" gap="var(--spacing-gap-ml)">
-              <DxcFlex direction="column" justifyContent="center" gap="var(--spacing-gap-m)">
-                <DxcHeading text="Welcome to Halstack Theme Generator" />
-                <DxcContainer maxWidth="60%">
-                  <DxcTypography fontSize="var(--typography-body-xl)">
+            <DxcFlex
+              direction="column"
+              fullHeight
+              justifyContent="center"
+              gap="var(--spacing-gap-ml)"
+              alignItems="center"
+              alignSelf="stretch"
+            >
+              <DxcContainer maxWidth="70%">
+                <DxcFlex direction="column" justifyContent="center" alignItems="center" gap="var(--spacing-gap-m)">
+                  <DxcHeading text="Build your theme with Halstack Theme Generator" />
+                  <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
                     Create and explore your brand within Halstack. Configure your core colors, upload your logo
                     variants, and see in real time how your theme works across components, layouts, and real product
                     scenarios.
                   </DxcTypography>
-                </DxcContainer>
+                  <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
+                    Learn how your theme is built step by step.
+                  </DxcTypography>
+                </DxcFlex>
+              </DxcContainer>
+              <DxcFlex alignItems="center" gap="var(--spacing-gap-l)">
+                <DxcButton
+                  mode="secondary"
+                  label="Take a tour"
+                  icon="explore"
+                  iconPosition="after"
+                  onClick={handleStartTour}
+                />
+                <Link href="/theme-generator/configuration" passHref legacyBehavior>
+                  <DxcLink icon="arrow_forward" iconPosition="after">
+                    Start building
+                  </DxcLink>
+                </Link>
               </DxcFlex>
-              <DxcButton label="Take a tour" icon="play_arrow" iconPosition="after" onClick={handleStartTour} />
-              <Link href="/theme-generator/configuration" passHref legacyBehavior>
-                <DxcLink icon="arrow_forward" iconPosition="after">
-                  Start your theme
-                </DxcLink>
-              </Link>
             </DxcFlex>
           </DxcContainer>
         </DxcFlex>
