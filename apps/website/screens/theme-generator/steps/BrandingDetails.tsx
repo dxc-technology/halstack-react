@@ -80,9 +80,10 @@ export const BrandingDetails = ({
     >
       <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-xl)">
         <div id="first-step">
-          <BrandingColorGrid colors={colors} section={coreColors} onColorChange={handleColorChange} />
-
-          <BrandingColorGrid colors={colors} section={semanticColors} onColorChange={handleColorChange} />
+          <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-xl)">
+            <BrandingColorGrid colors={colors} section={coreColors} onColorChange={handleColorChange} />
+            <BrandingColorGrid colors={colors} section={semanticColors} onColorChange={handleColorChange} />
+          </DxcFlex>
         </div>
         <div id="second-step" style={{ width: "100%" }}>
           <BrandingLogoGrid logos={logos} section={brandingDetails} onLogoChange={updateLogoValue} />

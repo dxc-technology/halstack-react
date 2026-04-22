@@ -298,12 +298,12 @@ const ThemeGeneratorConfigPage = () => {
           overlayClickAction: false,
           hideOverlay: false,
           blockTargetInteraction: false,
-          spotlightPadding: 10,
+          spotlightPadding: 12,
           overlayColor: "rgba(51, 51, 51, 0.9)",
           zIndex: 10000,
           arrowBase: 12,
           arrowSize: 6,
-          offset: 1,
+          offset: 0,
         }}
       />
 
