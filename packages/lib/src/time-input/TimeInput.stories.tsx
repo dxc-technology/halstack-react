@@ -26,12 +26,24 @@ export default {
 
 const TimeInput = () => {
   const [continentalValue, setContinentalValue] = useState<string>("18:30:20");
-  const [value] = useState<string>("6:30:20 PM");
+  const [value] = useState<string>("6:30:20 AM");
   return (
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={2} />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} size="small" />
+        <DxcTimeInput
+          label="Time"
+          helperText="Helper text"
+          value={value}
+          size="small"
+          onChange={(val) => {
+            console.log(`Value changed: ${val}`);
+          }}
+          onBlur={(val) => {
+            console.log(`Value blurred: ${val.value}`);
+          }}
+          clearable
+        />
         <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds />
         <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
         <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
@@ -50,6 +62,14 @@ const TimeInput = () => {
           />
         </DxcContainer>
         <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds readOnly />
+        <DxcTimeInput
+          label="Time"
+          helperText="Helper text"
+          defaultValue={value}
+          showSeconds
+          error="This is not a valid time"
+        />
       </ExampleContainer>
       <ExampleContainer pseudoState={"pseudo-hover"}>
         <Title title="Hover" theme="light" level={2} />
