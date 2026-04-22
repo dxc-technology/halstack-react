@@ -95,18 +95,22 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
         return "";
       }
-      return `${pad(hour ?? hourValue)}:${pad(minute ?? minuteValue)}${showSeconds ? `:${pad(second ?? secondValue)}` : ""}${timeFormat === "12" ? `${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : dayPeriod && dayPeriod === 0 ? "AM" : "PM"}` : ""}`;
+      return `${pad(hour ?? hourValue)}:${pad(minute ?? minuteValue)}${showSeconds ? `:${pad(second ?? secondValue)}` : ""}${timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : dayPeriod && dayPeriod === 0 ? "AM" : "PM"}` : ""}`;
     };
 
     useEffect(() => {
       const time = value || defaultValue;
       if (time) {
-        const [hour, minute, second] = time.split(":").map(Number);
-        setHourValue(hour);
-        setMinuteValue(minute);
-        setSecondValue(second);
-        if (timeFormat === "12") {
-          setDayPeriod(hour && hour >= 12 ? 1 : 0);
+        const numberPart = timeFormat === "12" ? time.split(" ")[0] : time;
+        if (numberPart) {
+          const [hour, minute, second] = numberPart.split(":").map(Number);
+          setHourValue(hour);
+          setMinuteValue(minute);
+          setSecondValue(second);
+        }
+        if (timeFormat === "12" && time.includes(" ")) {
+          const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : 1;
+          setDayPeriod(dayPeriodValue);
         }
       }
     }, [value, defaultValue]);
@@ -356,12 +360,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             </TimeInputField>
           </DxcPopover>
         </TimeInputContainer>
-        <input
-          aria-label={ariaLabel}
-          type="hidden"
-          name={name}
-          value={`${hourValue}:${minuteValue}${showSeconds ? `:${secondValue}` : ""}${timeFormat === "12" ? `${dayPeriod === 0 ? "AM" : "PM"}` : ""}`}
-        />
+        <input aria-label={ariaLabel} type="hidden" name={name} value={generateEventValue({})} />
       </>
     );
   }

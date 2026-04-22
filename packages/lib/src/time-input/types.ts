@@ -113,10 +113,10 @@ export type TimeSpinButtonPropsType = {
 export type TimePickerPropsType = {
   onSelecthours: (hours: number) => void;
   onSelectMinutes: (minutes: number) => void;
-  onSelectSeconds: (seconds: number) => void;
+  onSelectSeconds?: (seconds: number) => void;
   onSelectDayPeriod?: (isPM: number) => void;
   timeFormat: "12" | "24";
-  showSeconds: boolean;
+  showSeconds?: boolean;
   hourValue?: number;
   minuteValue?: number;
   secondValue?: number;

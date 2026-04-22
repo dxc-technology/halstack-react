@@ -193,8 +193,10 @@ const TimePicker = ({
                 autoFocus={secondToFocus === index}
                 tabIndex={secondToFocus === index ? tabIndex || 0 : -1}
                 onClick={() => {
-                  onSelectSeconds(index);
-                  setSecondToFocus(index);
+                  if (typeof onSelectSeconds === "function") {
+                    onSelectSeconds(index);
+                    setSecondToFocus(index);
+                  }
                 }}
                 onKeyDown={(event) =>
                   handleColumnKeyDown(event, "second", index, 60, setSecondToFocus, onSelectSeconds)
