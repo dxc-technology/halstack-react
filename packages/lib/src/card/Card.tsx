@@ -69,13 +69,13 @@ const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] 
 `;
 
 const CardContent = styled.div`
+  flex: 1 1 auto;
+  min-width: 0;
   align-items: flex-start;
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   gap: var(--spacing-gap-ml);
-  overflow: hidden;
   padding: var(--spacing-padding-l);
 `;
 
