@@ -33,18 +33,27 @@ const TimeInput = () => {
         <DxcTimeInput
           label="Time"
           helperText="Helper text"
-          value={value}
           size="small"
           onChange={(val) => {
             console.log(`Value changed: ${val}`);
           }}
           onBlur={(val) => {
-            console.log(`Value blurred: ${val.value}`);
+            console.log(val);
           }}
           clearable
         />
         <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
+        <DxcTimeInput
+          label="Time"
+          helperText="Helper text"
+          timeFormat="24"
+          onChange={(val) => {
+            console.log(`Value changed: ${val}`);
+          }}
+          onBlur={(val) => {
+            console.log(val);
+          }}
+        />
         <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
         <DxcContainer width="175px">
           <DxcTimeInput

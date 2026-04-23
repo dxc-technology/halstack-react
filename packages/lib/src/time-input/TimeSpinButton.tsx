@@ -37,10 +37,10 @@ const generateDisplayValue = (
 const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
   (
     {
+      ariaLabel,
       value,
       minValue,
       maxValue,
-      inputId,
       tabIndex,
       dataType,
       readOnly,
@@ -106,7 +106,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         aria-valuetext={innerValue != null ? String(innerValue) : "Empty"}
         aria-valuemin={minValue}
         aria-valuemax={maxValue}
-        aria-labelledby={inputId}
+        aria-label={ariaLabel}
         disabled={disabled}
         contentEditable={!readOnly && !disabled ? "plaintext-only" : "false"}
         inputMode={dataType !== "dayPeriod" ? "numeric" : undefined}

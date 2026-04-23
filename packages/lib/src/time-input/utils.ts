@@ -104,3 +104,19 @@ export const handleKeyDown = (
     onPrevious();
   }
 };
+
+export const generateEventValue = (
+  hour: number | undefined,
+  minute: number | undefined,
+  second: number | undefined,
+  dayPeriod: number | undefined,
+  showSeconds: boolean | undefined,
+  timeFormat: "12" | "24" | undefined
+) => {
+  if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
+    return "";
+  }
+  return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
+    timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : undefined}` : ""
+  }`;
+};

@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import DxcTimeInput from "./TimeInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
 import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
@@ -75,8 +76,49 @@ describe("DxcTimeInput rendering", () => {
     expect(mockOnChange).toHaveBeenCalledWith("10:30 AM");
   });
 
-  //   it("renders error message", () => {
-  //     render(<DxcTimeInput error="Invalid time" />);
-  //     expect(screen.getByText("Invalid time")).toBeInTheDocument();
-  //   });
+  it("renders error message", () => {
+    const { getByText } = render(<DxcTimeInput error="Invalid time" />);
+    expect(getByText("Invalid time")).toBeTruthy();
+  });
+
+  it("Calls onBlur with the correct value", () => {
+    const mockOnBlur = jest.fn();
+    const mockOnChange = jest.fn();
+    const { getAllByRole } = render(<DxcTimeInput label="Time input" onBlur={mockOnBlur} onChange={mockOnChange} />);
+    const inputs = getAllByRole("spinbutton");
+    expect(inputs).toHaveLength(3); // hour + minute + dayPeriod
+    userEvent.tab();
+    expect(inputs[0]).toHaveFocus();
+    userEvent.keyboard("{ArrowUp}");
+    expect(mockOnChange).toHaveBeenCalledWith("01:undefined undefined");
+    userEvent.tab();
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("{ArrowDown}");
+    expect(mockOnChange).toHaveBeenCalledWith("01:59 undefined");
+    userEvent.tab();
+    expect(inputs[2]).toHaveFocus();
+    userEvent.keyboard("{A}");
+    expect(mockOnChange).toHaveBeenCalledWith("01:59 AM");
+    userEvent.tab();
+    expect(mockOnBlur).toHaveBeenCalledWith({ value: "01:59 AM", error: undefined });
+  });
+
+  it("TimePicker keyboard interaction", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getByText, getAllByText } = render(<DxcTimeInput label="Time input" onChange={mockOnChange} />);
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    expect(getByText("AM")).toBeTruthy();
+    const hourbutton = getAllByText("07");
+    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("07:undefined undefined");
+    const minuteButton = getAllByText("30");
+    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("07:30 undefined");
+    const amButton = getByText("AM");
+    expect(amButton).toBeTruthy();
+    userEvent.click(amButton);
+    expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
+  });
 });

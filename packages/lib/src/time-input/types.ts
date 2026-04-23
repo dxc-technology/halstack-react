@@ -96,10 +96,10 @@ type Props = {
 export type RefType = HTMLDivElement;
 
 export type TimeSpinButtonPropsType = {
+  ariaLabel?: string;
   value: number | undefined;
   minValue: number;
   maxValue: number;
-  inputId: string;
   tabIndex: number;
   dataType?: "hour" | "minute" | "second" | "dayPeriod";
   readOnly: boolean;

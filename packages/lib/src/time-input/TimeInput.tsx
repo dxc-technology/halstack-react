@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import inputStylesByState from "../styles/forms/inputStylesByState";
 import { calculateWidth } from "../text-input/utils";
 import TimeInputPropsType, { RefType } from "./types";
-import { forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
+import { forwardRef, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import Label from "../styles/forms/Label";
 import HelperText from "../styles/forms/HelperText";
@@ -11,7 +11,7 @@ import DxcFlex from "../flex/Flex";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcPopover from "../popover/Popover";
 import TimePicker from "./TimePicker";
-import { pad } from "./utils";
+import { generateEventValue } from "./utils";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 
 const TimeInputContainer = styled.div<{
@@ -25,9 +25,6 @@ const TimeInputContainer = styled.div<{
   font-weight: var(--typography-label-regular);
   color: var(--color-fg-neutral-dark);
   width: ${({ size }) => calculateWidth(undefined, size)};
-  & > div {
-    width: 100%;
-  }
 `;
 
 const TimeInputField = styled.div<{
@@ -42,7 +39,6 @@ const TimeInputField = styled.div<{
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
-  width: 100%;
 `;
 
 const ColonContainer = styled.span`
@@ -87,25 +83,6 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const isControlled = useRef(value !== undefined);
     const translatedLabels = useContext(HalstackLanguageContext);
 
-    const generateEventValue = ({
-      hour,
-      minute,
-      second,
-      dayPeriod,
-    }: {
-      hour?: number;
-      minute?: number;
-      second?: number;
-      dayPeriod?: number;
-    } = {}) => {
-      if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
-        return "";
-      }
-      return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
-        timeFormat === "12" ? ` ${dayPeriod === 0 ? "AM" : "PM"}` : ""
-      }`;
-    };
-
     useEffect(() => {
       const time = value || defaultValue || undefined;
       if (time) {
@@ -123,6 +100,14 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       }
     }, [value, defaultValue]);
 
+    const generatedInputValue = useMemo(() => {
+      if (hourValue === undefined && minuteValue === undefined && secondValue === undefined) {
+        return "";
+      } else {
+        return generateEventValue(hourValue, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat);
+      }
+    }, [hourValue, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat]);
+
     const handleClearActionOnClick = () => {
       if (!isControlled.current) {
         setHourValue(undefined);
@@ -131,7 +116,17 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         setDayPeriodValue(undefined);
       }
       if (typeof onChange === "function") {
-        onChange(generateEventValue({ hour: undefined, minute: undefined, second: undefined, dayPeriod: undefined }));
+        onChange(generateEventValue(undefined, undefined, undefined, undefined, showSeconds, timeFormat));
+      }
+    };
+
+    const validateTimeValue = (value: string) => {
+      const timeRegex =
+        timeFormat === "12"
+          ? /^(0?[1-9]|1[0-2]):[0-5][0-9](?::[0-5][0-9])?\s?(AM|PM)$/i
+          : /^([01]?[0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$/;
+      if (!timeRegex.test(value)) {
+        return "Invalid time format";
       }
     };
 
@@ -143,25 +138,14 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           onBlur={() => {
             if (typeof onBlur === "function") {
               onBlur({
-                value: generateEventValue({
-                  hour: hourValue,
-                  minute: minuteValue,
-                  second: secondValue,
-                  dayPeriod: dayPeriodValue,
-                }),
+                value: generatedInputValue,
+                error: validateTimeValue(generatedInputValue),
               });
             }
           }}
           onChange={() => {
             if (typeof onChange === "function") {
-              onChange(
-                generateEventValue({
-                  hour: hourValue,
-                  minute: minuteValue,
-                  second: secondValue,
-                  dayPeriod: dayPeriodValue,
-                })
-              );
+              onChange(generatedInputValue);
             }
           }}
         >
@@ -173,262 +157,228 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
               {helperText}
             </HelperText>
           )}
-          <DxcPopover
-            popoverContent={
-              <TimePicker
-                onSelecthours={(value) => {
-                  if (!isControlled.current) {
-                    setHourValue(value);
-                  }
-                  if (typeof onChange === "function") {
-                    onChange(
-                      generateEventValue({
-                        hour: value,
-                        minute: minuteValue,
-                        second: secondValue,
-                        dayPeriod: dayPeriodValue,
-                      })
-                    );
-                  }
-                }}
-                onSelectMinutes={(value) => {
-                  if (!isControlled.current) {
-                    setMinuteValue(value);
-                  }
-                  if (typeof onChange === "function") {
-                    onChange(
-                      generateEventValue({
-                        hour: hourValue,
-                        minute: value,
-                        second: secondValue,
-                        dayPeriod: dayPeriodValue,
-                      })
-                    );
-                  }
-                }}
-                onSelectSeconds={(value) => {
-                  if (!isControlled.current) {
-                    setSecondValue(value);
-                  }
-                  if (typeof onChange === "function") {
-                    onChange(
-                      generateEventValue({
-                        hour: hourValue,
-                        minute: minuteValue,
-                        second: value,
-                        dayPeriod: dayPeriodValue,
-                      })
-                    );
-                  }
-                }}
-                onSelectDayPeriod={(value: number) => {
-                  console.log("selected day period: " + value);
-                  if (!isControlled.current) {
-                    setDayPeriodValue(value);
-                  }
-                  if (typeof onChange === "function") {
-                    onChange(
-                      generateEventValue({
-                        hour: hourValue,
-                        minute: minuteValue,
-                        second: secondValue,
-                        dayPeriod: value,
-                      })
-                    );
-                  }
-                }}
-                timeFormat={timeFormat}
-                showSeconds={showSeconds}
-                hourValue={hourValue}
-                minuteValue={minuteValue}
-                secondValue={secondValue}
-                dayPeriod={dayPeriodValue}
-                id={inputId}
-                tabIndex={tabIndex}
-              />
-            }
-            isOpen={isOpen}
-            onClose={() => {
-              setIsOpen(false);
-            }}
-            align="end"
-          >
-            <TimeInputField disabled={disabled} error={!!error} readOnly={readOnly}>
-              <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center">
-                <DxcFlex gap="var(--spacing-gap-xxs)" alignItems="center">
-                  <TimeSpinButton
-                    value={hourValue}
-                    minValue={timeFormat === "12" ? 1 : 0}
-                    maxValue={timeFormat === "12" ? 12 : 23}
-                    inputId={inputId}
-                    tabIndex={tabIndex}
-                    dataType="hour"
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    isControlled={isControlled.current}
-                    onComplete={() => {
-                      if (minuteRef.current) {
-                        minuteRef.current.focus();
-                      }
-                    }}
-                    onChange={(value) => {
+          <TimeInputField disabled={disabled} error={!!error} readOnly={readOnly}>
+            <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center">
+              <DxcFlex gap="var(--spacing-gap-xxs)" alignItems="center">
+                <TimeSpinButton
+                  ariaLabel={label ?? ariaLabel}
+                  value={hourValue}
+                  minValue={timeFormat === "12" ? 1 : 0}
+                  maxValue={timeFormat === "12" ? 12 : 23}
+                  tabIndex={tabIndex}
+                  dataType="hour"
+                  readOnly={readOnly}
+                  disabled={disabled}
+                  isControlled={isControlled.current}
+                  onComplete={() => {
+                    if (minuteRef.current) {
+                      minuteRef.current.focus();
+                    }
+                  }}
+                  onChange={(value) => {
+                    if (!isControlled.current) {
+                      setHourValue(value);
+                    }
+                    if (typeof onChange === "function") {
+                      onChange(
+                        generateEventValue(value, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat)
+                      );
+                    }
+                  }}
+                  onNext={() => {
+                    if (minuteRef.current) {
+                      minuteRef.current.focus();
+                    }
+                  }}
+                  ref={hourRef}
+                />
+                <ColonContainer>:</ColonContainer>
+                <TimeSpinButton
+                  ariaLabel={label ?? ariaLabel}
+                  value={minuteValue}
+                  minValue={0}
+                  maxValue={59}
+                  tabIndex={tabIndex}
+                  dataType="minute"
+                  readOnly={readOnly}
+                  disabled={disabled}
+                  isControlled={isControlled.current}
+                  onComplete={() => {
+                    if (showSeconds && secondRef.current) {
+                      secondRef.current.focus();
+                    } else if (timeFormat === "12" && dayPeriodRef.current) {
+                      dayPeriodRef.current.focus();
+                    }
+                  }}
+                  onChange={(value) => {
+                    if (!isControlled.current) {
+                      setMinuteValue(value);
+                    }
+                    if (typeof onChange === "function") {
+                      onChange(
+                        generateEventValue(hourValue, value, secondValue, dayPeriodValue, showSeconds, timeFormat)
+                      );
+                    }
+                  }}
+                  onNext={() => {
+                    if (showSeconds && secondRef.current) {
+                      secondRef.current.focus();
+                    } else if (timeFormat === "12" && dayPeriodRef.current) {
+                      dayPeriodRef.current.focus();
+                    }
+                  }}
+                  onPrevious={() => {
+                    if (hourRef.current) {
+                      hourRef.current.focus();
+                    }
+                  }}
+                  ref={minuteRef}
+                />
+                {showSeconds && (
+                  <>
+                    <ColonContainer>:</ColonContainer>
+                    <TimeSpinButton
+                      ariaLabel={label ?? ariaLabel}
+                      value={secondValue}
+                      minValue={0}
+                      maxValue={59}
+                      tabIndex={tabIndex}
+                      dataType="second"
+                      readOnly={readOnly}
+                      disabled={disabled}
+                      isControlled={isControlled.current}
+                      onComplete={() => {
+                        if (timeFormat === "12" && dayPeriodRef.current) {
+                          dayPeriodRef.current.focus();
+                        }
+                      }}
+                      onChange={(value) => {
+                        if (!isControlled.current) {
+                          setSecondValue(value);
+                        }
+                        if (typeof onChange === "function") {
+                          onChange(
+                            generateEventValue(hourValue, minuteValue, value, dayPeriodValue, showSeconds, timeFormat)
+                          );
+                        }
+                      }}
+                      onNext={() => {
+                        if (timeFormat === "12" && dayPeriodRef.current) {
+                          dayPeriodRef.current.focus();
+                        }
+                      }}
+                      onPrevious={() => {
+                        if (minuteRef.current) {
+                          minuteRef.current.focus();
+                        }
+                      }}
+                      ref={secondRef}
+                    />
+                  </>
+                )}
+              </DxcFlex>
+              {timeFormat === "12" && (
+                <TimeSpinButton
+                  ariaLabel={label ?? ariaLabel}
+                  value={dayPeriodValue}
+                  minValue={0}
+                  maxValue={1}
+                  tabIndex={tabIndex}
+                  dataType="dayPeriod"
+                  readOnly={readOnly}
+                  disabled={disabled}
+                  isControlled={isControlled.current}
+                  onChange={(value) => {
+                    if (!isControlled.current) {
+                      setDayPeriodValue(value);
+                    }
+                    if (typeof onChange === "function") {
+                      onChange(generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat));
+                    }
+                  }}
+                  onPrevious={() => {
+                    if (showSeconds && secondRef.current) {
+                      secondRef.current.focus();
+                    } else if (minuteRef.current) {
+                      minuteRef.current.focus();
+                    }
+                  }}
+                  ref={dayPeriodRef}
+                />
+              )}
+            </DxcFlex>
+            <DxcFlex>
+              {clearable && (
+                <DxcActionIcon
+                  size="xsmall"
+                  icon="close"
+                  onClick={() => handleClearActionOnClick()}
+                  tabIndex={tabIndex}
+                  title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
+                />
+              )}
+              <DxcPopover
+                popoverContent={
+                  <TimePicker
+                    onSelecthours={(value) => {
                       if (!isControlled.current) {
                         setHourValue(value);
                       }
                       if (typeof onChange === "function") {
                         onChange(
-                          generateEventValue({
-                            hour: value,
-                            minute: minuteValue,
-                            second: secondValue,
-                            dayPeriod: dayPeriodValue,
-                          })
+                          generateEventValue(value, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat)
                         );
                       }
                     }}
-                    onNext={() => {
-                      if (minuteRef.current) {
-                        minuteRef.current.focus();
-                      }
-                    }}
-                    ref={hourRef}
-                  />
-                  <ColonContainer>:</ColonContainer>
-                  <TimeSpinButton
-                    value={minuteValue}
-                    minValue={0}
-                    maxValue={59}
-                    inputId={inputId}
-                    tabIndex={tabIndex}
-                    dataType="minute"
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    isControlled={isControlled.current}
-                    onComplete={() => {
-                      if (showSeconds && secondRef.current) {
-                        secondRef.current.focus();
-                      } else if (timeFormat === "12" && dayPeriodRef.current) {
-                        dayPeriodRef.current.focus();
-                      }
-                    }}
-                    onChange={(value) => {
+                    onSelectMinutes={(value) => {
                       if (!isControlled.current) {
                         setMinuteValue(value);
                       }
-                      onChange?.(
-                        generateEventValue({
-                          hour: hourValue,
-                          minute: value,
-                          second: secondValue,
-                          dayPeriod: dayPeriodValue,
-                        })
-                      );
-                    }}
-                    onNext={() => {
-                      if (showSeconds && secondRef.current) {
-                        secondRef.current.focus();
-                      } else if (timeFormat === "12" && dayPeriodRef.current) {
-                        dayPeriodRef.current.focus();
+                      if (typeof onChange === "function") {
+                        onChange(
+                          generateEventValue(hourValue, value, secondValue, dayPeriodValue, showSeconds, timeFormat)
+                        );
                       }
                     }}
-                    onPrevious={() => {
-                      if (hourRef.current) {
-                        hourRef.current.focus();
+                    onSelectSeconds={(value) => {
+                      if (!isControlled.current) {
+                        setSecondValue(value);
+                      }
+                      if (typeof onChange === "function") {
+                        onChange(
+                          generateEventValue(hourValue, minuteValue, value, dayPeriodValue, showSeconds, timeFormat)
+                        );
                       }
                     }}
-                    ref={minuteRef}
-                  />
-                  {showSeconds && (
-                    <>
-                      <ColonContainer>:</ColonContainer>
-                      <TimeSpinButton
-                        value={secondValue}
-                        minValue={0}
-                        maxValue={59}
-                        inputId={inputId}
-                        tabIndex={tabIndex}
-                        dataType="second"
-                        readOnly={readOnly}
-                        disabled={disabled}
-                        isControlled={isControlled.current}
-                        onComplete={() => {
-                          if (timeFormat === "12" && dayPeriodRef.current) {
-                            dayPeriodRef.current.focus();
-                          }
-                        }}
-                        onChange={(value) => {
-                          if (!isControlled.current) {
-                            setSecondValue(value);
-                          }
-                          onChange?.(
-                            generateEventValue({
-                              hour: hourValue,
-                              minute: minuteValue,
-                              second: value,
-                              dayPeriod: dayPeriodValue,
-                            })
-                          );
-                        }}
-                        onNext={() => {
-                          if (timeFormat === "12" && dayPeriodRef.current) {
-                            dayPeriodRef.current.focus();
-                          }
-                        }}
-                        onPrevious={() => {
-                          if (minuteRef.current) {
-                            minuteRef.current.focus();
-                          }
-                        }}
-                        ref={secondRef}
-                      />
-                    </>
-                  )}
-                </DxcFlex>
-                {timeFormat === "12" && (
-                  <TimeSpinButton
-                    value={dayPeriodValue}
-                    minValue={0}
-                    maxValue={1}
-                    inputId={inputId}
-                    tabIndex={tabIndex}
-                    dataType="dayPeriod"
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    isControlled={isControlled.current}
-                    onChange={(value) => {
+                    onSelectDayPeriod={(value: number) => {
+                      console.log("selected day period: " + value);
                       if (!isControlled.current) {
                         setDayPeriodValue(value);
                       }
-                      onChange?.(
-                        generateEventValue({
-                          hour: hourValue,
-                          minute: minuteValue,
-                          second: secondValue,
-                          dayPeriod: value,
-                        })
-                      );
-                    }}
-                    onPrevious={() => {
-                      if (showSeconds && secondRef.current) {
-                        secondRef.current.focus();
-                      } else if (minuteRef.current) {
-                        minuteRef.current.focus();
+                      if (typeof onChange === "function") {
+                        onChange(
+                          generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat)
+                        );
                       }
                     }}
-                    ref={dayPeriodRef}
-                  />
-                )}
-              </DxcFlex>
-              <DxcFlex>
-                {clearable && (
-                  <DxcActionIcon
-                    size="xsmall"
-                    icon="close"
-                    onClick={() => handleClearActionOnClick()}
+                    timeFormat={timeFormat}
+                    showSeconds={showSeconds}
+                    hourValue={hourValue}
+                    minuteValue={minuteValue}
+                    secondValue={secondValue}
+                    dayPeriod={dayPeriodValue}
+                    id={inputId}
                     tabIndex={tabIndex}
-                    title={!disabled ? translatedLabels.textInput.clearFieldActionTitle : undefined}
                   />
-                )}
+                }
+                isOpen={isOpen}
+                offset={4}
+                onClose={() => {
+                  setIsOpen(false);
+                }}
+                align="end"
+                asChild
+              >
                 <DxcActionIcon
                   size="xsmall"
                   disabled={disabled}
@@ -436,22 +386,17 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   title="Select time"
                   onClick={() => setIsOpen(true)}
                 />
-              </DxcFlex>
-            </TimeInputField>
-          </DxcPopover>
+              </DxcPopover>
+            </DxcFlex>
+          </TimeInputField>
         </TimeInputContainer>
         {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         <input
-          aria-label={ariaLabel}
+          aria-label={label ?? ariaLabel}
           aria-errormessage={error ? errorId : undefined}
           type="hidden"
           name={name}
-          value={generateEventValue({
-            hour: hourValue,
-            minute: minuteValue,
-            second: secondValue,
-            dayPeriod: dayPeriodValue,
-          })}
+          value={generatedInputValue}
         />
       </>
     );
