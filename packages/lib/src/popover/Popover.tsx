@@ -37,6 +37,7 @@ const DxcPopover = ({
   children,
   hasTip = false,
   isOpen,
+  offset = 4,
   onOpen,
   onClose,
   popoverContent,
@@ -86,7 +87,7 @@ const DxcPopover = ({
               aria-label="Popover content"
               align={align}
               side={side}
-              sideOffset={4}
+              sideOffset={offset}
               onInteractOutside={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
               onEscapeKeyDown={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
               onMouseEnter={
