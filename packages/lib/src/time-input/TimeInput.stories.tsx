@@ -27,10 +27,9 @@ export default {
 const TimeInput = () => {
   const [continentalValue, setContinentalValue] = useState<string>("18:30:20");
   const [value] = useState<string>("6:30:20 AM");
-  return (
-    <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={2} />
+  const TimeInputExamples = () => {
+    return (
+      <>
         <DxcTimeInput
           label="Time"
           helperText="Helper text"
@@ -71,72 +70,26 @@ const TimeInput = () => {
           showSeconds
           error="This is not a valid time"
         />
+      </>
+    );
+  };
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Default" theme="light" level={2} />
+        <TimeInputExamples />
       </ExampleContainer>
       <ExampleContainer pseudoState={"pseudo-hover"}>
         <Title title="Hover" theme="light" level={2} />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} size="small" />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
-        <DxcContainer width="175px">
-          <DxcTimeInput
-            label="Time"
-            helperText="Helper text"
-            timeFormat="24"
-            clearable
-            value={continentalValue}
-            onChange={(val) => {
-              console.log(`Value changed: ${val}`);
-              setContinentalValue(val);
-            }}
-            size="fillParent"
-          />
-        </DxcContainer>
-        <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <TimeInputExamples />
       </ExampleContainer>
       <ExampleContainer pseudoState={"pseudo-focus"}>
         <Title title="Focus" theme="light" level={2} />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} size="small" />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
-        <DxcContainer width="175px">
-          <DxcTimeInput
-            label="Time"
-            helperText="Helper text"
-            timeFormat="24"
-            clearable
-            value={continentalValue}
-            onChange={(val) => {
-              console.log(`Value changed: ${val}`);
-              setContinentalValue(val);
-            }}
-            size="fillParent"
-          />
-        </DxcContainer>
-        <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <TimeInputExamples />
       </ExampleContainer>
       <ExampleContainer pseudoState={"pseudo-active"}>
         <Title title="Active" theme="light" level={2} />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} size="small" />
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" />
-        <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
-        <DxcContainer width="175px">
-          <DxcTimeInput
-            label="Time"
-            helperText="Helper text"
-            timeFormat="24"
-            clearable
-            value={continentalValue}
-            onChange={(val) => {
-              console.log(`Value changed: ${val}`);
-              setContinentalValue(val);
-            }}
-            size="fillParent"
-          />
-        </DxcContainer>
-        <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <TimeInputExamples />
       </ExampleContainer>
     </>
   );

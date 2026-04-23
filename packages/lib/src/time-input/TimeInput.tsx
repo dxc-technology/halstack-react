@@ -25,6 +25,9 @@ const TimeInputContainer = styled.div<{
   font-weight: var(--typography-label-regular);
   color: var(--color-fg-neutral-dark);
   width: ${({ size }) => calculateWidth(undefined, size)};
+  & > div {
+    width: 100%;
+  }
 `;
 
 const TimeInputField = styled.div<{
@@ -39,6 +42,7 @@ const TimeInputField = styled.div<{
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
+  width: 100%;
 `;
 
 const ColonContainer = styled.span`

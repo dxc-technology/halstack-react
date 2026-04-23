@@ -3,11 +3,15 @@ import { useEffect, useId, useRef, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { PopoverPropsType } from "./types";
 
+const PopoverWrapper = styled.div`
+  width: fit-content;
+`;
+
 const PopoverContent = styled.div`
   box-sizing: border-box;
   border-radius: var(--border-radius-m);
   box-shadow: var(--shadow-400);
-  padding: var(--spacing-gap-s);
+  padding: var(--spacing-padding-xs);
   background-color: var(--color-bg-neutral-lightest);
 `;
 
@@ -55,9 +59,8 @@ const DxcPopover = ({
             {asChild ? (
               children
             ) : (
-              <div
+              <PopoverWrapper
                 role="button"
-                style={{ width: "fit-content" }}
                 onClick={
                   actionToOpen === "click"
                     ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
@@ -75,7 +78,7 @@ const DxcPopover = ({
                 }
               >
                 {children}
-              </div>
+              </PopoverWrapper>
             )}
           </Popover.Trigger>
           <Popover.Portal container={portalContainer}>
