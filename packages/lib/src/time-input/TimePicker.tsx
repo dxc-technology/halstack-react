@@ -105,25 +105,25 @@ const TimePicker = ({
   const totalHours = timeFormat === "12" ? 12 : 24;
 
   useEffect(() => {
-    if (hourToFocus !== undefined) {
-      document.getElementById(`${id}-hour-${hourToFocus}`)?.focus();
+    if (dayPeriodToFocus !== undefined) {
+      document.getElementById(`${id}-dayPeriod-${dayPeriodToFocus}`)?.focus();
     }
-  }, [hourToFocus]);
-  useEffect(() => {
-    if (minuteToFocus !== undefined) {
-      document.getElementById(`${id}-minute-${minuteToFocus}`)?.focus();
-    }
-  }, [minuteToFocus]);
+  }, [dayPeriodToFocus]);
   useEffect(() => {
     if (secondToFocus !== undefined) {
       document.getElementById(`${id}-second-${secondToFocus}`)?.focus();
     }
   }, [secondToFocus]);
   useEffect(() => {
-    if (dayPeriodToFocus !== undefined) {
-      document.getElementById(`${id}-dayPeriod-${dayPeriodToFocus}`)?.focus();
+    if (minuteToFocus !== undefined) {
+      document.getElementById(`${id}-minute-${minuteToFocus}`)?.focus();
     }
-  }, [dayPeriodToFocus]);
+  }, [minuteToFocus]);
+  useEffect(() => {
+    if (hourToFocus !== undefined) {
+      document.getElementById(`${id}-hour-${hourToFocus}`)?.focus();
+    }
+  }, [hourToFocus]);
 
   // Function that returns the hour value based on the index and the format.
   const returnHourBasedOnIndex = (index: number) => (index + 1 === 24 ? 0 : index + 1);

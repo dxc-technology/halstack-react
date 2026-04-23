@@ -3,12 +3,19 @@ import { TimeSpinButtonPropsType } from "./types";
 import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { handleKeyDown } from "./utils";
 
-const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean }>`
+const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: boolean }>`
   caret-color: transparent;
-  color: ${(props) => (props.isPlaceholder ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  color: ${(props) =>
+    props.isPlaceholder
+      ? "var(--color-fg-neutral-medium)"
+      : props.disabled
+        ? "var(--color-fg-neutral-medium)"
+        : "var(--color-fg-neutral-dark)"};
   &:focus {
-    background-color: var(--color-bg-primary-lighter);
-    outline: none;
+    ${(props) =>
+      !props.disabled &&
+      `background-color: var(--color-bg-primary-lighter);
+    outline: none;`}
   }
 `;
 
@@ -36,7 +43,8 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
       inputId,
       tabIndex,
       dataType,
-      interactive,
+      readOnly,
+      disabled,
       isControlled,
       onChange,
       onComplete,
@@ -79,13 +87,10 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
       }
     }, [value]);
 
-    // Value used to track the raw input before it's resolved to a valid value.
+    // Values used to track the raw input before it's resolved to a valid value.
     const rawInput = useRef<string>("");
     const newDigit = useRef<string>("");
 
-    const handleBlur = () => {
-      rawInput.current = "";
-    };
     return (
       <TimeSpinButtonContainer
         ref={(node) => {
@@ -102,7 +107,8 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         aria-valuemin={minValue}
         aria-valuemax={maxValue}
         aria-labelledby={inputId}
-        contentEditable={interactive ? "plaintext-only" : "false"}
+        disabled={disabled}
+        contentEditable={!readOnly && !disabled ? "plaintext-only" : "false"}
         inputMode={dataType !== "dayPeriod" ? "numeric" : undefined}
         tabIndex={tabIndex}
         data-type={dataType}
@@ -111,6 +117,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         onKeyDown={(event) =>
           handleKeyDown(
             event,
+            !readOnly && !disabled,
             rawInput,
             newDigit,
             spanRef,
@@ -125,7 +132,6 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
             onPrevious
           )
         }
-        onBlur={handleBlur}
       />
     );
   }

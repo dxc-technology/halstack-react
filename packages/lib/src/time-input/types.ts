@@ -102,7 +102,8 @@ export type TimeSpinButtonPropsType = {
   inputId: string;
   tabIndex: number;
   dataType?: "hour" | "minute" | "second" | "dayPeriod";
-  interactive: boolean;
+  readOnly: boolean;
+  disabled: boolean;
   isControlled: boolean;
   onComplete?: () => void;
   onChange?: (value: number | undefined) => void;

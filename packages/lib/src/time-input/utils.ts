@@ -26,6 +26,7 @@ const checkCompletion = (value: string, maxValue: number) => {
 
 export const handleKeyDown = (
   event: React.KeyboardEvent<HTMLSpanElement>,
+  interactive: boolean,
   rawInput: React.MutableRefObject<string>,
   newDigit: React.MutableRefObject<string>,
   spanRef: React.MutableRefObject<HTMLSpanElement | null>,
@@ -39,6 +40,7 @@ export const handleKeyDown = (
   onNext?: () => void,
   onPrevious?: () => void
 ) => {
+  if (!interactive) return;
   const input = event.currentTarget;
   let newValue: number | undefined = innerValue;
   if (event.key === "Backspace" || event.key === "Delete") {

@@ -49,7 +49,7 @@ const TimeInput = () => {
         <DxcTimeInput label="Time" helperText="Helper text" timeFormat="24" showSeconds size="large" />
         <DxcContainer width="175px">
           <DxcTimeInput
-            label="Time"
+            label="Time Input fill parent"
             helperText="Helper text"
             timeFormat="24"
             clearable
@@ -62,6 +62,7 @@ const TimeInput = () => {
           />
         </DxcContainer>
         <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds disabled />
         <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds readOnly />
         <DxcTimeInput
           label="Time"
@@ -145,7 +146,13 @@ const TimePickerExamples = () => {
   return (
     <>
       <ExampleContainer expanded>
-        <DxcTimeInput label="Time" helperText="Helper text" defaultValue="6:30:20 PM" timeFormat="12" />
+        <DxcTimeInput
+          label="Time"
+          helperText="Helper text"
+          defaultValue="6:30:20 PM"
+          timeFormat="12"
+          onBlur={() => console.log("blur")}
+        />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Time Picker 24h format" theme="light" level={3} />

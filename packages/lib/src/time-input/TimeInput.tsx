@@ -12,6 +12,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcPopover from "../popover/Popover";
 import TimePicker from "./TimePicker";
 import { pad } from "./utils";
+import ErrorMessage from "../styles/forms/ErrorMessage";
 
 const TimeInputContainer = styled.div<{
   size: TimeInputPropsType["size"];
@@ -69,6 +70,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     ref
   ) => {
     const inputId = `input-${useId()}`;
+    const errorId = `error-${useId()}`;
     const [hourValue, setHourValue] = useState<number | undefined>(undefined);
     const [minuteValue, setMinuteValue] = useState<number | undefined>(undefined);
     const [secondValue, setSecondValue] = useState<number | undefined>(undefined);
@@ -125,10 +127,6 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         setDayPeriodValue(undefined);
       }
       if (typeof onChange === "function") {
-        console.log(
-          "clear button clicked, value to be emitted: " +
-            generateEventValue({ hour: undefined, minute: undefined, second: undefined, dayPeriod: undefined })
-        );
         onChange(generateEventValue({ hour: undefined, minute: undefined, second: undefined, dayPeriod: undefined }));
       }
     };
@@ -245,7 +243,6 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                 tabIndex={tabIndex}
               />
             }
-            asChild
             isOpen={isOpen}
             onClose={() => {
               setIsOpen(false);
@@ -262,7 +259,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     inputId={inputId}
                     tabIndex={tabIndex}
                     dataType="hour"
-                    interactive={!disabled && !readOnly}
+                    readOnly={readOnly}
+                    disabled={disabled}
                     isControlled={isControlled.current}
                     onComplete={() => {
                       if (minuteRef.current) {
@@ -299,7 +297,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     inputId={inputId}
                     tabIndex={tabIndex}
                     dataType="minute"
-                    interactive={!disabled && !readOnly}
+                    readOnly={readOnly}
+                    disabled={disabled}
                     isControlled={isControlled.current}
                     onComplete={() => {
                       if (showSeconds && secondRef.current) {
@@ -345,7 +344,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                         inputId={inputId}
                         tabIndex={tabIndex}
                         dataType="second"
-                        interactive={!disabled && !readOnly}
+                        readOnly={readOnly}
+                        disabled={disabled}
                         isControlled={isControlled.current}
                         onComplete={() => {
                           if (timeFormat === "12" && dayPeriodRef.current) {
@@ -388,7 +388,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     inputId={inputId}
                     tabIndex={tabIndex}
                     dataType="dayPeriod"
-                    interactive={!disabled && !readOnly}
+                    readOnly={readOnly}
+                    disabled={disabled}
                     isControlled={isControlled.current}
                     onChange={(value) => {
                       if (!isControlled.current) {
@@ -435,8 +436,10 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             </TimeInputField>
           </DxcPopover>
         </TimeInputContainer>
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         <input
           aria-label={ariaLabel}
+          aria-errormessage={error ? errorId : undefined}
           type="hidden"
           name={name}
           value={generateEventValue({
