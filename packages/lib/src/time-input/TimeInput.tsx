@@ -351,7 +351,6 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       }
                     }}
                     onSelectDayPeriod={(value: number) => {
-                      console.log("selected day period: " + value);
                       if (!isControlled.current) {
                         setDayPeriodValue(value);
                       }

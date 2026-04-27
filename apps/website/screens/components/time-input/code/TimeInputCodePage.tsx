@@ -4,6 +4,9 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code, { TableCode } from "@/common/Code";
 import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
+import format from "./examples/format";
+import withSeconds from "./examples/withSeconds";
 
 const sections = [
   {
@@ -219,22 +222,18 @@ const sections = [
         title: "Controlled",
         content: <Example example={controlled} defaultIsVisible />,
       },
-      // {
-      //   title: "Uncontrolled",
-      //   content: <Example example={uncontrolled} defaultIsVisible />,
-      // },
-      // {
-      //   title: "Action",
-      //   content: <Example example={action} defaultIsVisible />,
-      // },
-      // {
-      //   title: "Autosuggest",
-      //   content: <Example example={functionSuggestions} defaultIsVisible />,
-      // },
-      // {
-      //   title: "Error handling",
-      //   content: <Example example={errorHandling} defaultIsVisible />,
-      // },
+      {
+        title: "Uncontrolled",
+        content: <Example example={uncontrolled} defaultIsVisible />,
+      },
+      {
+        title: "24h format",
+        content: <Example example={format} defaultIsVisible />,
+      },
+      {
+        title: "With seconds",
+        content: <Example example={withSeconds} defaultIsVisible />,
+      },
     ],
   },
 ];
