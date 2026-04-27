@@ -1,13 +1,8 @@
 type Props = {
   /**
-   * Specifies a string to be used as the name for the textInput element when no `label` is provided.
+   * Specifies a string to be used as the name for the timeInput element when no `label` is provided.
    */
   ariaLabel?: string;
-  /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
-   * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
-   */
-  autocomplete?: string;
   /**
    * If true, the input will have an action to clear the entered value.
    */
@@ -34,7 +29,7 @@ type Props = {
    */
   helperText?: string;
   /**
-   * Text to be placed above the input. This label will be used as the aria-label attribute of the list of suggestions.
+   * Text to be placed above the input.
    */
   label?: string;
   /**
@@ -50,26 +45,23 @@ type Props = {
   onBlur?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the user types within the input
-   * element of the component. An object including the current value and
-   * the error (if the value entered is not valid) will be passed to this
-   * function. If there is no error, error will not be defined.
+   * or selects a value in the dropdown element of the component.
    */
   onChange?: (value: string) => void;
   /**
    * If true, the input will be optional, showing '(Optional)'
    * next to the label. Otherwise, the field will be considered required and an error will be
-   * passed as a parameter to the OnBlur and onChange functions when it has
+   * passed as a parameter to the OnBlur function when it has
    * not been filled.
    */
   optional?: boolean;
   /**
    * If true, the component will not be mutable, meaning the user can not edit the control.
-   * In addition, the clear action will not be displayed even if the flag is set to true
-   * and the custom action will not execute its onClick event.
+   * In addition, the clear action will not be displayed even if the flag is set to true.
    */
   readOnly?: boolean;
   /**
-   * If true, the input will display seconds.
+   * If true, the component will display seconds and allow the user to input them. Otherwise, seconds will not be shown and the user will not be able to input them.
    */
   showSeconds?: boolean;
   /**

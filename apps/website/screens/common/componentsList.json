@@ -190,6 +190,12 @@
         "icon": "subject"
       },
       {
+        "label": "Time input",
+        "path": "/components/time-input",
+        "status": "experimental",
+        "icon": "schedule"
+      },
+      {
         "label": "Toggle group",
         "path": "/components/toggle-group",
         "status": "stable",

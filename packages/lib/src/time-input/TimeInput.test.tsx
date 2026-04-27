@@ -56,7 +56,7 @@ describe("DxcTimeInput rendering", () => {
     expect(mockOnChange).toHaveBeenCalledWith("");
   });
 
-  it("renders time picker and values are selected", () => {
+  it("renders time picker and values are correctly selected", () => {
     const mockOnChange = jest.fn();
     const { getByRole, getAllByRole } = render(<DxcTimeInput value="05:30 AM" onChange={mockOnChange} />);
     const button = getByRole("button");
@@ -103,7 +103,7 @@ describe("DxcTimeInput rendering", () => {
     expect(mockOnBlur).toHaveBeenCalledWith({ value: "01:59 AM", error: undefined });
   });
 
-  it("TimePicker keyboard interaction", () => {
+  it("TimePicker click interaction", () => {
     const mockOnChange = jest.fn();
     const { getByRole, getByText, getAllByText } = render(<DxcTimeInput label="Time input" onChange={mockOnChange} />);
     const button = getByRole("button");
@@ -120,5 +120,123 @@ describe("DxcTimeInput rendering", () => {
     expect(amButton).toBeTruthy();
     userEvent.click(amButton);
     expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
+  });
+
+  it("TimePicker keyboard interaction", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getByText } = render(<DxcTimeInput label="Time input" onChange={mockOnChange} />);
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    expect(getByText("AM")).toBeTruthy();
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{Enter}");
+    expect(mockOnChange).toHaveBeenCalledWith("03:undefined undefined");
+    userEvent.tab();
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{Enter}");
+    expect(mockOnChange).toHaveBeenCalledWith("03:55 undefined");
+    userEvent.tab();
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{Enter}");
+    expect(mockOnChange).toHaveBeenCalledWith("03:55 PM");
+  });
+
+  it("TimeInput correctly move focus when each spinbutton is completed", () => {
+    const mockOnChange = jest.fn();
+    const { getAllByRole, getByText } = render(
+      <DxcTimeInput
+        label="Time input"
+        timeFormat="24"
+        clearable
+        defaultValue="23:30:00"
+        showSeconds
+        onChange={mockOnChange}
+      />
+    );
+    const inputs = getAllByRole("spinbutton");
+    expect(inputs).toHaveLength(3);
+    expect(inputs[0]).toHaveValue(23);
+    expect(inputs[1]).toHaveValue(30);
+    expect(inputs[2]).toHaveValue(0);
+    userEvent.click(getByText("23"));
+    expect(inputs[0]).toHaveFocus();
+    userEvent.keyboard("1");
+    userEvent.keyboard("0");
+    expect(mockOnChange).toHaveBeenCalledWith("10:30:00");
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("{ArrowUp}");
+    expect(mockOnChange).toHaveBeenCalledWith("10:31:00");
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{ArrowDown}");
+    expect(mockOnChange).toHaveBeenCalledWith("10:29:00");
+    userEvent.keyboard("4");
+    userEvent.keyboard("5");
+    expect(mockOnChange).toHaveBeenCalledWith("10:45:00");
+    expect(inputs[2]).toHaveFocus();
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{ArrowUp}");
+    expect(mockOnChange).toHaveBeenCalledWith("10:45:01");
+    userEvent.keyboard("3");
+    userEvent.keyboard("0");
+    expect(mockOnChange).toHaveBeenCalledWith("10:45:30");
+    expect(inputs[2]).toHaveFocus();
+    const buttons = getAllByRole("button");
+    expect(buttons).toHaveLength(2);
+    if (buttons[0]) userEvent.click(buttons[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("");
+    expect(inputs[0]?.getAttribute("aria-valuenow")).toBeNull();
+    expect(inputs[1]?.getAttribute("aria-valuenow")).toBeNull();
+    expect(inputs[2]?.getAttribute("aria-valuenow")).toBeNull();
+  });
+
+  it("Navigate timeInput using the keyboard", () => {
+    const mockOnChange = jest.fn();
+    const { getAllByRole } = render(
+      <DxcTimeInput
+        label="Time input"
+        timeFormat="12"
+        clearable
+        defaultValue="10:30:00"
+        showSeconds
+        onChange={mockOnChange}
+      />
+    );
+    const inputs = getAllByRole("spinbutton");
+    expect(inputs).toHaveLength(4);
+    expect(inputs[0]).toHaveValue(10);
+    expect(inputs[1]).toHaveValue(30);
+    expect(inputs[2]).toHaveValue(0);
+    expect(inputs[3]).toHaveValue(0); // AM
+    userEvent.tab();
+    expect(inputs[0]).toHaveFocus();
+    userEvent.keyboard("{ArrowRight}");
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("{ArrowRight}");
+    expect(inputs[2]).toHaveFocus();
+    userEvent.keyboard("{ArrowRight}");
+    expect(inputs[3]).toHaveFocus();
+    userEvent.keyboard("{ArrowLeft}");
+    expect(inputs[2]).toHaveFocus();
+    userEvent.keyboard("{ArrowLeft}");
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("{ArrowLeft}");
+    expect(inputs[0]).toHaveFocus();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    expect(inputs[3]).toHaveFocus();
+    const buttons = getAllByRole("button");
+    expect(buttons).toHaveLength(2);
+    userEvent.tab();
+    expect(buttons[0]).toHaveFocus();
+    userEvent.tab();
+    expect(buttons[1]).toHaveFocus();
   });
 });
