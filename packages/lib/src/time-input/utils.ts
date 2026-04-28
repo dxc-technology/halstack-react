@@ -87,7 +87,7 @@ export const handleKeyDown = (
     } else {
       newValue = resolveValue(innerValue - 1, maxValue, minValue);
     }
-  } else if (isDayPeriod && /[apAP01]/.test(event.key)) {
+  } else if (isDayPeriod && /^[apAP01]$/.test(event.key)) {
     // AM/PM input
     const isAM = /[aA0]/.test(event.key);
     newValue = isAM ? 0 : 1;

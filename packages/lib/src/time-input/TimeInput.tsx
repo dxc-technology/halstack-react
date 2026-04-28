@@ -89,9 +89,9 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         const numberPart = timeFormat === "12" ? time.split(" ")[0] : time;
         if (numberPart) {
           const [hour, minute, second] = numberPart.split(":").map(Number);
-          setHourValue(hour ? hour : undefined);
-          setMinuteValue(minute ? minute : undefined);
-          setSecondValue(second ? second : undefined);
+          setHourValue(hour || hour === 0 ? hour : undefined);
+          setMinuteValue(minute || minute === 0 ? minute : undefined);
+          setSecondValue(second || second === 0 ? second : undefined);
         }
         if (timeFormat === "12" && time.includes(" ")) {
           const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : time.split(" ")[1] === "PM" ? 1 : undefined;
