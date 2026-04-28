@@ -14,7 +14,7 @@ const TimePickerContainer = styled.div`
   gap: var(--spacing-gap-m);
 `;
 
-const TimePickerOption = styled.button<{
+const TimePickerOption = styled.li<{
   selected: boolean;
 }>`
   display: inline-flex;
@@ -135,11 +135,12 @@ const TimePicker = ({
   const returnHourBasedOnIndex = (index: number) => (index + 1 === 24 ? 0 : index + 1);
 
   return (
-    <TimePickerContainer>
+    <TimePickerContainer role="listbox" aria-label="Time picker">
       <DxcContainer maxHeight="100%" overflow="auto">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           {Array.from({ length: totalHours }, (_, index) => (
             <TimePickerOption
+              role="option"
               key={`hour-${returnHourBasedOnIndex(index)}`}
               id={`${id}-hour-${returnHourBasedOnIndex(index)}`}
               selected={hourValue === returnHourBasedOnIndex(index)}
@@ -170,6 +171,7 @@ const TimePicker = ({
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           {ARRAY_OF_60.map((index) => (
             <TimePickerOption
+              role="option"
               key={index}
               id={`${id}-minute-${index}`}
               selected={minuteValue === index}
@@ -194,6 +196,7 @@ const TimePicker = ({
           <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
             {ARRAY_OF_60.map((index) => (
               <TimePickerOption
+                role="option"
                 key={index}
                 id={`${id}-second-${index}`}
                 selected={secondValue === index}
@@ -221,6 +224,7 @@ const TimePicker = ({
           <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
             {["AM", "PM"].map((period) => (
               <TimePickerOption
+                role="option"
                 key={period}
                 id={`${id}-dayPeriod-${period === "AM" ? 0 : 1}`}
                 selected={dayPeriod === (period === "AM" ? 0 : 1)}
