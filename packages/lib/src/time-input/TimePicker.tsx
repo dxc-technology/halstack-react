@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { TimePickerPropsType } from "./types";
-import DxcContainer from "../container/Container";
-import DxcFlex from "../flex/Flex";
 import { useEffect, useState } from "react";
+import TimePickerColumn from "./TimePickerColumn";
 
 // Array to be used in seconds and minutes.
 const STEP = 5;
@@ -13,40 +12,6 @@ const TimePickerContainer = styled.div`
   height: 200px;
   gap: var(--spacing-gap-m);
 `;
-
-const TimePickerOption = styled.li<{
-  selected: boolean;
-}>`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: var(--height-m);
-  padding: 0;
-  border: none;
-  border-radius: var(--border-radius-xl);
-  cursor: pointer;
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-regular);
-  background-color: ${(props) => (props.selected ? "var(--color-bg-primary-strong);" : "transparent")};
-  color: ${(props) => (props.selected ? "var(--color-fg-neutral-bright);" : "var(--color-fg-neutral-dark);")};
-
-  &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: calc(var(--border-width-m) * -1);
-  }
-  &:hover {
-    background-color: ${(props) =>
-      props.selected ? "var(--color-bg-primary-strong);" : "var(--color-bg-primary-lighter);"};
-    color: ${(props) => (props.selected ? "var(--color-fg-neutral-bright);" : "var(--color-fg-neutral-dark);")};
-  }
-  &:active {
-    background-color: var(--color-bg-primary-stronger);
-    color: var(--color-fg-neutral-bright);
-  }
-`;
-
 const handleColumnKeyDown = (
   event: React.KeyboardEvent,
   column: string,
@@ -131,128 +96,75 @@ const TimePicker = ({
     }
   }, [hourToFocus]);
 
-  // Function that returns the hour value based on the index and the format.
-  const returnHourBasedOnIndex = (index: number) => (index + 1 === 24 ? 0 : index + 1);
-
   return (
     <TimePickerContainer role="listbox" aria-label="Time picker">
-      <DxcContainer maxHeight="100%" overflow="auto">
-        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-          {Array.from({ length: totalHours }, (_, index) => (
-            <TimePickerOption
-              role="option"
-              key={`hour-${returnHourBasedOnIndex(index)}`}
-              id={`${id}-hour-${returnHourBasedOnIndex(index)}`}
-              selected={hourValue === returnHourBasedOnIndex(index)}
-              aria-selected={hourValue === returnHourBasedOnIndex(index)}
-              autoFocus={hourToFocus === returnHourBasedOnIndex(index)}
-              tabIndex={hourToFocus === returnHourBasedOnIndex(index) ? tabIndex || 0 : -1}
-              onClick={() => {
-                onSelecthours(returnHourBasedOnIndex(index));
-                setHourToFocus(returnHourBasedOnIndex(index));
-              }}
-              onKeyDown={(event) =>
-                handleColumnKeyDown(
-                  event,
-                  "hour",
-                  returnHourBasedOnIndex(index),
-                  totalHours,
-                  setHourToFocus,
-                  onSelecthours
-                )
-              }
-            >
-              {index + 1 === 24 ? "00" : index + 1 < 10 ? `0${index + 1}` : index + 1}
-            </TimePickerOption>
-          ))}
-        </DxcFlex>
-      </DxcContainer>
-      <DxcContainer maxHeight="100%" overflow="auto">
-        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-          {ARRAY_OF_60.map((index) => (
-            <TimePickerOption
-              role="option"
-              key={index}
-              id={`${id}-minute-${index}`}
-              selected={minuteValue === index}
-              aria-selected={minuteValue === index}
-              autoFocus={minuteToFocus === index}
-              tabIndex={minuteToFocus === index ? tabIndex || 0 : -1}
-              onClick={() => {
-                onSelectMinutes(index);
-                setMinuteToFocus(index);
-              }}
-              onKeyDown={(event) =>
-                handleColumnKeyDown(event, "minute", index, 60, setMinuteToFocus, onSelectMinutes, STEP)
-              }
-            >
-              {index < 10 ? `0${index}` : index}
-            </TimePickerOption>
-          ))}
-        </DxcFlex>
-      </DxcContainer>
+      <TimePickerColumn
+        valuesArray={Array.from({ length: totalHours }, (_, index) => index)}
+        id={id}
+        selectedValue={hourValue}
+        valueToFocus={hourToFocus}
+        tabIndex={tabIndex}
+        dataType="hour"
+        onClick={(value: number) => {
+          onSelecthours(value);
+          setHourToFocus(value);
+        }}
+        onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
+          handleColumnKeyDown(event, "hour", value, totalHours, setHourToFocus, onSelecthours)
+        }
+      />
+      <TimePickerColumn
+        valuesArray={ARRAY_OF_60}
+        id={id}
+        selectedValue={minuteValue}
+        valueToFocus={minuteToFocus}
+        tabIndex={tabIndex}
+        dataType="minute"
+        onClick={(value: number) => {
+          onSelectMinutes(value);
+          setMinuteToFocus(value);
+        }}
+        onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
+          handleColumnKeyDown(event, "minute", value, 60, setMinuteToFocus, onSelectMinutes, STEP)
+        }
+      />
       {showSeconds && (
-        <DxcContainer maxHeight="100%" overflow="auto">
-          <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-            {ARRAY_OF_60.map((index) => (
-              <TimePickerOption
-                role="option"
-                key={index}
-                id={`${id}-second-${index}`}
-                selected={secondValue === index}
-                aria-selected={secondValue === index}
-                autoFocus={secondToFocus === index}
-                tabIndex={secondToFocus === index ? tabIndex || 0 : -1}
-                onClick={() => {
-                  if (typeof onSelectSeconds === "function") {
-                    onSelectSeconds(index);
-                    setSecondToFocus(index);
-                  }
-                }}
-                onKeyDown={(event) =>
-                  handleColumnKeyDown(event, "second", index, 60, setSecondToFocus, onSelectSeconds, STEP)
-                }
-              >
-                {index < 10 ? `0${index}` : index}
-              </TimePickerOption>
-            ))}
-          </DxcFlex>
-        </DxcContainer>
+        <TimePickerColumn
+          valuesArray={ARRAY_OF_60}
+          id={id}
+          selectedValue={secondValue}
+          valueToFocus={secondToFocus}
+          tabIndex={tabIndex}
+          dataType="second"
+          onClick={(value: number) => {
+            if (typeof onSelectSeconds === "function") {
+              onSelectSeconds(value);
+              setSecondToFocus(value);
+            }
+          }}
+          onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
+            handleColumnKeyDown(event, "minute", value, 60, setMinuteToFocus, onSelectMinutes, STEP)
+          }
+        />
       )}
       {timeFormat === "12" && (
-        <DxcContainer maxHeight="100%" overflow="auto">
-          <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-            {["AM", "PM"].map((period) => (
-              <TimePickerOption
-                role="option"
-                key={period}
-                id={`${id}-dayPeriod-${period === "AM" ? 0 : 1}`}
-                selected={dayPeriod === (period === "AM" ? 0 : 1)}
-                aria-selected={dayPeriod === (period === "AM" ? 0 : 1)}
-                autoFocus={dayPeriodToFocus === (period === "AM" ? 0 : 1)}
-                tabIndex={dayPeriodToFocus === (period === "AM" ? 0 : 1) ? tabIndex || 0 : -1}
-                onClick={() => {
-                  if (typeof onSelectDayPeriod === "function") {
-                    onSelectDayPeriod(period === "AM" ? 0 : 1);
-                    setDayPeriodToFocus(period === "AM" ? 0 : 1);
-                  }
-                }}
-                onKeyDown={(event) =>
-                  handleColumnKeyDown(
-                    event,
-                    "dayPeriod",
-                    period === "AM" ? 0 : 1,
-                    2,
-                    setDayPeriodToFocus,
-                    onSelectDayPeriod
-                  )
-                }
-              >
-                {period}
-              </TimePickerOption>
-            ))}
-          </DxcFlex>
-        </DxcContainer>
+        <TimePickerColumn
+          valuesArray={[0, 1]}
+          id={id}
+          selectedValue={dayPeriod}
+          valueToFocus={dayPeriodToFocus}
+          tabIndex={tabIndex}
+          dataType="dayPeriod"
+          onClick={(value: number) => {
+            if (typeof onSelectDayPeriod === "function") {
+              onSelectDayPeriod(value);
+              setDayPeriodToFocus(value);
+            }
+          }}
+          onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
+            handleColumnKeyDown(event, "dayPeriod", value, 2, setDayPeriodToFocus, onSelectDayPeriod)
+          }
+        />
       )}
     </TimePickerContainer>
   );
