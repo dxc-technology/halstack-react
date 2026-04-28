@@ -2,7 +2,7 @@ import { DxcTimeInput, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const onChange = ({ value }) => {
+  const onChange = (value) => {
     console.log(value);
   };
   

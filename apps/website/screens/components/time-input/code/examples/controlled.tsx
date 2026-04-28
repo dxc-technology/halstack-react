@@ -3,16 +3,13 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const onChange = ({ value }) => {
-    setValue(value);
-  };
   
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcTimeInput
         label="Enter your name"
         value={value}
-        onChange={onChange}
+        onChange={newValue => setValue(newValue)}
       />
     </DxcInset>
   );
