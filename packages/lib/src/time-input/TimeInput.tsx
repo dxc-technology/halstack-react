@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import inputStylesByState from "../styles/forms/inputStylesByState";
 import { calculateWidth } from "../text-input/utils";
 import TimeInputPropsType, { RefType } from "./types";
-import { forwardRef, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
+import { forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import Label from "../styles/forms/Label";
 import HelperText from "../styles/forms/HelperText";
@@ -100,13 +100,13 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       }
     }, [value, defaultValue]);
 
-    const generatedInputValue = useMemo(() => {
+    const generatedInputValue = () => {
       if (hourValue === undefined && minuteValue === undefined && secondValue === undefined) {
         return "";
       } else {
         return generateEventValue(hourValue, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat);
       }
-    }, [hourValue, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat]);
+    };
 
     const handleClearActionOnClick = () => {
       if (!isControlled.current) {
@@ -147,14 +147,14 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           onBlur={() => {
             if (typeof onBlur === "function") {
               onBlur({
-                value: generatedInputValue,
-                error: validateTimeValue(generatedInputValue),
+                value: generatedInputValue(),
+                error: validateTimeValue(generatedInputValue()),
               });
             }
           }}
           onChange={() => {
             if (typeof onChange === "function") {
-              onChange(generatedInputValue);
+              onChange(generatedInputValue());
             }
           }}
         >
@@ -404,7 +404,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           aria-errormessage={error ? errorId : undefined}
           type="hidden"
           name={name}
-          value={generatedInputValue}
+          value={generatedInputValue()}
         />
       </>
     );

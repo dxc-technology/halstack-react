@@ -1,9 +1,10 @@
 import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-// import Image from "@/common/Image";
-// import Figure from "@/common/Figure";
-// import Example from "@/common/example/Example";
+import Image from "@/common/Image";
+import Figure from "@/common/Figure";
+import anatomy from "./images/time_input_anatomy.png";
+import timeInputTimePickerPopup from "./images/time_picker_popup.png";
 
 const sections = [
   {
@@ -11,10 +12,10 @@ const sections = [
     content: (
       <DxcParagraph>
         Time inputs allow users to enter or select a specific time using a time picker or manual text entry. Designed to
-        support a wide range of use cases - particularly to support the date input component - from booking systems to
-        form submissions, using this component ensures clarity and consistency in date and time formats, helps prevent
-        input errors, and adapts to different locale and accessibility requirements. Its combination of manual input and
-        guided selection provides flexibility while maintaining a streamlined user experience.
+        support a wide range of use cases - particularly in working with the date input component - from booking systems
+        to form submissions, using this component ensures clarity and consistency in date and time formats, helps
+        prevent input errors, and adapts to different locale and accessibility requirements. Its combination of manual
+        input and guided selection provides flexibility while maintaining a streamlined user experience.
       </DxcParagraph>
     ),
   },
@@ -22,7 +23,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        {/* <Image src={anatomy} alt="Time input anatomy" /> */}
+        <Image src={anatomy} alt="Time input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
@@ -34,12 +35,12 @@ const sections = [
             not mandatory. It helps users know they can leave the field empty without causing validation errors.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Time button</strong> <em>(Optional)</em>: an interactive element inside the input field that
-            triggers the time picker of the component, where the user can select hour, minute, and AM/PM values.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
             <strong>Clear action</strong> <em>(Optional)</em>: a small button, usually represented by an "X" icon, that
             allows users to quickly clear the time specified or selected without manually deleting each value.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Time button:</strong> an interactive element inside the input field that triggers the time picker of
+            the component, where the user can select hour, minute, and AM/PM values.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Helper text</strong> <em>(Optional)</em>: additional text placed below the input field that provides
@@ -147,9 +148,6 @@ const sections = [
                   mistakes or resetting the field during form completion. The icon is only visible when a value is
                   present, keeping the interface clean and focused.
                 </DxcParagraph>
-                {/* <Figure caption="States for the clear content button">
-                  <Image src={timeInputClearContent} alt="States for the clear content button" />
-                </Figure> */}
               </>
             ),
           },
@@ -162,11 +160,11 @@ const sections = [
                   allows users to select the hour, minute, and AM/PM values visually, reducing the likelihood of
                   formatting errors. The minutes values are presented as 5-minute increments to provide an optimal
                   balance of selectable items. Users can manually enter minutes values that are not part of the
-                  selectable list.
+                  selectable list. The 24-hour variant does not include the AM/PM selection.
                 </DxcParagraph>
-                {/* <Figure caption="States for the time picker popup">
+                <Figure caption="States for the time picker popup">
                   <Image src={timeInputTimePickerPopup} alt="States for the time picker popup" />
-                </Figure> */}
+                </Figure>
               </>
             ),
           },

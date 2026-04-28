@@ -5,7 +5,6 @@ import Title from "../../.storybook/components/Title";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/common/disabledRules";
-import { useState } from "react";
 import DxcContainer from "../container/Container";
 import { userEvent, within } from "storybook/internal/test";
 
@@ -25,8 +24,8 @@ export default {
 } satisfies Meta<typeof DxcTimeInput>;
 
 const TimeInput = () => {
-  const [continentalValue, setContinentalValue] = useState<string>("18:30:20");
-  const [value] = useState<string>("6:30:20 AM");
+  const continentalValue = "18:30:20";
+  const value = "6:30:20 AM";
   const TimeInputExamples = () => {
     return (
       <>
@@ -61,10 +60,9 @@ const TimeInput = () => {
             helperText="Helper text"
             timeFormat="24"
             clearable
-            value={continentalValue}
+            defaultValue={continentalValue}
             onChange={(val) => {
               console.log(`Value changed: ${val}`);
-              setContinentalValue(val);
             }}
             size="fillParent"
           />
