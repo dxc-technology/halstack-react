@@ -59,19 +59,19 @@ describe("DxcTimeInput rendering", () => {
   it("renders time picker and values are correctly selected", () => {
     const mockOnChange = jest.fn();
     const { getByRole, getAllByRole } = render(<DxcTimeInput value="05:30 AM" onChange={mockOnChange} />);
-    const button = getByRole("button");
-    expect(button).toBeTruthy();
-    userEvent.click(button);
-    const hourButton = getAllByRole("button", { name: "05" }).find((hourButton) => hourButton.id.includes("hour"));
-    const minuteButton = getAllByRole("button", { name: "30" }).find((minuteButton) =>
+    const pickerButton = getByRole("button");
+    expect(pickerButton).toBeTruthy();
+    userEvent.click(pickerButton);
+    const hourButton = getAllByRole("option", { name: "05" }).find((hourButton) => hourButton.id.includes("hour"));
+    const minuteButton = getAllByRole("option", { name: "30" }).find((minuteButton) =>
       minuteButton.id.includes("minute")
     );
-    const amButton = getByRole("button", { name: "AM" });
+    const amButton = getByRole("option", { name: "AM" });
     expect(hourButton?.getAttribute("aria-selected")).toBe("true");
     expect(minuteButton?.getAttribute("aria-selected")).toBe("true");
     expect(amButton?.getAttribute("aria-selected")).toBe("true");
 
-    const newHourButton = getAllByRole("button", { name: "10" }).find((hourButton) => hourButton.id.includes("hour"));
+    const newHourButton = getAllByRole("option", { name: "10" }).find((hourButton) => hourButton.id.includes("hour"));
     if (newHourButton) userEvent.click(newHourButton);
     expect(mockOnChange).toHaveBeenCalledWith("10:30 AM");
   });
