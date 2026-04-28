@@ -135,16 +135,15 @@ describe("DxcTimeInput rendering", () => {
     expect(mockOnChange).toHaveBeenCalledWith("03:undefined undefined");
     userEvent.tab();
     userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{ArrowUp}");
     userEvent.keyboard("{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("03:55 undefined");
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard(" ");
+    expect(mockOnChange).toHaveBeenCalledWith("03:00 undefined");
     userEvent.tab();
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{Enter}");
-    expect(mockOnChange).toHaveBeenCalledWith("03:55 PM");
+    expect(mockOnChange).toHaveBeenCalledWith("03:00 PM");
   });
 
   it("TimeInput correctly move focus when each spinbutton is completed", () => {

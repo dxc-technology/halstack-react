@@ -4,6 +4,10 @@ import DxcContainer from "../container/Container";
 import DxcFlex from "../flex/Flex";
 import { useEffect, useState } from "react";
 
+// Array to be used in seconds and minutes.
+const STEP = 5;
+const ARRAY_OF_60 = Array.from({ length: 60 / STEP }, (_, index) => index * STEP);
+
 const TimePickerContainer = styled.div`
   display: flex;
   height: 200px;
@@ -49,32 +53,34 @@ const handleColumnKeyDown = (
   focusedValue: number,
   totalValues: number,
   setValueToFocus: React.Dispatch<React.SetStateAction<number>>,
-  onSelect?: (value: number) => void
+  onSelect?: (value: number) => void,
+  step?: number
 ) => {
+  const stepValue = step || 1;
   // ignore tab key to allow normal tab behavior, and prevent default for other keys to manage focus manually
   if (!["Tab"].includes(event.key)) event.preventDefault();
   if (event.key === "ArrowDown") {
     if (column === "hour" && focusedValue === 23) {
       setValueToFocus(0);
     } else if (column === "hour") {
-      const newValue = focusedValue + 1 > totalValues ? 1 : focusedValue + 1;
+      const newValue = focusedValue + stepValue > totalValues ? stepValue : focusedValue + stepValue;
       setValueToFocus((prev) => (prev === undefined ? 1 : newValue));
-    } else if (focusedValue === totalValues - 1) {
+    } else if (focusedValue === totalValues - stepValue) {
       setValueToFocus(0);
     } else {
-      const newValue = focusedValue + 1 > totalValues - 1 ? 0 : focusedValue + 1;
+      const newValue = focusedValue + stepValue > totalValues - stepValue ? 0 : focusedValue + stepValue;
       setValueToFocus(newValue);
     }
   } else if (event.key === "ArrowUp") {
     if (column === "hour" && focusedValue === 0) {
       setValueToFocus(23);
     } else if (column === "hour") {
-      const newValue = focusedValue - 1 < 0 ? totalValues - 1 : focusedValue - 1;
-      setValueToFocus((prev) => (prev === undefined ? totalValues - 1 : newValue));
+      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
+      setValueToFocus((prev) => (prev === undefined ? totalValues - stepValue : newValue));
     } else if (focusedValue === 0) {
-      setValueToFocus(totalValues - 1);
+      setValueToFocus(totalValues - stepValue);
     } else {
-      const newValue = focusedValue - 1 < 0 ? totalValues - 1 : focusedValue - 1;
+      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
       setValueToFocus(newValue);
     }
   } else if (["Enter", " "].includes(event.key)) {
@@ -162,7 +168,7 @@ const TimePicker = ({
       </DxcContainer>
       <DxcContainer maxHeight="100%" overflow="auto">
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-          {Array.from({ length: 60 }, (_, index) => (
+          {ARRAY_OF_60.map((index) => (
             <TimePickerOption
               key={index}
               id={`${id}-minute-${index}`}
@@ -174,7 +180,9 @@ const TimePicker = ({
                 onSelectMinutes(index);
                 setMinuteToFocus(index);
               }}
-              onKeyDown={(event) => handleColumnKeyDown(event, "minute", index, 60, setMinuteToFocus, onSelectMinutes)}
+              onKeyDown={(event) =>
+                handleColumnKeyDown(event, "minute", index, 60, setMinuteToFocus, onSelectMinutes, STEP)
+              }
             >
               {index < 10 ? `0${index}` : index}
             </TimePickerOption>
@@ -184,7 +192,7 @@ const TimePicker = ({
       {showSeconds && (
         <DxcContainer maxHeight="100%" overflow="auto">
           <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
-            {Array.from({ length: 60 }, (_, index) => (
+            {ARRAY_OF_60.map((index) => (
               <TimePickerOption
                 key={index}
                 id={`${id}-second-${index}`}
@@ -199,7 +207,7 @@ const TimePicker = ({
                   }
                 }}
                 onKeyDown={(event) =>
-                  handleColumnKeyDown(event, "second", index, 60, setSecondToFocus, onSelectSeconds)
+                  handleColumnKeyDown(event, "second", index, 60, setSecondToFocus, onSelectSeconds, STEP)
                 }
               >
                 {index < 10 ? `0${index}` : index}

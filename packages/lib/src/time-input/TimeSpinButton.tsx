@@ -59,7 +59,11 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
     const placeholder = useMemo(() => {
       switch (dataType) {
         case "hour":
-          return "hh";
+          if (maxValue === 12) {
+            return "hh";
+          } else {
+            return "HH";
+          }
         case "minute":
           return "mm";
         case "second":

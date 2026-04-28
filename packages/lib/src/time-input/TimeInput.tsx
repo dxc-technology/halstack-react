@@ -128,6 +128,15 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       if (!timeRegex.test(value)) {
         return "Invalid time format";
       }
+      if (
+        !optional &&
+        (hourValue === undefined ||
+          minuteValue === undefined ||
+          (showSeconds && secondValue === undefined) ||
+          (timeFormat === "12" && dayPeriodValue === undefined))
+      ) {
+        return "This field is required";
+      }
     };
 
     return (
@@ -371,7 +380,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   />
                 }
                 isOpen={isOpen}
-                offset={4}
+                offset={8}
                 onClose={() => {
                   setIsOpen(false);
                 }}
