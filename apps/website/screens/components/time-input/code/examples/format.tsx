@@ -9,7 +9,7 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcTimeInput
-        label="Enter your name"
+        label="Enter your time"
         defaultValue="20:00"
         timeFormat="24"
       />

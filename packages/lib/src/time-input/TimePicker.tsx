@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { TimePickerPropsType } from "./types";
 import { useEffect, useState } from "react";
 import TimePickerColumn from "./TimePickerColumn";
+import { handleColumnKeyDown } from "./utils";
 
 // Array to be used in seconds and minutes.
 const STEP = 5;
@@ -12,48 +13,6 @@ const TimePickerContainer = styled.div`
   height: 200px;
   gap: var(--spacing-gap-m);
 `;
-const handleColumnKeyDown = (
-  event: React.KeyboardEvent,
-  column: string,
-  focusedValue: number,
-  totalValues: number,
-  setValueToFocus: React.Dispatch<React.SetStateAction<number>>,
-  onSelect?: (value: number) => void,
-  step?: number
-) => {
-  const stepValue = step || 1;
-  // ignore tab key to allow normal tab behavior, and prevent default for other keys to manage focus manually
-  if (!["Tab"].includes(event.key)) event.preventDefault();
-  if (event.key === "ArrowDown") {
-    if (column === "hour" && focusedValue === 23) {
-      setValueToFocus(0);
-    } else if (column === "hour") {
-      const newValue = focusedValue + stepValue > totalValues ? stepValue : focusedValue + stepValue;
-      setValueToFocus((prev) => (prev === undefined ? 1 : newValue));
-    } else if (focusedValue === totalValues - stepValue) {
-      setValueToFocus(0);
-    } else {
-      const newValue = focusedValue + stepValue > totalValues - stepValue ? 0 : focusedValue + stepValue;
-      setValueToFocus(newValue);
-    }
-  } else if (event.key === "ArrowUp") {
-    if (column === "hour" && focusedValue === 0) {
-      setValueToFocus(23);
-    } else if (column === "hour") {
-      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
-      setValueToFocus((prev) => (prev === undefined ? totalValues - stepValue : newValue));
-    } else if (focusedValue === 0) {
-      setValueToFocus(totalValues - stepValue);
-    } else {
-      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
-      setValueToFocus(newValue);
-    }
-  } else if (["Enter", " "].includes(event.key)) {
-    if (onSelect) {
-      onSelect(focusedValue);
-    }
-  }
-};
 
 const TimePicker = ({
   onSelecthours,
@@ -143,7 +102,7 @@ const TimePicker = ({
             }
           }}
           onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-            handleColumnKeyDown(event, "minute", value, 60, setMinuteToFocus, onSelectMinutes, STEP)
+            handleColumnKeyDown(event, "second", value, 60, setSecondToFocus, onSelectSeconds, STEP)
           }
         />
       )}

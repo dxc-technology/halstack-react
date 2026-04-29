@@ -238,4 +238,33 @@ describe("DxcTimeInput rendering", () => {
     userEvent.tab();
     expect(buttons[1]).toHaveFocus();
   });
+
+  it("Mixing keyboard inputs", () => {
+    const mockOnChange = jest.fn();
+    const { getAllByRole } = render(
+      <DxcTimeInput
+        label="Time input"
+        timeFormat="12"
+        clearable
+        defaultValue="10:30:00 AM"
+        showSeconds
+        onChange={mockOnChange}
+      />
+    );
+    const inputs = getAllByRole("spinbutton");
+    expect(inputs).toHaveLength(4);
+    expect(inputs[0]).toHaveValue(10);
+    expect(inputs[1]).toHaveValue(30);
+    expect(inputs[2]).toHaveValue(0);
+    expect(inputs[3]).toHaveValue(0); // AM
+    userEvent.tab();
+    expect(inputs[0]).toHaveFocus();
+    userEvent.keyboard("1");
+    userEvent.keyboard("2");
+    expect(mockOnChange).toHaveBeenCalledWith("12:30:00 AM");
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("{ArrowUp}");
+    userEvent.keyboard("{5}");
+    expect(mockOnChange).toHaveBeenCalledWith("12:05:00 AM");
+  });
 });

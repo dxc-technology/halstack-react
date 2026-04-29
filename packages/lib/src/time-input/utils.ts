@@ -54,7 +54,7 @@ export const handleKeyDown = (
     }
   }
 
-  if (!["Tab", "Enter"].includes(event.key)) event.preventDefault();
+  if (!["Tab"].includes(event.key)) event.preventDefault();
 
   if (/^\d$/.test(event.key) && !isDayPeriod) {
     // Number input
@@ -71,6 +71,7 @@ export const handleKeyDown = (
         rawInput.current = newStringValue;
       }
       if (typeof onComplete === "function") {
+        rawInput.current = "";
         onComplete();
       }
     }
@@ -87,10 +88,11 @@ export const handleKeyDown = (
     } else {
       newValue = resolveValue(innerValue - 1, maxValue, minValue);
     }
-  } else if (isDayPeriod && /^[apAP01]$/.test(event.key)) {
+  } else if (isDayPeriod && /^[apAP]$/.test(event.key)) {
     // AM/PM input
-    const isAM = /[aA0]/.test(event.key);
+    const isAM = /[aA]/.test(event.key);
     newValue = isAM ? 0 : 1;
+    rawInput.current = newValue.toString();
   }
   setInnerValue((prevValue) => {
     return prevValue !== newValue ? newValue : prevValue;
@@ -99,9 +101,14 @@ export const handleKeyDown = (
     onChange(newValue);
   }
   if (event.key === "ArrowRight" && typeof onNext === "function") {
+    rawInput.current = "";
     onNext();
   } else if (event.key === "ArrowLeft" && typeof onPrevious === "function") {
+    rawInput.current = "";
     onPrevious();
+  }
+  if (event.key === "Tab") {
+    rawInput.current = "";
   }
 };
 
@@ -119,4 +126,47 @@ export const generateEventValue = (
   return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
     timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : undefined}` : ""
   }`;
+};
+
+export const handleColumnKeyDown = (
+  event: React.KeyboardEvent,
+  column: string,
+  focusedValue: number,
+  totalValues: number,
+  setValueToFocus: React.Dispatch<React.SetStateAction<number>>,
+  onSelect?: (value: number) => void,
+  step?: number
+) => {
+  const stepValue = step || 1;
+  // ignore tab key to allow normal tab behavior, and prevent default for other keys to manage focus manually
+  if (!["Tab"].includes(event.key)) event.preventDefault();
+  if (event.key === "ArrowDown") {
+    if (column === "hour" && focusedValue === 23) {
+      setValueToFocus(0);
+    } else if (column === "hour") {
+      const newValue = focusedValue + stepValue > totalValues ? stepValue : focusedValue + stepValue;
+      setValueToFocus((prev) => (prev === undefined ? 1 : newValue));
+    } else if (focusedValue === totalValues - stepValue) {
+      setValueToFocus(0);
+    } else {
+      const newValue = focusedValue + stepValue > totalValues - stepValue ? 0 : focusedValue + stepValue;
+      setValueToFocus(newValue);
+    }
+  } else if (event.key === "ArrowUp") {
+    if (column === "hour" && focusedValue === 0) {
+      setValueToFocus(23);
+    } else if (column === "hour") {
+      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
+      setValueToFocus((prev) => (prev === undefined ? totalValues - stepValue : newValue));
+    } else if (focusedValue === 0) {
+      setValueToFocus(totalValues - stepValue);
+    } else {
+      const newValue = focusedValue - stepValue < 0 ? totalValues - stepValue : focusedValue - stepValue;
+      setValueToFocus(newValue);
+    }
+  } else if (["Enter", " "].includes(event.key)) {
+    if (onSelect) {
+      onSelect(focusedValue);
+    }
+  }
 };
