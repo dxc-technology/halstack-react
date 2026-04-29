@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import inputStylesByState from "../styles/forms/inputStylesByState";
-import { calculateWidth } from "../text-input/utils";
 import TimeInputPropsType, { RefType } from "./types";
 import { forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -14,6 +13,13 @@ import TimePicker from "./TimePicker";
 import { generateEventValue } from "./utils";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 
+const sizes = {
+  small: "240px",
+  medium: "360px",
+  large: "480px",
+  fillParent: "100%",
+};
+
 const TimeInputContainer = styled.div<{
   size: TimeInputPropsType["size"];
 }>`
@@ -24,7 +30,7 @@ const TimeInputContainer = styled.div<{
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   color: var(--color-fg-neutral-dark);
-  width: ${({ size }) => calculateWidth(undefined, size)};
+  width: ${({ size }) => (size ? sizes[size] : sizes.medium)};
 `;
 
 const TimeInputField = styled.div<{
