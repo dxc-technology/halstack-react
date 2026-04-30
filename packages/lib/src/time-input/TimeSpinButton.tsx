@@ -14,7 +14,7 @@ const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: 
   &:focus {
     ${(props) =>
       !props.disabled &&
-      `background-color: var(--color-bg-primary-light);
+      `background-color: var(--color-bg-alpha-light);
     outline: none;`}
   }
   height: var(--height-s);

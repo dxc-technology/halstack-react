@@ -292,38 +292,36 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     />
                   </>
                 )}
-                {timeFormat === "12" && (
-                  <TimeSpinButton
-                    ariaLabel={label ?? ariaLabel}
-                    value={dayPeriodValue}
-                    minValue={0}
-                    maxValue={1}
-                    tabIndex={tabIndex}
-                    dataType="dayPeriod"
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    isControlled={isControlled.current}
-                    onChange={(value) => {
-                      if (!isControlled.current) {
-                        setDayPeriodValue(value);
-                      }
-                      if (typeof onChange === "function") {
-                        onChange(
-                          generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat)
-                        );
-                      }
-                    }}
-                    onPrevious={() => {
-                      if (showSeconds && secondRef.current) {
-                        secondRef.current.focus();
-                      } else if (minuteRef.current) {
-                        minuteRef.current.focus();
-                      }
-                    }}
-                    ref={dayPeriodRef}
-                  />
-                )}
               </DxcFlex>
+              {timeFormat === "12" && (
+                <TimeSpinButton
+                  ariaLabel={label ?? ariaLabel}
+                  value={dayPeriodValue}
+                  minValue={0}
+                  maxValue={1}
+                  tabIndex={tabIndex}
+                  dataType="dayPeriod"
+                  readOnly={readOnly}
+                  disabled={disabled}
+                  isControlled={isControlled.current}
+                  onChange={(value) => {
+                    if (!isControlled.current) {
+                      setDayPeriodValue(value);
+                    }
+                    if (typeof onChange === "function") {
+                      onChange(generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat));
+                    }
+                  }}
+                  onPrevious={() => {
+                    if (showSeconds && secondRef.current) {
+                      secondRef.current.focus();
+                    } else if (minuteRef.current) {
+                      minuteRef.current.focus();
+                    }
+                  }}
+                  ref={dayPeriodRef}
+                />
+              )}
             </DxcFlex>
             <DxcFlex>
               {clearable && (

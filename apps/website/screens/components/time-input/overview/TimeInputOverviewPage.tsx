@@ -190,8 +190,7 @@ const sections = [
               user error.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Display time formats clearly and consistently across your application, especially if users from multiple
-              locales are expected.
+              Display time formats clearly and consistently across your application.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Include a clear label that describes the context or purpose of the time (e.g., "Notification time" or
@@ -237,7 +236,7 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              Include the time picker to reduce formatting errors and speed up time selection, especially for less
+              Utilize the time picker to reduce formatting errors and speed up time selection, especially for less
               tech-savvy users or on mobile.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
