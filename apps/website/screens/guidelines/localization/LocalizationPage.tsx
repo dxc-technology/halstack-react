@@ -220,6 +220,12 @@ const sections = [
                 </td>
                 <td>Invalid date.</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>datePickerActionTitle</Code>
+                </td>
+                <td>Select date</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -684,6 +690,48 @@ const sections = [
                   <Code>fetchingDataErrorMessage</Code>
                 </td>
                 <td>Error fetching data</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "timeInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>timePickerActionTitle</Code>
+                </td>
+                <td>Select time</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "toast",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>clearToastActionTitle</Code>
+                </td>
+                <td>Clear toast</td>
               </tr>
             </tbody>
           </DxcTable>
