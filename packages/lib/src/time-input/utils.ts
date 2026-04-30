@@ -1,4 +1,7 @@
-export const pad = (num?: number) => (num !== undefined && num < 10 ? `0${num}` : num !== undefined ? `${num}` : "");
+export const pad = (num?: number) => {
+  if (num === undefined) return "";
+  return num < 10 ? `0${num}` : `${num}`;
+};
 
 const resolveValue = (value: string | number, maxValue: number, minValue: number) => {
   const input = typeof value === "string" ? parseInt(value, 10) : value;
