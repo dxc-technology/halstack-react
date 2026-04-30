@@ -49,6 +49,7 @@ export const defaultTranslatedComponentLabels = {
   },
   dateInput: {
     invalidDateErrorMessage: "Invalid date.",
+    datePickerActionTitle: "Select date",
   },
   dialog: {
     closeIconAriaLabel: "Close dialog",
@@ -125,6 +126,9 @@ export const defaultTranslatedComponentLabels = {
     clearFieldActionTitle: "Clear field",
     searchingMessage: "Searching...",
     fetchingDataErrorMessage: "Error fetching data",
+  },
+  timeInput: {
+    timePickerActionTitle: "Select date",
   },
   toast: {
     clearToastActionTitle: "Clear toast",

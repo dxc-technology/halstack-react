@@ -405,7 +405,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   size="xsmall"
                   disabled={disabled}
                   icon="schedule"
-                  title="Select time"
+                  title={!disabled ? translatedLabels.timeInput.timePickerActionTitle : undefined}
                   onClick={() => setIsOpen(true)}
                 />
               </DxcPopover>
