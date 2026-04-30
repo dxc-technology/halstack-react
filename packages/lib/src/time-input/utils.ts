@@ -3,6 +3,10 @@ export const pad = (num?: number) => {
   return num < 10 ? `0${num}` : `${num}`;
 };
 
+export const returnDayPeriod = (value?: number) => {
+  return value === 0 ? "AM" : value === 1 ? "PM" : "";
+};
+
 const resolveValue = (value: string | number, maxValue: number, minValue: number) => {
   const input = typeof value === "string" ? parseInt(value, 10) : value;
   if (input > maxValue) {
@@ -127,7 +131,7 @@ export const generateEventValue = (
     return "";
   }
   return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
-    timeFormat === "12" ? ` ${dayPeriod !== undefined ? (dayPeriod === 0 ? "AM" : "PM") : ""}` : ""
+    timeFormat === "12" ? ` ${returnDayPeriod(dayPeriod)}` : ""
   }`;
 };
 

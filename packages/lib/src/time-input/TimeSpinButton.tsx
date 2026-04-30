@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { TimeSpinButtonPropsType } from "./types";
 import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
-import { handleKeyDown } from "./utils";
+import { handleKeyDown, pad, returnDayPeriod } from "./utils";
 
 const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: boolean }>`
   caret-color: transparent;
@@ -35,7 +35,7 @@ const generateDisplayValue = (
 ) => {
   let displayValue;
   if (dataType === "dayPeriod") {
-    displayValue = value === 0 ? "AM" : value === 1 ? "PM" : placeholder;
+    displayValue = value != null ? returnDayPeriod(value) : placeholder;
   } else {
     displayValue = value != null ? value.toString().padStart(maxValue.toString().length, "0") : placeholder;
   }
@@ -62,7 +62,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState<number | undefined>(value);
-    let spanRef = useRef<HTMLSpanElement | null>(null);
+    const spanRef = useRef<HTMLSpanElement | null>(null);
 
     const placeholder = useMemo(() => {
       switch (dataType) {
@@ -81,7 +81,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         default:
           return "--";
       }
-    }, [dataType]);
+    }, [dataType, maxValue]);
 
     useEffect(() => {
       if (!spanRef.current) return;
@@ -97,7 +97,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
       if (spanRef.current) {
         spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue);
       }
-    }, [value]);
+    }, [value, placeholder, maxValue, dataType]);
 
     // Values used to track the raw input before it's resolved to a valid value.
     const rawInput = useRef<string>("");
@@ -115,7 +115,9 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         }}
         role="spinbutton"
         aria-valuenow={innerValue ?? undefined}
-        aria-valuetext={innerValue != null ? String(innerValue) : "Empty"}
+        aria-valuetext={
+          innerValue != null ? (dataType === "dayPeriod" ? returnDayPeriod(innerValue) : pad(innerValue)) : "Empty"
+        }
         aria-valuemin={minValue}
         aria-valuemax={maxValue}
         aria-label={ariaLabel}
