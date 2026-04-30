@@ -27,7 +27,10 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Specifies a string to be used as the name for the timeInput element when no `label` is provided.</td>
+            <td>
+              Specifies a string to be used as the name for the timeInput element when no <Code>label</Code> is
+              provided.
+            </td>
             <td>
               <TableCode>'Text input'</TableCode>
             </td>

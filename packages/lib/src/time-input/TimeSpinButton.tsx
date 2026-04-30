@@ -6,17 +6,25 @@ import { handleKeyDown } from "./utils";
 const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: boolean }>`
   caret-color: transparent;
   color: ${(props) =>
-    props.isPlaceholder
+    props.disabled
       ? "var(--color-fg-neutral-medium)"
-      : props.disabled
-        ? "var(--color-fg-neutral-medium)"
+      : props.isPlaceholder
+        ? "var(--color-fg-neutral-strong)"
         : "var(--color-fg-neutral-dark)"};
   &:focus {
     ${(props) =>
       !props.disabled &&
-      `background-color: var(--color-bg-primary-lighter);
+      `background-color: var(--color-bg-primary-light);
     outline: none;`}
   }
+  height: var(--height-s);
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-padding-none) var(--spacing-padding-xxxs);
+  border-radius: var(--border-radius-s);
+  box-sizing: border-box;
 `;
 
 const generateDisplayValue = (

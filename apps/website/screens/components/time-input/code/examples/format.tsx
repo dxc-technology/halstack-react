@@ -12,6 +12,7 @@ const code = `() => {
         label="Enter your time"
         defaultValue="20:00"
         timeFormat="24"
+        onChange={onChange}
       />
     </DxcInset>
   );

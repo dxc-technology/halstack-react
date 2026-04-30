@@ -44,12 +44,13 @@ const TimeInputField = styled.div<{
   justify-content: space-between;
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  gap: var(--spacing-gap-s);
   ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
 `;
 
 const ColonContainer = styled.span`
   padding: 0;
-  color: var(--color-fg-neutral-strong);
+  color: var(--color-fg-neutral-dark);
 `;
 
 const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
@@ -173,8 +174,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             </HelperText>
           )}
           <TimeInputField disabled={disabled} error={!!error} readOnly={readOnly}>
-            <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center">
-              <DxcFlex gap="var(--spacing-gap-xxs)" alignItems="center">
+            <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center" fullHeight>
+              <DxcFlex alignItems="center" fullHeight>
                 <TimeSpinButton
                   ariaLabel={label ?? ariaLabel}
                   value={hourValue}
@@ -291,36 +292,38 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     />
                   </>
                 )}
+                {timeFormat === "12" && (
+                  <TimeSpinButton
+                    ariaLabel={label ?? ariaLabel}
+                    value={dayPeriodValue}
+                    minValue={0}
+                    maxValue={1}
+                    tabIndex={tabIndex}
+                    dataType="dayPeriod"
+                    readOnly={readOnly}
+                    disabled={disabled}
+                    isControlled={isControlled.current}
+                    onChange={(value) => {
+                      if (!isControlled.current) {
+                        setDayPeriodValue(value);
+                      }
+                      if (typeof onChange === "function") {
+                        onChange(
+                          generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat)
+                        );
+                      }
+                    }}
+                    onPrevious={() => {
+                      if (showSeconds && secondRef.current) {
+                        secondRef.current.focus();
+                      } else if (minuteRef.current) {
+                        minuteRef.current.focus();
+                      }
+                    }}
+                    ref={dayPeriodRef}
+                  />
+                )}
               </DxcFlex>
-              {timeFormat === "12" && (
-                <TimeSpinButton
-                  ariaLabel={label ?? ariaLabel}
-                  value={dayPeriodValue}
-                  minValue={0}
-                  maxValue={1}
-                  tabIndex={tabIndex}
-                  dataType="dayPeriod"
-                  readOnly={readOnly}
-                  disabled={disabled}
-                  isControlled={isControlled.current}
-                  onChange={(value) => {
-                    if (!isControlled.current) {
-                      setDayPeriodValue(value);
-                    }
-                    if (typeof onChange === "function") {
-                      onChange(generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat));
-                    }
-                  }}
-                  onPrevious={() => {
-                    if (showSeconds && secondRef.current) {
-                      secondRef.current.focus();
-                    } else if (minuteRef.current) {
-                      minuteRef.current.focus();
-                    }
-                  }}
-                  ref={dayPeriodRef}
-                />
-              )}
             </DxcFlex>
             <DxcFlex>
               {clearable && (

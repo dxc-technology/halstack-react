@@ -4,7 +4,8 @@ import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import Figure from "@/common/Figure";
 import anatomy from "./images/time_input_anatomy.png";
-import timeInputTimePickerPopup from "./images/time_picker_popup.png";
+import timeInputPickerPopup from "./images/time_picker_popup.png";
+import timeInputPickerAction from "./images/time_picker_action.png";
 
 const sections = [
   {
@@ -156,14 +157,19 @@ const sections = [
             content: (
               <>
                 <DxcParagraph>
-                  The component features a built-in time picker dialog that can be opened via the time icon. This dialog
-                  allows users to select the hour, minute, and AM/PM values visually, reducing the likelihood of
-                  formatting errors. The minutes values are presented as 5-minute increments to provide an optimal
+                  The component features a built-in time picker popup that can be opened via the time icon.
+                </DxcParagraph>
+                <Figure caption="States for the time picker action">
+                  <Image src={timeInputPickerAction} alt="States for the time picker action" />
+                </Figure>
+                <DxcParagraph>
+                  This popup allows users to select the hour, minute, and AM/PM values visually, reducing the likelihood
+                  of formatting errors. The minutes values are presented as 5-minute increments to provide an optimal
                   balance of selectable items. Users can manually enter minutes values that are not part of the
                   selectable list. The 24-hour variant does not include the AM/PM selection.
                 </DxcParagraph>
                 <Figure caption="States for the time picker popup">
-                  <Image src={timeInputTimePickerPopup} alt="States for the time picker popup" />
+                  <Image src={timeInputPickerPopup} alt="States for the time picker popup" />
                 </Figure>
               </>
             ),

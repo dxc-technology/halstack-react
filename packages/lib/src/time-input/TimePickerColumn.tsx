@@ -70,7 +70,11 @@ const TimePickerColumn = ({
   onKeyboardEvent: (event: React.KeyboardEvent, value: number) => void;
 }) => {
   return (
-    <DxcContainer maxHeight="100%" overflow="auto">
+    <DxcContainer
+      maxHeight="100%"
+      overflow="auto"
+      padding={dataType !== "dayPeriod" ? { right: "var(--spacing-padding-xs)" } : undefined}
+    >
       <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
         {valuesArray.map((optionValue) => (
           <TimePickerOption

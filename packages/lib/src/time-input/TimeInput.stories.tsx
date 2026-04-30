@@ -68,7 +68,9 @@ const TimeInput = () => {
           />
         </DxcContainer>
         <DxcTimeInput label="Time" timeFormat="24" helperText="Helper text" showSeconds value={continentalValue} />
+        <DxcTimeInput label="Time" helperText="Helper text" showSeconds disabled />
         <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds disabled />
+        <DxcTimeInput label="Time" helperText="Helper text" showSeconds readOnly />
         <DxcTimeInput label="Time" helperText="Helper text" defaultValue={value} showSeconds readOnly />
         <DxcTimeInput
           label="Time"
