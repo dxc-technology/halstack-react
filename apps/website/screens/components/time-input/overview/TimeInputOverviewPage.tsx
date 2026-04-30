@@ -13,7 +13,7 @@ const sections = [
     content: (
       <DxcParagraph>
         Time inputs allow users to enter or select a specific time using a time picker or manual text entry. Designed to
-        support a wide range of use cases - particularly in working with the date input component - from booking systems
+        support a wide range of use cases, particularly in working with the date input component, from booking systems
         to form submissions, using this component ensures clarity and consistency in date and time formats, helps
         prevent input errors, and adapts to different locale and accessibility requirements. Its combination of manual
         input and guided selection provides flexibility while maintaining a streamlined user experience.

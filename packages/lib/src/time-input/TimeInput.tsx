@@ -56,7 +56,7 @@ const ColonContainer = styled.span`
 const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
   (
     {
-      ariaLabel = "Text input",
+      ariaLabel = "Time input",
       clearable = false,
       defaultValue = "",
       disabled = false,
@@ -87,7 +87,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const minuteRef = useRef<HTMLSpanElement>(null);
     const secondRef = useRef<HTMLSpanElement>(null);
     const dayPeriodRef = useRef<HTMLSpanElement>(null);
-    const isControlled = useRef(value !== undefined);
+    const isControlled = value !== undefined;
     const translatedLabels = useContext(HalstackLanguageContext);
 
     useEffect(() => {
@@ -103,9 +103,16 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         if (timeFormat === "12" && time.includes(" ")) {
           const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : time.split(" ")[1] === "PM" ? 1 : undefined;
           setDayPeriodValue(dayPeriodValue);
+        } else {
+          setDayPeriodValue(undefined);
         }
+      } else {
+        setHourValue(undefined);
+        setMinuteValue(undefined);
+        setSecondValue(undefined);
+        setDayPeriodValue(undefined);
       }
-    }, [value, defaultValue]);
+    }, [value, defaultValue, timeFormat]);
 
     const generatedInputValue = () => {
       if (hourValue === undefined && minuteValue === undefined && secondValue === undefined) {
@@ -116,7 +123,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     };
 
     const handleClearActionOnClick = () => {
-      if (!isControlled.current) {
+      if (!isControlled) {
         setHourValue(undefined);
         setMinuteValue(undefined);
         setSecondValue(undefined);
@@ -185,14 +192,14 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   dataType="hour"
                   readOnly={readOnly}
                   disabled={disabled}
-                  isControlled={isControlled.current}
+                  isControlled={isControlled}
                   onComplete={() => {
                     if (minuteRef.current) {
                       minuteRef.current.focus();
                     }
                   }}
                   onChange={(value) => {
-                    if (!isControlled.current) {
+                    if (!isControlled) {
                       setHourValue(value);
                     }
                     if (typeof onChange === "function") {
@@ -218,7 +225,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   dataType="minute"
                   readOnly={readOnly}
                   disabled={disabled}
-                  isControlled={isControlled.current}
+                  isControlled={isControlled}
                   onComplete={() => {
                     if (showSeconds && secondRef.current) {
                       secondRef.current.focus();
@@ -227,7 +234,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                     }
                   }}
                   onChange={(value) => {
-                    if (!isControlled.current) {
+                    if (!isControlled) {
                       setMinuteValue(value);
                     }
                     if (typeof onChange === "function") {
@@ -262,14 +269,14 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       dataType="second"
                       readOnly={readOnly}
                       disabled={disabled}
-                      isControlled={isControlled.current}
+                      isControlled={isControlled}
                       onComplete={() => {
                         if (timeFormat === "12" && dayPeriodRef.current) {
                           dayPeriodRef.current.focus();
                         }
                       }}
                       onChange={(value) => {
-                        if (!isControlled.current) {
+                        if (!isControlled) {
                           setSecondValue(value);
                         }
                         if (typeof onChange === "function") {
@@ -303,9 +310,9 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   dataType="dayPeriod"
                   readOnly={readOnly}
                   disabled={disabled}
-                  isControlled={isControlled.current}
+                  isControlled={isControlled}
                   onChange={(value) => {
-                    if (!isControlled.current) {
+                    if (!isControlled) {
                       setDayPeriodValue(value);
                     }
                     if (typeof onChange === "function") {
@@ -336,8 +343,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
               <DxcPopover
                 popoverContent={
                   <TimePicker
-                    onSelecthours={(value) => {
-                      if (!isControlled.current) {
+                    onSelectHours={(value) => {
+                      if (!isControlled) {
                         setHourValue(value);
                       }
                       if (typeof onChange === "function") {
@@ -347,7 +354,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       }
                     }}
                     onSelectMinutes={(value) => {
-                      if (!isControlled.current) {
+                      if (!isControlled) {
                         setMinuteValue(value);
                       }
                       if (typeof onChange === "function") {
@@ -357,7 +364,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       }
                     }}
                     onSelectSeconds={(value) => {
-                      if (!isControlled.current) {
+                      if (!isControlled) {
                         setSecondValue(value);
                       }
                       if (typeof onChange === "function") {
@@ -367,7 +374,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       }
                     }}
                     onSelectDayPeriod={(value: number) => {
-                      if (!isControlled.current) {
+                      if (!isControlled) {
                         setDayPeriodValue(value);
                       }
                       if (typeof onChange === "function") {

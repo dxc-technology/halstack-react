@@ -14,8 +14,6 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 
 beforeEach(() => jest.clearAllMocks());
 
-beforeEach(() => jest.clearAllMocks());
-
 describe("DxcTimeInput rendering", () => {
   it("renders label", () => {
     const { getByText } = render(<DxcTimeInput label="Time input" helperText="Pick a time" />);
@@ -90,11 +88,11 @@ describe("DxcTimeInput rendering", () => {
     userEvent.tab();
     expect(inputs[0]).toHaveFocus();
     userEvent.keyboard("{ArrowUp}");
-    expect(mockOnChange).toHaveBeenCalledWith("01:undefined undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("01: ");
     userEvent.tab();
     expect(inputs[1]).toHaveFocus();
     userEvent.keyboard("{ArrowDown}");
-    expect(mockOnChange).toHaveBeenCalledWith("01:59 undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("01:59 ");
     userEvent.tab();
     expect(inputs[2]).toHaveFocus();
     userEvent.keyboard("{A}");
@@ -112,10 +110,10 @@ describe("DxcTimeInput rendering", () => {
     expect(getByText("AM")).toBeTruthy();
     const hourbutton = getAllByText("07");
     if (hourbutton[0]) userEvent.click(hourbutton[0]);
-    expect(mockOnChange).toHaveBeenCalledWith("07:undefined undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("07: ");
     const minuteButton = getAllByText("30");
     if (minuteButton[0]) userEvent.click(minuteButton[0]);
-    expect(mockOnChange).toHaveBeenCalledWith("07:30 undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("07:30 ");
     const amButton = getByText("AM");
     expect(amButton).toBeTruthy();
     userEvent.click(amButton);
@@ -132,14 +130,14 @@ describe("DxcTimeInput rendering", () => {
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{Enter}");
-    expect(mockOnChange).toHaveBeenCalledWith("03:undefined undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("03: ");
     userEvent.tab();
     userEvent.keyboard("{ArrowUp}");
     userEvent.keyboard("{Enter}");
-    expect(mockOnChange).toHaveBeenCalledWith("03:55 undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("03:55 ");
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard(" ");
-    expect(mockOnChange).toHaveBeenCalledWith("03:00 undefined");
+    expect(mockOnChange).toHaveBeenCalledWith("03:00 ");
     userEvent.tab();
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{Enter}");

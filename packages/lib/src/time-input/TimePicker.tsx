@@ -15,7 +15,7 @@ const TimePickerContainer = styled.div`
 `;
 
 const TimePicker = ({
-  onSelecthours,
+  onSelectHours,
   onSelectMinutes,
   onSelectSeconds,
   onSelectDayPeriod,
@@ -35,25 +35,25 @@ const TimePicker = ({
   const totalHours = timeFormat === "12" ? 12 : 24;
 
   useEffect(() => {
-    if (dayPeriodToFocus !== undefined) {
+    if (dayPeriodToFocus !== undefined && id) {
       document.getElementById(`${id}-dayPeriod-${dayPeriodToFocus}`)?.focus();
     }
-  }, [dayPeriodToFocus]);
+  }, [dayPeriodToFocus, id]);
   useEffect(() => {
-    if (secondToFocus !== undefined) {
+    if (secondToFocus !== undefined && id) {
       document.getElementById(`${id}-second-${secondToFocus}`)?.focus();
     }
-  }, [secondToFocus]);
+  }, [secondToFocus, id]);
   useEffect(() => {
-    if (minuteToFocus !== undefined) {
+    if (minuteToFocus !== undefined && id) {
       document.getElementById(`${id}-minute-${minuteToFocus}`)?.focus();
     }
-  }, [minuteToFocus]);
+  }, [minuteToFocus, id]);
   useEffect(() => {
-    if (hourToFocus !== undefined) {
+    if (hourToFocus !== undefined && id) {
       document.getElementById(`${id}-hour-${hourToFocus}`)?.focus();
     }
-  }, [hourToFocus]);
+  }, [hourToFocus, id]);
 
   return (
     <TimePickerContainer role="listbox" aria-label="Time picker">
@@ -65,11 +65,11 @@ const TimePicker = ({
         tabIndex={tabIndex}
         dataType="hour"
         onClick={(value: number) => {
-          onSelecthours(value);
+          onSelectHours(value);
           setHourToFocus(value);
         }}
         onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-          handleColumnKeyDown(event, "hour", value, totalHours, setHourToFocus, onSelecthours)
+          handleColumnKeyDown(event, "hour", value, totalHours, setHourToFocus, onSelectHours)
         }
       />
       <TimePickerColumn
