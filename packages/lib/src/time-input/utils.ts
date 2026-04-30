@@ -69,20 +69,16 @@ export const handleKeyDown = (
     rawInput.current = (rawInput.current + newDigit.current).slice(-maxValue.toString().length);
     newValue = resolveValue(rawInput.current, maxValue, minValue);
     // If the raw input has reached the max length or exceeds the max value with the new digit, consider it complete and move to the next field.
+    console.log("rawInput:", rawInput.current, "newDigit:", newDigit.current, "newValue:", newValue);
     if (checkCompletion(rawInput.current, maxValue)) {
-      const newStringValue = newValue.toString();
-      // Pad with zeros if the new value is shorter than the max value length.
-      if (newStringValue.length < maxValue.toString().length) {
-        rawInput.current = "0" + newStringValue;
-      } else {
-        rawInput.current = newStringValue;
-      }
+      rawInput.current = pad(newValue);
       if (typeof onComplete === "function") {
-        rawInput.current = "";
         onComplete();
+        rawInput.current = "";
       }
+    } else {
+      input.textContent = rawInput.current;
     }
-    input.textContent = rawInput.current;
   } else if (event.key === "ArrowUp") {
     if (innerValue == null || innerValue >= maxValue) {
       newValue = minValue;
