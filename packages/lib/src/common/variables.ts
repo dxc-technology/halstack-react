@@ -128,7 +128,7 @@ export const defaultTranslatedComponentLabels = {
     fetchingDataErrorMessage: "Error fetching data",
   },
   timeInput: {
-    timePickerActionTitle: "Select date",
+    timePickerActionTitle: "Select time",
   },
   toast: {
     clearToastActionTitle: "Clear toast",

@@ -32,7 +32,7 @@ const sections = [
               provided.
             </td>
             <td>
-              <TableCode>'Text input'</TableCode>
+              <TableCode>'Time input'</TableCode>
             </td>
           </tr>
           <tr>
