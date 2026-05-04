@@ -1,31 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { DxcFlex, DxcHeading, DxcTypography, DxcButton, DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
-
-interface TourStep {
-  title?: ReactNode;
-  content?: ReactNode;
-}
-
-interface TooltipContainerProps {
-  "aria-modal": boolean;
-  role: string;
-}
-
-interface TourPopoverProps {
-  step: TourStep;
-  index: number;
-  size: number;
-  isLastStep: boolean;
-  onFinish: () => void;
-  onRestart?: () => void;
-  controls: {
-    next: () => void;
-    prev: () => void;
-    skip: () => void;
-  };
-  tooltipProps: TooltipContainerProps;
-}
+import { TourPopoverProps } from "../types";
 
 const PopoverContainer = styled.div`
   box-sizing: border-box;
@@ -69,43 +45,38 @@ const TourPopover = ({
           </DxcFlex>
 
           <DxcContainer width="100%" boxSizing="border-box">
-            <DxcFlex justifyContent="space-between" alignItems="center">
-              {!isLastStep && (
+            {isLastStep ? (
+              <DxcFlex gap="var(--spacing-gap-s)" justifyContent="end">
+                <DxcButton
+                  label="Restart"
+                  icon="refresh"
+                  mode="secondary"
+                  size={{ height: "medium" }}
+                  onClick={onRestart}
+                />
+                <DxcButton label="Got it!" size={{ height: "medium" }} onClick={onFinish} />
+              </DxcFlex>
+            ) : (
+              <DxcFlex justifyContent="space-between">
                 <DxcButton label="Skip" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
-              )}
-
-              <DxcFlex gap="0.5rem" alignItems="center">
-                {isLastStep ? (
-                  <>
+                <DxcFlex gap="var(--spacing-gap-s)">
+                  {index > 0 && (
                     <DxcButton
-                      label="Restart"
-                      icon="refresh"
+                      icon="arrow_back_ios"
                       mode="secondary"
                       size={{ height: "medium" }}
-                      onClick={onRestart}
+                      onClick={controls.prev}
                     />
-                    <DxcButton label="Got it!" size={{ height: "medium" }} onClick={onFinish} />
-                  </>
-                ) : (
-                  <>
-                    {index > 0 && !isLastStep && (
-                      <DxcButton
-                        icon="arrow_back_ios"
-                        mode="secondary"
-                        size={{ height: "medium" }}
-                        onClick={controls.prev}
-                      />
-                    )}
-                    <DxcButton
-                      icon="arrow_forward_ios"
-                      iconPosition="after"
-                      size={{ height: "medium" }}
-                      onClick={controls.next}
-                    />
-                  </>
-                )}
+                  )}
+                  <DxcButton
+                    icon="arrow_forward_ios"
+                    iconPosition="after"
+                    size={{ height: "medium" }}
+                    onClick={controls.next}
+                  />
+                </DxcFlex>
               </DxcFlex>
-            </DxcFlex>
+            )}
           </DxcContainer>
         </DxcFlex>
       </DxcContainer>

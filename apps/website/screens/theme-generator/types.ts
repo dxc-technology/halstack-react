@@ -62,3 +62,28 @@ export type ComponentItem = {
   status?: string;
   links?: ComponentItem[];
 };
+
+type TourStep = {
+  title?: ReactNode;
+  content?: ReactNode;
+};
+
+type TooltipContainerProps = {
+  "aria-modal": boolean;
+  role: string;
+};
+
+export type TourPopoverProps = {
+  step: TourStep;
+  index: number;
+  size: number;
+  isLastStep: boolean;
+  onFinish: () => void;
+  onRestart?: () => void;
+  controls: {
+    next: () => void;
+    prev: () => void;
+    skip: () => void;
+  };
+  tooltipProps: TooltipContainerProps;
+};

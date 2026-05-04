@@ -311,8 +311,11 @@ const ThemeGeneratorConfigPage = () => {
 
     // Update index when step changes
     if (type === EVENTS.STEP_AFTER) {
-      const nextIndex = action === ACTIONS.PREV ? index : index + 1;
-      setTourStepIndex(nextIndex);
+      if (action === ACTIONS.NEXT) {
+        setTourStepIndex(index + 1);
+      } else if (action === ACTIONS.PREV) {
+        setTourStepIndex(index - 1);
+      }
     }
   };
 
