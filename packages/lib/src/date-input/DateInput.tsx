@@ -316,7 +316,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
-                  title: "Select date",
+                  title: !disabled ? translatedLabels.dateInput.datePickerActionTitle : undefined,
                 }}
                 clearable={clearable}
                 disabled={disabled}
