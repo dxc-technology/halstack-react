@@ -10,7 +10,7 @@ const ReviewDetails = ({ tokens, logos, themeJson }: { tokens: Tokens; logos: Lo
   const handleCopy = useCopyToClipboard();
 
   return (
-    <div id="fourth-step">
+    <div id="review-tour">
       <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
         <ReviewSectionContainer
           title={
@@ -18,7 +18,7 @@ const ReviewDetails = ({ tokens, logos, themeJson }: { tokens: Tokens; logos: Lo
               <DxcTypography fontSize="var(--typography-title-l)" fontWeight="var(--typography-title-bold)">
                 Color palette & theme
               </DxcTypography>
-              <div id="fifth-step">
+              <div id="copy-configuration-tour">
                 <DxcButton
                   mode="secondary"
                   icon="content_copy"

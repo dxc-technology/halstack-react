@@ -7,7 +7,7 @@ import {
   DxcTypography,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
-import { ReactNode, SVGProps, useMemo, useState } from "react";
+import { ReactNode, SVGProps, useMemo, useState, useEffect } from "react";
 import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/theme-generator/componentsRegistry";
 import styled from "@emotion/styled";
@@ -109,7 +109,15 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, string>; logos: Logos }) => {
+const ThemeGeneratorPreviewPage = ({
+  tokens,
+  logos,
+  showDefaultComponents,
+}: {
+  tokens: Record<string, string>;
+  logos: Logos;
+  showDefaultComponents?: boolean;
+}) => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
@@ -118,6 +126,15 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
   const componentOptions = useMemo(() => {
     return mapToSelectGroups(componentsList as ComponentItem[]);
   }, []);
+
+  // Set default components when requested and clear on cleanup
+  useEffect(() => {
+    if (showDefaultComponents) {
+      setSelectedComponents(["/components/button", "/components/alert", "/components/switch"]);
+    } else {
+      setSelectedComponents([]);
+    }
+  }, [showDefaultComponents]);
 
   const getLabelFromValue = (value: string) =>
     componentOptions.flatMap((group) => group.options).find((opt) => opt.value === value)?.label;
@@ -161,9 +178,9 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
 
   return (
     <DxcContainer width="100%" height="100%">
-      <div id="third-step" style={{ width: "100%", height: "100%" }}>
-        <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
-          <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
+      <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
+        <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
+          <div id="toggle-tour">
             <DxcToggleGroup
               options={[
                 { label: "Components", icon: "category", value: 1 },
@@ -172,6 +189,8 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
               value={mode === "components" ? 1 : 2}
               onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
             />
+          </div>
+          <div id="select-preview-tour">
             {mode === "components" && (
               <DxcSelect
                 placeholder="Select components"
@@ -198,21 +217,23 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
                 searchable
               />
             )}
+          </div>
+        </DxcFlex>
+        {mode === "examples" && (
+          <DxcFlex gap="var(--spacing-gap-xs)">
+            {informationIcon}
+            <DxcTypography
+              color="var(--color-fg-neutral-strongest)"
+              fontSize="var(--typography-label-m)"
+              fontWeight="var(--typography-label-regular)"
+            >
+              Some components are presentational examples. The layouts shown are for demonstration purposes only and do
+              not represent actual components.
+            </DxcTypography>
           </DxcFlex>
-          {mode === "examples" && (
-            <DxcFlex gap="var(--spacing-gap-xs)">
-              {informationIcon}
-              <DxcTypography
-                color="var(--color-fg-neutral-strongest)"
-                fontSize="var(--typography-label-m)"
-                fontWeight="var(--typography-label-regular)"
-              >
-                Some components are presentational examples. The layouts shown are for demonstration purposes only and
-                do not represent actual components.
-              </DxcTypography>
-            </DxcFlex>
-          )}
-          {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
+        )}
+        {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
+        <div id="preview-area-tour" style={{ height: "100%" }}>
           <DxcContainer
             borderRadius="var(--border-radius-l)"
             border={{
@@ -223,6 +244,7 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
             background={{ color: "var(--color-bg-neutral-lightest)" }}
             padding="var(--spacing-padding-s)"
             height="100%"
+            boxSizing="border-box"
           >
             {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
               <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
@@ -264,8 +286,8 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
               </DxcFlex>
             )}
           </DxcContainer>
-        </DxcFlex>
-      </div>
+        </div>
+      </DxcFlex>
     </DxcContainer>
   );
 };

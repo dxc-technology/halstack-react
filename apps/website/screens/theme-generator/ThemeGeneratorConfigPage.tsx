@@ -1,6 +1,14 @@
 import { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
+import {
+  DxcButton,
+  DxcContainer,
+  DxcDialog,
+  DxcFlex,
+  DxcHeading,
+  DxcParagraph,
+  DxcWizard,
+} from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
@@ -10,6 +18,7 @@ import { Colors, FileData, Step } from "./types";
 import ReviewDetails from "./steps/ReviewDetails";
 import { ACTIONS, EVENTS, Joyride, STATUS, type EventData, type Step as JoyrideStep } from "react-joyride";
 import TourPopover from "./components/TourPopover";
+import Code from "@/common/Code";
 
 const steps = [
   {
@@ -37,7 +46,25 @@ const wizardSteps = steps.map(({ label, description }) => ({
   description,
 }));
 
-const tourSteps: JoyrideStep[] = [
+const firstStepTour: JoyrideStep[] = [
+  {
+    title: "The 3-Step Journey",
+    content: (
+      <>
+        To build your theme, we'll guide you through 3 simple steps:
+        <br />
+        <br />
+        1. Configure: Define brand colors and assets
+        <br />
+        2. Preview: See your styles applied
+        <br />
+        3. Export: Review and download your theme
+      </>
+    ),
+    target: "#wizard-tour",
+    placement: "bottom",
+    skipBeacon: true,
+  },
   {
     title: "Define theme colors",
     content: (
@@ -48,90 +75,116 @@ const tourSteps: JoyrideStep[] = [
         You can update this anytime.
       </>
     ),
-    target: "#first-step",
     placement: "bottom",
+    target: "#colors-tour",
     skipBeacon: true,
   },
   {
     title: "Upload assets",
     content: (
       <>
-        Upload branding assets such as main logo, footer logos, and favicon.
+        Upload branding assets such as logo, footer logos, and favicon.
         <br />
         <br />
         Applied across your theme for brand consistency.
       </>
     ),
     placement: "top",
-    target: "#second-step",
+    target: "#assets-tour",
     skipBeacon: true,
+    arrowSpacing: 162,
   },
+];
+
+const secondStepTour: JoyrideStep[] = [
   {
     title: "Preview theme",
     content: (
       <>
-        Use this toggle to preview your theme. Components show individual elements, while layouts display predefined
-        page structures to help you check consistency and readability.
+        Use this toggle to preview your theme across different views. Components show individual UI elements, while
+        Layouts display predefined page structures. Use this to check color usage, consistency, and readability across
+        your theme.
       </>
     ),
-    placement: "top-start",
-    target: "#third-step",
+    target: "#toggle-tour",
+    placement: "right",
+    skipBeacon: true,
+  },
+  {
+    title: "Filter your preview",
+    content: (
+      <>
+        Choose specific component groups to preview, such as Forms or Feedback.
+        <br />
+        <br />
+        You can select one or multiple groups to see how your theme styles apply across different scenarios.
+      </>
+    ),
+    placement: "left",
+    target: "#select-preview-tour",
+    skipBeacon: true,
+  },
+  {
+    title: "Preview area",
+    content: (
+      <>
+        In this area, you can preview both Components and Layout examples.
+        <br />
+        <br />
+        Use the selector to add them to your canvas. If it gets too crowded, just click <Code>Clear</Code> to reset the
+        view.
+      </>
+    ),
+    placement: "top",
+    target: "#preview-area-tour",
     skipBeacon: true,
     arrowSpacing: 162,
   },
+];
+
+const thirdStepTour: JoyrideStep[] = [
   {
     title: "Review theme",
     content: (
       <>
-        Review your colors, branding and overall configuration. Validate your setup before finalizing.
+        Review your colors, branding, and overall configuration. Validate your setup before finalizing.
         <br />
         <br />
         Helps confirm your theme is ready for export.
       </>
     ),
-    target: "#fourth-step",
+    target: "#review-tour",
+    placement: "top",
     skipBeacon: true,
   },
   {
     title: "Copy configuration",
     content: (
       <>
-        Copy your theme configuration as JSON. Use it for quick integration.
+        Copy your theme configuration as JSON.
+        <br /> Use it for quick integration.
         <br />
         <br />
-        Allows faster implementation without downloading a file.
+        Allow faster implementation without downloading a file.
       </>
     ),
     placement: "left",
-    target: "#fifth-step",
+    target: "#copy-configuration-tour",
     skipBeacon: true,
   },
   {
     title: "Export theme",
     content: (
       <>
-        Export your theme as a file. Use it across your applications.
+        Export your theme as a file and use it across your applications. Your theme is ready to be applied across
+        projects.
         <br />
         <br />
-        Makes your theme ready for use across projects.
+        You're all set! If you'd like to go through the tour again, click the restart button.
       </>
     ),
-    target: "#sixth-step",
-    skipBeacon: true,
-    placement: "bottom-end",
-  },
-  {
-    title: "You are all set",
-    content: (
-      <>
-        You are ready to create and manage your theme.
-        <br />
-        <br />
-        If you need to go through the tour again, click the tour button anytime to restart the guide.
-      </>
-    ),
-    target: "body",
-    placement: "center",
+    placement: "left-start",
+    target: "#export-tour",
     skipBeacon: true,
   },
 ];
@@ -157,16 +210,26 @@ const ThemeGeneratorConfigPage = () => {
   });
   const [tokens, setTokens] = useState<Record<string, string>>({});
   const lastGeneratedColorsRef = useRef<string>("");
+  const [isDialogVisible, setDialogVisible] = useState(false);
   const [runTour, setRunTour] = useState(false);
-  const [stepIndex, setStepIndex] = useState(0);
+  const [tourStepIndex, setTourStepIndex] = useState(0);
+  const isTourActiveRef = useRef(false);
+  const completedToursRef = useRef<Set<Step>>(new Set());
 
   useEffect(() => {
     if (router.query.tour === "true") {
-      setRunTour(true);
+      setDialogVisible(true);
       // Remove the tour parameter from the URL without reloading
       void router.replace("/theme-generator/configuration", undefined, { shallow: true });
     }
   }, [router.query.tour]);
+
+  useEffect(() => {
+    if (isTourActiveRef.current && !completedToursRef.current.has(currentStep)) {
+      setTourStepIndex(0);
+      setRunTour(true);
+    }
+  }, [currentStep]);
 
   const themeJson = useMemo(() => {
     const themeObject = {
@@ -210,33 +273,32 @@ const ThemeGeneratorConfigPage = () => {
     setCurrentStep(step);
   };
 
-  const handleFinishTour = () => {
-    setRunTour(false);
-    setStepIndex(0);
-    if (currentStep !== 0) {
-      handleChangeStep(0);
+  const handleStartTour = () => {
+    if (isDialogVisible) {
+      setDialogVisible(false);
     }
+    isTourActiveRef.current = true;
+    setRunTour(true);
+  };
+
+  const handleFinishTour = () => {
+    completedToursRef.current.add(currentStep);
+    if (currentStep === 2) {
+      isTourActiveRef.current = false;
+    }
+    setRunTour(false);
   };
 
   const handleRestartTour = () => {
-    setStepIndex(0);
+    completedToursRef.current.delete(currentStep);
+    setTourStepIndex(0);
     setRunTour(false);
-    if (currentStep !== 0) {
-      handleChangeStep(0);
-    }
     setTimeout(() => {
       setRunTour(true);
     }, 100);
   };
 
-  const getWizardStepFromTourIndex = (tourIndex: number): Step => {
-    if (tourIndex <= 1) return 0;
-    if (tourIndex <= 2) return 1;
-    if (tourIndex <= 6) return 2;
-    return 0;
-  };
-
-  const handleTourEvent = ({ action, index, status, type }: EventData) => {
+  const handleTourEvent = ({ action, status, index, type }: EventData) => {
     if (status === STATUS.FINISHED || status === STATUS.SKIPPED || status === STATUS.PAUSED) {
       handleFinishTour();
       return;
@@ -247,22 +309,10 @@ const ThemeGeneratorConfigPage = () => {
       return;
     }
 
-    if (type === EVENTS.STEP_AFTER || type === EVENTS.TARGET_NOT_FOUND) {
-      console.log("Tour event:", { action, index, status, type });
-      const nextStep = action === ACTIONS.PREV ? index - 1 : index + 1;
-      const boundedStep = Math.max(0, Math.min(nextStep, tourSteps.length - 1));
-      setStepIndex(boundedStep);
-
-      if (boundedStep === tourSteps.length - 1) {
-        if (currentStep !== 0) {
-          handleChangeStep(0);
-        }
-      } else {
-        const newWizardStep = getWizardStepFromTourIndex(boundedStep);
-        if (newWizardStep !== currentStep) {
-          handleChangeStep(newWizardStep);
-        }
-      }
+    // Update index when step changes
+    if (type === EVENTS.STEP_AFTER) {
+      const nextIndex = action === ACTIONS.PREV ? index : index + 1;
+      setTourStepIndex(nextIndex);
     }
   };
 
@@ -271,74 +321,160 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
+        return (
+          <ThemeGeneratorPreviewPage
+            tokens={tokens}
+            logos={logos}
+            showDefaultComponents={runTour && tourStepIndex === 2}
+          />
+        );
       case 2:
         return <ReviewDetails tokens={tokens} logos={logos} themeJson={themeJson} />;
     }
   };
 
   return (
-    <DxcContainer
-      height="100%"
-      boxSizing="border-box"
-      padding={{ top: "var(--spacing-padding-xl)" }}
-      background={{ color: "var(--color-bg-neutral-lighter)" }}
-    >
-      <Joyride
-        key={tourSteps[0]?.target as string}
-        continuous
-        run={runTour}
-        steps={tourSteps}
-        stepIndex={stepIndex}
-        tooltipComponent={(tooltipProps) => (
-          <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
-        )}
-        onEvent={handleTourEvent}
-        options={{
-          overlayClickAction: false,
-          hideOverlay: false,
-          blockTargetInteraction: false,
-          spotlightPadding: 4,
-          overlayColor: "var(--color-bg-alpha-strong)",
-          zIndex: 10000,
-          arrowBase: 12,
-          arrowSize: 6,
-          offset: 0,
-        }}
-        styles={{ overlay: { maxHeight: stepIndex === 6 ? "100%" : "auto" } }}
-      />
-
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>
-        <DxcContainer width="80%" maxWidth="1112px" margin={{ left: "auto", right: "auto" }}>
-          <DxcWizard
-            steps={wizardSteps}
-            currentStep={currentStep}
-            onStepClick={(i) => {
-              handleChangeStep(i as Step);
+    <>
+      <DxcContainer
+        height="100%"
+        boxSizing="border-box"
+        padding={{ top: "var(--spacing-padding-xl)" }}
+        background={{ color: "var(--color-bg-neutral-lighter)" }}
+      >
+        {currentStep === 0 && (
+          <Joyride
+            continuous
+            run={runTour}
+            steps={firstStepTour}
+            stepIndex={tourStepIndex}
+            tooltipComponent={(tooltipProps) => (
+              <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
+            )}
+            onEvent={handleTourEvent}
+            options={{
+              overlayClickAction: false,
+              hideOverlay: false,
+              blockTargetInteraction: false,
+              spotlightPadding: 4,
+              overlayColor: "var(--color-bg-alpha-strong)",
+              zIndex: 10000,
+              arrowBase: 12,
+              arrowSize: 6,
+              offset: 0,
             }}
           />
-        </DxcContainer>
+        )}
 
-        <DxcContainer
-          maxWidth="1332px"
-          width="90%"
-          height="100%"
-          boxSizing="border-box"
-          margin={{ left: "auto", right: "auto" }}
-        >
-          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
-            <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
-            {renderStepContent()}
-          </DxcFlex>
-        </DxcContainer>
+        {currentStep === 1 && (
+          <Joyride
+            continuous
+            run={runTour}
+            steps={secondStepTour}
+            stepIndex={tourStepIndex}
+            tooltipComponent={(tooltipProps) => (
+              <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
+            )}
+            onEvent={handleTourEvent}
+            options={{
+              overlayClickAction: false,
+              hideOverlay: false,
+              blockTargetInteraction: false,
+              spotlightPadding: 4,
+              overlayColor: "var(--color-bg-alpha-strong)",
+              zIndex: 10000,
+              arrowBase: 12,
+              arrowSize: 6,
+              offset: 0,
+            }}
+          />
+        )}
 
-        <BottomButtons
-          currentStep={currentStep}
-          onChangeStep={handleChangeStep}
-          onExport={() => handleExport(themeJson)}
-        />
-      </DxcFlex>
-    </DxcContainer>
+        {currentStep === 2 && (
+          <Joyride
+            continuous
+            run={runTour}
+            steps={thirdStepTour}
+            stepIndex={tourStepIndex}
+            tooltipComponent={(tooltipProps) => (
+              <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
+            )}
+            onEvent={handleTourEvent}
+            options={{
+              overlayClickAction: false,
+              hideOverlay: false,
+              blockTargetInteraction: false,
+              spotlightPadding: 4,
+              overlayColor: "var(--color-bg-alpha-strong)",
+              zIndex: 10000,
+              arrowBase: 12,
+              arrowSize: 6,
+              offset: 0,
+            }}
+          />
+        )}
+
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>
+          <DxcContainer width="80%" maxWidth="1112px" margin={{ left: "auto", right: "auto" }}>
+            <div id="wizard-tour">
+              <DxcWizard
+                steps={wizardSteps}
+                currentStep={currentStep}
+                onStepClick={(i) => {
+                  handleChangeStep(i as Step);
+                }}
+              />
+            </div>
+          </DxcContainer>
+
+          <DxcContainer
+            maxWidth="1332px"
+            width="90%"
+            height="100%"
+            boxSizing="border-box"
+            margin={{ left: "auto", right: "auto" }}
+          >
+            <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
+              <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
+              {renderStepContent()}
+            </DxcFlex>
+          </DxcContainer>
+
+          <BottomButtons
+            currentStep={currentStep}
+            onChangeStep={handleChangeStep}
+            onExport={() => handleExport(themeJson)}
+          />
+        </DxcFlex>
+      </DxcContainer>
+      {isDialogVisible && (
+        <DxcDialog onCloseClick={() => setDialogVisible(false)}>
+          <DxcContainer padding="var(--spacing-padding-l)" width="648px">
+            <DxcFlex direction="column" gap="var(--spacing-gap-s)" alignItems="start">
+              <DxcHeading level={3} text="Welcome to Halstack Theme Generator" />
+              <DxcParagraph>
+                This guided tour walk you through the 3 simple steps to set up your Halstack Theme. We’ll start with
+                branding, then preview in real components and product layouts and finally export your theme.
+              </DxcParagraph>
+              <DxcFlex gap="var(--spacing-gap-s)" justifyContent="end" alignSelf="stretch">
+                <DxcButton
+                  label="Skip"
+                  mode="tertiary"
+                  size={{ height: "medium" }}
+                  onClick={() => setDialogVisible(false)}
+                />
+                <DxcButton
+                  label="Get Started!"
+                  icon="filled_play_arrow"
+                  iconPosition="after"
+                  size={{ height: "medium" }}
+                  onClick={handleStartTour}
+                />
+              </DxcFlex>
+            </DxcFlex>
+          </DxcContainer>
+        </DxcDialog>
+      )}
+    </>
   );
 };
 

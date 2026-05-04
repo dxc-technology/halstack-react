@@ -47,32 +47,32 @@ const TourPopover = ({
 }: TourPopoverProps) => {
   return (
     <PopoverContainer {...tooltipProps}>
-      <DxcContainer width="320px">
-        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-s)" fullHeight>
-          <DxcInset horizontal="var(--spacing-padding-m)">
-            <DxcFlex direction="column" alignSelf="stretch" gap="var(--spacing-gap-s)">
-              <DxcInset vertical="var(--spacing-padding-xs)">
-                <DxcFlex direction="row" justifyContent="space-between" alignItems="center" gap="var(--spacing-gap-s)">
-                  <DxcHeading level={4} text={step.title as string} />
-                  <DxcButton icon="close" mode="tertiary" size={{ height: "small" }} onClick={onFinish} />
-                </DxcFlex>
-              </DxcInset>
+      <DxcContainer
+        width="320px"
+        boxSizing="border-box"
+        padding={{ left: "var(--spacing-padding-s)", right: "var(--spacing-padding-s)" }}
+      >
+        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-m)" fullHeight>
+          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignSelf="stretch">
+            <DxcInset vertical="var(--spacing-padding-xs)">
+              <DxcFlex direction="row" justifyContent="space-between" alignItems="center" gap="var(--spacing-gap-s)">
+                <DxcHeading level={4} text={step.title as string} />
+                <DxcTypography fontSize="var(--typography-heading-s)">
+                  {index + 1} / {size}
+                </DxcTypography>
+              </DxcFlex>
+            </DxcInset>
 
-              <DxcTypography as="p" fontSize="var(--typography-body-s)" lineHeight="normal">
-                {step.content}
-              </DxcTypography>
-            </DxcFlex>
-          </DxcInset>
+            <DxcTypography as="p" fontSize="var(--typography-body-s)" lineHeight="normal">
+              {step.content}
+            </DxcTypography>
+          </DxcFlex>
 
-          <DxcContainer
-            width="100%"
-            boxSizing="border-box"
-            padding={{ right: "var(--spacing-padding-s)", left: "var(--spacing-padding-s)" }}
-          >
+          <DxcContainer width="100%" boxSizing="border-box">
             <DxcFlex justifyContent="space-between" alignItems="center">
-              <DxcTypography color="var(--color-neutral-600)" fontSize="0.75rem">
-                {index + 1} / {size}
-              </DxcTypography>
+              {!isLastStep && (
+                <DxcButton label="Skip" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
+              )}
 
               <DxcFlex gap="0.5rem" alignItems="center">
                 {isLastStep ? (
@@ -90,7 +90,6 @@ const TourPopover = ({
                   <>
                     {index > 0 && !isLastStep && (
                       <DxcButton
-                        label="Previous"
                         icon="arrow_back_ios"
                         mode="secondary"
                         size={{ height: "medium" }}
@@ -98,7 +97,6 @@ const TourPopover = ({
                       />
                     )}
                     <DxcButton
-                      label="Next"
                       icon="arrow_forward_ios"
                       iconPosition="after"
                       size={{ height: "medium" }}
