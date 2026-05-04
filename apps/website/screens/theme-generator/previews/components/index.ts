@@ -30,6 +30,7 @@ export { default as TablePreview } from "./TablePreview";
 export { default as TabsPreview } from "./TabsPreview";
 export { default as TextareaPreview } from "./TextareaPreview";
 export { default as TextInputPreview } from "./TextInputPreview";
+export { default as TimeInputPreview } from "./TimeInputPreview";
 export { default as ToastPreview } from "./ToastPreview";
 export { default as ToggleGroupPreview } from "./ToggleGroupPreview";
 export { default as TooltipPreview } from "./TooltipPreview";

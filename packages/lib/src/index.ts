@@ -46,6 +46,7 @@ export { default as DxcTable } from "./table/Table";
 export { default as DxcTabs } from "./tabs/Tabs";
 export { default as DxcTextarea } from "./textarea/Textarea";
 export { default as DxcTextInput } from "./text-input/TextInput";
+export { default as DxcTimeInput } from "./time-input/TimeInput";
 export { default as DxcToastsQueue } from "./toast/ToastsQueue";
 export { default as DxcToggleGroup } from "./toggle-group/ToggleGroup";
 export { default as DxcTooltip } from "./tooltip/Tooltip";
