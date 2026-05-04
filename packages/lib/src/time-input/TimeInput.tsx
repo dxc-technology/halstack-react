@@ -406,13 +406,13 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   disabled={disabled}
                   icon="schedule"
                   title={!disabled ? translatedLabels.timeInput.timePickerActionTitle : undefined}
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => !readOnly && setIsOpen(true)}
                 />
               </DxcPopover>
             </DxcFlex>
           </TimeInputField>
+          {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </TimeInputContainer>
-        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         <input
           aria-label={label ?? ariaLabel}
           aria-errormessage={error ? errorId : undefined}
