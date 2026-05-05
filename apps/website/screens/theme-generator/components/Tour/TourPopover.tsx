@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { DxcFlex, DxcHeading, DxcTypography, DxcButton, DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
-import { TourPopoverProps } from "../types";
+import { TourPopoverProps } from "./types";
 
 const PopoverContainer = styled.div`
   box-sizing: border-box;
@@ -58,7 +58,7 @@ const TourPopover = ({
               </DxcFlex>
             ) : (
               <DxcFlex justifyContent="space-between">
-                <DxcButton label="Skip" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
+                <DxcButton label="Skip tour" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
                 <DxcFlex gap="var(--spacing-gap-s)">
                   {index > 0 && (
                     <DxcButton
