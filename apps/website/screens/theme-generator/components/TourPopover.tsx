@@ -62,7 +62,7 @@ const TourPopover = ({
                 <DxcFlex gap="var(--spacing-gap-s)">
                   {index > 0 && (
                     <DxcButton
-                      icon="arrow_back_ios"
+                      icon="arrow_back_ios_new"
                       mode="secondary"
                       size={{ height: "medium" }}
                       onClick={controls.prev}
