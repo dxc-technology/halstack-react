@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { ACTIONS, EVENTS, Joyride, STATUS, type EventData, type Step as JoyrideStep } from "react-joyride";
+import { ACTIONS, EVENTS, Joyride, Options, STATUS, type EventData, type Step as JoyrideStep } from "react-joyride";
 import { DxcButton, DxcContainer, DxcDialog, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
 import TourPopover from "./TourPopover";
 import { TourProps } from "./types";
@@ -222,8 +222,8 @@ const Tour = ({ currentStep, onTourStepIndexChange }: TourProps) => {
     }
   };
 
-  const joyrideOptions = {
-    overlayClickAction: false as const,
+  const joyrideOptions: Partial<Options> = {
+    overlayClickAction: false,
     hideOverlay: false,
     blockTargetInteraction: false,
     spotlightPadding: 4,
@@ -236,47 +236,17 @@ const Tour = ({ currentStep, onTourStepIndexChange }: TourProps) => {
 
   return (
     <>
-      {currentStep === 0 && (
-        <Joyride
-          continuous
-          run={runTour}
-          steps={firstStepTour}
-          stepIndex={tourStepIndex}
-          tooltipComponent={(tooltipProps) => (
-            <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
-          )}
-          onEvent={handleTourEvent}
-          options={joyrideOptions}
-        />
-      )}
-
-      {currentStep === 1 && (
-        <Joyride
-          continuous
-          run={runTour}
-          steps={secondStepTour}
-          stepIndex={tourStepIndex}
-          tooltipComponent={(tooltipProps) => (
-            <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
-          )}
-          onEvent={handleTourEvent}
-          options={joyrideOptions}
-        />
-      )}
-
-      {currentStep === 2 && (
-        <Joyride
-          continuous
-          run={runTour}
-          steps={thirdStepTour}
-          stepIndex={tourStepIndex}
-          tooltipComponent={(tooltipProps) => (
-            <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
-          )}
-          onEvent={handleTourEvent}
-          options={joyrideOptions}
-        />
-      )}
+      <Joyride
+        continuous
+        run={runTour}
+        steps={currentStep === 0 ? firstStepTour : currentStep === 1 ? secondStepTour : thirdStepTour}
+        stepIndex={tourStepIndex}
+        tooltipComponent={(tooltipProps) => (
+          <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
+        )}
+        onEvent={handleTourEvent}
+        options={joyrideOptions}
+      />
 
       {isDialogVisible && (
         <DxcDialog onCloseClick={() => setDialogVisible(false)}>
