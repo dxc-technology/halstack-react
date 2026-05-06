@@ -3,7 +3,6 @@ import { TimePickerPropsType } from "./types";
 import { useEffect, useState } from "react";
 import TimePickerColumn from "./TimePickerColumn";
 import { handleColumnKeyDown } from "./utils";
-
 // Array to be used in seconds and minutes.
 const STEP = 5;
 const ARRAY_OF_60 = Array.from({ length: 60 / STEP }, (_, index) => index * STEP);
@@ -15,10 +14,7 @@ const TimePickerContainer = styled.div`
 `;
 
 const TimePicker = ({
-  onSelectHours,
-  onSelectMinutes,
-  onSelectSeconds,
-  onSelectDayPeriod,
+  onPickTime,
   timeFormat,
   showSeconds,
   hourValue,
@@ -28,11 +24,24 @@ const TimePicker = ({
   id,
   tabIndex = 0,
 }: TimePickerPropsType) => {
-  const [hourToFocus, setHourToFocus] = useState(hourValue || 1);
-  const [minuteToFocus, setMinuteToFocus] = useState(minuteValue || 0);
-  const [secondToFocus, setSecondToFocus] = useState(secondValue || 0);
-  const [dayPeriodToFocus, setDayPeriodToFocus] = useState(dayPeriod || 0);
+  const [hourToFocus, setHourToFocus] = useState(hourValue ?? (timeFormat === "12" ? 1 : 0));
+  const [minuteToFocus, setMinuteToFocus] = useState(minuteValue ?? 0);
+  const [secondToFocus, setSecondToFocus] = useState(secondValue ?? 0);
+  const [dayPeriodToFocus, setDayPeriodToFocus] = useState(dayPeriod ?? 0);
   const totalHours = timeFormat === "12" ? 12 : 24;
+
+  const onPickerSelect = (value: number, type: "hour" | "minute" | "second" | "dayPeriod") => {
+    const hourVal = type === "hour" ? value : (hourValue ?? (timeFormat === "12" ? 1 : 0));
+    const minuteVal = type === "minute" ? value : (minuteValue ?? 0);
+    const secondVal = type === "second" ? value : (secondValue ?? 0);
+    const dayPeriodVal = type === "dayPeriod" ? value : (dayPeriod ?? 0);
+
+    setDayPeriodToFocus(dayPeriodVal);
+    setSecondToFocus(secondVal);
+    setMinuteToFocus(minuteVal);
+    setHourToFocus(hourVal);
+    onPickTime(hourVal, minuteVal, secondVal, dayPeriodVal);
+  };
 
   useEffect(() => {
     if (dayPeriodToFocus !== undefined && id) {
@@ -65,11 +74,12 @@ const TimePicker = ({
         tabIndex={tabIndex}
         dataType="hour"
         onClick={(value: number) => {
-          onSelectHours(value);
-          setHourToFocus(value);
+          onPickerSelect(value, "hour");
         }}
         onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-          handleColumnKeyDown(event, "hour", value, totalHours, setHourToFocus, onSelectHours)
+          handleColumnKeyDown(event, "hour", value, totalHours, setHourToFocus, (value) =>
+            onPickerSelect(value, "hour")
+          )
         }
       />
       <TimePickerColumn
@@ -80,11 +90,18 @@ const TimePicker = ({
         tabIndex={tabIndex}
         dataType="minute"
         onClick={(value: number) => {
-          onSelectMinutes(value);
-          setMinuteToFocus(value);
+          onPickerSelect(value, "minute");
         }}
         onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-          handleColumnKeyDown(event, "minute", value, 60, setMinuteToFocus, onSelectMinutes, STEP)
+          handleColumnKeyDown(
+            event,
+            "minute",
+            value,
+            60,
+            setMinuteToFocus,
+            (value) => onPickerSelect(value, "minute"),
+            STEP
+          )
         }
       />
       {showSeconds && (
@@ -96,13 +113,18 @@ const TimePicker = ({
           tabIndex={tabIndex}
           dataType="second"
           onClick={(value: number) => {
-            if (typeof onSelectSeconds === "function") {
-              onSelectSeconds(value);
-              setSecondToFocus(value);
-            }
+            onPickerSelect(value, "second");
           }}
           onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-            handleColumnKeyDown(event, "second", value, 60, setSecondToFocus, onSelectSeconds, STEP)
+            handleColumnKeyDown(
+              event,
+              "second",
+              value,
+              60,
+              setSecondToFocus,
+              (value) => onPickerSelect(value, "second"),
+              STEP
+            )
           }
         />
       )}
@@ -115,13 +137,12 @@ const TimePicker = ({
           tabIndex={tabIndex}
           dataType="dayPeriod"
           onClick={(value: number) => {
-            if (typeof onSelectDayPeriod === "function") {
-              onSelectDayPeriod(value);
-              setDayPeriodToFocus(value);
-            }
+            onPickerSelect(value, "dayPeriod");
           }}
           onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
-            handleColumnKeyDown(event, "dayPeriod", value, 2, setDayPeriodToFocus, onSelectDayPeriod)
+            handleColumnKeyDown(event, "dayPeriod", value, 2, setDayPeriodToFocus, (value) =>
+              onPickerSelect(value, "dayPeriod")
+            )
           }
         />
       )}

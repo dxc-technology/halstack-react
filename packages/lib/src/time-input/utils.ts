@@ -69,7 +69,6 @@ export const handleKeyDown = (
     rawInput.current = (rawInput.current + newDigit.current).slice(-maxValue.toString().length);
     newValue = resolveValue(rawInput.current, maxValue, minValue);
     // If the raw input has reached the max length or exceeds the max value with the new digit, consider it complete and move to the next field.
-    console.log("rawInput:", rawInput.current, "newDigit:", newDigit.current, "newValue:", newValue);
     if (checkCompletion(rawInput.current, maxValue)) {
       rawInput.current = pad(newValue);
       if (typeof onComplete === "function") {

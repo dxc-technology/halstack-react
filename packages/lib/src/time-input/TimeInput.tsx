@@ -53,6 +53,8 @@ const ColonContainer = styled.span`
   color: var(--color-fg-neutral-dark);
 `;
 
+const isNumber = (value: string) => /^\d{1,2}$/.test(value);
+
 const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
   (
     {
@@ -95,10 +97,10 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       if (time) {
         const numberPart = timeFormat === "12" ? time.split(" ")[0] : time;
         if (numberPart) {
-          const [hour, minute, second] = numberPart.split(":").map(Number);
-          setHourValue(hour || hour === 0 ? hour : undefined);
-          setMinuteValue(minute || minute === 0 ? minute : undefined);
-          setSecondValue(second || second === 0 ? second : undefined);
+          const [hourStr, minuteStr, secondStr] = numberPart.split(":");
+          setHourValue(hourStr && isNumber(hourStr) ? Number(hourStr) : undefined);
+          setMinuteValue(minuteStr && isNumber(minuteStr) ? Number(minuteStr) : undefined);
+          setSecondValue(secondStr && isNumber(secondStr) ? Number(secondStr) : undefined);
         }
         if (timeFormat === "12" && time.includes(" ")) {
           const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : time.split(" ")[1] === "PM" ? 1 : undefined;
@@ -343,44 +345,15 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
               <DxcPopover
                 popoverContent={
                   <TimePicker
-                    onSelectHours={(value) => {
+                    onPickTime={(hour, minute, second, dayPeriod) => {
                       if (!isControlled) {
-                        setHourValue(value);
+                        setDayPeriodValue(dayPeriod);
+                        setSecondValue(second);
+                        setMinuteValue(minute);
+                        setHourValue(hour);
                       }
                       if (typeof onChange === "function") {
-                        onChange(
-                          generateEventValue(value, minuteValue, secondValue, dayPeriodValue, showSeconds, timeFormat)
-                        );
-                      }
-                    }}
-                    onSelectMinutes={(value) => {
-                      if (!isControlled) {
-                        setMinuteValue(value);
-                      }
-                      if (typeof onChange === "function") {
-                        onChange(
-                          generateEventValue(hourValue, value, secondValue, dayPeriodValue, showSeconds, timeFormat)
-                        );
-                      }
-                    }}
-                    onSelectSeconds={(value) => {
-                      if (!isControlled) {
-                        setSecondValue(value);
-                      }
-                      if (typeof onChange === "function") {
-                        onChange(
-                          generateEventValue(hourValue, minuteValue, value, dayPeriodValue, showSeconds, timeFormat)
-                        );
-                      }
-                    }}
-                    onSelectDayPeriod={(value: number) => {
-                      if (!isControlled) {
-                        setDayPeriodValue(value);
-                      }
-                      if (typeof onChange === "function") {
-                        onChange(
-                          generateEventValue(hourValue, minuteValue, secondValue, value, showSeconds, timeFormat)
-                        );
+                        onChange(generateEventValue(hour, minute, second, dayPeriod, showSeconds, timeFormat));
                       }
                     }}
                     timeFormat={timeFormat}
