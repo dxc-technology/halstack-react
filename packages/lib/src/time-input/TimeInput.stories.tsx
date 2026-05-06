@@ -119,19 +119,10 @@ const TimePickerExamples = () => {
       <ExampleContainer>
         <Title title="Time Picker 24h format" theme="light" level={3} />
         <DxcContainer width="250px">
-          <TimePicker onSelectMinutes={() => {}} onSelectHours={() => {}} timeFormat="24" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="24" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="24" id="testId" tabIndex={0} hourValue={15} minuteValue={30} />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
-            timeFormat="24"
-            id="testId"
-            tabIndex={0}
-            hourValue={15}
-            minuteValue={30}
-          />
-          <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="24"
             id="testId"
             tabIndex={0}
@@ -145,10 +136,9 @@ const TimePickerExamples = () => {
       <ExampleContainer>
         <Title title="Time Picker 12h format" theme="light" level={3} />
         <DxcContainer width="250px">
-          <TimePicker onSelectMinutes={() => {}} onSelectHours={() => {}} timeFormat="12" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="12" id="testId" tabIndex={0} />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -157,8 +147,7 @@ const TimePickerExamples = () => {
             dayPeriod={1}
           />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -173,10 +162,9 @@ const TimePickerExamples = () => {
       <ExampleContainer pseudoState={"pseudo-hover"}>
         <Title title="hover" theme="light" level={3} />
         <DxcContainer width="250px">
-          <TimePicker onSelectMinutes={() => {}} onSelectHours={() => {}} timeFormat="12" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="12" id="testId" tabIndex={0} />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -185,8 +173,7 @@ const TimePickerExamples = () => {
             dayPeriod={1}
           />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -201,10 +188,9 @@ const TimePickerExamples = () => {
       <ExampleContainer pseudoState={"pseudo-focus"}>
         <Title title="focus" theme="light" level={3} />
         <DxcContainer width="250px">
-          <TimePicker onSelectMinutes={() => {}} onSelectHours={() => {}} timeFormat="12" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="12" id="testId" tabIndex={0} />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -213,8 +199,7 @@ const TimePickerExamples = () => {
             dayPeriod={1}
           />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -229,10 +214,9 @@ const TimePickerExamples = () => {
       <ExampleContainer pseudoState={"pseudo-active"}>
         <Title title="active" theme="light" level={3} />
         <DxcContainer width="250px">
-          <TimePicker onSelectMinutes={() => {}} onSelectHours={() => {}} timeFormat="12" id="testId" tabIndex={0} />
+          <TimePicker onPickTime={() => {}} timeFormat="12" id="testId" tabIndex={0} />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}
@@ -241,8 +225,7 @@ const TimePickerExamples = () => {
             dayPeriod={1}
           />
           <TimePicker
-            onSelectMinutes={() => {}}
-            onSelectHours={() => {}}
+            onPickTime={() => {}}
             timeFormat="12"
             id="testId"
             tabIndex={0}

@@ -110,13 +110,13 @@ describe("DxcTimeInput rendering", () => {
     expect(getByText("AM")).toBeTruthy();
     const hourbutton = getAllByText("07");
     if (hourbutton[0]) userEvent.click(hourbutton[0]);
-    expect(mockOnChange).toHaveBeenCalledWith("07: ");
+    expect(mockOnChange).toHaveBeenCalledWith("07:00 AM");
     const minuteButton = getAllByText("30");
     if (minuteButton[0]) userEvent.click(minuteButton[0]);
-    expect(mockOnChange).toHaveBeenCalledWith("07:30 ");
-    const amButton = getByText("AM");
+    expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
+    const amButton = getAllByText("AM")[0];
     expect(amButton).toBeTruthy();
-    userEvent.click(amButton);
+    if (amButton) userEvent.click(amButton);
     expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
   });
 
@@ -130,14 +130,14 @@ describe("DxcTimeInput rendering", () => {
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{Enter}");
-    expect(mockOnChange).toHaveBeenCalledWith("03: ");
+    expect(mockOnChange).toHaveBeenCalledWith("03:00 AM");
     userEvent.tab();
     userEvent.keyboard("{ArrowUp}");
     userEvent.keyboard("{Enter}");
-    expect(mockOnChange).toHaveBeenCalledWith("03:55 ");
+    expect(mockOnChange).toHaveBeenCalledWith("03:55 AM");
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard(" ");
-    expect(mockOnChange).toHaveBeenCalledWith("03:00 ");
+    expect(mockOnChange).toHaveBeenCalledWith("03:00 AM");
     userEvent.tab();
     userEvent.keyboard("{ArrowDown}");
     userEvent.keyboard("{Enter}");
