@@ -1,6 +1,8 @@
 import nextPlugin from "@next/eslint-plugin-next";
 import nextConfig from "@dxc-technology/eslint-config/next.js";
 import js from "@eslint/js";
+import jest from "eslint-plugin-jest";
+import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -19,6 +21,20 @@ export default [
     tsconfigRootDir: __dirname,
     tsconfigName: "tsconfig.lint.json",
   }),
+  {
+    files: ["**/*.test.{ts,tsx,js,jsx}"],
+    plugins: { jest },
+    rules: {
+      ...jest.configs.recommended.rules,
+      "jest/no-commented-out-tests": "off",
+    },
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+        ...globals.node,
+      },
+    },
+  },
   {
     ignores: ["out/**", ".next/**"],
   },
