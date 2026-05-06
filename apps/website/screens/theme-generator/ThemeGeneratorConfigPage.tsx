@@ -3,12 +3,11 @@ import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
 import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
-// import { FileData } from "../../../../packages/lib/src/file-input/types";
-
 import { BrandingDetails } from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
 import { Colors, FileData, Step } from "./types";
 import ReviewDetails from "./steps/ReviewDetails";
+import Tour from "./components/Tour/Tour";
 
 const steps = [
   {
@@ -38,6 +37,7 @@ const wizardSteps = steps.map(({ label, description }) => ({
 
 const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
+  const [tourStepIndex, setTourStepIndex] = useState(0);
   const [colors, setColors] = useState<Colors>({
     primary: "#5F249F",
     secondary: "#0067B3",
@@ -104,50 +104,56 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} />;
+        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} showDefaultComponents={tourStepIndex === 2} />;
       case 2:
         return <ReviewDetails tokens={tokens} logos={logos} themeJson={themeJson} />;
     }
   };
 
   return (
-    <DxcContainer
-      height="100%"
-      boxSizing="border-box"
-      padding={{ top: "var(--spacing-padding-xl)" }}
-      background={{ color: "var(--color-bg-neutral-lighter)" }}
-    >
-      <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>
-        <DxcContainer width="80%" maxWidth="1112px" margin={{ left: "auto", right: "auto" }}>
-          <DxcWizard
-            steps={wizardSteps}
+    <>
+      <DxcContainer
+        height="100%"
+        boxSizing="border-box"
+        padding={{ top: "var(--spacing-padding-xl)" }}
+        background={{ color: "var(--color-bg-neutral-lighter)" }}
+      >
+        <Tour currentStep={currentStep} onTourStepIndexChange={setTourStepIndex} />
+
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)" fullHeight>
+          <DxcContainer width="80%" maxWidth="1112px" margin={{ left: "auto", right: "auto" }}>
+            <div id="wizard-tour">
+              <DxcWizard
+                steps={wizardSteps}
+                currentStep={currentStep}
+                onStepClick={(i) => {
+                  handleChangeStep(i as Step);
+                }}
+              />
+            </div>
+          </DxcContainer>
+
+          <DxcContainer
+            maxWidth="1332px"
+            width="90%"
+            height="100%"
+            boxSizing="border-box"
+            margin={{ left: "auto", right: "auto" }}
+          >
+            <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
+              <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
+              {renderStepContent()}
+            </DxcFlex>
+          </DxcContainer>
+
+          <BottomButtons
             currentStep={currentStep}
-            onStepClick={(i) => {
-              handleChangeStep(i as Step);
-            }}
+            onChangeStep={handleChangeStep}
+            onExport={() => handleExport(themeJson)}
           />
-        </DxcContainer>
-
-        <DxcContainer
-          maxWidth="1332px"
-          width="90%"
-          height="100%"
-          boxSizing="border-box"
-          margin={{ left: "auto", right: "auto" }}
-        >
-          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xl)" fullHeight>
-            <StepHeading title={steps[currentStep].title} subtitle={steps[currentStep].subtitle} />
-            {renderStepContent()}
-          </DxcFlex>
-        </DxcContainer>
-
-        <BottomButtons
-          currentStep={currentStep}
-          onChangeStep={handleChangeStep}
-          onExport={() => handleExport(themeJson)}
-        />
-      </DxcFlex>
-    </DxcContainer>
+        </DxcFlex>
+      </DxcContainer>
+    </>
   );
 };
 

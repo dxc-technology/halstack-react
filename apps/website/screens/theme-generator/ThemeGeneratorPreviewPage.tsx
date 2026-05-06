@@ -7,7 +7,7 @@ import {
   DxcTypography,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
-import { ReactNode, SVGProps, useMemo, useState } from "react";
+import { ReactNode, SVGProps, useMemo, useState, useEffect } from "react";
 import componentsList from "../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/theme-generator/componentsRegistry";
 import styled from "@emotion/styled";
@@ -109,7 +109,15 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, string>; logos: Logos }) => {
+const ThemeGeneratorPreviewPage = ({
+  tokens,
+  logos,
+  showDefaultComponents,
+}: {
+  tokens: Record<string, string>;
+  logos: Logos;
+  showDefaultComponents?: boolean;
+}) => {
   const [mode, setMode] = useState<"components" | "examples">("components");
 
   const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
@@ -118,6 +126,15 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
   const componentOptions = useMemo(() => {
     return mapToSelectGroups(componentsList as ComponentItem[]);
   }, []);
+
+  // Set default components when requested and clear on cleanup
+  useEffect(() => {
+    if (showDefaultComponents) {
+      setSelectedComponents(["/components/button", "/components/alert", "/components/switch"]);
+    } else {
+      setSelectedComponents([]);
+    }
+  }, [showDefaultComponents]);
 
   const getLabelFromValue = (value: string) =>
     componentOptions.flatMap((group) => group.options).find((opt) => opt.value === value)?.label;
@@ -163,40 +180,44 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
     <DxcContainer width="100%" height="100%">
       <DxcFlex direction="column" gap="var(--spacing-gap-s)" fullHeight>
         <DxcFlex direction="row" justifyContent="space-between" alignItems="center">
-          <DxcToggleGroup
-            options={[
-              { label: "Components", icon: "category", value: 1 },
-              { label: "Layout examples", icon: "dashboard", value: 2 },
-            ]}
-            value={mode === "components" ? 1 : 2}
-            onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
-          />
-          {mode === "components" && (
-            <DxcSelect
-              placeholder="Select components"
-              options={componentOptions}
-              multiple
-              value={selectedComponents}
-              onChange={({ value }) => {
-                setSelectedComponents(value);
-              }}
-              enableSelectAll
-              searchable
-              size="small"
+          <div id="toggle-tour">
+            <DxcToggleGroup
+              options={[
+                { label: "Components", icon: "category", value: 1 },
+                { label: "Layout examples", icon: "dashboard", value: 2 },
+              ]}
+              value={mode === "components" ? 1 : 2}
+              onChange={(value: number) => setMode(value === 1 ? "components" : "examples")}
             />
-          )}
+          </div>
+          <div id="select-preview-tour">
+            {mode === "components" && (
+              <DxcSelect
+                placeholder="Select components"
+                options={componentOptions}
+                multiple
+                value={selectedComponents}
+                onChange={({ value }) => {
+                  setSelectedComponents(value);
+                }}
+                enableSelectAll
+                searchable
+                size="small"
+              />
+            )}
 
-          {mode === "examples" && (
-            <DxcSelect
-              placeholder="Select examples"
-              options={exampleOptions}
-              value={selectedExample}
-              onChange={({ value }) => {
-                setSelectedExample(value);
-              }}
-              searchable
-            />
-          )}
+            {mode === "examples" && (
+              <DxcSelect
+                placeholder="Select examples"
+                options={exampleOptions}
+                value={selectedExample}
+                onChange={({ value }) => {
+                  setSelectedExample(value);
+                }}
+                searchable
+              />
+            )}
+          </div>
         </DxcFlex>
         {mode === "examples" && (
           <DxcFlex gap="var(--spacing-gap-xs)">
@@ -212,57 +233,60 @@ const ThemeGeneratorPreviewPage = ({ tokens, logos }: { tokens: Record<string, s
           </DxcFlex>
         )}
         {/* TODO: Turn this into a separate componente called PreviewArea or similar? */}
-        <DxcContainer
-          borderRadius="var(--border-radius-l)"
-          border={{
-            width: "var(--border-width-s)",
-            color: "var(--border-color-neutral-medium)",
-            style: "var(--border-style-default)",
-          }}
-          background={{ color: "var(--color-bg-neutral-lightest)" }}
-          padding="var(--spacing-padding-s)"
-          height="100%"
-        >
-          {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
-            <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
-              <DxcFlex justifyContent="flex-end">
-                <DxcButton
-                  icon="filled_delete"
-                  size={{ height: "medium" }}
-                  title="Delete selection"
-                  onClick={() => {
-                    if (mode === "components") {
-                      setSelectedComponents([]);
-                    } else {
-                      setSelectedExample("");
-                    }
-                  }}
-                  mode="secondary"
-                  semantic="error"
-                  disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
-                />
+        <div id="preview-area-tour" style={{ height: "100%" }}>
+          <DxcContainer
+            borderRadius="var(--border-radius-l)"
+            border={{
+              width: "var(--border-width-s)",
+              color: "var(--border-color-neutral-medium)",
+              style: "var(--border-style-default)",
+            }}
+            background={{ color: "var(--color-bg-neutral-lightest)" }}
+            padding="var(--spacing-padding-s)"
+            height="100%"
+            boxSizing="border-box"
+          >
+            {(mode === "components" && selectedComponents.length > 0) || (mode === "examples" && !!selectedExample) ? (
+              <DxcFlex direction="column" gap="var(--spacing-gap-ml)" fullHeight>
+                <DxcFlex justifyContent="flex-end">
+                  <DxcButton
+                    icon="filled_delete"
+                    size={{ height: "medium" }}
+                    title="Delete selection"
+                    onClick={() => {
+                      if (mode === "components") {
+                        setSelectedComponents([]);
+                      } else {
+                        setSelectedExample("");
+                      }
+                    }}
+                    mode="secondary"
+                    semantic="error"
+                    disabled={mode === "components" ? selectedComponents.length === 0 : !selectedExample}
+                  />
+                </DxcFlex>
+                <PreviewAreaContainer>
+                  <HalstackProvider opinionatedTheme={{ tokens, logos: processedLogos }}>
+                    <DxcFlex direction="column" gap="var(--spacing-gap-l)">
+                      {displayedPreview}
+                    </DxcFlex>
+                  </HalstackProvider>
+                </PreviewAreaContainer>
               </DxcFlex>
-              <PreviewAreaContainer>
-                <HalstackProvider opinionatedTheme={{ tokens, logos: processedLogos }}>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-l)">
-                    {displayedPreview}
-                  </DxcFlex>
-                </HalstackProvider>
-              </PreviewAreaContainer>
-            </DxcFlex>
-          ) : (
-            <DxcFlex alignItems="center" justifyContent="center" fullHeight>
-              <DxcTypography
-                color="var(--color-fg-neutral-dark)"
-                fontFamily="var(--typography-font-family)"
-                fontSize="var(--typography-body-s)"
-                fontWeight="var(--typography-body-regular)"
-              >
-                Select {mode === "components" ? "a component" : "an example"} to preview
-              </DxcTypography>
-            </DxcFlex>
-          )}
-        </DxcContainer>
+            ) : (
+              <DxcFlex alignItems="center" justifyContent="center" fullHeight>
+                <DxcTypography
+                  color="var(--color-fg-neutral-dark)"
+                  fontFamily="var(--typography-font-family)"
+                  fontSize="var(--typography-body-s)"
+                  fontWeight="var(--typography-body-regular)"
+                >
+                  Select {mode === "components" ? "a component" : "an example"} to preview
+                </DxcTypography>
+              </DxcFlex>
+            )}
+          </DxcContainer>
+        </div>
       </DxcFlex>
     </DxcContainer>
   );
