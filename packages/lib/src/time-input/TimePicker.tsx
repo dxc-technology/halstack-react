@@ -24,14 +24,14 @@ const TimePicker = ({
   id,
   tabIndex = 0,
 }: TimePickerPropsType) => {
-  const [hourToFocus, setHourToFocus] = useState(hourValue || 1);
+  const [hourToFocus, setHourToFocus] = useState(hourValue || hourValue === 0 ? hourValue : 1);
   const [minuteToFocus, setMinuteToFocus] = useState(minuteValue || 0);
   const [secondToFocus, setSecondToFocus] = useState(secondValue || 0);
   const [dayPeriodToFocus, setDayPeriodToFocus] = useState(dayPeriod || 0);
   const totalHours = timeFormat === "12" ? 12 : 24;
 
   const onPickerSelect = (value: number, type: "hour" | "minute" | "second" | "dayPeriod") => {
-    const hourVal = type === "hour" ? value : hourValue || (timeFormat === "12" ? 1 : 0);
+    const hourVal = type === "hour" ? value : hourValue || hourValue === 0 ? hourValue : timeFormat === "12" ? 1 : 0;
     const minuteVal = type === "minute" ? value : minuteValue || 0;
     const secondVal = type === "second" ? value : secondValue || 0;
     const dayPeriodVal = type === "dayPeriod" ? value : dayPeriod || 0;

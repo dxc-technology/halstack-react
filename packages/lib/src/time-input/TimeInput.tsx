@@ -52,7 +52,7 @@ const ColonContainer = styled.span`
   padding: 0;
   color: var(--color-fg-neutral-dark);
 `;
-// number can be 2 digit or 1 digit
+
 const isNumber = (value: string) => /^\d{1,2}$/.test(value);
 
 const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
@@ -97,7 +97,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
       if (time) {
         const numberPart = timeFormat === "12" ? time.split(" ")[0] : time;
         if (numberPart) {
-          const [hourStr, minuteStr, secondStr] = numberPart.split(":").map(String);
+          const [hourStr, minuteStr, secondStr] = numberPart.split(":");
           setHourValue(hourStr && isNumber(hourStr) ? Number(hourStr) : undefined);
           setMinuteValue(minuteStr && isNumber(minuteStr) ? Number(minuteStr) : undefined);
           setSecondValue(secondStr && isNumber(secondStr) ? Number(secondStr) : undefined);
