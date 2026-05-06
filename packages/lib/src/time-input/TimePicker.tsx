@@ -31,7 +31,7 @@ const TimePicker = ({
   const totalHours = timeFormat === "12" ? 12 : 24;
 
   const onPickerSelect = (value: number, type: "hour" | "minute" | "second" | "dayPeriod") => {
-    const hourVal = type === "hour" ? value : hourValue || 0;
+    const hourVal = type === "hour" ? value : hourValue || (timeFormat === "12" ? 1 : 0);
     const minuteVal = type === "minute" ? value : minuteValue || 0;
     const secondVal = type === "second" ? value : secondValue || 0;
     const dayPeriodVal = type === "dayPeriod" ? value : dayPeriod || 0;
