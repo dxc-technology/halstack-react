@@ -3,6 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcCard from "./Card";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/internal/test";
+import DxcParagraph from "../paragraph/Paragraph";
 
 export default {
   title: "Card",
@@ -134,6 +135,15 @@ const Card = () => (
     <ExampleContainer>
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcCard margin="xxlarge">Xxlarge</DxcCard>
+    </ExampleContainer>
+    <Title title="Long Content" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcCard>
+        <DxcParagraph>
+          Long Content that needs to wrap. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit
+          auctor dui, sed
+        </DxcParagraph>
+      </DxcCard>
     </ExampleContainer>
   </>
 );
