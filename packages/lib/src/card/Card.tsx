@@ -69,6 +69,7 @@ const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] 
 `;
 
 const CardContent = styled.div`
+  max-width: 100%;
   align-items: flex-start;
   align-self: stretch;
   display: flex;
