@@ -41,7 +41,8 @@
     },
     "ciecam02": {
       "mout": "1.2.4"
-    }
+    },
+    "postcss": ">=8.5.10"
   },
   "dependencies": {
     "react-joyride": "^3.0.2"
