@@ -1,122 +1,177 @@
-import { useState } from "react";
 import styled from "@emotion/styled";
-import { spaces } from "../common/variables";
 import CardPropsType from "./types";
+import DxcImage from "../image/Image";
+import { getCardStyles } from "./utils";
+import DxcFlex from "../flex/Flex";
+import DxcIcon from "../icon/Icon";
+import DxcTypography from "../typography/Typography";
 
-const Card = styled.div<
-  {
-    hasAction: boolean;
-    margin: CardPropsType["margin"];
-    shadowDepth: 0 | 1 | 2;
-  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
->`
-  display: flex;
-  cursor: ${({ hasAction }) => (hasAction ? "pointer" : "unset")};
-  outline: ${({ hasAction }) => !hasAction && "none"};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
-  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
-  text-decoration: none;
-  ${({ hasAction }) =>
-    hasAction &&
-    `:focus {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    }`}
-  border-radius: var(--border-radius-s);
-  box-shadow: ${({ shadowDepth }) =>
-    shadowDepth === 1 ? "var(--shadow-100)" : shadowDepth === 2 ? "var(--shadow-200)" : "none"};
-`;
-
-const CardContainer = styled.div<{
-  hasAction: boolean;
-  imagePosition: CardPropsType["imagePosition"] | "none";
+const Card = styled.div<{
+  mode: CardPropsType["mode"];
+  direction?: CardPropsType["direction"];
+  imagePosition?: CardPropsType["imagePosition"];
+  interactive?: boolean;
+  size?: CardPropsType["size"];
+  selected?: boolean;
 }>`
   display: flex;
-  flex-direction: ${({ imagePosition }) => (imagePosition === "after" ? "row-reverse" : "row")};
-  height: 220px;
-  width: 400px;
-  &:hover {
-    border-color: ${({ hasAction }) => (hasAction ? "" : "unset")};
-  }
-`;
-
-const TagImage = styled.img<{
-  imagePadding: CardPropsType["imagePadding"];
-  imageCover: CardPropsType["imageCover"];
-}>`
-  height: ${({ imagePadding }) =>
-    !imagePadding
-      ? "100%"
-      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
-  width: ${({ imagePadding }) =>
-    !imagePadding
-      ? "100%"
-      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
-  object-fit: ${({ imageCover }) => (imageCover ? "cover" : "contain")};
-`;
-
-const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
-  align-items: center;
-  background-color: ${({ imageBgColor }) => imageBgColor ?? "transparent"};
-  display: flex;
-  flex-shrink: 0;
-  height: 100%;
-  justify-content: center;
-  width: 35%;
-`;
-
-const CardContent = styled.div`
-  max-width: 100%;
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  gap: var(--spacing-gap-ml);
+  flex-direction: ${({ direction, imagePosition }) =>
+    imagePosition === "before" ? direction : direction + "-reverse"};
+  gap: var(--spacing-gap-m);
+  box-sizing: border-box;
+  padding: var(--spacing-padding-xs);
+  width: ${({ size }) => (size?.width === "fillParent" ? "100%" : "fit-content")};
+  height: ${({ size }) => (size?.height === "fillParent" ? "100%" : "fit-content")};
+  border-radius: var(--border-radius-l);
+  ${({ mode, interactive, selected }) => getCardStyles(mode, interactive ?? false, selected)}
+  background: var(--color-bg-neutral-lightest);
   overflow: hidden;
-  padding: var(--spacing-padding-l);
+`;
+
+const EmptyCard = styled(Card)<{ emptySize?: CardPropsType["emptySize"] }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ emptySize, size }) => emptySize?.width || (size?.width === "fillParent" ? "100%" : "fit-content")};
+  height: ${({ emptySize, size }) => emptySize?.height || (size?.height === "fillParent" ? "100%" : "fit-content")};
+  background: var(--color-bg-neutral-lighter);
+`;
+
+const LoadingCard = styled(Card)<{ loadingSize?: CardPropsType["loadingSize"] }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ loadingSize, size }) => loadingSize?.width || (size?.width === "fillParent" ? "100%" : "fit-content")};
+  height: ${({ loadingSize, size }) => loadingSize?.height || (size?.height === "fillParent" ? "100%" : "fit-content")};
+  background: var(--color-bg-neutral-lighter);
+`;
+
+const CardLink = styled(Card.withComponent("a"))`
+  text-decoration: none;
+`;
+
+const ImageContainer = styled.div<{ image: CardPropsType["image"] }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+  width: ${({ image }) => image?.width || "auto"};
+  height: ${({ image }) => image?.height || "auto"};
+`;
+
+const LoadingImageContainer = styled(ImageContainer)`
+  background: var(--color-bg-neutral-light);
+`;
+
+const LoadingContentRow = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-neutral-light);
+  border-radius: var(--border-radius-m);
+  width: 100%;
+  padding-top: var(--height-s);
 `;
 
 const DxcCard = ({
-  imageSrc,
-  imageBgColor,
-  imagePadding,
-  imagePosition = "before",
-  linkHref,
-  onClick,
-  imageCover = false,
-  margin,
-  tabIndex = 0,
-  outlined = true,
   children,
+  direction = "column",
+  emptySize,
+  href,
+  imagePosition = "before",
+  image,
+  isEmpty = false,
+  isLoading = false,
+  loadingSize,
+  mode = "elevated",
+  newWindow = false,
+  onChange,
+  onClick,
+  selectable = false,
+  selected = false,
+  size = { width: "fitContent", height: "fitContent" },
+  tabIndex = 0,
 }: CardPropsType) => {
-  const [isHovered, changeIsHovered] = useState(false);
+  const isInteractive = !!(onClick || onChange || href) || selectable;
+  const isAnchor = isInteractive && !onClick && !selectable && href;
+  const CardTag = isAnchor ? CardLink : Card;
 
-  return (
-    <Card
-      hasAction={!!(onClick || linkHref)}
-      margin={margin}
-      onMouseEnter={() => changeIsHovered(true)}
-      onMouseLeave={() => changeIsHovered(false)}
-      onClick={onClick}
-      tabIndex={onClick || linkHref ? tabIndex : -1}
-      as={linkHref ? "a" : undefined}
-      href={linkHref ? linkHref : undefined}
-      shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
-    >
-      <CardContainer hasAction={!!(onClick || linkHref)} imagePosition={imageSrc ? imagePosition : "none"}>
-        {imageSrc && (
-          <ImageContainer imageBgColor={imageBgColor}>
-            <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
+  if (isEmpty) {
+    return (
+      <EmptyCard mode={mode} emptySize={emptySize} size={size}>
+        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
+          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--height-xl)">
+            <DxcIcon icon="text_snippet" />
+          </DxcTypography>
+          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
+            {/* ADD TRANSLATION */}
+            No content
+          </DxcTypography>
+        </DxcFlex>
+      </EmptyCard>
+    );
+  } else if (isLoading) {
+    return (
+      <LoadingCard
+        direction={direction}
+        imagePosition={imagePosition}
+        mode={mode}
+        loadingSize={loadingSize}
+        size={size}
+      >
+        {image && <LoadingImageContainer image={image} />}
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            gap: "var(--spacing-gap-m)",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <LoadingContentRow />
+          <LoadingContentRow />
+          <LoadingContentRow />
+        </div>
+      </LoadingCard>
+    );
+  } else {
+    return (
+      <CardTag
+        direction={direction}
+        size={size}
+        imagePosition={imagePosition}
+        mode={mode}
+        interactive={isInteractive}
+        selected={selectable && selected}
+        tabIndex={isInteractive ? tabIndex : undefined}
+        {...(href && {
+          href,
+          target: newWindow ? "_blank" : "_self",
+        })}
+        role={isAnchor ? "link" : selectable ? "checkbox" : isInteractive ? "button" : undefined}
+        onClick={(event) => {
+          if (typeof onClick === "function") {
+            onClick(event);
+          }
+          if (selectable && typeof onChange === "function") {
+            onChange(!selected);
+          }
+        }}
+        aria-checked={selectable ? selected : undefined}
+      >
+        {image && (
+          <ImageContainer image={image}>
+            <DxcImage {...image} />
           </ImageContainer>
         )}
-        <CardContent>{children}</CardContent>
-      </CardContainer>
-    </Card>
-  );
+        {children && <>{children}</>}
+      </CardTag>
+    );
+  }
 };
 
 export default DxcCard;
