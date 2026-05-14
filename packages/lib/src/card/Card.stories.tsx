@@ -213,6 +213,75 @@ const Card = () => (
         </DxcContainer>
       </DxcFlex>
     </ExampleContainer>
+    <Title title="Hover" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Active" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
+    </ExampleContainer>
+    <Title title="Focus" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
+    </ExampleContainer>
   </>
 );
 
