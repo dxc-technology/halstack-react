@@ -6,11 +6,6 @@ type Size = {
   height?: "fillParent" | "fitContent";
 };
 
-type SizeConfig = {
-  width?: string;
-  height?: string;
-};
-
 type Props = {
   /**
    * Custom content that will be placed inside the component.
@@ -23,19 +18,24 @@ type Props = {
   /**
    * Defines the size of the card when it is empty.
    */
-  emptySize?: SizeConfig;
+  emptySize?: {
+    width?: string;
+    height?: string;
+    iconSize?: "small" | "medium" | "large";
+  };
   /**
    * URL to navigate to when the card is clicked.
+   * If href is defined selectable will be ignored and the link will be always considered as an anchor.
    */
   href?: string;
-  /**
-   * Position of the image inside the card. It can be set to "before" or "after" the content.
-   */
-  imagePosition?: "before" | "after";
   /**
    * Image to be displayed inside the card.
    */
   image?: DxcImagePropsType;
+  /**
+   * Position of the image inside the card. It can be set to "before" or "after" the content.
+   */
+  imagePosition?: "before" | "after";
   /**
    * If true, the card will be displayed as empty state.
    */
@@ -47,7 +47,10 @@ type Props = {
   /**
    * Defines the size of the loading card when isLoading is true.
    */
-  loadingSize?: SizeConfig;
+  loadingSize?: {
+    width?: string;
+    height?: string;
+  };
   /**
    * Defines the visual style of the card. It can be set to "elevated" or "outlined".
    */
@@ -68,6 +71,7 @@ type Props = {
   onClick?: (event: React.MouseEvent) => void;
   /**
    * If true, the card can be selected. When the card is clicked, the onChange callback will be called with the new selected state of the card.
+   * If href is defined, the card won't be selectable, even if this prop is true.
    */
   selectable?: boolean;
   /**
@@ -79,6 +83,10 @@ type Props = {
    * The default value is { width: "fitContent", height: "fitContent" }.
    */
   size?: Size;
+  /**
+   * Specifies the tab index of the card.
+   * The default value is 0.
+   */
   tabIndex?: number;
 };
 

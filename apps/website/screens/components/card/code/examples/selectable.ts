@@ -9,9 +9,14 @@ const code = `() => {
     src: "https://picsum.photos/id/11/1920/1080",
   };
 
+  const [selected, setSelected] = useState(false);
+  const onChange = (newValue) => {
+    setSelected(newValue);
+  };
+
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcCard image={image}>
+      <DxcCard image={image} selectable selected={selected} onChange={(newValue) => onChange(newValue)}>
           <DxcParagraph>Personal information</DxcParagraph>
         </DxcCard>
     </DxcInset>

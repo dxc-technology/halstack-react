@@ -1,3 +1,4 @@
+import { forwardRef, Ref } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
@@ -5,6 +6,8 @@ import { getCardStyles } from "./utils";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcTypography from "../typography/Typography";
+
+const emptyIconSizes = { small: "var(--height-m)", medium: "var(--height-xl)", large: "var(--height-xxxl)" };
 
 const Card = styled.div<{
   mode: CardPropsType["mode"];
@@ -64,6 +67,15 @@ const LoadingImageContainer = styled(ImageContainer)`
   background: var(--color-bg-neutral-light);
 `;
 
+const LoadingContent = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--spacing-gap-m);
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const LoadingContentRow = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -75,103 +87,125 @@ const LoadingContentRow = styled.div`
   padding-top: var(--height-s);
 `;
 
-const DxcCard = ({
-  children,
-  direction = "column",
-  emptySize,
-  href,
-  imagePosition = "before",
-  image,
-  isEmpty = false,
-  isLoading = false,
-  loadingSize,
-  mode = "elevated",
-  newWindow = false,
-  onChange,
-  onClick,
-  selectable = false,
-  selected = false,
-  size = { width: "fitContent", height: "fitContent" },
-  tabIndex = 0,
-}: CardPropsType) => {
-  const isInteractive = !!(onClick || onChange || href) || selectable;
-  const isAnchor = isInteractive && !onClick && !selectable && href;
-  const CardTag = isAnchor ? CardLink : Card;
+const DxcCard = forwardRef(
+  (
+    {
+      children,
+      direction = "column",
+      emptySize,
+      href,
+      imagePosition = "before",
+      image,
+      isEmpty = false,
+      isLoading = false,
+      loadingSize,
+      mode = "elevated",
+      newWindow = false,
+      onChange,
+      onClick,
+      selectable = false,
+      selected = false,
+      size = { width: "fitContent", height: "fitContent" },
+      tabIndex = 0,
+    }: CardPropsType,
+    ref: Ref<HTMLAnchorElement>
+  ) => {
+    const isInteractive = !!(onClick || onChange) || selectable;
 
-  if (isEmpty) {
-    return (
-      <EmptyCard mode={mode} emptySize={emptySize} size={size}>
-        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
-          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--height-xl)">
-            <DxcIcon icon="text_snippet" />
-          </DxcTypography>
-          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
-            {/* ADD TRANSLATION */}
-            No content
-          </DxcTypography>
-        </DxcFlex>
-      </EmptyCard>
-    );
-  } else if (isLoading) {
-    return (
-      <LoadingCard
-        direction={direction}
-        imagePosition={imagePosition}
-        mode={mode}
-        loadingSize={loadingSize}
-        size={size}
-      >
-        {image && <LoadingImageContainer image={image} />}
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-            gap: "var(--spacing-gap-m)",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+    if (isEmpty) {
+      return (
+        <EmptyCard mode={mode} emptySize={emptySize} size={size}>
+          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
+            <DxcTypography
+              color="var(--color-fg-neutral-strong)"
+              fontSize={emptyIconSizes[emptySize?.iconSize || "medium"]}
+            >
+              <DxcIcon icon="text_snippet" />
+            </DxcTypography>
+            <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
+              {/* ADD TRANSLATION */}
+              No content
+            </DxcTypography>
+          </DxcFlex>
+        </EmptyCard>
+      );
+    } else if (isLoading) {
+      return (
+        <LoadingCard
+          direction={direction}
+          imagePosition={imagePosition}
+          mode={mode}
+          loadingSize={loadingSize}
+          size={size}
         >
-          <LoadingContentRow />
-          <LoadingContentRow />
-          <LoadingContentRow />
-        </div>
-      </LoadingCard>
-    );
-  } else {
-    return (
-      <CardTag
-        direction={direction}
-        size={size}
-        imagePosition={imagePosition}
-        mode={mode}
-        interactive={isInteractive}
-        selected={selectable && selected}
-        tabIndex={isInteractive ? tabIndex : undefined}
-        {...(href && {
-          href,
-          target: newWindow ? "_blank" : "_self",
-        })}
-        role={isAnchor ? "link" : selectable ? "checkbox" : isInteractive ? "button" : undefined}
-        onClick={(event) => {
-          if (typeof onClick === "function") {
-            onClick(event);
-          }
-          if (selectable && typeof onChange === "function") {
-            onChange(!selected);
-          }
-        }}
-        aria-checked={selectable ? selected : undefined}
-      >
-        {image && (
-          <ImageContainer image={image}>
-            <DxcImage {...image} />
-          </ImageContainer>
-        )}
-        {children && <>{children}</>}
-      </CardTag>
-    );
+          {image && <LoadingImageContainer image={image} />}
+          <LoadingContent>
+            <LoadingContentRow />
+            <LoadingContentRow />
+            <LoadingContentRow />
+          </LoadingContent>
+        </LoadingCard>
+      );
+    } else if (href) {
+      return (
+        <CardLink
+          direction={direction}
+          size={size}
+          imagePosition={imagePosition}
+          mode={mode}
+          interactive={true}
+          tabIndex={tabIndex}
+          {...(href && {
+            href,
+            target: newWindow ? "_blank" : "_self",
+          })}
+          role="link"
+          onClick={(event) => {
+            if (typeof onClick === "function") {
+              onClick(event);
+            }
+          }}
+          ref={ref}
+        >
+          {image && (
+            <ImageContainer image={image}>
+              <DxcImage {...image} />
+            </ImageContainer>
+          )}
+          {children && <>{children}</>}
+        </CardLink>
+      );
+    } else {
+      return (
+        <Card
+          direction={direction}
+          size={size}
+          imagePosition={imagePosition}
+          mode={mode}
+          interactive={isInteractive}
+          selected={selectable && selected}
+          tabIndex={isInteractive ? tabIndex : undefined}
+          role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
+          onClick={(event) => {
+            if (typeof onClick === "function") {
+              onClick(event);
+            }
+            if (selectable && typeof onChange === "function") {
+              onChange(!selected);
+            }
+          }}
+          aria-checked={selectable ? selected : undefined}
+        >
+          {image && (
+            <ImageContainer image={image}>
+              <DxcImage {...image} />
+            </ImageContainer>
+          )}
+          {children && <>{children}</>}
+        </Card>
+      );
+    }
   }
-};
+);
 
 export default DxcCard;

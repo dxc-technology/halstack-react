@@ -74,4 +74,20 @@ describe("Card component tests", () => {
     const { queryByText } = render(<DxcCard isLoading>test-card</DxcCard>);
     expect(queryByText("test-card")).toBeNull();
   });
+
+  test("Card with selectable and href should not be selectable", () => {
+    const onChangeMock = jest.fn();
+    const { getByText } = render(
+      <DxcCard selectable selected href="https://example.com" onChange={onChangeMock}>
+        test-card
+      </DxcCard>
+    );
+    const cardElement = getByText("test-card");
+    expect(cardElement).toBeTruthy();
+    expect(cardElement.tagName).toBe("A");
+    userEvent.click(cardElement);
+    expect(onChangeMock).not.toHaveBeenCalled();
+    expect(cardElement).toHaveAttribute("href", "https://example.com");
+    expect(cardElement).not.toHaveAttribute("aria-checked");
+  });
 });

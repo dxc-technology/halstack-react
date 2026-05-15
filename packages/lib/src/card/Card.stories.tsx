@@ -21,7 +21,7 @@ const image: DxcImagePropsType = {
 };
 
 const paragraphContent = (
-  <div style={{ width: "500px", height: "250px", overflow: "auto" }} tabIndex={-1}>
+  <div style={{ width: "500px", height: "250px", overflow: "auto" }}>
     <DxcParagraph>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet nisi a neque scelerisque ultrices vitae
       pellentesque nunc. Curabitur facilisis sit amet arcu non dignissim. Sed magna enim, porttitor vitae blandit at,
