@@ -21,17 +21,10 @@ const image: DxcImagePropsType = {
 };
 
 const paragraphContent = (
-  <div style={{ width: "500px", height: "250px", overflow: "auto" }}>
+  <div style={{ width: "500px", maxHeight: "250px", overflow: "auto" }}>
     <DxcParagraph>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet nisi a neque scelerisque ultrices vitae
-      pellentesque nunc. Curabitur facilisis sit amet arcu non dignissim. Sed magna enim, porttitor vitae blandit at,
-      mollis euismod augue. Integer a imperdiet sem. Morbi convallis felis ut orci consectetur, eu finibus urna mollis.
-      Aliquam et risus ac dolor dictum commodo vitae eu orci. Duis pretium enim nulla, quis interdum nunc egestas nec.
-      Duis in luctus justo, vel egestas diam. Cras blandit ac eros non pretium. Sed fringilla feugiat lobortis. Vivamus
-      feugiat efficitur tempus. Nam aliquam, tellus sed varius tempus, sem nulla accumsan ipsum, eu condimentum nibh
-      turpis eget quam. Donec condimentum quis diam ac venenatis. Orci varius natoque penatibus et magnis dis parturient
-      montes, nascetur ridiculus mus. Fusce aliquam elit diam, sit amet tristique libero hendrerit vel. Integer ornare
-      ipsum id felis facilisis imperdiet.
+      pellentesque nunc.
     </DxcParagraph>
   </div>
 );

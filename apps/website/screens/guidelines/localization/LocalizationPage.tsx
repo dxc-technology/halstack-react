@@ -204,6 +204,27 @@ const sections = [
         ),
       },
       {
+        title: "card",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>noContent</Code>
+                </td>
+                <td>No content</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "dateInput",
         content: (
           <DxcTable>

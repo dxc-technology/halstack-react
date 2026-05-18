@@ -1,4 +1,4 @@
-import { forwardRef, Ref } from "react";
+import { forwardRef, Ref, useContext } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
@@ -6,6 +6,7 @@ import { getCardStyles } from "./utils";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcTypography from "../typography/Typography";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const emptyIconSizes = { small: "var(--height-m)", medium: "var(--height-xl)", large: "var(--height-xxxl)" };
 
@@ -53,14 +54,14 @@ const CardLink = styled(Card.withComponent("a"))`
   text-decoration: none;
 `;
 
-const ImageContainer = styled.div<{ image: CardPropsType["image"] }>`
+const ImageContainer = styled.div<{ image: CardPropsType["image"]; isLoading?: CardPropsType["isLoading"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--border-radius-m);
   overflow: hidden;
-  width: ${({ image }) => image?.width || "auto"};
-  height: ${({ image }) => image?.height || "auto"};
+  width: ${({ image, isLoading }) => (isLoading ? image?.width || "auto" : "auto")};
+  height: ${({ image, isLoading }) => (isLoading ? image?.height || "auto" : "auto")};
 `;
 
 const LoadingImageContainer = styled(ImageContainer)`
@@ -111,6 +112,7 @@ const DxcCard = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ) => {
     const isInteractive = !!(onClick || onChange) || selectable;
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     if (isEmpty) {
       return (
@@ -123,8 +125,7 @@ const DxcCard = forwardRef(
               <DxcIcon icon="text_snippet" />
             </DxcTypography>
             <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
-              {/* ADD TRANSLATION */}
-              No content
+              {translatedLabels?.card?.noContent || "No content"}
             </DxcTypography>
           </DxcFlex>
         </EmptyCard>
@@ -138,7 +139,7 @@ const DxcCard = forwardRef(
           loadingSize={loadingSize}
           size={size}
         >
-          {image && <LoadingImageContainer image={image} />}
+          {image && <LoadingImageContainer image={image} isLoading={isLoading} />}
           <LoadingContent>
             <LoadingContentRow />
             <LoadingContentRow />
