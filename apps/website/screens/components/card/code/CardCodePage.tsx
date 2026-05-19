@@ -3,7 +3,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import Link from "next/link";
 import selectable from "./examples/selectable";
 
@@ -56,12 +56,14 @@ const sections = [
               <TableCode>'row' | 'column'</TableCode>
             </td>
             <td>Specifies the direction of the card content.</td>
-            <td>'column'</td>
+            <td>
+              <TableCode>'column'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>emptySize</td>
             <td>
-              <TableCode>{EmptySizeConfig}</TableCode>
+              <ExtendedTableCode>{EmptySizeConfig}</ExtendedTableCode>
             </td>
             <td>
               Specifies the size of the empty state. By default the icon is set to <Code>"medium"</Code>.
@@ -103,7 +105,9 @@ const sections = [
               <TableCode>'before' | 'after'</TableCode>
             </td>
             <td>Specifies the position of the image inside the card.</td>
-            <td>'before'</td>
+            <td>
+              <TableCode>'before'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>isEmpty</td>
@@ -111,7 +115,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>Specifies whether the card is in an empty state.</td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>isLoading</td>
@@ -119,12 +125,14 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>Specifies whether the card is in a loading state.</td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>loadingSize</td>
             <td>
-              <TableCode>{LoadingSizeConfig}</TableCode>
+              <ExtendedTableCode>{LoadingSizeConfig}</ExtendedTableCode>
             </td>
             <td>Specifies the size of the loading state.</td>
             <td>-</td>
@@ -134,8 +142,13 @@ const sections = [
             <td>
               <TableCode>'elevated' | 'outlined'</TableCode>
             </td>
-            <td>Specifies the visual style of the card. It can be set to "elevated" or "outlined".</td>
-            <td>'elevated'</td>
+            <td>
+              Specifies the visual style of the card. It can be set to <Code>'elevated'</Code> or{" "}
+              <Code>'outlined'</Code>.
+            </td>
+            <td>
+              <TableCode>'elevated'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>newWindow</td>
@@ -143,7 +156,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>Specifies whether the link will open in a new window. href must be provided for this to work.</td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>onChange</td>
@@ -174,7 +189,9 @@ const sections = [
               new selected state of the card. If <Code>href</Code> is defined, the card won't be selectable, even if
               this prop is set to <Code>true</Code>.
             </td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>selected</td>
@@ -182,15 +199,19 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, the card is selected.</td>
-            <td>false</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>size</td>
             <td>
-              <TableCode>{Size}</TableCode>
+              <ExtendedTableCode>{Size}</ExtendedTableCode>
             </td>
             <td>Defines the size of the card. Width and height can be set to "fillParent" or "fitContent".</td>
-            <td>{defaultSize}</td>
+            <td>
+              <ExtendedTableCode>{defaultSize}</ExtendedTableCode>
+            </td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -198,7 +219,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>Specifies the tab index of the card.</td>
-            <td>0</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

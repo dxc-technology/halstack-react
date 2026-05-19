@@ -173,7 +173,7 @@ const DxcCard = forwardRef(
               <DxcImage {...image} />
             </ImageContainer>
           )}
-          {children && <>{children}</>}
+          {children}
         </CardLink>
       );
     } else {
