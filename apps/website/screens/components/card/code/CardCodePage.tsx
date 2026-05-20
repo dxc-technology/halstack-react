@@ -198,7 +198,9 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>Specifies whether the link will open in a new window. href must be provided for this to work.</td>
+            <td>
+              Specifies whether the link will open in a new window. <Code>href</Code> must be provided for this to work.
+            </td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -215,7 +217,7 @@ const sections = [
             </td>
             <td>
               Callback function that is called when the card is clicked. It receives a boolean value with the new
-              selected state of the card. The selectable prop must be true for this to work.
+              selected state of the card. The <Code>selectable</Code> prop must be truthy for this to work.
             </td>
             <td>-</td>
           </tr>
@@ -271,7 +273,7 @@ const sections = [
             <td>
               <ExtendedTableCode>{Size}</ExtendedTableCode>
             </td>
-            <td>Defines the size of the card. Width and height can be set to "fillParent" or "fitContent".</td>
+            <td>Defines the size of the card.</td>
             <td>
               <ExtendedTableCode>{defaultSize}</ExtendedTableCode>
             </td>

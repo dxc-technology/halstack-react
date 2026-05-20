@@ -18,8 +18,8 @@ const Card = styled.div<{
 }>`
   display: flex;
   flex-direction: ${({ direction, imagePosition }) =>
-    imagePosition === "before" ? direction : direction + "-reverse"};
-  gap: var(--spacing-gap-m);
+    imagePosition === "before" ? direction : `${direction}-reverse`};
+  gap: var(--spacing-gap-s);
   box-sizing: border-box;
   padding: var(--spacing-padding-xs);
   border-radius: var(--border-radius-l);

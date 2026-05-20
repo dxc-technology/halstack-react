@@ -156,9 +156,9 @@ const sections = [
                 fallback.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Empty:</strong> renders a skeleton layout that mirrors the card's populated structure while
-                content is being fetched. This state should be shown as soon as a request is in flight, not as a delayed
-                fallback.
+                <strong>Empty:</strong> shown when a request has completed but returned no content to display. This
+                state is distinct from loading and should only be used when the absence of content is a known, stable
+                condition.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>

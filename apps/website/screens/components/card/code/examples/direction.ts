@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcCard image={image} direction="horizontal">
+      <DxcCard image={image} direction="row">
         <DxcContainer maxWidth="250px">
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at pretium mi. Sed ac mi purus. Donec
