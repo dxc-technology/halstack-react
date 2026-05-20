@@ -288,33 +288,7 @@ const Card = () => {
   );
 };
 
-// const actionCard = () => (
-//   <>
-//     <ExampleContainer>
-//       <Title title="Focused default with action" theme="light" level={4} />
-//       <DxcCard onClick={() => {}}>Focused default with action</DxcCard>
-//     </ExampleContainer>
-//     <ExampleContainer expanded>
-//       <Title title="Hovered default with action" theme="light" level={4} />
-//       <DxcCard onClick={() => {}}>Hovered default with action</DxcCard>
-//     </ExampleContainer>
-//   </>
-// );
-
 type Story = StoryObj<typeof DxcCard>;
-
-// export const ActionCardStates: Story = {
-//   render: actionCard,
-//   play: async ({ canvasElement }) => {
-//     const canvas = within(canvasElement);
-//     await userEvent.tab();
-//     const card = (await canvas.findAllByText("Hovered default with action"))[1];
-//     if (card != null) {
-//       await userEvent.hover(card);
-//     }
-//   },
-// };
-
 export const Chromatic: Story = {
   render: Card,
 };
