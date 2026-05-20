@@ -68,7 +68,7 @@ type Props = {
   /**
    * Callback function that is called when the card is clicked.
    */
-  onClick?: (event: React.MouseEvent) => void;
+  onClick?: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /**
    * If true, the card can be selected. When the card is clicked, the onChange callback will be called with the new selected state of the card.
    * If href is defined, the card won't be selectable, even if this prop is true.

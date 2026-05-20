@@ -2,13 +2,11 @@ import { forwardRef, Ref, useContext } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
-import { getCardStyles } from "./utils";
+import { getCardStyles, handleKeyDown, emptyIconSizes } from "./utils";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcTypography from "../typography/Typography";
 import { HalstackLanguageContext } from "../HalstackContext";
-
-const emptyIconSizes = { small: "var(--height-m)", medium: "var(--height-xl)", large: "var(--height-xxxl)" };
 
 const Card = styled.div<{
   mode: CardPropsType["mode"];
@@ -24,10 +22,8 @@ const Card = styled.div<{
   gap: var(--spacing-gap-m);
   box-sizing: border-box;
   padding: var(--spacing-padding-xs);
-  width: ${({ size }) => (size?.width === "fillParent" ? "100%" : "fit-content")};
-  height: ${({ size }) => (size?.height === "fillParent" ? "100%" : "fit-content")};
   border-radius: var(--border-radius-l);
-  ${({ mode, interactive, selected }) => getCardStyles(mode, interactive ?? false, selected)}
+  ${({ mode, interactive, selected, size }) => getCardStyles(mode, interactive ?? false, selected, size)}
   background: var(--color-bg-neutral-lightest);
   overflow: hidden;
 `;
@@ -167,6 +163,9 @@ const DxcCard = forwardRef(
             }
           }}
           ref={ref}
+          onKeyDown={(event) => {
+            handleKeyDown(event, onClick);
+          }}
         >
           {image && (
             <ImageContainer image={image}>
@@ -194,6 +193,9 @@ const DxcCard = forwardRef(
             if (selectable && typeof onChange === "function") {
               onChange(!selected);
             }
+          }}
+          onKeyDown={(event) => {
+            handleKeyDown(event, onClick, onChange, selected, selectable);
           }}
           aria-checked={selectable ? selected : undefined}
         >

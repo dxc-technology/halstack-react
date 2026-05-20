@@ -6,6 +6,9 @@ import basicUsage from "./examples/basicUsage";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import Link from "next/link";
 import selectable from "./examples/selectable";
+import direction from "./examples/direction";
+import modes from "./examples/modes";
+import StatusBadge from "@/common/StatusBadge";
 
 const LoadingSizeConfig = `{
   width?: string;
@@ -51,7 +54,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>direction</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                direction
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>'row' | 'column'</TableCode>
             </td>
@@ -61,7 +69,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>emptySize</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                emptySize
+              </DxcFlex>
+            </td>
             <td>
               <ExtendedTableCode>{EmptySizeConfig}</ExtendedTableCode>
             </td>
@@ -83,7 +96,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>image</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                image
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>
                 <Code>DxcImagePropsType</Code>
@@ -110,7 +128,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>isEmpty</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                isEmpty
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -120,7 +143,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>isLoading</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                isLoading
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -130,7 +158,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>loadingSize</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                loadingSize
+              </DxcFlex>
+            </td>
             <td>
               <ExtendedTableCode>{LoadingSizeConfig}</ExtendedTableCode>
             </td>
@@ -138,7 +171,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>mode</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                mode
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>'elevated' | 'outlined'</TableCode>
             </td>
@@ -151,7 +189,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>newWindow</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                newWindow
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -161,7 +204,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>onChange</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onChange
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(selected: boolean) => void"}</TableCode>
             </td>
@@ -180,7 +228,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>selectable</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                selectable
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -194,7 +247,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>selected</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                selected
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -204,7 +262,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>size</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                size
+              </DxcFlex>
+            </td>
             <td>
               <ExtendedTableCode>{Size}</ExtendedTableCode>
             </td>
@@ -235,8 +298,16 @@ const sections = [
         content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
+        title: "Modes",
+        content: <Example example={modes} defaultIsVisible />,
+      },
+      {
         title: "Selectable",
         content: <Example example={selectable} defaultIsVisible />,
+      },
+      {
+        title: "Direction",
+        content: <Example example={direction} defaultIsVisible />,
       },
     ],
   },

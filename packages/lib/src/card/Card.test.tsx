@@ -91,3 +91,35 @@ describe("Card component tests", () => {
     expect(cardElement).not.toHaveAttribute("aria-checked");
   });
 });
+
+test("Card keyboard support when it is not selectable", () => {
+  const onClickMock = jest.fn();
+  const { getByRole } = render(<DxcCard onClick={onClickMock}>test-card</DxcCard>);
+  const cardElement = getByRole("button");
+  expect(cardElement).toBeTruthy();
+  expect(cardElement).toHaveTextContent("test-card");
+  userEvent.tab();
+  expect(cardElement).toHaveFocus();
+  userEvent.keyboard("{Enter}");
+  expect(onClickMock).toHaveBeenCalled();
+  userEvent.keyboard(" ");
+  expect(onClickMock).toHaveBeenCalledTimes(2);
+});
+
+test("Card keyboard support when it is selectable", () => {
+  const onChangeMock = jest.fn();
+  const { getByRole } = render(
+    <DxcCard selectable onChange={onChangeMock}>
+      test-card
+    </DxcCard>
+  );
+  const cardElement = getByRole("checkbox");
+  expect(cardElement).toBeTruthy();
+  expect(cardElement).toHaveTextContent("test-card");
+  userEvent.tab();
+  expect(cardElement).toHaveFocus();
+  userEvent.keyboard("{Enter}");
+  expect(onChangeMock).toHaveBeenCalledWith(true);
+  userEvent.keyboard(" ");
+  expect(onChangeMock).toHaveBeenCalledWith(true);
+});
