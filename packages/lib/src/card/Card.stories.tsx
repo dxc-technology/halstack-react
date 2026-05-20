@@ -22,12 +22,12 @@ const image: DxcImagePropsType = {
 };
 
 const paragraphContent = (
-  <div style={{ width: "500px", maxHeight: "250px", overflow: "auto" }}>
+  <DxcContainer maxWidth="500px">
     <DxcParagraph>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet nisi a neque scelerisque ultrices vitae
       pellentesque nunc.
     </DxcParagraph>
-  </div>
+  </DxcContainer>
 );
 
 const Card = () => {
