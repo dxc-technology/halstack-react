@@ -168,7 +168,9 @@ const DxcCard = forwardRef(
           })}
           role="link"
           onClick={(event) => {
-            handleEvent(event, onClick);
+            if (typeof onClick === "function") {
+              onClick(event);
+            }
           }}
           ref={ref}
           onKeyDown={(event) => {
