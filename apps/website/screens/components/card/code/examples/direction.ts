@@ -3,16 +3,16 @@ import { DxcInset, DxcCard, DxcParagraph, DxcContainer } from "@dxc-technology/h
 const code = `() => {
   const image = {
     alt: "Example image",
-    width: "445px",
-    height: "100%",
+    width: "100%",
+    height: "250px",
     objectFit: "cover",
     src: "https://picsum.photos/id/11/1920/1080",
   };
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcCard image={image}>
-        <DxcContainer maxWidth="445px">
+      <DxcCard image={image} direction="row">
+        <DxcContainer maxWidth="250px">
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at pretium mi. Sed ac mi purus. Donec
             mattis luctus nisi, vitae scelerisque metus. Praesent in justo vitae quam mollis sollicitudin. Cras at consequat

@@ -2,189 +2,283 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcCard from "./Card";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
 import DxcParagraph from "../paragraph/Paragraph";
+import DxcContainer from "../container/Container";
+import DxcFlex from "../flex/Flex";
+import DxcImagePropsType from "../image/types";
 
 export default {
   title: "Card",
   component: DxcCard,
 } satisfies Meta<typeof DxcCard>;
 
+const image: DxcImagePropsType = {
+  alt: "Example image",
+  width: "100%",
+  height: "250px",
+  objectFit: "cover",
+  src: "https://picsum.photos/id/11/1920/1080",
+};
+
+const paragraphContent = (
+  <DxcContainer maxWidth="500px">
+    <DxcParagraph>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet nisi a neque scelerisque ultrices vitae
+      pellentesque nunc.
+    </DxcParagraph>
+  </DxcContainer>
+);
+
 const Card = () => (
   <>
     <Title title="Default" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard>Default</DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image} selectable onSelectionChange={(selected) => console.log(selected)}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Not outlined" theme="light" level={4} />
+    <Title title="Image after column" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard outlined={false}>Not outlined</DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image} imagePosition="after">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image} imagePosition="after">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Default with link" theme="light" level={4} />
+    <Title title="Default Row" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard linkHref="https://www.dxc.com">Default with link</DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image} direction="row">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image} direction="row">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Focused default with link" theme="light" level={4} />
+    <Title title="Image after row" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard linkHref="https://www.dxc.com">Focused default with link</DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image} direction="row" imagePosition="after">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image} direction="row" imagePosition="after">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Hovered default with link" theme="light" level={4} />
+    <Title title="Selected" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard linkHref="https://www.dxc.com">Hovered default with link</DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image} direction="row" selectable selected>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image} selectable selected>
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Default with action" theme="light" level={4} />
+    <Title title="Anchor" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard onClick={() => {}}>Default with action</DxcCard>
-    </ExampleContainer>
-    <Title title="Default with image" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300">Default</DxcCard>
-    </ExampleContainer>
-    <Title title="Default image with background color" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imageBgColor="yellow">
-        Background color
-      </DxcCard>
-    </ExampleContainer>
-    <Title title="Default image with position after" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePosition="after">
-        Position after
-      </DxcCard>
-    </ExampleContainer>
-    <Title title="Image cover" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imageCover>
-        Image cover
-      </DxcCard>
-    </ExampleContainer>
-    <Title title="Image cover with position after" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imageCover imagePosition="after">
-        Image cover with position after
-      </DxcCard>
-    </ExampleContainer>
-    <Title title="Image padding" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="xxsmall" imageCover>
-        Xxsmall
-      </DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="xsmall" imageCover>
-        Xsmall
-      </DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="small" imageCover>
-        Small
-      </DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="medium" imageCover>
-        Medium
-      </DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="large" imageCover>
-        Large
-      </DxcCard>
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          image={image}
+          href="https://developer.assure.dxc.com/halstack/next/"
+          newWindow
+        >
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          image={image}
+          href="https://developer.assure.dxc.com/halstack/next/"
+          mode="outlined"
+          newWindow
+        >
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="xlarge" imageCover>
-        Xlarge
-      </DxcCard>
+      <Title title="Empty" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard isEmpty emptySize={{ width: "400px", height: "400px" }} />
+        <DxcCard isEmpty mode="outlined" emptySize={{ width: "400px", height: "400px" }} />
+      </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imagePadding="xxlarge" imageCover>
-        Xxlarge
-      </DxcCard>
+      <Title title="Loading" theme="light" level={4} />
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard isLoading loadingSize={{ width: "516px", height: "400px" }} image={image} />
+        <DxcCard isLoading direction="row" loadingSize={{ width: "516px" }} image={image} />
+        <DxcContainer
+          width="300px"
+          height="250px"
+          padding="var(--spacing-padding-m)"
+          boxSizing="border-box"
+          border={{
+            color: "var(--border-color-primary-light)",
+            width: "var(--border-width-m)",
+            style: "var(--border-style-outline)",
+          }}
+        >
+          <DxcCard isLoading size={{ width: "fillParent", height: "fillParent" }} image={image} />
+        </DxcContainer>
+        <DxcContainer
+          width="500px"
+          height="400px"
+          padding="var(--spacing-padding-m)"
+          boxSizing="border-box"
+          border={{
+            color: "var(--border-color-primary-light)",
+            width: "var(--border-width-m)",
+            style: "var(--border-style-outline)",
+          }}
+        >
+          <DxcCard direction="row" isLoading size={{ width: "fillParent", height: "fillParent" }} image={image} />
+        </DxcContainer>
+        <DxcCard
+          mode="outlined"
+          isLoading
+          loadingSize={{ width: "516px", height: "400px" }}
+          image={image}
+          imagePosition="after"
+        />
+        <DxcCard
+          direction="row"
+          mode="outlined"
+          isLoading
+          loadingSize={{ width: "516px" }}
+          image={image}
+          imagePosition="after"
+        />
+        <DxcContainer
+          width="300px"
+          height="250px"
+          padding="var(--spacing-padding-m)"
+          boxSizing="border-box"
+          border={{
+            color: "var(--border-color-primary-light)",
+            width: "var(--border-width-m)",
+            style: "var(--border-style-outline)",
+          }}
+        >
+          <DxcCard
+            mode="outlined"
+            isLoading
+            size={{ width: "fillParent", height: "fillParent" }}
+            image={image}
+            imagePosition="after"
+          />
+        </DxcContainer>
+        <DxcContainer
+          width="500px"
+          height="400px"
+          padding="var(--spacing-padding-m)"
+          boxSizing="border-box"
+          border={{
+            color: "var(--border-color-primary-light)",
+            width: "var(--border-width-m)",
+            style: "var(--border-style-outline)",
+          }}
+        >
+          <DxcCard
+            mode="outlined"
+            direction="row"
+            isLoading
+            size={{ width: "fillParent", height: "fillParent" }}
+            image={image}
+            imagePosition="after"
+          />
+        </DxcContainer>
+      </DxcFlex>
     </ExampleContainer>
-    <Title title="Margin" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall" theme="light" level={4} />
-      <DxcCard margin="xxsmall">Xxsmall</DxcCard>
+    <Title title="Hover" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall" theme="light" level={4} />
-      <DxcCard margin="xsmall">Xsmall</DxcCard>
+    <Title title="Active" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcCard margin="small">Small</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcCard margin="medium">Medium</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcCard margin="large">Large</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcCard margin="xlarge">Xlarge</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcCard margin="xxlarge">Xxlarge</DxcCard>
-    </ExampleContainer>
-    <Title title="Long Content" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcCard>
-        <DxcParagraph>
-          Long Content that needs to wrap. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit
-          auctor dui, sed
-        </DxcParagraph>
-      </DxcCard>
-    </ExampleContainer>
-  </>
-);
-
-const actionCard = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Focused default with action" theme="light" level={4} />
-      <DxcCard onClick={() => {}}>Focused default with action</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer expanded>
-      <Title title="Hovered default with action" theme="light" level={4} />
-      <DxcCard onClick={() => {}}>Hovered default with action</DxcCard>
+    <Title title="Focus" theme="light" level={4} />
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcFlex gap="var(--spacing-gap-m)" wrap="wrap">
+        <DxcCard onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard onClick={() => {}} mode="outlined" image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image}>
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable onClick={() => {}} image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+        <DxcCard selectable selected image={image} mode="outlined">
+          {paragraphContent}
+        </DxcCard>
+      </DxcFlex>
     </ExampleContainer>
   </>
 );
 
 type Story = StoryObj<typeof DxcCard>;
-
-export const ActionCardStates: Story = {
-  render: actionCard,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.tab();
-    const card = (await canvas.findAllByText("Hovered default with action"))[1];
-    if (card != null) {
-      await userEvent.hover(card);
-    }
-  },
-};
-
 export const Chromatic: Story = {
   render: Card,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const linkCards = await canvas.findAllByRole("link");
-    if (linkCards[1] != null) {
-      linkCards[1].focus();
-    }
-    if (linkCards[2] != null) {
-      await userEvent.hover(linkCards[2]);
-    }
-  },
 };

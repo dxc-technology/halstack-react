@@ -47,6 +47,9 @@ export const defaultTranslatedComponentLabels = {
     previousMonthTitle: "Previous month",
     nextMonthTitle: "Next month",
   },
+  card: {
+    noContent: "No content",
+  },
   dateInput: {
     invalidDateErrorMessage: "Invalid date.",
     datePickerActionTitle: "Select date",

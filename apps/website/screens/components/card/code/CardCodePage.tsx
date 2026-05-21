@@ -1,9 +1,36 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import Link from "next/link";
+import selectable from "./examples/selectable";
+import direction from "./examples/direction";
+import modes from "./examples/modes";
+import StatusBadge from "@/common/StatusBadge";
+
+const LoadingSizeConfig = `{
+  width?: string;
+  height?: string;
+}`;
+
+const EmptySizeConfig = `{
+  width?: string;
+  height?: string;
+  iconSize?: 
+    "small" | "medium" | "large";
+}`;
+
+const Size = `{
+  width?: "fillParent" | "fitContent";
+  height?: "fillParent" | "fitContent";
+}`;
+
+const defaultSize = `{
+  width: "fitContent",
+  height: "fitContent"
+}`;
 
 const sections = [
   {
@@ -28,100 +55,234 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>imageBgColor</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Color of the background image.</td>
-            <td>
-              <TableCode>'black'</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>imageCover</td>
+            <td>defaultSelected</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>Whether the image must cover the its whole area of the card.</td>
+            <td>Initial state of the checkbox, only when it is uncontrolled.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
-              <TableCode>false</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                direction
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'row' | 'column'</TableCode>
+            </td>
+            <td>Specifies the direction of the card content.</td>
+            <td>
+              <TableCode>'column'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>imagePadding</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                emptySize
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{EmptySizeConfig}</ExtendedTableCode>
+            </td>
+            <td>
+              Specifies the size of the empty state. By default the icon is set to <Code>"medium"</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>href</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies the URL of the card. If provided, the card will be clickable and navigate to the specified URL.
+              The card will also be considered as an anchor and selectable will be ignored, even if it's set to{" "}
+              <Code>true</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                image
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>
-                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Padding
+                <Code>DxcImagePropsType</Code>
               </TableCode>
             </td>
             <td>
-              Size of the padding to be applied to the image section of the component. You can pass an object with
-              'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
+              This prop has the same type as the{" "}
+              <Link href="/components/image" passHref legacyBehavior>
+                <DxcLink>Image component</DxcLink>
+              </Link>{" "}
+              props and it will be used to render an image inside the card. It is optional and if not specified, no
+              image will be rendered.
             </td>
             <td>-</td>
           </tr>
           <tr>
             <td>imagePosition</td>
             <td>
-              <TableCode>'after' | 'before'</TableCode>
+              <TableCode>'before' | 'after'</TableCode>
             </td>
-            <td>Where the image should appear in relation to the content.</td>
+            <td>Specifies the position of the image inside the card.</td>
             <td>
               <TableCode>'before'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>imageSrc</td>
             <td>
-              <TableCode>string</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                isEmpty
+              </DxcFlex>
             </td>
             <td>
-              URL of the image that will be placed in the card component. In case of omission, the image container will
-              not appear and the content will occupy its space.
+              <TableCode>boolean</TableCode>
             </td>
+            <td>Specifies whether the card is in an empty state.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                isLoading
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Specifies whether the card is in a loading state.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                loadingSize
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{LoadingSizeConfig}</ExtendedTableCode>
+            </td>
+            <td>Specifies the size of the loading state.</td>
             <td>-</td>
           </tr>
           <tr>
-            <td>linkHref</td>
             <td>
-              <TableCode>string</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                mode
+              </DxcFlex>
             </td>
             <td>
-              If defined, the card will be displayed as an anchor, using this prop as <Code>href</Code>. The component
-              will display visual information on mouse-over.
+              <TableCode>'elevated' | 'outlined'</TableCode>
             </td>
-            <td>-</td>
+            <td>
+              Specifies the visual style of the card. It can be set to <Code>'elevated'</Code> or{" "}
+              <Code>'outlined'</Code>.
+            </td>
+            <td>
+              <TableCode>'elevated'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>margin</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                newWindow
+              </DxcFlex>
             </td>
             <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
+              <TableCode>boolean</TableCode>
             </td>
-            <td>-</td>
+            <td>
+              Specifies whether the link will open in a new window. <Code>href</Code> must be provided for this to work.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>onClick</td>
             <td>
-              <TableCode>{"() => void"}</TableCode>
+              <TableCode>{"(event: React.MouseEvent) => void"}</TableCode>
+            </td>
+            <td>Callback function that is called when the card is clicked.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onSelectionChange
+              </DxcFlex>
             </td>
             <td>
-              This function will be called when the user clicks the card. Component will show some visual feedback on
-              hover.
+              <TableCode>{"(selected: boolean) => void"}</TableCode>
+            </td>
+            <td>
+              Callback function that is called when the card is clicked. It receives a boolean value with the new
+              selected state of the card. The <Code>selectable</Code> prop must be truthy for this to work.
             </td>
             <td>-</td>
           </tr>
           <tr>
-            <td>outlined</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                selectable
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>Determines whether or not the component should have an outline.</td>
             <td>
-              <TableCode>true</TableCode>
+              If true, the card can be selected. When the card is clicked, the onChange callback will be called with the
+              new selected state of the card. If <Code>href</Code> is defined, the card won't be selectable, even if
+              this prop is set to <Code>true</Code>.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                selected
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the card is selected and if defined it will behave as a controlled component.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                size
+              </DxcFlex>
+            </td>
+            <td>
+              <ExtendedTableCode>{Size}</ExtendedTableCode>
+            </td>
+            <td>Defines the size of the card.</td>
+            <td>
+              <ExtendedTableCode>{defaultSize}</ExtendedTableCode>
             </td>
           </tr>
           <tr>
@@ -129,9 +290,7 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>
-              Value of the <Code>tabindex</Code> attribute applied when the component is clickable.
-            </td>
+            <td>Specifies the tab index of the card.</td>
             <td>
               <TableCode>0</TableCode>
             </td>
@@ -146,6 +305,18 @@ const sections = [
       {
         title: "Basic usage",
         content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Modes",
+        content: <Example example={modes} defaultIsVisible />,
+      },
+      {
+        title: "Selectable",
+        content: <Example example={selectable} defaultIsVisible />,
+      },
+      {
+        title: "Direction",
+        content: <Example example={direction} defaultIsVisible />,
       },
     ],
   },
