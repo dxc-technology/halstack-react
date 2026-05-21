@@ -23,7 +23,7 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
     "storybook-addon-pseudo-states": "^9.1.10",
-    "turbo": "^2.0.4",
+    "turbo": "^2.9.14",
     "typescript": "^5.6.3"
   },
   "engines": {
