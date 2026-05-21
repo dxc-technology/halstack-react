@@ -71,7 +71,7 @@ export const handleEvent = (
   const isKeyDown =
     eventType === "keydown" &&
     ((event as React.KeyboardEvent).key === "Enter" || (event as React.KeyboardEvent).key === " ");
-  if (isKeyDown) {
+  if (isKeyDown && selectable) {
     event.preventDefault();
   }
   if (isKeyDown || eventType === "click") {
