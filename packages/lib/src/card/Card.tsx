@@ -81,7 +81,7 @@ const LoadingContentRow = styled.div`
   background-color: var(--color-bg-neutral-light);
   border-radius: var(--border-radius-m);
   width: 100%;
-  padding-top: var(--height-s);
+  height: var(--height-s);
 `;
 
 const DxcCard = forwardRef(
