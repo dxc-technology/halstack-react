@@ -18,7 +18,8 @@ const LoadingSizeConfig = `{
 const EmptySizeConfig = `{
   width?: string;
   height?: string;
-  iconSize?: "small" | "medium" | "large";
+  iconSize?: 
+    "small" | "medium" | "large";
 }`;
 
 const Size = `{
@@ -51,6 +52,14 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>Custom content that will be placed inside the component.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>defaultSelected</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Initial state of the checkbox, only when it is uncontrolled.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -206,10 +215,18 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"(event: React.MouseEvent) => void"}</TableCode>
+            </td>
+            <td>Callback function that is called when the card is clicked.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
-                onChange
+                onSelectionChange
               </DxcFlex>
             </td>
             <td>
@@ -219,14 +236,6 @@ const sections = [
               Callback function that is called when the card is clicked. It receives a boolean value with the new
               selected state of the card. The <Code>selectable</Code> prop must be truthy for this to work.
             </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onClick</td>
-            <td>
-              <TableCode>{"(event: React.MouseEvent) => void"}</TableCode>
-            </td>
-            <td>Callback function that is called when the card is clicked.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -258,10 +267,8 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the card is selected.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
+            <td>If true, the card is selected and if defined it will behave as a controlled component.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>

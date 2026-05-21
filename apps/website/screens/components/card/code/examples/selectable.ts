@@ -11,13 +11,13 @@ const code = `() => {
   };
 
   const [selected, setSelected] = useState(false);
-  const onChange = (newValue) => {
+  const onSelectionChange = (newValue) => {
     setSelected(newValue);
   };
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcCard image={image} selectable selected={selected} onChange={(newValue) => onChange(newValue)}>
+      <DxcCard image={image} selectable selected={selected} onSelectionChange={(newValue) => onSelectionChange(newValue)}>
         <DxcContainer maxWidth="445px">
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at pretium mi. Sed ac mi purus. Donec

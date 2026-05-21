@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useContext } from "react";
+import { forwardRef, Ref, useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
@@ -88,6 +88,7 @@ const DxcCard = forwardRef(
   (
     {
       children,
+      defaultSelected,
       direction = "column",
       emptySize,
       href,
@@ -98,17 +99,26 @@ const DxcCard = forwardRef(
       loadingSize,
       mode = "elevated",
       newWindow = false,
-      onChange,
+      onSelectionChange,
       onClick,
       selectable = false,
-      selected = false,
+      selected,
       size = { width: "fitContent", height: "fitContent" },
       tabIndex = 0,
     }: CardPropsType,
     ref: Ref<HTMLAnchorElement>
   ) => {
-    const isInteractive = !!(onClick || onChange) || selectable;
+    const isInteractive = !!(onClick || onSelectionChange) || selectable;
+    const [internalSelected, setInternalSelected] = useState(
+      selected !== undefined ? selected : defaultSelected || false
+    );
     const translatedLabels = useContext(HalstackLanguageContext);
+
+    useEffect(() => {
+      if (selected !== undefined) {
+        setInternalSelected(selected);
+      }
+    }, [selected]);
 
     if (isEmpty) {
       return (
@@ -183,21 +193,34 @@ const DxcCard = forwardRef(
           imagePosition={imagePosition}
           mode={mode}
           interactive={isInteractive}
-          selected={selectable && selected}
+          selected={selectable && internalSelected}
           tabIndex={isInteractive ? tabIndex : undefined}
           role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
           onClick={(event) => {
-            if (typeof onClick === "function") {
+            if (typeof onClick === "function" && !selectable) {
               onClick(event);
             }
-            if (selectable && typeof onChange === "function") {
-              onChange(!selected);
+            if (selectable) {
+              if (typeof onSelectionChange === "function") {
+                onSelectionChange(!internalSelected);
+              }
+              if (selected === null || selected === undefined) {
+                setInternalSelected(!internalSelected);
+              }
             }
           }}
           onKeyDown={(event) => {
-            handleKeyDown(event, onClick, onChange, selected, selectable);
+            handleKeyDown(
+              event,
+              onClick,
+              onSelectionChange,
+              internalSelected,
+              setInternalSelected,
+              selected,
+              selectable
+            );
           }}
-          aria-checked={selectable ? selected : undefined}
+          aria-checked={selectable ? internalSelected : undefined}
         >
           {image && (
             <ImageContainer image={image}>

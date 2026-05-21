@@ -51,9 +51,9 @@ describe("Card component tests", () => {
   });
 
   test("Card renders as a checkbox when selectable is true", () => {
-    const onChangeMock = jest.fn();
+    const onSelectionChangeMock = jest.fn();
     const { getByRole } = render(
-      <DxcCard selectable onChange={onChangeMock}>
+      <DxcCard selectable onSelectionChange={onSelectionChangeMock}>
         test-card
       </DxcCard>
     );
@@ -62,7 +62,7 @@ describe("Card component tests", () => {
     expect(cardElement).toHaveTextContent("test-card");
     expect(cardElement).toHaveAttribute("aria-checked", "false");
     userEvent.click(cardElement);
-    expect(onChangeMock).toHaveBeenCalledWith(true);
+    expect(onSelectionChangeMock).toHaveBeenCalledWith(true);
   });
 
   test("Empty Card renders with correct content", () => {
@@ -76,9 +76,9 @@ describe("Card component tests", () => {
   });
 
   test("Card with selectable and href should not be selectable", () => {
-    const onChangeMock = jest.fn();
+    const onSelectionChangeMock = jest.fn();
     const { getByText } = render(
-      <DxcCard selectable selected href="https://example.com" onChange={onChangeMock}>
+      <DxcCard selectable selected href="https://example.com" onSelectionChange={onSelectionChangeMock}>
         test-card
       </DxcCard>
     );
@@ -86,7 +86,7 @@ describe("Card component tests", () => {
     expect(cardElement).toBeTruthy();
     expect(cardElement.tagName).toBe("A");
     userEvent.click(cardElement);
-    expect(onChangeMock).not.toHaveBeenCalled();
+    expect(onSelectionChangeMock).not.toHaveBeenCalled();
     expect(cardElement).toHaveAttribute("href", "https://example.com");
     expect(cardElement).not.toHaveAttribute("aria-checked");
   });
@@ -106,9 +106,9 @@ describe("Card component tests", () => {
   });
 
   test("Card keyboard support when it is selectable", () => {
-    const onChangeMock = jest.fn();
+    const onSelectionChangeMock = jest.fn();
     const { getByRole } = render(
-      <DxcCard selectable onChange={onChangeMock}>
+      <DxcCard selectable onSelectionChange={onSelectionChangeMock}>
         test-card
       </DxcCard>
     );
@@ -118,8 +118,8 @@ describe("Card component tests", () => {
     userEvent.tab();
     expect(cardElement).toHaveFocus();
     userEvent.keyboard("{Enter}");
-    expect(onChangeMock).toHaveBeenCalledWith(true);
+    expect(onSelectionChangeMock).toHaveBeenCalledWith(true);
     userEvent.keyboard(" ");
-    expect(onChangeMock).toHaveBeenCalledWith(true);
+    expect(onSelectionChangeMock).toHaveBeenCalledWith(false);
   });
 });

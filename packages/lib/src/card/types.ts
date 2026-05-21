@@ -12,6 +12,10 @@ type Props = {
    */
   children?: ReactNode;
   /**
+   * Initial state of the checkbox, only when it is uncontrolled.
+   */
+  defaultSelected?: boolean;
+  /**
    * Defines the direction of the content inside the card. It can be set to "row" or "column". The default value is "column".
    */
   direction?: "row" | "column";
@@ -64,18 +68,18 @@ type Props = {
    * It receives a boolean value indicating whether the card is selected or not.
    * selectable must be true for this to work.
    */
-  onChange?: (selected: boolean) => void;
+  onSelectionChange?: (selected: boolean) => void;
   /**
    * Callback function that is called when the card is clicked.
    */
   onClick?: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /**
-   * If true, the card can be selected. When the card is clicked, the onChange callback will be called with the new selected state of the card.
+   * If true, the card can be selected. When the card is clicked, the onSelectionChange callback will be called with the new selected state of the card.
    * If href is defined, the card won't be selectable, even if this prop is true.
    */
   selectable?: boolean;
   /**
-   * If true, the card is selected.
+   * If true, the card is selected and if defined it will behave as a controlled component.
    */
   selected?: boolean;
   /**

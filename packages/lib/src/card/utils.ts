@@ -1,8 +1,8 @@
 import CardPropsType from "./types";
 
 const calculateSize = (size?: CardPropsType["size"], selected?: boolean, borderWidth?: string, outlined?: boolean) => {
-  return `width: ${size?.width === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - ${borderWidth} * 2)` : "fit-content"};
-    height: ${size?.height === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - ${borderWidth} * 2)` : "fit-content"};`;
+  return `width: ${size?.width === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - (${borderWidth} * 2))` : "fit-content"};
+    height: ${size?.height === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - (${borderWidth} * 2))` : "fit-content"};`;
 };
 export const getCardStyles = (
   mode: CardPropsType["mode"],
@@ -61,7 +61,9 @@ export const getCardStyles = (
 export const handleKeyDown = (
   event: React.KeyboardEvent,
   onClick?: CardPropsType["onClick"],
-  onChange?: CardPropsType["onChange"],
+  onSelectionChange?: CardPropsType["onSelectionChange"],
+  internalSelected?: boolean,
+  setInternalSelected?: React.Dispatch<React.SetStateAction<boolean>>,
   selected?: boolean,
   selectable?: boolean
 ) => {
@@ -70,8 +72,13 @@ export const handleKeyDown = (
     if (typeof onClick === "function") {
       onClick(event);
     }
-    if (selectable && typeof onChange === "function") {
-      onChange(!selected);
+    if (selectable) {
+      if (typeof onSelectionChange === "function") {
+        onSelectionChange(!internalSelected);
+      }
+      if ((selected === null || selected === undefined) && typeof setInternalSelected === "function") {
+        setInternalSelected(!internalSelected);
+      }
     }
   }
 };
