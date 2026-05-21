@@ -58,8 +58,8 @@ export const getCardStyles = (
     `;
 };
 
-export const handleKeyDown = (
-  event: React.KeyboardEvent,
+export const handleEvent = (
+  event: React.KeyboardEvent | React.MouseEvent,
   onClick?: CardPropsType["onClick"],
   onSelectionChange?: CardPropsType["onSelectionChange"],
   internalSelected?: boolean,
@@ -67,8 +67,14 @@ export const handleKeyDown = (
   selected?: boolean,
   selectable?: boolean
 ) => {
-  if (event.key === "Enter" || event.key === " ") {
+  const eventType = event.type;
+  const isKeyDown =
+    eventType === "keydown" &&
+    ((event as React.KeyboardEvent).key === "Enter" || (event as React.KeyboardEvent).key === " ");
+  if (isKeyDown) {
     event.preventDefault();
+  }
+  if (isKeyDown || eventType === "click") {
     if (typeof onClick === "function") {
       onClick(event);
     }

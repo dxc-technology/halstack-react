@@ -2,7 +2,7 @@ import { forwardRef, Ref, useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
-import { getCardStyles, handleKeyDown, emptyIconSizes } from "./utils";
+import { getCardStyles, emptyIconSizes, handleEvent } from "./utils";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcTypography from "../typography/Typography";
@@ -168,13 +168,11 @@ const DxcCard = forwardRef(
           })}
           role="link"
           onClick={(event) => {
-            if (typeof onClick === "function") {
-              onClick(event);
-            }
+            handleEvent(event, onClick);
           }}
           ref={ref}
           onKeyDown={(event) => {
-            handleKeyDown(event, onClick);
+            handleEvent(event, onClick);
           }}
         >
           {image && (
@@ -197,28 +195,10 @@ const DxcCard = forwardRef(
           tabIndex={isInteractive ? tabIndex : undefined}
           role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
           onClick={(event) => {
-            if (typeof onClick === "function" && !selectable) {
-              onClick(event);
-            }
-            if (selectable) {
-              if (typeof onSelectionChange === "function") {
-                onSelectionChange(!internalSelected);
-              }
-              if (selected === null || selected === undefined) {
-                setInternalSelected(!internalSelected);
-              }
-            }
+            handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
           }}
           onKeyDown={(event) => {
-            handleKeyDown(
-              event,
-              onClick,
-              onSelectionChange,
-              internalSelected,
-              setInternalSelected,
-              selected,
-              selectable
-            );
+            handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
           }}
           aria-checked={selectable ? internalSelected : undefined}
         >
@@ -227,7 +207,7 @@ const DxcCard = forwardRef(
               <DxcImage {...image} />
             </ImageContainer>
           )}
-          {children && <>{children}</>}
+          {children}
         </Card>
       );
     }
