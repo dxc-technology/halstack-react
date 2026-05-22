@@ -1,4 +1,4 @@
-import { DxcInset, DxcCard, DxcParagraph, DxcContainer } from "@dxc-technology/halstack-react";
+import { DxcInset, DxcCard } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const image = {
@@ -20,8 +20,6 @@ const code = `() => {
 const scope = {
   DxcCard,
   DxcInset,
-  DxcContainer,
-  DxcParagraph,
 };
 
 export default { code, scope };
