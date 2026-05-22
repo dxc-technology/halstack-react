@@ -9,6 +9,8 @@ import selectable from "./examples/selectable";
 import direction from "./examples/direction";
 import modes from "./examples/modes";
 import StatusBadge from "@/common/StatusBadge";
+import empty from "./examples/empty";
+import loading from "./examples/loading";
 
 const LoadingSizeConfig = `{
   width?: string;
@@ -317,6 +319,14 @@ const sections = [
       {
         title: "Direction",
         content: <Example example={direction} defaultIsVisible />,
+      },
+      {
+        title: "Empty state",
+        content: <Example example={empty} defaultIsVisible />,
+      },
+      {
+        title: "Loading state",
+        content: <Example example={loading} defaultIsVisible />,
       },
     ],
   },
