@@ -1,11 +1,6 @@
-name: Publish Next Version
+name: Build and test
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - "packages/lib/**"
+on: pull_request
 
 jobs:
   build:
