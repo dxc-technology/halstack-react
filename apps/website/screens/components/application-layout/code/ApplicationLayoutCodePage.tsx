@@ -122,13 +122,14 @@ const sections = [
         title: "Application layout with components",
         content: (
           <iframe
-            src="https://codesandbox.io/p/sandbox/default-app-layout-s65j9x"
+            src="https://codesandbox.io/embed/default-app-layout-s65j9x?view=split&hidenavigation=1&editorsize=0&fontsize=12&runonclick=1"
             style={{
               width: "100%",
-              minHeight: "500px",
+              aspectRatio: "16/9",
               border: "0",
               borderRadius: "4px",
               overflow: "hidden",
+              zoom: 0.5,
             }}
             title="Application layout with components"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"

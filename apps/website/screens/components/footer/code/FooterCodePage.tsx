@@ -184,8 +184,15 @@ const sections = [
         title: "Footer in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/p/sandbox/default-footer-pf6l2y"
-            style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+            src="https://codesandbox.io/embed/default-footer-pf6l2y?view=split&hidenavigation=1&editorsize=0&fontsize=12&runonclick=1"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zoom: 0.5,
+            }}
             title="Footer in application layout"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
