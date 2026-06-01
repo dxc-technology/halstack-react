@@ -10,6 +10,7 @@ import barChartVariants from "./images/bar_chart_variants.png";
 import Example from "@/common/example/Example";
 import themeBarChart from "./examples/barChart";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import { rechartsGuidelinesSection } from "./rechartsGuidelinesSection";
 
 const sections = [
   {
@@ -322,6 +323,7 @@ const sections = [
       </>
     ),
   },
+  rechartsGuidelinesSection,
 ];
 
 const DataVisualizationPage = () => (

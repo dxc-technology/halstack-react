@@ -44,12 +44,13 @@ type ExamplePropTypes = {
   actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: {
-    scope: Record<string, unknown>;
+    scope?: Record<string, unknown>;
     code: string;
   };
+  onlyCode?: boolean;
 };
 //
-const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes) => {
+const Example = ({ actionsVisible = true, defaultIsVisible = false, example, onlyCode = false }: ExamplePropTypes) => {
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [liveCode, setLiveCode] = useState(example.code);
 
@@ -61,12 +62,14 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   return (
     <DxcFlex direction="column" gap="var(--spacing-gap-m)">
       <LiveProvider code={liveCode} scope={example.scope} theme={theme}>
-        <StyledPreview>
-          <LivePreview />
-          <StyledError>
-            <LiveError />
-          </StyledError>
-        </StyledPreview>
+        {!onlyCode && (
+          <StyledPreview>
+            <LivePreview />
+            <StyledError>
+              <LiveError />
+            </StyledError>
+          </StyledPreview>
+        )}
         {actionsVisible && (
           <DxcFlex gap="var(--spacing-gap-s)" justifyContent="flex-end">
             {isCodeVisible && (
@@ -79,12 +82,14 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
                 }}
               />
             )}
-            <DxcButton
-              icon={isCodeVisible ? "code_off" : "code"}
-              label={isCodeVisible ? "Hide code" : "View code"}
-              mode="tertiary"
-              onClick={handleCodeOnClick}
-            />
+            {!onlyCode && (
+              <DxcButton
+                icon={isCodeVisible ? "code_off" : "code"}
+                label={isCodeVisible ? "Hide code" : "View code"}
+                mode="tertiary"
+                onClick={handleCodeOnClick}
+              />
+            )}
           </DxcFlex>
         )}
         {isCodeVisible && (

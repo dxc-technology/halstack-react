@@ -154,7 +154,7 @@ const sections = [
         title: "Header in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/default-header-qpz6dj?view=split&hidenavigation=1&editorsize=0&fontsize=12&runonclick=1"
+            src="https://codesandbox.io/embed/default-header-qpz6dj?view=split&hidenavigation=1&editorsize=0&fontsize=12"
             style={{
               width: "100%",
               aspectRatio: "16/9",
