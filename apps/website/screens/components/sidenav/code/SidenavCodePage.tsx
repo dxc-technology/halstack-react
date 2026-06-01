@@ -197,21 +197,21 @@ const sections = [
   },
   {
     title: "Examples",
-    // TODO: Update the sandbox link
     subSections: [
       {
         title: "Application layout with sidenav",
         content: (
           <iframe
-            src="https://codesandbox.io/p/sandbox/default-sidenav-cvxr3m"
+            src="https://codesandbox.io/embed/default-sidenav-cvxr3m?view=split&hidenavigation=1&editorsize=0&fontsize=12&runonclick=1"
             style={{
               width: "100%",
-              minHeight: "500px",
+              aspectRatio: "16/9",
               border: "0",
               borderRadius: "4px",
               overflow: "hidden",
+              zoom: 0.5,
             }}
-            title="Application layout with sidenav"
+            title="Sidenav in application layout"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
         ),

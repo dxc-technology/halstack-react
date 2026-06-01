@@ -154,8 +154,15 @@ const sections = [
         title: "Header in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/p/sandbox/default-header-qpz6dj"
-            style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+            src="https://codesandbox.io/embed/default-header-qpz6dj?view=split&hidenavigation=1&editorsize=0&fontsize=12&runonclick=1"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zoom: 0.5,
+            }}
             title="Header in application layout"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
