@@ -49,7 +49,7 @@ type ExamplePropTypes = {
   };
   onlyCode?: boolean;
 };
-//
+
 const Example = ({ actionsVisible = true, defaultIsVisible = false, example, onlyCode = false }: ExamplePropTypes) => {
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [liveCode, setLiveCode] = useState(example.code);
