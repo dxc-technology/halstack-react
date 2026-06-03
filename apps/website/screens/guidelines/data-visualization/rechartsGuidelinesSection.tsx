@@ -1,13 +1,13 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph, DxcLink, DxcTypography } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import Example from "@/common/example/Example";
 import type { SectionType } from "@/common/Section";
 import Code from "@/common/Code";
-import rechartsBarExample from "./examples/rechartsBarExample";
-import rechartsLineExample from "./examples/rechartsLineExample";
-import rechartsAreaExample from "./examples/rechartsAreaExample";
-import rechartsPieExample from "./examples/rechartsPieExample";
-import rechartsHorizontalBarExample from "./examples/rechartsHorizontalBarExample";
+import Image from "@/common/Image";
+import rechartsBarImage from "./images/recharts_bar_chart.png";
+import rechartsAreaImage from "./images/recharts_area_chart.png";
+import rechartsLineImage from "./images/recharts_line_chart.png";
+import rechartsPieImage from "./images/recharts_pie_chart.png";
+import rechartsHorizontalBarImage from "./images/recharts_horizontal_bar_chart.png";
 
 /** Maintainer: set this to the published playground URL (single app with all five wrappers). */
 const CODE_SANDBOX_REFERENCE_APP =
@@ -27,15 +27,10 @@ export const rechartsGuidelinesSection: SectionType = {
         <Code>DxcFlex</Code>, and <Code>DxcContainer</Code>).
       </DxcParagraph>
       <DxcParagraph>
-        <DxcTypography fontWeight="var(--font-weight-bold)">
-          Halstack does not ship chart components today
-        </DxcTypography>
-        . The examples below use a small set of reference wrappers—patterns you can recreate in your own codebase—to
-        cover typical analytics views: vertical bars (including grouped series), lines (with optional brush), filled
-        areas, part-to-whole pies and donuts, and horizontal percentage bars for KPI-style rows.{" "}
-        <DxcTypography fontWeight="var(--font-weight-bold)">
-          They are illustrative, not a versioned API of the design system.
-        </DxcTypography>
+        Halstack does not ship chart components today. The examples below use a small set of reference wrappers—patterns
+        you can recreate in your own codebase—to cover typical analytics views: vertical bars (including grouped
+        series), lines (with optional brush), filled areas, part-to-whole pies and donuts, and horizontal percentage
+        bars for KPI-style rows. They are illustrative, not a versioned API of the design system.
       </DxcParagraph>
       <DxcParagraph>
         Apply the same narrative guidance as the rest of this page (clear baselines, readable labels, sensible color
@@ -109,7 +104,7 @@ export const rechartsGuidelinesSection: SectionType = {
             Compare categories or a few grouped series. Good default for quarterly metrics, counts by region, or
             before/after snapshots.
           </DxcParagraph>
-          <Example example={rechartsBarExample} defaultIsVisible onlyCode />
+          <Image src={rechartsBarImage} alt="Bar chart" />
         </DxcFlex>
       ),
     },
@@ -120,7 +115,7 @@ export const rechartsGuidelinesSection: SectionType = {
           <DxcParagraph>
             Show trends over time or ordered categories. Optional brush helps when the horizontal domain is long.
           </DxcParagraph>
-          <Example example={rechartsLineExample} defaultIsVisible onlyCode />
+          <Image src={rechartsLineImage} alt="Line chart" />
         </DxcFlex>
       ),
     },
@@ -132,7 +127,7 @@ export const rechartsGuidelinesSection: SectionType = {
             Emphasize volume or cumulative change; gradients make stacked or overlapping series easier to read at a
             glance.
           </DxcParagraph>
-          <Example example={rechartsAreaExample} defaultIsVisible onlyCode />
+          <Image src={rechartsAreaImage} alt="Area chart" />
         </DxcFlex>
       ),
     },
@@ -144,19 +139,21 @@ export const rechartsGuidelinesSection: SectionType = {
             Part-to-whole with pie or donut variants. Best for a small number of segments; pair with a table if
             precision matters.
           </DxcParagraph>
-          <Example example={rechartsPieExample} defaultIsVisible onlyCode />
+          {/* <Example example={rechartsPieExample} defaultIsVisible onlyCode /> */}
+          <Image src={rechartsPieImage} alt="Pie chart" />
         </DxcFlex>
       ),
     },
     {
-      title: "Horizontal bar (KPI row)",
+      title: "Horizontal bar",
       content: (
         <DxcFlex direction="column" gap="var(--spacing-gap-l)">
           <DxcParagraph>
             Label + headline value + a 0-100 track—useful for scores, completion, or capability models without a full
             Cartesian chart.
           </DxcParagraph>
-          <Example example={rechartsHorizontalBarExample} defaultIsVisible onlyCode />
+          {/* <Example example={rechartsHorizontalBarExample} defaultIsVisible onlyCode /> */}
+          <Image src={rechartsHorizontalBarImage} alt="Horizontal bar chart" />
         </DxcFlex>
       ),
     },
