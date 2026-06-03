@@ -22,7 +22,7 @@
     "lint": "eslint . --max-warnings 0",
     "prepublishOnly": "node ../../scripts/copy-readme.js",
     "storybook": "storybook dev -p 6006",
-    "test-storybook": "vitest --project=storybook --coverage",
+    "test-storybook": "vitest --project=storybook",
     "test": "jest --env=jsdom --config=./jest.config.ts",
     "test:accessibility": "vitest run --config=vitest.config.accessibility.ts",
     "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch",
@@ -74,9 +74,9 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "4.7.0",
-    "@vitest/browser": "^4.1.0",
-    "@vitest/browser-playwright": "^4.1.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/browser": "^4.1.8",
+    "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/coverage-v8": "^4.1.8",
     "chromatic": "^13.3.0",
     "esbuild-plugin-babel": "^0.2.3",
     "eslint": "^9.39.1",
@@ -98,7 +98,7 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.1.0",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.0",
+    "vitest": "^4.1.8",
     "vitest-axe": "^0.1.0"
   }
 }
