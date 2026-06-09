@@ -99,7 +99,7 @@ export const cloudscapeGuidelinesSection: SectionType = {
         <>
           <DxcParagraph>
             Cloudscape charts use a <strong>default color palette</strong> that is designed to be visually distinct and
-            accessible. However, you can customize the colors to better fit your application's branding, theme or to
+            accessible. However, you can customize the colors to better fit your application's branding, theme, or to
             highlight specific data points.
           </DxcParagraph>
           <DxcParagraph>

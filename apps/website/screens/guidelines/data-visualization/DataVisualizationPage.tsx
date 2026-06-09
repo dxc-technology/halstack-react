@@ -20,7 +20,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           As we consider data visualization a tremendously dense and complex design pattern, we have decided to rely on
-          external libraries. Our choice are{" "}
+          external libraries. Our choices are{" "}
           <Link href="https://cloudscape.design/" passHref legacyBehavior>
             <DxcLink>Cloudscape</DxcLink>
           </Link>{" "}
@@ -32,7 +32,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           Take into consideration that <strong>Cloudscape is a Design System</strong> with its own set of design tokens,
-          including <strong>colors, typography, and spacing</strong>. Recharts, on the other hand, is a{" "}
+          such as <strong>colors, typography, and spacing</strong>. Recharts, on the other hand, is a{" "}
           <strong>charting library</strong> that provides a wide range of <strong>customizable chart types</strong> and
           components that can be tailored to fit your specific needs.
         </DxcParagraph>
