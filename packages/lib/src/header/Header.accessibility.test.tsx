@@ -6,11 +6,13 @@ import { vi } from "vitest";
 import DxcBadge from "../badge/Badge";
 import DxcButton from "../button/Button";
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+global.ResizeObserver = vi.fn(function ResizeObserver() {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
+});
 
 const disabledRules = {
   rules: formatRules(rules),
