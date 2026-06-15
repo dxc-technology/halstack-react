@@ -181,10 +181,28 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Footer in application layout",
+        title: "Default Footer in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/embed/default-footer-pf6l2y?view=split&hidenavigation=1&editorsize=0&fontsize=12&"
+            src="https://codesandbox.io/embed/default-footer-pf6l2y?view=split&hidenavigation=1&editorsize=0&fontsize=12"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zoom: 0.5,
+            }}
+            title="Footer in application layout"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          />
+        ),
+      },
+      {
+        title: "Reduced Footer in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/spnryn?view=split&hidenavigation=1&editorsize=0&fontsize=12"
             style={{
               width: "100%",
               aspectRatio: "16/9",
