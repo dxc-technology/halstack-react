@@ -52,6 +52,14 @@ const code = `() => {
     "--color-secondary-900": "#100b06",
   };
 
+  // Logos configuration
+  const logos = {
+    mainLogo: "https://example.com/main-logo.svg",
+    footerLogo: "https://example.com/footer-logo.svg",
+    footerReducedLogo: "https://example.com/footer-reduced-logo.svg",
+    favicon: "https://example.com/favicon.ico",
+  };
+
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -64,7 +72,7 @@ const code = `() => {
 
   return (
     <HalstackProvider opinionatedTheme={theme === "light" ? 
-    {tokens: lightPalette} : {tokens: darkPalette}}>
+    {tokens: lightPalette, logos: logos} : {tokens: darkPalette, logos: logos}}>
       <DxcButton label="Toggle theme" onClick={toggleTheme} />
     </HalstackProvider>
   );
