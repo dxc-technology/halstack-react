@@ -67,7 +67,6 @@ const componentsExceptions = [
   "/components/application-layout",
   "/components/bleed",
   "/components/bulleted-list",
-  "/components/card",
   "/components/container",
   "/components/dialog",
   "/components/flex",
@@ -124,7 +123,7 @@ const ThemeGeneratorPreviewPage = ({
   const [selectedExample, setSelectedExample] = useState<string>("");
 
   const componentOptions = useMemo(() => {
-    return mapToSelectGroups(componentsList as ComponentItem[]);
+    return mapToSelectGroups(componentsList);
   }, []);
 
   // Set default components when requested and clear on cleanup

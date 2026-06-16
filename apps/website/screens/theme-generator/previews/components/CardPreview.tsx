@@ -39,7 +39,7 @@ const CardPreview = () => {
       <DxcCard onClick={() => {}} image={image} selectable onSelectionChange={() => {}}>
         {paragraphContent}
       </DxcCard>
-      <DxcCard onClick={() => {}} image={image} direction="row" selectable selected>
+      <DxcCard onClick={() => {}} image={image} selectable selected>
         {paragraphContent}
       </DxcCard>
       <DxcCard onClick={() => {}} mode="outlined" image={image}>
