@@ -8,10 +8,10 @@ import {
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import { ReactNode, SVGProps, useMemo, useState, useEffect } from "react";
-import componentsList from "../common/componentsList.json";
+import componentsList from "../../common/componentsList.json";
 import { componentsRegistry, examplesRegistry } from "screens/theme-generator/componentsRegistry";
 import styled from "@emotion/styled";
-import { ComponentItem, Logos } from "./types";
+import { ComponentItem, Logos } from "../types";
 
 // TODO: Both of these types should be exported by @dxc-technology/halstack-react when they are available
 type SVG = ReactNode & SVGProps<SVGSVGElement>;
@@ -109,7 +109,7 @@ const mapToSelectGroups = (data: ComponentItem[]) => {
   }));
 };
 
-const ThemeGeneratorPreviewPage = ({
+const PreviewScreen = ({
   tokens,
   logos,
   showDefaultComponents,
@@ -124,7 +124,7 @@ const ThemeGeneratorPreviewPage = ({
   const [selectedExample, setSelectedExample] = useState<string>("");
 
   const componentOptions = useMemo(() => {
-    return mapToSelectGroups(componentsList as ComponentItem[]);
+    return mapToSelectGroups(componentsList);
   }, []);
 
   // Set default components when requested and clear on cleanup
@@ -297,4 +297,4 @@ const PreviewAreaContainer = styled.div`
   overflow: auto;
 `;
 
-export default ThemeGeneratorPreviewPage;
+export default PreviewScreen;
