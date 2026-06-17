@@ -45,7 +45,7 @@ const brandingDetails = {
   ],
 };
 
-export const BrandingDetails = ({
+const BrandingDetails = ({
   colors,
   onColorsChange,
   logos,
@@ -92,3 +92,5 @@ export const BrandingDetails = ({
     </DxcContainer>
   );
 };
+
+export default BrandingDetails;
