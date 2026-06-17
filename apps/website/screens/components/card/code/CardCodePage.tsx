@@ -57,7 +57,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>defaultSelected</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                defaultSelected
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
