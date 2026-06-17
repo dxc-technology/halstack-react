@@ -46,7 +46,7 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^7.29.7",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
     "@babel/plugin-proposal-optional-chaining": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.16.8",
@@ -74,9 +74,9 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "4.7.0",
-    "@vitest/browser": "^4.1.8",
-    "@vitest/browser-playwright": "^4.1.8",
-    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/browser": "^4.1.9",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9",
     "chromatic": "^13.3.0",
     "esbuild-plugin-babel": "^0.2.3",
     "eslint": "^9.39.1",
@@ -98,7 +98,7 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.1.0",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.8",
+    "vitest": "^4.1.9",
     "vitest-axe": "^0.1.0"
   }
 }
