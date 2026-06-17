@@ -67,7 +67,6 @@ const componentsExceptions = [
   "/components/application-layout",
   "/components/bleed",
   "/components/bulleted-list",
-  "/components/card",
   "/components/container",
   "/components/dialog",
   "/components/flex",
