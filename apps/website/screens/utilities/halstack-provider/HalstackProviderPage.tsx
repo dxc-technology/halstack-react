@@ -120,10 +120,13 @@ const sections = [
           to the Halstack Provider, which wraps our components, through its <Code>opinionatedTheme</Code> property.
         </DxcParagraph>
         <DxcParagraph>
-          Logos defined in the <Code>opinionatedTheme</Code> property of the Halstack Provider are applied globally to
-          the <Code>DxcApplicationLayout</Code> component. However, <Code>DxcApplicationLayout</Code> props take
-          precedence over the provider logos, allowing you to override them on a per-component basis when more specific
-          customization is needed.
+          Logos defined in the <Code>opinionatedTheme</Code> property of the Halstack Provider are applied to any{" "}
+          <Code>DxcApplicationLayout</Code> component within the provider. However,{" "}
+          <Link href={"/components/application-layout"} passHref legacyBehavior>
+            <DxcLink>DxcApplicationLayout</DxcLink>
+          </Link>{" "}
+          props take precedence over the provider logos, allowing you to override them on a per-component basis when
+          more specific customization is needed.
         </DxcParagraph>
         <DxcParagraph>
           Themes can be created with the{" "}
