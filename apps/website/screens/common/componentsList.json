@@ -12,7 +12,7 @@
       {
         "label": "Avatar",
         "path": "/components/avatar",
-        "status": "experimental",
+        "status": "new",
         "icon": "filled_account_circle"
       },
       {

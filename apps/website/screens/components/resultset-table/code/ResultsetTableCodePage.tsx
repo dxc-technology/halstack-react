@@ -199,12 +199,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                virtualizedHeight
-              </DxcFlex>
-            </td>
+            <td>virtualizedHeight</td>
             <td>
               <TableCode>string</TableCode>
             </td>

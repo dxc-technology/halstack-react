@@ -1,7 +1,6 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import StatusBadge from "@/common/StatusBadge";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
 const bottomLinksTypeString = `{
@@ -71,12 +70,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                leftContent
-              </DxcFlex>
-            </td>
+            <td>leftContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -84,12 +78,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                logo
-              </DxcFlex>
-            </td>
+            <td>logo</td>
             <td>
               <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
@@ -119,12 +108,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                rightContent
-              </DxcFlex>
-            </td>
+            <td>rightContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
