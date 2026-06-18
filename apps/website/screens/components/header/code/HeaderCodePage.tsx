@@ -2,7 +2,6 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
-import StatusBadge from "@/common/StatusBadge";
 
 const navItemsTypeString = `(GroupItem | Item)[]`;
 
@@ -48,12 +47,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                appTitle
-              </DxcFlex>
-            </td>
+            <td>appTitle</td>
             <td>
               <TableCode>string</TableCode>
             </td>
@@ -61,12 +55,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                navItems
-              </DxcFlex>
-            </td>
+            <td>navItems</td>
             <td>
               <TableCode>{navItemsTypeString}</TableCode>
             </td>
@@ -92,12 +81,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                responsiveBottomContent
-              </DxcFlex>
-            </td>
+            <td>responsiveBottomContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -108,12 +92,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                searchBar
-              </DxcFlex>
-            </td>
+            <td>searchBar</td>
             <td>
               <ExtendedTableCode>{searchBarTypeString}</ExtendedTableCode>
             </td>
@@ -128,12 +107,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                sideContent
-              </DxcFlex>
-            </td>
+            <td>sideContent</td>
             <td>
               <TableCode>{"React.ReactNode | (isResponsive: boolean) => React.ReactNode"}</TableCode>
             </td>

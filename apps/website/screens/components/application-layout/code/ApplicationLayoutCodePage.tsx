@@ -69,12 +69,7 @@ const ApplicationLayoutPropsTable = () => (
         <td>-</td>
       </tr>
       <tr>
-        <td>
-          <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-            <StatusBadge status="new" />
-            logo
-          </DxcFlex>
-        </td>
+        <td>logo</td>
         <td>
           <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
         </td>
