@@ -15,8 +15,18 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+
+const opinionatedThemeTypeString = `{
+  tokens?: Record<string, string | number>;
+  logos?: {
+    mainLogo?: string;
+    footerLogo?: string;
+    footerReducedLogo?: string;
+    favicon?: string;
+  };
+};`;
 
 const sections = [
   {
@@ -48,7 +58,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>OpinionatedTheme</TableCode>
+              <ExtendedTableCode>{opinionatedThemeTypeString}</ExtendedTableCode>
             </td>
             <td>Object with a given structure, specified below, for defining the opinionated theme.</td>
             <td>-</td>
@@ -105,9 +115,18 @@ const sections = [
         </DxcParagraph>
         <Example example={customThemes} defaultIsVisible />
         <DxcParagraph>
-          We create a <Code>lightPalette</Code> and <Code>darkPalette</Code> objects with as many CSS variables as we
+          We create a <Code>firstPalette</Code> and <Code>secondPalette</Code> objects with as many CSS variables as we
           want and their respective values. Then we pass one of the objects based on the state of the <Code>theme</Code>{" "}
           to the Halstack Provider, which wraps our components, through its <Code>opinionatedTheme</Code> property.
+        </DxcParagraph>
+        <DxcParagraph>
+          Logos defined in the <Code>opinionatedTheme</Code> property of the Halstack Provider are applied to any{" "}
+          <Code>DxcApplicationLayout</Code> component within the provider. However,{" "}
+          <Link href={"/components/application-layout"} passHref legacyBehavior>
+            <DxcLink>DxcApplicationLayout</DxcLink>
+          </Link>{" "}
+          props take precedence over the provider logos, allowing you to override them on a per-component basis when
+          more specific customization is needed.
         </DxcParagraph>
         <DxcParagraph>
           Themes can be created with the{" "}
