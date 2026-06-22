@@ -3,14 +3,14 @@ import resultsetImage from "../images/resultsetTable.png";
 import accordionImage from "../images/accordion.png";
 
 const code = `() => {
-  const resultsetImage = {
+  const resultset = {
     alt: "Resultset Table image",
     width: "300px",
     height: "100%",
     objectFit: "cover",
     src: resultsetImage.src,
   };
-  const accordionImage = {
+  const accordion = {
     alt: "Accordion image",
     width: "300px",
     height: "100%",
@@ -21,7 +21,7 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-m)">
-        <DxcCard image={resultsetImage}>
+        <DxcCard image={resultset}>
           <DxcContainer maxWidth="300px">
             <DxcFlex direction="column" gap="var(--spacing-s)">
               <DxcHeading text="Resultset Table" level={4} />
@@ -32,7 +32,7 @@ const code = `() => {
             </DxcFlex>
           </DxcContainer>
         </DxcCard>
-        <DxcCard image={accordionImage} mode="outlined">
+        <DxcCard image={accordion} mode="outlined">
           <DxcContainer maxWidth="300px">
             <DxcFlex direction="column" gap="var(--spacing-s)">
               <DxcHeading text="Accordion" level={4} />

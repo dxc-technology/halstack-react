@@ -2,7 +2,7 @@ import { DxcInset, DxcCard, DxcParagraph, DxcContainer, DxcFlex, DxcHeading } fr
 import resultsetImage from "../images/resultsetTable.png";
 
 const code = `() => {
-  const resultsetImage = {
+  const resultset = {
     alt: "Resultset Table image",
     width: "100%",
     height: "150px",
@@ -12,7 +12,7 @@ const code = `() => {
 
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcCard image={resultsetImage} direction="horizontal">
+      <DxcCard image={resultset} direction="horizontal">
         <DxcContainer maxWidth="300px">
           <DxcFlex direction="column" gap="var(--spacing-s)">
             <DxcHeading text="Resultset Table" level={4} />
