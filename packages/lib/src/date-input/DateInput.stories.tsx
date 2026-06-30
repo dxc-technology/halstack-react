@@ -10,6 +10,8 @@ import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
+import DxcAccordion from "../accordion/Accordion";
+import DxcSelect from "../select/Select";
 
 export default {
   title: "Date Input",
@@ -29,88 +31,130 @@ export default {
   },
 } satisfies Meta<typeof DxcDateInput>;
 
-const DateInputChromatic = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Year picker" theme="light" level={4} />
-      <DxcContainer height="500px">
-        <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
-      </DxcContainer>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Complete date input" theme="light" level={4} />
-      <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <DxcDateInput
-        label="Disabled date input"
-        helperText="Help message"
-        defaultValue="06-04-2007"
-        clearable
-        disabled
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Read only" theme="light" level={4} />
-      <DxcDateInput label="Example label" helperText="Help message" defaultValue="06-04-2007" clearable readOnly />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Invalid" theme="light" level={4} />
-      <DxcDateInput label="Error date input" error="Error message." placeholder />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Relation between icons" theme="light" level={4} />
-      <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2007" clearable />
-    </ExampleContainer>
-    <Title title="Margins" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall" theme="light" level={4} />
-      <DxcDateInput label="Xxsmall" margin="xxsmall" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall" theme="light" level={4} />
-      <DxcDateInput label="Xsmall" margin="xsmall" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcDateInput label="Small" margin="small" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcDateInput label="Medium" margin="medium" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcDateInput label="Large" margin="large" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcDateInput label="Xlarge" margin="xlarge" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcDateInput label="Xxlarge" margin="xxlarge" />
-    </ExampleContainer>
-    <Title title="Sizes" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Small size" theme="light" level={4} />
-      <DxcDateInput label="Small" size="small" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium size" theme="light" level={4} />
-      <DxcDateInput label="Medium" size="medium" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large size" theme="light" level={4} />
-      <DxcDateInput label="Large" size="large" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="FillParent size" theme="light" level={4} />
-      <DxcDateInput label="FillParent" size="fillParent" />
-    </ExampleContainer>
-  </>
-);
+const DateInputChromatic = () => {
+  const onChange = ({ value }: { value: string; error?: string; date?: Date }) => {
+    console.log("onChange: ", value);
+  };
+  const onBlur = ({ value }: { value: string; error?: string; date?: Date }) => {
+    console.log("onBlur: ", value);
+  };
+
+  const singleOptions = [
+    { label: "Option 01", value: "1" },
+    { label: "Option 02", value: "2" },
+    { label: "Option 03", value: "3" },
+    { label: "Option 04", value: "4" },
+  ];
+
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Year picker" theme="light" level={4} />
+        <DxcContainer height="500px">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("Form submitted");
+            }}
+          >
+            <DxcDateInput
+              label="Date input"
+              defaultValue="06-04-1905"
+              error="Error message"
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+            <DxcAccordion>
+              <DxcAccordion.AccordionItem label="asdasd">asdasd</DxcAccordion.AccordionItem>
+            </DxcAccordion>
+            <ExampleContainer>
+              <Title title="Multiple selection" theme="light" level={4} />
+              <DxcSelect
+                label="Multiple select"
+                searchable
+                options={singleOptions}
+                multiple
+                defaultValue={["1", "2"]}
+              />
+            </ExampleContainer>
+          </form>
+        </DxcContainer>
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Complete date input" theme="light" level={4} />
+        <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Disabled" theme="light" level={4} />
+        <DxcDateInput
+          label="Disabled date input"
+          helperText="Help message"
+          defaultValue="06-04-2007"
+          clearable
+          disabled
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Read only" theme="light" level={4} />
+        <DxcDateInput label="Example label" helperText="Help message" defaultValue="06-04-2007" clearable readOnly />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Invalid" theme="light" level={4} />
+        <DxcDateInput label="Error date input" error="Error message." placeholder />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Relation between icons" theme="light" level={4} />
+        <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2007" clearable />
+      </ExampleContainer>
+      <Title title="Margins" theme="light" level={2} />
+      <ExampleContainer>
+        <Title title="Xxsmall" theme="light" level={4} />
+        <DxcDateInput label="Xxsmall" margin="xxsmall" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Xsmall" theme="light" level={4} />
+        <DxcDateInput label="Xsmall" margin="xsmall" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Small" theme="light" level={4} />
+        <DxcDateInput label="Small" margin="small" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Medium" theme="light" level={4} />
+        <DxcDateInput label="Medium" margin="medium" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Large" theme="light" level={4} />
+        <DxcDateInput label="Large" margin="large" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Xlarge" theme="light" level={4} />
+        <DxcDateInput label="Xlarge" margin="xlarge" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Xxlarge" theme="light" level={4} />
+        <DxcDateInput label="Xxlarge" margin="xxlarge" />
+      </ExampleContainer>
+      <Title title="Sizes" theme="light" level={2} />
+      <ExampleContainer>
+        <Title title="Small size" theme="light" level={4} />
+        <DxcDateInput label="Small" size="small" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Medium size" theme="light" level={4} />
+        <DxcDateInput label="Medium" size="medium" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Large size" theme="light" level={4} />
+        <DxcDateInput label="Large" size="large" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="FillParent size" theme="light" level={4} />
+        <DxcDateInput label="FillParent" size="fillParent" />
+      </ExampleContainer>
+    </>
+  );
+};
 
 const YearPickerComponent = () => (
   <ExampleContainer expanded>

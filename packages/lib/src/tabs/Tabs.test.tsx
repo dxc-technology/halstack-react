@@ -331,4 +331,29 @@ describe("Tabs component tests", () => {
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
   });
+  test("Tabs should not trigger onSubmit inside a form", () => {
+    const onSubmit = jest.fn();
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getAllByRole } = render(
+      <form onSubmit={onSubmit}>
+        <DxcTabs>
+          <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} defaultActive>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
+            <></>
+          </DxcTabs.Tab>
+          <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+            <></>
+          </DxcTabs.Tab>
+        </DxcTabs>
+      </form>
+    );
+    const tabs = getAllByRole("tab");
+    if (tabs[0]) {
+      fireEvent.click(tabs[0]);
+    }
+    expect(onTabClick[0]).toHaveBeenCalled();
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 });

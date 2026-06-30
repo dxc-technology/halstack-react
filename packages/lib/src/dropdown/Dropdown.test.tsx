@@ -411,4 +411,15 @@ describe("Dropdown component tests", () => {
     });
     expect(queryByRole("menu")).toBeFalsy();
   });
+  test("Dropdown does not trigger form submission when inside a form", () => {
+    const onSubmit = jest.fn();
+    const { getByRole } = render(
+      <form onSubmit={onSubmit}>
+        <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={() => {}} />
+      </form>
+    );
+    const dropdown = getByRole("button");
+    userEvent.click(dropdown);
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 });

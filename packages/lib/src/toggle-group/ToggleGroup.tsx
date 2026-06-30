@@ -120,6 +120,7 @@ export default function DxcToggleGroup({
               onlyIcon={!option.label && !!option.icon}
               selected={selected}
               tabIndex={!option.disabled ? tabIndex : -1}
+              type="button"
             >
               {option.icon && (
                 <IconContainer>
