@@ -160,4 +160,21 @@ describe("Toggle group component tests", () => {
     fireEvent.click(getByRole("button", { name: "Ebay" }));
     expect(handleChange).toHaveBeenCalledWith([1, 2]);
   });
+
+  test("Togglegroup should not trigger onSubmit when inside a form", () => {
+    const handleSubmit = jest.fn();
+    const handleChange = jest.fn();
+    const options = [
+      { value: 1, label: "Amazon" },
+      { value: 2, label: "Ebay" },
+    ];
+    const { getByRole } = render(
+      <form onSubmit={handleSubmit}>
+        <DxcToggleGroup options={options} value={[1]} multiple onChange={handleChange} />
+      </form>
+    );
+    fireEvent.click(getByRole("button", { name: "Ebay" }));
+    expect(handleChange).toHaveBeenCalledWith([1, 2]);
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
 });
