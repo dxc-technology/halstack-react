@@ -208,6 +208,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
               disabled={!scrollLeftEnabled}
               onClick={scrollLeft}
               tabIndex={scrollLeftEnabled ? tabIndex : -1}
+              type="button"
             >
               <DxcIcon icon="keyboard_arrow_left" />
             </ScrollIndicatorButton>
@@ -229,6 +230,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
               disabled={!scrollRightEnabled}
               onClick={scrollRight}
               tabIndex={scrollRightEnabled ? tabIndex : -1}
+              type="button"
             >
               <DxcIcon icon="keyboard_arrow_right" />
             </ScrollIndicatorButton>

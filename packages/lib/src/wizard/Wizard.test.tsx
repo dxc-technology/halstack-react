@@ -140,4 +140,25 @@ describe("Wizard components tests", () => {
     expect(onClick).toHaveBeenNthCalledWith(1, 1);
     expect(onClick).toHaveBeenNthCalledWith(2, 0);
   });
+
+  test("Wizard should not trigger onSubmit when inside a form", () => {
+    const onSubmit = jest.fn();
+    const { getByText } = render(
+      <form onSubmit={onSubmit}>
+        <DxcWizard
+          steps={[
+            {
+              label: "first-step",
+            },
+            {
+              label: "second-step",
+            },
+          ]}
+        />
+      </form>
+    );
+    const step = getByText("second-step");
+    fireEvent.click(step);
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 });

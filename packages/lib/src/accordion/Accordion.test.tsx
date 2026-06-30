@@ -131,4 +131,18 @@ describe("Accordion component tests", () => {
     fireEvent.click(getByText("Accordion"));
     expect(onChange).not.toHaveBeenCalled();
   });
+  test("Accordion does not trigger onSubmit when inside a form", () => {
+    const onSubmit = jest.fn();
+    const { getByText } = render(
+      <form onSubmit={onSubmit}>
+        <DxcAccordion>
+          <DxcAccordion.AccordionItem label="Accordion">
+            <div>test-expanded</div>
+          </DxcAccordion.AccordionItem>
+        </DxcAccordion>
+      </form>
+    );
+    fireEvent.click(getByText("Accordion"));
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 });
