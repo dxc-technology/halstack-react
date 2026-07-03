@@ -27,6 +27,7 @@ export { default as DxcHeading } from "./heading/Heading";
 export { default as DxcImage } from "./image/Image";
 export { default as DxcInset } from "./inset/Inset";
 export { default as DxcLink } from "./link/Link";
+export { default as DxcMessageInput } from "./message-input/MessageInput";
 export { default as DxcNavTabs } from "./nav-tabs/NavTabs";
 export { default as DxcNumberInput } from "./number-input/NumberInput";
 export { default as DxcPaginator } from "./paginator/Paginator";
