@@ -174,6 +174,7 @@ const AccordionItem = ({
         tabIndex={disabled ? -1 : tabIndex}
         aria-expanded={isItemExpanded}
         aria-controls={`accordion-panel-${id}`}
+        type="button"
       >
         <DxcContainer width="100%" height="100%">
           <DxcFlex gap="var(--spacing-gap-l)">

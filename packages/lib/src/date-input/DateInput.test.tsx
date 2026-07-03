@@ -497,4 +497,20 @@ describe("DateInput component tests", () => {
     userEvent.click(calendarAction);
     expect(getByText("October 2080")).toBeTruthy();
   });
+  test("Form onSubmit is not called when interacting with the calendar and pressing enter", () => {
+    const onSubmit = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <form onSubmit={onSubmit}>
+        <DxcDateInput label="Default label" format="dd-mm-yy" defaultValue="21-10-80" />
+      </form>
+    );
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+    const day1 = getAllByText("1")[0];
+    if (day1 != null) {
+      userEvent.click(day1);
+    }
+    userEvent.type(calendarAction, "{enter}");
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 });
