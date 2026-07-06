@@ -10,6 +10,7 @@ import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Date Input",
@@ -34,7 +35,9 @@ const DateInputChromatic = () => (
     <ExampleContainer>
       <Title title="Year picker" theme="light" level={4} />
       <DxcContainer height="500px">
-        <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
+        <HalstackProvider locale="de-DE">
+          <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
+        </HalstackProvider>
       </DxcContainer>
     </ExampleContainer>
     <ExampleContainer>

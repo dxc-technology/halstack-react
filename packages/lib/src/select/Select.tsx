@@ -220,7 +220,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
     const width = useWidth(selectRef);
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
     const filteredOptions = useMemo(

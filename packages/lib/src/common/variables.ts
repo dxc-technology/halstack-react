@@ -140,6 +140,11 @@ export const defaultTranslatedComponentLabels = {
 
 export type TranslatedLabels = typeof defaultTranslatedComponentLabels;
 
+export type LocalizedContext = {
+  labels: TranslatedLabels;
+  locale?: string;
+};
+
 export const defaultThemedLogos = {
   mainLogo: undefined,
   footerLogo: undefined,

@@ -93,7 +93,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef<HTMLSpanElement | null>(null);
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
     const { partial } = useContext(CheckboxContext) ?? {};
 
     const handleOnChange = () => {

@@ -130,7 +130,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     ref
   ) => {
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     const handleOnChange = () => {
       if (checked == null) setInnerChecked((currentInnerChecked) => !currentInnerChecked);
