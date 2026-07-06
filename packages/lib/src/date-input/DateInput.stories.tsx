@@ -35,9 +35,7 @@ const DateInputChromatic = () => (
     <ExampleContainer>
       <Title title="Year picker" theme="light" level={4} />
       <DxcContainer height="500px">
-        <HalstackProvider locale="de-DE">
-          <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
-        </HalstackProvider>
+        <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
       </DxcContainer>
     </ExampleContainer>
     <ExampleContainer>
@@ -158,6 +156,12 @@ const DatePickerButtonStates = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Isolated calendar actived" theme="light" level={4} />
       <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Isolated calendar with locale" theme="light" level={4} />
+      <HalstackProvider localeTag="en-US">
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

@@ -500,7 +500,7 @@ describe("DateInput component tests", () => {
   });
   test("German locale date input", () => {
     const { getByRole, getByText } = render(
-      <HalstackProvider locale="de-DE">
+      <HalstackProvider localeTag="de-DE">
         <DxcDateInput label="Date input label" defaultValue="03.12.1995" />
       </HalstackProvider>
     );
