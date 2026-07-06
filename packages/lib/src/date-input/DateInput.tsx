@@ -132,7 +132,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
     const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
+    const translatedLabels = languageContext.labels;
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
