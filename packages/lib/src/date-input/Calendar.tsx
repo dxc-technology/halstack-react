@@ -105,7 +105,6 @@ const Calendar = ({
   const languageContext = useContext(HalstackLanguageContext);
   const translatedLabels = languageContext.labels;
   const locale = new Intl.Locale(languageContext.locale ? languageContext.locale : navigator.language);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   const firstDayOfWeek = (locale ? (locale.getWeekInfo?.()?.firstDay ?? 1) : 1) % 7;
   const dayCells = useMemo(() => getCalendarDays(innerDate, firstDayOfWeek), [innerDate, firstDayOfWeek]);
 
