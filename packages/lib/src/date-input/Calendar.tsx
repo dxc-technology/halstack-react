@@ -248,6 +248,7 @@ const Calendar = ({
                   today.get("month") === date.month &&
                   today.get("year") === innerDate.get("year")
                 }
+                type="button"
               >
                 {date.day}
               </DayCellButton>

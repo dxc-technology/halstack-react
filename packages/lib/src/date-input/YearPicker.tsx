@@ -109,6 +109,7 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
             onYearSelect(year);
           }}
           role="option"
+          type="button"
         >
           {year}
         </YearPickerButton>
