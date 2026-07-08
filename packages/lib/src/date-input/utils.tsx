@@ -10,10 +10,8 @@ export const validateLocale = (locale: string): boolean => {
   let valid = false;
   try {
     Intl.DateTimeFormat.supportedLocalesOf(locale);
-    console.log("Locale is valid:", locale);
     valid = true;
   } catch {
-    console.log("Locale is invalid:", locale);
     valid = false;
   }
   return valid;
