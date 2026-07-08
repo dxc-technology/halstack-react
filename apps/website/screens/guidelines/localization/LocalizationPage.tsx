@@ -5,7 +5,8 @@ import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import { DxcHeading, DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import translations from "./examples/translations";
+import translationsExample from "./examples/translations";
+import localizationExample from "./examples/localization";
 
 const sections = [
   {
@@ -30,7 +31,7 @@ const sections = [
   },
   {
     title: "Translation example",
-    content: <Example example={translations} defaultIsVisible />,
+    content: <Example example={translationsExample} defaultIsVisible />,
   },
   {
     title: "Default labels",
@@ -759,6 +760,21 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Localization",
+    content: (
+      <>
+        <DxcParagraph>
+          It is also possible to localize some components making use of <Code>localeTag</Code> to define the language
+          and region of the component.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
+    title: "Localization example",
+    content: <Example example={localizationExample} defaultIsVisible />,
   },
 ];
 

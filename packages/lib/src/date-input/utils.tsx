@@ -6,6 +6,19 @@ const INVIS_CHARS = /[\u200E\u200F\u061C]/g;
 
 export const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
 
+export const validateLocale = (locale: string): boolean => {
+  let valid = false;
+  try {
+    Intl.DateTimeFormat.supportedLocalesOf(locale);
+    console.log("Locale is valid:", locale);
+    valid = true;
+  } catch {
+    console.log("Locale is invalid:", locale);
+    valid = false;
+  }
+  return valid;
+};
+
 export const getDate = (
   value: string,
   format: string,

@@ -3,7 +3,7 @@ import { useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, F
 import styled from "@emotion/styled";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { divideDaysIntoWeeks, getCalendarDays, getDateToFocus, isDaySelected } from "./utils";
+import { divideDaysIntoWeeks, getCalendarDays, getDateToFocus, isDaySelected, validateLocale } from "./utils";
 
 const CalendarContainer = styled.div`
   box-sizing: border-box;
@@ -103,8 +103,9 @@ const Calendar = ({
   const [isFocusable, setIsFocusable] = useState(false);
   const id = useId();
   const languageContext = useContext(HalstackLanguageContext);
-  const translatedLabels = languageContext.labels;
-  const locale = new Intl.Locale(languageContext.locale ? languageContext.locale : navigator.language);
+  const translatedLabels = languageContext?.labels;
+  const localeTag = languageContext?.locale || navigator.language;
+  const locale = new Intl.Locale(validateLocale(localeTag) ? localeTag : "en");
   const firstDayOfWeek = (locale ? (locale.getWeekInfo?.()?.firstDay ?? 1) : 1) % 7;
   const dayCells = useMemo(() => getCalendarDays(innerDate, firstDayOfWeek), [innerDate, firstDayOfWeek]);
 
