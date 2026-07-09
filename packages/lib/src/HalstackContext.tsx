@@ -2,7 +2,12 @@ import { createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
-import { defaultThemedLogos, TranslatedLabels, defaultTranslatedComponentLabels } from "./common/variables";
+import {
+  defaultThemedLogos,
+  TranslatedLabels,
+  defaultTranslatedComponentLabels,
+  LocalizedContext,
+} from "./common/variables";
 
 /**
  * This type is used to allow labels objects to be passed to the HalstackProvider.
@@ -11,7 +16,7 @@ import { defaultThemedLogos, TranslatedLabels, defaultTranslatedComponentLabels 
 export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
-const HalstackLanguageContext = createContext<TranslatedLabels>(defaultTranslatedComponentLabels);
+const HalstackLanguageContext = createContext<LocalizedContext>({ labels: defaultTranslatedComponentLabels });
 const HalstackLogosContext = createContext<Record<string, string | undefined>>(defaultThemedLogos);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
@@ -30,12 +35,14 @@ const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels =>
   });
   return parsedLabels;
 };
+
 type ThemeType = { tokens?: Record<string, string | number>; logos?: Record<string, string | undefined> };
 
 type HalstackProviderPropsType = {
   labels?: DeepPartial<TranslatedLabels>;
   children: ReactNode;
   opinionatedTheme?: ThemeType;
+  localeTag?: string;
 };
 
 const HalstackThemed = styled.div<{ coreTheme?: ThemeType["tokens"] }>`
@@ -69,7 +76,12 @@ const createCoreTheme = (opinionatedTheme: ThemeType["tokens"] | undefined = {})
   return newTheme;
 };
 
-const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProviderPropsType): JSX.Element => {
+const HalstackProvider = ({
+  labels,
+  children,
+  opinionatedTheme,
+  localeTag,
+}: HalstackProviderPropsType): JSX.Element => {
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : null), [labels]);
   const parsedCoreTheme = useMemo(() => {
     const theme = createCoreTheme(opinionatedTheme?.tokens);
@@ -79,8 +91,12 @@ const HalstackProvider = ({ labels, children, opinionatedTheme }: HalstackProvid
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
       <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? defaultThemedLogos}>
-        {parsedLabels ? (
-          <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
+        {parsedLabels || localeTag ? (
+          <HalstackLanguageContext.Provider
+            value={{ labels: parsedLabels ?? defaultTranslatedComponentLabels, locale: localeTag }}
+          >
+            {children}
+          </HalstackLanguageContext.Provider>
         ) : (
           children
         )}

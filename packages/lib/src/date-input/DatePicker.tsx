@@ -84,7 +84,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);

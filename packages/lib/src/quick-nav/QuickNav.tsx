@@ -60,7 +60,7 @@ const Link = styled.a`
 `;
 
 export default function DxcQuickNav({ links, title }: QuickNavTypes) {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const isHashRouter = (): boolean => {
     if (typeof window === "undefined") return false;
     return window.location.href.includes("/#/");

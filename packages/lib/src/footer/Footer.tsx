@@ -215,7 +215,7 @@ const DxcFooter = ({
   socialLinks,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const themedLogos = useContext(HalstackLogosContext);
 
   const footerLogo = useMemo(() => {

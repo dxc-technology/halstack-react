@@ -133,7 +133,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
     const fileInputId = `file-input-${useId()}`;
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     const checkFileSize = (file: File) => {
       if (minSize && file.size < minSize) {

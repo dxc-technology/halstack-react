@@ -105,7 +105,7 @@ const DxcAlert = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));

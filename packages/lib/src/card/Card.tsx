@@ -112,7 +112,7 @@ const DxcCard = forwardRef(
     const [internalSelected, setInternalSelected] = useState(
       selected !== undefined ? selected : defaultSelected || false
     );
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     useEffect(() => {
       if (selected !== undefined) {
