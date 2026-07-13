@@ -7,6 +7,7 @@ import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/common/disabledRules";
 import DxcContainer from "../container/Container";
 import { userEvent, within } from "storybook/internal/test";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Time Input",
@@ -99,6 +100,23 @@ const TimeInput = () => {
       <ExampleContainer pseudoState={"pseudo-active"}>
         <Title title="Active" theme="light" level={2} />
         <TimeInputExamples />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Localized time input" theme="light" level={3} />
+        <HalstackProvider localeTag="fi-FI">
+          <DxcTimeInput label="Finnish locale" helperText="Helper text" defaultValue={continentalValue} showSeconds />
+        </HalstackProvider>
+        <HalstackProvider localeTag="en-US">
+          <DxcTimeInput label="US locale" helperText="Helper text" defaultValue={value} showSeconds />
+        </HalstackProvider>
+        <HalstackProvider localeTag="zh-TW">
+          <DxcTimeInput
+            label="Taiwanese locale"
+            helperText="Helper text"
+            onChange={(val) => console.log(val)}
+            showSeconds
+          />
+        </HalstackProvider>
       </ExampleContainer>
     </>
   );

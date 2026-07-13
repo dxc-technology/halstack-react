@@ -95,6 +95,9 @@ export const handleKeyDown = (
     const isAM = /[aA]/.test(event.key);
     newValue = isAM ? 0 : 1;
     rawInput.current = newValue.toString();
+    if (typeof onComplete === "function") {
+      onComplete();
+    }
   }
   setInnerValue((prevValue) => {
     return prevValue !== newValue ? newValue : prevValue;
@@ -120,14 +123,21 @@ export const generateEventValue = (
   second: number | undefined,
   dayPeriod: number | undefined,
   showSeconds: boolean | undefined,
-  timeFormat: "12" | "24" | undefined
+  timeFormat: "12" | "24" | undefined,
+  separator: string,
+  timePeriodPosition: "before" | "after"
 ) => {
   if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
     return "";
   }
-  return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
-    timeFormat === "12" ? ` ${returnDayPeriod(dayPeriod)}` : ""
-  }`;
+  // consider dayperiod position for 12-hour format otherwise ignore it
+  if (timeFormat === "12" && timePeriodPosition === "before") {
+    return `${returnDayPeriod(dayPeriod)} ${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
+  } else if (timeFormat === "12" && timePeriodPosition === "after") {
+    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""} ${returnDayPeriod(dayPeriod)}`;
+  } else {
+    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
+  }
 };
 
 export const handleColumnKeyDown = (
@@ -171,4 +181,39 @@ export const handleColumnKeyDown = (
       onSelect(focusedValue);
     }
   }
+};
+
+export const getTimeInputLocale = (
+  locale?: string
+): { separator: string; format: "12" | "24"; dayPeriodPosition: "before" | "after" } => {
+  if (!locale) {
+    return {
+      separator: ":",
+      format: "12",
+      dayPeriodPosition: "after",
+    };
+  }
+  const naturalCycle = new Intl.DateTimeFormat(locale, { hour: "2-digit" }).resolvedOptions().hourCycle;
+  const hourCycle: "h12" | "h23" = naturalCycle === "h23" || naturalCycle === "h24" ? "h23" : "h12";
+
+  const formatter = new Intl.DateTimeFormat(locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle,
+  });
+  const parts = formatter.formatToParts(new Date(1995, 11, 3, 1, 0, 0));
+  const dayPeriodPosition = parts[0]?.type === "dayPeriod" ? "before" : "after";
+  const format = hourCycle === "h23" ? "24" : "12";
+  // get all parts that are "literal" and use the first one or the last one depending on the dayPeriodPosition to determine the separator
+  const separatorParts = parts.filter((part) => part.type === "literal");
+  const separator =
+    format === "24" || dayPeriodPosition === "after"
+      ? separatorParts[0]?.value || ":"
+      : separatorParts[separatorParts.length - 1]?.value || ":";
+  return {
+    separator,
+    format,
+    dayPeriodPosition,
+  };
 };
