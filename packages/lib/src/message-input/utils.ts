@@ -1,5 +1,4 @@
-import TextInputPropsType from "./types";
-
+import MessageInputPropsType from "./types";
 import { css } from "@emotion/react";
 
 export const makeCancelable = (promise: Promise<string[]>) => {
@@ -34,15 +33,15 @@ export const makeCancelable = (promise: Promise<string[]>) => {
 
 export const isLengthIncorrect = (
   value: string,
-  minLength: TextInputPropsType["minLength"],
-  maxLength: TextInputPropsType["maxLength"]
+  minLength: MessageInputPropsType["minLength"],
+  maxLength: MessageInputPropsType["maxLength"]
 ) =>
   value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
 
 export const isNumberIncorrect = (
   value: number,
-  minNumber: TextInputPropsType["minLength"],
-  maxNumber: TextInputPropsType["maxLength"]
+  minNumber: MessageInputPropsType["minLength"],
+  maxNumber: MessageInputPropsType["maxLength"]
 ) => (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
 
 export const transformSpecialChars = (str: string) => {
@@ -60,7 +59,7 @@ export const transformSpecialChars = (str: string) => {
   return value;
 };
 
-export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focused: boolean) => css`
+export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lightest)` : `transparent`};
 
   border-radius: var(--border-radius-l);
@@ -75,21 +74,22 @@ export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean,
   ${!disabled
     ? `
       &:hover {
-        border-color: ${
-          error ? "var(--border-color-error-strong)" : !focused ? "var(--border-color-primary-strong)" : "transparent"
-        };
+        border-color: ${error ? "var(--border-color-error-strong)" : "var(--border-color-primary-strong)"};
       }
 
-      ${
-        focused
-          ? `
-          border-color: transparent;
-          outline-offset: -2px;
-          outline: var(--border-width-m) var(--border-style-default)
-            var(--border-color-secondary-medium);
-        `
-          : ""
+      &:focus {
+        outline-offset: -2px;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        border-color: transparent;
       }
     `
     : "cursor: not-allowed;"};
+
+  ${focus && !disabled
+    ? `
+      outline-offset: -2px;
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      border-color: transparent;
+    `
+    : ""};
 `;

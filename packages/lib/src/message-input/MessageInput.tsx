@@ -9,6 +9,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
+import ModelSelect from "./ModelSelect";
 
 const sizes = {
   small: "240px",
@@ -30,7 +31,7 @@ const MessageInputContainer = styled.div<{ size: PromptInputPropsType["size"] }>
 const MessageInput = styled.div<{
   disabled: Required<PromptInputPropsType>["disabled"];
   error: boolean;
-  focused: boolean;
+  focus: boolean;
 }>`
   position: relative;
   display: flex;
@@ -39,7 +40,7 @@ const MessageInput = styled.div<{
   gap: var(--spacing-gap-s);
   height: 100%;
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
-  ${({ disabled, error, focused }) => inputStylesByStatePromptInput(disabled, error, focused)}
+  ${({ disabled, error, focus }) => inputStylesByStatePromptInput(disabled, error, focus)}
   overflow: hidden;
 `;
 
@@ -75,6 +76,7 @@ const HelperText = styled.span<{ disabled: boolean; hasMargin?: boolean }>`
 
 const DxcMessageInput = ({
   allowFileUploads = false,
+  bottomOptions,
   defaultValue = "",
   disabled = false,
   error,
@@ -89,8 +91,7 @@ const DxcMessageInput = ({
   onSubmit,
   size = "medium",
   topItems,
-  onTopItemsChange,
-  bottomActions = [],
+  callbackItems,
   stop,
 }: PromptInputPropsType) => {
   const inputId = `input-${useId()}`;
@@ -100,8 +101,8 @@ const DxcMessageInput = ({
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [innerTopItems, setInnerTopItems] = useState<Item[]>([]);
+  const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const changeValue = (newValue: string) => {
     if (value == null) {
@@ -138,10 +139,11 @@ const DxcMessageInput = ({
   };
 
   const handleInputOnFocus = () => {
-    setIsInputFocused(true);
+    setIsFocused(true);
   };
+
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
-    setIsInputFocused(false);
+    setIsFocused(false);
     if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
       onBlur?.({
         value: event.target.value,
@@ -168,7 +170,7 @@ const DxcMessageInput = ({
     if (topItems == null) {
       setInnerTopItems(newItems);
     }
-    onTopItemsChange?.(newItems);
+    callbackItems?.(newItems);
   };
 
   const removeItem = (label: string) => {
@@ -177,7 +179,7 @@ const DxcMessageInput = ({
     if (topItems == null) {
       setInnerTopItems(filteredItems);
     }
-    onTopItemsChange?.(filteredItems);
+    callbackItems?.(filteredItems);
   };
 
   const handleFilesChosen = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -233,42 +235,42 @@ const DxcMessageInput = ({
       <MessageInput
         disabled={disabled}
         error={!!error}
-        focused={isInputFocused}
+        focus={isFocused}
         onClick={handleInputContainerOnClick}
         onMouseDown={handleInputContainerOnMouseDown}
         ref={inputContainerRef}
       >
         {allowFileUploads && (
-          <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
-            <DxcDropdown
-              icon="add"
-              options={[{ label: "Attach documents", value: "fileorphoto" }]}
-              onSelectOption={handleFileSelect}
-            />
-            <input ref={fileInputRef} type="file" hidden multiple onChange={handleFilesChosen} />
-            <DxcContainer overflow={{ x: "auto" }} width="100%">
-              <DxcFlex gap="var(--spacing-gap-xs)">
-                {(topItems ?? innerTopItems)?.map((item) => (
-                  <DxcChip
-                    label={item.label}
-                    mode="dismissible"
-                    prefix={item.prefixIcon}
-                    onClick={() => removeItem(item.label)}
-                    key={item.id}
-                  />
-                ))}
-              </DxcFlex>
-            </DxcContainer>
-          </DxcFlex>
+          <DxcContainer overflow={{ x: "auto" }} width="100%">
+            <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
+              <DxcDropdown
+                options={[{ label: "Attach documents", value: "fileorphoto" }]}
+                onSelectOption={handleFileSelect}
+                icon="add"
+                disabled={disabled}
+                caretHidden
+              />
+              <input ref={fileInputRef} type="file" hidden multiple onChange={handleFilesChosen} />
+              {(topItems ?? innerTopItems)?.map((item) => (
+                <DxcChip
+                  label={item.label}
+                  mode="dismissible"
+                  prefix="file"
+                  onClick={() => removeItem(item.label)}
+                  key={item.id}
+                />
+              ))}
+            </DxcFlex>
+          </DxcContainer>
         )}
         <Input
           aria-errormessage={error ? errorId : undefined}
           aria-invalid={!!error}
-          disabled={disabled}
+          disabled={isLoading === true || disabled}
           id={inputId}
           onBlur={handleInputOnBlur}
-          onFocus={handleInputOnFocus}
           onChange={handleInputOnChange}
+          onFocus={handleInputOnFocus}
           onKeyDown={handleInputOnKeyDown}
           onMouseDown={(event) => {
             event.stopPropagation();
@@ -279,34 +281,18 @@ const DxcMessageInput = ({
           minLength={minLength}
           value={value ?? innerValue}
         />
-        {/* TODO: Replace with space-between if there is dropdown */}
-        <DxcFlex justifyContent="flex-end" alignItems="center">
-          {/* <DxcDropdown
-            label="Select a model"
-            options={[{ label: "AA 2.0", value: "aa2.0" }]}
-            onSelectOption={() => {}}
-          /> */}
-          {/* <DxcSelect options={[{ label: "AA 2.0", value: "aa2.0" }]} defaultValue="aa2.0" size="small" /> */}
-          {/* TODO: Add model selection dropdown */}
+        <DxcFlex justifyContent={bottomOptions ? "space-between" : "flex-end"} alignItems="center">
+          {bottomOptions && <ModelSelect options={bottomOptions} disabled={disabled} />}
+
           <DxcFlex gap="var(--spacing-gap-xs)">
-            {bottomActions.map((action) => (
-              <DxcButton
-                icon={action.icon}
-                size={{ height: "medium" }}
-                disabled={disabled}
-                onClick={action.onClick}
-                title={!disabled ? (action.title ?? undefined) : undefined}
-                mode="tertiary"
-                key={action.id}
-              />
-            ))}
+            <DxcButton icon="mic" size={{ height: "medium" }} mode="tertiary" disabled={disabled} />
+
             <DxcButton
               icon={!isLoading ? "send" : "filled_stop"}
               size={{ height: "medium" }}
               disabled={disabled}
               onClick={!isLoading ? handleSubmit : stop}
               title={!isLoading ? "Submit" : "Stop"}
-              mode="primary"
             />
           </DxcFlex>
         </DxcFlex>

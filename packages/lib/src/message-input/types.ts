@@ -1,27 +1,4 @@
-import { CSSProperties, ReactNode, SVGProps } from "react";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
-
-type Action = {
-  /**
-   * Unique identifier of the action.
-   */
-  id: string;
-  /**
-   * This function will be called when the user clicks on the button.
-   */
-  onClick: () => void;
-  /**
-   * Icon to be placed in the action.
-   */
-  icon: string | SVG;
-  /**
-   * Text representing advisory information related
-   * to the button's action. Under the hood, this prop also serves
-   * as an accessible label for the component.
-   */
-  title?: string;
-};
+import { CSSProperties, ReactNode } from "react";
 
 export type Item = {
   /**
@@ -38,29 +15,18 @@ export type Item = {
    * The chip label.
    */
   label: string;
-  /**
-   * Icon to be placed in the suffix of the Chip.
-   */
-  suffixIcon?: string | SVG;
-  /**
-   * Icon to be placed in the prefix of the Chip.
-   */
-  prefixIcon?: string | SVG;
-  // /**
-  //  * This function will be called when the user clicks on the suffix.
-  //  */
-  // onClickSuffix?: () => void;
-  // /**
-  //  * This function will be called when the user clicks on the prefix.
-  //  */
-  // onClickPrefix?: () => void;
-  /**
-   * If true, the chip will be disabled.
-   */
-  disabled?: boolean;
 };
 
 type Props = {
+  /**
+   * Options to be shown on the dropdown under the input.
+   */
+  bottomOptions?: {
+    label?: string;
+    icon?: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
+    value: string;
+    onSelect: () => void;
+  }[];
   /**
    * Initial value of the input, only when it is uncontrolled.
    */
@@ -101,11 +67,7 @@ type Props = {
   /**
    * This function will be called when the selection of top items changes.
    */
-  onTopItemsChange?: (items: Item[]) => void;
-  /**
-   * Actions to be shown at the bottom, next to the submit button.
-   */
-  bottomActions?: Action[];
+  callbackItems?: (items: Item[]) => void;
   /**
    * Specifies the minimum length allowed by the input.
    * This will be checked both when the input element loses the
@@ -195,6 +157,16 @@ export type AutosuggestWrapperProps = {
   condition: boolean;
   wrapper: (children: ReactNode) => JSX.Element;
   children: ReactNode;
+};
+
+export type BottomSelectProps = {
+  options: {
+    label?: string;
+    icon?: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
+    value: string;
+    onSelect: () => void;
+  }[];
+  disabled?: boolean;
 };
 
 export default Props;
