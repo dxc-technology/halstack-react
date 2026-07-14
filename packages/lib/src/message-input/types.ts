@@ -111,13 +111,32 @@ type Props = {
    */
   allowFileUploads?: boolean;
   /**
+   * If true, the voice recording button will be shown.
+   */
+  allowVoiceInput?: boolean;
+  /**
    * If true, it indicates that a request is being processed after the user submits a query.
    */
   isLoading?: boolean;
   /**
    * This function will be called to stop the current action.
    */
-  stop?: () => void;
+  onStop?: () => void;
+  /**
+   * If true, the voice recording is active. Use this prop to control the recording state externally.
+   * If undefined, the component will manage the recording state internally.
+   */
+  isRecording?: boolean;
+  /**
+   * This function will be called when the recording state changes (starts or stops).
+   * Only used when isRecording prop is controlled.
+   */
+  onRecordingChange?: (isRecording: boolean) => void;
+  /**
+   * This function will be called with the transcript text as the user speaks.
+   * If provided, the transcript won't be automatically added to the input value.
+   */
+  onTranscript?: (transcript: string) => void;
 };
 
 /**

@@ -1,4 +1,14 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent, MouseEvent, useContext, useId, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import styled from "@emotion/styled";
 import PromptInputPropsType, { Item } from "./types";
 import { inputStylesByStatePromptInput, isLengthIncorrect } from "./utils";
@@ -10,6 +20,7 @@ import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import ModelSelect from "./ModelSelect";
+import { useVoiceTranscription } from "./useVoiceTranscription";
 
 const sizes = {
   small: "240px",
@@ -76,6 +87,7 @@ const HelperText = styled.span<{ disabled: boolean; hasMargin?: boolean }>`
 
 const DxcMessageInput = ({
   allowFileUploads = false,
+  allowVoiceInput = false,
   bottomOptions,
   defaultValue = "",
   disabled = false,
@@ -92,7 +104,10 @@ const DxcMessageInput = ({
   size = "medium",
   topItems,
   callbackItems,
-  stop,
+  onStop,
+  isRecording: isRecordingProp,
+  onRecordingChange,
+  onTranscript,
 }: PromptInputPropsType) => {
   const inputId = `input-${useId()}`;
   const errorId = `error-${inputId}`;
@@ -103,6 +118,9 @@ const DxcMessageInput = ({
   const [innerTopItems, setInnerTopItems] = useState<Item[]>([]);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { transcript, isRecording, startRecording, stopRecording } = useVoiceTranscription();
+
+  const displayedRecording: boolean = typeof isRecordingProp === "boolean" ? isRecordingProp : isRecording;
 
   const changeValue = (newValue: string) => {
     if (value == null) {
@@ -208,6 +226,42 @@ const DxcMessageInput = ({
     e.target.value = "";
   };
 
+  const baseTextRef = useRef("");
+
+  const toggleVoiceRecognition = () => {
+    if (disabled) return;
+
+    if (isRecording) {
+      stopRecording();
+    } else {
+      baseTextRef.current = value ?? innerValue;
+      startRecording();
+    }
+  };
+
+  useEffect(() => {
+    if (!transcript) return;
+
+    if (onTranscript) {
+      onTranscript(transcript);
+      return;
+    }
+
+    const combined = baseTextRef.current ? `${baseTextRef.current} ${transcript}` : transcript;
+    changeValue(combined);
+
+    if (inputRef.current) {
+      inputRef.current.style.height = "auto";
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [transcript, onTranscript]);
+
+  useEffect(() => {
+    if (onRecordingChange) {
+      onRecordingChange(isRecording);
+    }
+  }, [isRecording, onRecordingChange]);
+
   const handleSubmit = async () => {
     if (disabled || isLoading) return;
 
@@ -285,13 +339,23 @@ const DxcMessageInput = ({
           {bottomOptions && <ModelSelect options={bottomOptions} disabled={disabled} />}
 
           <DxcFlex gap="var(--spacing-gap-xs)">
-            <DxcButton icon="mic" size={{ height: "medium" }} mode="tertiary" disabled={disabled} />
+            {allowVoiceInput && (
+              <DxcButton
+                icon={displayedRecording ? "filled_pause" : "mic"}
+                size={{ height: "medium" }}
+                mode="tertiary"
+                disabled={disabled}
+                onClick={toggleVoiceRecognition}
+                title={displayedRecording ? "Stop recording" : "Start voice input"}
+                aria-label={displayedRecording ? "Stop recording" : "Start voice input"}
+              />
+            )}
 
             <DxcButton
               icon={!isLoading ? "send" : "filled_stop"}
               size={{ height: "medium" }}
               disabled={disabled}
-              onClick={!isLoading ? handleSubmit : stop}
+              onClick={!isLoading ? handleSubmit : onStop}
               title={!isLoading ? "Submit" : "Stop"}
             />
           </DxcFlex>
