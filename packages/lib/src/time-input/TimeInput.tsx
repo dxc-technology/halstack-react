@@ -92,23 +92,18 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const isControlled = value !== undefined;
     const languageContext = useContext(HalstackLanguageContext);
     const translatedLabels = languageContext.labels;
-    const formatInfo = useMemo(() => getTimeInputLocale(languageContext.locale), [languageContext.locale]);
-    // Prop timeFormat takes precedence over the locale format
-    const timeFormatToUse = useMemo<"12" | "24">(
-      () => timeFormat || formatInfo.format,
-      [timeFormat, formatInfo.format]
-    );
+    const formatInfo = useMemo(() => getTimeInputLocale(languageContext.locale, timeFormat), [languageContext.locale]);
     useEffect(() => {
       const time = value || defaultValue || undefined;
       if (time) {
-        const numberPart = timeFormatToUse === "12" ? time.split(" ")[0] : time;
+        const numberPart = formatInfo.format === "12" ? time.split(" ")[0] : time;
         if (numberPart) {
           const [hourStr, minuteStr, secondStr] = numberPart.split(":");
           setHourValue(hourStr && isNumber(hourStr) ? Number(hourStr) : undefined);
           setMinuteValue(minuteStr && isNumber(minuteStr) ? Number(minuteStr) : undefined);
           setSecondValue(secondStr && isNumber(secondStr) ? Number(secondStr) : undefined);
         }
-        if (timeFormatToUse === "12" && time.includes(" ")) {
+        if (formatInfo.format === "12" && time.includes(" ")) {
           const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : time.split(" ")[1] === "PM" ? 1 : undefined;
           setDayPeriodValue(dayPeriodValue);
         } else {
@@ -120,7 +115,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         setSecondValue(undefined);
         setDayPeriodValue(undefined);
       }
-    }, [value, defaultValue, timeFormatToUse]);
+    }, [value, defaultValue, formatInfo.format]);
 
     const generatedInputValue = () => {
       if (hourValue === undefined && minuteValue === undefined && secondValue === undefined) {
@@ -132,7 +127,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           secondValue,
           dayPeriodValue,
           showSeconds,
-          timeFormatToUse,
+          formatInfo.format,
           formatInfo.separator,
           formatInfo.dayPeriodPosition
         );
@@ -154,7 +149,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             undefined,
             undefined,
             showSeconds,
-            timeFormatToUse,
+            formatInfo.format,
             formatInfo.separator,
             formatInfo.dayPeriodPosition
           )
@@ -164,7 +159,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
 
     const validateTimeValue = (value: string) => {
       const timeRegex =
-        timeFormatToUse === "12"
+        formatInfo.format === "12"
           ? /^(0?[1-9]|1[0-2]):[0-5][0-9](?::[0-5][0-9])?\s?(AM|PM)$/i
           : /^([01]?[0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$/;
       if (!timeRegex.test(value)) {
@@ -175,7 +170,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
         (hourValue === undefined ||
           minuteValue === undefined ||
           (showSeconds && secondValue === undefined) ||
-          (timeFormatToUse === "12" && dayPeriodValue === undefined))
+          (formatInfo.format === "12" && dayPeriodValue === undefined))
       ) {
         return "This field is required";
       }
@@ -210,7 +205,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           )}
           <TimeInputField disabled={disabled} error={!!error} readOnly={readOnly}>
             <DxcFlex gap="var(--spacing-gap-xs)" alignItems="center" fullHeight>
-              {timeFormatToUse === "12" && formatInfo.dayPeriodPosition === "before" && (
+              {formatInfo.format === "12" && formatInfo.dayPeriodPosition === "before" && (
                 <TimeSpinButton
                   ariaLabel={label ?? ariaLabel}
                   value={dayPeriodValue}
@@ -233,7 +228,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           secondValue,
                           value,
                           showSeconds,
-                          timeFormatToUse,
+                          formatInfo.format,
                           formatInfo.separator,
                           formatInfo.dayPeriodPosition
                         )
@@ -257,8 +252,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                 <TimeSpinButton
                   ariaLabel={label ?? ariaLabel}
                   value={hourValue}
-                  minValue={timeFormatToUse === "12" ? 1 : 0}
-                  maxValue={timeFormatToUse === "12" ? 12 : 23}
+                  minValue={formatInfo.format === "12" ? 1 : 0}
+                  maxValue={formatInfo.format === "12" ? 12 : 23}
                   tabIndex={tabIndex}
                   dataType="hour"
                   readOnly={readOnly}
@@ -281,7 +276,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           secondValue,
                           dayPeriodValue,
                           showSeconds,
-                          timeFormatToUse,
+                          formatInfo.format,
                           formatInfo.separator,
                           formatInfo.dayPeriodPosition
                         )
@@ -309,7 +304,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   onComplete={() => {
                     if (showSeconds && secondRef.current) {
                       secondRef.current.focus();
-                    } else if (timeFormatToUse === "12" && dayPeriodRef.current) {
+                    } else if (formatInfo.format === "12" && dayPeriodRef.current) {
                       dayPeriodRef.current.focus();
                     }
                   }}
@@ -325,7 +320,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           secondValue,
                           dayPeriodValue,
                           showSeconds,
-                          timeFormatToUse,
+                          formatInfo.format,
                           formatInfo.separator,
                           formatInfo.dayPeriodPosition
                         )
@@ -335,7 +330,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   onNext={() => {
                     if (showSeconds && secondRef.current) {
                       secondRef.current.focus();
-                    } else if (timeFormatToUse === "12" && dayPeriodRef.current) {
+                    } else if (formatInfo.format === "12" && dayPeriodRef.current) {
                       dayPeriodRef.current.focus();
                     }
                   }}
@@ -361,7 +356,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       isControlled={isControlled}
                       onComplete={() => {
                         if (
-                          timeFormatToUse === "12" &&
+                          formatInfo.format === "12" &&
                           formatInfo.dayPeriodPosition === "after" &&
                           dayPeriodRef.current
                         ) {
@@ -380,7 +375,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                               value,
                               dayPeriodValue,
                               showSeconds,
-                              timeFormatToUse,
+                              formatInfo.format,
                               formatInfo.separator,
                               formatInfo.dayPeriodPosition
                             )
@@ -389,7 +384,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                       }}
                       onNext={() => {
                         if (
-                          timeFormatToUse === "12" &&
+                          formatInfo.format === "12" &&
                           formatInfo.dayPeriodPosition === "after" &&
                           dayPeriodRef.current
                         ) {
@@ -406,7 +401,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   </>
                 )}
               </DxcFlex>
-              {timeFormatToUse === "12" && formatInfo.dayPeriodPosition === "after" && (
+              {formatInfo.format === "12" && formatInfo.dayPeriodPosition === "after" && (
                 <TimeSpinButton
                   ariaLabel={label ?? ariaLabel}
                   value={dayPeriodValue}
@@ -429,7 +424,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           secondValue,
                           value,
                           showSeconds,
-                          timeFormatToUse,
+                          formatInfo.format,
                           formatInfo.separator,
                           formatInfo.dayPeriodPosition
                         )
@@ -475,14 +470,15 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                             second,
                             dayPeriod,
                             showSeconds,
-                            timeFormatToUse,
+                            formatInfo.format,
                             formatInfo.separator,
                             formatInfo.dayPeriodPosition
                           )
                         );
                       }
                     }}
-                    timeFormat={timeFormatToUse}
+                    timeFormat={formatInfo.format}
+                    dayPeriodPosition={formatInfo.dayPeriodPosition}
                     showSeconds={showSeconds}
                     hourValue={hourValue}
                     minuteValue={minuteValue}

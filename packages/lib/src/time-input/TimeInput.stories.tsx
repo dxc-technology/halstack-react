@@ -117,6 +117,15 @@ const TimeInput = () => {
             showSeconds
           />
         </HalstackProvider>
+        <HalstackProvider localeTag="zh-CN">
+          <DxcTimeInput
+            label="Chinese locale with 12-hour format"
+            helperText="Helper text"
+            onChange={(val) => console.log(val)}
+            timeFormat="12"
+            showSeconds
+          />
+        </HalstackProvider>
       </ExampleContainer>
     </>
   );
@@ -254,6 +263,17 @@ const TimePickerExamples = () => {
             dayPeriod={1}
           />
         </DxcContainer>
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Localized time picker" theme="light" level={3} />
+        <TimePicker
+          onPickTime={() => {}}
+          timeFormat="12"
+          dayPeriodPosition="before"
+          id="testId"
+          tabIndex={0}
+          showSeconds
+        />
       </ExampleContainer>
     </>
   );

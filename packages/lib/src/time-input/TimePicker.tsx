@@ -16,6 +16,7 @@ const TimePickerContainer = styled.div`
 const TimePicker = ({
   onPickTime,
   timeFormat,
+  dayPeriodPosition,
   showSeconds,
   hourValue,
   minuteValue,
@@ -66,6 +67,24 @@ const TimePicker = ({
 
   return (
     <TimePickerContainer role="listbox" aria-label="Time picker">
+      {timeFormat === "12" && dayPeriodPosition === "before" && (
+        <TimePickerColumn
+          valuesArray={[0, 1]}
+          id={id}
+          selectedValue={dayPeriod}
+          valueToFocus={dayPeriodToFocus}
+          tabIndex={tabIndex}
+          dataType="dayPeriod"
+          onClick={(value: number) => {
+            onPickerSelect(value, "dayPeriod");
+          }}
+          onKeyboardEvent={(event: React.KeyboardEvent, value: number) =>
+            handleColumnKeyDown(event, "dayPeriod", value, 2, setDayPeriodToFocus, (value) =>
+              onPickerSelect(value, "dayPeriod")
+            )
+          }
+        />
+      )}
       <TimePickerColumn
         valuesArray={Array.from({ length: totalHours }, (_, index) => index)}
         id={id}
@@ -128,7 +147,7 @@ const TimePicker = ({
           }
         />
       )}
-      {timeFormat === "12" && (
+      {timeFormat === "12" && dayPeriodPosition !== "before" && (
         <TimePickerColumn
           valuesArray={[0, 1]}
           id={id}

@@ -334,4 +334,27 @@ describe("DxcTimeInput rendering", () => {
     userEvent.keyboard("{6}");
     expect(mockOnChange).toHaveBeenCalledWith("PM 12:34:56");
   });
+
+  it("Time input with chinese locale, but using time picker", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <HalstackProvider localeTag="zh-CN">
+        <DxcTimeInput label="Chinese locale" timeFormat="12" showSeconds onChange={mockOnChange} />
+      </HalstackProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    const amButton = getAllByText("AM")[0];
+    if (amButton) userEvent.click(amButton);
+    const hourbutton = getAllByText("12");
+    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:00:00");
+    const minuteButton = getAllByText("30");
+    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:00");
+    const secondButton = getAllByText("50");
+    if (secondButton[1]) userEvent.click(secondButton[1]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:50");
+  });
 });

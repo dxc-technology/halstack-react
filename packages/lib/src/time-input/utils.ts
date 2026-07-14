@@ -184,16 +184,21 @@ export const handleColumnKeyDown = (
 };
 
 export const getTimeInputLocale = (
-  locale?: string
+  locale?: string,
+  formatProp?: "12" | "24"
 ): { separator: string; format: "12" | "24"; dayPeriodPosition: "before" | "after" } => {
   if (!locale) {
     return {
       separator: ":",
-      format: "12",
+      format: formatProp || "12",
       dayPeriodPosition: "after",
     };
   }
-  const naturalCycle = new Intl.DateTimeFormat(locale, { hour: "2-digit" }).resolvedOptions().hourCycle;
+  const naturalCycle = formatProp
+    ? formatProp === "24"
+      ? "h23"
+      : "h12"
+    : new Intl.DateTimeFormat(locale, { hour: "2-digit" }).resolvedOptions().hourCycle;
   const hourCycle: "h12" | "h23" = naturalCycle === "h23" || naturalCycle === "h24" ? "h23" : "h12";
 
   const formatter = new Intl.DateTimeFormat(locale, {
@@ -211,6 +216,7 @@ export const getTimeInputLocale = (
     format === "24" || dayPeriodPosition === "after"
       ? separatorParts[0]?.value || ":"
       : separatorParts[separatorParts.length - 1]?.value || ":";
+
   return {
     separator,
     format,
