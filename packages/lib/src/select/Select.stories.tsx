@@ -322,6 +322,10 @@ const Select = () => (
       <DxcSelect label="Fillparent" options={singleOptions} size="fillParent" />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="FitContent size" theme="light" level={4} />
+      <DxcSelect label="FitContent" options={singleOptions} defaultValue="1" size="fitContent" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Different sizes inside a flex" theme="light" level={4} />
       <DxcFlex justifyContent="space-between" gap="var(--spacing-gap-ml)">
         <DxcSelect label="fillParent" size="fillParent" options={singleOptions} />
@@ -357,6 +361,10 @@ const Select = () => (
     <ExampleContainer>
       <Title title="xxlarge margin" theme="light" level={4} />
       <DxcSelect label="xxLarge" options={singleOptions} margin="xxlarge" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="No border" theme="light" level={4} />
+      <DxcSelect label="No border" options={singleOptions} hideBorder defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Ellipsis" theme="light" level={2} />

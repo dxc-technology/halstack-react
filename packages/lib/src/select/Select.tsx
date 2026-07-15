@@ -66,6 +66,7 @@ const SelectContainer = styled.div<{
 const Select = styled.div<{
   disabled: Required<SelectPropsType>["disabled"];
   error: boolean;
+  hideBorder: Required<SelectPropsType>["hideBorder"];
 }>`
   position: relative;
   display: flex;
@@ -75,6 +76,7 @@ const Select = styled.div<{
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
   ${({ disabled, error }) => inputStylesByState(disabled, error, false)}
+  ${({ hideBorder }) => hideBorder && `border-color: transparent;`}
 
   /* Collapse indicator */
   > div > span[role="img"] {
@@ -182,6 +184,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       enableSelectAll = false,
       error,
       helperText,
+      hideBorder = false,
       label,
       margin,
       multiple = false,
@@ -523,6 +526,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 aria-required={!disabled && !optional}
                 disabled={disabled}
                 error={!!error}
+                hideBorder={hideBorder}
                 id={selectInputId}
                 onBlur={handleOnBlur}
                 onClick={handleOnClick}

@@ -93,6 +93,16 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>hideBorder</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the select will not have a border in the default state.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>label</td>
             <td>
               <TableCode>string</TableCode>
@@ -266,7 +276,7 @@ const sections = [
           <tr>
             <td>size</td>
             <td>
-              <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
+              <TableCode>'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'</TableCode>
             </td>
             <td>Size of the component.</td>
             <td>
