@@ -3,6 +3,7 @@ import { useState } from "react";
 import DxcMessageInput from "./MessageInput";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import type { FileData } from "./types";
 
 export default {
   title: "Message Input",
@@ -87,6 +88,30 @@ const MessageInput = () => (
   </>
 );
 
+const ControlledFileExample = () => {
+  const [files, setFiles] = useState<FileData[]>([]);
+
+  const handleSubmit = (_signal?: AbortSignal) => {
+    console.log(files.map((file: FileData) => file.label));
+  };
+
+  const callbackFiles = (updatedFiles: FileData[]) => {
+    setFiles(updatedFiles);
+  };
+
+  return (
+    <ExampleContainer>
+      <Title title="Default" level={4} />
+      <DxcMessageInput
+        placeholder="Ask me anything..."
+        files={files}
+        callbackFiles={callbackFiles}
+        onSubmit={handleSubmit}
+      />
+    </ExampleContainer>
+  );
+};
+
 const ControlledVoiceExample = () => {
   const [transcript, setTranscript] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -138,6 +163,10 @@ const ControlledVoiceExample = () => {
 
 export const Chromatic: Story = {
   render: MessageInput,
+};
+
+export const ControlledFile: Story = {
+  render: ControlledFileExample,
 };
 
 export const ControlledVoice: Story = {

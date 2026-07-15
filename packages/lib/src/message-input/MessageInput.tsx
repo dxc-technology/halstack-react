@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import styled from "@emotion/styled";
-import PromptInputPropsType, { FileData } from "./types";
+import PromptInputPropsType from "./types";
 import { inputStylesByStatePromptInput, isLengthIncorrect } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
@@ -104,7 +104,6 @@ const DxcMessageInput = ({
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
-  const [innerFiles, setInnerFiles] = useState<FileData[]>([]);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { transcript, isRecording, startRecording, stopRecording } = useVoiceTranscription();
@@ -169,47 +168,19 @@ const DxcMessageInput = ({
     fileInputRef.current?.click();
   };
 
-  const addTopItems = (items: FileData[]) => {
-    const currentItems = files ?? innerFiles;
-    const newItems = [...currentItems, ...items];
-    if (files == null) {
-      setInnerFiles(newItems);
-    }
-    callbackFiles?.(newItems);
+  const handleFileInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(event.target.files ?? []).map((file) => ({
+      label: file.name,
+      icon: "insert_drive_file",
+    }));
+    const nextFiles = [...(files ?? []), ...selectedFiles];
+    callbackFiles?.(nextFiles);
+    event.target.value = "";
   };
 
-  const removeItem = (label: string) => {
-    const currentItems = files ?? innerFiles;
-    const filteredItems = currentItems.filter((item) => item.label !== label);
-    if (files == null) {
-      setInnerFiles(filteredItems);
-    }
-    callbackFiles?.(filteredItems);
-  };
-
-  const handleFilesChosen = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    const formData = new FormData();
-    Array.from(e.target.files).forEach((file) => formData.append("files", file));
-
-    addTopItems(
-      Array.from(e.target.files).map((file) => ({
-        label: file.name,
-        icon: "description",
-        disabled: disabled,
-      }))
-    );
-
-    // TBD
-
-    // const res = await fetch("/api/context-files", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    // const uploadedFiles = await res.json();
-
-    e.target.value = "";
+  const removeItem = (itemIndex: number) => {
+    const nextFiles = (files ?? []).filter((_, index) => index !== itemIndex);
+    callbackFiles?.(nextFiles);
   };
 
   const baseTextRef = useRef("");
@@ -285,14 +256,14 @@ const DxcMessageInput = ({
                 disabled={isGenerating || disabled}
                 caretHidden
               />
-              <input ref={fileInputRef} type="file" hidden multiple onChange={handleFilesChosen} />
-              {(files ?? innerFiles)?.map((item, index) => (
+              <input ref={fileInputRef} type="file" hidden multiple onChange={handleFileInputOnChange} />
+              {(files ?? []).map((item, index) => (
                 <DxcChip
                   key={index}
                   label={item.label}
                   mode="dismissible"
-                  prefix="file"
-                  onClick={() => removeItem(item.label)}
+                  prefix={item.icon ?? "description"}
+                  onClick={() => removeItem(index)}
                 />
               ))}
             </DxcFlex>
@@ -319,15 +290,14 @@ const DxcMessageInput = ({
         <DxcFlex justifyContent={bottomOptions ? "space-between" : "flex-end"} alignItems="center">
           {bottomOptions && (
             <DxcSelect
+              // size="fitContent"
               options={bottomOptions.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
               disabled={isGenerating || disabled}
-              placeholder="Select"
               defaultValue={bottomOptions[0]?.value ?? ""}
               onChange={(val) => {
                 const selectedOption = bottomOptions.find((option) => option.value === val.value);
                 selectedOption?.onSelect();
               }}
-              size="small"
             />
           )}
 
