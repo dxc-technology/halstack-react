@@ -1,20 +1,12 @@
-import { CSSProperties, ReactNode } from "react";
-
-export type Item = {
-  /**
-   * Unique identifier of the chip.
-   */
-  id: string;
-  /**
-   * Text representing advisory information related
-   * to the button's action. Under the hood, this prop also serves
-   * as an accessible label for the component.
-   */
-  title?: string;
+export type FileData = {
   /**
    * The chip label.
    */
   label: string;
+  /* *
+   *  The chip icon. It can be a string representing the icon name or a ReactNode representing a custom icon.
+   */
+  icon: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
 };
 
 type Props = {
@@ -35,10 +27,6 @@ type Props = {
    * Value of the input. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */
   value?: string;
-  /**
-   * Helper text to be placed above the input.
-   */
-  helperText?: string;
   /**
    * If true, the component will be disabled.
    */
@@ -63,11 +51,11 @@ type Props = {
   /**
    * Items to be shown at the top.
    */
-  topItems?: Item[];
+  files?: FileData[] | [];
   /**
    * This function will be called when the selection of top items changes.
    */
-  callbackItems?: (items: Item[]) => void;
+  callbackFiles?: (files: FileData[]) => void;
   /**
    * Specifies the minimum length allowed by the input.
    * This will be checked both when the input element loses the
@@ -107,26 +95,17 @@ type Props = {
    */
   onSubmit?: (signal?: AbortSignal) => void | Promise<void>;
   /**
-   * If true, the file upload button will be shown.
-   */
-  allowFileUploads?: boolean;
-  /**
    * If true, the voice recording button will be shown.
    */
   allowVoiceInput?: boolean;
   /**
    * If true, it indicates that a request is being processed after the user submits a query.
    */
-  isLoading?: boolean;
+  isGenerating?: boolean;
   /**
    * This function will be called to stop the current action.
    */
   onStop?: () => void;
-  /**
-   * If true, the voice recording is active. Use this prop to control the recording state externally.
-   * If undefined, the component will manage the recording state internally.
-   */
-  isRecording?: boolean;
   /**
    * This function will be called when the recording state changes (starts or stops).
    * Only used when isRecording prop is controlled.
@@ -137,45 +116,6 @@ type Props = {
    * If provided, the transcript won't be automatically added to the input value.
    */
   onTranscript?: (transcript: string) => void;
-};
-
-/**
- * List of suggestions of a Text Input component.
- */
-export type SuggestionsProps = {
-  id: string;
-  value: string;
-  suggestions: string[];
-  visualFocusIndex: number;
-  highlightedSuggestions: boolean;
-  searchHasErrors: boolean;
-  isSearching: boolean;
-  suggestionOnClick: (suggestion: string) => void;
-  styles: CSSProperties;
-};
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
-
-/**
- * Single suggestion of a Text Input component.
- */
-export type SuggestionProps = {
-  id: string;
-  value: string;
-  onClick: (suggestion: string) => void;
-  suggestion: string;
-  isLast: boolean;
-  visuallyFocused: boolean;
-  highlighted: boolean;
-};
-
-export type AutosuggestWrapperProps = {
-  condition: boolean;
-  wrapper: (children: ReactNode) => JSX.Element;
-  children: ReactNode;
 };
 
 export type BottomSelectProps = {

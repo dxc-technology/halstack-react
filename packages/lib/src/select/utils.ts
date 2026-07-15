@@ -6,7 +6,7 @@ const sizes = {
   small: "240px",
   medium: "360px",
   large: "480px",
-  fillParent: "100%",
+  fillParent: "fit-content",
 };
 
 export const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>

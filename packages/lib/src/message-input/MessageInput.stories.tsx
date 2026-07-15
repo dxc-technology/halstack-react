@@ -16,46 +16,46 @@ const MessageInput = () => (
     <Title title="States" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} />
     </ExampleContainer>
     <ExampleContainer pseudoState={["pseudo-focus", "pseudo-hover"]}>
       <Title title="Active" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." disabled allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything..." disabled files={[]} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="isLoading" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." isLoading allowFileUploads />
+      <Title title="isGenerating" level={4} />
+      <DxcMessageInput placeholder="Ask me anything..." isGenerating files={[]} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads error="Error Message" />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} error="Error Message" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover error" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads error="Error Message" />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} error="Error Message" />
     </ExampleContainer>
 
     <ExampleContainer>
       <Title title="Min Length" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." allowFileUploads minLength={15} defaultValue="Hello" />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} minLength={15} defaultValue="Hello" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Max Length" level={4} />
       <DxcMessageInput
         placeholder="Ask me anything..."
-        allowFileUploads
+        files={[]}
         maxLength={15}
         defaultValue="Hello this is a test of the max length property"
       />
@@ -67,28 +67,27 @@ const MessageInput = () => (
         placeholder="Ask me anything..."
         bottomOptions={[
           { label: "Option 1", value: "option1", onSelect: () => {} },
-          { label: "Option 2", value: "option2", onSelect: () => {} },
+          { label: "Option 29872357857274590", value: "option2", onSelect: () => {} },
           { label: "Option 3", value: "option3", onSelect: () => {} },
           { label: "Option 4", value: "option4", onSelect: () => {} },
         ]}
-        allowFileUploads
+        files={[]}
       />
     </ExampleContainer>
 
     <ExampleContainer>
       <Title title="With Voice Input" level={4} />
-      <DxcMessageInput placeholder="Ask me anything with voice..." allowVoiceInput allowFileUploads />
+      <DxcMessageInput placeholder="Ask me anything with voice..." allowVoiceInput files={[]} />
     </ExampleContainer>
 
     <ExampleContainer>
       <Title title="Without Voice Input" level={4} />
-      <DxcMessageInput placeholder="No voice button here..." allowFileUploads />
+      <DxcMessageInput placeholder="No voice button here..." files={[]} />
     </ExampleContainer>
   </>
 );
 
 const ControlledVoiceExample = () => {
-  const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [baseText, setBaseText] = useState("");
@@ -101,7 +100,6 @@ const ControlledVoiceExample = () => {
   };
 
   const handleRecordingChange = (recording: boolean) => {
-    setIsRecording(recording);
     if (recording) {
       // Cuando inicia la grabación, guardar el texto base actual
       setBaseText(inputValue);
@@ -126,11 +124,10 @@ const ControlledVoiceExample = () => {
       <ExampleContainer>
         <DxcMessageInput
           placeholder="Controla la grabación desde el componente padre..."
-          allowFileUploads
+          files={[]}
           allowVoiceInput
           value={inputValue}
           onChange={handleChange}
-          isRecording={isRecording}
           onRecordingChange={handleRecordingChange}
           onTranscript={handleTranscript}
         />

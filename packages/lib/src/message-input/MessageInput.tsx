@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import styled from "@emotion/styled";
-import PromptInputPropsType, { Item } from "./types";
+import PromptInputPropsType, { FileData } from "./types";
 import { inputStylesByStatePromptInput, isLengthIncorrect } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
@@ -19,8 +19,8 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
-import ModelSelect from "./ModelSelect";
 import { useVoiceTranscription } from "./useVoiceTranscription";
+import DxcSelect from "../select/Select";
 
 const sizes = {
   small: "240px",
@@ -77,23 +77,13 @@ const Input = styled.textarea`
   ${({ disabled }) => disabled && "cursor: not-allowed;"}
 `;
 
-const HelperText = styled.span<{ disabled: boolean; hasMargin?: boolean }>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-  ${({ hasMargin }) => hasMargin && "margin-bottom: var(--spacing-padding-xxs);"}
-`;
-
 const DxcMessageInput = ({
-  allowFileUploads = false,
   allowVoiceInput = false,
   bottomOptions,
   defaultValue = "",
   disabled = false,
   error,
-  isLoading,
-  helperText,
+  isGenerating = false,
   maxLength,
   minLength,
   placeholder = "",
@@ -102,10 +92,9 @@ const DxcMessageInput = ({
   value,
   onSubmit,
   size = "medium",
-  topItems,
-  callbackItems,
+  files,
+  callbackFiles,
   onStop,
-  isRecording: isRecordingProp,
   onRecordingChange,
   onTranscript,
 }: PromptInputPropsType) => {
@@ -115,12 +104,10 @@ const DxcMessageInput = ({
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
-  const [innerTopItems, setInnerTopItems] = useState<Item[]>([]);
+  const [innerFiles, setInnerFiles] = useState<FileData[]>([]);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { transcript, isRecording, startRecording, stopRecording } = useVoiceTranscription();
-
-  const displayedRecording: boolean = typeof isRecordingProp === "boolean" ? isRecordingProp : isRecording;
 
   const changeValue = (newValue: string) => {
     if (value == null) {
@@ -182,22 +169,22 @@ const DxcMessageInput = ({
     fileInputRef.current?.click();
   };
 
-  const addTopItems = (items: Item[]) => {
-    const currentItems = topItems ?? innerTopItems;
+  const addTopItems = (items: FileData[]) => {
+    const currentItems = files ?? innerFiles;
     const newItems = [...currentItems, ...items];
-    if (topItems == null) {
-      setInnerTopItems(newItems);
+    if (files == null) {
+      setInnerFiles(newItems);
     }
-    callbackItems?.(newItems);
+    callbackFiles?.(newItems);
   };
 
   const removeItem = (label: string) => {
-    const currentItems = topItems ?? innerTopItems;
+    const currentItems = files ?? innerFiles;
     const filteredItems = currentItems.filter((item) => item.label !== label);
-    if (topItems == null) {
-      setInnerTopItems(filteredItems);
+    if (files == null) {
+      setInnerFiles(filteredItems);
     }
-    callbackItems?.(filteredItems);
+    callbackFiles?.(filteredItems);
   };
 
   const handleFilesChosen = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -207,9 +194,8 @@ const DxcMessageInput = ({
 
     addTopItems(
       Array.from(e.target.files).map((file) => ({
-        id: crypto.randomUUID(),
         label: file.name,
-        prefixIcon: "description",
+        icon: "description",
         disabled: disabled,
       }))
     );
@@ -263,7 +249,7 @@ const DxcMessageInput = ({
   }, [isRecording, onRecordingChange]);
 
   const handleSubmit = async () => {
-    if (disabled || isLoading) return;
+    if (disabled || isGenerating) return;
 
     const controller = new AbortController();
 
@@ -281,11 +267,6 @@ const DxcMessageInput = ({
 
   return (
     <MessageInputContainer size={size}>
-      {helperText && (
-        <HelperText disabled={disabled} hasMargin>
-          {helperText}
-        </HelperText>
-      )}
       <MessageInput
         disabled={disabled}
         error={!!error}
@@ -294,24 +275,24 @@ const DxcMessageInput = ({
         onMouseDown={handleInputContainerOnMouseDown}
         ref={inputContainerRef}
       >
-        {allowFileUploads && (
+        {files && (
           <DxcContainer overflow={{ x: "auto" }} width="100%">
             <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
               <DxcDropdown
                 options={[{ label: "Attach documents", value: "fileorphoto" }]}
                 onSelectOption={handleFileSelect}
                 icon="add"
-                disabled={disabled}
+                disabled={isGenerating || disabled}
                 caretHidden
               />
               <input ref={fileInputRef} type="file" hidden multiple onChange={handleFilesChosen} />
-              {(topItems ?? innerTopItems)?.map((item) => (
+              {(files ?? innerFiles)?.map((item, index) => (
                 <DxcChip
+                  key={index}
                   label={item.label}
                   mode="dismissible"
                   prefix="file"
                   onClick={() => removeItem(item.label)}
-                  key={item.id}
                 />
               ))}
             </DxcFlex>
@@ -320,7 +301,7 @@ const DxcMessageInput = ({
         <Input
           aria-errormessage={error ? errorId : undefined}
           aria-invalid={!!error}
-          disabled={isLoading === true || disabled}
+          disabled={isGenerating || disabled}
           id={inputId}
           onBlur={handleInputOnBlur}
           onChange={handleInputOnChange}
@@ -336,27 +317,39 @@ const DxcMessageInput = ({
           value={value ?? innerValue}
         />
         <DxcFlex justifyContent={bottomOptions ? "space-between" : "flex-end"} alignItems="center">
-          {bottomOptions && <ModelSelect options={bottomOptions} disabled={disabled} />}
+          {bottomOptions && (
+            <DxcSelect
+              options={bottomOptions.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
+              disabled={isGenerating || disabled}
+              placeholder="Select"
+              defaultValue={bottomOptions[0]?.value ?? ""}
+              onChange={(val) => {
+                const selectedOption = bottomOptions.find((option) => option.value === val.value);
+                selectedOption?.onSelect();
+              }}
+              size="small"
+            />
+          )}
 
           <DxcFlex gap="var(--spacing-gap-xs)">
             {allowVoiceInput && (
               <DxcButton
-                icon={displayedRecording ? "filled_pause" : "mic"}
+                icon={isRecording ? "filled_pause" : "mic"}
                 size={{ height: "medium" }}
                 mode="tertiary"
-                disabled={disabled}
+                disabled={isGenerating || disabled}
                 onClick={toggleVoiceRecognition}
-                title={displayedRecording ? "Stop recording" : "Start voice input"}
-                aria-label={displayedRecording ? "Stop recording" : "Start voice input"}
+                title={isRecording ? "Stop recording" : "Start voice input"}
+                aria-label={isRecording ? "Stop recording" : "Start voice input"}
               />
             )}
 
             <DxcButton
-              icon={!isLoading ? "send" : "filled_stop"}
+              icon={!isGenerating ? "send" : "filled_stop"}
               size={{ height: "medium" }}
               disabled={disabled}
-              onClick={!isLoading ? handleSubmit : onStop}
-              title={!isLoading ? "Submit" : "Stop"}
+              onClick={!isGenerating ? handleSubmit : onStop}
+              title={!isGenerating ? "Submit" : "Stop"}
             />
           </DxcFlex>
         </DxcFlex>
