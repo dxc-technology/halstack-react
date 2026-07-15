@@ -93,16 +93,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>hideBorder</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the select will not have a border in the default state.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>label</td>
             <td>
               <TableCode>string</TableCode>

@@ -362,10 +362,6 @@ const Select = () => (
       <Title title="xxlarge margin" theme="light" level={4} />
       <DxcSelect label="xxLarge" options={singleOptions} margin="xxlarge" />
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="No border" theme="light" level={4} />
-      <DxcSelect label="No border" options={singleOptions} hideBorder defaultValue="1" />
-    </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Ellipsis" theme="light" level={2} />
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />

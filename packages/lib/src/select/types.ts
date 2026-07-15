@@ -55,10 +55,6 @@ type CommonProps = {
    */
   helperText?: string;
   /**
-   * If true, the select will not have a border in the default state.
-   */
-  hideBorder?: boolean;
-  /**
    * Text to be placed above the select.
    */
   label?: string;
