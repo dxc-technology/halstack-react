@@ -1,10 +1,16 @@
+import { TranslatedLabels } from "../common/variables";
+
 export const pad = (num?: number) => {
   if (num === undefined) return "";
   return num < 10 ? `0${num}` : `${num}`;
 };
 
-export const returnDayPeriod = (value?: number) => {
-  return value === 0 ? "AM" : value === 1 ? "PM" : "";
+export const returnDayPeriod = (value?: number, translatedLabels?: TranslatedLabels) => {
+  return value === 0
+    ? (translatedLabels?.timeInput.timePeriodAM ?? "AM")
+    : value === 1
+      ? (translatedLabels?.timeInput.timePeriodPM ?? "PM")
+      : "";
 };
 
 const resolveValue = (value: string | number, maxValue: number, minValue: number) => {
@@ -117,6 +123,31 @@ export const handleKeyDown = (
   }
 };
 
+/**
+ *
+ * @param dataType The type of time unit (hour, minute, second, dayPeriod)
+ * @param value The current value of the time unit
+ * @param placeholder The placeholder text to display when the value is undefined
+ * @param maxValue The maximum value for the time unit
+ * @param translatedLabels The translated labels for day periods
+ * @returns The display value for the spin button, formatted according to the data type and value provided. If the value is undefined, the placeholder will be displayed instead.
+ */
+export const generateDisplayValue = (
+  dataType: "hour" | "minute" | "second" | "dayPeriod" | undefined,
+  value: number | undefined,
+  placeholder: string,
+  maxValue: number,
+  translatedLabels?: TranslatedLabels
+) => {
+  let displayValue;
+  if (dataType === "dayPeriod") {
+    displayValue = value != null ? returnDayPeriod(value, translatedLabels) : placeholder;
+  } else {
+    displayValue = value != null ? value.toString().padStart(maxValue.toString().length, "0") : placeholder;
+  }
+  return displayValue;
+};
+
 export const generateEventValue = (
   hour: number | undefined,
   minute: number | undefined,
@@ -125,16 +156,17 @@ export const generateEventValue = (
   showSeconds: boolean | undefined,
   timeFormat: "12" | "24" | undefined,
   separator: string,
-  timePeriodPosition: "before" | "after"
+  timePeriodPosition: "before" | "after",
+  translatedLabels: TranslatedLabels
 ) => {
   if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
     return "";
   }
   // consider dayperiod position for 12-hour format otherwise ignore it
   if (timeFormat === "12" && timePeriodPosition === "before") {
-    return `${returnDayPeriod(dayPeriod)} ${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
+    return `${returnDayPeriod(dayPeriod, translatedLabels)} ${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
   } else if (timeFormat === "12" && timePeriodPosition === "after") {
-    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""} ${returnDayPeriod(dayPeriod)}`;
+    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""} ${returnDayPeriod(dayPeriod, translatedLabels)}`;
   } else {
     return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
   }
@@ -183,6 +215,11 @@ export const handleColumnKeyDown = (
   }
 };
 
+/**
+ * @param locale The locale string (e.g., "en-US") used to determine time formatting conventions.
+ * @param formatProp Optional. Specifies whether to use "12" or "24" hour format.
+ * @returns An object containing the time separator, preferred format, and day period position.
+ */
 export const getTimeInputLocale = (
   locale?: string,
   formatProp?: "12" | "24"

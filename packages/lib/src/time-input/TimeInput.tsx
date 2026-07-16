@@ -96,7 +96,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     useEffect(() => {
       const time = value || defaultValue || undefined;
       if (time) {
-        const numberPart = formatInfo.format === "12" ? time.split(" ")[0] : time;
+        const numberPart =
+          formatInfo.format === "12" ? time.split(" ")[formatInfo.dayPeriodPosition === "before" ? 1 : 0] : time;
         if (numberPart) {
           const [hourStr, minuteStr, secondStr] = numberPart.split(":");
           setHourValue(hourStr && isNumber(hourStr) ? Number(hourStr) : undefined);
@@ -104,7 +105,13 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           setSecondValue(secondStr && isNumber(secondStr) ? Number(secondStr) : undefined);
         }
         if (formatInfo.format === "12" && time.includes(" ")) {
-          const dayPeriodValue = time.split(" ")[1] === "AM" ? 0 : time.split(" ")[1] === "PM" ? 1 : undefined;
+          const dayPeriod = formatInfo.dayPeriodPosition === "before" ? time.split(" ")[0] : time.split(" ")[1];
+          const dayPeriodValue =
+            dayPeriod === translatedLabels.timeInput.timePeriodAM
+              ? 0
+              : dayPeriod === translatedLabels.timeInput.timePeriodPM
+                ? 1
+                : undefined;
           setDayPeriodValue(dayPeriodValue);
         } else {
           setDayPeriodValue(undefined);
@@ -129,7 +136,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
           showSeconds,
           formatInfo.format,
           formatInfo.separator,
-          formatInfo.dayPeriodPosition
+          formatInfo.dayPeriodPosition,
+          translatedLabels
         );
       }
     };
@@ -151,7 +159,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
             showSeconds,
             formatInfo.format,
             formatInfo.separator,
-            formatInfo.dayPeriodPosition
+            formatInfo.dayPeriodPosition,
+            translatedLabels
           )
         );
       }
@@ -230,7 +239,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           showSeconds,
                           formatInfo.format,
                           formatInfo.separator,
-                          formatInfo.dayPeriodPosition
+                          formatInfo.dayPeriodPosition,
+                          translatedLabels
                         )
                       );
                     }
@@ -278,7 +288,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           showSeconds,
                           formatInfo.format,
                           formatInfo.separator,
-                          formatInfo.dayPeriodPosition
+                          formatInfo.dayPeriodPosition,
+                          translatedLabels
                         )
                       );
                     }
@@ -322,7 +333,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           showSeconds,
                           formatInfo.format,
                           formatInfo.separator,
-                          formatInfo.dayPeriodPosition
+                          formatInfo.dayPeriodPosition,
+                          translatedLabels
                         )
                       );
                     }
@@ -377,7 +389,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                               showSeconds,
                               formatInfo.format,
                               formatInfo.separator,
-                              formatInfo.dayPeriodPosition
+                              formatInfo.dayPeriodPosition,
+                              translatedLabels
                             )
                           );
                         }
@@ -426,7 +439,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                           showSeconds,
                           formatInfo.format,
                           formatInfo.separator,
-                          formatInfo.dayPeriodPosition
+                          formatInfo.dayPeriodPosition,
+                          translatedLabels
                         )
                       );
                     }
@@ -472,7 +486,8 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                             showSeconds,
                             formatInfo.format,
                             formatInfo.separator,
-                            formatInfo.dayPeriodPosition
+                            formatInfo.dayPeriodPosition,
+                            translatedLabels
                           )
                         );
                       }

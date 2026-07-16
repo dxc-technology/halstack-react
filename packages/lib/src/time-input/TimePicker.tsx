@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { TimePickerPropsType } from "./types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TimePickerColumn from "./TimePickerColumn";
 import { handleColumnKeyDown } from "./utils";
+import { HalstackLanguageContext } from "../HalstackContext";
 // Array to be used in seconds and minutes.
 const STEP = 5;
 const ARRAY_OF_60 = Array.from({ length: 60 / STEP }, (_, index) => index * STEP);
@@ -30,6 +31,8 @@ const TimePicker = ({
   const [secondToFocus, setSecondToFocus] = useState(secondValue ?? 0);
   const [dayPeriodToFocus, setDayPeriodToFocus] = useState(dayPeriod ?? 0);
   const totalHours = timeFormat === "12" ? 12 : 24;
+
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   const onPickerSelect = (value: number, type: "hour" | "minute" | "second" | "dayPeriod") => {
     const hourVal = type === "hour" ? value : (hourValue ?? (timeFormat === "12" ? 1 : 0));
@@ -83,6 +86,7 @@ const TimePicker = ({
               onPickerSelect(value, "dayPeriod")
             )
           }
+          translatedLabels={translatedLabels}
         />
       )}
       <TimePickerColumn
@@ -163,6 +167,7 @@ const TimePicker = ({
               onPickerSelect(value, "dayPeriod")
             )
           }
+          translatedLabels={translatedLabels}
         />
       )}
     </TimePickerContainer>
