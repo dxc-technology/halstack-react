@@ -79,24 +79,23 @@ const Input = styled.textarea`
 
 const DxcMessageInput = ({
   allowVoiceInput = false,
-  bottomOptions,
+  callbackFile,
   defaultValue = "",
   disabled = false,
   error,
+  files,
   isGenerating = false,
   maxLength,
   minLength,
-  placeholder = "",
+  modelList,
   onBlur,
+  onButtonClick,
   onChange,
-  value,
-  onSubmit,
-  size = "medium",
-  files,
-  callbackFiles,
-  onStop,
   onRecordingChange,
-  onTranscript,
+  placeholder = "",
+  size = "medium",
+  tabIndex,
+  value,
 }: PromptInputPropsType) => {
   const inputId = `input-${useId()}`;
   const errorId = `error-${inputId}`;
@@ -174,13 +173,13 @@ const DxcMessageInput = ({
       icon: "insert_drive_file",
     }));
     const nextFiles = [...(files ?? []), ...selectedFiles];
-    callbackFiles?.(nextFiles);
+    callbackFile?.(nextFiles);
     event.target.value = "";
   };
 
   const removeItem = (itemIndex: number) => {
     const nextFiles = (files ?? []).filter((_, index) => index !== itemIndex);
-    callbackFiles?.(nextFiles);
+    callbackFile?.(nextFiles);
   };
 
   const baseTextRef = useRef("");
@@ -199,11 +198,6 @@ const DxcMessageInput = ({
   useEffect(() => {
     if (!transcript) return;
 
-    if (onTranscript) {
-      onTranscript(transcript);
-      return;
-    }
-
     const combined = baseTextRef.current ? `${baseTextRef.current} ${transcript}` : transcript;
     changeValue(combined);
 
@@ -211,7 +205,7 @@ const DxcMessageInput = ({
       inputRef.current.style.height = "auto";
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
     }
-  }, [transcript, onTranscript]);
+  }, [transcript, changeValue]);
 
   useEffect(() => {
     if (onRecordingChange) {
@@ -225,7 +219,7 @@ const DxcMessageInput = ({
     const controller = new AbortController();
 
     try {
-      const result = onSubmit?.(controller.signal);
+      const result = onButtonClick?.("submit", controller.signal);
       if (result instanceof Promise) {
         await result;
       }
@@ -234,6 +228,11 @@ const DxcMessageInput = ({
         throw e;
       }
     }
+  };
+
+  const handleStop = () => {
+    if (disabled) return;
+    void onButtonClick?.("stop");
   };
 
   return (
@@ -283,19 +282,20 @@ const DxcMessageInput = ({
           }}
           placeholder={placeholder}
           ref={inputRef}
+          tabIndex={tabIndex}
           maxLength={maxLength}
           minLength={minLength}
           value={value ?? innerValue}
         />
-        <DxcFlex justifyContent={bottomOptions ? "space-between" : "flex-end"} alignItems="center">
-          {bottomOptions && (
+        <DxcFlex justifyContent={modelList ? "space-between" : "flex-end"} alignItems="center">
+          {modelList && (
             <DxcSelect
               // size="fitContent"
-              options={bottomOptions.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
+              options={modelList.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
               disabled={isGenerating || disabled}
-              defaultValue={bottomOptions[0]?.value ?? ""}
+              defaultValue={modelList[0]?.value ?? ""}
               onChange={(val) => {
-                const selectedOption = bottomOptions.find((option) => option.value === val.value);
+                const selectedOption = modelList.find((option) => option.value === val.value);
                 selectedOption?.onSelect();
               }}
             />
@@ -318,7 +318,7 @@ const DxcMessageInput = ({
               icon={!isGenerating ? "send" : "filled_stop"}
               size={{ height: "medium" }}
               disabled={disabled}
-              onClick={!isGenerating ? handleSubmit : onStop}
+              onClick={!isGenerating ? handleSubmit : handleStop}
               title={!isGenerating ? "Submit" : "Stop"}
             />
           </DxcFlex>

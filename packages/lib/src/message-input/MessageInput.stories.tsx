@@ -66,7 +66,7 @@ const MessageInput = () => (
       <Title title="Bottom Select" level={4} />
       <DxcMessageInput
         placeholder="Ask me anything..."
-        bottomOptions={[
+        modelList={[
           { label: "Option 1", value: "option1", onSelect: () => {} },
           { label: "Option 29872357857274590", value: "option2", onSelect: () => {} },
           { label: "Option 3", value: "option3", onSelect: () => {} },
@@ -91,8 +91,12 @@ const MessageInput = () => (
 const ControlledFileExample = () => {
   const [files, setFiles] = useState<FileData[]>([]);
 
-  const handleSubmit = (_signal?: AbortSignal) => {
-    console.log(files.map((file: FileData) => file.label));
+  const handleButtonClick = (type: "submit" | "stop", _signal?: AbortSignal) => {
+    if (type === "submit") {
+      console.log(files.map((file: FileData) => file.label));
+    } else {
+      console.log("Stop action triggered");
+    }
   };
 
   const callbackFiles = (updatedFiles: FileData[]) => {
@@ -105,42 +109,19 @@ const ControlledFileExample = () => {
       <DxcMessageInput
         placeholder="Ask me anything..."
         files={files}
-        callbackFiles={callbackFiles}
-        onSubmit={handleSubmit}
+        callbackFile={callbackFiles}
+        onButtonClick={handleButtonClick}
       />
     </ExampleContainer>
   );
 };
 
 const ControlledVoiceExample = () => {
-  const [transcript, setTranscript] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [baseText, setBaseText] = useState("");
-
-  const handleTranscript = (newTranscript: string) => {
-    setTranscript(newTranscript);
-    // Actualizar el input en tiempo real: texto base + transcripción actual
-    const combined = baseText ? `${baseText} ${newTranscript}` : newTranscript;
-    setInputValue(combined);
-  };
-
-  const handleRecordingChange = (recording: boolean) => {
-    if (recording) {
-      // Cuando inicia la grabación, guardar el texto base actual
-      setBaseText(inputValue);
-      setTranscript("");
-    } else if (transcript) {
-      // Cuando termina la grabación, consolidar el texto
-      const combined = baseText ? `${baseText} ${transcript}` : transcript;
-      setInputValue(combined);
-      setBaseText(combined);
-      setTranscript("");
-    }
-  };
 
   const handleChange = (val: { value: string; error?: string }) => {
     setInputValue(val.value);
-    setBaseText(val.value);
+    console.log(val);
   };
 
   return (
@@ -153,8 +134,6 @@ const ControlledVoiceExample = () => {
           allowVoiceInput
           value={inputValue}
           onChange={handleChange}
-          onRecordingChange={handleRecordingChange}
-          onTranscript={handleTranscript}
         />
       </ExampleContainer>
     </>
