@@ -117,20 +117,11 @@ const TimeInput = () => {
             showSeconds
           />
         </HalstackProvider>
-        <HalstackProvider
-          localeTag="zh-CN"
-          labels={{
-            timeInput: {
-              timePeriodAM: "上午",
-              timePeriodPM: "下午",
-            },
-          }}
-        >
+        <HalstackProvider localeTag="zh-CN">
           <DxcTimeInput
             label="Chinese locale with 12-hour format"
             helperText="Helper text"
             onChange={(val) => console.log(val)}
-            defaultValue="下午 06:30:20"
             timeFormat="12"
             showSeconds
           />
