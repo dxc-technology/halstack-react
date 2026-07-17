@@ -16,9 +16,8 @@ const MessageInputPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Message Input" />
           <DxcParagraph>
-            Message inputs allow users to enter and send messages within an application. They typically include a text
-            area for composing messages and may offer additional features such as attachments, emojis, or formatting
-            options.
+            Message inputs are composition components specifically designed to capture and send user messages in{" "}
+            <strong>conversational interfaces</strong>, both in human-to-human messaging and AI-assisted applications.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
