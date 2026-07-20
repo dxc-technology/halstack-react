@@ -17,7 +17,6 @@ const code = `() => {
   };
   
   const onBlur = ({ value, error }) => {
-    console.log("Input blurred with value:", value);
     if (error) {
       setError(error);
     }
@@ -46,10 +45,6 @@ const code = `() => {
     setFiles(updatedFiles);
   };
 
-  const onRecordingChange = (isRecording) => {
-    console.log("Recording state changed:", isRecording);
-  };
-
   const modelList = [
     {
       label: "GPT-4",
@@ -70,14 +65,9 @@ const code = `() => {
       onSelect: () => setSelectedModel("Claude")
     }
   ];
-
-  const toggleSize = () => {
-    // This would toggle between sizes in a real implementation
-  };
   
   return (
     <DxcInset space="var(--spacing-padding-xl)">
-      <DxcFlex direction="column" gap="var(--spacing-gap-l)">
         <DxcMessageInput
           placeholder="Ask me anything... (min 10, max 200 characters)"
           value={value}
@@ -88,21 +78,12 @@ const code = `() => {
           callbackFile={callbackFile}
           modelList={modelList}
           allowVoiceInput
-          onRecordingChange={onRecordingChange}
           isGenerating={isGenerating}
           error={error}
           minLength={10}
           maxLength={200}
           size="large"
         />
-        <div style={{ fontSize: "14px", color: "#666" }}>
-          <strong>Selected model:</strong> {selectedModel}
-          <br />
-          <strong>Character count:</strong> {value.length} / 200
-          <br />
-          <strong>Attached files:</strong> {files.length}
-        </div>
-      </DxcFlex>
     </DxcInset>
   );
 }`;
