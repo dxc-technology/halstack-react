@@ -14,7 +14,9 @@ export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuCo
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
   const [isOpen, setIsOpen] = useState(hasPopOver ? false : (defaultOpen ?? (groupSelected && selectedItemId === -1)));
 
-  const toggleOpen = () => setIsOpen((prev) => !prev);
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   return {
     groupMenuId,

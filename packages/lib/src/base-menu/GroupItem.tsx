@@ -43,7 +43,9 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         </Popover.Trigger>
         {portalContainer && (
           <Popover.Portal container={portalContainer}>
-            <BaseMenuContext.Provider value={{ ...contextValue, displayGroupLines: false, hasPopOver: false }}>
+            <BaseMenuContext.Provider
+              value={{ ...contextValue, displayGroupLines: false, hasPopOver: false, closePopOver: toggleOpen }}
+            >
               <Popover.Content
                 aria-label="Group details"
                 onKeyDown={(event) => {

@@ -4,11 +4,12 @@ import { SingleItemProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
 
 export default function SingleItem({ id, onSelect, selected = false, ...props }: SingleItemProps) {
-  const { selectedItemId, setSelectedItemId } = useContext(BaseMenuContext) ?? {};
+  const { selectedItemId, setSelectedItemId, closePopOver } = useContext(BaseMenuContext) ?? {};
 
   const handleClick = () => {
     setSelectedItemId?.(id);
     onSelect?.();
+    closePopOver?.();
   };
 
   useEffect(() => {
