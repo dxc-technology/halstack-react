@@ -13,7 +13,7 @@ type Props = {
   /**
    * If true, the voice recording button will be shown.
    */
-  allowVoiceInput?: boolean;
+  allowRecording?: boolean;
   /**
    * This function will be called when the selection of top items changes.
    */
@@ -64,7 +64,7 @@ type Props = {
    */
   minLength?: number;
   /**
-   * Options to be shown on the dropdown under the input.
+   * Options to be shown on the dropdown under the input. The first option will be selected by default.
    */
   modelList?: {
     label?: string;
@@ -91,10 +91,9 @@ type Props = {
    * The type parameter indicates whether it's a "submit" or "stop" event.
    * For submit events, an AbortSignal is provided to allow cancellation.
    */
-  onButtonClick?: (type: "submit" | "stop", signal?: AbortSignal) => void | Promise<void>;
+  onButtonClick?: (type: "submit" | "stop") => void;
   /**
    * This function will be called when the recording state changes (starts or stops).
-   * Only used when isRecording prop is controlled.
    */
   onRecordingChange?: (isRecording: boolean) => void;
   /**

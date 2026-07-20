@@ -1,7 +1,24 @@
 import { DxcTable, DxcFlex } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
+import Example from "@/common/example/Example";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
+import advanced from "./examples/advanced";
+
+const fileDataTypeString = `{
+  label: string;
+  icon?: string | SVG;
+};`;
+const callbackFileTypeString = "(files: FileData[]) => void";
+const filesTypeString = `FileData[] | []`;
+const modelListTypeString = `{
+  label?: string;
+  icon?: string | SVG;
+  value: string;
+  onSelect: () => void;
+}[]`;
 
 const sections = [
   {
@@ -30,7 +47,11 @@ const sections = [
           <tr>
             <td>callbackFile</td>
             <td>
-              <TableCode>{"(files: FileData[]) => void"}</TableCode>
+              <TableCode>{callbackFileTypeString}</TableCode>
+              <p>
+                being <Code>FileData</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{fileDataTypeString}</ExtendedTableCode>
             </td>
             <td>This function will be called when the selection of top items changes.</td>
             <td>-</td>
@@ -69,7 +90,7 @@ const sections = [
           <tr>
             <td>files</td>
             <td>
-              <TableCode>{"FileData[] | []"}</TableCode>
+              <TableCode>{filesTypeString}</TableCode>
             </td>
             <td>Items to be shown at the top.</td>
             <td>-</td>
@@ -115,13 +136,9 @@ const sections = [
           <tr>
             <td>modelList</td>
             <td>
-              <TableCode>
-                {
-                  "{ label?: string; icon?: string | (React.ReactNode & React.SVGProps<SVGSVGElement>); value: string; onSelect: () => void; }[]"
-                }
-              </TableCode>
+              <ExtendedTableCode>{modelListTypeString}</ExtendedTableCode>
             </td>
-            <td>Options to be shown on the dropdown under the input.</td>
+            <td>Options to be shown on the dropdown under the input. The first option will be selected by default.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -139,7 +156,7 @@ const sections = [
           <tr>
             <td>onButtonClick</td>
             <td>
-              <TableCode>{"(type: 'submit' | 'stop', signal?: AbortSignal) => void | Promise<void>"}</TableCode>
+              <ExtendedTableCode>{"(type: 'submit' | 'stop') => void"}</ExtendedTableCode>
             </td>
             <td>
               This function will be called when the user clicks on the button (submit or stop) or presses enter. The
@@ -165,10 +182,7 @@ const sections = [
             <td>
               <TableCode>{"(isRecording: boolean) => void"}</TableCode>
             </td>
-            <td>
-              This function will be called when the recording state changes (starts or stops). Only used when
-              isRecording prop is controlled.
-            </td>
+            <td>This function will be called when the recording state changes (starts or stops).</td>
             <td>-</td>
           </tr>
           <tr>
@@ -215,36 +229,21 @@ const sections = [
     ),
   },
   {
-    title: "FileData",
-    content: (
-      <DxcTable>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>label</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>The chip label.</td>
-          </tr>
-          <tr>
-            <td>icon</td>
-            <td>
-              <TableCode>{"string | (React.ReactNode & React.SVGProps<SVGSVGElement>)"}</TableCode>
-            </td>
-            <td>
-              The chip icon. It can be a string representing the icon name or a ReactNode representing a custom icon.
-            </td>
-          </tr>
-        </tbody>
-      </DxcTable>
-    ),
+    title: "Examples",
+    subSections: [
+      {
+        title: "Uncontrolled",
+        content: <Example example={uncontrolled} defaultIsVisible />,
+      },
+      {
+        title: "Controlled",
+        content: <Example example={controlled} defaultIsVisible />,
+      },
+      {
+        title: "Advanced",
+        content: <Example example={advanced} defaultIsVisible />,
+      },
+    ],
   },
 ];
 
