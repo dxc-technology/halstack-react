@@ -22,11 +22,6 @@ describe("Message Input component tests", () => {
     expect(getByDisplayValue("Hello World")).toBeInTheDocument();
   });
 
-  test("renders with helper text", () => {
-    const { getByText } = render(<DxcMessageInput helperText="This is a helper text" />);
-    expect(getByText("This is a helper text")).toBeInTheDocument();
-  });
-
   test("renders with error message", () => {
     const { getByText } = render(<DxcMessageInput error="This is an error" />);
     expect(getByText("This is an error")).toBeInTheDocument();
@@ -55,36 +50,58 @@ describe("Message Input component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "Test" });
   });
 
-  test("calls onSubmit when Enter key is pressed", () => {
-    const onSubmit = jest.fn();
-    const { getByRole } = render(<DxcMessageInput onSubmit={onSubmit} />);
+  test("calls onButtonClick when Enter key is pressed", () => {
+    const onButtonClick = jest.fn();
+    const { getByRole } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
     userEvent.click(input);
     userEvent.type(input, "Test message{Enter}");
 
-    expect(onSubmit).toHaveBeenCalledTimes(1);
+    expect(onButtonClick).toHaveBeenCalledWith("submit");
+    expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
-  test("does not call onSubmit when Shift+Enter is pressed", () => {
-    const onSubmit = jest.fn();
-    const { getByRole } = render(<DxcMessageInput onSubmit={onSubmit} />);
+  test("does not call onButtonClick when Shift+Enter is pressed", () => {
+    const onButtonClick = jest.fn();
+    const { getByRole } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
     userEvent.click(input);
     userEvent.type(input, "Line 1{Shift>}{Enter}{/Shift}Line 2");
 
-    expect(onSubmit).not.toHaveBeenCalled();
+    expect(onButtonClick).not.toHaveBeenCalled();
   });
 
-  test("calls onSubmit when submit button is clicked", () => {
-    const onSubmit = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput onSubmit={onSubmit} />);
+  test("does not call onButtonClick when Enter is pressed and component is disabled", () => {
+    const onButtonClick = jest.fn();
+    const { getByRole } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
+    const input = getByRole("textbox");
+
+    userEvent.type(input, "Test message{Enter}");
+
+    expect(onButtonClick).not.toHaveBeenCalled();
+  });
+
+  test("does not call onButtonClick when Enter is pressed and isGenerating is true", () => {
+    const onButtonClick = jest.fn();
+    const { getByRole } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
+    const input = getByRole("textbox");
+
+    userEvent.type(input, "Test message{Enter}");
+
+    expect(onButtonClick).not.toHaveBeenCalled();
+  });
+
+  test("calls onButtonClick when submit button is clicked", () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Submit");
 
     userEvent.click(submitButton);
 
-    expect(onSubmit).toHaveBeenCalledTimes(1);
+    expect(onButtonClick).toHaveBeenCalledWith("submit");
+    expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
   test("disables input when disabled prop is true", () => {
@@ -94,29 +111,30 @@ describe("Message Input component tests", () => {
     expect(input).toBeDisabled();
   });
 
-  test("disables input when isLoading is true", () => {
-    const { getByRole } = render(<DxcMessageInput isLoading />);
+  test("disables input when isGenerating is true", () => {
+    const { getByRole } = render(<DxcMessageInput isGenerating />);
     const input = getByRole("textbox");
 
     expect(input).toBeDisabled();
   });
 
-  test("shows stop button when isLoading is true", () => {
-    const stop = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput isLoading stop={stop} />);
+  test("shows stop button when isGenerating is true", () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
     const stopButton = getByLabelText("Stop");
 
     expect(stopButton).toBeInTheDocument();
   });
 
-  test("calls stop when stop button is clicked", () => {
-    const stop = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput isLoading stop={stop} />);
+  test("calls onButtonClick with 'stop' when stop button is clicked", () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
     const stopButton = getByLabelText("Stop");
 
     userEvent.click(stopButton);
 
-    expect(stop).toHaveBeenCalledTimes(1);
+    expect(onButtonClick).toHaveBeenCalledWith("stop");
+    expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
   test("validates minLength and calls onChange with error", () => {
@@ -171,19 +189,19 @@ describe("Message Input component tests", () => {
     expect(input).toHaveValue("Initial text");
   });
 
-  test("renders file upload dropdown when allowFileUploads is true", () => {
-    const { getByRole } = render(<DxcMessageInput allowFileUploads />);
+  test("renders file upload dropdown when files prop is provided", () => {
+    const { getByRole } = render(<DxcMessageInput files={[]} />);
     const dropdown = getByRole("button", { name: "Show options" });
 
     expect(dropdown).toBeInTheDocument();
   });
 
-  test("renders bottom select when bottomOptions is provided", () => {
-    const bottomOptions = [
+  test("renders bottom select when modelList is provided", () => {
+    const modelList = [
       { label: "Option 1", value: "option1", onSelect: jest.fn() },
       { label: "Option 2", value: "option2", onSelect: jest.fn() },
     ];
-    const { getByRole } = render(<DxcMessageInput bottomOptions={bottomOptions} />);
+    const { getByRole } = render(<DxcMessageInput modelList={modelList} />);
     const select = getByRole("combobox");
 
     expect(select).toBeInTheDocument();
@@ -191,11 +209,11 @@ describe("Message Input component tests", () => {
 
   test("calls onSelect when a bottom option is selected", async () => {
     const onSelect = jest.fn();
-    const bottomOptions = [
+    const modelList = [
       { label: "Option 1", value: "option1", onSelect },
       { label: "Option 2", value: "option2", onSelect: jest.fn() },
     ];
-    const { getByRole } = render(<DxcMessageInput bottomOptions={bottomOptions} />);
+    const { getByRole } = render(<DxcMessageInput modelList={modelList} />);
     const select = getByRole("combobox");
 
     userEvent.click(select);
@@ -210,40 +228,40 @@ describe("Message Input component tests", () => {
     expect(queryByText("This is an error")).not.toBeInTheDocument();
   });
 
-  test("async onSubmit is handled correctly", async () => {
-    const onSubmit = jest.fn().mockResolvedValue(undefined);
-    const { getByLabelText } = render(<DxcMessageInput onSubmit={onSubmit} />);
+  test("async onButtonClick is handled correctly", async () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Submit");
 
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(onSubmit).toHaveBeenCalledTimes(1);
+      expect(onButtonClick).toHaveBeenCalledWith("submit");
+      expect(onButtonClick).toHaveBeenCalledTimes(1);
     });
   });
 
-  test("does not call onSubmit when disabled", () => {
-    const onSubmit = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput disabled onSubmit={onSubmit} />);
+  test("does not call onButtonClick when disabled", () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Submit");
 
     userEvent.click(submitButton);
 
-    expect(onSubmit).not.toHaveBeenCalled();
+    expect(onButtonClick).not.toHaveBeenCalled();
   });
 
-  test("does not call onSubmit when isLoading", () => {
-    const onSubmit = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput isLoading onSubmit={onSubmit} />);
+  test("shows stop button instead of submit when isGenerating", () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
 
-    // The button should be the stop button when isLoading
+    // The button should be the stop button when isGenerating
     const button = getByLabelText("Stop");
     expect(button).toBeInTheDocument();
-    expect(onSubmit).not.toHaveBeenCalled();
   });
 
   test("handles file selection", () => {
-    const { getByRole } = render(<DxcMessageInput allowFileUploads />);
+    const { getByRole } = render(<DxcMessageInput files={[]} />);
     const dropdown = getByRole("button", { name: "Show options" });
 
     // Simulate selecting the option
@@ -253,8 +271,8 @@ describe("Message Input component tests", () => {
   });
 
   test("adds files when files are selected", () => {
-    const callbackItems = jest.fn();
-    const { container } = render(<DxcMessageInput allowFileUploads callbackItems={callbackItems} />);
+    const callbackFile = jest.fn();
+    const { container } = render(<DxcMessageInput files={[]} callbackFile={callbackFile} />);
 
     const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
     expect(fileInput).toBeInTheDocument();
@@ -267,18 +285,16 @@ describe("Message Input component tests", () => {
 
     fileInput.dispatchEvent(new Event("change", { bubbles: true }));
 
-    expect(callbackItems).toHaveBeenCalled();
+    expect(callbackFile).toHaveBeenCalled();
   });
 
   test("removes item when chip is clicked", () => {
-    const callbackItems = jest.fn();
-    const topItems = [
-      { id: "1", label: "File 1" },
-      { id: "2", label: "File 2" },
+    const callbackFile = jest.fn();
+    const files = [
+      { label: "File 1", icon: "insert_drive_file" },
+      { label: "File 2", icon: "insert_drive_file" },
     ];
-    const { getByText } = render(
-      <DxcMessageInput allowFileUploads topItems={topItems} callbackItems={callbackItems} />
-    );
+    const { getByText } = render(<DxcMessageInput files={files} callbackFile={callbackFile} />);
 
     // Verify chips are rendered
     expect(getByText("File 1")).toBeInTheDocument();
@@ -286,23 +302,21 @@ describe("Message Input component tests", () => {
 
     // Note: Testing the actual click on chip requires finding the dismissible button
     // which is handled internally by DxcChip component
-    expect(callbackItems).not.toHaveBeenCalled();
+    expect(callbackFile).not.toHaveBeenCalled();
   });
 
-  test("handles AbortError in onSubmit without throwing", async () => {
-    const abortError = new DOMException("Aborted", "AbortError");
-    const onSubmit = jest.fn().mockRejectedValue(abortError);
-    const { getByLabelText } = render(<DxcMessageInput onSubmit={onSubmit} />);
+  test("calls onButtonClick with submit when submit button is clicked", async () => {
+    const onButtonClick = jest.fn();
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Submit");
 
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(onSubmit).toHaveBeenCalled();
+      expect(onButtonClick).toHaveBeenCalledWith("submit");
     });
 
-    // AbortError should be caught and not throw
-    expect(onSubmit).toHaveBeenCalledTimes(1);
+    expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
   test("validates minLength correctly when value is exactly minLength", () => {
@@ -316,9 +330,9 @@ describe("Message Input component tests", () => {
     expect(onChange).toHaveBeenLastCalledWith({ value: "Hello" });
   });
 
-  test("works with uncontrolled topItems", () => {
-    const callbackItems = jest.fn();
-    const { container } = render(<DxcMessageInput allowFileUploads callbackItems={callbackItems} />);
+  test("works with file uploads", () => {
+    const callbackFile = jest.fn();
+    const { container } = render(<DxcMessageInput files={[]} callbackFile={callbackFile} />);
 
     const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
     const file = new File(["content"], "test.txt", { type: "text/plain" });
@@ -330,6 +344,6 @@ describe("Message Input component tests", () => {
 
     fileInput.dispatchEvent(new Event("change", { bubbles: true }));
 
-    expect(callbackItems).toHaveBeenCalled();
+    expect(callbackFile).toHaveBeenCalled();
   });
 });

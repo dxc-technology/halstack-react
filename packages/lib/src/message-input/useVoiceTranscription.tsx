@@ -59,7 +59,7 @@ interface UseVoiceTranscriptionReturn {
 }
 
 export const useVoiceTranscription = ({
-  lang = "es-ES",
+  lang = "en-US",
   continuous = true,
   interimResults = true,
 }: UseVoiceTranscriptionOptions = {}): UseVoiceTranscriptionReturn => {
@@ -80,7 +80,6 @@ export const useVoiceTranscription = ({
     if (!SpeechRecognitionConstructor) return;
 
     const recognition = new SpeechRecognitionConstructor();
-
     recognition.lang = lang;
     recognition.continuous = continuous;
     recognition.interimResults = interimResults;

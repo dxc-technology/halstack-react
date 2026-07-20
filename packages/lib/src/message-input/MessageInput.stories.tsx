@@ -12,8 +12,47 @@ export default {
 
 type Story = StoryObj<typeof DxcMessageInput>;
 
+const modelListOptions = [
+  { label: "GPT-4", value: "gpt4", onSelect: () => {} },
+  { label: "Claude Sonnet", value: "claude", onSelect: () => {} },
+  { label: "Gemini Pro", value: "gemini", onSelect: () => {} },
+  { label: "LLaMA 3", value: "llama", onSelect: () => {} },
+];
+
 const MessageInput = () => (
   <>
+    <Title title="Size" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Small" level={4} />
+      <DxcMessageInput modelList={modelListOptions} size="small" placeholder="Ask me anything..." files={[]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium (default)" level={4} />
+      <DxcMessageInput modelList={modelListOptions} size="medium" placeholder="Ask me anything..." files={[]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" level={4} />
+      <DxcMessageInput modelList={modelListOptions} size="large" placeholder="Ask me anything..." files={[]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Fill Parent" level={4} />
+      <DxcMessageInput modelList={modelListOptions} size="fillParent" placeholder="Ask me anything..." files={[]} />
+    </ExampleContainer>
+
+    <ExampleContainer>
+      <Title title="With Voice Input" level={2} />
+      <DxcMessageInput placeholder="Ask me anything with voice..." allowRecording files={[]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With Model List" level={2} />
+      <DxcMessageInput placeholder="Select a model and ask..." modelList={modelListOptions} files={[]} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With All Features" level={2} />
+      <DxcMessageInput placeholder="Full featured input..." allowRecording modelList={modelListOptions} files={[]} />
+    </ExampleContainer>
+
+    {/* ================== STATES ================== */}
     <Title title="States" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" level={4} />
@@ -33,57 +72,34 @@ const MessageInput = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." disabled files={[]} />
+      <DxcMessageInput placeholder="This input is disabled..." disabled files={[]} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="isGenerating" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." isGenerating files={[]} />
+      <Title title="Is Generating" level={4} />
+      <DxcMessageInput placeholder="AI is generating response..." isGenerating files={[]} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." files={[]} error="Error Message" />
+      <DxcMessageInput placeholder="Ask me anything..." files={[]} error="Please enter a valid message" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover error" level={4} />
       <DxcMessageInput placeholder="Ask me anything..." files={[]} error="Error Message" />
     </ExampleContainer>
 
+    <Title title="Validation" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="Min Length" level={4} />
+      <Title title="Min Length (15 characters)" level={4} />
       <DxcMessageInput placeholder="Ask me anything..." files={[]} minLength={15} defaultValue="Hello" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Max Length" level={4} />
+      <Title title="Max Length (50 characters)" level={4} />
       <DxcMessageInput
         placeholder="Ask me anything..."
         files={[]}
-        maxLength={15}
-        defaultValue="Hello this is a test of the max length property"
+        maxLength={50}
+        defaultValue="This is a test message to demonstrate the maximum length validation feature"
       />
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Bottom Select" level={4} />
-      <DxcMessageInput
-        placeholder="Ask me anything..."
-        modelList={[
-          { label: "Option 1", value: "option1", onSelect: () => {} },
-          { label: "Option 29872357857274590", value: "option2", onSelect: () => {} },
-          { label: "Option 3", value: "option3", onSelect: () => {} },
-          { label: "Option 4", value: "option4", onSelect: () => {} },
-        ]}
-        files={[]}
-      />
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="With Voice Input" level={4} />
-      <DxcMessageInput placeholder="Ask me anything with voice..." allowVoiceInput files={[]} />
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Without Voice Input" level={4} />
-      <DxcMessageInput placeholder="No voice button here..." files={[]} />
     </ExampleContainer>
   </>
 );
@@ -93,7 +109,10 @@ const ControlledFileExample = () => {
 
   const handleButtonClick = (type: "submit" | "stop", _signal?: AbortSignal) => {
     if (type === "submit") {
-      console.log(files.map((file: FileData) => file.label));
+      console.log(
+        "Submitted files:",
+        files.map((file: FileData) => file.label)
+      );
     } else {
       console.log("Stop action triggered");
     }
@@ -104,15 +123,17 @@ const ControlledFileExample = () => {
   };
 
   return (
-    <ExampleContainer>
-      <Title title="Default" level={4} />
-      <DxcMessageInput
-        placeholder="Ask me anything..."
-        files={files}
-        callbackFile={callbackFiles}
-        onButtonClick={handleButtonClick}
-      />
-    </ExampleContainer>
+    <>
+      <Title title="Controlled Files" theme="light" level={2} />
+      <ExampleContainer>
+        <DxcMessageInput
+          placeholder="Attach files and submit..."
+          files={files}
+          callbackFile={callbackFiles}
+          onButtonClick={handleButtonClick}
+        />
+      </ExampleContainer>
+    </>
   );
 };
 
@@ -121,7 +142,7 @@ const ControlledVoiceExample = () => {
 
   const handleChange = (val: { value: string; error?: string }) => {
     setInputValue(val.value);
-    console.log(val);
+    console.log("Value changed:", val);
   };
 
   return (
@@ -129,9 +150,9 @@ const ControlledVoiceExample = () => {
       <Title title="Controlled Voice Recording" theme="light" level={2} />
       <ExampleContainer>
         <DxcMessageInput
-          placeholder="Controla la grabación desde el componente padre..."
+          placeholder="Use voice input..."
           files={[]}
-          allowVoiceInput
+          allowRecording
           value={inputValue}
           onChange={handleChange}
         />
@@ -144,7 +165,7 @@ export const Chromatic: Story = {
   render: MessageInput,
 };
 
-export const ControlledFile: Story = {
+export const ControlledFiles: Story = {
   render: ControlledFileExample,
 };
 

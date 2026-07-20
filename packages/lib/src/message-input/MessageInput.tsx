@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import styled from "@emotion/styled";
+import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
 import { inputStylesByStatePromptInput, isLengthIncorrect } from "./utils";
 import DxcButton from "../button/Button";
@@ -35,6 +36,7 @@ const MessageInputContainer = styled.div<{ size: PromptInputPropsType["size"] }>
   flex-direction: column;
   gap: var(--spacing-gap-xs);
   max-height: 320px;
+  background-color: var(--color-bg-neutral-lightest);
   box-shadow: 0 -24px 10px 4px rgba(255, 255, 255, 0.6);
   width: ${({ size = "medium" }) => sizes[size]};
 `;
@@ -55,7 +57,24 @@ const MessageInput = styled.div<{
   overflow: hidden;
 `;
 
-const Input = styled.textarea`
+const FilesContainer = styled.div`
+  min-height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-xs);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+
+  ${scrollbarStyles};
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+`;
+
+const Input = styled.textarea<{ isRecording?: boolean }>`
+  min-height: 20px;
   max-width: 100%;
   background: none;
   border: none;
@@ -63,7 +82,8 @@ const Input = styled.textarea`
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   resize: none;
   flex-grow: 1;
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  color: ${({ disabled, isRecording }) =>
+    isRecording ? "transparent" : disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)"};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
@@ -75,10 +95,44 @@ const Input = styled.textarea`
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
   }
   ${({ disabled }) => disabled && "cursor: not-allowed;"}
+
+  ${scrollbarStyles};
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+`;
+
+const InputWrapper = styled.div`
+  max-height: 150px;
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TranscriptOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  pointer-events: none;
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+`;
+
+const HighlightedText = styled.span`
+  color: var(--color-fg-neutral-strong);
 `;
 
 const DxcMessageInput = ({
-  allowVoiceInput = false,
+  allowRecording = false,
   callbackFile,
   defaultValue = "",
   disabled = false,
@@ -98,27 +152,25 @@ const DxcMessageInput = ({
   value,
 }: PromptInputPropsType) => {
   const inputId = `input-${useId()}`;
-  const errorId = `error-${inputId}`;
   const translatedLabels = useContext(HalstackLanguageContext);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
-  const inputContainerRef = useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const { transcript, isRecording, startRecording, stopRecording } = useVoiceTranscription();
+  const { transcript, isRecording, startRecording, stopRecording, resetTranscript } = useVoiceTranscription();
 
   const changeValue = (newValue: string) => {
     if (value == null) {
       setInnerValue(newValue);
     }
-    if (isLengthIncorrect(newValue, minLength, maxLength)) {
-      onChange?.({
-        value: newValue,
-        error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
-      });
-    } else {
-      onChange?.({ value: newValue });
-    }
+    const lengthError = isLengthIncorrect(newValue, minLength, maxLength)
+      ? translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength)
+      : undefined;
+    onChange?.({
+      value: newValue,
+      ...(lengthError && { error: lengthError }),
+    });
   };
 
   const handleInputContainerOnClick = () => {
@@ -133,7 +185,6 @@ const DxcMessageInput = ({
 
   const handleInputOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const el = event.target;
-
     el.style.height = "auto";
 
     el.style.height = `${el.scrollHeight}px`;
@@ -147,20 +198,13 @@ const DxcMessageInput = ({
 
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
-    if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
-      onBlur?.({
-        value: event.target.value,
-        error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
-      });
-    } else {
-      onBlur?.({ value: event.target.value });
-    }
-  };
-  const handleInputOnKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      void handleSubmit();
-    }
+    const lengthError = isLengthIncorrect(event.target.value, minLength, maxLength)
+      ? translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength)
+      : undefined;
+    onBlur?.({
+      value: event.target.value,
+      ...(lengthError && { error: lengthError }),
+    });
   };
 
   const handleFileSelect = () => {
@@ -189,6 +233,7 @@ const DxcMessageInput = ({
 
     if (isRecording) {
       stopRecording();
+      resetTranscript();
     } else {
       baseTextRef.current = value ?? innerValue;
       startRecording();
@@ -204,35 +249,48 @@ const DxcMessageInput = ({
     if (inputRef.current) {
       inputRef.current.style.height = "auto";
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+
+      if (overlayRef.current) {
+        overlayRef.current.scrollTop = inputRef.current.scrollTop;
+      }
     }
   }, [transcript, changeValue]);
 
   useEffect(() => {
-    if (onRecordingChange) {
-      onRecordingChange(isRecording);
-    }
+    onRecordingChange?.(isRecording);
   }, [isRecording, onRecordingChange]);
 
-  const handleSubmit = async () => {
+  useEffect(() => {
+    const textarea = inputRef.current;
+    const overlay = overlayRef.current;
+
+    if (!textarea || !overlay || !isRecording) return;
+
+    overlay.scrollTop = textarea.scrollTop;
+
+    const handleScroll = () => {
+      overlay.scrollTop = textarea.scrollTop;
+    };
+
+    textarea.addEventListener("scroll", handleScroll);
+    return () => textarea.removeEventListener("scroll", handleScroll);
+  }, [isRecording]);
+
+  const handleSubmit = () => {
     if (disabled || isGenerating) return;
-
-    const controller = new AbortController();
-
-    try {
-      const result = onButtonClick?.("submit", controller.signal);
-      if (result instanceof Promise) {
-        await result;
-      }
-    } catch (e) {
-      if ((e as DOMException).name !== "AbortError") {
-        throw e;
-      }
-    }
+    onButtonClick?.("submit");
   };
 
   const handleStop = () => {
     if (disabled) return;
-    void onButtonClick?.("stop");
+    onButtonClick?.("stop");
+  };
+
+  const handleInputOnKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!disabled && !isGenerating && event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSubmit();
+    }
   };
 
   return (
@@ -243,66 +301,86 @@ const DxcMessageInput = ({
         focus={isFocused}
         onClick={handleInputContainerOnClick}
         onMouseDown={handleInputContainerOnMouseDown}
-        ref={inputContainerRef}
       >
         {files && (
-          <DxcContainer overflow={{ x: "auto" }} width="100%">
-            <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
-              <DxcDropdown
-                options={[{ label: "Attach documents", value: "fileorphoto" }]}
-                onSelectOption={handleFileSelect}
-                icon="add"
-                disabled={isGenerating || disabled}
-                caretHidden
+          <FilesContainer>
+            <DxcDropdown
+              options={[{ label: "Attach documents", value: "fileorphoto" }]}
+              onSelectOption={handleFileSelect}
+              icon="add"
+              disabled={isGenerating || disabled}
+              caretHidden
+            />
+            <input ref={fileInputRef} type="file" hidden multiple onChange={handleFileInputOnChange} />
+            {(files ?? []).map((item, index) => (
+              <DxcChip
+                key={index}
+                label={item.label}
+                mode="dismissible"
+                prefix={item.icon ?? "description"}
+                onClick={() => removeItem(index)}
               />
-              <input ref={fileInputRef} type="file" hidden multiple onChange={handleFileInputOnChange} />
-              {(files ?? []).map((item, index) => (
-                <DxcChip
-                  key={index}
-                  label={item.label}
-                  mode="dismissible"
-                  prefix={item.icon ?? "description"}
-                  onClick={() => removeItem(index)}
-                />
-              ))}
-            </DxcFlex>
-          </DxcContainer>
+            ))}
+          </FilesContainer>
         )}
-        <Input
-          aria-errormessage={error ? errorId : undefined}
-          aria-invalid={!!error}
-          disabled={isGenerating || disabled}
-          id={inputId}
-          onBlur={handleInputOnBlur}
-          onChange={handleInputOnChange}
-          onFocus={handleInputOnFocus}
-          onKeyDown={handleInputOnKeyDown}
-          onMouseDown={(event) => {
-            event.stopPropagation();
-          }}
-          placeholder={placeholder}
-          ref={inputRef}
-          tabIndex={tabIndex}
-          maxLength={maxLength}
-          minLength={minLength}
-          value={value ?? innerValue}
-        />
+        <InputWrapper>
+          <Input
+            aria-errormessage={error ? `error-${inputId}` : undefined}
+            aria-invalid={!!error}
+            disabled={isGenerating || disabled}
+            id={inputId}
+            isRecording={isRecording}
+            onBlur={handleInputOnBlur}
+            onChange={handleInputOnChange}
+            onFocus={handleInputOnFocus}
+            onKeyDown={handleInputOnKeyDown}
+            onMouseDown={(event) => {
+              event.stopPropagation();
+            }}
+            placeholder={placeholder}
+            ref={inputRef}
+            tabIndex={tabIndex}
+            maxLength={maxLength}
+            minLength={minLength}
+            value={value ?? innerValue}
+          />
+          {isRecording && (
+            <TranscriptOverlay ref={overlayRef}>
+              {baseTextRef.current && <span>{baseTextRef.current}</span>}
+              {transcript && (
+                <>
+                  {baseTextRef.current && <span> </span>}
+                  {transcript.length > 2 ? (
+                    <>
+                      <span>{transcript.slice(0, -2)}</span>
+                      <HighlightedText>{transcript.slice(-2)}...</HighlightedText>
+                    </>
+                  ) : (
+                    <HighlightedText>{transcript}</HighlightedText>
+                  )}
+                </>
+              )}
+            </TranscriptOverlay>
+          )}
+        </InputWrapper>
         <DxcFlex justifyContent={modelList ? "space-between" : "flex-end"} alignItems="center">
           {modelList && (
-            <DxcSelect
-              // size="fitContent"
-              options={modelList.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
-              disabled={isGenerating || disabled}
-              defaultValue={modelList[0]?.value ?? ""}
-              onChange={(val) => {
-                const selectedOption = modelList.find((option) => option.value === val.value);
-                selectedOption?.onSelect();
-              }}
-            />
+            <DxcContainer width="35%" maxWidth="240px">
+              <DxcSelect
+                size="fillParent"
+                options={modelList.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
+                disabled={isGenerating || disabled}
+                defaultValue={modelList[0]?.value}
+                onChange={(val) => {
+                  const selectedOption = modelList.find((option) => option.value === val.value);
+                  selectedOption?.onSelect();
+                }}
+              />
+            </DxcContainer>
           )}
 
           <DxcFlex gap="var(--spacing-gap-xs)">
-            {allowVoiceInput && (
+            {allowRecording && (
               <DxcButton
                 icon={isRecording ? "filled_pause" : "mic"}
                 size={{ height: "medium" }}
@@ -324,7 +402,7 @@ const DxcMessageInput = ({
           </DxcFlex>
         </DxcFlex>
       </MessageInput>
-      {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
+      {!disabled && typeof error === "string" && <ErrorMessage error={error} id={`error-${inputId}`} />}
     </MessageInputContainer>
   );
 };
