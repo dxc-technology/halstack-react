@@ -82,6 +82,14 @@ export const defaultTranslatedComponentLabels = {
     closeIcon: "Close menu",
     hamburgerTitle: "Menu",
   },
+  messageInput: {
+    inputAriaLabel: "Message input",
+    sendButtonTitle: "Send message",
+    stopButtonTitle: "Stop request",
+    attachFileButtonTitle: "Attach file",
+    recordAudioButtonTitle: "Record audio",
+    stopRecordingButtonTitle: "Stop recording",
+  },
   numberInput: {
     valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
     valueLessThanOrEqualToErrorMessage: (value: number) => `Value must be less than or equal to ${value}.`,

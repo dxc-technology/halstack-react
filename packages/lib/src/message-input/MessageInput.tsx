@@ -151,21 +151,24 @@ const DxcMessageInput = ({
   tabIndex,
   value,
 }: PromptInputPropsType) => {
+  const languageContext = useContext(HalstackLanguageContext);
+  const locale = languageContext.locale ? languageContext.locale : undefined;
   const inputId = `input-${useId()}`;
-  const translatedLabels = useContext(HalstackLanguageContext);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const { transcript, isRecording, startRecording, stopRecording, resetTranscript } = useVoiceTranscription();
+  const { transcript, isRecording, startRecording, stopRecording, resetTranscript } = useVoiceTranscription({
+    lang: locale ?? "en-US",
+  });
 
   const changeValue = (newValue: string) => {
     if (value == null) {
       setInnerValue(newValue);
     }
     const lengthError = isLengthIncorrect(newValue, minLength, maxLength)
-      ? translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength)
+      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
       : undefined;
     onChange?.({
       value: newValue,
@@ -199,7 +202,7 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
     const lengthError = isLengthIncorrect(event.target.value, minLength, maxLength)
-      ? translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength)
+      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
       : undefined;
     onBlur?.({
       value: event.target.value,
@@ -305,7 +308,7 @@ const DxcMessageInput = ({
         {files && (
           <FilesContainer>
             <DxcDropdown
-              options={[{ label: "Attach documents", value: "fileorphoto" }]}
+              options={[{ label: languageContext.labels.messageInput.attachFileButtonTitle, value: "fileorphoto" }]}
               onSelectOption={handleFileSelect}
               icon="add"
               disabled={isGenerating || disabled}
@@ -325,6 +328,7 @@ const DxcMessageInput = ({
         )}
         <InputWrapper>
           <Input
+            aria-label={languageContext.labels.messageInput.inputAriaLabel}
             aria-errormessage={error ? `error-${inputId}` : undefined}
             aria-invalid={!!error}
             disabled={isGenerating || disabled}
@@ -387,8 +391,16 @@ const DxcMessageInput = ({
                 mode="tertiary"
                 disabled={isGenerating || disabled}
                 onClick={toggleVoiceRecognition}
-                title={isRecording ? "Stop recording" : "Start voice input"}
-                aria-label={isRecording ? "Stop recording" : "Start voice input"}
+                title={
+                  isRecording
+                    ? languageContext.labels.messageInput.stopRecordingButtonTitle
+                    : languageContext.labels.messageInput.recordAudioButtonTitle
+                }
+                aria-label={
+                  isRecording
+                    ? languageContext.labels.messageInput.stopRecordingButtonTitle
+                    : languageContext.labels.messageInput.recordAudioButtonTitle
+                }
               />
             )}
 
@@ -397,7 +409,11 @@ const DxcMessageInput = ({
               size={{ height: "medium" }}
               disabled={disabled}
               onClick={!isGenerating ? handleSubmit : handleStop}
-              title={!isGenerating ? "Submit" : "Stop"}
+              title={
+                !isGenerating
+                  ? languageContext.labels.messageInput.sendButtonTitle
+                  : languageContext.labels.messageInput.stopButtonTitle
+              }
             />
           </DxcFlex>
         </DxcFlex>
