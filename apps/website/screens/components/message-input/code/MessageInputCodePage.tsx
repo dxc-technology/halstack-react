@@ -35,7 +35,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>allowVoiceInput</td>
+            <td>allowRecording</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -125,7 +125,7 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Specifies the minimum length allowed by the input. This will be checked both when the input element loses
+              Specifies the minimum length allowed by the input. This will be checked aboth when the input element loses
               the focus and while typing within it. If the string entered does not comply the minimum length, the onBlur
               and onChange functions will be called with the current value and an internal error informing that the
               value length does not comply the specified range. If a valid length is reached, the error parameter of
