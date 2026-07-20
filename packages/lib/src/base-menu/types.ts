@@ -94,6 +94,7 @@ type BaseMenuContextProps = {
   displayControlsAfter?: boolean;
   hasPopOver?: boolean;
   isHorizontal?: boolean;
+  closePopOver?: () => void;
 };
 
 export type {
