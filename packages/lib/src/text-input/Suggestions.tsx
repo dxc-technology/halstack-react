@@ -54,7 +54,7 @@ const Suggestions = ({
   value,
   visualFocusIndex,
 }: SuggestionsProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {

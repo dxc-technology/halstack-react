@@ -283,6 +283,7 @@ const DxcDropdown = ({
                 aria-label="Show options"
                 tabIndex={tabIndex}
                 ref={triggerRef}
+                type="button"
               >
                 <DropdownTriggerContent iconPosition={iconPosition}>
                   {icon && (

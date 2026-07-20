@@ -4,7 +4,7 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import { SearchBarTriggerProps } from "./types";
 
 const DxcSearchBarTrigger = ({ onTriggerClick }: SearchBarTriggerProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   return (
     <DxcButton
       onClick={onTriggerClick}

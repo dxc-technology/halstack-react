@@ -90,7 +90,7 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const secondRef = useRef<HTMLSpanElement>(null);
     const dayPeriodRef = useRef<HTMLSpanElement>(null);
     const isControlled = value !== undefined;
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     useEffect(() => {
       const time = value || defaultValue || undefined;

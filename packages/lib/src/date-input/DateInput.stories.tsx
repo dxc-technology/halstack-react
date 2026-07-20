@@ -10,6 +10,7 @@ import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Date Input",
@@ -155,6 +156,12 @@ const DatePickerButtonStates = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Isolated calendar actived" theme="light" level={4} />
       <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Isolated calendar with locale" theme="light" level={4} />
+      <HalstackProvider localeTag="en-US">
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

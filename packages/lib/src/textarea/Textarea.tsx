@@ -95,7 +95,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const textareaId = `textarea-${useId()}`;
     const errorId = `error-${textareaId}`;
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const prevValueRef = useRef<string | null>(null);
 

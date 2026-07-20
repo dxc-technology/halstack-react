@@ -84,7 +84,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);
@@ -107,6 +107,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
           <HeaderButton
             aria-label={translatedLabels.calendar.previousMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
+            type="button"
           >
             <DxcIcon icon="keyboard_arrow_left" />
           </HeaderButton>
@@ -114,6 +115,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
         <HeaderYearTrigger
           aria-live="polite"
           onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
+          type="button"
         >
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
@@ -124,6 +126,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
           <HeaderButton
             aria-label={translatedLabels.calendar.nextMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+            type="button"
           >
             <DxcIcon icon="keyboard_arrow_right" />
           </HeaderButton>
