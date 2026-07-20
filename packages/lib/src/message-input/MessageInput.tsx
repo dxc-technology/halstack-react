@@ -163,27 +163,21 @@ const DxcMessageInput = ({
     lang: locale ?? "en-US",
   });
 
-  const changeValue = (newValue: string) => {
-    if (value == null) {
-      setInnerValue(newValue);
-    }
-    const lengthError = isLengthIncorrect(newValue, minLength, maxLength)
+  const getValidationError = (val: string) =>
+    isLengthIncorrect(val, minLength, maxLength)
       ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
       : undefined;
-    onChange?.({
-      value: newValue,
-      ...(lengthError && { error: lengthError }),
-    });
+
+  const changeValue = (newValue: string) => {
+    if (value == null) setInnerValue(newValue);
+    const lengthError = getValidationError(newValue);
+    onChange?.({ value: newValue, ...(lengthError && { error: lengthError }) });
   };
 
-  const handleInputContainerOnClick = () => {
-    inputRef.current?.focus();
-  };
+  const handleInputContainerOnClick = () => inputRef.current?.focus();
+
   const handleInputContainerOnMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    // Avoid input to lose the focus when the container is pressed
-    if (document.activeElement === inputRef.current) {
-      event.preventDefault();
-    }
+    if (document.activeElement === inputRef.current) event.preventDefault();
   };
 
   const handleInputOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -195,39 +189,26 @@ const DxcMessageInput = ({
     changeValue(el.value);
   };
 
-  const handleInputOnFocus = () => {
-    setIsFocused(true);
-  };
+  const handleInputOnFocus = () => setIsFocused(true);
 
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
-    const lengthError = isLengthIncorrect(event.target.value, minLength, maxLength)
-      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
-      : undefined;
-    onBlur?.({
-      value: event.target.value,
-      ...(lengthError && { error: lengthError }),
-    });
+    const lengthError = getValidationError(event.target.value);
+    onBlur?.({ value: event.target.value, ...(lengthError && { error: lengthError }) });
   };
 
-  const handleFileSelect = () => {
-    fileInputRef.current?.click();
-  };
+  const handleFileSelect = () => fileInputRef.current?.click();
 
   const handleFileInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(event.target.files ?? []).map((file) => ({
       label: file.name,
       icon: "insert_drive_file",
     }));
-    const nextFiles = [...(files ?? []), ...selectedFiles];
-    callbackFile?.(nextFiles);
+    callbackFile?.([...(files ?? []), ...selectedFiles]);
     event.target.value = "";
   };
 
-  const removeItem = (itemIndex: number) => {
-    const nextFiles = (files ?? []).filter((_, index) => index !== itemIndex);
-    callbackFile?.(nextFiles);
-  };
+  const removeItem = (itemIndex: number) => callbackFile?.((files ?? []).filter((_, index) => index !== itemIndex));
 
   const baseTextRef = useRef("");
 
@@ -243,6 +224,7 @@ const DxcMessageInput = ({
     }
   };
 
+  // Handle transcript updates and scroll synchronization
   useEffect(() => {
     if (!transcript) return;
 
@@ -252,42 +234,28 @@ const DxcMessageInput = ({
     if (inputRef.current) {
       inputRef.current.style.height = "auto";
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
-
-      if (overlayRef.current) {
-        overlayRef.current.scrollTop = inputRef.current.scrollTop;
-      }
+      if (overlayRef.current) overlayRef.current.scrollTop = inputRef.current.scrollTop;
     }
   }, [transcript, changeValue]);
 
+  // Handle recording state changes and scroll sync
   useEffect(() => {
     onRecordingChange?.(isRecording);
-  }, [isRecording, onRecordingChange]);
 
-  useEffect(() => {
     const textarea = inputRef.current;
     const overlay = overlayRef.current;
-
     if (!textarea || !overlay || !isRecording) return;
 
     overlay.scrollTop = textarea.scrollTop;
-
-    const handleScroll = () => {
-      overlay.scrollTop = textarea.scrollTop;
-    };
+    const handleScroll = () => (overlay.scrollTop = textarea.scrollTop);
 
     textarea.addEventListener("scroll", handleScroll);
     return () => textarea.removeEventListener("scroll", handleScroll);
-  }, [isRecording]);
+  }, [isRecording, onRecordingChange]);
 
-  const handleSubmit = () => {
-    if (disabled || isGenerating) return;
-    onButtonClick?.("submit");
-  };
+  const handleSubmit = () => !disabled && !isGenerating && onButtonClick?.("submit");
 
-  const handleStop = () => {
-    if (disabled) return;
-    onButtonClick?.("stop");
-  };
+  const handleStop = () => !disabled && onButtonClick?.("stop");
 
   const handleInputOnKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (!disabled && !isGenerating && event.key === "Enter" && !event.shiftKey) {
@@ -410,6 +378,11 @@ const DxcMessageInput = ({
               disabled={disabled}
               onClick={!isGenerating ? handleSubmit : handleStop}
               title={
+                !isGenerating
+                  ? languageContext.labels.messageInput.sendButtonTitle
+                  : languageContext.labels.messageInput.stopButtonTitle
+              }
+              aria-label={
                 !isGenerating
                   ? languageContext.labels.messageInput.sendButtonTitle
                   : languageContext.labels.messageInput.stopButtonTitle

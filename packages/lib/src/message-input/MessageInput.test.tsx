@@ -95,8 +95,8 @@ describe("Message Input component tests", () => {
 
   test("calls onButtonClick when submit button is clicked", () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
-    const submitButton = getByTitle("Send message");
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
+    const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
 
@@ -120,16 +120,16 @@ describe("Message Input component tests", () => {
 
   test("shows stop button when isGenerating is true", () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
-    const stopButton = getByTitle("Stop request");
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
+    const stopButton = getByLabelText("Stop request");
 
     expect(stopButton).toBeInTheDocument();
   });
 
   test("calls onButtonClick with 'stop' when stop button is clicked", () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
-    const stopButton = getByTitle("Stop request");
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
+    const stopButton = getByLabelText("Stop request");
 
     userEvent.click(stopButton);
 
@@ -230,8 +230,8 @@ describe("Message Input component tests", () => {
 
   test("async onButtonClick is handled correctly", async () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
-    const submitButton = getByTitle("Send message");
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
+    const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
 
@@ -243,8 +243,8 @@ describe("Message Input component tests", () => {
 
   test("does not call onButtonClick when disabled", () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
-    const submitButton = getByTitle("Send message");
+    const { getByLabelText } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
+    const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
 
@@ -253,10 +253,10 @@ describe("Message Input component tests", () => {
 
   test("shows stop button instead of submit when isGenerating", () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
+    const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
 
     // The button should be the stop button when isGenerating
-    const button = getByTitle("Stop request");
+    const button = getByLabelText("Stop request");
     expect(button).toBeInTheDocument();
   });
 
@@ -307,8 +307,8 @@ describe("Message Input component tests", () => {
 
   test("calls onButtonClick with submit when submit button is clicked", async () => {
     const onButtonClick = jest.fn();
-    const { getByTitle } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
-    const submitButton = getByTitle("Send message");
+    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
+    const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
 
