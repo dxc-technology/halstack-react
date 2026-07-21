@@ -198,7 +198,10 @@ const sections = [
             <td>
               <TableCode>'12' | '24'</TableCode>
             </td>
-            <td>Time format of the input. It can be either 12 or 24.</td>
+            <td>
+              Time format of the input. It can be either 12 or 24. If a locale is provided, it will override this
+              setting's default value.
+            </td>
             <td>
               <TableCode>'12'</TableCode>
             </td>
