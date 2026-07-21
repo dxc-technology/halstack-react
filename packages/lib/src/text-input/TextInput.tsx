@@ -24,6 +24,7 @@ import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import {
   calculateWidth,
+  getLengthErrorMessage,
   hasSuggestions,
   isLengthIncorrect,
   isNumberIncorrect,
@@ -240,7 +241,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: getLengthErrorMessage(formattedValue, minLength, maxLength),
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
@@ -336,7 +337,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: getLengthErrorMessage(event.target.value, minLength, maxLength),
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });

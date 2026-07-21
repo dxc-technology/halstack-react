@@ -99,8 +99,17 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const prevValueRef = useRef<string | null>(null);
 
-    const isLengthOutOfRange = (value: string) =>
-      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+    const getLengthErrorMessage = (value: string) => {
+      if (minLength != null && value.length < minLength) {
+        return translatedLabels.formFields.minLengthErrorMessage?.(minLength);
+      }
+      if (maxLength != null && value.length > maxLength) {
+        return translatedLabels.formFields.maxLengthErrorMessage?.(maxLength);
+      }
+      return undefined;
+    };
+
+    const isLengthOutOfRange = (value: string) => getLengthErrorMessage(value) != null;
 
     const changeValue = (newValue: string) => {
       if (value == null) setInnerValue(newValue);
@@ -113,7 +122,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       } else if (isLengthOutOfRange(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: getLengthErrorMessage(newValue),
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
@@ -132,7 +141,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       } else if (isLengthOutOfRange(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: getLengthErrorMessage(event.target.value),
         });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({

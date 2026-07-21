@@ -160,13 +160,13 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
     userEvent.clear(input);
     fireEvent.change(input, { target: { value: "length" } });
@@ -198,13 +198,13 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
     fireEvent.change(input, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();
@@ -732,12 +732,12 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
     expect(onChange).toHaveBeenCalledWith({
       value: "Cha",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "Chad",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5.",
     });
   });
 
