@@ -1,12 +1,4 @@
-import MessageInputPropsType from "./types";
 import { css } from "@emotion/react";
-
-export const isLengthIncorrect = (
-  value: string,
-  minLength: MessageInputPropsType["minLength"],
-  maxLength: MessageInputPropsType["maxLength"]
-) =>
-  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
 
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lightest)` : `transparent`};

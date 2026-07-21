@@ -139,7 +139,8 @@ describe("Message Input component tests", () => {
 
   test("validates minLength and calls onChange with error", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(<DxcMessageInput minLength={5} onChange={onChange} />);
+    // TO BE DONE: Remove maxLength when formFields message errors is updated to support minLength and maxLength separately.
+    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={200} onChange={onChange} />);
     const input = getByRole("textbox");
 
     userEvent.type(input, "Hi");
@@ -161,7 +162,9 @@ describe("Message Input component tests", () => {
 
   test("validates minLength on blur", () => {
     const onBlur = jest.fn();
-    const { getByRole } = render(<DxcMessageInput minLength={5} onBlur={onBlur} />);
+    // TO BE DONE: Remove maxLength when formFields message errors is updated to support minLength and maxLength separately.
+
+    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={200} onBlur={onBlur} />);
     const input = getByRole("textbox");
 
     userEvent.click(input);
@@ -288,12 +291,13 @@ describe("Message Input component tests", () => {
 
   test("validates minLength correctly when value is exactly minLength", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(<DxcMessageInput minLength={5} onChange={onChange} />);
+    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={100} onChange={onChange} />);
     const input = getByRole("textbox");
 
-    userEvent.type(input, "Hello");
+    userEvent.type(input, "Hell");
+    expect(onChange).toHaveBeenLastCalledWith({ value: "Hell", error: "Min length 5, max length 100." });
 
-    // When exactly at minLength, should not have error
+    userEvent.type(input, "o");
     expect(onChange).toHaveBeenLastCalledWith({ value: "Hello" });
   });
 

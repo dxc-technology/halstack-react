@@ -12,7 +12,7 @@ import {
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
-import { inputStylesByStatePromptInput, isLengthIncorrect } from "./utils";
+import { inputStylesByStatePromptInput } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
 import DxcContainer from "../container/Container";
@@ -162,10 +162,14 @@ const DxcMessageInput = ({
     lang: locale ?? "en-US",
   });
 
+  // TO BE DONE: IMPLEMENT SEPARATELY minLenght & maxLength
+  const isLengthOutOfRange = (value: string) =>
+    value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
 
-    if (isLengthIncorrect(newValue, minLength, maxLength)) {
+    if (isLengthOutOfRange(newValue)) {
       onChange?.({
         value: newValue,
         error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
@@ -193,7 +197,7 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
 
-    if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
+    if (isLengthOutOfRange(event.target.value)) {
       onBlur?.({
         value: event.target.value,
         error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
