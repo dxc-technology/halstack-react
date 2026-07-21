@@ -10,9 +10,7 @@ export default function SingleItem({ id, onSelect, selected = false, ...props }:
   const handleClick = () => {
     setSelectedItemId?.(id);
     onSelect?.();
-    if (!hasPopOver) {
-      closePopOver?.();
-    }
+    if (!hasPopOver) closePopOver?.();
     onSelectItem?.();
   };
 

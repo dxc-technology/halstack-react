@@ -15,6 +15,7 @@ export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuCo
   const [isOpen, setIsOpen] = useState(hasPopOver ? false : (defaultOpen ?? (groupSelected && selectedItemId === -1)));
 
   const toggleOpen = () => {
+    console.log("toggleOpen called");
     setIsOpen((prev) => !prev);
   };
 
