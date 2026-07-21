@@ -25,5 +25,6 @@ export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuCo
     toggleOpen,
     hasPopOver: context.hasPopOver,
     isHorizontal: context.isHorizontal,
+    onSelectItem: context.onSelectItem,
   };
 };
