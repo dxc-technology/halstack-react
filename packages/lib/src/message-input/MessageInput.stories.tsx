@@ -14,7 +14,7 @@ type Story = StoryObj<typeof DxcMessageInput>;
 
 const modelListOptions = [
   { label: "GPT-4", value: "gpt4", onSelect: () => {} },
-  { label: "Claude Sonnet", value: "claude", onSelect: () => {} },
+  { label: "Claude Sonnet", value: "claude", onSelect: () => {}, selected: true },
   { label: "Gemini Pro", value: "gemini", onSelect: () => {} },
   { label: "LLaMA 3", value: "llama", onSelect: () => {} },
 ];
@@ -161,14 +161,47 @@ const ControlledVoiceExample = () => {
   );
 };
 
+const ControlledSelectedModelExample = () => {
+  const [model, setModel] = useState("claude");
+
+  return (
+    <>
+      <Title title="Controlled Voice Recording" theme="light" level={2} />
+      <ExampleContainer>
+        <DxcMessageInput
+          placeholder="Change model..."
+          modelList={[
+            {
+              label: "Claude",
+              value: "claude",
+              onSelect: (value: string) => setModel(value),
+              selected: model === "claude",
+            },
+            {
+              label: "GPT-3",
+              value: "gpt-3",
+              onSelect: (value: string) => setModel(value),
+              selected: model === "gpt-3",
+            },
+          ]}
+        />
+      </ExampleContainer>
+    </>
+  );
+};
+
 export const Chromatic: Story = {
   render: MessageInput,
 };
 
-export const ControlledFiles: Story = {
+export const MessageInputWithFiles: Story = {
   render: ControlledFileExample,
 };
 
-export const ControlledVoice: Story = {
+export const MessageInputWithVoiceRecording: Story = {
   render: ControlledVoiceExample,
+};
+
+export const MessageInputWithSelectedModel: Story = {
+  render: ControlledSelectedModelExample,
 };

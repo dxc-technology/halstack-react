@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcMessageInput from "./MessageInput";
 
@@ -207,7 +207,7 @@ describe("Message Input component tests", () => {
     expect(select).toBeInTheDocument();
   });
 
-  test("calls onSelect when a bottom option is selected", async () => {
+  test("calls onSelect when a bottom option is selected", () => {
     const onSelect = jest.fn();
     const modelList = [
       { label: "Option 1", value: "option1", onSelect },
@@ -217,28 +217,16 @@ describe("Message Input component tests", () => {
     const select = getByRole("combobox");
 
     userEvent.click(select);
-    const option1 = await waitFor(() => getByRole("option", { name: "Option 1" }));
+    const option1 = getByRole("option", { name: "Option 1" });
     userEvent.click(option1);
 
     expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(onSelect).toHaveBeenCalledWith("option1");
   });
 
   test("does not show error when disabled", () => {
     const { queryByText } = render(<DxcMessageInput disabled error="This is an error" />);
     expect(queryByText("This is an error")).not.toBeInTheDocument();
-  });
-
-  test("async onButtonClick is handled correctly", async () => {
-    const onButtonClick = jest.fn();
-    const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
-    const submitButton = getByLabelText("Send message");
-
-    userEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(onButtonClick).toHaveBeenCalledWith("submit");
-      expect(onButtonClick).toHaveBeenCalledTimes(1);
-    });
   });
 
   test("does not call onButtonClick when disabled", () => {
@@ -288,34 +276,13 @@ describe("Message Input component tests", () => {
     expect(callbackFile).toHaveBeenCalled();
   });
 
-  test("removes item when chip is clicked", () => {
-    const callbackFile = jest.fn();
-    const files = [
-      { label: "File 1", icon: "insert_drive_file" },
-      { label: "File 2", icon: "insert_drive_file" },
-    ];
-    const { getByText } = render(<DxcMessageInput files={files} callbackFile={callbackFile} />);
-
-    // Verify chips are rendered
-    expect(getByText("File 1")).toBeInTheDocument();
-    expect(getByText("File 2")).toBeInTheDocument();
-
-    // Note: Testing the actual click on chip requires finding the dismissible button
-    // which is handled internally by DxcChip component
-    expect(callbackFile).not.toHaveBeenCalled();
-  });
-
-  test("calls onButtonClick with submit when submit button is clicked", async () => {
+  test("calls onButtonClick with submit when submit button is clicked", () => {
     const onButtonClick = jest.fn();
     const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(onButtonClick).toHaveBeenCalledWith("submit");
-    });
-
+    expect(onButtonClick).toHaveBeenCalledWith("submit");
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 

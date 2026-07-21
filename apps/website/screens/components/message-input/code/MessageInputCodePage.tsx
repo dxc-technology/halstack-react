@@ -18,6 +18,7 @@ const modelListTypeString = `{
   icon?: string | SVG;
   value: string;
   onSelect: () => void;
+  selected?: boolean;
 }[]`;
 
 const sections = [
@@ -138,7 +139,7 @@ const sections = [
             <td>
               <ExtendedTableCode>{modelListTypeString}</ExtendedTableCode>
             </td>
-            <td>Options to be shown on the dropdown under the input. The first option will be selected by default.</td>
+            <td>Options to be shown on the dropdown under the input.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -175,14 +176,6 @@ const sections = [
               including the current value and the error (if the value entered is not valid) will be passed to this
               function. If there is no error, error will not be defined.
             </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onRecordingChange</td>
-            <td>
-              <TableCode>{"(isRecording: boolean) => void"}</TableCode>
-            </td>
-            <td>This function will be called when the recording state changes (starts or stops).</td>
             <td>-</td>
           </tr>
           <tr>

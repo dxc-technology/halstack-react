@@ -145,7 +145,6 @@ const DxcMessageInput = ({
   onBlur,
   onButtonClick,
   onChange,
-  onRecordingChange,
   placeholder = "",
   size = "medium",
   tabIndex,
@@ -163,15 +162,15 @@ const DxcMessageInput = ({
     lang: locale ?? "en-US",
   });
 
-  const getValidationError = (val: string) =>
-    isLengthIncorrect(val, minLength, maxLength)
-      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
-      : undefined;
-
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
-    const lengthError = getValidationError(newValue);
-    onChange?.({ value: newValue, ...(lengthError && { error: lengthError }) });
+
+    if (isLengthIncorrect(newValue, minLength, maxLength)) {
+      onChange?.({
+        value: newValue,
+        error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
+      });
+    } else onChange?.({ value: newValue });
   };
 
   const handleInputContainerOnClick = () => inputRef.current?.focus();
@@ -193,8 +192,13 @@ const DxcMessageInput = ({
 
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
-    const lengthError = getValidationError(event.target.value);
-    onBlur?.({ value: event.target.value, ...(lengthError && { error: lengthError }) });
+
+    if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
+      onBlur?.({
+        value: event.target.value,
+        error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
+      });
+    } else onBlur?.({ value: event.target.value });
   };
 
   const handleFileSelect = () => fileInputRef.current?.click();
@@ -238,10 +242,7 @@ const DxcMessageInput = ({
     }
   }, [transcript, changeValue]);
 
-  // Handle recording state changes and scroll sync
   useEffect(() => {
-    onRecordingChange?.(isRecording);
-
     const textarea = inputRef.current;
     const overlay = overlayRef.current;
     if (!textarea || !overlay || !isRecording) return;
@@ -251,7 +252,7 @@ const DxcMessageInput = ({
 
     textarea.addEventListener("scroll", handleScroll);
     return () => textarea.removeEventListener("scroll", handleScroll);
-  }, [isRecording, onRecordingChange]);
+  }, [isRecording]);
 
   const handleSubmit = () => !disabled && !isGenerating && onButtonClick?.("submit");
 
@@ -342,10 +343,10 @@ const DxcMessageInput = ({
                 size="fillParent"
                 options={modelList.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
                 disabled={isGenerating || disabled}
-                defaultValue={modelList[0]?.value}
+                value={modelList.find((option) => option.selected)?.value || modelList[0]?.value}
                 onChange={(val) => {
                   const selectedOption = modelList.find((option) => option.value === val.value);
-                  selectedOption?.onSelect();
+                  selectedOption?.onSelect(val.value);
                 }}
               />
             </DxcContainer>

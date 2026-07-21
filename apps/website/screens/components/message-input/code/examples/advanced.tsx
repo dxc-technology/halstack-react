@@ -47,22 +47,25 @@ const code = `() => {
 
   const modelList = [
     {
-      label: "GPT-4",
+      label: "MODEL-1.0",
       icon: "psychology",
-      value: "gpt4",
-      onSelect: () => setSelectedModel("GPT-4")
+      value: "model-1.0",
+      onSelect: () => setSelectedModel("model-1.0"),
+      selected: selectedModel === "model-1.0"
     },
     {
-      label: "GPT-3.5",
+      label: "MODEL-3.5",
       icon: "smart_toy",
-      value: "gpt3.5",
-      onSelect: () => setSelectedModel("GPT-3.5")
+      value: "model-3.5",
+      onSelect: () => setSelectedModel("model-3.5"),
+      selected: selectedModel === "model-3.5"
     },
     {
-      label: "Claude",
+      label: "MODEL-4+",
       icon: "lightbulb",
-      value: "claude",
-      onSelect: () => setSelectedModel("Claude")
+      value: "model-4+",
+      onSelect: () => setSelectedModel("model-4+"),
+      selected: selectedModel === "model-4+"
     }
   ];
   
@@ -77,7 +80,7 @@ const code = `() => {
           files={files}
           callbackFile={callbackFile}
           modelList={modelList}
-          allowVoiceInput
+          allowRecording
           isGenerating={isGenerating}
           error={error}
           minLength={10}

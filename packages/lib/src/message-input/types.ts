@@ -64,13 +64,14 @@ type Props = {
    */
   minLength?: number;
   /**
-   * Options to be shown on the dropdown under the input. The first option will be selected by default.
+   * Options to be shown on the dropdown under the input.
    */
   modelList?: {
     label?: string;
     icon?: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
     value: string;
-    onSelect: () => void;
+    onSelect: (value: string) => void;
+    selected?: boolean;
   }[];
   /**
    * This function will be called when the input element loses the focus.
@@ -92,10 +93,6 @@ type Props = {
    * For submit events, an AbortSignal is provided to allow cancellation.
    */
   onButtonClick?: (type: "submit" | "stop") => void;
-  /**
-   * This function will be called when the recording state changes (starts or stops).
-   */
-  onRecordingChange?: (isRecording: boolean) => void;
   /**
    * Text to be put as placeholder of the input.
    */
