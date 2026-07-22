@@ -10,7 +10,7 @@ import DxcFlex from "../flex/Flex";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcPopover from "../popover/Popover";
 import TimePicker from "./TimePicker";
-import { generateEventValue, getTimeInputLocale } from "./utils";
+import { buildTimeRegex, generateEventValue, getTimeInputLocale } from "./utils";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 
 const sizes = {
@@ -92,14 +92,17 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     const isControlled = value !== undefined;
     const languageContext = useContext(HalstackLanguageContext);
     const translatedLabels = languageContext.labels;
-    const formatInfo = useMemo(() => getTimeInputLocale(languageContext.locale, timeFormat), [languageContext.locale]);
+    const formatInfo = useMemo(
+      () => getTimeInputLocale(languageContext.locale, timeFormat),
+      [languageContext.locale, timeFormat]
+    );
     useEffect(() => {
       const time = value || defaultValue || undefined;
       if (time) {
         const numberPart =
           formatInfo.format === "12" ? time.split(" ")[formatInfo.dayPeriodPosition === "before" ? 1 : 0] : time;
         if (numberPart) {
-          const [hourStr, minuteStr, secondStr] = numberPart.split(":");
+          const [hourStr, minuteStr, secondStr] = numberPart.split(formatInfo.separator);
           setHourValue(hourStr && isNumber(hourStr) ? Number(hourStr) : undefined);
           setMinuteValue(minuteStr && isNumber(minuteStr) ? Number(minuteStr) : undefined);
           setSecondValue(secondStr && isNumber(secondStr) ? Number(secondStr) : undefined);
@@ -167,11 +170,16 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
     };
 
     const validateTimeValue = (value: string) => {
-      const timeRegex =
-        formatInfo.format === "12"
-          ? /^(0?[1-9]|1[0-2]):[0-5][0-9](?::[0-5][0-9])?\s?(AM|PM)$/i
-          : /^([01]?[0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$/;
+      const timeRegex = buildTimeRegex(
+        formatInfo.format,
+        formatInfo.separator,
+        showSeconds,
+        formatInfo.dayPeriodPosition,
+        translatedLabels.timeInput.timePeriodAM || "AM",
+        translatedLabels.timeInput.timePeriodPM || "PM"
+      );
       if (!timeRegex.test(value)) {
+        console.log("Invalid time format");
         return "Invalid time format";
       }
       if (
@@ -297,6 +305,15 @@ const DxcTimeInput = forwardRef<RefType, TimeInputPropsType>(
                   onNext={() => {
                     if (minuteRef.current) {
                       minuteRef.current.focus();
+                    }
+                  }}
+                  onPrevious={() => {
+                    if (
+                      formatInfo.format === "12" &&
+                      formatInfo.dayPeriodPosition === "before" &&
+                      dayPeriodRef.current
+                    ) {
+                      dayPeriodRef.current.focus();
                     }
                   }}
                   ref={hourRef}

@@ -260,3 +260,29 @@ export const getTimeInputLocale = (
     dayPeriodPosition,
   };
 };
+
+const escapeStringForRegex = (str: string) => {
+  return str.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+};
+
+export const buildTimeRegex = (
+  format: "12" | "24",
+  separator: string,
+  hasSeconds: boolean,
+  dayPeriodPosition: "before" | "after",
+  amLabel: string,
+  pmLabel: string
+): RegExp => {
+  const escapedSeparator = escapeStringForRegex(separator);
+  const hourPattern = format === "12" ? "(0?[1-9]|1[0-2])" : "([01]?[0-9]|2[0-3])";
+  const minutePattern = "[0-5][0-9]";
+  const secondPattern = hasSeconds ? `${escapedSeparator}[0-5][0-9]` : "";
+  const dayPeriodPattern =
+    format === "12" ? `(?:${escapeStringForRegex(amLabel)}|${escapeStringForRegex(pmLabel)})` : "";
+  const timePattern =
+    dayPeriodPosition === "before"
+      ? `${dayPeriodPattern}\\s?${hourPattern}${escapedSeparator}${minutePattern}${secondPattern}`
+      : `${hourPattern}${escapedSeparator}${minutePattern}${secondPattern}\\s?${dayPeriodPattern}`;
+
+  return new RegExp(`^${timePattern}$`);
+};
