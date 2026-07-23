@@ -45,6 +45,11 @@ type Props = {
    * If true the menu will be displayed horizontally.
    */
   isHorizontal?: boolean;
+  /**
+   * Function that will be called when an option is clicked.
+   * This is used to notify that an item has been selected to close any visible menu that is not managed by the navigation tree.
+   */
+  onSelectItem?: () => void;
 };
 
 type ItemWithId = Item & { id: number };
@@ -94,6 +99,8 @@ type BaseMenuContextProps = {
   displayControlsAfter?: boolean;
   hasPopOver?: boolean;
   isHorizontal?: boolean;
+  onSelectItem?: () => void;
+  closePopOver?: () => void;
 };
 
 export type {

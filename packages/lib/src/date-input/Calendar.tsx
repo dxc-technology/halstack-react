@@ -104,8 +104,8 @@ const Calendar = ({
   const id = useId();
   const languageContext = useContext(HalstackLanguageContext);
   const translatedLabels = languageContext?.labels;
-  const localeTag = languageContext?.locale || navigator.language;
-  const locale = new Intl.Locale(validateLocale(localeTag) ? localeTag : "en");
+  const localeTag = languageContext?.locale || undefined;
+  const locale = localeTag ? new Intl.Locale(validateLocale(localeTag) ? localeTag : "en") : undefined;
   const firstDayOfWeek = (locale ? (locale.getWeekInfo?.()?.firstDay ?? 1) : 1) % 7;
   const dayCells = useMemo(() => getCalendarDays(innerDate, firstDayOfWeek), [innerDate, firstDayOfWeek]);
 
