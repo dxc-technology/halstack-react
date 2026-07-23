@@ -7,7 +7,7 @@ const code = `() => {
     { label: "document.pdf", icon: "insert_drive_file" },
     { label: "image.png", icon: "image" }
   ]);
-  const [selectedModel, setSelectedModel] = useState("GPT-4");
+  const [selectedOption, setSelectedOptions] = useState("model-1.0");
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
   
@@ -22,12 +22,12 @@ const code = `() => {
     }
   };
 
-  const onButtonClick = async (type, signal) => {
+  const onButtonClick = async ({type}) => {
     if (type === "submit") {
       setIsGenerating(true);
       console.log("Submitting message:", value);
       console.log("Attached files:", files);
-      console.log("Selected model:", selectedModel);
+      console.log("Selected model:", selectedOption);
       
       // Simulate async operation
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -45,27 +45,27 @@ const code = `() => {
     setFiles(updatedFiles);
   };
 
-  const modelList = [
+  const selectOptions = [
     {
       label: "MODEL-1.0",
       icon: "psychology",
       value: "model-1.0",
-      onSelect: () => setSelectedModel("model-1.0"),
-      selected: selectedModel === "model-1.0"
+      onSelect: () => setSelectedOptions("model-1.0"),
+      selected: selectedOption === "model-1.0"
     },
     {
       label: "MODEL-3.5",
       icon: "smart_toy",
       value: "model-3.5",
-      onSelect: () => setSelectedModel("model-3.5"),
-      selected: selectedModel === "model-3.5"
+      onSelect: () => setSelectedOptions("model-3.5"),
+      selected: selectedOption === "model-3.5"
     },
     {
       label: "MODEL-4+",
       icon: "lightbulb",
       value: "model-4+",
-      onSelect: () => setSelectedModel("model-4+"),
-      selected: selectedModel === "model-4+"
+      onSelect: () => setSelectedOptions("model-4+"),
+      selected: selectedOption === "model-4+"
     }
   ];
   
@@ -79,7 +79,7 @@ const code = `() => {
           onButtonClick={onButtonClick}
           files={files}
           callbackFile={callbackFile}
-          modelList={modelList}
+          selectOptions={selectOptions}
           allowRecording
           isGenerating={isGenerating}
           error={error}

@@ -3,16 +3,17 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState();
   
   const onChange = ({ value }) => {
     setValue(value);
   };
   
-  const onBlur = ({ value }) => {
-    console.log("Input blurred with value:", value);
+  const onBlur = ({ value, error }) => {
+    setError(error)
   };
 
-  const onButtonClick = async (type, signal) => {
+  const onButtonClick = async ({type}) => {
     if (type === "submit") {
       console.log("Submitted message:", value);
       // Simulate async operation
@@ -29,6 +30,9 @@ const code = `() => {
         onChange={onChange}
         onBlur={onBlur}
         onButtonClick={onButtonClick}
+        error={error}
+        minLength={5}
+        maxLength={15}
       />
     </DxcInset>
   );

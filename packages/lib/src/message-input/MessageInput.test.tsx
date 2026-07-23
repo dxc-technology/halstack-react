@@ -68,7 +68,7 @@ describe("Message Input component tests", () => {
     userEvent.click(input);
     userEvent.type(input, "Test message{Enter}");
 
-    expect(onButtonClick).toHaveBeenCalledWith("submit");
+    expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "Test message" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
@@ -110,7 +110,7 @@ describe("Message Input component tests", () => {
 
     userEvent.click(submitButton);
 
-    expect(onButtonClick).toHaveBeenCalledWith("submit");
+    expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
@@ -143,7 +143,7 @@ describe("Message Input component tests", () => {
 
     userEvent.click(stopButton);
 
-    expect(onButtonClick).toHaveBeenCalledWith("stop");
+    expect(onButtonClick).toHaveBeenCalledWith({ type: "stop" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
@@ -220,7 +220,7 @@ describe("Message Input component tests", () => {
     expect(select).toBeInTheDocument();
   });
 
-  test("calls onSelect when a bottom option is selected", () => {
+  test("calls onSelect when a select option is selected", () => {
     const onSelect = jest.fn();
     const selectOptions = [
       { label: "Option 1", value: "option1", onSelect },
@@ -295,7 +295,7 @@ describe("Message Input component tests", () => {
     const submitButton = getByLabelText("Send message");
 
     userEvent.click(submitButton);
-    expect(onButtonClick).toHaveBeenCalledWith("submit");
+    expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
@@ -390,45 +390,45 @@ describe("useVoiceTranscription", () => {
   });
 
   test("updates transcript when confidence is high enough", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
 
     act(() => {
       result.current.startRecording();
     });
 
     act(() => {
-      mockInstance.emitResult("hola mundo", 0.8);
+      mockInstance.emitResult("hello world", 0.8);
     });
 
-    expect(result.current.transcript).toBe("hola mundo");
+    expect(result.current.transcript).toBe("hello world");
   });
 
   test("ignores transcript when confidence is below 0.5", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
 
     act(() => {
       result.current.startRecording();
     });
 
     act(() => {
-      mockInstance.emitResult("texto poco fiable", 0.2);
+      mockInstance.emitResult("text with low confidence", 0.2);
     });
 
     expect(result.current.transcript).toBe("");
   });
 
   test("resets transcript and isRecording when recognition ends automatically", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "eb-US" }));
 
     act(() => {
       result.current.startRecording();
     });
 
     act(() => {
-      mockInstance.emitResult("hola", 0.9);
+      mockInstance.emitResult("hello", 0.9);
     });
 
-    expect(result.current.transcript).toBe("hola");
+    expect(result.current.transcript).toBe("hello");
 
     act(() => {
       mockInstance.emitEnd();
@@ -439,14 +439,14 @@ describe("useVoiceTranscription", () => {
   });
 
   test("resets transcript on error", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
 
     act(() => {
       result.current.startRecording();
     });
 
     act(() => {
-      mockInstance.emitResult("hola", 0.9);
+      mockInstance.emitResult("hello", 0.9);
     });
 
     act(() => {
@@ -458,7 +458,7 @@ describe("useVoiceTranscription", () => {
   });
 
   test("stopRecording calls recognition.stop", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
 
     act(() => {
       result.current.startRecording();
@@ -473,7 +473,7 @@ describe("useVoiceTranscription", () => {
 
   test("isSupported is false when SpeechRecognition is not available", () => {
     delete (window as WindowWithSpeechRecognition).SpeechRecognition;
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
     expect(result.current.isSupported).toBe(false);
   });
 });

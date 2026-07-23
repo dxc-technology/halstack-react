@@ -20,6 +20,13 @@ const selectOptionsTypeString = `{
   onSelect: () => void;
   selected?: boolean;
 }[]`;
+const onButtonClickTypeString = `(val: {
+    type: "submit" | "stop";
+    value?: string;
+    files?: FileData[];
+    selectedOption?: SelectOption;
+  }) => void;
+`;
 
 const sections = [
   {
@@ -157,12 +164,12 @@ const sections = [
           <tr>
             <td>onButtonClick</td>
             <td>
-              <ExtendedTableCode>{"(type: 'submit' | 'stop') => void"}</ExtendedTableCode>
+              <ExtendedTableCode>{onButtonClickTypeString}</ExtendedTableCode>
             </td>
             <td>
               This function will be called when the user clicks on the button (submit or stop) or presses enter. The
-              type parameter indicates whether it's a "submit" or "stop" event. For submit events, an AbortSignal is
-              provided to allow cancellation.
+              type parameter indicates whether it's a <Code>'submit'</Code> or <Code>'stop'</Code> event. For submit
+              events, <Code>'value'</Code>, <Code>'files'</Code>and <Code>'selectedOption'</Code> are provided.
             </td>
             <td>-</td>
           </tr>

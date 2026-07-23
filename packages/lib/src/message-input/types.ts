@@ -85,7 +85,7 @@ type CommonProps = {
   onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the user clicks on the button (submit or stop) or presses enter.
-   * The type parameter indicates whether it's a "submit" or "stop" event.
+   * The type parameter indicates whether it's a "submit" or "stop" event. For submit events, "value", "files" and "selectedOption" are provided.
    */
   onButtonClick?: (val: {
     type: "submit" | "stop";

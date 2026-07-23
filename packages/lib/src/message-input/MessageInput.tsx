@@ -358,8 +358,8 @@ const DxcMessageInput = ({
                 disabled={isGenerating || disabled || isRecording}
                 value={selectOptions.find((option) => option.selected)?.value || selectOptions[0]?.value}
                 onChange={(val) => {
-                  const selectedOption = getSelectedOption(selectOptions);
-                  selectedOption?.onSelect(val.value);
+                  const newOption = selectOptions.find((option) => option.value === val.value);
+                  newOption?.onSelect(val.value);
                 }}
               />
             </DxcContainer>
