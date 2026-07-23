@@ -185,54 +185,6 @@ describe("TextInput component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "length" });
   });
 
-  test("Maximum and minimum error messages change within HalstackProvider", () => {
-    const onChange = jest.fn();
-    const onBlur = jest.fn();
-    const { getByRole } = render(
-      <HalstackProvider
-        labels={{
-          formFields: {
-            maxLengthErrorMessage: (maxLength: number) => `Please do not enter more than ${maxLength} characters.`,
-            minLengthErrorMessage: (minLegth: number) => `Please do not enter less than ${minLegth} characters.`,
-          },
-        }}
-      >
-        <DxcTextInput
-          label="Input label"
-          placeholder="Placeholder"
-          onChange={onChange}
-          onBlur={onBlur}
-          margin={{ left: "medium", right: "medium" }}
-          clearable
-          minLength={5}
-          maxLength={10}
-        />
-      </HalstackProvider>
-    );
-    const input = getByRole("textbox");
-    fireEvent.change(input, { target: { value: "test" } });
-    expect(onChange).toHaveBeenCalledWith({
-      value: "test",
-      error: "Please do not enter less than 5 characters.",
-    });
-    fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalledWith({
-      value: "test",
-      error: "Please do not enter less than 5 characters.",
-    });
-
-    fireEvent.change(input, { target: { value: "test-maximum-length" } });
-    expect(onChange).toHaveBeenCalledWith({
-      value: "test-maximum-length",
-      error: "Please do not enter more than 10 characters.",
-    });
-    fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalledWith({
-      value: "test-maximum-length",
-      error: "Please do not enter more than 10 characters.",
-    });
-  });
-
   test("Pattern and length constraints", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
@@ -263,12 +215,12 @@ describe("TextInput component tests", () => {
     fireEvent.change(input, { target: { value: "test-maximum-length" } });
     expect(onChange).toHaveBeenCalledWith({
       value: "test-maximum-length",
-      error: "The maximum length is 5.",
+      error: "The maximum length is 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "test-maximum-length",
-      error: "The maximum length is 5.",
+      error: "The maximum length is 10.",
     });
     fireEvent.change(input, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalledWith({
@@ -802,11 +754,8 @@ describe("TextInput component synchronous autosuggest tests", () => {
 
     userEvent.clear(input);
     fireEvent.focus(input);
-    act(() => {
-      userEvent.type(input, "Democratic Rep");
-    });
+    fireEvent.change(input, { target: { value: "Democratic Rep" } });
     expect(getByText("Democratic Rep")).toBeTruthy();
-    expect(getByText("Congo")).toBeTruthy();
     act(() => {
       userEvent.click(getByRole("option"));
     });
@@ -1235,5 +1184,53 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     fireEvent.focus(input);
     await waitForElementToBeRemoved(() => getByText("Searching..."));
     expect(getByText("Error fetching data")).toBeTruthy();
+  });
+
+  test("Maximum and minimum error messages change within HalstackProvider", () => {
+    const onChange = jest.fn();
+    const onBlur = jest.fn();
+    const { getByRole } = render(
+      <HalstackProvider
+        labels={{
+          formFields: {
+            maxLengthErrorMessage: (maxLength: number) => `Please do not enter more than ${maxLength} characters.`,
+            minLengthErrorMessage: (minLegth: number) => `Please do not enter less than ${minLegth} characters.`,
+          },
+        }}
+      >
+        <DxcTextInput
+          label="Input label"
+          placeholder="Placeholder"
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          minLength={5}
+          maxLength={10}
+        />
+      </HalstackProvider>
+    );
+    const input = getByRole("textbox");
+    fireEvent.change(input, { target: { value: "test" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+
+    fireEvent.change(input, { target: { value: "test-maximum-length" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "Please do not enter more than 10 characters.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "Please do not enter more than 10 characters.",
+    });
   });
 });

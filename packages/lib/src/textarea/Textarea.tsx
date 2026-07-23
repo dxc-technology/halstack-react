@@ -135,7 +135,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
       const lengthError = getLengthErrorMessage(event.target.value);
 
-      if (value === "" && !optional) {
+      if (event.target.value === "" && !optional) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.requiredValueErrorMessage,
