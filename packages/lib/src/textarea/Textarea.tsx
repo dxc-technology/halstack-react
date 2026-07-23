@@ -109,20 +109,20 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       return undefined;
     };
 
-    const isLengthOutOfRange = (value: string) => getLengthErrorMessage(value) != null;
-
     const changeValue = (newValue: string) => {
       if (value == null) setInnerValue(newValue);
+
+      const lengthError = getLengthErrorMessage(newValue);
 
       if (newValue === "" && !optional) {
         onChange?.({
           value: newValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthOutOfRange(newValue)) {
+      } else if (lengthError) {
         onChange?.({
           value: newValue,
-          error: getLengthErrorMessage(newValue),
+          error: lengthError,
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
@@ -133,15 +133,17 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     };
 
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
-      if (event.target.value === "" && !optional) {
+      const lengthError = getLengthErrorMessage(event.target.value);
+
+      if (value === "" && !optional) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthOutOfRange(event.target.value)) {
+      } else if (lengthError) {
         onBlur?.({
           value: event.target.value,
-          error: getLengthErrorMessage(event.target.value),
+          error: lengthError,
         });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({

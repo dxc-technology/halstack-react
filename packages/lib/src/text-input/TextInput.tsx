@@ -24,9 +24,7 @@ import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import {
   calculateWidth,
-  getLengthErrorMessage,
   hasSuggestions,
-  isLengthIncorrect,
   isNumberIncorrect,
   isRequired,
   makeCancelable,
@@ -161,6 +159,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       setPortalContainer(document?.getElementById(`${inputId}-portal`));
     }, []);
 
+    const getLengthErrorMessage = (value: string) => {
+      if (minLength != null && value.length < minLength) {
+        return translatedLabels.formFields.minLengthErrorMessage(minLength);
+      }
+      if (maxLength != null && value.length > maxLength) {
+        return translatedLabels.formFields.minLengthErrorMessage(maxLength);
+      }
+      return undefined;
+    };
+
     const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
         <Popover.Trigger
@@ -233,15 +241,17 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         setInnerValue(formattedValue);
       }
 
+      const lengthError = getLengthErrorMessage(formattedValue);
+
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
+      } else if (lengthError) {
         onChange?.({
           value: formattedValue,
-          error: getLengthErrorMessage(formattedValue, minLength, maxLength),
+          error: lengthError,
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
@@ -332,12 +342,14 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleInputOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
+      const lengthError = getLengthErrorMessage(event.target.value);
+
       if (isRequired(event.target.value, optional)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
+      } else if (lengthError) {
         onBlur?.({
           value: event.target.value,
-          error: getLengthErrorMessage(event.target.value, minLength, maxLength),
+          error: lengthError,
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });

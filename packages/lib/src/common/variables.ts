@@ -77,7 +77,6 @@ export const defaultTranslatedComponentLabels = {
     formatRequestedErrorMessage: "Please match the format requested.",
     minLengthErrorMessage: (minLength: number) => `Min length ${minLength}.`,
     maxLengthErrorMessage: (maxLength: number) => `Max length ${maxLength}.`,
-    logoAlternativeText: "Logo",
   },
   header: {
     closeIcon: "Close menu",
