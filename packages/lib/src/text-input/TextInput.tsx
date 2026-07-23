@@ -164,7 +164,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         return translatedLabels.formFields.minLengthErrorMessage(minLength);
       }
       if (maxLength != null && value.length > maxLength) {
-        return translatedLabels.formFields.minLengthErrorMessage(maxLength);
+        return translatedLabels.formFields.maxLengthErrorMessage(maxLength);
       }
       return undefined;
     };

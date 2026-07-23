@@ -75,8 +75,8 @@ export const defaultTranslatedComponentLabels = {
     requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
-    minLengthErrorMessage: (minLength: number) => `Min length ${minLength}.`,
-    maxLengthErrorMessage: (maxLength: number) => `Max length ${maxLength}.`,
+    minLengthErrorMessage: (minLength: number) => `The minimum length is ${minLength}.`,
+    maxLengthErrorMessage: (maxLength: number) => `The maximum length is ${maxLength}.`,
   },
   header: {
     closeIcon: "Close menu",

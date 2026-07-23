@@ -85,7 +85,7 @@ const sections = [
                     <Code>maxLengthErrorMessage</Code>
                   </td>
                   <td>
-                    The maximum length <Code>maxLength</Code>.
+                    The maximum length is <Code>maxLength</Code>.
                   </td>
                   <td>
                     It is a function that receives a parameter (maxlength) and returns the text with this parameter.
@@ -96,7 +96,7 @@ const sections = [
                     <Code>minLengthErrorMessage</Code>
                   </td>
                   <td>
-                    The minimum length <Code>minLength</Code>.
+                    The minimum length is <Code>minLength</Code>.
                   </td>
                   <td>
                     It is a function that receives a parameter (minlength) and returns the text with this parameter.
