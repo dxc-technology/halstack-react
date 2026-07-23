@@ -6,6 +6,30 @@ import { Item, GroupItem } from "../base-menu/types";
 describe("Header component tests", () => {
   const mockMatchMedia = jest.fn();
 
+  const items = [
+    {
+      label: "Grouped Item 1",
+      icon: "favorite",
+      items: [
+        { label: "Item 1", icon: "person", selected: true },
+        {
+          label: "Grouped Item 2",
+          items: [
+            {
+              label: "Item 2",
+              icon: "bookmark",
+            },
+            { label: "Selected Item 3" },
+          ],
+        },
+      ],
+    },
+    { label: "Item 4", icon: "key" },
+    { label: "Item 5", icon: "person" },
+    { label: "Grouped Item 6", items: [{ label: "Item 7", icon: "person" }, { label: "Item 8" }] },
+    { label: "Item 9" },
+  ];
+
   beforeAll(() => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
@@ -94,5 +118,14 @@ describe("Header component tests", () => {
     expect(searchInput).toBeInTheDocument();
     const cancelButton = screen.queryByRole("button", { name: /cancel/i });
     expect(cancelButton).not.toBeInTheDocument();
+  });
+
+  test("navigation group items closes whenever an item is clicked", () => {
+    render(<DxcHeader navItems={items} />);
+    const itemGroup6 = screen.getByText("Grouped Item 6");
+    fireEvent.click(itemGroup6);
+    const item7 = screen.getByText("Item 7");
+    fireEvent.click(item7);
+    expect(item7).not.toBeInTheDocument();
   });
 });
