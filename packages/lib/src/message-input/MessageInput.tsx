@@ -12,7 +12,7 @@ import {
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
-import { inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
+import { getSelectedOption, inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
 import DxcContainer from "../container/Container";
@@ -258,11 +258,17 @@ const DxcMessageInput = ({
   }, [isRecording]);
 
   const handleSubmit = () => {
-    if (!disabled && !isGenerating) onButtonClick?.("submit");
+    if (!disabled && !isGenerating)
+      onButtonClick?.({
+        type: "submit",
+        value: value ?? innerValue,
+        files: files,
+        selectedOption: selectOptions && getSelectedOption(selectOptions),
+      });
   };
 
   const handleStop = () => {
-    if (!disabled) onButtonClick?.("stop");
+    if (!disabled) onButtonClick?.({ type: "stop" });
   };
 
   const handleInputOnKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -352,7 +358,7 @@ const DxcMessageInput = ({
                 disabled={isGenerating || disabled || isRecording}
                 value={selectOptions.find((option) => option.selected)?.value || selectOptions[0]?.value}
                 onChange={(val) => {
-                  const selectedOption = selectOptions.find((option) => option.value === val.value);
+                  const selectedOption = getSelectedOption(selectOptions);
                   selectedOption?.onSelect(val.value);
                 }}
               />

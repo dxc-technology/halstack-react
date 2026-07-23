@@ -11,6 +11,14 @@ export type FileData = {
   icon?: string | SVG;
 };
 
+export type SelectOption = {
+  label?: string;
+  icon?: string | SVG;
+  value: string;
+  onSelect: (value: string) => void;
+  selected?: boolean;
+};
+
 type CommonProps = {
   /**
    * If true, the voice recording button will be shown.
@@ -60,13 +68,7 @@ type CommonProps = {
   /**
    * Options to be shown on the dropdown under the input.
    */
-  selectOptions?: {
-    label?: string;
-    icon?: string | SVG;
-    value: string;
-    onSelect: (value: string) => void;
-    selected?: boolean;
-  }[];
+  selectOptions?: SelectOption[];
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value
@@ -85,7 +87,12 @@ type CommonProps = {
    * This function will be called when the user clicks on the button (submit or stop) or presses enter.
    * The type parameter indicates whether it's a "submit" or "stop" event.
    */
-  onButtonClick?: (type: "submit" | "stop") => void;
+  onButtonClick?: (val: {
+    type: "submit" | "stop";
+    value?: string;
+    files?: FileData[];
+    selectedOption?: SelectOption;
+  }) => void;
   /**
    * Text to be put as placeholder of the input.
    */
