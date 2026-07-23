@@ -12,7 +12,7 @@ import {
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
-import { inputStylesByStatePromptInput } from "./utils";
+import { inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
 import DxcContainer from "../container/Container";
@@ -31,28 +31,29 @@ const sizes = {
 } as const;
 
 const MessageInputContainer = styled.div<{ size: PromptInputPropsType["size"] }>`
-  box-sizing: border-box;
+  width: ${({ size = "medium" }) => sizes[size]};
   display: flex;
   flex-direction: column;
   gap: var(--spacing-gap-xs);
-  max-height: 320px;
-  background-color: var(--color-bg-neutral-lightest);
-  box-shadow: 0 -24px 10px 4px rgba(255, 255, 255, 0.6);
-  width: ${({ size = "medium" }) => sizes[size]};
 `;
 
 const MessageInput = styled.div<{
   disabled: Required<PromptInputPropsType>["disabled"];
   error: boolean;
   focus: boolean;
+  hasFiles?: boolean;
 }>`
+  width: 100%;
+  max-height: 320px;
+  box-sizing: border-box;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: ${({ hasFiles }) =>
+    hasFiles ? "minmax(36px, 40px) minmax(0, 1fr) 34px" : "minmax(0, 1fr) 34px"};
   gap: var(--spacing-gap-s);
-  height: 100%;
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
+  background-color: var(--color-bg-neutral-lightest);
+  box-shadow: 0 -24px 10px 4px rgba(255, 255, 255, 0.6);
   ${({ disabled, error, focus }) => inputStylesByStatePromptInput(disabled, error, focus)}
   overflow: hidden;
 `;
@@ -73,15 +74,15 @@ const FilesContainer = styled.div`
   }
 `;
 
-const Input = styled.textarea<{ isRecording?: boolean }>`
+const MessageArea = styled.textarea<{ isRecording?: boolean }>`
   min-height: 20px;
-  max-width: 100%;
+  width: 100%;
   background: none;
   border: none;
   outline: none;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  field-sizing: content;
   resize: none;
-  flex-grow: 1;
   color: ${({ disabled, isRecording }) =>
     isRecording ? "transparent" : disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)"};
   font-family: var(--typography-font-family);
@@ -90,6 +91,7 @@ const Input = styled.textarea<{ isRecording?: boolean }>`
   white-space: pre-wrap;
   word-break: break-word;
   overflow-y: auto;
+  box-sizing: border-box;
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
@@ -103,11 +105,8 @@ const Input = styled.textarea<{ isRecording?: boolean }>`
 `;
 
 const InputWrapper = styled.div`
-  max-height: 150px;
   position: relative;
-  flex-grow: 1;
   display: flex;
-  flex-direction: column;
 `;
 
 const TranscriptOverlay = styled.div`
@@ -116,7 +115,6 @@ const TranscriptOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   pointer-events: none;
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
@@ -125,6 +123,12 @@ const TranscriptOverlay = styled.div`
   white-space: pre-wrap;
   word-break: break-word;
   overflow-y: auto;
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+
+  ${scrollbarStyles};
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 `;
 
 const HighlightedText = styled.span`
@@ -141,7 +145,7 @@ const DxcMessageInput = ({
   isGenerating = false,
   maxLength,
   minLength,
-  modelList,
+  selectOptions,
   onBlur,
   onButtonClick,
   onChange,
@@ -151,30 +155,35 @@ const DxcMessageInput = ({
   value,
 }: PromptInputPropsType) => {
   const languageContext = useContext(HalstackLanguageContext);
-  const locale = languageContext.locale ? languageContext.locale : undefined;
+  const locale = languageContext.locale ?? "en-US";
   const inputId = `input-${useId()}`;
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const { transcript, isRecording, startRecording, stopRecording, resetTranscript } = useVoiceTranscription({
-    lang: locale ?? "en-US",
+  const {
+    transcript,
+    isRecording,
+    startRecording,
+    stopRecording,
+    resetTranscript,
+    error: transcriptError,
+  } = useVoiceTranscription({
+    lang: locale,
   });
+  const dropdownOptions = [{ label: languageContext.labels.messageInput.attachFileButtonTitle, value: "fileorphoto" }];
 
-  // TO BE DONE: IMPLEMENT SEPARATELY minLenght & maxLength
-  const isLengthOutOfRange = (value: string) =>
-    value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+  const getLengthError = (val: string) =>
+    isLengthOutOfRange(val, minLength, maxLength)
+      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
+      : undefined;
+
+  const getError = (val: string) => transcriptError ?? getLengthError(val);
 
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
-
-    if (isLengthOutOfRange(newValue)) {
-      onChange?.({
-        value: newValue,
-        error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
-      });
-    } else onChange?.({ value: newValue });
+    onChange?.({ value: newValue, error: getError(newValue) });
   };
 
   const handleInputContainerOnClick = () => inputRef.current?.focus();
@@ -184,12 +193,7 @@ const DxcMessageInput = ({
   };
 
   const handleInputOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const el = event.target;
-    el.style.height = "auto";
-
-    el.style.height = `${el.scrollHeight}px`;
-
-    changeValue(el.value);
+    changeValue(event.target.value);
   };
 
   const handleInputOnFocus = () => setIsFocused(true);
@@ -197,12 +201,7 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
 
-    if (isLengthOutOfRange(event.target.value)) {
-      onBlur?.({
-        value: event.target.value,
-        error: languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength),
-      });
-    } else onBlur?.({ value: event.target.value });
+    onBlur?.({ value: event.target.value, error: getError(event.target.value) });
   };
 
   const handleFileSelect = () => fileInputRef.current?.click();
@@ -258,9 +257,13 @@ const DxcMessageInput = ({
     return () => textarea.removeEventListener("scroll", handleScroll);
   }, [isRecording]);
 
-  const handleSubmit = () => !disabled && !isGenerating && onButtonClick?.("submit");
+  const handleSubmit = () => {
+    if (!disabled && !isGenerating) onButtonClick?.("submit");
+  };
 
-  const handleStop = () => !disabled && onButtonClick?.("stop");
+  const handleStop = () => {
+    if (!disabled) onButtonClick?.("stop");
+  };
 
   const handleInputOnKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (!disabled && !isGenerating && event.key === "Enter" && !event.shiftKey) {
@@ -275,16 +278,17 @@ const DxcMessageInput = ({
         disabled={disabled}
         error={!!error}
         focus={isFocused}
+        hasFiles={files && typeof callbackFile === "function"}
         onClick={handleInputContainerOnClick}
         onMouseDown={handleInputContainerOnMouseDown}
       >
-        {files && (
+        {files && typeof callbackFile === "function" && (
           <FilesContainer>
             <DxcDropdown
-              options={[{ label: languageContext.labels.messageInput.attachFileButtonTitle, value: "fileorphoto" }]}
+              options={dropdownOptions}
               onSelectOption={handleFileSelect}
               icon="add"
-              disabled={isGenerating || disabled}
+              disabled={isGenerating || disabled || isRecording}
               caretHidden
             />
             <input ref={fileInputRef} type="file" hidden multiple onChange={handleFileInputOnChange} />
@@ -300,7 +304,7 @@ const DxcMessageInput = ({
           </FilesContainer>
         )}
         <InputWrapper>
-          <Input
+          <MessageArea
             aria-label={languageContext.labels.messageInput.inputAriaLabel}
             aria-errormessage={error ? `error-${inputId}` : undefined}
             aria-invalid={!!error}
@@ -326,11 +330,10 @@ const DxcMessageInput = ({
               {baseTextRef.current && <span>{baseTextRef.current}</span>}
               {transcript && (
                 <>
-                  {baseTextRef.current && <span> </span>}
                   {transcript.length > 2 ? (
                     <>
                       <span>{transcript.slice(0, -2)}</span>
-                      <HighlightedText>{transcript.slice(-2)}...</HighlightedText>
+                      <HighlightedText>{transcript.slice(-2)} ...</HighlightedText>
                     </>
                   ) : (
                     <HighlightedText>{transcript}</HighlightedText>
@@ -340,16 +343,16 @@ const DxcMessageInput = ({
             </TranscriptOverlay>
           )}
         </InputWrapper>
-        <DxcFlex justifyContent={modelList ? "space-between" : "flex-end"} alignItems="center">
-          {modelList && (
+        <DxcFlex justifyContent={selectOptions ? "space-between" : "flex-end"} alignItems="center">
+          {selectOptions && (
             <DxcContainer width="35%" maxWidth="240px">
               <DxcSelect
                 size="fillParent"
-                options={modelList.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
-                disabled={isGenerating || disabled}
-                value={modelList.find((option) => option.selected)?.value || modelList[0]?.value}
+                options={selectOptions.map((option) => ({ label: option.label ?? option.value, value: option.value }))}
+                disabled={isGenerating || disabled || isRecording}
+                value={selectOptions.find((option) => option.selected)?.value || selectOptions[0]?.value}
                 onChange={(val) => {
-                  const selectedOption = modelList.find((option) => option.value === val.value);
+                  const selectedOption = selectOptions.find((option) => option.value === val.value);
                   selectedOption?.onSelect(val.value);
                 }}
               />
@@ -380,7 +383,7 @@ const DxcMessageInput = ({
             <DxcButton
               icon={!isGenerating ? "send" : "filled_stop"}
               size={{ height: "medium" }}
-              disabled={disabled}
+              disabled={disabled || isRecording}
               onClick={!isGenerating ? handleSubmit : handleStop}
               title={
                 !isGenerating

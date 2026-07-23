@@ -1,23 +1,21 @@
+import { SVG } from "../common/utils";
+
 export type FileData = {
   /**
    * The chip label.
    */
   label: string;
-  /* *
+  /**
    *  The chip icon. It can be a string representing the icon name or a ReactNode representing a custom icon.
    */
-  icon: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
+  icon?: string | SVG;
 };
 
-type Props = {
+type CommonProps = {
   /**
    * If true, the voice recording button will be shown.
    */
   allowRecording?: boolean;
-  /**
-   * This function will be called when the selection of top items changes.
-   */
-  callbackFile?: (files: FileData[]) => void;
   /**
    * Initial value of the input, only when it is uncontrolled.
    */
@@ -35,10 +33,6 @@ type Props = {
    * the error message would not be modified.
    */
   error?: string;
-  /**
-   * Items to be shown at the top.
-   */
-  files?: FileData[] | [];
   /**
    * If true, it indicates that a request is being processed after the user submits a query.
    */
@@ -66,9 +60,9 @@ type Props = {
   /**
    * Options to be shown on the dropdown under the input.
    */
-  modelList?: {
+  selectOptions?: {
     label?: string;
-    icon?: string | (React.ReactNode & React.SVGProps<SVGSVGElement>);
+    icon?: string | SVG;
     value: string;
     onSelect: (value: string) => void;
     selected?: boolean;
@@ -90,7 +84,6 @@ type Props = {
   /**
    * This function will be called when the user clicks on the button (submit or stop) or presses enter.
    * The type parameter indicates whether it's a "submit" or "stop" event.
-   * For submit events, an AbortSignal is provided to allow cancellation.
    */
   onButtonClick?: (type: "submit" | "stop") => void;
   /**
@@ -110,5 +103,8 @@ type Props = {
    */
   value?: string;
 };
+
+type Props = CommonProps &
+  ({ files: FileData[]; callbackFile: (files: FileData[]) => void } | { files?: undefined; callbackFile?: undefined });
 
 export default Props;

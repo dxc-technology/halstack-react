@@ -1,5 +1,9 @@
 import { css } from "@emotion/react";
 
+// TO BE DONE: IMPLEMENT SEPARATELY minLenght & maxLength
+export const isLengthOutOfRange = (value: string, minLength?: number, maxLength?: number) =>
+  value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lightest)` : `transparent`};
 

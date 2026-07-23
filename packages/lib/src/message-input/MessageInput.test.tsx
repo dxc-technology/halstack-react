@@ -1,7 +1,17 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { act, render, renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcMessageInput from "./MessageInput";
+import {
+  ISpeechRecognition,
+  SpeechRecognitionAlternative,
+  SpeechRecognitionErrorEvent,
+  SpeechRecognitionEvent,
+  SpeechRecognitionResultItem,
+  SpeechRecognitionResultList,
+  useVoiceTranscription,
+  WindowWithSpeechRecognition,
+} from "./useVoiceTranscription";
 
 // Mock ResizeObserver
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -193,18 +203,18 @@ describe("Message Input component tests", () => {
   });
 
   test("renders file upload dropdown when files prop is provided", () => {
-    const { getByRole } = render(<DxcMessageInput files={[]} />);
+    const { getByRole } = render(<DxcMessageInput files={[]} callbackFile={() => console.log("")} />);
     const dropdown = getByRole("button", { name: "Show options" });
 
     expect(dropdown).toBeInTheDocument();
   });
 
-  test("renders bottom select when modelList is provided", () => {
-    const modelList = [
+  test("renders bottom select when selectOptions is provided", () => {
+    const selectOptions = [
       { label: "Option 1", value: "option1", onSelect: jest.fn() },
       { label: "Option 2", value: "option2", onSelect: jest.fn() },
     ];
-    const { getByRole } = render(<DxcMessageInput modelList={modelList} />);
+    const { getByRole } = render(<DxcMessageInput selectOptions={selectOptions} />);
     const select = getByRole("combobox");
 
     expect(select).toBeInTheDocument();
@@ -212,11 +222,11 @@ describe("Message Input component tests", () => {
 
   test("calls onSelect when a bottom option is selected", () => {
     const onSelect = jest.fn();
-    const modelList = [
+    const selectOptions = [
       { label: "Option 1", value: "option1", onSelect },
       { label: "Option 2", value: "option2", onSelect: jest.fn() },
     ];
-    const { getByRole } = render(<DxcMessageInput modelList={modelList} />);
+    const { getByRole } = render(<DxcMessageInput selectOptions={selectOptions} />);
     const select = getByRole("combobox");
 
     userEvent.click(select);
@@ -252,7 +262,7 @@ describe("Message Input component tests", () => {
   });
 
   test("handles file selection", () => {
-    const { getByRole } = render(<DxcMessageInput files={[]} />);
+    const { getByRole } = render(<DxcMessageInput files={[]} callbackFile={() => console.log("")} />);
     const dropdown = getByRole("button", { name: "Show options" });
 
     // Simulate selecting the option
@@ -316,5 +326,154 @@ describe("Message Input component tests", () => {
     fileInput.dispatchEvent(new Event("change", { bubbles: true }));
 
     expect(callbackFile).toHaveBeenCalled();
+  });
+});
+
+// Mock Speech Recognition
+class MockSpeechRecognition extends EventTarget implements ISpeechRecognition {
+  lang = "";
+  continuous = false;
+  interimResults = false;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null = null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null = null;
+  onend: (() => void) | null = null;
+
+  start = jest.fn();
+  stop = jest.fn(() => {
+    this.onend?.();
+  });
+
+  emitResult(transcript: string, confidence: number) {
+    const alternative: SpeechRecognitionAlternative = { transcript, confidence };
+    const resultItem: SpeechRecognitionResultItem = { length: 1, 0: alternative };
+    const results: SpeechRecognitionResultList = { length: 1, 0: resultItem };
+
+    this.onresult?.(Object.assign(new Event("result"), { results }));
+  }
+
+  emitEnd() {
+    this.onend?.();
+  }
+
+  emitError(error: string) {
+    this.onerror?.(Object.assign(new Event("error"), { error }));
+  }
+}
+
+describe("useVoiceTranscription", () => {
+  let mockInstance: MockSpeechRecognition;
+
+  beforeEach(() => {
+    mockInstance = new MockSpeechRecognition();
+    (window as WindowWithSpeechRecognition).SpeechRecognition = jest.fn(() => mockInstance);
+  });
+
+  afterEach(() => {
+    delete (window as WindowWithSpeechRecognition).SpeechRecognition;
+    jest.clearAllMocks();
+  });
+
+  test("detects support when SpeechRecognition exists", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    expect(result.current.isSupported).toBe(true);
+  });
+
+  test("starts recording and sets isRecording to true", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    expect(mockInstance.start).toHaveBeenCalled();
+    expect(result.current.isRecording).toBe(true);
+  });
+
+  test("updates transcript when confidence is high enough", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    act(() => {
+      mockInstance.emitResult("hola mundo", 0.8);
+    });
+
+    expect(result.current.transcript).toBe("hola mundo");
+  });
+
+  test("ignores transcript when confidence is below 0.5", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    act(() => {
+      mockInstance.emitResult("texto poco fiable", 0.2);
+    });
+
+    expect(result.current.transcript).toBe("");
+  });
+
+  test("resets transcript and isRecording when recognition ends automatically", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    act(() => {
+      mockInstance.emitResult("hola", 0.9);
+    });
+
+    expect(result.current.transcript).toBe("hola");
+
+    act(() => {
+      mockInstance.emitEnd();
+    });
+
+    expect(result.current.isRecording).toBe(false);
+    expect(result.current.transcript).toBe("");
+  });
+
+  test("resets transcript on error", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    act(() => {
+      mockInstance.emitResult("hola", 0.9);
+    });
+
+    act(() => {
+      mockInstance.emitError("no-speech");
+    });
+
+    expect(result.current.isRecording).toBe(false);
+    expect(result.current.transcript).toBe("");
+  });
+
+  test("stopRecording calls recognition.stop", () => {
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+
+    act(() => {
+      result.current.startRecording();
+    });
+
+    act(() => {
+      result.current.stopRecording();
+    });
+
+    expect(mockInstance.stop).toHaveBeenCalled();
+  });
+
+  test("isSupported is false when SpeechRecognition is not available", () => {
+    delete (window as WindowWithSpeechRecognition).SpeechRecognition;
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "es-ES" }));
+    expect(result.current.isSupported).toBe(false);
   });
 });

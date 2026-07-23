@@ -13,7 +13,7 @@ const fileDataTypeString = `{
 };`;
 const callbackFileTypeString = "(files: FileData[]) => void";
 const filesTypeString = `FileData[] | []`;
-const modelListTypeString = `{
+const selectOptionsTypeString = `{
   label?: string;
   icon?: string | SVG;
   value: string;
@@ -135,9 +135,9 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>modelList</td>
+            <td>selectOptions</td>
             <td>
-              <ExtendedTableCode>{modelListTypeString}</ExtendedTableCode>
+              <ExtendedTableCode>{selectOptionsTypeString}</ExtendedTableCode>
             </td>
             <td>Options to be shown on the dropdown under the input.</td>
             <td>-</td>

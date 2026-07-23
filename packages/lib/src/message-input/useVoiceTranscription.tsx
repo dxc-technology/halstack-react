@@ -1,29 +1,34 @@
 import { useCallback, useRef, useState } from "react";
 
-interface SpeechRecognitionResult {
+export type SpeechRecognitionAlternative = {
   readonly transcript: string;
   readonly confidence: number;
-}
+};
 
-interface SpeechRecognitionResultItem {
-  readonly [index: number]: SpeechRecognitionResult;
+export type SpeechRecognitionResult = {
   readonly length: number;
-}
+  [index: number]: SpeechRecognitionAlternative;
+};
 
-interface SpeechRecognitionResultList {
+export type SpeechRecognitionResultItem = {
+  readonly [index: number]: SpeechRecognitionAlternative;
+  readonly length: number;
+};
+
+export type SpeechRecognitionResultList = {
   readonly [index: number]: SpeechRecognitionResultItem;
   readonly length: number;
-}
+};
 
-interface SpeechRecognitionEvent extends Event {
+export type SpeechRecognitionEvent = Event & {
   readonly results: SpeechRecognitionResultList;
-}
+};
 
-interface SpeechRecognitionErrorEvent extends Event {
+export type SpeechRecognitionErrorEvent = Event & {
   readonly error: string;
-}
+};
 
-interface ISpeechRecognition extends EventTarget {
+export type ISpeechRecognition = EventTarget & {
   lang: string;
   continuous: boolean;
   interimResults: boolean;
@@ -32,40 +37,45 @@ interface ISpeechRecognition extends EventTarget {
   onend: (() => void) | null;
   start(): void;
   stop(): void;
-}
+};
 
-interface ISpeechRecognitionConstructor {
+type ISpeechRecognitionConstructor = {
   new (): ISpeechRecognition;
-}
+};
 
-interface WindowWithSpeechRecognition extends Window {
+export type WindowWithSpeechRecognition = Window & {
   SpeechRecognition?: ISpeechRecognitionConstructor;
   webkitSpeechRecognition?: ISpeechRecognitionConstructor;
-}
+};
 
-interface UseVoiceTranscriptionOptions {
-  lang?: string;
+type UseVoiceTranscriptionProps = {
+  lang: string;
   continuous?: boolean;
   interimResults?: boolean;
-}
+  onError?: (error: string) => void;
+};
 
-interface UseVoiceTranscriptionReturn {
+type UseVoiceTranscriptionReturn = {
   transcript: string;
   isRecording: boolean;
   isSupported: boolean;
   startRecording: () => void;
   stopRecording: () => void;
   resetTranscript: () => void;
-}
+  error?: string;
+};
 
 export const useVoiceTranscription = ({
-  lang = "en-US",
+  lang,
   continuous = true,
   interimResults = true,
-}: UseVoiceTranscriptionOptions = {}): UseVoiceTranscriptionReturn => {
+  onError,
+}: UseVoiceTranscriptionProps): UseVoiceTranscriptionReturn => {
   const [transcript, setTranscript] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [error, setError] = useState<string>();
   const recognitionRef = useRef<ISpeechRecognition | null>(null);
+  const resetTranscript = useCallback(() => setTranscript(""), []);
 
   const windowWithSpeech =
     typeof window !== "undefined" ? (window as unknown as WindowWithSpeechRecognition) : undefined;
@@ -94,20 +104,27 @@ export const useVoiceTranscription = ({
       }
 
       const fullTranscript = results
-        .map((result) => result[0]?.transcript ?? "")
+        .map((result) => {
+          const best = result[0];
+          return best && best.confidence >= 0.5 ? best.transcript : "";
+        })
         .join(" ")
         .trim();
       setTranscript(fullTranscript);
     };
 
     recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-      console.error("Speech recognition error:", event.error);
+      setError(event.error);
+      onError?.(event.error);
+
+      resetTranscript();
       setIsRecording(false);
       recognitionRef.current = null;
     };
 
     recognition.onend = () => {
       setIsRecording(false);
+      resetTranscript();
       recognitionRef.current = null;
     };
 
@@ -122,7 +139,5 @@ export const useVoiceTranscription = ({
     }
   }, []);
 
-  const resetTranscript = useCallback(() => setTranscript(""), []);
-
-  return { transcript, isRecording, isSupported, startRecording, stopRecording, resetTranscript };
+  return { transcript, isRecording, isSupported, error, startRecording, stopRecording, resetTranscript };
 };
