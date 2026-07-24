@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { getMargin } from "../common/utils";
+import { getLengthErrorMessage, getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
@@ -99,20 +99,16 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const prevValueRef = useRef<string | null>(null);
 
-    const getLengthErrorMessage = (value: string) => {
-      if (minLength != null && value.length < minLength) {
-        return translatedLabels.formFields.minLengthErrorMessage?.(minLength);
-      }
-      if (maxLength != null && value.length > maxLength) {
-        return translatedLabels.formFields.maxLengthErrorMessage?.(maxLength);
-      }
-      return undefined;
-    };
-
     const changeValue = (newValue: string) => {
       if (value == null) setInnerValue(newValue);
 
-      const lengthError = getLengthErrorMessage(newValue);
+      const lengthError = getLengthErrorMessage({
+        value: newValue,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
 
       if (newValue === "" && !optional) {
         onChange?.({
@@ -133,8 +129,13 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     };
 
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
-      const lengthError = getLengthErrorMessage(event.target.value);
-
+      const lengthError = getLengthErrorMessage({
+        value: event.target.value,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
       if (event.target.value === "" && !optional) {
         onBlur?.({
           value: event.target.value,

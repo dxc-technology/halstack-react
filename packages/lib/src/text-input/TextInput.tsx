@@ -34,6 +34,7 @@ import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import inputStylesByState from "../styles/forms/inputStylesByState";
+import { getLengthErrorMessage } from "../common/utils";
 
 const TextInputContainer = styled.div<{
   margin: TextInputPropsType["margin"];
@@ -159,16 +160,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       setPortalContainer(document?.getElementById(`${inputId}-portal`));
     }, []);
 
-    const getLengthErrorMessage = (value: string) => {
-      if (minLength != null && value.length < minLength) {
-        return translatedLabels.formFields.minLengthErrorMessage(minLength);
-      }
-      if (maxLength != null && value.length > maxLength) {
-        return translatedLabels.formFields.maxLengthErrorMessage(maxLength);
-      }
-      return undefined;
-    };
-
     const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
         <Popover.Trigger
@@ -241,7 +232,13 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         setInnerValue(formattedValue);
       }
 
-      const lengthError = getLengthErrorMessage(formattedValue);
+      const lengthError = getLengthErrorMessage({
+        value: formattedValue,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
 
       if (isRequired(formattedValue, optional)) {
         onChange?.({
@@ -342,7 +339,13 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleInputOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
-      const lengthError = getLengthErrorMessage(event.target.value);
+      const lengthError = getLengthErrorMessage({
+        value: event.target.value,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
 
       if (isRequired(event.target.value, optional)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
