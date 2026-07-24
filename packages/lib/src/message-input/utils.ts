@@ -8,6 +8,13 @@ export const isLengthOutOfRange = (value: string, minLength?: number, maxLength?
 export const getSelectedOption = (selectOptions: SelectOption[]) =>
   selectOptions.find((option) => option.selected === true);
 
+export const getFilePreview = (file: File): string => {
+  if (file.type.includes("video")) return "filled_movie";
+  else if (file.type.includes("audio")) return "music_video";
+  else if (file.type.includes("image")) return "image";
+  else return "description";
+};
+
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
   background-color: ${disabled ? `var(--color-bg-neutral-lightest)` : `transparent`};
 

@@ -9,7 +9,7 @@ import advanced from "./examples/advanced";
 
 const fileDataTypeString = `{
   label: string;
-  icon?: string | SVG;
+  file: File;
 };`;
 const callbackFileTypeString = "(files: FileData[]) => void";
 const filesTypeString = `FileData[] | []`;

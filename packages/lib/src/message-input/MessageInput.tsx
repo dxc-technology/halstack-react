@@ -12,7 +12,7 @@ import {
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
-import { getSelectedOption, inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
+import { getFilePreview, getSelectedOption, inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
 import DxcContainer from "../container/Container";
@@ -207,9 +207,11 @@ const DxcMessageInput = ({
   const handleFileSelect = () => fileInputRef.current?.click();
 
   const handleFileInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = Array.from(event.target.files ?? []).map((file) => ({
+    const filesArray = Array.from(event.target.files ?? []);
+    const selectedFiles = filesArray.map((file) => ({
       label: file.name,
-      icon: "insert_drive_file",
+      icon: getFilePreview(file),
+      file: file,
     }));
     callbackFile?.([...(files ?? []), ...selectedFiles]);
     event.target.value = "";

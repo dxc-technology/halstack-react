@@ -6,9 +6,13 @@ export type FileData = {
    */
   label: string;
   /**
-   *  The chip icon. It can be a string representing the icon name or a ReactNode representing a custom icon.
+   * The chip icon. It can be a string representing the icon name.
    */
-  icon?: string | SVG;
+  icon?: string;
+  /**
+   * The file object.
+   */
+  file: File;
 };
 
 export type SelectOption = {

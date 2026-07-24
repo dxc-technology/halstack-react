@@ -5,6 +5,7 @@ import DxcParagraph from "../../../../../../packages/lib/src/paragraph/Paragraph
 import { DxcBulletedList } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
+import messageInputAnatomy from "./images/message-input-anatomy.png";
 import messageInputExample from "./images/message-input-example.png";
 import generatingState from "./images/generating-state.png";
 
@@ -38,7 +39,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        {/* <Image src={linkAnatomy} alt="Message input anatomy" /> */}
+        <Image src={messageInputAnatomy} alt="Message input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Dropdown</strong> <em>(optional)</em>: allows the user to attach files, either as context for the AI
