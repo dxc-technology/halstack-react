@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { TimeSpinButtonPropsType } from "./types";
-import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
-import { handleKeyDown, pad, returnDayPeriod } from "./utils";
+import { forwardRef, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { handleKeyDown, pad, returnDayPeriod, generateDisplayValue } from "./utils";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: boolean }>`
   caret-color: transparent;
@@ -27,21 +28,6 @@ const TimeSpinButtonContainer = styled.span<{ isPlaceholder: boolean; disabled: 
   box-sizing: border-box;
 `;
 
-const generateDisplayValue = (
-  dataType: "hour" | "minute" | "second" | "dayPeriod" | undefined,
-  value: number | undefined,
-  placeholder: string,
-  maxValue: number
-) => {
-  let displayValue;
-  if (dataType === "dayPeriod") {
-    displayValue = value != null ? returnDayPeriod(value) : placeholder;
-  } else {
-    displayValue = value != null ? value.toString().padStart(maxValue.toString().length, "0") : placeholder;
-  }
-  return displayValue;
-};
-
 const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
   (
     {
@@ -63,6 +49,7 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
   ) => {
     const [innerValue, setInnerValue] = useState<number | undefined>(value);
     const spanRef = useRef<HTMLSpanElement | null>(null);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     const placeholder = useMemo(() => {
       switch (dataType) {
@@ -86,18 +73,24 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
     useEffect(() => {
       if (!spanRef.current) return;
       if (!isControlled) {
-        spanRef.current.textContent = generateDisplayValue(dataType, innerValue, placeholder, maxValue);
+        spanRef.current.textContent = generateDisplayValue(
+          dataType,
+          innerValue,
+          placeholder,
+          maxValue,
+          translatedLabels
+        );
       } else {
-        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue);
+        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue, translatedLabels);
       }
-    }, [innerValue, placeholder, maxValue, dataType, isControlled]);
+    }, [innerValue, placeholder, maxValue, dataType, isControlled, translatedLabels]);
 
     useEffect(() => {
       setInnerValue(value);
       if (spanRef.current) {
-        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue);
+        spanRef.current.textContent = generateDisplayValue(dataType, value, placeholder, maxValue, translatedLabels);
       }
-    }, [value, placeholder, maxValue, dataType]);
+    }, [value, placeholder, maxValue, dataType, translatedLabels]);
 
     // Values used to track the raw input before it's resolved to a valid value.
     const rawInput = useRef<string>("");
@@ -116,7 +109,11 @@ const TimeSpinButton = forwardRef<HTMLSpanElement, TimeSpinButtonPropsType>(
         role="spinbutton"
         aria-valuenow={innerValue ?? undefined}
         aria-valuetext={
-          innerValue != null ? (dataType === "dayPeriod" ? returnDayPeriod(innerValue) : pad(innerValue)) : "Empty"
+          innerValue != null
+            ? dataType === "dayPeriod"
+              ? returnDayPeriod(innerValue, translatedLabels)
+              : pad(innerValue)
+            : "Empty"
         }
         aria-valuemin={minValue}
         aria-valuemax={maxValue}

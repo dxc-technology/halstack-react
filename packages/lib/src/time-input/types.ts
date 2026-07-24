@@ -106,6 +106,7 @@ export type TimeSpinButtonPropsType = {
 export type TimePickerPropsType = {
   onPickTime: (hours: number, minutes: number, seconds?: number, dayPeriod?: number) => void;
   timeFormat: "12" | "24";
+  dayPeriodPosition?: "before" | "after";
   showSeconds?: boolean;
   hourValue?: number;
   minuteValue?: number;

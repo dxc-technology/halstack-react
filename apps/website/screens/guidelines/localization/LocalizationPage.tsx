@@ -738,6 +738,18 @@ const sections = [
                 </td>
                 <td>Select time</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodAM</Code>
+                </td>
+                <td>AM</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodPM</Code>
+                </td>
+                <td>PM</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),

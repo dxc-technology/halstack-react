@@ -132,6 +132,8 @@ export const defaultTranslatedComponentLabels = {
   },
   timeInput: {
     timePickerActionTitle: "Select time",
+    timePeriodAM: "AM",
+    timePeriodPM: "PM",
   },
   toast: {
     clearToastActionTitle: "Clear toast",
