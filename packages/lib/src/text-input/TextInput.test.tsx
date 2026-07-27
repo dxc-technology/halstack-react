@@ -910,6 +910,23 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(list).toBeTruthy();
     expect(getAllByText("?").length).toBe(1);
   });
+
+  test("Autosuggest scrollbar behaviour", () => {
+    const onChange = jest.fn();
+    const { getByRole, queryByRole } = render(
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
+    );
+    const input = getByRole("combobox");
+    fireEvent.focus(input);
+    const list = getByRole("listbox");
+    expect(list).toBeTruthy();
+
+    const suggestionsContainer = list.parentElement;
+    fireEvent.mouseDown(suggestionsContainer!);
+    expect(getByRole("listbox")).toBeTruthy();
+    fireEvent.blur(input);
+    expect(queryByRole("listbox")).toBeFalsy();
+  });
 });
 
 describe("TextInput component asynchronous autosuggest tests", () => {
