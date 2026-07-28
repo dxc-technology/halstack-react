@@ -82,21 +82,25 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>lengthErrorMessage</Code>
+                    <Code>maxLengthErrorMessage</Code>
                   </td>
                   <td>
-                    Min length <Code>minLength</Code>, max length <Code>maxLength</Code>.
+                    The maximum length is <Code>maxLength</Code>.
                   </td>
                   <td>
-                    It is a function that receives two parameters (minlength and maxlength) and returns the text with
-                    those parameters.
+                    It is a function that receives a parameter (maxlength) and returns the text with this parameter.
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Code>logoAlternativeText</Code>
+                    <Code>minLengthErrorMessage</Code>
                   </td>
-                  <td>Logo</td>
+                  <td>
+                    The minimum length is <Code>minLength</Code>.
+                  </td>
+                  <td>
+                    It is a function that receives a parameter (minlength) and returns the text with this parameter.
+                  </td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -733,6 +737,18 @@ const sections = [
                   <Code>timePickerActionTitle</Code>
                 </td>
                 <td>Select time</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodAM</Code>
+                </td>
+                <td>AM</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodPM</Code>
+                </td>
+                <td>PM</td>
               </tr>
             </tbody>
           </DxcTable>

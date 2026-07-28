@@ -75,8 +75,8 @@ export const defaultTranslatedComponentLabels = {
     requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
-    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
-    logoAlternativeText: "Logo",
+    minLengthErrorMessage: (minLength: number) => `The minimum length is ${minLength}.`,
+    maxLengthErrorMessage: (maxLength: number) => `The maximum length is ${maxLength}.`,
   },
   header: {
     closeIcon: "Close menu",
@@ -140,6 +140,8 @@ export const defaultTranslatedComponentLabels = {
   },
   timeInput: {
     timePickerActionTitle: "Select time",
+    timePeriodAM: "AM",
+    timePeriodPM: "PM",
   },
   toast: {
     clearToastActionTitle: "Clear toast",

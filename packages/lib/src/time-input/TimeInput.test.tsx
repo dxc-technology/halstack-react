@@ -3,6 +3,7 @@ import DxcTimeInput from "./TimeInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
+import { HalstackProvider } from "../HalstackContext";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
@@ -264,5 +265,96 @@ describe("DxcTimeInput rendering", () => {
     userEvent.keyboard("{ArrowUp}");
     userEvent.keyboard("{5}");
     expect(mockOnChange).toHaveBeenCalledWith("12:05:00 AM");
+  });
+
+  it("Time input with finnish locale", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <HalstackProvider localeTag="fi-FI">
+        <DxcTimeInput label="Finnish locale" showSeconds onChange={mockOnChange} />
+      </HalstackProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    const hourbutton = getAllByText("16");
+    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("16.00.00");
+    const minuteButton = getAllByText("30");
+    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("16.30.00");
+    const secondButton = getAllByText("45");
+    if (secondButton[1]) userEvent.click(secondButton[1]);
+    expect(mockOnChange).toHaveBeenCalledWith("16.30.45");
+  });
+
+  it("Time input with taiwanese locale", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <HalstackProvider localeTag="zh-TW">
+        <DxcTimeInput label="Taiwanese locale" showSeconds onChange={mockOnChange} />
+      </HalstackProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    const amButton = getAllByText("AM")[0];
+    if (amButton) userEvent.click(amButton);
+    const hourbutton = getAllByText("07");
+    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 07:00:00");
+    const minuteButton = getAllByText("30");
+    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 07:30:00");
+    const secondButton = getAllByText("45");
+    if (secondButton[1]) userEvent.click(secondButton[1]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 07:30:45");
+  });
+
+  it("Time input with taiwanese locale, but using keyboard to input time", () => {
+    const mockOnChange = jest.fn();
+    const { getAllByRole } = render(
+      <HalstackProvider localeTag="zh-TW">
+        <DxcTimeInput label="Taiwanese locale" showSeconds onChange={mockOnChange} />
+      </HalstackProvider>
+    );
+    const inputs = getAllByRole("spinbutton");
+    expect(inputs).toHaveLength(4);
+    userEvent.tab();
+    expect(inputs[0]).toHaveFocus();
+    userEvent.keyboard("p");
+    expect(inputs[1]).toHaveFocus();
+    userEvent.keyboard("1");
+    userEvent.keyboard("2");
+    expect(inputs[2]).toHaveFocus();
+    userEvent.keyboard("{3}");
+    userEvent.keyboard("{4}");
+    expect(inputs[3]).toHaveFocus();
+    userEvent.keyboard("{5}");
+    userEvent.keyboard("{6}");
+    expect(mockOnChange).toHaveBeenCalledWith("PM 12:34:56");
+  });
+
+  it("Time input with chinese locale, but using time picker", () => {
+    const mockOnChange = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <HalstackProvider localeTag="zh-CN">
+        <DxcTimeInput label="Chinese locale" timeFormat="12" showSeconds onChange={mockOnChange} />
+      </HalstackProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeTruthy();
+    userEvent.click(button);
+    const amButton = getAllByText("AM")[0];
+    if (amButton) userEvent.click(amButton);
+    const hourbutton = getAllByText("12");
+    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:00:00");
+    const minuteButton = getAllByText("30");
+    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:00");
+    const secondButton = getAllByText("50");
+    if (secondButton[1]) userEvent.click(secondButton[1]);
+    expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:50");
   });
 });
