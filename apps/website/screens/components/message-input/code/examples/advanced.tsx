@@ -4,8 +4,10 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
   const [files, setFiles] = useState([
-    { label: "document.pdf", icon: "insert_drive_file" },
-    { label: "image.png", icon: "image" }
+    new File([""], "document.pdf", { type: "application/pdf" }),
+    new File([""], "image.jpg", { type: "image/jpeg" }),
+    new File([""], "document.pdf", { type: "application/pdf" }),
+    new File([""], "image.jpg", { type: "image/jpeg" }),
   ]);
   const [selectedOption, setSelectedOptions] = useState("model-1.0");
   const [isGenerating, setIsGenerating] = useState(false);

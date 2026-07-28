@@ -7,23 +7,17 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import advanced from "./examples/advanced";
 
-const fileDataTypeString = `{
-  label: string;
-  file: File;
-};`;
-const callbackFileTypeString = "(files: FileData[]) => void";
-const filesTypeString = `FileData[] | []`;
 const selectOptionsTypeString = `{
   label?: string;
   icon?: string | SVG;
   value: string;
-  onSelect: () => void;
+  onSelect: (value: string) => void;
   selected?: boolean;
 }[]`;
 const onButtonClickTypeString = `(val: {
     type: "submit" | "stop";
     value?: string;
-    files?: FileData[];
+    files?: File[];
     selectedOption?: SelectOption;
   }) => void;
 `;
@@ -55,11 +49,7 @@ const sections = [
           <tr>
             <td>callbackFile</td>
             <td>
-              <TableCode>{callbackFileTypeString}</TableCode>
-              <p>
-                being <Code>FileData</Code> an object with the following properties:
-              </p>
-              <ExtendedTableCode>{fileDataTypeString}</ExtendedTableCode>
+              <TableCode>{"(files: File[]) => void"}</TableCode>
             </td>
             <td>This function will be called when the selection of top items changes.</td>
             <td>-</td>
@@ -98,7 +88,7 @@ const sections = [
           <tr>
             <td>files</td>
             <td>
-              <TableCode>{filesTypeString}</TableCode>
+              <TableCode>{"File[] | []"}</TableCode>
             </td>
             <td>Items to be shown at the top.</td>
             <td>-</td>

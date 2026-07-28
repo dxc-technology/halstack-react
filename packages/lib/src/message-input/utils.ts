@@ -12,13 +12,16 @@ export const getFilePreview = (file: File): string => {
 };
 
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
-  background-color: ${disabled ? `var(--color-bg-neutral-lightest)` : `transparent`};
+  background-color: ${disabled
+    ? `var(--color-bg-neutral-lighter)`
+    : `  background-color: var(--color-bg-neutral-lightest);
+`};
 
   border-radius: var(--border-radius-l);
 
   border: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"} var(--border-style-default)
     ${(() => {
-      if (disabled) return "var(--border-color-neutral-lighter)";
+      if (disabled) return "var(--border-color-neutral-strong)";
       else if (error) return "var(--border-color-error-medium)";
       else return "var(--border-color-neutral-lighter)";
     })()};

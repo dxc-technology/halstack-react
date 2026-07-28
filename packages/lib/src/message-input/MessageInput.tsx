@@ -35,7 +35,6 @@ const MessageInputContainer = styled.div<{ size: PromptInputPropsType["size"] }>
   width: ${({ size = "medium" }) => sizes[size]};
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-gap-xs);
 `;
 
 const MessageInput = styled.div<{
@@ -53,14 +52,12 @@ const MessageInput = styled.div<{
     hasFiles ? "minmax(36px, 40px) minmax(0, 1fr) 34px" : "minmax(0, 1fr) 34px"};
   gap: var(--spacing-gap-s);
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
-  background-color: var(--color-bg-neutral-lightest);
   box-shadow: 0 -24px 10px 4px rgba(255, 255, 255, 0.6);
   ${({ disabled, error, focus }) => inputStylesByStatePromptInput(disabled, error, focus)}
   overflow: hidden;
 `;
 
 const FilesContainer = styled.div`
-  min-height: 32px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -231,12 +228,7 @@ const DxcMessageInput = ({
   const handleFileSelect = () => fileInputRef.current?.click();
 
   const handleFileInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const filesArray = Array.from(event.target.files ?? []);
-    const selectedFiles = filesArray.map((file) => ({
-      label: file.name,
-      icon: getFilePreview(file),
-      file: file,
-    }));
+    const selectedFiles = Array.from(event.target.files ?? []);
     callbackFile?.([...(files ?? []), ...selectedFiles]);
     event.target.value = "";
   };
@@ -257,20 +249,24 @@ const DxcMessageInput = ({
     }
   };
 
-  // Handle transcript updates and scroll synchronization
+  // Handle transcript updates and auto-scroll to bottom
   useEffect(() => {
     if (!transcript) return;
 
     const combined = baseTextRef.current ? `${baseTextRef.current} ${transcript}` : transcript;
     changeValue(combined);
 
-    if (inputRef.current) {
-      inputRef.current.style.height = "auto";
-      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
-      if (overlayRef.current) overlayRef.current.scrollTop = inputRef.current.scrollTop;
+    if (isRecording) {
+      const textarea = inputRef.current;
+      const overlay = overlayRef.current;
+      if (textarea && overlay) {
+        textarea.scrollTop = textarea.scrollHeight;
+        overlay.scrollTop = overlay.scrollHeight;
+      }
     }
-  }, [transcript, changeValue]);
+  }, [transcript, changeValue, isRecording]);
 
+  // Synchronize overlay scroll with textarea when user manually scrolls
   useEffect(() => {
     const textarea = inputRef.current;
     const overlay = overlayRef.current;
@@ -327,9 +323,9 @@ const DxcMessageInput = ({
             {(files ?? []).map((item, index) => (
               <DxcChip
                 key={index}
-                label={item.label}
+                label={item.name}
                 mode="dismissible"
-                prefix={item.icon ?? "description"}
+                prefix={getFilePreview(item ?? "description")}
                 onClick={() => removeItem(index)}
               />
             ))}

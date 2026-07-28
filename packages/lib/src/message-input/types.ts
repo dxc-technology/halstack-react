@@ -1,20 +1,5 @@
 import { SVG } from "../common/utils";
 
-export type FileData = {
-  /**
-   * The chip label.
-   */
-  label: string;
-  /**
-   * The chip icon. It can be a string representing the icon name.
-   */
-  icon?: string;
-  /**
-   * The file object.
-   */
-  file: File;
-};
-
 export type SelectOption = {
   label?: string;
   icon?: string | SVG;
@@ -94,7 +79,7 @@ type CommonProps = {
   onButtonClick?: (val: {
     type: "submit" | "stop";
     value?: string;
-    files?: FileData[];
+    files?: File[];
     selectedOption?: SelectOption;
   }) => void;
   /**
@@ -116,6 +101,6 @@ type CommonProps = {
 };
 
 type Props = CommonProps &
-  ({ files: FileData[]; callbackFile: (files: FileData[]) => void } | { files?: undefined; callbackFile?: undefined });
+  ({ files: File[] | []; callbackFile: (files: File[]) => void } | { files?: undefined; callbackFile?: undefined });
 
 export default Props;

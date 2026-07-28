@@ -18,10 +18,10 @@ const selectOptionsOptions = [
 ];
 
 const files = [
-  { label: "document.pdf" },
-  { label: "document.pdf" },
-  { label: "document.pdf" },
-  { label: "document.pdf" },
+  new File([""], "document.pdf", { type: "application/pdf" }),
+  new File([""], "image.jpg", { type: "image/jpeg" }),
+  new File([""], "document.pdf", { type: "application/pdf" }),
+  new File([""], "image.jpg", { type: "image/jpeg" }),
 ];
 
 const MessageInput = () => (
@@ -96,20 +96,6 @@ const MessageInput = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover error" level={4} />
       <DxcMessageInput placeholder="Ask me anything..." error="Error Message" />
-    </ExampleContainer>
-
-    <Title title="Validation" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Min Length (15 characters)" level={4} />
-      <DxcMessageInput placeholder="Ask me anything..." minLength={15} defaultValue="Hello" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Max Length (50 characters)" level={4} />
-      <DxcMessageInput
-        placeholder="Ask me anything..."
-        maxLength={50}
-        defaultValue="This is a test message to demonstrate the maximum length validation feature"
-      />
     </ExampleContainer>
   </>
 );
