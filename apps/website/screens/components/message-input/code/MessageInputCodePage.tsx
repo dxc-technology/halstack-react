@@ -51,7 +51,10 @@ const sections = [
             <td>
               <TableCode>{"(files: File[]) => void"}</TableCode>
             </td>
-            <td>This function will be called when the selection of top items changes.</td>
+            <td>
+              This function will be called when the selection of top items changes. If this function is provided the
+              message input will allow file selection.
+            </td>
             <td>-</td>
           </tr>
           <tr>

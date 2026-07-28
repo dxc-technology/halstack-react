@@ -8,11 +8,16 @@ export type SelectOption = {
   selected?: boolean;
 };
 
-type CommonProps = {
+type Props = {
   /**
    * If true, the voice recording button will be shown.
    */
   allowRecording?: boolean;
+  /**
+   * This function will be called when the selection of top items changes.
+   * If this function is provided the message input will allow file selection.
+   */
+  callbackFile: (files: File[]) => void;
   /**
    * Initial value of the input, only when it is uncontrolled.
    */
@@ -30,6 +35,10 @@ type CommonProps = {
    * the error message would not be modified.
    */
   error?: string;
+  /**
+   * Items to be shown at the top.
+   */
+  files?: File[];
   /**
    * If true, it indicates that a request is being processed after the user submits a query.
    */
@@ -99,8 +108,5 @@ type CommonProps = {
    */
   value?: string;
 };
-
-type Props = CommonProps &
-  ({ files: File[] | []; callbackFile: (files: File[]) => void } | { files?: undefined; callbackFile?: undefined });
 
 export default Props;

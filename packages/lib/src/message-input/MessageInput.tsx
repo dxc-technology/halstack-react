@@ -310,7 +310,7 @@ const DxcMessageInput = ({
         onClick={handleInputContainerOnClick}
         onMouseDown={handleInputContainerOnMouseDown}
       >
-        {files && typeof callbackFile === "function" && (
+        {typeof callbackFile === "function" && (
           <FilesContainer>
             <DxcDropdown
               options={dropdownOptions}

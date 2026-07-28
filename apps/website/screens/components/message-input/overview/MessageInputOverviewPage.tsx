@@ -297,11 +297,6 @@ const sections = [
                     not just what went wrong. "Maximum 2,000 characters" is more useful than "Input too long". If the
                     error originates from a system failure, acknowledge it clearly and offer a next step.
                   </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>Show the voice button only when voice input is functional:</strong> if voice capability is
-                    conditional, perform capability detection before enabling the voice button property. A microphone
-                    button that does nothing erodes trust and usability.
-                  </DxcBulletedList.Item>
                 </DxcBulletedList>
               </>
             ),
