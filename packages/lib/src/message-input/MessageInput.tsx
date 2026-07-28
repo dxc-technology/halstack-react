@@ -12,7 +12,7 @@ import {
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
-import { getFilePreview, getSelectedOption, inputStylesByStatePromptInput, isLengthOutOfRange } from "./utils";
+import { getFilePreview, getSelectedOption, inputStylesByStatePromptInput } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
 import DxcContainer from "../container/Container";
@@ -22,6 +22,7 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import { useVoiceTranscription } from "./useVoiceTranscription";
 import DxcSelect from "../select/Select";
+import { getLengthErrorMessage } from "../common/utils";
 
 const sizes = {
   small: "240px",
@@ -155,6 +156,7 @@ const DxcMessageInput = ({
   value,
 }: PromptInputPropsType) => {
   const languageContext = useContext(HalstackLanguageContext);
+  const translatedLabels = languageContext.labels;
   const locale = languageContext.locale ?? "en-US";
   const inputId = `input-${useId()}`;
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -174,16 +176,24 @@ const DxcMessageInput = ({
   });
   const dropdownOptions = [{ label: languageContext.labels.messageInput.attachFileButtonTitle, value: "fileorphoto" }];
 
-  const getLengthError = (val: string) =>
-    isLengthOutOfRange(val, minLength, maxLength)
-      ? languageContext.labels.formFields.lengthErrorMessage?.(minLength, maxLength)
-      : undefined;
-
-  const getError = (val: string) => transcriptError ?? getLengthError(val);
-
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
-    onChange?.({ value: newValue, error: getError(newValue) });
+
+    const lengthError = getLengthErrorMessage({
+      value: newValue,
+      minLength,
+      maxLength,
+      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+    });
+
+    if (lengthError) {
+      onChange?.({ value: newValue, error: lengthError });
+    } else if (transcriptError) {
+      onChange?.({ value: newValue, error: transcriptError });
+    } else {
+      onChange?.({ value: newValue });
+    }
   };
 
   const handleInputContainerOnClick = () => inputRef.current?.focus();
@@ -201,7 +211,21 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
 
-    onBlur?.({ value: event.target.value, error: getError(event.target.value) });
+    const lengthError = getLengthErrorMessage({
+      value: event.target.value,
+      minLength,
+      maxLength,
+      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+    });
+
+    if (lengthError) {
+      onBlur?.({ value: event.target.value, error: lengthError });
+    } else if (transcriptError) {
+      onBlur?.({ value: event.target.value, error: transcriptError });
+    } else {
+      onBlur?.({ value: event.target.value });
+    }
   };
 
   const handleFileSelect = () => fileInputRef.current?.click();

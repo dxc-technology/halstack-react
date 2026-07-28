@@ -1,10 +1,6 @@
 import { css } from "@emotion/react";
 import { SelectOption } from "./types";
 
-// TO BE DONE: IMPLEMENT SEPARATELY minLenght & maxLength
-export const isLengthOutOfRange = (value: string, minLength?: number, maxLength?: number) =>
-  value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
-
 export const getSelectedOption = (selectOptions: SelectOption[]) =>
   selectOptions.find((option) => option.selected === true);
 

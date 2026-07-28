@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, render, renderHook } from "@testing-library/react";
+import { act, fireEvent, render, renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcMessageInput from "./MessageInput";
 import {
@@ -147,20 +147,37 @@ describe("Message Input component tests", () => {
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
-  test("validates minLength and calls onChange with error", () => {
+  test("Length constraint", () => {
     const onChange = jest.fn();
-    // TO BE DONE: Remove maxLength when formFields message errors is updated to support minLength and maxLength separately.
-    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={200} onChange={onChange} />);
+    const onBlur = jest.fn();
+    const { getByRole } = render(<DxcMessageInput onChange={onChange} onBlur={onBlur} minLength={5} maxLength={10} />);
     const input = getByRole("textbox");
+    fireEvent.change(input, { target: { value: "test" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "The minimum length is 5.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "The minimum length is 5.",
+    });
 
-    userEvent.type(input, "Hi");
+    fireEvent.change(input, { target: { value: "test-maximum-length" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
+    });
 
-    // Verify error is present in the call
-    expect(onChange).toHaveBeenCalled();
-    const calls = onChange.mock.calls;
-    const lastCall = calls[calls.length - 1] as [{ value: string; error?: string }];
-    expect(lastCall[0].value).toBe("Hi");
-    expect(lastCall[0].error).toBeDefined();
+    fireEvent.change(input, { target: { value: "length" } });
+    expect(onChange).toHaveBeenCalledWith({ value: "length" });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({ value: "length" });
   });
 
   test("validates maxLength attribute is set", () => {
@@ -168,25 +185,6 @@ describe("Message Input component tests", () => {
     const input = getByRole("textbox");
 
     expect(input).toHaveAttribute("maxLength", "10");
-  });
-
-  test("validates minLength on blur", () => {
-    const onBlur = jest.fn();
-    // TO BE DONE: Remove maxLength when formFields message errors is updated to support minLength and maxLength separately.
-
-    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={200} onBlur={onBlur} />);
-    const input = getByRole("textbox");
-
-    userEvent.click(input);
-    userEvent.type(input, "Hi");
-    userEvent.tab();
-
-    // Verify error is present in the call
-    expect(onBlur).toHaveBeenCalled();
-    const calls = onBlur.mock.calls;
-    const lastCall = calls[calls.length - 1] as [{ value: string; error?: string }];
-    expect(lastCall[0].value).toBe("Hi");
-    expect(lastCall[0].error).toBeDefined();
   });
 
   test("works as controlled component", () => {
@@ -297,18 +295,6 @@ describe("Message Input component tests", () => {
     userEvent.click(submitButton);
     expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
-  });
-
-  test("validates minLength correctly when value is exactly minLength", () => {
-    const onChange = jest.fn();
-    const { getByRole } = render(<DxcMessageInput minLength={5} maxLength={100} onChange={onChange} />);
-    const input = getByRole("textbox");
-
-    userEvent.type(input, "Hell");
-    expect(onChange).toHaveBeenLastCalledWith({ value: "Hell", error: "Min length 5, max length 100." });
-
-    userEvent.type(input, "o");
-    expect(onChange).toHaveBeenLastCalledWith({ value: "Hello" });
   });
 
   test("works with file uploads", () => {
