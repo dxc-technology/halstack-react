@@ -320,15 +320,17 @@ const DxcMessageInput = ({
               caretHidden
             />
             <input ref={fileInputRef} type="file" hidden multiple onChange={handleFileInputOnChange} />
-            {(files ?? []).map((item, index) => (
-              <DxcChip
-                key={index}
-                label={item.name}
-                mode="dismissible"
-                prefix={getFilePreview(item ?? "description")}
-                onClick={() => removeItem(index)}
-              />
-            ))}
+
+            {!disabled &&
+              (files ?? []).map((item, index) => (
+                <DxcChip
+                  key={index}
+                  label={item.name}
+                  mode="dismissible"
+                  prefix={getFilePreview(item ?? "description")}
+                  onClick={() => removeItem(index)}
+                />
+              ))}
           </FilesContainer>
         )}
         <InputWrapper>
