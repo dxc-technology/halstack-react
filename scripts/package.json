@@ -10,8 +10,5 @@
   "dependencies": {
     "@actions/github": "^9.0.0",
     "@aws-sdk/client-s3": "^3.998.0"
-  },
-  "overrides": {
-    "fast-xml-parser": "5.7.0"
   }
 }
