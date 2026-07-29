@@ -164,9 +164,9 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The top actions zone provides space for contextual chips and a dropdown. When enabled, it appears as a
-              horizontally scrollable strip above the text input. Chips in this zone represent items attached to or
-              scoping the current message, such as uploaded files or active filters.
+              The top actions zone provides space for <strong>contextual chips</strong> and a dropdown. When enabled, it
+              appears as a horizontally scrollable strip above the text input. Chips in this zone represent items
+              attached to or scoping the current message, such as uploaded files or active filters.
             </DxcParagraph>
             <DxcParagraph>
               Users can dismiss individual chips using the close action on each one. When the number of chips exceeds
@@ -213,9 +213,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The generating state is specific to AI-assisted interfaces. It locks the send button to prevent duplicate
-              submissions while the system processes a response, and transitions the button to a stop or cancel
-              affordance. The text input area remains accessible so users can draft their next message while waiting.
+              The generating state is specific to AI-assisted interfaces. It <strong>locks the send button</strong> to
+              prevent duplicate submissions while the system processes a response, and transitions the button to a stop
+              or cancel affordance. The text input area remains accessible so users can draft their next message while
+              waiting.
             </DxcParagraph>
 
             <Figure caption="Generating state of the message input">
