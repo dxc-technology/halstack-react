@@ -25,7 +25,6 @@ import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import {
   calculateWidth,
   hasSuggestions,
-  isLengthIncorrect,
   isNumberIncorrect,
   isRequired,
   makeCancelable,
@@ -35,6 +34,7 @@ import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import inputStylesByState from "../styles/forms/inputStylesByState";
+import { getLengthErrorMessage } from "../common/utils";
 
 const TextInputContainer = styled.div<{
   margin: TextInputPropsType["margin"];
@@ -232,15 +232,23 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         setInnerValue(formattedValue);
       }
 
+      const lengthError = getLengthErrorMessage({
+        value: formattedValue,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
+
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
+      } else if (lengthError) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: lengthError,
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
@@ -331,12 +339,20 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleInputOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
+      const lengthError = getLengthErrorMessage({
+        value: event.target.value,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
+
       if (isRequired(event.target.value, optional)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
+      } else if (lengthError) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: lengthError,
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });

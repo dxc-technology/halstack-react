@@ -1,10 +1,16 @@
+import { TranslatedLabels } from "../common/variables";
+
 export const pad = (num?: number) => {
   if (num === undefined) return "";
   return num < 10 ? `0${num}` : `${num}`;
 };
 
-export const returnDayPeriod = (value?: number) => {
-  return value === 0 ? "AM" : value === 1 ? "PM" : "";
+export const returnDayPeriod = (value?: number, translatedLabels?: TranslatedLabels) => {
+  return value === 0
+    ? (translatedLabels?.timeInput.timePeriodAM ?? "AM")
+    : value === 1
+      ? (translatedLabels?.timeInput.timePeriodPM ?? "PM")
+      : "";
 };
 
 const resolveValue = (value: string | number, maxValue: number, minValue: number) => {
@@ -95,6 +101,9 @@ export const handleKeyDown = (
     const isAM = /[aA]/.test(event.key);
     newValue = isAM ? 0 : 1;
     rawInput.current = newValue.toString();
+    if (typeof onComplete === "function") {
+      onComplete();
+    }
   }
   setInnerValue((prevValue) => {
     return prevValue !== newValue ? newValue : prevValue;
@@ -114,20 +123,53 @@ export const handleKeyDown = (
   }
 };
 
+/**
+ *
+ * @param dataType The type of time unit (hour, minute, second, dayPeriod)
+ * @param value The current value of the time unit
+ * @param placeholder The placeholder text to display when the value is undefined
+ * @param maxValue The maximum value for the time unit
+ * @param translatedLabels The translated labels for day periods
+ * @returns The display value for the spin button, formatted according to the data type and value provided. If the value is undefined, the placeholder will be displayed instead.
+ */
+export const generateDisplayValue = (
+  dataType: "hour" | "minute" | "second" | "dayPeriod" | undefined,
+  value: number | undefined,
+  placeholder: string,
+  maxValue: number,
+  translatedLabels?: TranslatedLabels
+) => {
+  let displayValue;
+  if (dataType === "dayPeriod") {
+    displayValue = value != null ? returnDayPeriod(value, translatedLabels) : placeholder;
+  } else {
+    displayValue = value != null ? value.toString().padStart(maxValue.toString().length, "0") : placeholder;
+  }
+  return displayValue;
+};
+
 export const generateEventValue = (
   hour: number | undefined,
   minute: number | undefined,
   second: number | undefined,
   dayPeriod: number | undefined,
   showSeconds: boolean | undefined,
-  timeFormat: "12" | "24" | undefined
+  timeFormat: "12" | "24" | undefined,
+  separator: string,
+  timePeriodPosition: "before" | "after",
+  translatedLabels: TranslatedLabels
 ) => {
   if (hour === undefined && minute === undefined && second === undefined && dayPeriod === undefined) {
     return "";
   }
-  return `${pad(hour)}:${pad(minute)}${showSeconds ? `:${pad(second)}` : ""}${
-    timeFormat === "12" ? ` ${returnDayPeriod(dayPeriod)}` : ""
-  }`;
+  // consider dayperiod position for 12-hour format otherwise ignore it
+  if (timeFormat === "12" && timePeriodPosition === "before") {
+    return `${returnDayPeriod(dayPeriod, translatedLabels)} ${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
+  } else if (timeFormat === "12" && timePeriodPosition === "after") {
+    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""} ${returnDayPeriod(dayPeriod, translatedLabels)}`;
+  } else {
+    return `${pad(hour)}${separator}${pad(minute)}${showSeconds ? `${separator}${pad(second)}` : ""}`;
+  }
 };
 
 export const handleColumnKeyDown = (
@@ -171,4 +213,76 @@ export const handleColumnKeyDown = (
       onSelect(focusedValue);
     }
   }
+};
+
+/**
+ * @param locale The locale string (e.g., "en-US") used to determine time formatting conventions.
+ * @param formatProp Optional. Specifies whether to use "12" or "24" hour format.
+ * @returns An object containing the time separator, preferred format, and day period position.
+ */
+export const getTimeInputLocale = (
+  locale?: string,
+  formatProp?: "12" | "24"
+): { separator: string; format: "12" | "24"; dayPeriodPosition: "before" | "after" } => {
+  if (!locale) {
+    return {
+      separator: ":",
+      format: formatProp || "12",
+      dayPeriodPosition: "after",
+    };
+  }
+  const naturalCycle = formatProp
+    ? formatProp === "24"
+      ? "h23"
+      : "h12"
+    : new Intl.DateTimeFormat(locale, { hour: "2-digit" }).resolvedOptions().hourCycle;
+  const hourCycle: "h12" | "h23" = naturalCycle === "h23" || naturalCycle === "h24" ? "h23" : "h12";
+
+  const formatter = new Intl.DateTimeFormat(locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle,
+  });
+  const parts = formatter.formatToParts(new Date(1995, 11, 3, 1, 0, 0));
+  const dayPeriodPosition = parts[0]?.type === "dayPeriod" ? "before" : "after";
+  const format = hourCycle === "h23" ? "24" : "12";
+  // get all parts that are "literal" and use the first one or the last one depending on the dayPeriodPosition to determine the separator
+  const separatorParts = parts.filter((part) => part.type === "literal");
+  const separator =
+    format === "24" || dayPeriodPosition === "after"
+      ? separatorParts[0]?.value || ":"
+      : separatorParts[separatorParts.length - 1]?.value || ":";
+
+  return {
+    separator,
+    format,
+    dayPeriodPosition,
+  };
+};
+
+const escapeStringForRegex = (str: string) => {
+  return str.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+};
+
+export const buildTimeRegex = (
+  format: "12" | "24",
+  separator: string,
+  hasSeconds: boolean,
+  dayPeriodPosition: "before" | "after",
+  amLabel: string,
+  pmLabel: string
+): RegExp => {
+  const escapedSeparator = escapeStringForRegex(separator);
+  const hourPattern = format === "12" ? "(0?[1-9]|1[0-2])" : "([01]?[0-9]|2[0-3])";
+  const minutePattern = "[0-5][0-9]";
+  const secondPattern = hasSeconds ? `${escapedSeparator}[0-5][0-9]` : "";
+  const dayPeriodPattern =
+    format === "12" ? `(?:${escapeStringForRegex(amLabel)}|${escapeStringForRegex(pmLabel)})` : "";
+  const timePattern =
+    dayPeriodPosition === "before"
+      ? `${dayPeriodPattern}\\s?${hourPattern}${escapedSeparator}${minutePattern}${secondPattern}`
+      : `${hourPattern}${escapedSeparator}${minutePattern}${secondPattern}\\s?${dayPeriodPattern}`;
+
+  return new RegExp(`^${timePattern}$`);
 };
