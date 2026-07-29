@@ -48,7 +48,7 @@ const sections = [
               <Link href="/utilities/halstack-provider/#localization" passHref legacyBehavior>
                 <DxcLink>Halstack Provider</DxcLink>
               </Link>
-              .
+              , by default if a Halstack Provider is not used, the language will be set to <Code>"en-US"</Code>.
             </td>
             <td>
               <TableCode>false</TableCode>
