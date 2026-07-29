@@ -393,6 +393,58 @@ const sections = [
         ),
       },
       {
+        title: "messageInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>inputAriaLabel</Code>
+                </td>
+                <td>Write a message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>sendButtonTitle</Code>
+                </td>
+                <td>Send message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopButtonTitle</Code>
+                </td>
+                <td>Stop</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>attachFileButtonTitle</Code>
+                </td>
+                <td>Attach file</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>recordAudioButtonTitle</Code>
+                </td>
+                <td>Record audio</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopRecordingButtonTitle</Code>
+                </td>
+                <td>Stop recording</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "numberInput",
         content: (
           <DxcTable>
