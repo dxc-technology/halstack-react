@@ -20,6 +20,37 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
+// Mock Speech Recognition
+class MockSpeechRecognition extends EventTarget implements ISpeechRecognition {
+  lang = "";
+  continuous = false;
+  interimResults = false;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null = null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null = null;
+  onend: (() => void) | null = null;
+
+  start = jest.fn();
+  stop = jest.fn(() => {
+    this.onend?.();
+  });
+
+  emitResult(transcript: string, confidence: number) {
+    const alternative: SpeechRecognitionAlternative = { transcript, confidence };
+    const resultItem: SpeechRecognitionResultItem = { length: 1, 0: alternative };
+    const results: SpeechRecognitionResultList = { length: 1, 0: resultItem };
+
+    this.onresult?.(Object.assign(new Event("result"), { results }));
+  }
+
+  emitEnd() {
+    this.onend?.();
+  }
+
+  emitError(error: string) {
+    this.onerror?.(Object.assign(new Event("error"), { error }));
+  }
+}
+
 describe("Message Input component tests", () => {
   test("Message Input renders correctly", () => {
     const { getByPlaceholderText } = render(<DxcMessageInput placeholder="Ask me anything..." />);
@@ -313,38 +344,38 @@ describe("Message Input component tests", () => {
 
     expect(callbackFile).toHaveBeenCalled();
   });
-});
 
-// Mock Speech Recognition
-class MockSpeechRecognition extends EventTarget implements ISpeechRecognition {
-  lang = "";
-  continuous = false;
-  interimResults = false;
-  onresult: ((event: SpeechRecognitionEvent) => void) | null = null;
-  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null = null;
-  onend: (() => void) | null = null;
+  let mockInstance: MockSpeechRecognition;
 
-  start = jest.fn();
-  stop = jest.fn(() => {
-    this.onend?.();
+  beforeEach(() => {
+    mockInstance = new MockSpeechRecognition();
+    (window as WindowWithSpeechRecognition).SpeechRecognition = jest.fn(() => mockInstance);
   });
 
-  emitResult(transcript: string, confidence: number) {
-    const alternative: SpeechRecognitionAlternative = { transcript, confidence };
-    const resultItem: SpeechRecognitionResultItem = { length: 1, 0: alternative };
-    const results: SpeechRecognitionResultList = { length: 1, 0: resultItem };
+  afterEach(() => {
+    delete (window as WindowWithSpeechRecognition).SpeechRecognition;
+    jest.clearAllMocks();
+  });
 
-    this.onresult?.(Object.assign(new Event("result"), { results }));
-  }
+  test("starts and stops recording when button is clicked", () => {
+    const { container } = render(<DxcMessageInput allowRecording value="Initial text" />);
+    const recordButton = container.querySelector('[aria-label="Record audio"]') as HTMLButtonElement;
 
-  emitEnd() {
-    this.onend?.();
-  }
+    // Start recording
+    fireEvent.click(recordButton);
+    expect(mockInstance.start).toHaveBeenCalled();
 
-  emitError(error: string) {
-    this.onerror?.(Object.assign(new Event("error"), { error }));
-  }
-}
+    // Emit some transcript
+    act(() => {
+      mockInstance.emitResult("Test transcript", 0.9);
+    });
+
+    // Stop recording by clicking button again
+    const stopButton = container.querySelector('[aria-label="Stop recording"]') as HTMLButtonElement;
+    fireEvent.click(stopButton);
+    expect(mockInstance.stop).toHaveBeenCalled();
+  });
+});
 
 describe("useVoiceTranscription", () => {
   let mockInstance: MockSpeechRecognition;

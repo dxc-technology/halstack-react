@@ -1,8 +1,5 @@
-import { SVG } from "../common/utils";
-
 export type SelectOption = {
   label?: string;
-  icon?: string | SVG;
   value: string;
   onSelect: (value: string) => void;
   selected?: boolean;

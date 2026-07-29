@@ -10,7 +10,6 @@ import advanced from "./examples/advanced";
 
 const selectOptionsTypeString = `{
   label?: string;
-  icon?: string | SVG;
   value: string;
   onSelect: (value: string) => void;
   selected?: boolean;
