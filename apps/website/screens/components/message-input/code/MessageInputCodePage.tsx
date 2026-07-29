@@ -1,4 +1,5 @@
-import { DxcTable, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcTable, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
@@ -41,7 +42,14 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the voice recording button will be shown.</td>
+            <td>
+              If true, the voice recording button will be shown. In order to change the language of the transcription
+              functionality, use the <Code>localeTag</Code> prop from the{" "}
+              <Link href="/utilities/halstack-provider/#localization" passHref legacyBehavior>
+                <DxcLink>Halstack Provider</DxcLink>
+              </Link>
+              .
+            </td>
             <td>
               <TableCode>false</TableCode>
             </td>

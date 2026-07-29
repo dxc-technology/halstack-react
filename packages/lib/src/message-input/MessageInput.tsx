@@ -23,6 +23,7 @@ import ErrorMessage from "../styles/forms/ErrorMessage";
 import { useVoiceTranscription } from "./useVoiceTranscription";
 import DxcSelect from "../select/Select";
 import { getLengthErrorMessage } from "../common/utils";
+import DxcTypography from "../typography/Typography";
 
 const sizes = {
   small: "240px",
@@ -30,12 +31,6 @@ const sizes = {
   large: "480px",
   fillParent: "100%",
 } as const;
-
-const MessageInputContainer = styled.div<{ size: PromptInputPropsType["size"] }>`
-  width: ${({ size = "medium" }) => sizes[size]};
-  display: flex;
-  flex-direction: column;
-`;
 
 const MessageInput = styled.div<{
   disabled: Required<PromptInputPropsType>["disabled"];
@@ -127,10 +122,6 @@ const TranscriptOverlay = styled.div`
   &::-webkit-scrollbar {
     width: 4px;
   }
-`;
-
-const HighlightedText = styled.span`
-  color: var(--color-fg-neutral-strong);
 `;
 
 const DxcMessageInput = ({
@@ -301,7 +292,7 @@ const DxcMessageInput = ({
   };
 
   return (
-    <MessageInputContainer size={size}>
+    <DxcContainer width={sizes[size]}>
       <MessageInput
         disabled={disabled}
         error={!!error}
@@ -362,11 +353,11 @@ const DxcMessageInput = ({
                 <>
                   {transcript.length > 2 ? (
                     <>
-                      <span>{transcript.slice(0, -2)}</span>
-                      <HighlightedText>{transcript.slice(-2)} ...</HighlightedText>
+                      <DxcTypography>{transcript.slice(0, -2)}</DxcTypography>
+                      <DxcTypography color="var(--color-fg-neutral-strong)">{transcript.slice(-2)} ...</DxcTypography>
                     </>
                   ) : (
-                    <HighlightedText>{transcript}</HighlightedText>
+                    <DxcTypography color="var(--color-fg-neutral-strong)">{transcript}</DxcTypography>
                   )}
                 </>
               )}
@@ -430,7 +421,7 @@ const DxcMessageInput = ({
         </DxcFlex>
       </MessageInput>
       {!disabled && typeof error === "string" && <ErrorMessage error={error} id={`error-${inputId}`} />}
-    </MessageInputContainer>
+    </DxcContainer>
   );
 };
 

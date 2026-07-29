@@ -17,7 +17,7 @@ type Props = {
    * This function will be called when the selection of top items changes.
    * If this function is provided the message input will allow file selection.
    */
-  callbackFile: (files: File[]) => void;
+  callbackFile?: (files: File[]) => void;
   /**
    * Initial value of the input, only when it is uncontrolled.
    */

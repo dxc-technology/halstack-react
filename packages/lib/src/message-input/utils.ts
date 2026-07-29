@@ -18,13 +18,13 @@ export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean,
 `};
 
   border-radius: var(--border-radius-l);
-
-  border: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"} var(--border-style-default)
-    ${(() => {
-      if (disabled) return "var(--border-color-neutral-strong)";
-      else if (error) return "var(--border-color-error-medium)";
-      else return "var(--border-color-neutral-lighter)";
-    })()};
+  border-width: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"};
+  border-style: var(--border-style-default);
+  border-color: ${disabled
+    ? "var(--border-color-neutral-strong)"
+    : error
+      ? "var(--border-color-error-medium)"
+      : "var(--border-color-neutral-lighter)"};
 
   ${!disabled
     ? `
