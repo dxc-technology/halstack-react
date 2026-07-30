@@ -48,13 +48,6 @@ export const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =
 
 export const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-export const isLengthIncorrect = (
-  value: string,
-  minLength: TextInputPropsType["minLength"],
-  maxLength: TextInputPropsType["maxLength"]
-) =>
-  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
-
 export const isNumberIncorrect = (
   value: number,
   minNumber: TextInputPropsType["minLength"],

@@ -196,13 +196,26 @@ describe("Textarea component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
+    });
+    userEvent.clear(textarea);
+    fireEvent.change(textarea, { target: { value: "this is a longer value" } });
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith({
+      value: "this is a longer value",
+      error: "The maximum length is 10.",
+    });
+    fireEvent.blur(textarea);
+    expect(onBlur).toHaveBeenCalled();
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "this is a longer value",
+      error: "The maximum length is 10.",
     });
     userEvent.clear(textarea);
     fireEvent.change(textarea, { target: { value: "length" } });
@@ -233,13 +246,13 @@ describe("Textarea component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.change(textarea, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();

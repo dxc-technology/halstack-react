@@ -82,21 +82,25 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>lengthErrorMessage</Code>
+                    <Code>maxLengthErrorMessage</Code>
                   </td>
                   <td>
-                    Min length <Code>minLength</Code>, max length <Code>maxLength</Code>.
+                    The maximum length is <Code>maxLength</Code>.
                   </td>
                   <td>
-                    It is a function that receives two parameters (minlength and maxlength) and returns the text with
-                    those parameters.
+                    It is a function that receives a parameter (maxlength) and returns the text with this parameter.
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Code>logoAlternativeText</Code>
+                    <Code>minLengthErrorMessage</Code>
                   </td>
-                  <td>Logo</td>
+                  <td>
+                    The minimum length is <Code>minLength</Code>.
+                  </td>
+                  <td>
+                    It is a function that receives a parameter (minlength) and returns the text with this parameter.
+                  </td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -383,6 +387,58 @@ const sections = [
                   <Code>hamburgerTitle</Code>
                 </td>
                 <td>Menu</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "messageInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>inputAriaLabel</Code>
+                </td>
+                <td>Write a message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>sendButtonTitle</Code>
+                </td>
+                <td>Send message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopButtonTitle</Code>
+                </td>
+                <td>Stop</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>attachFileButtonTitle</Code>
+                </td>
+                <td>Attach file</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>recordAudioButtonTitle</Code>
+                </td>
+                <td>Record audio</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopRecordingButtonTitle</Code>
+                </td>
+                <td>Stop recording</td>
               </tr>
             </tbody>
           </DxcTable>
