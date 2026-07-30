@@ -22,6 +22,7 @@
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
+    "sharp": "0.35.3",
     "storybook-addon-pseudo-states": "^9.1.10",
     "turbo": "^2.9.14",
     "typescript": "^5.6.3"
@@ -43,7 +44,9 @@
       "mout": "1.2.4"
     },
     "postcss": ">=8.5.10",
-    "esbuild": "0.28.1"
+    "esbuild": "0.28.1",
+    "sharp": "0.35.3",
+    "brace-expansion": "^5.0.8"
   },
   "dependencies": {
     "react-joyride": "^3.0.2"
