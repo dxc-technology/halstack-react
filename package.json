@@ -36,6 +36,10 @@
     "packages/*"
   ],
   "overrides": {
+    "@joshwooding/vite-plugin-react-docgen-typescript": {
+      "glob": "^11.0.0"
+    },
+    "minimatch": "^10.0.0",
     "mout": "1.2.4",
     "ciebase": {
       "mout": "1.2.4"
@@ -45,8 +49,7 @@
     },
     "postcss": ">=8.5.10",
     "esbuild": "0.28.1",
-    "sharp": "0.35.3",
-    "brace-expansion": "^5.0.8"
+    "sharp": "0.35.3"
   },
   "dependencies": {
     "react-joyride": "^3.0.2"
