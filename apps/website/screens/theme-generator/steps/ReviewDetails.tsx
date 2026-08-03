@@ -23,6 +23,7 @@ const ReviewDetails = ({ tokens, logos, themeJson }: { tokens: Tokens; logos: Lo
                   mode="secondary"
                   icon="content_copy"
                   size={{ height: "medium" }}
+                  title="Copy theme"
                   onClick={() => handleCopy(themeJson)}
                 />
               </div>
