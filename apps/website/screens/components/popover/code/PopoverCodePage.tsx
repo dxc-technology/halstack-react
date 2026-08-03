@@ -81,6 +81,16 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>offset</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Distance in pixels from the trigger element to the popover.</td>
+            <td>
+              <TableCode>4</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>onClose</td>
             <td>
               <TableCode>{"() => void"}</TableCode>

@@ -46,7 +46,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     const id = `radio-group-${useId()}`;
     const labelId = `label-${id}`;
     const errorId = `error-${id}`;
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
     const innerOptions = useMemo(
       () =>
         optional

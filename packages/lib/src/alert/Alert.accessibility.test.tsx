@@ -3,11 +3,13 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcAlert from "./Alert";
 import { vi } from "vitest";
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+global.ResizeObserver = vi.fn(function ResizeObserver() {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
+});
 
 const messages = [
   { text: "Message 1", onClose: () => {} },

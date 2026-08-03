@@ -69,22 +69,31 @@ const ThemeGeneratorPage = () => {
       >
         <DxcFlex direction="column" fullHeight alignItems="center" justifyContent="center">
           <DxcContainer width="80%">
-            <DxcFlex direction="column" fullHeight justifyContent="center" gap="var(--spacing-gap-ml)">
-              <DxcFlex direction="column" justifyContent="center" gap="var(--spacing-gap-m)">
-                <DxcHeading text="Welcome to Halstack Theme Generator" />
-                <DxcContainer maxWidth="60%">
-                  <DxcTypography fontSize="var(--typography-body-xl)">
+            <DxcFlex direction="column" gap="var(--spacing-gap-ml)" alignItems="center">
+              <DxcContainer maxWidth="70%">
+                <DxcFlex direction="column" justifyContent="center" alignItems="center" gap="var(--spacing-gap-m)">
+                  <DxcHeading text="Build your theme with Halstack Theme Generator" />
+                  <DxcTypography fontSize="var(--typography-body-xl)" textAlign="center">
                     Create and explore your brand within Halstack. Configure your core colors, upload your logo
                     variants, and see in real time how your theme works across components, layouts, and real product
                     scenarios.
+                    <br />
+                    Learn how your theme is built step by step.
                   </DxcTypography>
-                </DxcContainer>
+                </DxcFlex>
+              </DxcContainer>
+              <DxcFlex alignItems="center" gap="var(--spacing-gap-xl)">
+                <Link href="/theme-generator/configuration?tour=true" passHref legacyBehavior>
+                  <DxcLink icon="explore" iconPosition="after">
+                    Take a tour
+                  </DxcLink>
+                </Link>
+                <Link href="/theme-generator/configuration" passHref legacyBehavior>
+                  <DxcLink icon="arrow_forward" iconPosition="after">
+                    Start building
+                  </DxcLink>
+                </Link>
               </DxcFlex>
-              <Link href="/theme-generator/configuration" passHref legacyBehavior>
-                <DxcLink icon="arrow_forward" iconPosition="after">
-                  Start your theme
-                </DxcLink>
-              </Link>
             </DxcFlex>
           </DxcContainer>
         </DxcFlex>

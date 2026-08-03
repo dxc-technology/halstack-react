@@ -16,8 +16,8 @@ const CardPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Card" />
           <DxcParagraph>
-            A card is a flexible, modular UI components used to group related information and actions within a
-            contained, clean and visually distinct layout.
+            A card is a bounded surface that groups related content, such as an image, a title, or a description, into a
+            single interactive unit.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>

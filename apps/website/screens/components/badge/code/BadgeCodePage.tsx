@@ -6,7 +6,6 @@ import Example from "@/common/example/Example";
 import contextual from "./examples/contextual";
 import notification from "./examples/notification";
 import icons from "./examples/icons";
-import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -23,12 +22,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                color
-              </DxcFlex>
-            </td>
+            <td>color</td>
             <td>
               <TableCode>
                 'primary' | 'secondary' | 'tertiary' | 'success' | 'info' | 'neutral' | 'warning' | 'error'

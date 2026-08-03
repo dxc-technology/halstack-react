@@ -139,12 +139,7 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
-                <td>
-                  <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                    <StatusBadge status="new" />
-                    onClick
-                  </DxcFlex>
-                </td>
+                <td>onClick</td>
                 <td>
                   <TableCode>{"() => void"}</TableCode>
                 </td>

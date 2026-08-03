@@ -4,9 +4,9 @@ import { DxcChip, DxcFlex } from "@dxc-technology/halstack-react";
 const ChipPreview = () => {
   return (
     <DxcFlex gap="var(--spacing-gap-ml)" wrap="wrap">
-      <DxcChip label="Task Completed" />
-      <DxcChip label="High Priority" prefix={{ icon: "priority_high", color: "primary" }} />
-      <DxcChip label="Archived" disabled />
+      <DxcChip prefix="palette" label="Art" selected={true} onClick={() => {}} />
+      <DxcChip prefix="palette" label="Art" selected={false} onClick={() => {}} />
+      <DxcChip mode="dismissible" label="Music" prefix="music_note" onClick={() => {}} />
     </DxcFlex>
   );
 };

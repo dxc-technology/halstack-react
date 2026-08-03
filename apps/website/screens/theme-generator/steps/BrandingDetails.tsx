@@ -45,7 +45,7 @@ const brandingDetails = {
   ],
 };
 
-export const BrandingDetails = ({
+const BrandingDetails = ({
   colors,
   onColorsChange,
   logos,
@@ -79,12 +79,18 @@ export const BrandingDetails = ({
       boxShadow="var(--shadow-100)"
     >
       <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-xl)">
-        <BrandingColorGrid colors={colors} section={coreColors} onColorChange={handleColorChange} />
-
-        <BrandingColorGrid colors={colors} section={semanticColors} onColorChange={handleColorChange} />
-
-        <BrandingLogoGrid logos={logos} section={brandingDetails} onLogoChange={updateLogoValue} />
+        <div id="colors-tour">
+          <DxcFlex direction="column" alignItems="flex-start" gap="var(--spacing-gap-xl)">
+            <BrandingColorGrid colors={colors} section={coreColors} onColorChange={handleColorChange} />
+            <BrandingColorGrid colors={colors} section={semanticColors} onColorChange={handleColorChange} />
+          </DxcFlex>
+        </div>
+        <div id="assets-tour" style={{ width: "100%" }}>
+          <BrandingLogoGrid logos={logos} section={brandingDetails} onLogoChange={updateLogoValue} />
+        </div>
       </DxcFlex>
     </DxcContainer>
   );
 };
+
+export default BrandingDetails;

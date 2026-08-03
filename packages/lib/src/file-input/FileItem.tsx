@@ -120,7 +120,7 @@ const FileItem = ({
   tabIndex,
   size = "medium",
 }: FileItemProps): JSX.Element => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const [hasTooltip, setHasTooltip] = useState(false);
   const fileNameId = useId();
 

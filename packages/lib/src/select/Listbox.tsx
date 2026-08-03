@@ -69,7 +69,7 @@ const VirtualizedListbox = ({
   virtualizedHeight,
   visualFocusIndex,
 }: ListboxProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const virtuosoRef = useRef<VirtuosoHandle>(null);
 
   const isSearchEmpty = searchable && (options.length === 0 || !groupsHaveOptions(options));
@@ -288,7 +288,7 @@ const NonVirtualizedListbox = ({
   styles,
   visualFocusIndex,
 }: ListboxProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const listboxRef = useRef<HTMLDivElement>(null);
   let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 

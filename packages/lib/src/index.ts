@@ -1,4 +1,4 @@
-import "./styles/fonts.css";
+import "./styles/injectFonts";
 import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
@@ -27,6 +27,7 @@ export { default as DxcHeading } from "./heading/Heading";
 export { default as DxcImage } from "./image/Image";
 export { default as DxcInset } from "./inset/Inset";
 export { default as DxcLink } from "./link/Link";
+export { default as DxcMessageInput } from "./message-input/MessageInput";
 export { default as DxcNavTabs } from "./nav-tabs/NavTabs";
 export { default as DxcNumberInput } from "./number-input/NumberInput";
 export { default as DxcPaginator } from "./paginator/Paginator";
@@ -46,6 +47,7 @@ export { default as DxcTable } from "./table/Table";
 export { default as DxcTabs } from "./tabs/Tabs";
 export { default as DxcTextarea } from "./textarea/Textarea";
 export { default as DxcTextInput } from "./text-input/TextInput";
+export { default as DxcTimeInput } from "./time-input/TimeInput";
 export { default as DxcToastsQueue } from "./toast/ToastsQueue";
 export { default as DxcToggleGroup } from "./toggle-group/ToggleGroup";
 export { default as DxcTooltip } from "./tooltip/Tooltip";

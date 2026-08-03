@@ -113,7 +113,7 @@ describe("Dialog component: Focus lock tests", () => {
   test("Autofocus with Card component", () => {
     const { getByRole } = render(
       <DxcDialog>
-        <DxcCard linkHref="https://developer.assure.dxc.com/halstack/next/components/card/">example-card</DxcCard>
+        <DxcCard href="https://developer.assure.dxc.com/halstack/next/components/card/">example-card</DxcCard>
       </DxcDialog>
     );
     const card = getByRole("link");

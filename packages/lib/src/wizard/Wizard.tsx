@@ -190,6 +190,7 @@ export default function DxcWizard({
             }}
             tabIndex={tabIndex}
             unvisited={i > (currentStep ?? innerCurrent)}
+            type="button"
           >
             <StepIndicator hasValidityIcon={step.valid != null}>
               <IconContainer

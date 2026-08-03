@@ -12,13 +12,13 @@
       {
         "label": "Avatar",
         "path": "/components/avatar",
-        "status": "experimental",
+        "status": "new",
         "icon": "filled_account_circle"
       },
       {
         "label": "Card",
         "path": "/components/card",
-        "status": "stable",
+        "status": "experimental",
         "icon": "credit_card"
       },
       {
@@ -142,6 +142,12 @@
         "icon": "filled_file_upload"
       },
       {
+        "label": "Message input",
+        "path": "/components/message-input",
+        "status": "experimental",
+        "icon": "chat_bubble"
+      },
+      {
         "label": "Number input",
         "path": "/components/number-input",
         "status": "stable",
@@ -188,6 +194,12 @@
         "path": "/components/textarea",
         "status": "stable",
         "icon": "subject"
+      },
+      {
+        "label": "Time input",
+        "path": "/components/time-input",
+        "status": "experimental",
+        "icon": "schedule"
       },
       {
         "label": "Toggle group",
@@ -265,7 +277,7 @@
         "label": "Popover",
         "path": "/components/popover",
         "status": "experimental",
-        "icon": "chat_bubble" 
+        "icon": "chat_bubble"
       }
     ]
   },

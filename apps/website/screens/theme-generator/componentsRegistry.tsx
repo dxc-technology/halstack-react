@@ -5,6 +5,7 @@ import {
   BadgePreview,
   BreadcrumbsPreview,
   ButtonPreview,
+  CardPreview,
   CheckboxPreview,
   ChipPreview,
   ContextualMenuPreview,
@@ -31,6 +32,7 @@ import {
   TabsPreview,
   TextareaPreview,
   TextInputPreview,
+  TimeInputPreview,
   ToastPreview,
   ToggleGroupPreview,
   TooltipPreview,
@@ -64,6 +66,7 @@ export const componentsRegistry = {
   "/components/switch": SwitchPreview,
   "/components/text-input": TextInputPreview,
   "/components/textarea": TextareaPreview,
+  "/components/time-input": TimeInputPreview,
   "/components/toggle-group": ToggleGroupPreview,
   "/components/breadcrumbs": BreadcrumbsPreview,
   "/components/contextual-menu": ContextualMenuPreview,
@@ -75,6 +78,7 @@ export const componentsRegistry = {
   "/components/badge": BadgePreview,
   "/components/chip": ChipPreview,
   "/components/status-light": StatusLightPreview,
+  "/components/card": CardPreview,
 };
 
 export const examplesRegistry = {

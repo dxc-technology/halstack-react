@@ -151,7 +151,7 @@ const DxcSidenav = ({
       <SidenavContent>
         <DxcFlex
           justifyContent="flex-start"
-          gap={isExpanded ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"}
+          gap={!isBelowMedium && !isExpanded ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)"}
           direction={isExpanded ? "row" : isBelowMedium ? "row" : "column-reverse"}
           alignItems={isExpanded || isBelowMedium ? "flex-start" : "center"}
         >

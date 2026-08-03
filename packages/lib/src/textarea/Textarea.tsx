@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { getMargin } from "../common/utils";
+import { getLengthErrorMessage, getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
@@ -95,25 +95,30 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const textareaId = `textarea-${useId()}`;
     const errorId = `error-${textareaId}`;
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const prevValueRef = useRef<string | null>(null);
 
-    const isLengthOutOfRange = (value: string) =>
-      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
-
     const changeValue = (newValue: string) => {
       if (value == null) setInnerValue(newValue);
+
+      const lengthError = getLengthErrorMessage({
+        value: newValue,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
 
       if (newValue === "" && !optional) {
         onChange?.({
           value: newValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthOutOfRange(newValue)) {
+      } else if (lengthError) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: lengthError,
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
@@ -124,15 +129,22 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     };
 
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+      const lengthError = getLengthErrorMessage({
+        value: event.target.value,
+        minLength,
+        maxLength,
+        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+      });
       if (event.target.value === "" && !optional) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      } else if (isLengthOutOfRange(event.target.value)) {
+      } else if (lengthError) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+          error: lengthError,
         });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({

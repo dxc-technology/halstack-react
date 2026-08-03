@@ -570,4 +570,26 @@ describe("Resultset table component tests", () => {
     }
     expect(onClick).toHaveBeenCalled();
   });
+
+  test("renderPaginator shows paginator when itemsPerPageOptions has fewer rows than itemsPerPage", () => {
+    const shortRows = rows.slice(0, 2);
+    const { getByText } = render(
+      <DxcResultsetTable columns={columns} rows={shortRows} itemsPerPage={5} itemsPerPageOptions={[5, 10]} />
+    );
+    expect(getByText("1 to 2 of 2")).toBeTruthy();
+  });
+
+  test("renderPaginator doesn´t show paginator when itemsPerPageFunction is provided and itemsPerPageOptions is not provided", () => {
+    const shortRows = rows.slice(0, 2);
+    const itemsPerPageFunction = jest.fn();
+    const { queryByText } = render(
+      <DxcResultsetTable
+        columns={columns}
+        rows={shortRows}
+        itemsPerPage={5}
+        itemsPerPageFunction={itemsPerPageFunction}
+      />
+    );
+    expect(queryByText("1 to 2 of 2")).not.toBeTruthy();
+  });
 });

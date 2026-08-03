@@ -5,7 +5,8 @@ import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import { DxcHeading, DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import translations from "./examples/translations";
+import translationsExample from "./examples/translations";
+import localizationExample from "./examples/localization";
 
 const sections = [
   {
@@ -30,7 +31,7 @@ const sections = [
   },
   {
     title: "Translation example",
-    content: <Example example={translations} defaultIsVisible />,
+    content: <Example example={translationsExample} defaultIsVisible />,
   },
   {
     title: "Default labels",
@@ -81,21 +82,25 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>lengthErrorMessage</Code>
+                    <Code>maxLengthErrorMessage</Code>
                   </td>
                   <td>
-                    Min length <Code>minLength</Code>, max length <Code>maxLength</Code>.
+                    The maximum length is <Code>maxLength</Code>.
                   </td>
                   <td>
-                    It is a function that receives two parameters (minlength and maxlength) and returns the text with
-                    those parameters.
+                    It is a function that receives a parameter (maxlength) and returns the text with this parameter.
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Code>logoAlternativeText</Code>
+                    <Code>minLengthErrorMessage</Code>
                   </td>
-                  <td>Logo</td>
+                  <td>
+                    The minimum length is <Code>minLength</Code>.
+                  </td>
+                  <td>
+                    It is a function that receives a parameter (minlength) and returns the text with this parameter.
+                  </td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -204,6 +209,27 @@ const sections = [
         ),
       },
       {
+        title: "card",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>noContent</Code>
+                </td>
+                <td>No content</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "dateInput",
         content: (
           <DxcTable>
@@ -219,6 +245,12 @@ const sections = [
                   <Code>invalidDateErrorMessage</Code>
                 </td>
                 <td>Invalid date.</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>datePickerActionTitle</Code>
+                </td>
+                <td>Select date</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -355,6 +387,58 @@ const sections = [
                   <Code>hamburgerTitle</Code>
                 </td>
                 <td>Menu</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "messageInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>inputAriaLabel</Code>
+                </td>
+                <td>Write a message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>sendButtonTitle</Code>
+                </td>
+                <td>Send message</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopButtonTitle</Code>
+                </td>
+                <td>Stop</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>attachFileButtonTitle</Code>
+                </td>
+                <td>Attach file</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>recordAudioButtonTitle</Code>
+                </td>
+                <td>Record audio</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>stopRecordingButtonTitle</Code>
+                </td>
+                <td>Stop recording</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -689,7 +773,76 @@ const sections = [
           </DxcTable>
         ),
       },
+      {
+        title: "timeInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>timePickerActionTitle</Code>
+                </td>
+                <td>Select time</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodAM</Code>
+                </td>
+                <td>AM</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>timePeriodPM</Code>
+                </td>
+                <td>PM</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "toast",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>clearToastActionTitle</Code>
+                </td>
+                <td>Clear toast</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
     ],
+  },
+  {
+    title: "Localization",
+    content: (
+      <>
+        <DxcParagraph>
+          It is also possible to localize some components making use of <Code>localeTag</Code> to define the language
+          and region of the component.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
+    title: "Localization example",
+    content: <Example example={localizationExample} defaultIsVisible />,
   },
 ];
 

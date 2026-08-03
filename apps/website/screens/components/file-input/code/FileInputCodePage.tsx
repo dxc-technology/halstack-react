@@ -153,12 +153,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                optional
-              </DxcFlex>
-            </td>
+            <td>optional</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -189,12 +184,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                size
-              </DxcFlex>
-            </td>
+            <td>size</td>
             <td>
               <TableCode>'medium' | 'fillParent'</TableCode>
             </td>

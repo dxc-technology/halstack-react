@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import dayjs from "dayjs";
 import DxcDateInput from "./DateInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { HalstackProvider } from "../HalstackContext";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
@@ -496,5 +497,37 @@ describe("DateInput component tests", () => {
     fireEvent.change(input, { target: { value: "21-10-80" } });
     userEvent.click(calendarAction);
     expect(getByText("October 2080")).toBeTruthy();
+  });
+  test("German locale date input", () => {
+    const { getByRole, getByText } = render(
+      <HalstackProvider localeTag="de-DE">
+        <DxcDateInput label="Date input label" defaultValue="03.12.1995" />
+      </HalstackProvider>
+    );
+    const input = getByRole("textbox") as HTMLInputElement;
+    const calendarAction = getByRole("combobox");
+    expect(input.value).toBe("03.12.1995");
+    userEvent.click(calendarAction);
+    const day31 = getByText("31");
+    if (day31 != null) {
+      userEvent.click(day31);
+    }
+    expect(input.value).toBe("31.12.1995");
+  });
+  test("Form onSubmit is not called when interacting with the calendar and pressing enter", () => {
+    const onSubmit = jest.fn();
+    const { getByRole, getAllByText } = render(
+      <form onSubmit={onSubmit}>
+        <DxcDateInput label="Default label" format="dd-mm-yy" defaultValue="21-10-80" />
+      </form>
+    );
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+    const day1 = getAllByText("1")[0];
+    if (day1 != null) {
+      userEvent.click(day1);
+    }
+    userEvent.type(calendarAction, "{enter}");
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 });

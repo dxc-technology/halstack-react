@@ -34,6 +34,7 @@ export default function DxcNavigationTree({
   displayControlsAfter = false,
   hasPopOver = false,
   isHorizontal = false,
+  onSelectItem,
 }: NavigationTreePropsType) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
@@ -48,8 +49,9 @@ export default function DxcNavigationTree({
       displayControlsAfter,
       hasPopOver,
       isHorizontal,
+      onSelectItem,
     }),
-    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, hasPopOver, isHorizontal]
+    [selectedItemId, setSelectedItemId, displayGroupLines, displayControlsAfter, hasPopOver, isHorizontal, onSelectItem]
   );
 
   useLayoutEffect(() => {

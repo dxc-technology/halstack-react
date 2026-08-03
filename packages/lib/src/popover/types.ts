@@ -11,6 +11,8 @@ export type PopoverPropsType = {
   hasTip?: boolean;
   /** Controlled open state of the popover. If it is left undefined, it will be uncontrolled. */
   isOpen?: boolean;
+  /** Distance in pixels from the trigger element to the popover. */
+  offset?: number;
   /** Callback function when the popover is opened.
    * Used only in controlled mode and if the trigger lacks the events to manage the controlled behavior. */
   onOpen?: () => void;

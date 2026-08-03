@@ -272,6 +272,7 @@ const DxcHeader = ({
               displayGroupLines={false}
               displayBorder={false}
               displayControlsAfter
+              onSelectItem={() => toggleMenu()}
             />
             {responsiveBottomContent && (
               <>

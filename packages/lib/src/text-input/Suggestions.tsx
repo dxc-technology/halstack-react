@@ -54,7 +54,7 @@ const Suggestions = ({
   value,
   visualFocusIndex,
 }: SuggestionsProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
@@ -66,7 +66,12 @@ const Suggestions = ({
   }, [visualFocusIndex]);
 
   return (
-    <SuggestionsContainer style={styles}>
+    <SuggestionsContainer
+      onMouseDown={(event) => {
+        event.preventDefault();
+      }}
+      style={styles}
+    >
       {isSearching ? (
         <SuggestionsSystemMessage aria-live="polite">
           {translatedLabels.textInput.searchingMessage}
@@ -77,16 +82,7 @@ const Suggestions = ({
           {translatedLabels.textInput.fetchingDataErrorMessage}
         </SuggestionsErrorMessage>
       ) : (
-        <ul
-          aria-label="Suggestions"
-          id={id}
-          onMouseDown={(event) => {
-            event.preventDefault();
-          }}
-          ref={listboxRef}
-          role="listbox"
-          style={{ margin: 0, padding: 0 }}
-        >
+        <ul aria-label="Suggestions" id={id} ref={listboxRef} role="listbox" style={{ margin: 0, padding: 0 }}>
           {suggestions.map((suggestion, index) => (
             <Suggestion
               highlighted={highlightedSuggestions}
