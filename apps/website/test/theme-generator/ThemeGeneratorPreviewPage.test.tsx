@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import ThemeGeneratorPreviewPage from "../../screens/theme-generator/ThemeGeneratorPreviewPage";
+import PreviewScreen from "../../screens/theme-generator/steps/PreviewScreen";
 import { Logos } from "../../screens/theme-generator/types";
 
 // Mock ResizeObserver
@@ -22,15 +22,15 @@ jest.mock("screens/theme-generator/componentsRegistry", () => ({
   },
 }));
 
-describe("ThemeGeneratorPreviewPage", () => {
+describe("PreviewScreen", () => {
   it("shows empty state and renders component preview after selection", () => {
     const logos = { mainLogo: [], footerLogo: [], footerReducedLogo: [], favicon: [] };
 
-    render(<ThemeGeneratorPreviewPage tokens={{}} logos={logos} />);
+    render(<PreviewScreen tokens={{}} logos={logos} />);
 
     expect(screen.getByText("Select a component to preview")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("combobox", { name: "Select" }));
+    fireEvent.click(screen.getByRole("combobox"));
 
     const buttonOption = screen.getByText("Button");
     fireEvent.click(buttonOption);
@@ -46,11 +46,11 @@ describe("ThemeGeneratorPreviewPage", () => {
       favicon: [],
     };
 
-    render(<ThemeGeneratorPreviewPage tokens={{}} logos={logos} />);
+    render(<PreviewScreen tokens={{}} logos={logos} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Layout examples" }));
+    fireEvent.click(screen.getByRole("button", { name: /Layout examples/i }));
 
-    fireEvent.click(screen.getByRole("combobox", { name: "Select" }));
+    fireEvent.click(screen.getByRole("combobox"));
 
     const appExample = screen.getByText("Application example");
     fireEvent.click(appExample);

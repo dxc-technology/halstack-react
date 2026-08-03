@@ -46,6 +46,16 @@ jest.mock("react-color", () => ({
   SketchPicker: () => <div>Color Picker</div>,
 }));
 
+// Mock next/router
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    pathname: "/theme-generator",
+    query: {},
+    asPath: "/theme-generator",
+  }),
+}));
+
 // Mock componentsRegistry and examplesRegistry
 jest.mock("../../screens/theme-generator/componentsRegistry", () => ({
   componentsRegistry: {},

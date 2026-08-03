@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { BrandingDetails } from "../../screens/theme-generator/steps/BrandingDetails";
+import BrandingDetails from "../../screens/theme-generator/steps/BrandingDetails";
 import { Colors, Logos } from "../../screens/theme-generator/types";
-import { CssColor } from "@adobe/leonardo-contrast-colors";
 
 // Mock ResizeObserver
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -27,14 +26,14 @@ describe("BrandingDetails", () => {
   });
 
   const colors: Colors = {
-    primary: "#5F249F" as CssColor,
-    secondary: "#0067B3" as CssColor,
-    tertiary: "#F7CF2B" as CssColor,
-    neutral: "#999999" as CssColor,
-    info: "#0067B3" as CssColor,
-    success: "#59D97D" as CssColor,
-    error: "#FE344F" as CssColor,
-    warning: "#F59F3D" as CssColor,
+    primary: "#5F249F",
+    secondary: "#0067B3",
+    tertiary: "#F7CF2B",
+    neutral: "#999999",
+    info: "#0067B3",
+    success: "#59D97D",
+    error: "#FE344F",
+    warning: "#F59F3D",
   };
 
   it("renders color sections with ColorCard components", () => {
