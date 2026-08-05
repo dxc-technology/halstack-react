@@ -56,6 +56,10 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
+   * Ref to the button element.
+   */
+  ref?: React.Ref<HTMLButtonElement>;
+  /**
    * Size of the component.
    */
   size?: Size;
