@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import BadgePropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
+import { forwardRef } from "react";
 
 const contextualColorMap = {
   primary: {
@@ -136,33 +137,31 @@ const Label = styled.span<{ size: BadgePropsType["size"] }>`
   line-height: normal;
 `;
 
-const DxcBadge = ({
-  label,
-  title,
-  mode = "contextual",
-  color = "neutral",
-  icon,
-  notificationLimit = 99,
-  size = "medium",
-}: BadgePropsType): JSX.Element => (
-  <Tooltip label={title}>
-    <BadgeContainer
-      label={label}
-      mode={mode}
-      color={(mode === "contextual" && color) || undefined}
-      size={size}
-      aria-label={title}
-    >
-      {mode === "contextual" && icon && (
-        <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-      )}
-      {label && (
-        <Label size={size}>
-          {typeof label === "number" ? (label > notificationLimit ? `+${notificationLimit}` : label) : label}
-        </Label>
-      )}
-    </BadgeContainer>
-  </Tooltip>
+const DxcBadge = forwardRef<HTMLDivElement, BadgePropsType>(
+  (
+    { label, title, mode = "contextual", color = "neutral", icon, notificationLimit = 99, size = "medium" },
+    ref
+  ): JSX.Element => (
+    <Tooltip label={title}>
+      <BadgeContainer
+        label={label}
+        mode={mode}
+        color={(mode === "contextual" && color) || undefined}
+        size={size}
+        aria-label={title}
+        ref={ref}
+      >
+        {mode === "contextual" && icon && (
+          <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
+        )}
+        {label && (
+          <Label size={size}>
+            {typeof label === "number" ? (label > notificationLimit ? `+${notificationLimit}` : label) : label}
+          </Label>
+        )}
+      </BadgeContainer>
+    </Tooltip>
+  )
 );
 
 export default DxcBadge;
