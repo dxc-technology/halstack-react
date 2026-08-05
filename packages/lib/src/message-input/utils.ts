@@ -14,7 +14,7 @@ export const getFilePreview = (file: File): string => {
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
   background-color: ${disabled
     ? `var(--color-bg-neutral-lighter)`
-    : `  background-color: var(--color-bg-neutral-lightest);
+    : `var(--color-bg-neutral-lightest);
 `};
 
   border-radius: var(--border-radius-l);
