@@ -14,10 +14,6 @@ type CommonProps = {
    */
   onClick?: () => void;
   /**
-   * Ref to the chip element.
-   */
-  ref?: React.Ref<HTMLDivElement>;
-  /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;

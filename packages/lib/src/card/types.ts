@@ -74,10 +74,6 @@ type Props = {
    */
   onClick?: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /**
-   * Ref to the card element.
-   */
-  ref?: React.Ref<HTMLDivElement | HTMLAnchorElement>;
-  /**
    * If true, the card can be selected. When the card is clicked, the onSelectionChange callback will be called with the new selected state of the card.
    * If href is defined, the card won't be selectable, even if this prop is true.
    */

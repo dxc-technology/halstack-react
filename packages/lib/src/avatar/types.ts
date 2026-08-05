@@ -43,10 +43,6 @@ type Props = {
    */
   primaryText?: string;
   /**
-   * Ref to the avatar element.
-   */
-  ref?: React.Ref<HTMLDivElement>;
-  /**
    * Text to be displayed as sublabel next to the avatar.
    */
   secondaryText?: string;
