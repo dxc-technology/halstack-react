@@ -67,7 +67,6 @@ const IconContainer = styled.div<{
   }
 `;
 
-// add ref and useRef to forward the ref to the button element
 const DxcButton = forwardRef<HTMLButtonElement, ButtonPropsType>(
   (
     {
