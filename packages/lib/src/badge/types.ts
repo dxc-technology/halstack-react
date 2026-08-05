@@ -48,10 +48,6 @@ export type CommonProps = {
    */
   icon?: string | SVG;
   /**
-   * Ref to the badge element.
-   */
-  ref?: React.Ref<HTMLDivElement>;
-  /**
    * Size of the component.
    */
   size?: "small" | "medium" | "large";
