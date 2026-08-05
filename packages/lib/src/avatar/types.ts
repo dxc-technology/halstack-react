@@ -43,6 +43,10 @@ type Props = {
    */
   primaryText?: string;
   /**
+   * Ref to the avatar element.
+   */
+  ref?: React.Ref<HTMLDivElement>;
+  /**
    * Text to be displayed as sublabel next to the avatar.
    */
   secondaryText?: string;
@@ -67,6 +71,30 @@ type Props = {
    * Text to be displayed inside a tooltip when hovering the avatar.
    */
   title?: string;
+};
+
+export type LabelWrapperType = {
+  condition: boolean;
+  children: React.ReactNode;
+  primaryText?: string;
+  secondaryText?: string;
+};
+
+export type ContentType = {
+  hasAction: boolean;
+  onClick?: () => void;
+  linkHref?: string;
+  disabled?: boolean;
+  imageSrc?: string;
+  error: boolean;
+  handleError: () => void;
+  label?: string;
+  title?: string;
+  size: Size;
+  initials: string;
+  icon?: string | SVG;
+  color: Color;
+  status?: Status;
 };
 
 export default Props;

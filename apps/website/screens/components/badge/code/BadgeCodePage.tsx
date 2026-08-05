@@ -86,6 +86,19 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                ref
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+            </td>
+            <td>Ref to the badge element.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>size</td>
             <td>
               <TableCode>'small' | 'medium' | 'large'</TableCode>

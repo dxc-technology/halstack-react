@@ -3,7 +3,7 @@ import DxcIcon from "../icon/Icon";
 import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
-import { isValidElement, ReactNode, useState } from "react";
+import { forwardRef, isValidElement, ReactNode, useState } from "react";
 import { SVG } from "../common/utils";
 import { getChipStyles } from "./utils";
 
@@ -87,60 +87,55 @@ const renderPrefix = (prefix: string | SVG | ChipAvatarType | undefined, disable
   return isValidElement(prefix) ? <IconContainer>{prefix}</IconContainer> : undefined;
 };
 
-const DxcChip = ({
-  disabled = false,
-  label,
-  mode = "selectable",
-  onClick,
-  prefix,
-  selected,
-  tabIndex = 0,
-}: ChipPropsType) => {
-  const [innerSelected, setInnerSelected] = useState(false);
+const DxcChip = forwardRef<HTMLDivElement, ChipPropsType>(
+  ({ disabled = false, label, mode = "selectable", onClick, prefix, selected, tabIndex = 0 }, ref) => {
+    const [innerSelected, setInnerSelected] = useState(false);
 
-  if (mode === "selectable" && isAvatarType(prefix) && !label) {
-    return null;
-  }
-
-  const handleSelectableClick = () => {
-    if (selected == null) {
-      setInnerSelected((prev) => !prev);
+    if (mode === "selectable" && isAvatarType(prefix) && !label) {
+      return null;
     }
-    onClick?.();
-  };
 
-  const isSelected = selected ?? innerSelected;
+    const handleSelectableClick = () => {
+      if (selected == null) {
+        setInnerSelected((prev) => !prev);
+      }
+      onClick?.();
+    };
 
-  return (
-    <Chip
-      as={mode === "selectable" ? "button" : "div"}
-      type={mode === "selectable" ? "button" : undefined}
-      aria-label={mode === "selectable" ? label || "Chip" : label}
-      aria-pressed={mode === "selectable" ? isSelected : undefined}
-      disabled={disabled}
-      isAvatar={isAvatarType(prefix)}
-      onClick={mode === "selectable" && !disabled ? handleSelectableClick : undefined}
-      selected={isSelected}
-      tabIndex={mode === "selectable" && !disabled ? tabIndex : -1}
-      mode={mode}
-    >
-      <ContentWrapper mode={mode}>
-        {prefix && renderPrefix(prefix, disabled)}
-        {label && <LabelContainer>{label}</LabelContainer>}
-      </ContentWrapper>
+    const isSelected = selected ?? innerSelected;
 
-      {mode === "dismissible" && (
-        <DxcActionIcon
-          size="xsmall"
-          disabled={disabled}
-          icon="clear"
-          onClick={onClick}
-          tabIndex={tabIndex}
-          title={!disabled ? "Clear" : undefined}
-        />
-      )}
-    </Chip>
-  );
-};
+    return (
+      <Chip
+        as={mode === "selectable" ? "button" : "div"}
+        type={mode === "selectable" ? "button" : undefined}
+        aria-label={mode === "selectable" ? label || "Chip" : label}
+        aria-pressed={mode === "selectable" ? isSelected : undefined}
+        disabled={disabled}
+        isAvatar={isAvatarType(prefix)}
+        onClick={mode === "selectable" && !disabled ? handleSelectableClick : undefined}
+        selected={isSelected}
+        tabIndex={mode === "selectable" && !disabled ? tabIndex : -1}
+        mode={mode}
+        ref={ref}
+      >
+        <ContentWrapper mode={mode}>
+          {prefix && renderPrefix(prefix, disabled)}
+          {label && <LabelContainer>{label}</LabelContainer>}
+        </ContentWrapper>
+
+        {mode === "dismissible" && (
+          <DxcActionIcon
+            size="xsmall"
+            disabled={disabled}
+            icon="clear"
+            onClick={onClick}
+            tabIndex={tabIndex}
+            title={!disabled ? "Clear" : undefined}
+          />
+        )}
+      </Chip>
+    );
+  }
+);
 
 export default DxcChip;
