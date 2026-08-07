@@ -99,7 +99,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onCloseAutoFocus</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onCloseAutoFocus
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(event: Event) => void"}</TableCode>
             </td>
@@ -118,7 +123,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onOpenAutoFocus</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onOpenAutoFocus
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(event: Event) => void"}</TableCode>
             </td>
