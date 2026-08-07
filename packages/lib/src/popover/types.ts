@@ -16,8 +16,14 @@ export type PopoverPropsType = {
   /** Callback function when the popover is opened.
    * Used only in controlled mode and if the trigger lacks the events to manage the controlled behavior. */
   onOpen?: () => void;
+  /** Callback function when the popover is opened and the focus is set to the first focusable element inside the popover.
+   * */
+  onOpenAutoFocus?: (event: Event) => void;
   /** Callback function when the popover is closed. */
   onClose?: () => void;
+  /** Callback function when the popover is closed and the focus is set back to the trigger element.
+   * */
+  onCloseAutoFocus?: (event: Event) => void;
   /** Content to be displayed inside the popover. */
   popoverContent: React.ReactNode;
   /** Side of the trigger where the popover will appear. */
