@@ -39,7 +39,9 @@ const DxcPopover = ({
   isOpen,
   offset = 4,
   onOpen,
+  onOpenAutoFocus,
   onClose,
+  onCloseAutoFocus,
   popoverContent,
   side = "bottom",
 }: PopoverPropsType): JSX.Element => {
@@ -88,6 +90,12 @@ const DxcPopover = ({
               align={align}
               side={side}
               sideOffset={offset}
+              onOpenAutoFocus={(event) => {
+                onOpenAutoFocus?.(event);
+              }}
+              onCloseAutoFocus={(event) => {
+                onCloseAutoFocus?.(event);
+              }}
               onInteractOutside={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
               onEscapeKeyDown={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
               onMouseEnter={
