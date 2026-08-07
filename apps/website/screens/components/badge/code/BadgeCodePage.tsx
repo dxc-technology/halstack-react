@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import contextual from "./examples/contextual";
 import notification from "./examples/notification";
 import icons from "./examples/icons";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -78,6 +79,19 @@ const sections = [
             <td>
               <TableCode>99</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                ref
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+            </td>
+            <td>Ref to the badge element.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>size</td>

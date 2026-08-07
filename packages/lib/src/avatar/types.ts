@@ -69,4 +69,28 @@ type Props = {
   title?: string;
 };
 
+export type LabelWrapperType = {
+  condition: boolean;
+  children: React.ReactNode;
+  primaryText?: string;
+  secondaryText?: string;
+};
+
+export type ContentType = {
+  hasAction: boolean;
+  onClick?: () => void;
+  linkHref?: string;
+  disabled?: boolean;
+  imageSrc?: string;
+  error: boolean;
+  handleError: () => void;
+  label?: string;
+  title?: string;
+  size: Size;
+  initials: string;
+  icon?: string | SVG;
+  color: Color;
+  status?: Status;
+};
+
 export default Props;

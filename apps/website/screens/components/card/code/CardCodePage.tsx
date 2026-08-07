@@ -249,6 +249,22 @@ const sections = [
             <td>
               <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
                 <StatusBadge status="new" />
+                ref
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement | HTMLAnchorElement>"}</TableCode>
+            </td>
+            <td>
+              Ref to the card element. The type is determined by whether the card is rendered as a div or an anchor
+              element based on the props such as <Code>href</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
                 selectable
               </DxcFlex>
             </td>
