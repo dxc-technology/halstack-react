@@ -252,8 +252,8 @@ const DxcDropdown = ({
           isOpen={isOpen}
           onClose={handleOnCloseMenu}
           offset={2}
-          onOpenAutoFocus={(event: Event) => {
-            event.preventDefault();
+          onOpenAutoFocus={() => {
+            menuRef.current?.focus();
           }}
           actionToOpen={expandOnHover ? "hover" : "click"}
           popoverContent={

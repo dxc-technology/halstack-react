@@ -34,7 +34,7 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
         aria-labelledby={dropdownTriggerId}
         aria-orientation="vertical"
         aria-activedescendant={visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined}
-        tabIndex={-1}
+        tabIndex={0}
         ref={ref}
         style={styles}
       >
