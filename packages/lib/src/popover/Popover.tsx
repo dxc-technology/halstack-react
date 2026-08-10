@@ -54,34 +54,34 @@ const DxcPopover = ({
 
   return (
     <>
-      {portalContainer && (
-        <Popover.Root open={isControlled.current ? isOpen : opened}>
-          <Popover.Trigger aria-controls={undefined} asChild>
-            {asChild ? (
-              children
-            ) : (
-              <PopoverWrapper
-                role="button"
-                onClick={
-                  actionToOpen === "click"
-                    ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                    : undefined
-                }
-                onMouseEnter={
-                  actionToOpen === "hover"
-                    ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                    : undefined
-                }
-                onMouseLeave={
-                  actionToOpen === "hover"
-                    ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
-                    : undefined
-                }
-              >
-                {children}
-              </PopoverWrapper>
-            )}
-          </Popover.Trigger>
+      <Popover.Root open={isControlled.current ? isOpen : opened}>
+        <Popover.Trigger aria-controls={undefined} asChild>
+          {asChild ? (
+            children
+          ) : (
+            <PopoverWrapper
+              role="button"
+              onClick={
+                actionToOpen === "click"
+                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
+                  : undefined
+              }
+              onMouseEnter={
+                actionToOpen === "hover"
+                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
+                  : undefined
+              }
+              onMouseLeave={
+                actionToOpen === "hover"
+                  ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
+                  : undefined
+              }
+            >
+              {children}
+            </PopoverWrapper>
+          )}
+        </Popover.Trigger>
+        {portalContainer && (
           <Popover.Portal container={portalContainer}>
             <Popover.Content
               aria-label="Popover content"
@@ -105,8 +105,8 @@ const DxcPopover = ({
               {hasTip && <Popover.Arrow style={{ fill: "var(--color-bg-neutral-lightest)" }} />}
             </Popover.Content>
           </Popover.Portal>
-        </Popover.Root>
-      )}
+        )}
+      </Popover.Root>
       <div id={`${popOverId}-portal`} style={{ zIndex: "var(--z-contextualmenu)", position: "absolute" }} />
     </>
   );
