@@ -95,10 +95,20 @@ const sections = [
             <td>
               <TableCode>{"() => void"}</TableCode>
             </td>
+            <td>Callback function when the popover is closed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
-              Callback function when the popover is opened. Used only in controlled mode and if the trigger lacks the
-              events to manage the controlled behavior.
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onCloseAutoFocus
+              </DxcFlex>
             </td>
+            <td>
+              <TableCode>{"(event: Event) => void"}</TableCode>
+            </td>
+            <td>Callback function when the popover is closed and the focus is set back to the trigger element.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -106,7 +116,26 @@ const sections = [
             <td>
               <TableCode>{"() => void"}</TableCode>
             </td>
-            <td>Callback function when the popover is closed.</td>
+            <td>
+              Callback function when the popover is opened. Used only in controlled mode and if the trigger lacks the
+              events to manage the controlled behavior.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                onOpenAutoFocus
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"(event: Event) => void"}</TableCode>
+            </td>
+            <td>
+              Callback function when the popover is opened and the focus is set to the first focusable element inside
+              the popover.
+            </td>
             <td>-</td>
           </tr>
           <tr>
