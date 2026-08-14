@@ -20,12 +20,12 @@ export const getCardStyles = (
       : "var(--border-width-none)";
 
   const commonStyles = `
-    ${mode === "elevated" ? `box-shadow: var(--shadow-100); border: none;` : ``}
+    ${mode === "elevated" ? `box-shadow: var(--shadow-100);` : ``}
     ${
       mode === "outlined" && !selected
-        ? `border: ${borderWidth} var(--border-style-default) var(--border-color-neutral-light);`
+        ? `outline: ${borderWidth} var(--border-style-default) var(--border-color-neutral-light);`
         : selected
-          ? `border: ${borderWidth} var(--border-style-default) var(--border-color-primary-strong);`
+          ? `outline: ${borderWidth} var(--border-style-default) var(--border-color-primary-strong);`
           : ``
     }
     ${interactive ? "cursor: pointer;" : ""}
@@ -38,16 +38,16 @@ export const getCardStyles = (
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: calc(var(--border-width-m) * -1);`;
       active = `box-shadow: var(--shadow-100);`;
     } else if (mode === "outlined") {
-      hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
-      focus = `border-width: var(--border-width-m); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); 
+      hover = `outline-width: var(--border-width-m); outline-color: var(--border-color-neutral-medium); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
+      focus = `outline-width: var(--border-width-m); 
+        outline-color: var(--border-color-secondary-medium); 
         ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
-      active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
+      active = `outline-width: var(--border-width-m); outline-color: var(--border-color-neutral-strong); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
     }
   } else if (selected) {
-    hover = `border-color: var(--border-color-primary-stronger);`;
+    hover = `outline-color: var(--border-color-primary-stronger);`;
     focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-    active = `border-color: var(--border-color-primary-strong);`;
+    active = `outline-color: var(--border-color-primary-strong);`;
   }
 
   return `
