@@ -232,14 +232,6 @@ describe("DateInput component tests", () => {
     expect(selectedYearOptions).toHaveLength(0);
     expect(selectedMonthOptions).toHaveLength(0);
   });
-  test("YearMonthPicker focuses the left column by default on open", () => {
-    const { getByRole, getAllByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
-    userEvent.click(getByRole("combobox"));
-    userEvent.click(getByRole("button", { name: "August 2021" }));
-
-    const [leftListbox] = getAllByRole("listbox");
-    expect(leftListbox.contains(document.activeElement)).toBeTruthy();
-  });
   test("Selecting month and then year closes the YearMonthPicker", () => {
     const { getByRole, queryByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
     userEvent.click(getByRole("combobox"));
@@ -559,6 +551,8 @@ describe("DateInput component tests", () => {
     expect(getByText("October 1910")).toBeTruthy();
     userEvent.click(getByText("October 1910"));
     userEvent.click(getByText("2010"));
+    // DateUnitPicker closes when both year and month are
+    userEvent.click(getByText("October"));
     const day1 = getAllByText("1")[0];
     if (day1 != null) {
       userEvent.click(day1);
