@@ -139,7 +139,7 @@ export type CalendarPropsType = {
   today: Dayjs;
 };
 
-export type YearPickerPropsType = {
+export type DateUnitPickerPropsType = {
   /**
    * Initial selected date value. If invalid the actual date will be used instead.
    */
@@ -152,6 +152,19 @@ export type YearPickerPropsType = {
    * Current date.
    */
   today: Dayjs;
+  /**
+   * Value used to set the initial visible/focused option.
+   * If undefined, the current date value is used.
+   */
+  focusValue?: number;
+  /**
+   * If true, month options are displayed instead of year options.
+   */
+  isMonth?: boolean;
+  /**
+   * If true, this picker moves focus to its initial option when mounted.
+   */
+  autoFocus?: boolean;
 };
 /**
  * Reference to the component.

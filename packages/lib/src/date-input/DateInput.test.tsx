@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import dayjs from "dayjs";
 import DxcDateInput from "./DateInput";
@@ -213,6 +213,77 @@ describe("DateInput component tests", () => {
     userEvent.click(getByText(d.set("year", 2024).format("MMMM YYYY")));
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
+  });
+  test("YearMonthPicker opens with no selected options", () => {
+    const { getByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
+    userEvent.click(getByRole("combobox"));
+    userEvent.click(getByRole("button", { name: "August 2021" }));
+
+    const yearListbox = getByRole("listbox", { name: "Year Picker" });
+    const monthListbox = getByRole("listbox", { name: "Month Picker" });
+
+    const selectedYearOptions = within(yearListbox)
+      .getAllByRole("option")
+      .filter((option) => option.getAttribute("aria-selected") === "true");
+    const selectedMonthOptions = within(monthListbox)
+      .getAllByRole("option")
+      .filter((option) => option.getAttribute("aria-selected") === "true");
+
+    expect(selectedYearOptions).toHaveLength(0);
+    expect(selectedMonthOptions).toHaveLength(0);
+  });
+  test("YearMonthPicker focuses the left column by default on open", () => {
+    const { getByRole, getAllByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
+    userEvent.click(getByRole("combobox"));
+    userEvent.click(getByRole("button", { name: "August 2021" }));
+
+    const [leftListbox] = getAllByRole("listbox");
+    expect(leftListbox.contains(document.activeElement)).toBeTruthy();
+  });
+  test("Selecting month and then year closes the YearMonthPicker", () => {
+    const { getByRole, queryByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
+    userEvent.click(getByRole("combobox"));
+    userEvent.click(getByRole("button", { name: "August 2021" }));
+
+    const monthListbox = getByRole("listbox", { name: "Month Picker" });
+    const yearListbox = getByRole("listbox", { name: "Year Picker" });
+
+    userEvent.click(within(monthListbox).getByRole("option", { name: "September" }));
+    expect(getByRole("listbox", { name: "Year Picker" })).toBeTruthy();
+
+    userEvent.click(within(yearListbox).getByRole("option", { name: "2024" }));
+    expect(queryByRole("listbox", { name: "Year Picker" })).toBeFalsy();
+    expect(queryByRole("listbox", { name: "Month Picker" })).toBeFalsy();
+  });
+  test("Selecting year and then month closes the YearMonthPicker", () => {
+    const { getByRole, queryByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
+    userEvent.click(getByRole("combobox"));
+    userEvent.click(getByRole("button", { name: "August 2021" }));
+
+    const monthListbox = getByRole("listbox", { name: "Month Picker" });
+    const yearListbox = getByRole("listbox", { name: "Year Picker" });
+
+    userEvent.click(within(yearListbox).getByRole("option", { name: "2024" }));
+    expect(getByRole("listbox", { name: "Month Picker" })).toBeTruthy();
+
+    userEvent.click(within(monthListbox).getByRole("option", { name: "September" }));
+    expect(queryByRole("listbox", { name: "Year Picker" })).toBeFalsy();
+    expect(queryByRole("listbox", { name: "Month Picker" })).toBeFalsy();
+  });
+  test("Selecting January (month 0) and then year closes the YearMonthPicker", () => {
+    const { getByRole, queryByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
+    userEvent.click(getByRole("combobox"));
+    userEvent.click(getByRole("button", { name: "August 2021" }));
+
+    const monthListbox = getByRole("listbox", { name: "Month Picker" });
+    const yearListbox = getByRole("listbox", { name: "Year Picker" });
+
+    userEvent.click(within(monthListbox).getByRole("option", { name: "January" }));
+    expect(getByRole("listbox", { name: "Year Picker" })).toBeTruthy();
+
+    userEvent.click(within(yearListbox).getByRole("option", { name: "2024" }));
+    expect(queryByRole("listbox", { name: "Year Picker" })).toBeFalsy();
+    expect(queryByRole("listbox", { name: "Month Picker" })).toBeFalsy();
   });
   test("Selecting a date from the calendar (using keyboard presses)", () => {
     const { getByRole, getAllByText, getByText } = render(<DxcDateInput />);

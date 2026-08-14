@@ -3,10 +3,11 @@ import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
-import YearPicker from "./YearPicker";
+import DateUnitPicker from "./DateUnitPicker";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { HalstackLanguageContext } from "../HalstackContext";
+import { getFormatFromLocale, validateLocale } from "./utils";
 
 const DatePickerContainer = styled.div`
   padding: var(--spacing-padding-m) var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xs);
@@ -78,27 +79,81 @@ const HeaderYearTriggerLabel = styled.span`
   font-size: var(--typography-label-m);
 `;
 
+const YearMonthPickersContainer = styled.div`
+  display: flex;
+  width: 292px;
+  justify-content: center;
+`;
+
 const today = dayjs();
 
 const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const languageContext = useContext(HalstackLanguageContext);
+  const translatedLabels = languageContext.labels;
+  const localeTag = languageContext.locale;
+  const localeFormat = localeTag && validateLocale(localeTag) ? getFormatFromLocale(localeTag) : "MM/dd/yyyy";
+  const isYearFirst = localeFormat.indexOf("yyyy") < localeFormat.indexOf("MM");
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);
     onDateSelect(chosenDate);
   };
 
+  const closeYearMonthPickerIfCompleted = (year: number | null, month: number | null) => {
+    if (year != null && month != null) {
+      setInnerDate((prevDate) => prevDate.set("year", year).set("month", month));
+      setContent("calendar");
+    }
+  };
+
   const handleOnYearSelect = (year: number) => {
     setInnerDate(innerDate.set("year", year));
-    setContent("calendar");
+    closeYearMonthPickerIfCompleted(year, content === "yearPickerMonthSelected" ? innerDate.get("month") : null);
+    if (content === "yearPicker") {
+      setContent("yearPickerYearSelected");
+    }
+  };
+
+  const handleOnMonthSelect = (month: number) => {
+    setInnerDate(innerDate.set("month", month));
+    closeYearMonthPickerIfCompleted(content === "yearPickerYearSelected" ? innerDate.get("year") : null, month);
+    if (content === "yearPicker") {
+      setContent("yearPickerMonthSelected");
+    }
   };
 
   const handleMonthChange = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);
   };
+
+  const yearPickerSelectedDate =
+    content === "yearPicker" || content === "yearPickerMonthSelected" ? dayjs(null) : innerDate;
+  const monthPickerSelectedDate =
+    content === "yearPicker" || content === "yearPickerYearSelected" ? dayjs(null) : innerDate;
+
+  const yearPicker = (
+    <DateUnitPicker
+      selectedDate={yearPickerSelectedDate}
+      focusValue={innerDate.get("year")}
+      onYearSelect={handleOnYearSelect}
+      today={today}
+      autoFocus={content === "yearPicker" && isYearFirst}
+    />
+  );
+
+  const monthPicker = (
+    <DateUnitPicker
+      selectedDate={monthPickerSelectedDate}
+      focusValue={innerDate.get("month")}
+      onYearSelect={handleOnMonthSelect}
+      today={today}
+      isMonth
+      autoFocus={content === "yearPicker" && !isYearFirst}
+    />
+  );
 
   return (
     <DatePickerContainer id={id}>
@@ -114,13 +169,19 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
         </Tooltip>
         <HeaderYearTrigger
           aria-live="polite"
-          onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
+          onClick={() => {
+            if (content === "calendar") {
+              setContent("yearPicker");
+            } else {
+              setContent("calendar");
+            }
+          }}
           type="button"
         >
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
-          <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
+          <DxcIcon icon={content === "calendar" ? "arrow_drop_down" : "arrow_drop_up"} />
         </HeaderYearTrigger>
         <Tooltip label={translatedLabels.calendar.nextMonthTitle}>
           <HeaderButton
@@ -141,8 +202,11 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
           today={today}
         />
       )}
-      {content === "yearPicker" && (
-        <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} today={today} />
+      {content !== "calendar" && (
+        <YearMonthPickersContainer>
+          {isYearFirst ? yearPicker : monthPicker}
+          {isYearFirst ? monthPicker : yearPicker}
+        </YearMonthPickersContainer>
       )}
     </DatePickerContainer>
   );
