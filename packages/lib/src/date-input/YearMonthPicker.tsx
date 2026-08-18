@@ -67,8 +67,17 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
 
   return (
     <YearMonthPickersContainer>
-      {isYearFirst ? yearPicker : monthPicker}
-      {isYearFirst ? monthPicker : yearPicker}
+      {isYearFirst ? (
+        <>
+          {yearPicker}
+          {monthPicker}
+        </>
+      ) : (
+        <>
+          {monthPicker}
+          {yearPicker}
+        </>
+      )}
     </YearMonthPickersContainer>
   );
 };

@@ -94,9 +94,7 @@ const DateUnitPicker = ({
   useEffect(() => {
     const itemToFocusEl = document.getElementById(`${id}_${idPrefix}_${itemToFocus}`);
     itemToFocusEl?.scrollIntoView?.({ block: "center", inline: "center" });
-    if (autoFocus) {
-      itemToFocusEl?.focus();
-    }
+    itemToFocusEl?.focus();
   }, [itemToFocus, id, idPrefix, autoFocus]);
 
   const handleKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
