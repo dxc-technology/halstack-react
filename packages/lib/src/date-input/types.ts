@@ -1,6 +1,8 @@
 import { Dayjs } from "dayjs";
 import { Margin, Space } from "../common/utils";
 
+export type RefType = HTMLDivElement;
+
 type Props = {
   /**
    * Initial value of the input element, only when it is uncontrolled.
