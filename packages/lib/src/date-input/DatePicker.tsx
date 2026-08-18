@@ -97,13 +97,12 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
     onDateSelect(chosenDate);
   };
 
-  const handleMonthChange = (chosenDate: Dayjs) => {
-    setInnerDate(chosenDate);
-  };
-
-  const handleYearMonthComplete = (newDate: Dayjs) => {
+  const handleDateUnitChange = (newDate: Dayjs) => {
     setInnerDate(newDate);
   };
+
+  const month = translatedLabels.calendar.months[innerDate.get("month")];
+  const year = innerDate.format("YYYY");
 
   return (
     <DatePickerContainer id={id}>
@@ -111,7 +110,7 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
         <Tooltip label={translatedLabels.calendar.previousMonthTitle}>
           <HeaderButton
             aria-label={translatedLabels.calendar.previousMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
+            onClick={() => handleDateUnitChange(innerDate.set("month", innerDate.get("month") - 1))}
             type="button"
           >
             <DxcIcon icon="keyboard_arrow_left" />
@@ -128,16 +127,13 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
           }}
           type="button"
         >
-          <HeaderYearTriggerLabel>
-            {!isYearFirst ? translatedLabels.calendar.months[innerDate.get("month")] : innerDate.format("YYYY")}{" "}
-            {isYearFirst ? translatedLabels.calendar.months[innerDate.get("month")] : innerDate.format("YYYY")}
-          </HeaderYearTriggerLabel>
+          <HeaderYearTriggerLabel>{isYearFirst ? `${year} ${month}` : `${month} ${year}`}</HeaderYearTriggerLabel>
           <DxcIcon icon={content === "calendar" ? "arrow_drop_down" : "arrow_drop_up"} />
         </HeaderYearTrigger>
         <Tooltip label={translatedLabels.calendar.nextMonthTitle}>
           <HeaderButton
             aria-label={translatedLabels.calendar.nextMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+            onClick={() => handleDateUnitChange(innerDate.set("month", innerDate.get("month") + 1))}
             type="button"
           >
             <DxcIcon icon="keyboard_arrow_right" />
@@ -158,7 +154,7 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
           isYearFirst={isYearFirst}
           innerDate={innerDate}
           today={today}
-          onYearMonthComplete={handleYearMonthComplete}
+          onYearMonthComplete={handleDateUnitChange}
         />
       )}
     </DatePickerContainer>

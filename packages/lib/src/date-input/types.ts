@@ -147,6 +147,13 @@ export type CalendarPropsType = {
   today: Dayjs;
 };
 
+export interface YearMonthPickerProps {
+  isYearFirst: boolean;
+  innerDate: Dayjs;
+  today: Dayjs;
+  onYearMonthComplete: (newDate: Dayjs) => void;
+}
+
 export type PickerItem = {
   value: number;
   label: string;
@@ -160,28 +167,15 @@ export type DateUnitPickerPropsType = {
   /**
    * Function called when a year is selected.
    */
-  onYearSelect: (year: number) => void;
+  onDateUnitSelect: (year: number) => void;
   /**
    * Current date.
    */
   today: Dayjs;
   /**
-   * Value used to set the initial visible/focused option.
-   * If undefined, the current date value is used.
-   */
-  focusValue?: number;
-  /**
-   * If true, this picker moves focus to its initial option when mounted.
-   */
-  autoFocus?: boolean;
-  /**
    * Array of items (months or years) to display in the picker.
    */
   items: PickerItem[];
 };
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;

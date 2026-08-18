@@ -64,13 +64,7 @@ const PickerButton = styled.button<{
   }
 `;
 
-const DateUnitPicker = ({
-  onYearSelect,
-  selectedDate,
-  today,
-  autoFocus = true,
-  items,
-}: DateUnitPickerPropsType): JSX.Element => {
+const DateUnitPicker = ({ onDateUnitSelect, selectedDate, today, items }: DateUnitPickerPropsType): JSX.Element => {
   const isMonth = items.length > 0 && (items[0]?.value ?? 0) < 12;
   const selectedValue =
     selectedDate?.isValid() && selectedDate ? selectedDate.get(isMonth ? "month" : "year") : undefined;
@@ -95,7 +89,7 @@ const DateUnitPicker = ({
     const itemToFocusEl = document.getElementById(`${id}_${idPrefix}_${itemToFocus}`);
     itemToFocusEl?.scrollIntoView?.({ block: "center", inline: "center" });
     itemToFocusEl?.focus();
-  }, [itemToFocus, id, idPrefix, autoFocus]);
+  }, [itemToFocus, id, idPrefix]);
 
   const handleKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
@@ -125,7 +119,7 @@ const DateUnitPicker = ({
             onKeyDown={(event) => handleKeyboardEvent(event)}
             id={`${id}_${idPrefix}_${index}`}
             onClick={() => {
-              onYearSelect(item.value);
+              onDateUnitSelect(item.value);
             }}
             role="option"
             type="button"

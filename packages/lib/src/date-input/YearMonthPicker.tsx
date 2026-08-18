@@ -1,22 +1,15 @@
 import { useContext, useState } from "react";
-import { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DateUnitPicker from "./DateUnitPicker";
 import { getPickerItems } from "./utils";
+import { YearMonthPickerProps } from "./types";
 
 const YearMonthPickersContainer = styled.div`
   display: flex;
   width: 292px;
   justify-content: center;
 `;
-
-interface YearMonthPickerProps {
-  isYearFirst: boolean;
-  innerDate: Dayjs;
-  today: Dayjs;
-  onYearMonthComplete: (newDate: Dayjs) => void;
-}
 
 export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -46,10 +39,8 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
   const yearPicker = (
     <DateUnitPicker
       selectedDate={yearPickerSelectedDate}
-      focusValue={innerDate.get("year")}
-      onYearSelect={handleOnYearSelect}
+      onDateUnitSelect={handleOnYearSelect}
       today={today}
-      autoFocus={isYearFirst}
       items={yearItems}
     />
   );
@@ -57,10 +48,8 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
   const monthPicker = (
     <DateUnitPicker
       selectedDate={monthPickerSelectedDate}
-      focusValue={innerDate.get("month")}
-      onYearSelect={handleOnMonthSelect}
+      onDateUnitSelect={handleOnMonthSelect}
       today={today}
-      autoFocus={!isYearFirst}
       items={monthItems}
     />
   );
