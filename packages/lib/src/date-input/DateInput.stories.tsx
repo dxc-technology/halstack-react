@@ -41,7 +41,7 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
-      <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
+      <DxcDateInput label="Date input" helperText="Help message" format="dd/yyyy/MM" placeholder optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
@@ -175,7 +175,7 @@ const YearPickerButtonStates = () => {
         <Title title="Isolated date unit picker focused" theme="light" level={4} />
         <DateUnitPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-          onYearSelect={() => {}}
+          onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={yearItems}
         />
@@ -184,7 +184,7 @@ const YearPickerButtonStates = () => {
         <Title title="Isolated date unit picker hovered" theme="light" level={4} />
         <DateUnitPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-          onYearSelect={() => {}}
+          onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={yearItems}
         />
@@ -193,7 +193,7 @@ const YearPickerButtonStates = () => {
         <Title title="Isolated date unit picker actived" theme="light" level={4} />
         <DateUnitPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-          onYearSelect={() => {}}
+          onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={yearItems}
         />
@@ -240,7 +240,7 @@ const DatePickerToday = () => {
         <Title title="Isolated month picker with today" theme="light" level={4} />
         <DateUnitPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-          onYearSelect={() => {}}
+          onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={monthItems}
         />
@@ -249,7 +249,7 @@ const DatePickerToday = () => {
         <Title title="Isolated date unit picker with today" theme="light" level={4} />
         <DateUnitPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-          onYearSelect={() => {}}
+          onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={yearItems}
         />

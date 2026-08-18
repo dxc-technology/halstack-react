@@ -6,7 +6,7 @@ import Calendar from "./Calendar";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { getFormatFromLocale, validateLocale } from "./utils";
+import { getFormatFromLocale, validateLocale, calculateIsYearFirst } from "./utils";
 import { YearMonthPicker } from "./YearMonthPicker";
 
 const DatePickerContainer = styled.div`
@@ -90,7 +90,7 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
   const localeTag = locale || languageContext.locale;
   const localeFormat =
     format || (localeTag && validateLocale(localeTag) ? getFormatFromLocale(localeTag) : "dd-MM-yyyy");
-  const isYearFirst = localeFormat.indexOf("yyyy") < localeFormat.indexOf("MM");
+  const isYearFirst = calculateIsYearFirst(localeFormat);
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);

@@ -135,3 +135,13 @@ export const getPickerItems = (
         value: year,
         label: year.toString(),
       }));
+
+export const calculateIsYearFirst = (localeFormat: string): boolean => {
+  const getPositionOf = (patterns: string[]): number => {
+    const positions = patterns
+      .map((pattern) => localeFormat.toLowerCase().indexOf(pattern.toLowerCase()))
+      .filter((pos) => pos !== -1);
+    return positions.length > 0 ? Math.min(...positions) : Infinity;
+  };
+  return getPositionOf(["yyyy", "yy"]) < getPositionOf(["m", "mm", "M", "MM"]);
+};
