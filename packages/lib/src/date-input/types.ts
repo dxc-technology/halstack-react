@@ -114,6 +114,14 @@ export type DatePickerPropsType = {
    * Id assigned to the date picker.
    */
   id: string;
+  /**
+   * The format in which the date value will be displayed.
+   */
+  format?: string;
+  /**
+   * The locale tag (e.g., 'en-US', 'es-ES').
+   */
+  locale?: string;
 };
 
 export type CalendarPropsType = {
@@ -139,6 +147,11 @@ export type CalendarPropsType = {
   today: Dayjs;
 };
 
+export type PickerItem = {
+  value: number;
+  label: string;
+};
+
 export type DateUnitPickerPropsType = {
   /**
    * Initial selected date value. If invalid the actual date will be used instead.
@@ -158,13 +171,13 @@ export type DateUnitPickerPropsType = {
    */
   focusValue?: number;
   /**
-   * If true, month options are displayed instead of year options.
-   */
-  isMonth?: boolean;
-  /**
    * If true, this picker moves focus to its initial option when mounted.
    */
   autoFocus?: boolean;
+  /**
+   * Array of items (months or years) to display in the picker.
+   */
+  items: PickerItem[];
 };
 /**
  * Reference to the component.

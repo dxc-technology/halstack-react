@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { DateType } from "./types";
+import { DateType, PickerItem } from "./types";
 
 const INVIS_CHARS = /[\u200E\u200F\u061C]/g;
 
@@ -109,3 +109,29 @@ export const divideDaysIntoWeeks = (data: DateType[], weekSize: number) =>
   Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
     data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
+
+const getYearsArray = (): number[] => {
+  const yearList: number[] = [];
+  for (let i = 1899; i <= 2100; i++) {
+    yearList.push(i);
+  }
+  return yearList;
+};
+
+const yearList = getYearsArray();
+
+export const getPickerItems = (
+  isMonth: boolean,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translatedLabels: any
+): PickerItem[] =>
+  isMonth
+    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      (translatedLabels.calendar.months.map((month: string, index: number) => ({
+        value: index,
+        label: month,
+      })) as PickerItem[])
+    : yearList.map((year: number) => ({
+        value: year,
+        label: year.toString(),
+      }));

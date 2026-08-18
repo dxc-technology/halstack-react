@@ -322,7 +322,13 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                   onKeyDown={handleDatePickerEscKeydown}
                   ref={popoverContentRef}
                 >
-                  <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+                  <DatePicker
+                    id={calendarId}
+                    onDateSelect={handleCalendarOnClick}
+                    date={dayjsDate}
+                    format={format}
+                    locale={locale}
+                  />
                 </StyledPopoverContent>
               </Popover.Portal>
             )}
