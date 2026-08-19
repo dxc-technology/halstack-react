@@ -3,6 +3,8 @@ import dayjs, { Dayjs } from "dayjs";
 import { DateType, PickerItem } from "./types";
 
 const INVIS_CHARS = /[\u200E\u200F\u061C]/g;
+const MIN_YEAR = 1899;
+const MAX_YEAR = 2100;
 
 export const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
 
@@ -118,7 +120,7 @@ export const getMonthPickerItems = (months: string[]): PickerItem[] =>
 
 export const getYearPickerItems = (): PickerItem[] => {
   const yearList: number[] = [];
-  for (let i = 1899; i <= 2100; i++) {
+  for (let i = MIN_YEAR; i <= MAX_YEAR; i++) {
     yearList.push(i);
   }
   return yearList.map((year: number) => ({
@@ -129,7 +131,7 @@ export const getYearPickerItems = (): PickerItem[] => {
 
 export const calculateIsYearFirst = (localeFormat: string): boolean => {
   const lower = localeFormat.toLowerCase();
-  const yearIndices = [lower.indexOf("yyyy"), lower.indexOf("yy")].filter((i) => i !== -1);
-  const monthIndices = [lower.indexOf("m"), lower.indexOf("mm")].filter((i) => i !== -1);
-  return Math.min(...yearIndices) < Math.min(...monthIndices);
+  const yearIndices = lower.indexOf("y");
+  const monthIndices = lower.indexOf("m");
+  return yearIndices < monthIndices;
 };
