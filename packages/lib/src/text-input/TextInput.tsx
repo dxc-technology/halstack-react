@@ -1,4 +1,3 @@
-import * as Popover from "@radix-ui/react-popover";
 import {
   ChangeEvent,
   FocusEvent,
@@ -24,17 +23,22 @@ import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import {
   calculateWidth,
+  decrementNumber,
+  getNumberErrorMessage,
   hasSuggestions,
+  incrementNumber,
   isNumberIncorrect,
   isRequired,
   makeCancelable,
   patternMismatch,
+  setNumberProps,
 } from "./utils";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import inputStylesByState from "../styles/forms/inputStylesByState";
 import { getLengthErrorMessage } from "../common/utils";
+import DxcPopover from "../popover/Popover";
 
 const TextInputContainer = styled.div<{
   margin: TextInputPropsType["margin"];
@@ -154,64 +158,41 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-    const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
     const width = useWidth(inputContainerRef);
-    useEffect(() => {
-      setPortalContainer(document?.getElementById(`${inputId}-portal`));
-    }, []);
 
     const autosuggestWrapperFunction = (children: ReactNode) => (
-      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-        <Popover.Trigger
-          aria-controls={undefined}
-          aria-expanded={undefined}
-          aria-haspopup={undefined}
-          asChild
-          type={undefined}
-        >
-          {children}
-        </Popover.Trigger>
-        {portalContainer && (
-          <Popover.Portal container={portalContainer}>
-            <Popover.Content
-              aria-label="Suggestions"
-              onCloseAutoFocus={(event) => {
-                // Avoid select to lose focus when the list is closed
-                event.preventDefault();
-              }}
-              onOpenAutoFocus={(event) => {
-                // Avoid select to lose focus when the list is opened
-                event.preventDefault();
-              }}
-              sideOffset={4}
-              style={{ zIndex: "var(--z-textinput)" }}
-            >
-              <Suggestions
-                highlightedSuggestions={typeof suggestions !== "function"}
-                id={autosuggestId}
-                isSearching={isSearching}
-                searchHasErrors={isAutosuggestError}
-                suggestionOnClick={(suggestion) => {
-                  changeValue(suggestion);
-                  closeSuggestions();
-                }}
-                suggestions={filteredSuggestions}
-                styles={{ width }}
-                value={value ?? innerValue}
-                visualFocusIndex={visualFocusIndex}
-              />
-            </Popover.Content>
-          </Popover.Portal>
-        )}
-      </Popover.Root>
+      <DxcPopover
+        asChild
+        isOpen={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}
+        onOpenAutoFocus={(event) => {
+          // Avoid select to lose focus when the list is opened
+          event.preventDefault();
+        }}
+        onCloseAutoFocus={(event) => {
+          // Avoid select to lose focus when the list is closed
+          event.preventDefault();
+        }}
+        onClose={() => {}}
+        popoverContent={
+          <Suggestions
+            highlightedSuggestions={typeof suggestions !== "function"}
+            id={autosuggestId}
+            isSearching={isSearching}
+            searchHasErrors={isAutosuggestError}
+            suggestionOnClick={(suggestion) => {
+              changeValue(suggestion);
+              closeSuggestions();
+            }}
+            suggestions={filteredSuggestions}
+            styles={{ width }}
+            value={value ?? innerValue}
+            visualFocusIndex={visualFocusIndex}
+          />
+        }
+      >
+        {children}
+      </DxcPopover>
     );
-
-    const getNumberErrorMessage = (checkedValue: number) =>
-      numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
-        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
-        : numberInputContext?.maxNumber != null && checkedValue > numberInputContext?.maxNumber
-          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
-          : undefined;
 
     const openSuggestions = () => {
       if (hasSuggestions(suggestions)) {
@@ -256,67 +237,18 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
-        onChange?.({ value: formattedValue, error: getNumberErrorMessage(Number(newValue)) });
+        onChange?.({
+          value: formattedValue,
+          error: getNumberErrorMessage(
+            Number(newValue),
+            translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage,
+            translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage,
+            numberInputContext?.minNumber,
+            numberInputContext?.maxNumber
+          ),
+        });
       } else {
         onChange?.({ value: formattedValue });
-      }
-    };
-
-    const decrementNumber = (currentValue = value ?? innerValue) => {
-      if (!disabled && !readOnly) {
-        const numberValue = Number(currentValue);
-        const steppedValue =
-          Math.round((numberValue - (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
-
-        if (currentValue !== "") {
-          if (
-            numberInputContext?.minNumber != null &&
-            (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
-          ) {
-            changeValue(numberValue);
-          } else if (numberInputContext?.maxNumber != null && numberValue > numberInputContext?.maxNumber) {
-            changeValue(numberInputContext?.maxNumber);
-          } else if (numberValue === numberInputContext?.minNumber) {
-            changeValue(numberInputContext?.minNumber);
-          } else {
-            changeValue(steppedValue);
-          }
-        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber >= 0) {
-          changeValue(numberInputContext?.minNumber);
-        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber < 0) {
-          changeValue(numberInputContext?.maxNumber);
-        } else if (numberInputContext?.stepNumber != null) {
-          changeValue(-numberInputContext.stepNumber);
-        }
-      }
-    };
-
-    const incrementNumber = (currentValue = value ?? innerValue) => {
-      if (!disabled && !readOnly) {
-        const numberValue = Number(currentValue);
-        const steppedValue =
-          Math.round((numberValue + (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
-
-        if (currentValue !== "") {
-          if (
-            numberInputContext?.maxNumber != null &&
-            (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
-          ) {
-            changeValue(numberValue);
-          } else if (numberInputContext?.minNumber != null && numberValue < numberInputContext?.minNumber) {
-            changeValue(numberInputContext?.minNumber);
-          } else if (numberValue === numberInputContext?.maxNumber) {
-            changeValue(numberInputContext?.maxNumber);
-          } else {
-            changeValue(steppedValue);
-          }
-        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber > 0) {
-          changeValue(numberInputContext?.minNumber);
-        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber <= 0) {
-          changeValue(numberInputContext?.maxNumber);
-        } else if (numberInputContext?.stepNumber != null) {
-          changeValue(numberInputContext.stepNumber);
-        }
       }
     };
 
@@ -360,7 +292,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
-        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(Number(event.target.value)) });
+        onBlur?.({
+          value: event.target.value,
+          error: getNumberErrorMessage(
+            Number(event.target.value),
+            translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage,
+            translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage,
+            numberInputContext?.minNumber,
+            numberInputContext?.maxNumber
+          ),
+        });
       } else {
         onBlur?.({ value: event.target.value });
       }
@@ -371,7 +312,15 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         case "ArrowDown":
           event.preventDefault();
           if (numberInputContext?.typeNumber === "number") {
-            decrementNumber();
+            decrementNumber(
+              inputRef.current?.value,
+              disabled,
+              readOnly,
+              changeValue,
+              numberInputContext?.stepNumber,
+              numberInputContext?.minNumber,
+              numberInputContext?.maxNumber
+            );
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
@@ -389,7 +338,15 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         case "ArrowUp":
           event.preventDefault();
           if (numberInputContext?.typeNumber === "number") {
-            incrementNumber();
+            incrementNumber(
+              inputRef.current?.value,
+              disabled,
+              readOnly,
+              changeValue,
+              numberInputContext?.stepNumber,
+              numberInputContext?.minNumber,
+              numberInputContext?.maxNumber
+            );
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
@@ -435,9 +392,25 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
-          incrementNumber(inputRef.current?.value);
+          incrementNumber(
+            inputRef.current?.value,
+            disabled,
+            readOnly,
+            changeValue,
+            numberInputContext?.stepNumber,
+            numberInputContext?.minNumber,
+            numberInputContext?.maxNumber
+          );
         } else {
-          decrementNumber(inputRef.current?.value);
+          decrementNumber(
+            inputRef.current?.value,
+            disabled,
+            readOnly,
+            changeValue,
+            numberInputContext?.stepNumber,
+            numberInputContext?.minNumber,
+            numberInputContext?.maxNumber
+          );
         }
       }
     };
@@ -451,19 +424,28 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     };
 
     const handleDecrementActionOnClick = () => {
-      decrementNumber();
+      decrementNumber(
+        inputRef.current?.value,
+        disabled,
+        readOnly,
+        changeValue,
+        numberInputContext?.stepNumber,
+        numberInputContext?.minNumber,
+        numberInputContext?.maxNumber
+      );
       inputRef.current?.focus();
     };
     const handleIncrementActionOnClick = () => {
-      incrementNumber();
+      incrementNumber(
+        inputRef.current?.value,
+        disabled,
+        readOnly,
+        changeValue,
+        numberInputContext?.stepNumber,
+        numberInputContext?.minNumber,
+        numberInputContext?.maxNumber
+      );
       inputRef.current?.focus();
-    };
-
-    const setNumberProps = (type?: string, min?: number, max?: number, step?: number) => {
-      if (min != null) inputRef.current?.setAttribute("min", min.toString());
-      if (max != null) inputRef.current?.setAttribute("max", max.toString());
-      if (step != null) inputRef.current?.setAttribute("step", step.toString());
-      if (type != null) inputRef.current?.setAttribute("type", type);
     };
 
     useEffect(() => {
@@ -501,7 +483,8 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
+          inputRef.current ?? undefined
         );
       }
     }, [value, innerValue, suggestions, numberInputContext]);
@@ -624,7 +607,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
         </TextInputContainer>
-        {hasSuggestions(suggestions) && <div id={`${inputId}-portal`} style={{ position: "absolute" }} />}
       </>
     );
   }
