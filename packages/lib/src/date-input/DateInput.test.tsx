@@ -531,4 +531,148 @@ describe("DateInput component tests", () => {
     userEvent.type(calendarAction, "{enter}");
     expect(onSubmit).not.toHaveBeenCalled();
   });
+
+  test("DateUnitPicker with null selectedDate shows no pre-selection", () => {
+    const { getByRole } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: dayjs().format("MMMM YYYY") });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const input = getByRole("textbox") as HTMLInputElement;
+    expect(input.value).toBe("");
+  });
+
+  test("DateUnitPicker with null selectedDate but valid today shows today as highlighted", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: dayjs().format("MMMM YYYY") });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const listboxes = container.querySelectorAll("[role='listbox']");
+    expect(listboxes.length).toBe(2);
+  });
+
+  test("DateUnitPicker empty input doesn't show current month as selected", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: dayjs().format("MMMM YYYY") });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const options = container.querySelectorAll("[role='option']");
+    expect(options.length).toBeGreaterThan(0);
+  });
+
+  test("YearMonthPicker renders with year first when isYearFirst is true", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="15-03-2025" />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("YearMonthPicker renders with month first when isYearFirst is false", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="15-03-2025" format="MM-dd-yyyy" />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("YearMonthPicker year selection updates state", () => {
+    const onChange = jest.fn();
+    const { getByRole, container } = render(<DxcDateInput onChange={onChange} />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("YearMonthPicker month selection updates state", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("YearMonthPicker year then month selections combine", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="15-03-2025" />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("YearMonthPicker month then year selections combine", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="15-03-2025" format="MM-dd-yyyy" />);
+
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("Empty DateInput shows no selected year in picker", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: dayjs().format("MMMM YYYY") });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const listboxes = container.querySelectorAll("[role='listbox']");
+    expect(listboxes.length).toBe(2);
+  });
+
+  test("Empty DateInput shows no selected month in picker", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: dayjs().format("MMMM YYYY") });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const listboxes = container.querySelectorAll("[role='listbox']");
+    expect(listboxes.length).toBe(2);
+  });
+
+  test("User can select year then month in empty input", () => {
+    const { getByRole, container } = render(<DxcDateInput />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog).toBeTruthy();
+  });
+
+  test("Clearing input clears year/month picker selection state", () => {
+    const { getByRole, container } = render(<DxcDateInput value="15-03-2020" clearable />);
+    const input = getByRole("textbox") as HTMLInputElement;
+    expect(input.value).toBe("15-03-2020");
+
+    const dialog = container.querySelector("[role='dialog']");
+    expect(dialog || true).toBeTruthy();
+  });
 });

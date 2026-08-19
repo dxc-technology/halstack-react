@@ -119,11 +119,7 @@ export type DatePickerPropsType = {
   /**
    * The format in which the date value will be displayed.
    */
-  format?: string;
-  /**
-   * The locale tag (e.g., 'en-US', 'es-ES').
-   */
-  locale?: string;
+  format: string;
 };
 
 export type CalendarPropsType = {
@@ -165,7 +161,7 @@ export type DateUnitPickerPropsType = {
   /**
    * Initial selected date value. If invalid the actual date will be used instead.
    */
-  selectedDate: Dayjs;
+  selectedDate: Dayjs | null;
   /**
    * Function called when a year is selected.
    */
@@ -178,6 +174,10 @@ export type DateUnitPickerPropsType = {
    * Array of items (months or years) to display in the picker.
    */
   items: PickerItem[];
+  /**
+   *
+   */
+  isMonth?: boolean;
 };
 
 export default Props;

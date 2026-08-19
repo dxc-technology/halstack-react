@@ -110,38 +110,26 @@ export const divideDaysIntoWeeks = (data: DateType[], weekSize: number) =>
     data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
 
-const getYearsArray = (): number[] => {
+export const getMonthPickerItems = (months: string[]): PickerItem[] =>
+  months.map((month: string, index: number) => ({
+    value: index,
+    label: month,
+  }));
+
+export const getYearPickerItems = (): PickerItem[] => {
   const yearList: number[] = [];
   for (let i = 1899; i <= 2100; i++) {
     yearList.push(i);
   }
-  return yearList;
+  return yearList.map((year: number) => ({
+    value: year,
+    label: year.toString(),
+  }));
 };
 
-const yearList = getYearsArray();
-
-export const getPickerItems = (
-  isMonth: boolean,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  translatedLabels: any
-): PickerItem[] =>
-  isMonth
-    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      (translatedLabels.calendar.months.map((month: string, index: number) => ({
-        value: index,
-        label: month,
-      })) as PickerItem[])
-    : yearList.map((year: number) => ({
-        value: year,
-        label: year.toString(),
-      }));
-
 export const calculateIsYearFirst = (localeFormat: string): boolean => {
-  const getPositionOf = (patterns: string[]): number => {
-    const positions = patterns
-      .map((pattern) => localeFormat.toLowerCase().indexOf(pattern.toLowerCase()))
-      .filter((pos) => pos !== -1);
-    return positions.length > 0 ? Math.min(...positions) : Infinity;
-  };
-  return getPositionOf(["yyyy", "yy"]) < getPositionOf(["m", "mm", "M", "MM"]);
+  const lower = localeFormat.toLowerCase();
+  const yearIndices = [lower.indexOf("yyyy"), lower.indexOf("yy")].filter((i) => i !== -1);
+  const monthIndices = [lower.indexOf("m"), lower.indexOf("mm")].filter((i) => i !== -1);
+  return Math.min(...yearIndices) < Math.min(...monthIndices);
 };

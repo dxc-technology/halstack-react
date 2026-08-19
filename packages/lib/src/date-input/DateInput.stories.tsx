@@ -11,7 +11,7 @@ import DxcDatePicker from "./DatePicker";
 import DateUnitPicker from "./DateUnitPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
 import { HalstackProvider } from "../HalstackContext";
-import { getPickerItems } from "./utils";
+import { getMonthPickerItems, getYearPickerItems } from "./utils";
 
 export default {
   title: "Date Input",
@@ -148,27 +148,47 @@ const DatePickerButtonStates = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Isolated calendar focused" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar1" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar1"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Isolated calendar hovered" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar2" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar2"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Isolated calendar actived" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar3"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Isolated calendar with locale" theme="light" level={4} />
       <HalstackProvider localeTag="en-US">
-        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+        <DxcDatePicker
+          date={dayjs("06-04-1950", "DD-MM-YYYY")}
+          onDateSelect={() => {}}
+          id="test-calendar3"
+          format="dd/mm/yy"
+        />
       </HalstackProvider>
     </ExampleContainer>
   </>
 );
 
 const YearPickerButtonStates = () => {
-  const yearItems = getPickerItems(false, { calendar: { months: [] } });
+  const yearItems = getYearPickerItems();
   return (
     <>
       <ExampleContainer pseudoState="pseudo-focus">
@@ -221,8 +241,8 @@ const DatePickerToday = () => {
       ],
     },
   };
-  const monthItems = getPickerItems(true, monthLabels);
-  const yearItems = getPickerItems(false, monthLabels);
+  const monthItems = getMonthPickerItems(monthLabels.calendar.months);
+  const yearItems = getYearPickerItems();
 
   return (
     <>
@@ -262,7 +282,12 @@ const Tooltip = () => (
   <>
     <Title title="Default tooltip" theme="light" level={2} />
     <ExampleContainer>
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar-tooltip" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar-tooltip"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
   </>
 );
@@ -271,7 +296,7 @@ const YearMonthPickerZhCn = () => (
   <ExampleContainer>
     <Title title="Year/Month picker order zh-CN" theme="light" level={4} />
     <HalstackProvider localeTag="zh-CN">
-      <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+      <DxcDateInput label="Date input" format="dd-yyyy-mm" defaultValue="06-1905-05" />
     </HalstackProvider>
   </ExampleContainer>
 );

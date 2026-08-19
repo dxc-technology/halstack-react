@@ -1,4 +1,4 @@
-import { memo, useContext, useState } from "react";
+import { memo, useContext, useMemo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import { DatePickerPropsType } from "./types";
@@ -6,8 +6,8 @@ import Calendar from "./Calendar";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { HalstackLanguageContext } from "../HalstackContext";
-import { getFormatFromLocale, validateLocale, calculateIsYearFirst } from "./utils";
 import { YearMonthPicker } from "./YearMonthPicker";
+import { calculateIsYearFirst } from "./utils";
 
 const DatePickerContainer = styled.div`
   padding: var(--spacing-padding-m) var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xs);
@@ -62,7 +62,7 @@ const HeaderButton = styled.button`
   }
 `;
 
-const HeaderYearTrigger = styled(HeaderButton)`
+const HeaderTrigger = styled(HeaderButton)`
   gap: var(--spacing-gap-s);
   padding: 0px var(--spacing-padding-xs) 0px var(--spacing-padding-m);
   height: var(--height-m);
@@ -72,7 +72,7 @@ const HeaderYearTrigger = styled(HeaderButton)`
   }
 `;
 
-const HeaderYearTriggerLabel = styled.span`
+const HeaderTriggerLabel = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,28 +81,24 @@ const HeaderYearTriggerLabel = styled.span`
 
 const today = dayjs();
 
-const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsType): JSX.Element => {
+const DatePicker = ({ date, onDateSelect, id, format }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
   const languageContext = useContext(HalstackLanguageContext);
   const translatedLabels = languageContext.labels;
-  const localeTag = locale || languageContext.locale;
-  const localeFormat =
-    format || (localeTag && validateLocale(localeTag) ? getFormatFromLocale(localeTag) : "dd-MM-yyyy");
-  const isYearFirst = calculateIsYearFirst(localeFormat);
+  const isYearFirst = calculateIsYearFirst(format);
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);
     onDateSelect(chosenDate);
   };
 
-  const handleDateUnitChange = (newDate: Dayjs) => {
-    setInnerDate(newDate);
-  };
-
-  const month = translatedLabels.calendar.months[innerDate.get("month")];
-  const year = innerDate.format("YYYY");
+  const monthYearLabel = useMemo(() => {
+    const month = translatedLabels.calendar.months[innerDate.get("month")];
+    const year = innerDate.format("YYYY");
+    return isYearFirst ? `${year} ${month}` : `${month} ${year}`;
+  }, [translatedLabels, innerDate, isYearFirst]);
 
   return (
     <DatePickerContainer id={id}>
@@ -110,30 +106,30 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
         <Tooltip label={translatedLabels.calendar.previousMonthTitle}>
           <HeaderButton
             aria-label={translatedLabels.calendar.previousMonthTitle}
-            onClick={() => handleDateUnitChange(innerDate.set("month", innerDate.get("month") - 1))}
+            onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") - 1))}
             type="button"
           >
             <DxcIcon icon="keyboard_arrow_left" />
           </HeaderButton>
         </Tooltip>
-        <HeaderYearTrigger
+        <HeaderTrigger
           aria-live="polite"
           onClick={() => {
             if (content === "calendar") {
-              setContent("yearPicker");
+              setContent("yearMonthPicker");
             } else {
               setContent("calendar");
             }
           }}
           type="button"
         >
-          <HeaderYearTriggerLabel>{isYearFirst ? `${year} ${month}` : `${month} ${year}`}</HeaderYearTriggerLabel>
+          <HeaderTriggerLabel>{monthYearLabel}</HeaderTriggerLabel>
           <DxcIcon icon={content === "calendar" ? "arrow_drop_down" : "arrow_drop_up"} />
-        </HeaderYearTrigger>
+        </HeaderTrigger>
         <Tooltip label={translatedLabels.calendar.nextMonthTitle}>
           <HeaderButton
             aria-label={translatedLabels.calendar.nextMonthTitle}
-            onClick={() => handleDateUnitChange(innerDate.set("month", innerDate.get("month") + 1))}
+            onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") + 1))}
             type="button"
           >
             <DxcIcon icon="keyboard_arrow_right" />
@@ -154,7 +150,7 @@ const DatePicker = ({ date, onDateSelect, id, format, locale }: DatePickerPropsT
           isYearFirst={isYearFirst}
           innerDate={innerDate}
           today={today}
-          onYearMonthComplete={handleDateUnitChange}
+          onYearMonthComplete={setInnerDate}
         />
       )}
     </DatePickerContainer>

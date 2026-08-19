@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DateUnitPicker from "./DateUnitPicker";
-import { getPickerItems } from "./utils";
+import { getMonthPickerItems, getYearPickerItems } from "./utils";
 import { YearMonthPickerProps } from "./types";
 
 const YearMonthPickersContainer = styled.div`
@@ -15,9 +15,8 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
   const languageContext = useContext(HalstackLanguageContext);
-  const translatedLabels = languageContext.labels;
-  const yearItems = getPickerItems(false, translatedLabels);
-  const monthItems = getPickerItems(true, translatedLabels);
+  const yearItems = getYearPickerItems();
+  const monthItems = getMonthPickerItems(languageContext.labels.calendar.months);
 
   const handleOnYearSelect = (year: number) => {
     const newDate = innerDate.set("year", year);
@@ -33,8 +32,8 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
     onYearMonthComplete(finalDate);
   };
 
-  const yearPickerSelectedDate = selectedYear != null ? innerDate.set("year", selectedYear) : innerDate;
-  const monthPickerSelectedDate = selectedMonth != null ? innerDate.set("month", selectedMonth) : innerDate;
+  const yearPickerSelectedDate = selectedYear != null ? innerDate.set("year", selectedYear) : null;
+  const monthPickerSelectedDate = selectedMonth != null ? innerDate.set("month", selectedMonth) : null;
 
   const yearPicker = (
     <DateUnitPicker
@@ -51,6 +50,7 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
       onDateUnitSelect={handleOnMonthSelect}
       today={today}
       items={monthItems}
+      isMonth
     />
   );
 

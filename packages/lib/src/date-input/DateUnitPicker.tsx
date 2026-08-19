@@ -64,8 +64,13 @@ const PickerButton = styled.button<{
   }
 `;
 
-const DateUnitPicker = ({ onDateUnitSelect, selectedDate, today, items }: DateUnitPickerPropsType): JSX.Element => {
-  const isMonth = items.length > 0 && (items[0]?.value ?? 0) < 12;
+const DateUnitPicker = ({
+  onDateUnitSelect,
+  selectedDate,
+  today,
+  items,
+  isMonth,
+}: DateUnitPickerPropsType): JSX.Element => {
   const selectedValue =
     selectedDate?.isValid() && selectedDate ? selectedDate.get(isMonth ? "month" : "year") : undefined;
   const currentValue =
