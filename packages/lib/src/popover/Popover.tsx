@@ -69,6 +69,16 @@ const DxcPopover = ({
           </Popover.Trigger>
         ) : (
           <Popover.Trigger
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+              margin: 0,
+              padding: 0,
+              textAlign: "inherit",
+              font: "inherit",
+              borderRadius: 0,
+              appearance: "none",
+            }}
             onClick={
               actionToOpen === "click" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
@@ -81,7 +91,9 @@ const DxcPopover = ({
                 : undefined
             }
           >
-            <PopoverWrapper>{children}</PopoverWrapper>
+            <PopoverWrapper role="button" aria-controls={popOverId} aria-expanded={opened} aria-haspopup={true}>
+              {children}
+            </PopoverWrapper>
           </Popover.Trigger>
         )}
         {portalContainer && (
