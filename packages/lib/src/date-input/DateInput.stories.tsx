@@ -263,6 +263,7 @@ const DatePickerToday = () => {
           onDateUnitSelect={() => {}}
           today={dayjs("1904-04-03", "YYYY-MM-DD")}
           items={monthItems}
+          unit="month"
         />
       </ExampleContainer>
       <ExampleContainer>
