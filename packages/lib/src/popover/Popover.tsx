@@ -57,32 +57,34 @@ const DxcPopover = ({
   return (
     <>
       <Popover.Root open={isControlled.current ? isOpen : opened}>
-        <Popover.Trigger aria-controls={undefined} asChild>
-          {asChild ? (
-            children
-          ) : (
-            <PopoverWrapper
-              role="button"
-              onClick={
-                actionToOpen === "click"
-                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                  : undefined
-              }
-              onMouseEnter={
-                actionToOpen === "hover"
-                  ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                  : undefined
-              }
-              onMouseLeave={
-                actionToOpen === "hover"
-                  ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
-                  : undefined
-              }
-            >
-              {children}
-            </PopoverWrapper>
-          )}
-        </Popover.Trigger>
+        {asChild ? (
+          <Popover.Trigger
+            aria-controls={undefined}
+            aria-expanded={undefined}
+            aria-haspopup={undefined}
+            type={undefined}
+            asChild
+          >
+            {children}
+          </Popover.Trigger>
+        ) : (
+          <Popover.Trigger
+            asChild
+            onClick={
+              actionToOpen === "click" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
+            }
+            onMouseEnter={
+              actionToOpen === "hover" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
+            }
+            onMouseLeave={
+              actionToOpen === "hover"
+                ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
+                : undefined
+            }
+          >
+            <PopoverWrapper>{children}</PopoverWrapper>
+          </Popover.Trigger>
+        )}
         {portalContainer && (
           <Popover.Portal container={portalContainer}>
             <Popover.Content
