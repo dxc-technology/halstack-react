@@ -148,9 +148,9 @@ const DatePicker = ({ date, onDateSelect, id, format }: DatePickerPropsType): JS
       {content !== "calendar" && (
         <YearMonthPicker
           isYearFirst={isYearFirst}
-          innerDate={selectedDate}
+          selectedDate={selectedDate}
           today={today}
-          onYearMonthComplete={setInnerDate}
+          onYearMonthComplete={handleDateSelect}
         />
       )}
     </DatePickerContainer>

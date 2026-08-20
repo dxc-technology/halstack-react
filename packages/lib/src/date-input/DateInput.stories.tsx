@@ -296,7 +296,7 @@ const YearMonthPickerZhCn = () => (
   <ExampleContainer>
     <Title title="Year/Month picker order zh-CN" theme="light" level={4} />
     <HalstackProvider localeTag="zh-CN">
-      <DxcDateInput label="Date input" format="dd-mm" defaultValue="06-1905-05" />
+      <DxcDateInput label="Date input" format="dd-yyyy-mm" defaultValue="06-1905-05" />
     </HalstackProvider>
   </ExampleContainer>
 );

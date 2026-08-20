@@ -11,23 +11,23 @@ const YearMonthPickersContainer = styled.div`
   justify-content: center;
 `;
 
-export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
-  const [selectedYear, setSelectedYear] = useState<number | null>(innerDate?.get("year") || null);
-  const [selectedMonth, setSelectedMonth] = useState<number | null>(innerDate?.get("month") || null);
+export const YearMonthPicker = ({ isYearFirst, selectedDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
+  const [selectedYear, setSelectedYear] = useState<number | null>(selectedDate?.get("year") || null);
+  const [selectedMonth, setSelectedMonth] = useState<number | null>(selectedDate?.get("month") || null);
   const languageContext = useContext(HalstackLanguageContext);
 
   const yearItems = getYearPickerItems();
   const monthItems = getMonthPickerItems(languageContext.labels.calendar.months);
 
   const handleOnYearSelect = (year: number) => {
-    const newDate = innerDate.set("year", year);
+    const newDate = selectedDate.set("year", year);
     const finalDate = selectedMonth != null ? newDate.set("month", selectedMonth) : newDate;
     setSelectedYear(year);
     onYearMonthComplete(finalDate);
   };
 
   const handleOnMonthSelect = (month: number) => {
-    const newDate = innerDate.set("month", month);
+    const newDate = selectedDate.set("month", month);
     const finalDate = selectedYear != null ? newDate.set("year", selectedYear) : newDate;
     setSelectedMonth(month);
     onYearMonthComplete(finalDate);
@@ -35,7 +35,7 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
 
   const yearPicker = (
     <DateUnitPicker
-      selectedDate={innerDate}
+      selectedDate={selectedDate}
       onDateUnitSelect={handleOnYearSelect}
       today={today}
       items={yearItems}
@@ -45,7 +45,7 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
 
   const monthPicker = (
     <DateUnitPicker
-      selectedDate={innerDate}
+      selectedDate={selectedDate}
       onDateUnitSelect={handleOnMonthSelect}
       today={today}
       items={monthItems}

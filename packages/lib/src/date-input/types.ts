@@ -147,7 +147,7 @@ export type CalendarPropsType = {
 
 export interface YearMonthPickerProps {
   isYearFirst: boolean;
-  innerDate: Dayjs;
+  selectedDate: Dayjs;
   today: Dayjs;
   onYearMonthComplete: (newDate: Dayjs) => void;
 }

@@ -76,16 +76,7 @@ const DateUnitPicker = ({
   const ariaLabel = `${unit.charAt(0).toUpperCase() + unit.slice(1)} Picker`;
 
   const id = useId();
-  const currentIndex = items.findIndex((item) => item.value === currentValue);
-  const selectedIndex = selectedValue !== undefined ? items.findIndex((item) => item.value === selectedValue) : -1;
-
-  const initialFocusIndex = selectedIndex >= 0 ? selectedIndex : currentIndex >= 0 ? currentIndex : 0;
-  const [itemToFocus, setItemToFocus] = useState(initialFocusIndex);
-
-  useEffect(() => {
-    const focusIndex = selectedIndex >= 0 ? selectedIndex : currentIndex >= 0 ? currentIndex : 0;
-    setItemToFocus(focusIndex);
-  }, [selectedIndex, currentIndex]);
+  const [itemToFocus, setItemToFocus] = useState(selectedDate ? selectedDate.get(unit) : dayjs().get(unit));
 
   useEffect(() => {
     const itemToFocusEl = document.getElementById(`${id}_${unit}_${itemToFocus}`);
@@ -99,7 +90,10 @@ const DateUnitPicker = ({
         setItemToFocus((prev) => (prev > 0 ? prev - 1 : prev));
         break;
       case "ArrowDown":
-        setItemToFocus((prev) => (prev < items.length - 1 ? prev + 1 : prev));
+        setItemToFocus((prev) => {
+          const lastValue = items[items.length - 1]?.value;
+          return lastValue !== undefined && prev < lastValue ? prev + 1 : prev;
+        });
         break;
       default:
         break;
@@ -108,7 +102,7 @@ const DateUnitPicker = ({
 
   return (
     <PickerContainer role="listbox" aria-label={ariaLabel}>
-      {items.map((item, index) => {
+      {items.map((item) => {
         const isSelected = item.value === selectedValue;
         return (
           <PickerButton
@@ -116,10 +110,10 @@ const DateUnitPicker = ({
             key={item.value}
             selected={isSelected}
             aria-selected={isSelected}
-            tabIndex={itemToFocus === index ? 0 : -1}
+            tabIndex={itemToFocus === item.value ? 0 : -1}
             isCurrent={item.value === currentValue}
             onKeyDown={(event) => handleKeyboardEvent(event)}
-            id={`${id}_${unit}_${index}`}
+            id={`${id}_${unit}_${item.value}`}
             onClick={() => {
               onDateUnitSelect(item.value);
             }}
