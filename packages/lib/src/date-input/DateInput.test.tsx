@@ -1,5 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
 import dayjs from "dayjs";
 import DxcDateInput from "./DateInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
@@ -201,7 +202,7 @@ describe("DateInput component tests", () => {
     });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
   });
-  test("Selecting a year from the calendar year picker", () => {
+  test("Selecting a year and month from the calendar year picker", () => {
     const { getByText, getByRole } = render(<DxcDateInput format="dd-mm-yyyy" defaultValue="10-08-2021" />);
     const input = getByRole("textbox") as HTMLInputElement;
     const calendarAction = getByRole("combobox");
@@ -210,9 +211,11 @@ describe("DateInput component tests", () => {
     userEvent.click(getByText(d.format("MMMM YYYY")));
     expect(getByText("2024")).toBeTruthy();
     userEvent.click(getByText("2024"));
-    userEvent.click(getByText(d.set("year", 2024).format("MMMM YYYY")));
+    expect(getByText("February")).toBeTruthy();
+    userEvent.click(getByText("February"));
+    userEvent.click(getByText(d.set("year", 2024).set("month", 1).format("MMMM YYYY")));
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
-    expect(input.value).toBe(d.format("DD-MM-YYYY"));
+    expect(input.value).toBe(d.set("year", 2024).set("month", 1).format("DD-MM-YYYY"));
   });
   test("Selecting a date from the calendar (using keyboard presses)", () => {
     const { getByRole, getAllByText, getByText } = render(<DxcDateInput />);
@@ -488,6 +491,7 @@ describe("DateInput component tests", () => {
     expect(getByText("October 1910")).toBeTruthy();
     userEvent.click(getByText("October 1910"));
     userEvent.click(getByText("2010"));
+    userEvent.click(getByText("October 2010"));
     const day1 = getAllByText("1")[0];
     if (day1 != null) {
       userEvent.click(day1);
@@ -529,5 +533,44 @@ describe("DateInput component tests", () => {
     }
     userEvent.type(calendarAction, "{enter}");
     expect(onSubmit).not.toHaveBeenCalled();
+  });
+  test("Two listboxes are shown", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="15-03-2020" />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: "March 2020" });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const listboxes = container.querySelectorAll("[role='listbox']");
+    expect(listboxes.length).toBe(2);
+  });
+  test("Calendar header formatting", () => {
+    const { getByRole, container } = render(<DxcDateInput defaultValue="2020/03/15" format="yyyy/MM/dd" />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+
+    const monthYearButton = getByRole("button", { name: "2020 March" });
+    expect(monthYearButton).toBeTruthy();
+    userEvent.click(monthYearButton);
+
+    const listboxes = container.querySelectorAll("[role='listbox']");
+    expect(listboxes.length).toBe(2);
+    expect(listboxes[0]).toHaveTextContent("2019");
+    expect(listboxes[1]).toHaveTextContent("February");
+  });
+  // listbox keyboard control
+  test("Listbox keyboard control", () => {
+    const { getByRole, getAllByRole } = render(<DxcDateInput defaultValue="15-03-2020" />);
+    const calendarAction = getByRole("combobox");
+    userEvent.click(calendarAction);
+    expect(getByRole("button", { name: "March 2020" })).toBeTruthy();
+    userEvent.click(getByRole("button", { name: "March 2020" }));
+    const yearListbox = getAllByRole("listbox")[1];
+    expect(yearListbox).toBeTruthy();
+    userEvent.keyboard("{ArrowDown}");
+    userEvent.keyboard("{Enter}");
+    expect(getByRole("button", { name: "March 2021" })).toBeTruthy();
   });
 });

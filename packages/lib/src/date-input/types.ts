@@ -1,6 +1,8 @@
 import { Dayjs } from "dayjs";
 import { Margin, Space } from "../common/utils";
 
+export type RefType = HTMLDivElement;
+
 type Props = {
   /**
    * Initial value of the input element, only when it is uncontrolled.
@@ -114,6 +116,10 @@ export type DatePickerPropsType = {
    * Id assigned to the date picker.
    */
   id: string;
+  /**
+   * The format in which the date value will be displayed.
+   */
+  format: string;
 };
 
 export type CalendarPropsType = {
@@ -139,23 +145,39 @@ export type CalendarPropsType = {
   today: Dayjs;
 };
 
-export type YearPickerPropsType = {
+export interface YearMonthPickerProps {
+  isYearFirst: boolean;
+  selectedDate: Dayjs;
+  today: Dayjs;
+  onYearMonthComplete: (newDate: Dayjs) => void;
+}
+
+export type PickerItem = {
+  value: number;
+  label: string;
+};
+
+export type DateUnitPickerPropsType = {
   /**
    * Initial selected date value. If invalid the actual date will be used instead.
    */
-  selectedDate: Dayjs;
+  selectedDate: Dayjs | null;
   /**
    * Function called when a year is selected.
    */
-  onYearSelect: (year: number) => void;
+  onDateUnitSelect: (year: number) => void;
   /**
    * Current date.
    */
   today: Dayjs;
+  /**
+   * Array of items (months or years) to display in the picker.
+   */
+  items: PickerItem[];
+  /**
+   * Date unit to display in the picker (month or year).
+   */
+  unit?: "month" | "year";
 };
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;
