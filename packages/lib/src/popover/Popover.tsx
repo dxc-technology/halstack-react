@@ -69,7 +69,6 @@ const DxcPopover = ({
           </Popover.Trigger>
         ) : (
           <Popover.Trigger
-            asChild
             onClick={
               actionToOpen === "click" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
             }
