@@ -175,9 +175,9 @@ export type DateUnitPickerPropsType = {
    */
   items: PickerItem[];
   /**
-   *
+   * Date unit to display in the picker (month or year).
    */
-  isMonth?: boolean;
+  unit?: "month" | "year";
 };
 
 export default Props;

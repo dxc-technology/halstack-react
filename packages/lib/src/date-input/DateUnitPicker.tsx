@@ -69,14 +69,11 @@ const DateUnitPicker = ({
   selectedDate,
   today,
   items,
-  isMonth,
+  unit = "year",
 }: DateUnitPickerPropsType): JSX.Element => {
-  const selectedValue =
-    selectedDate?.isValid() && selectedDate ? selectedDate.get(isMonth ? "month" : "year") : undefined;
-  const currentValue =
-    today?.isValid() && today ? today.get(isMonth ? "month" : "year") : dayjs().get(isMonth ? "month" : "year");
-  const ariaLabel = isMonth ? "Month Picker" : "Year Picker";
-  const idPrefix = isMonth ? "month" : "year";
+  const selectedValue = selectedDate?.isValid() && selectedDate ? selectedDate.get(unit) : undefined;
+  const currentValue = today?.isValid() && today ? today.get(unit) : dayjs().get(unit);
+  const ariaLabel = `${unit.charAt(0).toUpperCase() + unit.slice(1)} Picker`;
 
   const id = useId();
   const currentIndex = items.findIndex((item) => item.value === currentValue);
@@ -91,10 +88,10 @@ const DateUnitPicker = ({
   }, [selectedIndex, currentIndex]);
 
   useEffect(() => {
-    const itemToFocusEl = document.getElementById(`${id}_${idPrefix}_${itemToFocus}`);
+    const itemToFocusEl = document.getElementById(`${id}_${unit}_${itemToFocus}`);
     itemToFocusEl?.scrollIntoView?.({ block: "center", inline: "center" });
     itemToFocusEl?.focus();
-  }, [itemToFocus, id, idPrefix]);
+  }, [itemToFocus, id, unit]);
 
   const handleKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
@@ -122,7 +119,7 @@ const DateUnitPicker = ({
             tabIndex={itemToFocus === index ? 0 : -1}
             isCurrent={item.value === currentValue}
             onKeyDown={(event) => handleKeyboardEvent(event)}
-            id={`${id}_${idPrefix}_${index}`}
+            id={`${id}_${unit}_${index}`}
             onClick={() => {
               onDateUnitSelect(item.value);
             }}

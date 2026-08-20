@@ -12,9 +12,10 @@ const YearMonthPickersContainer = styled.div`
 `;
 
 export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
-  const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(innerDate?.get("year") || null);
+  const [selectedMonth, setSelectedMonth] = useState<number | null>(innerDate?.get("month") || null);
   const languageContext = useContext(HalstackLanguageContext);
+
   const yearItems = getYearPickerItems();
   const monthItems = getMonthPickerItems(languageContext.labels.calendar.months);
 
@@ -32,25 +33,23 @@ export const YearMonthPicker = ({ isYearFirst, innerDate, today, onYearMonthComp
     onYearMonthComplete(finalDate);
   };
 
-  const yearPickerSelectedDate = selectedYear != null ? innerDate.set("year", selectedYear) : null;
-  const monthPickerSelectedDate = selectedMonth != null ? innerDate.set("month", selectedMonth) : null;
-
   const yearPicker = (
     <DateUnitPicker
-      selectedDate={yearPickerSelectedDate}
+      selectedDate={innerDate}
       onDateUnitSelect={handleOnYearSelect}
       today={today}
       items={yearItems}
+      unit="year"
     />
   );
 
   const monthPicker = (
     <DateUnitPicker
-      selectedDate={monthPickerSelectedDate}
+      selectedDate={innerDate}
       onDateUnitSelect={handleOnMonthSelect}
       today={today}
       items={monthItems}
-      isMonth
+      unit="month"
     />
   );
 
