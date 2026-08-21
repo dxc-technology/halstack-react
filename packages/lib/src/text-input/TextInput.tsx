@@ -172,7 +172,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           // Avoid select to lose focus when the list is closed
           event.preventDefault();
         }}
-        onClose={() => {}}
         popoverContent={
           <Suggestions
             highlightedSuggestions={typeof suggestions !== "function"}
