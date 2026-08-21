@@ -5,6 +5,7 @@ import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import scrollbarStyles from "../styles/scroll";
+import DxcBleed from "../bleed/Bleed";
 
 const SuggestionsContainer = styled.div`
   max-height: 304px;
@@ -13,7 +14,6 @@ const SuggestionsContainer = styled.div`
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   overflow-y: auto;
-  margin: 0px calc(${`var(--spacing-padding-xs)`} * -1);
   ${scrollbarStyles}
 `;
 
@@ -61,38 +61,40 @@ const Suggestions = ({
   }, [visualFocusIndex]);
 
   return (
-    <SuggestionsContainer
-      onMouseDown={(event) => {
-        event.preventDefault();
-      }}
-      style={styles}
-    >
-      {isSearching ? (
-        <SuggestionsSystemMessage aria-live="polite">
-          {translatedLabels.textInput.searchingMessage}
-        </SuggestionsSystemMessage>
-      ) : searchHasErrors ? (
-        <SuggestionsErrorMessage aria-live="assertive" role="alert">
-          <DxcIcon icon="filled_error" />
-          {translatedLabels.textInput.fetchingDataErrorMessage}
-        </SuggestionsErrorMessage>
-      ) : (
-        <ul aria-label="Suggestions" id={id} ref={listboxRef} role="listbox" style={{ margin: 0, padding: 0 }}>
-          {suggestions.map((suggestion, index) => (
-            <Suggestion
-              highlighted={highlightedSuggestions}
-              id={`${id}-suggestion-${index}`}
-              isLast={index === suggestions.length - 1}
-              key={`${id}-suggestion-${index}`}
-              onClick={suggestionOnClick}
-              suggestion={suggestion}
-              value={value}
-              visuallyFocused={visualFocusIndex === index}
-            />
-          ))}
-        </ul>
-      )}
-    </SuggestionsContainer>
+    <DxcBleed horizontal="var(--spacing-padding-xs)">
+      <SuggestionsContainer
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        style={styles}
+      >
+        {isSearching ? (
+          <SuggestionsSystemMessage aria-live="polite">
+            {translatedLabels.textInput.searchingMessage}
+          </SuggestionsSystemMessage>
+        ) : searchHasErrors ? (
+          <SuggestionsErrorMessage aria-live="assertive" role="alert">
+            <DxcIcon icon="filled_error" />
+            {translatedLabels.textInput.fetchingDataErrorMessage}
+          </SuggestionsErrorMessage>
+        ) : (
+          <ul aria-label="Suggestions" id={id} ref={listboxRef} role="listbox" style={{ margin: 0, padding: 0 }}>
+            {suggestions.map((suggestion, index) => (
+              <Suggestion
+                highlighted={highlightedSuggestions}
+                id={`${id}-suggestion-${index}`}
+                isLast={index === suggestions.length - 1}
+                key={`${id}-suggestion-${index}`}
+                onClick={suggestionOnClick}
+                suggestion={suggestion}
+                value={value}
+                visuallyFocused={visualFocusIndex === index}
+              />
+            ))}
+          </ul>
+        )}
+      </SuggestionsContainer>
+    </DxcBleed>
   );
 };
 
