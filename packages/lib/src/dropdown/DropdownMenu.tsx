@@ -10,12 +10,8 @@ const DropdownMenuContainer = styled.ul`
   min-width: min-content;
   padding: 0;
   margin: 0;
-  background-color: var(--color-bg-neutral-lightest);
-  border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-100);
   outline: none;
   overflow-y: auto;
-  z-index: var(--z-dropdown);
   ${scrollbarStyles}
 `;
 
