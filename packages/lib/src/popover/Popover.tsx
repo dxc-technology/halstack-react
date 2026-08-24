@@ -97,7 +97,10 @@ const DxcPopover = ({
                 onCloseAutoFocus?.(event);
               }}
               onInteractOutside={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
-              onEscapeKeyDown={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
+              onEscapeKeyDown={(event: KeyboardEvent) => {
+                event.stopPropagation();
+                handleTrigger(isControlled.current, setOpened, false, onClose);
+              }}
               onMouseEnter={
                 actionToOpen === "hover"
                   ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
