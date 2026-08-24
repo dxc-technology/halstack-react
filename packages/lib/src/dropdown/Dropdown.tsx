@@ -1,4 +1,13 @@
-import { KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  forwardRef,
+  KeyboardEvent,
+  useCallback,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -7,6 +16,7 @@ import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
 import DxcPopover from "../popover/Popover";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const sizes = {
   small: "60px",
@@ -109,6 +119,17 @@ const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
     height: var(--height-xxs);
   }
 `;
+
+const DropdownTriggerWithTooltip = forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<typeof DropdownTrigger>>(
+  ({ title, ...props }, ref) =>
+    title ? (
+      <Tooltip label={title}>
+        <DropdownTrigger {...props} ref={ref} title={title} />
+      </Tooltip>
+    ) : (
+      <DropdownTrigger {...props} ref={ref} />
+    )
+);
 
 const DxcDropdown = ({
   options,
@@ -270,7 +291,7 @@ const DxcDropdown = ({
             />
           }
         >
-          <DropdownTrigger
+          <DropdownTriggerWithTooltip
             onClick={handleTriggerOnClick}
             onKeyDown={handleTriggerOnKeyDown}
             onBlur={(event) => {
@@ -307,7 +328,7 @@ const DxcDropdown = ({
                 <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
               </CaretIcon>
             )}
-          </DropdownTrigger>
+          </DropdownTriggerWithTooltip>
         </DxcPopover>
       </DropdownContainer>
     </>
