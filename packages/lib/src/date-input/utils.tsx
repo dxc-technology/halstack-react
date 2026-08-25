@@ -1,8 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { DateType } from "./types";
+import { DateType, PickerItem } from "./types";
 
 const INVIS_CHARS = /[\u200E\u200F\u061C]/g;
+const MIN_YEAR = 1899;
+const MAX_YEAR = 2100;
 
 export const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
 
@@ -109,3 +111,27 @@ export const divideDaysIntoWeeks = (data: DateType[], weekSize: number) =>
   Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
     data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
+
+export const getMonthPickerItems = (months: string[]): PickerItem[] =>
+  months.map((month: string, index: number) => ({
+    value: index,
+    label: month,
+  }));
+
+export const getYearPickerItems = (): PickerItem[] => {
+  const yearList: number[] = [];
+  for (let i = MIN_YEAR; i <= MAX_YEAR; i++) {
+    yearList.push(i);
+  }
+  return yearList.map((year: number) => ({
+    value: year,
+    label: year.toString(),
+  }));
+};
+
+export const calculateIsYearFirst = (localeFormat: string): boolean => {
+  const lower = localeFormat.toLowerCase();
+  const yearIndices = lower.indexOf("y");
+  const monthIndices = lower.indexOf("m");
+  return yearIndices < monthIndices;
+};
