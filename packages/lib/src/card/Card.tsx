@@ -14,6 +14,7 @@ const Card = styled.div<{
   imagePosition?: CardPropsType["imagePosition"];
   selectable?: boolean;
   interactive?: boolean;
+  selected?: boolean;
   size?: CardPropsType["size"];
 }>`
   display: flex;
@@ -23,13 +24,14 @@ const Card = styled.div<{
   padding: ${({ selectable }) => (selectable ? "var(--spacing-padding-none)" : "var(--spacing-padding-xs)")};
   box-sizing: border-box;
   border-radius: var(--border-radius-l);
-  ${({ mode, interactive, size }) => getCardStyles(mode, interactive ?? false, size)}
-  outline-offset: calc(var(--border-width-m));
+  border-style: var(--border-style-default);
+  ${({ mode, interactive, selected, size }) => getCardStyles(mode, interactive ?? false, selected, size)}
+  outline-offset: var(--border-width-m);
   background: var(--color-bg-neutral-lightest);
 `;
 
-const SelectableWrapper = styled.div<{ selected: boolean; mode: CardPropsType["mode"] }>`
-  ${({ selected, mode }) => getSelectableWrapperStyles(selected, mode)}
+const SelectableWrapper = styled.div<{ selected: boolean }>`
+  ${({ selected }) => getSelectableWrapperStyles(selected)}
   border-radius: var(--border-radius-l);
   padding: var(--spacing-padding-xs);
   overflow: hidden;
@@ -198,6 +200,7 @@ const DxcCard = forwardRef(
           imagePosition={imagePosition}
           mode={mode}
           selectable={selectable}
+          selected={selectable && internalSelected}
           interactive={isInteractive}
           tabIndex={isInteractive ? tabIndex : undefined}
           role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
@@ -211,7 +214,7 @@ const DxcCard = forwardRef(
           ref={ref as Ref<HTMLDivElement>}
         >
           {selectable ? (
-            <SelectableWrapper selected={internalSelected} mode={mode}>
+            <SelectableWrapper selected={internalSelected}>
               {image && (
                 <ImageContainer image={image}>
                   <DxcImage {...image} />
