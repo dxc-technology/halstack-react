@@ -2,7 +2,7 @@ import { forwardRef, Ref, useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
-import { getCardStyles, emptyIconSizes, handleEvent } from "./utils";
+import { getCardStyles, emptyIconSizes, handleEvent, getSelectableWrapperStyles } from "./utils";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcTypography from "../typography/Typography";
@@ -12,19 +12,26 @@ const Card = styled.div<{
   mode: CardPropsType["mode"];
   direction?: CardPropsType["direction"];
   imagePosition?: CardPropsType["imagePosition"];
+  selectable?: boolean;
   interactive?: boolean;
   size?: CardPropsType["size"];
-  selected?: boolean;
 }>`
   display: flex;
   flex-direction: ${({ direction, imagePosition }) =>
     imagePosition === "before" ? direction : `${direction}-reverse`};
   gap: var(--spacing-gap-s);
+  padding: ${({ selectable }) => (selectable ? "var(--spacing-padding-none)" : "var(--spacing-padding-xs)")};
   box-sizing: border-box;
-  padding: var(--spacing-padding-xs);
   border-radius: var(--border-radius-l);
-  ${({ mode, interactive, selected, size }) => getCardStyles(mode, interactive ?? false, selected, size)}
+  ${({ mode, interactive, size }) => getCardStyles(mode, interactive ?? false, size)}
+  outline-offset: calc(var(--border-width-m));
   background: var(--color-bg-neutral-lightest);
+`;
+
+const SelectableWrapper = styled.div<{ selected: boolean; mode: CardPropsType["mode"] }>`
+  ${({ selected, mode }) => getSelectableWrapperStyles(selected, mode)}
+  border-radius: var(--border-radius-l);
+  padding: var(--spacing-padding-xs);
   overflow: hidden;
 `;
 
@@ -190,8 +197,8 @@ const DxcCard = forwardRef(
           size={size}
           imagePosition={imagePosition}
           mode={mode}
+          selectable={selectable}
           interactive={isInteractive}
-          selected={selectable && internalSelected}
           tabIndex={isInteractive ? tabIndex : undefined}
           role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
           onClick={(event) => {
@@ -203,12 +210,25 @@ const DxcCard = forwardRef(
           aria-checked={selectable ? internalSelected : undefined}
           ref={ref as Ref<HTMLDivElement>}
         >
-          {image && (
-            <ImageContainer image={image}>
-              <DxcImage {...image} />
-            </ImageContainer>
+          {selectable ? (
+            <SelectableWrapper selected={internalSelected} mode={mode}>
+              {image && (
+                <ImageContainer image={image}>
+                  <DxcImage {...image} />
+                </ImageContainer>
+              )}
+              {children}
+            </SelectableWrapper>
+          ) : (
+            <>
+              {image && (
+                <ImageContainer image={image}>
+                  <DxcImage {...image} />
+                </ImageContainer>
+              )}
+              {children}
+            </>
           )}
-          {children}
         </Card>
       );
     }
