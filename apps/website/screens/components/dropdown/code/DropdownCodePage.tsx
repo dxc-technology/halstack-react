@@ -4,8 +4,17 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+
+const optionsTypeString = `{
+  label?: string;
+  icon?: string 
+  | (React.ReactNode 
+  & React.SVGProps<SVGSVGElement>);
+  hasDivider?: boolean;
+  value: string;
+}[]`;
 
 const sections = [
   {
@@ -117,16 +126,15 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                  <StatusBadge status="required" />
+                  <DxcFlex gap="var(--spacing-gap-xs)" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    <StatusBadge status="new" />
+                  </DxcFlex>
                   options
                 </DxcFlex>
               </td>
               <td>
-                <TableCode>
-                  {
-                    "{ label?: string; icon?: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); value: string }[]"
-                  }
-                </TableCode>
+                <ExtendedTableCode>{optionsTypeString}</ExtendedTableCode>
               </td>
               <td>
                 An array of objects representing the options. Each object has the following properties:
