@@ -48,6 +48,7 @@ const defaultOptions: Option[] = [
   {
     value: "3",
     label: "Apple",
+    hasDivider: true,
   },
   {
     value: "4",
@@ -56,6 +57,7 @@ const defaultOptions: Option[] = [
   {
     value: "5",
     label: "Aliexpress",
+    hasDivider: true,
   },
   {
     value: "6",
@@ -78,6 +80,7 @@ const options: Option[] = [
   {
     value: "2",
     label: "Ebay",
+    hasDivider: true,
   },
   {
     value: "3",

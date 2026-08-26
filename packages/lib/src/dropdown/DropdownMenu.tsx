@@ -4,6 +4,7 @@ import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
 import scrollbarStyles from "../styles/scroll";
 import DxcBleed from "../bleed/Bleed";
+import DxcDivider from "../divider/Divider";
 
 const DropdownMenuContainer = styled.ul`
   max-height: 230px;
@@ -35,14 +36,17 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
         style={styles}
       >
         {options.map((option, index) => (
-          <DropdownMenuItem
-            id={`${id}-option-${index}`}
-            key={`${id}-option-${index}`}
-            visuallyFocused={index === visualFocusIndex}
-            iconPosition={iconsPosition}
-            onClick={menuItemOnClick}
-            option={option}
-          />
+          <>
+            <DropdownMenuItem
+              id={`${id}-option-${index}`}
+              key={`${id}-option-${option.value}`}
+              visuallyFocused={index === visualFocusIndex}
+              iconPosition={iconsPosition}
+              onClick={menuItemOnClick}
+              option={option}
+            />
+            {option.hasDivider && <DxcDivider />}
+          </>
         ))}
       </DropdownMenuContainer>
     </DxcBleed>

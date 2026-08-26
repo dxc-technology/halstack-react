@@ -8,17 +8,34 @@ const code = `() => {
     {
       value: 1,
       label: "Android",
-      icon: "filled_phone_android",
+      icon: "phone_android",
     },
     {
       value: 2,
+      label: "IOS",
+      icon: "phone_iphone",
+      hasDivider: true,
+    },
+    {
+      value: 3,
       label: "Windows",
       icon: "desktop_windows",
     },
     {
-      value: 3,
-      label: "IOS",
-      icon: "filled_phone_iphone",
+      value: 4,
+      label: "Linux",
+      icon: "laptop",
+    },
+    {
+      value: 5,
+      label: "macOS",
+      icon: "laptop_mac",
+      hasDivider: true,
+    },
+    {
+      value: 6,
+      label: "Other",
+      icon: "devices_other",
     },
   ];
 
