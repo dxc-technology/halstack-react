@@ -28,7 +28,7 @@ const Action = styled.a<{
   cursor: pointer;
   overflow: hidden;
   text-decoration: none;
-
+  width: stretch;
   &:hover {
     background-color: ${({ selected }) =>
       selected ? "var(--color-bg-primary-medium)" : "var(--color-bg-neutral-light)"};

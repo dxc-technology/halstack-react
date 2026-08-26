@@ -1,4 +1,4 @@
-import { useContext, useId } from "react";
+import { useContext, useId, useState } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
@@ -16,6 +16,11 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
     contextValue,
     props.defaultOpen
   );
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(true);
+
+  const toggleSubMenu = () => {
+    setIsSubMenuOpen((prev) => !prev);
+  };
 
   return hasPopOver ? (
     <>
@@ -36,25 +41,31 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
             >
               {!isHorizontal && props.depthLevel === 0 && (
                 <ItemAction
-                  aria-controls={isOpen ? groupMenuId : undefined}
-                  aria-expanded={isOpen ? true : undefined}
-                  aria-pressed={groupSelected && !isOpen}
-                  collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-                  onClick={() => toggleOpen()}
-                  selected={groupSelected && !isOpen}
+                  aria-controls={isSubMenuOpen ? groupMenuId : undefined}
+                  aria-expanded={isSubMenuOpen ? true : undefined}
+                  aria-pressed={groupSelected && !isSubMenuOpen}
+                  collapseIcon={
+                    isSubMenuOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />
+                  }
+                  onClick={() => {
+                    toggleSubMenu();
+                  }}
+                  selected={groupSelected && !isSubMenuOpen}
                   {...props}
                   icon={undefined}
                 />
               )}
-              <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
-                {items.map((item, index) => (
-                  <MenuItem
-                    item={item}
-                    depthLevel={isHorizontal ? props.depthLevel : props.depthLevel + 1}
-                    key={`${item.label}-${index}`}
-                  />
-                ))}
-              </SubMenu>
+              {isSubMenuOpen && (
+                <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
+                  {items.map((item, index) => (
+                    <MenuItem
+                      item={item}
+                      depthLevel={isHorizontal ? props.depthLevel : props.depthLevel + 1}
+                      key={`${item.label}-${index}`}
+                    />
+                  ))}
+                </SubMenu>
+              )}
             </BaseMenuContext.Provider>
           </>
         }
