@@ -25,22 +25,28 @@ export const getCardStyles = (
     ${
       mode === "outlined" && !selected
         ? `border: ${borderWidth} var(--border-style-default) var(--border-color-neutral-light);`
-        : ""
+        : "border-width: var(--border-width-none);"
     }
     ${interactive ? "cursor: pointer;" : ""}
     ${calculateSize(size)}
   `;
 
-  if (mode === "elevated") {
-    hover = `box-shadow: var(--shadow-300);`;
-    focus = `box-shadow: var(--shadow-100); 
+  if (interactive && !selected) {
+    if (mode === "elevated") {
+      hover = `box-shadow: var(--shadow-300);`;
+      focus = `box-shadow: var(--shadow-100); 
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-    active = `box-shadow: var(--shadow-100);`;
-  } else if (mode === "outlined") {
-    hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);`;
-    focus = `border-width: var(--border-width-m); 
+      active = `box-shadow: var(--shadow-100);`;
+    } else if (mode === "outlined") {
+      hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);`;
+      focus = `border-width: var(--border-width-m); 
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-    active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);`;
+      active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);`;
+    }
+  } else if (interactive && selected && mode === "outlined") {
+    hover = `border-width: var(--border-width-none);`;
+    focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+    active = `border-width: var(--border-width-none);`;
   }
 
   return `
