@@ -25,6 +25,7 @@ const Card = styled.div<{
   box-sizing: border-box;
   border-radius: var(--border-radius-l);
   border-style: var(--border-style-default);
+  border-color: transparent;
   ${({ mode, interactive, selected, size }) => getCardStyles(mode, interactive ?? false, selected, size)}
   outline-offset: var(--border-width-m);
   background: var(--color-bg-neutral-lightest);
