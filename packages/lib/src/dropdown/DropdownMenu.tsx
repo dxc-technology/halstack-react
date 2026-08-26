@@ -38,7 +38,7 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
         {options.map((option, index) => (
           <>
             <DropdownMenuItem
-              id={`${id}-option-${visualFocusIndex}`}
+              id={`${id}-option-${index}`}
               key={`${id}-option-${option.value}`}
               visuallyFocused={index === visualFocusIndex}
               iconPosition={iconsPosition}

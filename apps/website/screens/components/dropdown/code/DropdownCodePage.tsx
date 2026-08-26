@@ -154,6 +154,9 @@ const sections = [
                   <li>
                     <strong>value</strong>: Option inner value.
                   </li>
+                  <li>
+                    <strong>hasDivider</strong>: Whether a divider should be displayed after the option.
+                  </li>
                 </ul>
               </td>
               <td>-</td>
