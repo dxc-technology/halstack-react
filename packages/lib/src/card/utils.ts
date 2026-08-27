@@ -31,22 +31,24 @@ export const getCardStyles = (
     ${calculateSize(size)}
   `;
 
-  if (interactive && !selected) {
+  if (interactive) {
     if (mode === "elevated") {
       hover = `box-shadow: var(--shadow-300);`;
       focus = `box-shadow: var(--shadow-100); 
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
       active = `box-shadow: var(--shadow-100);`;
     } else if (mode === "outlined") {
-      hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);`;
-      focus = `border-width: var(--border-width-m); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-      active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);`;
+      if (selected) {
+        hover = `border-width: var(--border-width-none);`;
+        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        active = `border-width: var(--border-width-none);`;
+      } else {
+        hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);outline-offset: var(--border-width-none);`;
+        focus = `border-width: var(--boselectedrder-width-m); 
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);outline-offset: var(--border-width-none);`;
+        active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);outline-offset: var(--border-width-none);`;
+      }
     }
-  } else if (interactive && selected && mode === "outlined") {
-    hover = `border-width: var(--border-width-none);`;
-    focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-    active = `border-width: var(--border-width-none);`;
   }
 
   return `
