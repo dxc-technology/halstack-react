@@ -16,16 +16,6 @@ jobs:
           node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_PROD }}
-          role-duration-seconds: 3600
-          role-skip-session-tagging: true
-
       - name: Install dependencies
         run: npm install
 
@@ -48,7 +38,22 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
-      - name: Move NEXT website to S3
+      - name: Deploy via SFTP
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
         run: |
-          aws s3 rm s3://design-system-react-cdk-site-tmp/halstack/next/ --recursive
-          aws s3 cp ./apps/website/out/ s3://design-system-react-cdk-site-tmp/halstack/next/ --recursive
+          mkdir -p ~/.ssh
+
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/ssh_file.pem
+
+          chmod 600 ~/.ssh/ssh_file.pem
+
+          ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
+
+          sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
+          rm /halstack/next/*
+          EOF
+
+          scp -i ~/.ssh/ssh_file.pem -r ./apps/website/out/* $SFTP_USER@$SFTP_HOST:/halstack/next/
