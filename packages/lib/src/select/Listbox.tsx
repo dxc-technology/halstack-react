@@ -8,6 +8,7 @@ import scrollbarStyles from "../styles/scroll";
 import { FlattenedItem, ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
+import DxcBleed from "../bleed/Bleed";
 
 const ListboxContainer = styled.div<{
   height?: ListboxProps["virtualizedHeight"];
@@ -15,11 +16,6 @@ const ListboxContainer = styled.div<{
   box-sizing: border-box;
   max-height: 304px;
   height: ${(props) => (props.height ? props.height : undefined)};
-  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
-  background-color: var(--color-bg-neutral-lightest);
-  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
-  border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-200);
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -219,54 +215,57 @@ const VirtualizedListbox = ({
   };
 
   return (
-    <ListboxContainer
-      height={virtualizedHeight}
-      id={id}
-      onClick={(event) => {
-        event.stopPropagation();
-      }}
-      onMouseDown={(event) => {
-        event.preventDefault();
-      }}
-      style={styles}
-    >
-      <Virtuoso
-        ref={virtuosoRef}
-        style={{ height: "100%" }}
-        totalCount={flattenedOptions.length}
-        initialTopMostItemIndex={
-          !multiple && currentValue
-            ? {
-                index:
-                  flattenedOptions.findIndex((item) => item.type === "option" && item.option.value === currentValue) ??
-                  0,
-                align: "center",
-                behavior: "auto",
-              }
-            : 0
-        }
-        itemContent={(index) => renderItem(index)}
-        components={{
-          List: forwardRef((props, ref) => (
-            <div
-              ref={ref}
-              role="listbox"
-              aria-labelledby={ariaLabelledBy}
-              aria-multiselectable={multiple}
-              id={id}
-              {...props}
-            />
-          )),
-          Header: () =>
-            isSearchEmpty ? (
-              <OptionsSystemMessage>
-                <DxcIcon icon="search_off" />
-                {translatedLabels.select.noMatchesErrorMessage}
-              </OptionsSystemMessage>
-            ) : null,
+    <DxcBleed horizontal={"var(--spacing-padding-xs)"}>
+      <ListboxContainer
+        height={virtualizedHeight}
+        id={id}
+        onClick={(event) => {
+          event.stopPropagation();
         }}
-      />
-    </ListboxContainer>
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        style={styles}
+      >
+        <Virtuoso
+          ref={virtuosoRef}
+          style={{ height: "100%" }}
+          totalCount={flattenedOptions.length}
+          initialTopMostItemIndex={
+            !multiple && currentValue
+              ? {
+                  index:
+                    flattenedOptions.findIndex(
+                      (item) => item.type === "option" && item.option.value === currentValue
+                    ) ?? 0,
+                  align: "center",
+                  behavior: "auto",
+                }
+              : 0
+          }
+          itemContent={(index) => renderItem(index)}
+          components={{
+            List: forwardRef((props, ref) => (
+              <div
+                ref={ref}
+                role="listbox"
+                aria-labelledby={ariaLabelledBy}
+                aria-multiselectable={multiple}
+                id={id}
+                {...props}
+              />
+            )),
+            Header: () =>
+              isSearchEmpty ? (
+                <OptionsSystemMessage>
+                  <DxcIcon icon="search_off" />
+                  {translatedLabels.select.noMatchesErrorMessage}
+                </OptionsSystemMessage>
+              ) : null,
+          }}
+        />
+      </ListboxContainer>
+    </DxcBleed>
   );
 };
 
@@ -435,23 +434,25 @@ const NonVirtualizedListbox = ({
   }, [visualFocusIndex]);
 
   return (
-    <ListboxContainer
-      aria-labelledby={ariaLabelledBy}
-      aria-multiselectable={multiple}
-      id={id}
-      onClick={(event) => {
-        event.stopPropagation();
-      }}
-      onMouseDown={(event) => {
-        event.preventDefault();
-      }}
-      ref={listboxRef}
-      role="listbox"
-      style={styles}
-    >
-      {getFirstItem()}
-      {options.map(mapOptionFunc)}
-    </ListboxContainer>
+    <DxcBleed horizontal={"var(--spacing-padding-xs)"}>
+      <ListboxContainer
+        aria-labelledby={ariaLabelledBy}
+        aria-multiselectable={multiple}
+        id={id}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        ref={listboxRef}
+        role="listbox"
+        style={styles}
+      >
+        {getFirstItem()}
+        {options.map(mapOptionFunc)}
+      </ListboxContainer>
+    </DxcBleed>
   );
 };
 
