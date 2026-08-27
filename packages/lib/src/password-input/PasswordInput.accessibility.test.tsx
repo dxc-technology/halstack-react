@@ -3,11 +3,13 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcPasswordInput from "./PasswordInput";
 import { vi } from "vitest";
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+global.ResizeObserver = vi.fn(function ResizeObserver() {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
+});
 
 describe("Password input component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {

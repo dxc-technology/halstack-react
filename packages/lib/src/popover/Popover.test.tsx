@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import DxcPopover from "./Popover";
 import userEvent from "@testing-library/user-event";
 import DxcButton from "../button/Button";
@@ -76,5 +76,34 @@ describe("Popover component tests", () => {
     expect(getByText("Popover content")).toBeTruthy();
     userEvent.unhover(getByText("Trigger"));
     expect(onClose).toHaveBeenCalled();
+  });
+
+  test("The component manages onOpenAutoFocus", () => {
+    const autoFocusEvent = jest.fn();
+    const { getByText, queryByText } = render(
+      <DxcPopover onOpenAutoFocus={autoFocusEvent} popoverContent={<div>Popover content</div>}>
+        Trigger
+      </DxcPopover>
+    );
+    expect(queryByText("Trigger")).toBeTruthy();
+    userEvent.click(getByText("Trigger"));
+    expect(getByText("Popover content")).toBeTruthy();
+    expect(autoFocusEvent).toHaveBeenCalled();
+  });
+
+  test("The component manages onCloseAutoFocus", async () => {
+    const autoFocusEvent = jest.fn();
+    const { getByText, queryByText } = render(
+      <DxcPopover onCloseAutoFocus={autoFocusEvent} popoverContent={<div>Popover content</div>}>
+        Trigger
+      </DxcPopover>
+    );
+    expect(queryByText("Trigger")).toBeTruthy();
+    userEvent.click(getByText("Trigger"));
+    expect(getByText("Popover content")).toBeTruthy();
+    userEvent.keyboard("{Escape}");
+    await waitFor(() => {
+      expect(autoFocusEvent).toHaveBeenCalled();
+    });
   });
 });

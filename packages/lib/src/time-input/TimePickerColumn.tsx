@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import DxcContainer from "../container/Container";
 import DxcFlex from "../flex/Flex";
-import { pad } from "./utils";
+import { pad, returnDayPeriod } from "./utils";
+import { TranslatedLabels } from "../common/variables";
 
 const TimePickerOption = styled.li<{
   selected: boolean;
@@ -46,10 +47,6 @@ const returnHourBasedOnIndex = (index: number, dataType: "hour" | "minute" | "se
   }
 };
 
-const returnDayPeriod = (value: number) => {
-  return value === 0 ? "AM" : value === 1 ? "PM" : "";
-};
-
 const TimePickerColumn = ({
   valuesArray,
   id,
@@ -59,6 +56,7 @@ const TimePickerColumn = ({
   dataType,
   onClick,
   onKeyboardEvent,
+  translatedLabels,
 }: {
   valuesArray: number[];
   id?: string;
@@ -68,6 +66,7 @@ const TimePickerColumn = ({
   dataType: "hour" | "minute" | "second" | "dayPeriod";
   onClick: (value: number) => void;
   onKeyboardEvent: (event: React.KeyboardEvent, value: number) => void;
+  translatedLabels?: TranslatedLabels;
 }) => {
   return (
     <DxcContainer
@@ -95,7 +94,7 @@ const TimePickerColumn = ({
           >
             {dataType !== "dayPeriod"
               ? pad(returnHourBasedOnIndex(optionValue, dataType))
-              : returnDayPeriod(returnHourBasedOnIndex(optionValue, dataType))}
+              : returnDayPeriod(returnHourBasedOnIndex(optionValue, dataType), translatedLabels)}
           </TimePickerOption>
         ))}
       </DxcFlex>

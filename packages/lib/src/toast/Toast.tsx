@@ -93,7 +93,7 @@ const DxcToast = ({
   const [isClosing, setIsClosing] = useState(false);
   const toastRef = useRef<HTMLOutputElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   // Timeouts
   const clearClosingAnimationTimer = useTimeout(() => setIsClosing(true), loading ? undefined : duration - 300);

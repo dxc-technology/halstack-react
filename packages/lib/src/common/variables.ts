@@ -75,12 +75,20 @@ export const defaultTranslatedComponentLabels = {
     requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
-    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
-    logoAlternativeText: "Logo",
+    minLengthErrorMessage: (minLength: number) => `The minimum length is ${minLength}.`,
+    maxLengthErrorMessage: (maxLength: number) => `The maximum length is ${maxLength}.`,
   },
   header: {
     closeIcon: "Close menu",
     hamburgerTitle: "Menu",
+  },
+  messageInput: {
+    inputAriaLabel: "Message input",
+    sendButtonTitle: "Send message",
+    stopButtonTitle: "Stop request",
+    attachFileButtonTitle: "Attach file",
+    recordAudioButtonTitle: "Record audio",
+    stopRecordingButtonTitle: "Stop recording",
   },
   numberInput: {
     valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
@@ -132,6 +140,8 @@ export const defaultTranslatedComponentLabels = {
   },
   timeInput: {
     timePickerActionTitle: "Select time",
+    timePeriodAM: "AM",
+    timePeriodPM: "PM",
   },
   toast: {
     clearToastActionTitle: "Clear toast",
@@ -139,6 +149,11 @@ export const defaultTranslatedComponentLabels = {
 };
 
 export type TranslatedLabels = typeof defaultTranslatedComponentLabels;
+
+export type LocalizedContext = {
+  labels: TranslatedLabels;
+  locale?: string;
+};
 
 export const defaultThemedLogos = {
   mainLogo: undefined,

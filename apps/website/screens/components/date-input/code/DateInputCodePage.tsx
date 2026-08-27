@@ -101,7 +101,7 @@ const sections = [
               The format in which the date value will be displayed. User must follow this format when editing the value
               or it will be considered as an invalid date. In this case, the <Code>onBlur</Code> and{" "}
               <Code>onChange</Code> functions will be called with an internal error as a parameter reporting the
-              situation.
+              situation. If a locale is provided, it will override this setting's default value.
             </td>
             <td>
               <TableCode>'dd-MM-yyyy'</TableCode>

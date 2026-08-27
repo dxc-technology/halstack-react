@@ -131,6 +131,10 @@ const sections = [
           <strong>Use icons thoughtfully:</strong> icons can enhance usability but should only be added when they add
           clarity. Overloading the dropdown with icons can create visual clutter.
         </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Add dividers when necessary:</strong> add them when it helps users understand a meaningful distinction
+          between groups of options.
+        </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
   },

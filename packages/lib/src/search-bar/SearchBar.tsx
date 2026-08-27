@@ -68,7 +68,7 @@ const DxcSearchBar = ({
   onEnter,
   placeholder = "Search...",
 }: SearchBarProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const inputRef = useRef<HTMLInputElement>(null);
   const [innerValue, setInnerValue] = useState("");
 

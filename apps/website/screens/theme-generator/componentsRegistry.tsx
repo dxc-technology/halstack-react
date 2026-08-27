@@ -5,6 +5,7 @@ import {
   BadgePreview,
   BreadcrumbsPreview,
   ButtonPreview,
+  CardPreview,
   CheckboxPreview,
   ChipPreview,
   ContextualMenuPreview,
@@ -77,6 +78,7 @@ export const componentsRegistry = {
   "/components/badge": BadgePreview,
   "/components/chip": ChipPreview,
   "/components/status-light": StatusLightPreview,
+  "/components/card": CardPreview,
 };
 
 export const examplesRegistry = {

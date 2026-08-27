@@ -2,6 +2,7 @@ import { act, fireEvent, render, waitForElementToBeRemoved } from "@testing-libr
 import userEvent from "@testing-library/user-event";
 import DxcTextInput from "./TextInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { HalstackProvider } from "../HalstackContext";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
@@ -157,23 +158,30 @@ describe("TextInput component tests", () => {
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
-    expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
-    userEvent.clear(input);
+
+    fireEvent.change(input, { target: { value: "test-maximum-length" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
+    });
+
     fireEvent.change(input, { target: { value: "length" } });
-    expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "length" });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: "length" });
   });
 
@@ -195,34 +203,38 @@ describe("TextInput component tests", () => {
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
-    expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
+    });
+    fireEvent.change(input, { target: { value: "test-maximum-length" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "The maximum length is 10.",
     });
     fireEvent.change(input, { target: { value: "tests" } });
-    expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "tests",
       error: "Please match the format requested.",
     });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "tests",
       error: "Please match the format requested.",
     });
     fireEvent.change(input, { target: { value: "tests4&" } });
-    expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "tests4&" });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: "tests4&" });
   });
 
@@ -732,12 +744,29 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
     expect(onChange).toHaveBeenCalledWith({
       value: "Cha",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "Chad",
-      error: "Min length 5, max length 10.",
+      error: "The minimum length is 5.",
+    });
+
+    userEvent.clear(input);
+    fireEvent.focus(input);
+    fireEvent.change(input, { target: { value: "Democratic Rep" } });
+    expect(getByText("Democratic Rep")).toBeTruthy();
+    act(() => {
+      userEvent.click(getByRole("option"));
+    });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "Democratic Rep",
+      error: "The maximum length is 10.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "Democratic Republic of the Congo",
+      error: "The maximum length is 10.",
     });
   });
 
@@ -909,6 +938,23 @@ describe("TextInput component synchronous autosuggest tests", () => {
     fireEvent.change(input, { target: { value: "?" } });
     expect(list).toBeTruthy();
     expect(getAllByText("?").length).toBe(1);
+  });
+
+  test("Autosuggest scrollbar behaviour", () => {
+    const onChange = jest.fn();
+    const { getByRole, queryByRole } = render(
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
+    );
+    const input = getByRole("combobox");
+    fireEvent.focus(input);
+    const list = getByRole("listbox");
+    expect(list).toBeTruthy();
+
+    const suggestionsContainer = list.parentElement;
+    fireEvent.mouseDown(suggestionsContainer!);
+    expect(getByRole("listbox")).toBeTruthy();
+    fireEvent.blur(input);
+    expect(queryByRole("listbox")).toBeFalsy();
   });
 });
 
@@ -1155,5 +1201,53 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     fireEvent.focus(input);
     await waitForElementToBeRemoved(() => getByText("Searching..."));
     expect(getByText("Error fetching data")).toBeTruthy();
+  });
+
+  test("Maximum and minimum error messages change within HalstackProvider", () => {
+    const onChange = jest.fn();
+    const onBlur = jest.fn();
+    const { getByRole } = render(
+      <HalstackProvider
+        labels={{
+          formFields: {
+            maxLengthErrorMessage: (maxLength: number) => `Please do not enter more than ${maxLength} characters.`,
+            minLengthErrorMessage: (minLegth: number) => `Please do not enter less than ${minLegth} characters.`,
+          },
+        }}
+      >
+        <DxcTextInput
+          label="Input label"
+          placeholder="Placeholder"
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          minLength={5}
+          maxLength={10}
+        />
+      </HalstackProvider>
+    );
+    const input = getByRole("textbox");
+    fireEvent.change(input, { target: { value: "test" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+
+    fireEvent.change(input, { target: { value: "test-maximum-length" } });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "Please do not enter more than 10 characters.",
+    });
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maximum-length",
+      error: "Please do not enter more than 10 characters.",
+    });
   });
 });

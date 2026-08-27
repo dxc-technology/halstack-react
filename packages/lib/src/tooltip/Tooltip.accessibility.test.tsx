@@ -4,11 +4,13 @@ import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
 import { vi } from "vitest";
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+global.ResizeObserver = vi.fn(function ResizeObserver() {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
+});
 
 describe("Tooltip component accessibility tests", () => {
   it("Should not have basic accessibility issues for bottom position", async () => {

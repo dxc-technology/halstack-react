@@ -12,7 +12,7 @@
       {
         "label": "Avatar",
         "path": "/components/avatar",
-        "status": "experimental",
+        "status": "new",
         "icon": "filled_account_circle"
       },
       {
@@ -140,6 +140,12 @@
         "path": "/components/file-input",
         "status": "stable",
         "icon": "filled_file_upload"
+      },
+      {
+        "label": "Message input",
+        "path": "/components/message-input",
+        "status": "experimental",
+        "icon": "chat_bubble"
       },
       {
         "label": "Number input",
@@ -271,7 +277,7 @@
         "label": "Popover",
         "path": "/components/popover",
         "status": "experimental",
-        "icon": "chat_bubble" 
+        "icon": "chat_bubble"
       }
     ]
   },

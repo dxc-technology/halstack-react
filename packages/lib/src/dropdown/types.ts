@@ -16,6 +16,10 @@ export type Option = {
    * Option inner value.
    */
   value: string;
+  /**
+   * Whether the option has a divider below it.
+   */
+  hasDivider?: boolean;
 };
 
 type Props = {

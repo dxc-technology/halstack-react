@@ -1,7 +1,6 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import StatusBadge from "@/common/StatusBadge";
 import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 
 const bottomLinksTypeString = `{
@@ -71,12 +70,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                leftContent
-              </DxcFlex>
-            </td>
+            <td>leftContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -84,12 +78,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                logo
-              </DxcFlex>
-            </td>
+            <td>logo</td>
             <td>
               <ExtendedTableCode>{logoTypeString}</ExtendedTableCode>
             </td>
@@ -119,12 +108,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                rightContent
-              </DxcFlex>
-            </td>
+            <td>rightContent</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
@@ -181,11 +165,36 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Footer in application layout",
+        title: "Default Footer in application layout",
         content: (
           <iframe
-            src="https://codesandbox.io/p/sandbox/default-footer-pf6l2y"
-            style={{ width: "100%", height: "500px", border: "0", borderRadius: "4px", overflow: "hidden" }}
+            src="https://codesandbox.io/embed/default-footer-pf6l2y?view=split&hidenavigation=1&editorsize=0&fontsize=12"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zoom: 0.5,
+            }}
+            title="Footer in application layout"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          />
+        ),
+      },
+      {
+        title: "Reduced Footer in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/spnryn?view=split&hidenavigation=1&editorsize=0&fontsize=12"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zoom: 0.5,
+            }}
             title="Footer in application layout"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />

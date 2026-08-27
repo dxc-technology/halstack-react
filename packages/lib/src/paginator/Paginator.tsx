@@ -80,7 +80,7 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const width = useWidth(containerRef);

@@ -57,7 +57,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>defaultSelected</td>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                defaultSelected
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -237,6 +242,22 @@ const sections = [
             <td>
               Callback function that is called when the card is clicked. It receives a boolean value with the new
               selected state of the card. The <Code>selectable</Code> prop must be truthy for this to work.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                ref
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement | HTMLAnchorElement>"}</TableCode>
+            </td>
+            <td>
+              Ref to the card element. The type is determined by whether the card is rendered as a div or an anchor
+              element based on the props such as <Code>href</Code>.
             </td>
             <td>-</td>
           </tr>

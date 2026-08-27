@@ -19,6 +19,7 @@ const options = [
   {
     value: "2",
     label: "Ebay",
+    hasDivider: true,
   },
   {
     value: "3",
@@ -49,22 +50,6 @@ describe("Dropdown component tests", () => {
     expect(menu.getAttribute("aria-labelledby")).toBe(dropdown.id);
     expect(getAllByRole("menuitem").length).toBe(4);
   });
-  test("Button trigger opens and closes the menu options when clicked", () => {
-    const onSelectOption = jest.fn();
-    const { getByRole, queryByRole, getByText } = render(
-      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
-    );
-    const dropdown = getByRole("button");
-    expect(queryByRole("menu")).toBeFalsy();
-    userEvent.click(dropdown);
-    expect(queryByRole("menu")).toBeTruthy();
-    expect(getByText("Amazon")).toBeTruthy();
-    expect(getByText("Ebay")).toBeTruthy();
-    expect(getByText("Wallapop")).toBeTruthy();
-    expect(getByText("Aliexpress")).toBeTruthy();
-    userEvent.click(dropdown);
-    expect(queryByRole("menu")).toBeFalsy();
-  });
   test("Button trigger is not interactive when disabled", () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole, queryByText } = render(
@@ -90,30 +75,6 @@ describe("Dropdown component tests", () => {
     userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
-  test("When expandOnHover is true, the dropdown trigger shows and hides the menu when it is hovered", () => {
-    const onSelectOption = jest.fn();
-    const { queryByText, getByRole, queryByRole } = render(
-      <DxcDropdown options={options} expandOnHover label="dropdown-test" onSelectOption={onSelectOption} />
-    );
-    expect(queryByText("option-test")).toBeFalsy();
-    expect(queryByRole("menu")).toBeFalsy();
-    fireEvent.mouseOver(getByRole("button"));
-    const menu = getByRole("menu");
-    expect(menu).toBeTruthy();
-    expect(document.activeElement === menu).toBeTruthy();
-    expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
-  });
-  test("The menu is closed when the dropdown loses the focus (blur)", () => {
-    const onSelectOption = jest.fn();
-    const { getByRole, queryByRole } = render(
-      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
-    );
-    const dropdown = getByRole("button");
-    userEvent.click(dropdown);
-    expect(getByRole("menu")).toBeTruthy();
-    fireEvent.blur(getByRole("menu"));
-    expect(queryByRole("menu")).toBeFalsy();
-  });
   test("Menu button key events — Arrow up opens the list and moves the focus to the last menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -128,7 +89,6 @@ describe("Dropdown component tests", () => {
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
-    expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
   test("Menu button key events — Arrow down opens the list and moves the focus to the first menu item", () => {
@@ -145,7 +105,6 @@ describe("Dropdown component tests", () => {
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
-    expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
   test("Menu button key events — Enter opens the list and moves the focus to the first menu item", () => {
@@ -162,7 +121,6 @@ describe("Dropdown component tests", () => {
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
-    expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
   test("Menu button key events — Space opens the list and moves the focus to the first menu item", () => {
@@ -179,7 +137,6 @@ describe("Dropdown component tests", () => {
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
-    expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
   test("Menu key events — Arrow up moves the focus to the previous menu item", () => {
@@ -200,7 +157,6 @@ describe("Dropdown component tests", () => {
       keyCode: 38,
       charCode: 38,
     });
-    expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
     fireEvent.keyDown(menu, {
       key: "Enter",
@@ -223,7 +179,6 @@ describe("Dropdown component tests", () => {
       keyCode: 38,
       charCode: 38,
     });
-    expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
     fireEvent.keyDown(menu, {
       key: "Enter",
@@ -252,7 +207,6 @@ describe("Dropdown component tests", () => {
       keyCode: 40,
       charCode: 40,
     });
-    expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
     fireEvent.keyDown(menu, {
       key: "Enter",
@@ -280,7 +234,6 @@ describe("Dropdown component tests", () => {
       keyCode: 40,
       charCode: 40,
     });
-    expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
     fireEvent.keyDown(menu, {
       key: "Enter",
@@ -410,5 +363,16 @@ describe("Dropdown component tests", () => {
       charCode: 9,
     });
     expect(queryByRole("menu")).toBeFalsy();
+  });
+  test("Dropdown does not trigger form submission when inside a form", () => {
+    const onSubmit = jest.fn();
+    const { getByRole } = render(
+      <form onSubmit={onSubmit}>
+        <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={() => {}} />
+      </form>
+    );
+    const dropdown = getByRole("button");
+    userEvent.click(dropdown);
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 });

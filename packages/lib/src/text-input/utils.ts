@@ -48,13 +48,6 @@ export const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =
 
 export const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-export const isLengthIncorrect = (
-  value: string,
-  minLength: TextInputPropsType["minLength"],
-  maxLength: TextInputPropsType["maxLength"]
-) =>
-  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
-
 export const isNumberIncorrect = (
   value: number,
   minNumber: TextInputPropsType["minLength"],
@@ -77,4 +70,90 @@ export const transformSpecialChars = (str: string) => {
     });
   }
   return value;
+};
+
+export const getNumberErrorMessage = (
+  checkedValue: number,
+  valueGreaterThanOrEqualToErrorMessage: (value: number) => string,
+  valueLessThanOrEqualToErrorMessage: (value: number) => string,
+  minNumber?: number,
+  maxNumber?: number
+) =>
+  minNumber != null && checkedValue < minNumber
+    ? valueGreaterThanOrEqualToErrorMessage?.(minNumber)
+    : maxNumber != null && checkedValue > maxNumber
+      ? valueLessThanOrEqualToErrorMessage?.(maxNumber)
+      : undefined;
+
+export const decrementNumber = (
+  currentValue: string | undefined,
+  disabled: boolean,
+  readOnly: boolean,
+  changeValue: (value: number | string) => void,
+  stepNumber?: number,
+  minNumber?: number,
+  maxNumber?: number
+) => {
+  if (!disabled && !readOnly) {
+    const numberValue = Number(currentValue);
+    const steppedValue = Math.round((numberValue - (stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
+
+    if (currentValue !== "") {
+      if (minNumber != null && (numberValue < minNumber || steppedValue < minNumber)) {
+        changeValue(numberValue);
+      } else if (maxNumber != null && numberValue > maxNumber) {
+        changeValue(maxNumber);
+      } else if (numberValue === minNumber) {
+        changeValue(minNumber);
+      } else {
+        changeValue(steppedValue);
+      }
+    } else if (minNumber != null && minNumber >= 0) {
+      changeValue(minNumber);
+    } else if (maxNumber != null && maxNumber < 0) {
+      changeValue(maxNumber);
+    } else if (stepNumber != null) {
+      changeValue(-stepNumber);
+    }
+  }
+};
+
+export const incrementNumber = (
+  currentValue: string | undefined,
+  disabled: boolean,
+  readOnly: boolean,
+  changeValue: (value: number | string) => void,
+  stepNumber?: number,
+  minNumber?: number,
+  maxNumber?: number
+) => {
+  if (!disabled && !readOnly) {
+    const numberValue = Number(currentValue);
+    const steppedValue = Math.round((numberValue + (stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
+
+    if (currentValue !== "") {
+      if (maxNumber != null && (numberValue > maxNumber || steppedValue > maxNumber)) {
+        changeValue(numberValue);
+      } else if (minNumber != null && numberValue < minNumber) {
+        changeValue(minNumber);
+      } else if (numberValue === maxNumber) {
+        changeValue(maxNumber);
+      } else {
+        changeValue(steppedValue);
+      }
+    } else if (minNumber != null && minNumber > 0) {
+      changeValue(minNumber);
+    } else if (maxNumber != null && maxNumber <= 0) {
+      changeValue(maxNumber);
+    } else if (stepNumber != null) {
+      changeValue(stepNumber);
+    }
+  }
+};
+
+export const setNumberProps = (type?: string, min?: number, max?: number, step?: number, ref?: HTMLInputElement) => {
+  if (min != null) ref?.setAttribute("min", min.toString());
+  if (max != null) ref?.setAttribute("max", max.toString());
+  if (step != null) ref?.setAttribute("step", step.toString());
+  if (type != null) ref?.setAttribute("type", type);
 };

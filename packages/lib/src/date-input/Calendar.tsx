@@ -3,6 +3,7 @@ import { useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, F
 import styled from "@emotion/styled";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
+import { divideDaysIntoWeeks, getCalendarDays, getDateToFocus, isDaySelected, validateLocale } from "./utils";
 
 const CalendarContainer = styled.div`
   box-sizing: border-box;
@@ -91,53 +92,6 @@ const DayCellButton = styled.button<{
   }
 `;
 
-const getDays = (innerDate: Dayjs) => {
-  const monthDayCells: DateType[] = [];
-  const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
-  const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
-  const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
-
-  for (let i = 0; i < 42; i++) {
-    if (i < firstDayOfMonth) {
-      monthDayCells.push({
-        day: lastMonthNumberOfDays.get("date") - firstDayOfMonth + i + 1,
-        month: innerDate.get("month") ? innerDate.get("month") - 1 : 11,
-        year: innerDate.set("month", innerDate.get("month") - 1).get("year"),
-      });
-    } else if (i < daysInMonth) {
-      monthDayCells.push({
-        day: i - firstDayOfMonth + 1,
-        month: innerDate.get("month"),
-        year: innerDate.get("year"),
-      });
-    } else {
-      monthDayCells.push({
-        day: i - daysInMonth + 1,
-        month: innerDate.get("month") === 11 ? 0 : innerDate.get("month") + 1,
-        year: innerDate.set("month", innerDate.get("month") + 1).get("year"),
-      });
-    }
-  }
-  return monthDayCells;
-};
-
-const getDateToFocus = (selectedDate: Dayjs, innerDate: Dayjs, today: Dayjs) =>
-  selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
-    ? selectedDate
-    : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
-      ? today
-      : innerDate.set("date", 1);
-
-const isDaySelected = (date: DateType, selectedDate: Dayjs) =>
-  selectedDate?.get("month") === date.month &&
-  selectedDate?.get("year") === date.year &&
-  selectedDate?.get("date") === date.day;
-
-const divideDaysIntoWeeks = (data: DateType[], weekSize: number) =>
-  Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
-    data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
-  );
-
 const Calendar = ({
   selectedDate,
   innerDate,
@@ -148,8 +102,12 @@ const Calendar = ({
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const id = useId();
-  const translatedLabels = useContext(HalstackLanguageContext);
-  const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
+  const languageContext = useContext(HalstackLanguageContext);
+  const translatedLabels = languageContext?.labels;
+  const localeTag = languageContext?.locale || undefined;
+  const locale = localeTag ? new Intl.Locale(validateLocale(localeTag) ? localeTag : "en") : undefined;
+  const firstDayOfWeek = (locale ? (locale.getWeekInfo?.()?.firstDay ?? 1) : 1) % 7;
+  const dayCells = useMemo(() => getCalendarDays(innerDate, firstDayOfWeek), [innerDate, firstDayOfWeek]);
 
   const onDateClickHandler = (date: DateType) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
@@ -183,6 +141,11 @@ const Calendar = ({
       setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
   }, [innerDate, dateToFocus, selectedDate, today]);
+
+  const orderedWeekDays = useMemo(() => {
+    const weekDays = translatedLabels.calendar.daysShort;
+    return [...weekDays.slice(firstDayOfWeek - 1), ...weekDays.slice(0, firstDayOfWeek - 1)];
+  }, [translatedLabels.calendar.daysShort]);
 
   const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>, date: DateType) => {
     let dateToFocusTemp =
@@ -253,10 +216,12 @@ const Calendar = ({
         break;
     }
   };
+
   return (
     <CalendarContainer role="grid">
       <CalendarHeaderRow role="row">
-        {translatedLabels.calendar.daysShort.map((weekDay) => (
+        {/* array needs to be changed based on firstDayOfWeek or the array itself */}
+        {orderedWeekDays.map((weekDay) => (
           <WeekHeaderCell key={weekDay} role="columnheader">
             {weekDay}
           </WeekHeaderCell>
@@ -283,6 +248,7 @@ const Calendar = ({
                   today.get("month") === date.month &&
                   today.get("year") === innerDate.get("year")
                 }
+                type="button"
               >
                 {date.day}
               </DayCellButton>

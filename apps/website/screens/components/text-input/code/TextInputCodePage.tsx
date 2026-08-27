@@ -8,7 +8,6 @@ import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
-import StatusBadge from "@/common/StatusBadge";
 
 const actionTypeString = `{
   icon?: string | (React.ReactNode 
@@ -32,12 +31,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                alignment
-              </DxcFlex>
-            </td>
+            <td>alignment</td>
             <td>
               <TableCode>'left' | 'right'</TableCode>
             </td>

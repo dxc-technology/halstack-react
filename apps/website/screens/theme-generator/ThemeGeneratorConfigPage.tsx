@@ -2,12 +2,12 @@ import { useMemo, useRef, useState } from "react";
 import { DxcContainer, DxcFlex, DxcWizard } from "@dxc-technology/halstack-react";
 import StepHeading from "./components/StepHeading";
 import BottomButtons from "./components/BottomButtons";
-import ThemeGeneratorPreviewPage from "./ThemeGeneratorPreviewPage";
-import { BrandingDetails } from "./steps/BrandingDetails";
+import BrandingDetails from "./steps/BrandingDetails";
 import { generateTokens, handleExport } from "./utils";
 import { Colors, FileData, Step } from "./types";
 import ReviewDetails from "./steps/ReviewDetails";
 import Tour from "./components/Tour/Tour";
+import PreviewScreen from "./steps/PreviewScreen";
 
 const steps = [
   {
@@ -104,7 +104,7 @@ const ThemeGeneratorConfigPage = () => {
       case 0:
         return <BrandingDetails colors={colors} onColorsChange={setColors} logos={logos} onLogosChange={setLogos} />;
       case 1:
-        return <ThemeGeneratorPreviewPage tokens={tokens} logos={logos} showDefaultComponents={tourStepIndex === 2} />;
+        return <PreviewScreen tokens={tokens} logos={logos} showDefaultComponents={tourStepIndex === 2} />;
       case 2:
         return <ReviewDetails tokens={tokens} logos={logos} themeJson={themeJson} />;
     }

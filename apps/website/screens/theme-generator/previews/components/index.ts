@@ -4,6 +4,7 @@ export { default as AvatarPreview } from "./AvatarPreview";
 export { default as BadgePreview } from "./BadgePreview";
 export { default as BreadcrumbsPreview } from "./BreadcrumbsPreview";
 export { default as ButtonPreview } from "./ButtonPreview";
+export { default as CardPreview } from "./CardPreview";
 export { default as CheckboxPreview } from "./CheckboxPreview";
 export { default as ChipPreview } from "./ChipPreview";
 export { default as ContextualMenuPreview } from "./ContextualMenuPreview";

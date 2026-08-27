@@ -7,6 +7,7 @@ import semantic from "./examples/semantic";
 import icons from "./examples/icons";
 import sizes from "./examples/sizes";
 import Code, { TableCode } from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -92,6 +93,19 @@ const sections = [
               <TableCode>{"() => void"}</TableCode>
             </td>
             <td>This function will be called when the user clicks the button.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
+                <StatusBadge status="new" />
+                ref
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>{"React.Ref<HTMLButtonElement>"}</TableCode>
+            </td>
+            <td>Ref to the button element.</td>
             <td>-</td>
           </tr>
           <tr>

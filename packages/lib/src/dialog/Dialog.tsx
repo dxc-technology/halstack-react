@@ -68,7 +68,7 @@ const DxcDialog = ({
   disableFocusLock = false,
 }: DialogPropsType): JSX.Element => {
   const id = useId();
-  const translatedLabels = useContext(HalstackLanguageContext);
+  const translatedLabels = useContext(HalstackLanguageContext).labels;
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

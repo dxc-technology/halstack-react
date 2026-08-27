@@ -8,8 +8,10 @@ import DxcContainer from "../container/Container";
 import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
-import YearPicker from "./YearPicker";
+import DateUnitPicker from "./DateUnitPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
+import { HalstackProvider } from "../HalstackContext";
+import { getMonthPickerItems, getYearPickerItems } from "./utils";
 
 export default {
   title: "Date Input",
@@ -39,7 +41,7 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
-      <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
+      <DxcDateInput label="Date input" helperText="Help message" format="dd/yyyy/MM" placeholder optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
@@ -146,78 +148,158 @@ const DatePickerButtonStates = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Isolated calendar focused" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar1" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar1"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Isolated calendar hovered" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar2" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar2"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Isolated calendar actived" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar3"
+        format="dd/mm/yy"
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Isolated calendar with locale" theme="light" level={4} />
+      <HalstackProvider localeTag="en-US">
+        <DxcDatePicker
+          date={dayjs("06-04-1950", "DD-MM-YYYY")}
+          onDateSelect={() => {}}
+          id="test-calendar3"
+          format="dd/mm/yy"
+        />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
 
-const YearPickerButtonStates = () => (
-  <>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Isolated year picker focused" theme="light" level={4} />
-      <YearPicker
-        selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-        onYearSelect={() => {}}
-        today={dayjs("1904-04-03", "YYYY-MM-DD")}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Isolated year picker hovered" theme="light" level={4} />
-      <YearPicker
-        selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-        onYearSelect={() => {}}
-        today={dayjs("1904-04-03", "YYYY-MM-DD")}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Isolated year picker actived" theme="light" level={4} />
-      <YearPicker
-        selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-        onYearSelect={() => {}}
-        today={dayjs("1904-04-03", "YYYY-MM-DD")}
-      />
-    </ExampleContainer>
-  </>
-);
+const YearPickerButtonStates = () => {
+  const yearItems = getYearPickerItems();
+  return (
+    <>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <Title title="Isolated date unit picker focused" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onDateUnitSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          items={yearItems}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Isolated date unit picker hovered" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onDateUnitSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          items={yearItems}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Isolated date unit picker actived" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onDateUnitSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          items={yearItems}
+        />
+      </ExampleContainer>
+    </>
+  );
+};
 
-const DatePickerToday = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Isolated calendar with today" theme="light" level={4} />
-      <Calendar
-        selectedDate={dayjs("06-04-1904", "DD-MM-YYYY")}
-        today={dayjs("1904-04-03", "YYYY-MM-DD")}
-        onInnerDateChange={() => {}}
-        onDaySelect={() => {}}
-        innerDate={dayjs("06-04-1904", "DD-MM-YYYY")}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Isolated year picker with today" theme="light" level={4} />
-      <YearPicker
-        selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-        onYearSelect={() => {}}
-        today={dayjs("1904-04-03", "YYYY-MM-DD")}
-      />
-    </ExampleContainer>
-  </>
-);
+const DatePickerToday = () => {
+  const monthLabels = {
+    calendar: {
+      months: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+    },
+  };
+  const monthItems = getMonthPickerItems(monthLabels.calendar.months);
+  const yearItems = getYearPickerItems();
+
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Isolated calendar with today" theme="light" level={4} />
+        <Calendar
+          selectedDate={dayjs("06-04-1904", "DD-MM-YYYY")}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          onInnerDateChange={() => {}}
+          onDaySelect={() => {}}
+          innerDate={dayjs("06-04-1904", "DD-MM-YYYY")}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Isolated month picker with today" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onDateUnitSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          items={monthItems}
+          unit="month"
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Isolated date unit picker with today" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onDateUnitSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          items={yearItems}
+        />
+      </ExampleContainer>
+    </>
+  );
+};
 
 const Tooltip = () => (
   <>
     <Title title="Default tooltip" theme="light" level={2} />
     <ExampleContainer>
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar-tooltip" />
+      <DxcDatePicker
+        date={dayjs("06-04-1950", "DD-MM-YYYY")}
+        onDateSelect={() => {}}
+        id="test-calendar-tooltip"
+        format="dd/mm/yy"
+      />
     </ExampleContainer>
   </>
+);
+
+const YearMonthPickerZhCn = () => (
+  <ExampleContainer>
+    <Title title="Year/Month picker order zh-CN" theme="light" level={4} />
+    <HalstackProvider localeTag="zh-CN">
+      <DxcDateInput label="Date input" format="dd-yyyy-mm" defaultValue="06-1905-05" />
+    </HalstackProvider>
+  </ExampleContainer>
 );
 
 type Story = StoryObj<typeof DxcDateInput>;
@@ -280,6 +362,20 @@ export const DatePickerTooltipAfter: Story = {
     const afterMonthButton = (await canvas.findAllByRole("button"))[2];
     if (afterMonthButton != null) {
       await userEvent.hover(afterMonthButton);
+    }
+  },
+};
+
+export const YearMonthPickerWithLocale: Story = {
+  render: YearMonthPickerZhCn,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const calendarAction = await canvas.findByRole("combobox");
+    await userEvent.click(calendarAction);
+    const dialog = await screen.findByRole("dialog");
+    const yearMonthTrigger = within(dialog).getAllByRole("button")[1];
+    if (yearMonthTrigger != null) {
+      await userEvent.click(yearMonthTrigger);
     }
   },
 };

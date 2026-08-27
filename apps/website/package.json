@@ -5,7 +5,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest --config=./jest.config.mjs"
   },
   "dependencies": {
     "@adobe/leonardo-contrast-colors": "^1.0.0",
@@ -25,18 +26,24 @@
     "react-error-boundary": "^3.1.4",
     "react-live": "^4.1.7",
     "react-markdown": "^8.0.7",
-    "sharp": "^0.33.3",
+    "sharp": "^0.35.0",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
     "@dxc-technology/typescript-config": "*",
     "@eslint/js": "^9.31.1",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18",
+    "@types/webpack": "^5.28.5",
     "eslint": "^9.39.1",
     "eslint-config-next": "16.2.6",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "typescript": "^5.6.3"
   }
 }

@@ -62,12 +62,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                enableSelectAll
-              </DxcFlex>
-            </td>
+            <td>enableSelectAll</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -256,12 +251,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                searchByStartsWith
-              </DxcFlex>
-            </td>
+            <td>searchByStartsWith</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
@@ -315,12 +305,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="new" />
-                virtualizedHeight
-              </DxcFlex>
-            </td>
+            <td>virtualizedHeight</td>
             <td>
               <TableCode>string</TableCode>
             </td>

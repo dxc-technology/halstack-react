@@ -106,13 +106,13 @@ const DxcCard = forwardRef(
       size = { width: "fitContent", height: "fitContent" },
       tabIndex = 0,
     }: CardPropsType,
-    ref: Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement | HTMLDivElement>
   ) => {
     const isInteractive = !!(onClick || onSelectionChange) || selectable;
     const [internalSelected, setInternalSelected] = useState(
       selected !== undefined ? selected : defaultSelected || false
     );
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = useContext(HalstackLanguageContext).labels;
 
     useEffect(() => {
       if (selected !== undefined) {
@@ -170,7 +170,7 @@ const DxcCard = forwardRef(
           onClick={(event) => {
             handleEvent(event, onClick);
           }}
-          ref={ref}
+          ref={ref as Ref<HTMLAnchorElement>}
           onKeyDown={(event) => {
             handleEvent(event, onClick);
           }}
@@ -201,6 +201,7 @@ const DxcCard = forwardRef(
             handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
           }}
           aria-checked={selectable ? internalSelected : undefined}
+          ref={ref as Ref<HTMLDivElement>}
         >
           {image && (
             <ImageContainer image={image}>

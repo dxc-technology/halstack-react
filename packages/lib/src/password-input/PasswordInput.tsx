@@ -44,7 +44,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLDivElement | null>(null);
-    const { passwordInput } = useContext(HalstackLanguageContext);
+    const { passwordInput } = useContext(HalstackLanguageContext).labels;
 
     useEffect(() => {
       (() => {

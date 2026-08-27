@@ -6,10 +6,9 @@ import {
   useCallback,
   useContext,
   forwardRef,
-  Dispatch,
-  SetStateAction,
   FocusEvent,
   KeyboardEvent,
+  useMemo,
 } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
@@ -21,6 +20,7 @@ import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
+import { getDate, getFormatFromLocale, getValueForPicker } from "./utils";
 
 dayjs.extend(customParseFormat);
 
@@ -87,32 +87,6 @@ const StyledPopoverContent = styled(Popover.Content)`
   }
 `;
 
-const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
-
-const getDate = (
-  value: string,
-  format: string,
-  lastValidYear: number | null,
-  setLastValidYear: Dispatch<SetStateAction<number | null>>
-) => {
-  if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
-    return getValueForPicker(value, format);
-  }
-  let newDate = getValueForPicker(value, format);
-  if (lastValidYear == null) {
-    if (+newDate.format("YY") < 68) {
-      setLastValidYear(2000 + +newDate.format("YY"));
-      newDate = newDate.set("year", 2000 + +newDate.format("YY"));
-    } else {
-      setLastValidYear(1900 + +newDate.format("YY"));
-      newDate = newDate.set("year", 1900 + +newDate.format("YY"));
-    }
-  } else {
-    newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
-  }
-  return newDate;
-};
-
 const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
   (
     {
@@ -120,7 +94,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       name,
       defaultValue = "",
       value,
-      format = "dd-MM-yyyy",
+      format,
       helperText,
       placeholder = false,
       clearable,
@@ -141,10 +115,16 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
-    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
+    const languageContext = useContext(HalstackLanguageContext);
+    const locale = languageContext.locale ? languageContext.locale : undefined;
+    const formatter = useMemo(() => {
+      return format ? format : locale ? getFormatFromLocale(locale) : "dd-MM-yyyy";
+    }, [format, locale]);
+    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", formatter));
     const [lastValidYear, setLastValidYear] = useState<number | null>(
       innerValue || value
-        ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
+        ? !formatter.toUpperCase().includes("YYYY") &&
+          +getValueForPicker(value ?? innerValue, formatter).format("YY") < 68
           ? 2000
           : 1900
         : null
@@ -152,12 +132,12 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
     const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
-    const translatedLabels = useContext(HalstackLanguageContext);
+    const translatedLabels = languageContext.labels;
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
     const handleCalendarOnClick = (newDate: Dayjs) => {
-      const newValue = newDate.format(format.toUpperCase());
+      const newValue = newDate.format(formatter.toUpperCase());
       if (!value) {
         setDayjsDate(newDate);
         setInnerValue(newValue);
@@ -179,7 +159,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       if (value == null) {
         setInnerValue(newValue);
       }
-      const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
+      const newDate = getDate(newValue, formatter, lastValidYear, setLastValidYear);
       const invalidDateMessage =
         newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
@@ -199,7 +179,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
-      const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
+      const date = getDate(blurValue, formatter, lastValidYear, setLastValidYear);
       const invalidDateMessage =
         blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
@@ -273,9 +253,9 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (value || value === "") {
-        setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+        setDayjsDate(getDate(value, formatter, lastValidYear, setLastValidYear));
       }
-    }, [value, format, lastValidYear]);
+    }, [value, formatter, lastValidYear]);
 
     useEffect(() => {
       if (!disabled) {
@@ -312,7 +292,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 name={name}
                 defaultValue={defaultValue}
                 value={value ?? innerValue}
-                placeholder={placeholder ? format.toUpperCase() : undefined}
+                placeholder={placeholder ? formatter.toUpperCase() : undefined}
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
@@ -342,7 +322,12 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                   onKeyDown={handleDatePickerEscKeydown}
                   ref={popoverContentRef}
                 >
-                  <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+                  <DatePicker
+                    id={calendarId}
+                    onDateSelect={handleCalendarOnClick}
+                    date={dayjsDate}
+                    format={formatter}
+                  />
                 </StyledPopoverContent>
               </Popover.Portal>
             )}

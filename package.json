@@ -42,7 +42,8 @@
     "ciecam02": {
       "mout": "1.2.4"
     },
-    "postcss": ">=8.5.10"
+    "postcss": ">=8.5.10",
+    "esbuild": "0.28.1"
   },
   "dependencies": {
     "react-joyride": "^3.0.2"
