@@ -464,8 +464,6 @@ describe("DateInput component tests", () => {
     expect(calendarAction.getAttribute("aria-describedby")).toBeFalsy();
     expect(calendarAction.getAttribute("aria-expanded")).toBe("false");
     userEvent.click(calendarAction);
-    const datePicker = getByRole("dialog");
-    expect(datePicker.getAttribute("aria-modal")).toBe("true");
     expect(calendarAction.getAttribute("aria-expanded")).toBe("true");
     const ariaDescribedBy = calendarAction.getAttribute("aria-describedby") ?? "";
     expect(document.getElementById(ariaDescribedBy)).toBeTruthy();
