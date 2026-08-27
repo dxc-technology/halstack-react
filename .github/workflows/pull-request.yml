@@ -54,6 +54,5 @@ jobs:
 
           sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
           rm halstack/next/*
+          put -r ./apps/website/out/* halstack/next/
           EOF
-
-          scp -i ~/.ssh/ssh_file.pem -r ./apps/website/out/* $SFTP_USER@$SFTP_HOST:halstack/next/
