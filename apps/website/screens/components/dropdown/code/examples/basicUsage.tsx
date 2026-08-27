@@ -11,11 +11,25 @@ const code = `() => {
     },
     {
       value: 2,
-      label: "Windows",
+      label: "IOS",
+      hasDivider: true,
     },
     {
       value: 3,
-      label: "IOS",
+      label: "Windows",
+    },
+    {
+      value: 4,
+      label: "Linux",
+    },
+    {
+      value: 5,
+      label: "macOS",
+      hasDivider: true,
+    },
+    {
+      value: 6,
+      label: "Other",
     },
   ];
 
