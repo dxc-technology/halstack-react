@@ -53,7 +53,7 @@ jobs:
           ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
 
           sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
-          rm /halstack/next/*
+          rm halstack/next/*
           EOF
 
-          scp -i ~/.ssh/ssh_file.pem -r ./apps/website/out/* $SFTP_USER@$SFTP_HOST:/halstack/next/
+          scp -i ~/.ssh/ssh_file.pem -r ./apps/website/out/* $SFTP_USER@$SFTP_HOST:halstack/next/
