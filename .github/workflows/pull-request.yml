@@ -53,5 +53,6 @@ jobs:
           ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
 
           sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
+          -mkdir halstack/18
           put -r ./apps/website/out/* halstack/18/
           EOF
