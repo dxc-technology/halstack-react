@@ -1,5 +1,13 @@
-import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, KeyboardEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  forwardRef,
+  KeyboardEvent,
+  useCallback,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -7,6 +15,7 @@ import DxcIcon from "../icon/Icon";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
+import DxcPopover from "../popover/Popover";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const sizes = {
@@ -111,6 +120,17 @@ const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   }
 `;
 
+const DropdownTriggerWithTooltip = forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<typeof DropdownTrigger>>(
+  ({ title, ...props }, ref) =>
+    title ? (
+      <Tooltip label={title}>
+        <DropdownTrigger {...props} ref={ref} title={title} />
+      </Tooltip>
+    ) : (
+      <DropdownTrigger {...props} ref={ref} />
+    )
+);
+
 const DxcDropdown = ({
   options,
   optionsIconPosition = "before",
@@ -131,10 +151,6 @@ const DxcDropdown = ({
   const menuId = `menu-${id}`;
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
-  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
-  useEffect(() => {
-    setPortalContainer(document?.getElementById(`${id}-portal`));
-  }, []);
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
@@ -157,11 +173,6 @@ const DxcDropdown = ({
     },
     [onSelectOption]
   );
-  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      handleOnCloseMenu();
-    }
-  };
 
   const handleTriggerOnClick = () => {
     changeIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
@@ -256,76 +267,70 @@ const DxcDropdown = ({
 
   return (
     <>
-      <DropdownContainer
-        onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
-        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
-        onBlur={!disabled ? handleOnBlur : undefined}
-        margin={margin}
-        size={size}
-      >
-        <Popover.Root open={isOpen}>
-          <Tooltip label={title}>
-            <Popover.Trigger asChild type={undefined}>
-              <DropdownTrigger
-                onClick={handleTriggerOnClick}
-                onKeyDown={handleTriggerOnKeyDown}
-                onBlur={(event) => {
-                  event.stopPropagation();
-                }}
-                disabled={disabled}
-                label={label}
-                margin={margin}
-                size={size}
-                id={triggerId}
-                aria-haspopup="true"
-                aria-controls={isOpen ? menuId : undefined}
-                aria-expanded={isOpen ? true : undefined}
-                aria-label="Show options"
-                tabIndex={tabIndex}
-                ref={triggerRef}
-                type="button"
-              >
-                <DropdownTriggerContent iconPosition={iconPosition}>
-                  {icon && (
-                    <DropdownTriggerIcon
-                      disabled={disabled}
-                      role={typeof icon === "string" ? undefined : "img"}
-                      aria-hidden
-                    >
-                      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                    </DropdownTriggerIcon>
-                  )}
-                  {label && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-                </DropdownTriggerContent>
-                {!caretHidden && (
-                  <CaretIcon disabled={disabled}>
-                    <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
-                  </CaretIcon>
-                )}
-              </DropdownTrigger>
-            </Popover.Trigger>
-          </Tooltip>
-          {portalContainer && (
-            <Popover.Portal container={portalContainer}>
-              <Popover.Content aria-label="Dropdown options" asChild sideOffset={1}>
-                <DropdownMenu
-                  id={menuId}
-                  dropdownTriggerId={triggerId}
-                  options={options}
-                  iconsPosition={optionsIconPosition}
-                  visualFocusIndex={visualFocusIndex}
-                  menuItemOnClick={handleMenuItemOnClick}
-                  onKeyDown={handleMenuOnKeyDown}
-                  styles={{ width }}
-                  ref={menuRef}
-                />
-              </Popover.Content>
-            </Popover.Portal>
-          )}
-        </Popover.Root>
+      <DropdownContainer margin={margin} size={size}>
+        <DxcPopover
+          asChild
+          isOpen={isOpen}
+          onClose={handleOnCloseMenu}
+          offset={2}
+          onOpenAutoFocus={() => {
+            menuRef.current?.focus();
+          }}
+          actionToOpen={expandOnHover ? "hover" : "click"}
+          popoverContent={
+            <DropdownMenu
+              id={menuId}
+              dropdownTriggerId={triggerId}
+              options={options}
+              iconsPosition={optionsIconPosition}
+              visualFocusIndex={visualFocusIndex}
+              menuItemOnClick={handleMenuItemOnClick}
+              onKeyDown={handleMenuOnKeyDown}
+              styles={{ width }}
+              ref={menuRef}
+            />
+          }
+        >
+          <DropdownTriggerWithTooltip
+            onClick={handleTriggerOnClick}
+            onKeyDown={handleTriggerOnKeyDown}
+            onBlur={(event) => {
+              event.stopPropagation();
+            }}
+            disabled={disabled}
+            label={label}
+            margin={margin}
+            size={size}
+            id={triggerId}
+            aria-haspopup="true"
+            aria-controls={isOpen ? menuId : undefined}
+            aria-expanded={isOpen ? true : undefined}
+            aria-label="Show options"
+            tabIndex={tabIndex}
+            ref={triggerRef}
+            type="button"
+            title={title}
+          >
+            <DropdownTriggerContent iconPosition={iconPosition}>
+              {icon && (
+                <DropdownTriggerIcon
+                  disabled={disabled}
+                  role={typeof icon === "string" ? undefined : "img"}
+                  aria-hidden
+                >
+                  {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                </DropdownTriggerIcon>
+              )}
+              {label && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+            </DropdownTriggerContent>
+            {!caretHidden && (
+              <CaretIcon disabled={disabled}>
+                <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
+              </CaretIcon>
+            )}
+          </DropdownTriggerWithTooltip>
+        </DxcPopover>
       </DropdownContainer>
-
-      <div id={`${id}-portal`} style={{ position: "absolute" }} />
     </>
   );
 };

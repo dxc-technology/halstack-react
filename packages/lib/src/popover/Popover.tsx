@@ -56,34 +56,47 @@ const DxcPopover = ({
 
   return (
     <>
-      {portalContainer && (
-        <Popover.Root open={isControlled.current ? isOpen : opened}>
-          <Popover.Trigger aria-controls={undefined} asChild>
-            {asChild ? (
-              children
-            ) : (
-              <PopoverWrapper
-                role="button"
-                onClick={
-                  actionToOpen === "click"
-                    ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                    : undefined
-                }
-                onMouseEnter={
-                  actionToOpen === "hover"
-                    ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
-                    : undefined
-                }
-                onMouseLeave={
-                  actionToOpen === "hover"
-                    ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
-                    : undefined
-                }
-              >
-                {children}
-              </PopoverWrapper>
-            )}
+      <Popover.Root open={isControlled.current ? isOpen : opened}>
+        {asChild ? (
+          <Popover.Trigger
+            aria-controls={undefined}
+            aria-expanded={undefined}
+            aria-haspopup={undefined}
+            type={undefined}
+            asChild
+          >
+            {children}
           </Popover.Trigger>
+        ) : (
+          <Popover.Trigger
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+              margin: 0,
+              padding: 0,
+              textAlign: "inherit",
+              font: "inherit",
+              borderRadius: 0,
+              appearance: "none",
+            }}
+            onClick={
+              actionToOpen === "click" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
+            }
+            onMouseEnter={
+              actionToOpen === "hover" ? () => handleTrigger(isControlled.current, setOpened, true, onOpen) : undefined
+            }
+            onMouseLeave={
+              actionToOpen === "hover"
+                ? () => handleTrigger(isControlled.current, setOpened, false, onClose)
+                : undefined
+            }
+          >
+            <PopoverWrapper role="button" aria-controls={popOverId} aria-expanded={opened} aria-haspopup={true}>
+              {children}
+            </PopoverWrapper>
+          </Popover.Trigger>
+        )}
+        {portalContainer && (
           <Popover.Portal container={portalContainer}>
             <Popover.Content
               aria-label="Popover content"
@@ -97,7 +110,10 @@ const DxcPopover = ({
                 onCloseAutoFocus?.(event);
               }}
               onInteractOutside={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
-              onEscapeKeyDown={() => handleTrigger(isControlled.current, setOpened, false, onClose)}
+              onEscapeKeyDown={(event: KeyboardEvent) => {
+                event.stopPropagation();
+                handleTrigger(isControlled.current, setOpened, false, onClose);
+              }}
               onMouseEnter={
                 actionToOpen === "hover"
                   ? () => handleTrigger(isControlled.current, setOpened, true, onOpen)
@@ -113,8 +129,8 @@ const DxcPopover = ({
               {hasTip && <Popover.Arrow style={{ fill: "var(--color-bg-neutral-lightest)" }} />}
             </Popover.Content>
           </Popover.Portal>
-        </Popover.Root>
-      )}
+        )}
+      </Popover.Root>
       <div id={`${popOverId}-portal`} style={{ zIndex: "var(--z-contextualmenu)", position: "absolute" }} />
     </>
   );

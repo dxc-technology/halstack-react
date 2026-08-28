@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.14.1",
     "@radix-ui/react-popover": "^1.0.7",
     "cross-env": "^7.0.3",
-    "next": "^16.2.6",
+    "next": "^16.2.11",
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-color": "^2.19.3",
@@ -26,7 +26,7 @@
     "react-error-boundary": "^3.1.4",
     "react-live": "^4.1.7",
     "react-markdown": "^8.0.7",
-    "sharp": "^0.35.0",
+    "sharp": "^0.33.3",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
