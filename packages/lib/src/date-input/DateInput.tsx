@@ -1,18 +1,6 @@
-import {
-  useState,
-  useRef,
-  useEffect,
-  useId,
-  useCallback,
-  useContext,
-  forwardRef,
-  FocusEvent,
-  KeyboardEvent,
-  useMemo,
-} from "react";
+import { useState, useRef, useEffect, useId, useCallback, useContext, forwardRef, useMemo } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
-import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
@@ -21,6 +9,7 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
 import { getDate, getFormatFromLocale, getValueForPicker } from "./utils";
+import DxcPopover from "../popover/Popover";
 
 dayjs.extend(customParseFormat);
 
@@ -80,8 +69,7 @@ const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
   margin-bottom: var(--spacing-gap-xs);
 `;
 
-const StyledPopoverContent = styled(Popover.Content)`
-  z-index: var(--z-date-input);
+const StyledPopoverContent = styled.div`
   &:focus-visible {
     outline: none;
   }
@@ -130,7 +118,6 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
     const translatedLabels = languageContext.labels;
     const dateRef = useRef<HTMLDivElement | null>(null);
@@ -225,25 +212,6 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        if (isOpen) {
-          event.stopPropagation();
-        }
-        closeCalendar();
-        dateRef.current?.getElementsByTagName("input")[0]?.focus();
-      }
-    };
-    const handleDatePickerOnBlur = (event: FocusEvent<HTMLDivElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget)) {
-        closeCalendar();
-      }
-    };
-    useEffect(() => {
-      setPortalContainer(document?.getElementById(`${calendarId}-portal`));
-    }, []);
-
     useEffect(() => {
       window.addEventListener("scroll", adjustSideOffset);
       return () => {
@@ -286,55 +254,43 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined}>
-              <DxcTextInput
-                name={name}
-                defaultValue={defaultValue}
-                value={value ?? innerValue}
-                placeholder={placeholder ? formatter.toUpperCase() : undefined}
-                action={{
-                  onClick: openCalendar,
-                  icon: "filled_calendar_today",
-                  title: !disabled ? translatedLabels.dateInput.datePickerActionTitle : undefined,
-                }}
-                clearable={clearable}
-                disabled={disabled}
-                readOnly={readOnly}
-                optional={optional}
-                onChange={handleOnChange}
-                onBlur={handleOnBlur}
-                error={error}
-                autocomplete={autocomplete}
-                size={size}
-                tabIndex={tabIndex}
-                ref={dateRef}
-                ariaLabel={ariaLabel}
-              />
-            </Popover.Trigger>
-            {portalContainer && (
-              <Popover.Portal container={portalContainer}>
-                <StyledPopoverContent
-                  sideOffset={sideOffset}
-                  align="end"
-                  aria-modal
-                  onBlur={handleDatePickerOnBlur}
-                  onKeyDown={handleDatePickerEscKeydown}
-                  ref={popoverContentRef}
-                >
-                  <DatePicker
-                    id={calendarId}
-                    onDateSelect={handleCalendarOnClick}
-                    date={dayjsDate}
-                    format={formatter}
-                  />
-                </StyledPopoverContent>
-              </Popover.Portal>
-            )}
-          </Popover.Root>
+          <DxcPopover
+            asChild
+            isOpen={isOpen}
+            onClose={closeCalendar}
+            offset={sideOffset}
+            align="end"
+            popoverContent={
+              <StyledPopoverContent ref={popoverContentRef}>
+                <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} format={formatter} />
+              </StyledPopoverContent>
+            }
+          >
+            <DxcTextInput
+              name={name}
+              defaultValue={defaultValue}
+              value={value ?? innerValue}
+              placeholder={placeholder ? formatter.toUpperCase() : undefined}
+              action={{
+                onClick: openCalendar,
+                icon: "filled_calendar_today",
+                title: !disabled ? translatedLabels.dateInput.datePickerActionTitle : undefined,
+              }}
+              clearable={clearable}
+              disabled={disabled}
+              readOnly={readOnly}
+              optional={optional}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              error={error}
+              autocomplete={autocomplete}
+              size={size}
+              tabIndex={tabIndex}
+              ref={dateRef}
+              ariaLabel={ariaLabel}
+            />
+          </DxcPopover>
         </DateInputContainer>
-
-        <div id={`${calendarId}-portal`} style={{ position: "absolute" }} />
       </>
     );
   }

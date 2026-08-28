@@ -14,7 +14,6 @@ const PickerContainer = styled.div`
   width: 50%;
   max-width: 292px;
   height: 312px;
-  box-shadow: var(--shadow-200);
   ${scrollbarStyles}
 `;
 
