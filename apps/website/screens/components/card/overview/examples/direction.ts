@@ -7,7 +7,7 @@ import {
   DxcGrid,
   DxcContainer,
 } from "@dxc-technology/halstack-react";
-import resultsetImage from "../images/resultsetTable.png";
+import resultsetImage from "../../code/images/resultsetTable.png";
 
 const code = `() => {
   const image = {
