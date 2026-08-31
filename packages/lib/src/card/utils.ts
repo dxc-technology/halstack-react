@@ -55,6 +55,7 @@ export const getCardStyles = (
         ${commonStyles}
         &:hover { ${hover} }
         &:focus { ${focus} }
+        &:focus-visible { ${focus} }
         &:active { ${active} }
     `;
 };
