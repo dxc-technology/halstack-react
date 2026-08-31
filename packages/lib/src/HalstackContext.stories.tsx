@@ -11,6 +11,9 @@ import DxcInset from "./inset/Inset";
 import DxcAlert from "./alert/Alert";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
 import { userEvent, within } from "storybook/internal/test";
+import lakeImage from "./../.storybook/assets/images/lake.jpg";
+import woodenDockImage from "./../.storybook/assets/images/wooden_dock.avif";
+import snakeRiverImage from "./../.storybook/assets/images/snake_river.jpg";
 
 export default {
   title: "HalstackContext",
@@ -88,9 +91,9 @@ const Provider = () => {
           opinionatedTheme={{
             tokens: newTheme,
             logos: {
-              mainLogo: "https://picsum.photos/id/16/200/40",
-              footerLogo: "https://picsum.photos/id/17/200/40",
-              footerReducedLogo: "https://picsum.photos/id/17/200/40",
+              mainLogo: lakeImage,
+              footerLogo: woodenDockImage,
+              footerReducedLogo: snakeRiverImage,
             },
           }}
         >

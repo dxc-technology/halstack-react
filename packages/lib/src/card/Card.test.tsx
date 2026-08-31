@@ -3,6 +3,7 @@ import DxcCard from "./Card";
 import "@testing-library/jest-dom";
 import CardPropsType from "./types";
 import userEvent from "@testing-library/user-event";
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
 
 describe("Card component tests", () => {
   const image = {
@@ -10,7 +11,7 @@ describe("Card component tests", () => {
     width: "100%",
     height: "250px",
     objectFit: "cover",
-    src: "https://picsum.photos/id/11/1920/1080",
+    src: woodenDockImage,
   } as CardPropsType["image"];
   test("Card renders with correct content", () => {
     const { getByText } = render(<DxcCard>test-card</DxcCard>);
