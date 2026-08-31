@@ -6,6 +6,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "DOM.Iterable", "ES2022", "ESNext"]
   },
-  "include": ["src", "test", ".", ".storybook/**/*", "src/**/*.d.ts"],
+  "include": ["src", "test", ".", ".storybook/**/*", ".storybook/**/*.d.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist", "coverage", ".turbo"]
 }

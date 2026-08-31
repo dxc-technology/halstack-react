@@ -4,6 +4,9 @@ import DxcApplicationLayout from "./ApplicationLayout";
 import { userEvent, within } from "storybook/internal/test";
 import { useEffect } from "react";
 import { HalstackProvider } from "../HalstackContext";
+import lakeImage from "../../.storybook/assets/images/lake.jpg";
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
+import snakeRiverImage from "../../.storybook/assets/images/snake_river.jpg";
 
 export default {
   title: "Application Layout",
@@ -176,8 +179,8 @@ const SidenavThemed = () => (
   <HalstackProvider
     opinionatedTheme={{
       logos: {
-        mainLogo: "https://picsum.photos/id/16/100/50",
-        footerLogo: "https://picsum.photos/id/17/200/40",
+        mainLogo: lakeImage,
+        footerLogo: woodenDockImage,
       },
     }}
   >
@@ -196,9 +199,9 @@ const HeaderThemed = () => (
   <HalstackProvider
     opinionatedTheme={{
       logos: {
-        mainLogo: "https://picsum.photos/id/16/100/50",
-        footerLogo: "https://picsum.photos/id/17/200/40",
-        footerReducedLogo: "https://picsum.photos/id/10/200/40",
+        mainLogo: lakeImage,
+        footerLogo: woodenDockImage,
+        footerReducedLogo: snakeRiverImage,
       },
     }}
   >

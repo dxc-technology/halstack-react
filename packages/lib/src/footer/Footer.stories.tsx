@@ -16,6 +16,9 @@ import DxcBadge from "../badge/Badge";
 import DxcButton from "../button/Button";
 import { HalstackProvider } from "../HalstackContext";
 
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
+import lakeImage from "../../.storybook/assets/images/lake.jpg";
+
 export default {
   title: "Footer",
   component: DxcFooter,
@@ -201,7 +204,7 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With custom logo" theme="light" level={4} />
-      <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
+      <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
@@ -421,21 +424,21 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced with custom logo" theme="light" level={4} />
-      <DxcFooter mode="reduced" logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
+      <DxcFooter mode="reduced" logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Themed footer" theme="light" level={4} />
       <HalstackProvider
         opinionatedTheme={{
           logos: {
-            footerLogo: "https://picsum.photos/id/17/104/50",
-            footerReducedLogo: "https://picsum.photos/id/17/104/34",
+            footerLogo: lakeImage,
+            footerReducedLogo: lakeImage,
           },
         }}
       >
         <DxcFooter />
         <DxcFooter mode="reduced" />
-        <DxcFooter logo={{ src: "https://picsum.photos/id/1000/104/34", alt: "Custom logo" }} />
+        <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
       </HalstackProvider>
     </ExampleContainer>
   </>

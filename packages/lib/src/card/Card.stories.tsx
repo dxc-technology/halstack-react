@@ -6,6 +6,7 @@ import DxcParagraph from "../paragraph/Paragraph";
 import DxcContainer from "../container/Container";
 import DxcFlex from "../flex/Flex";
 import DxcImagePropsType from "../image/types";
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
 
 export default {
   title: "Card",
@@ -17,7 +18,7 @@ const image: DxcImagePropsType = {
   width: "100%",
   height: "250px",
   objectFit: "cover",
-  src: "https://picsum.photos/id/11/1920/1080",
+  src: woodenDockImage,
 };
 
 const paragraphContent = (
