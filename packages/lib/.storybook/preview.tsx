@@ -6,7 +6,7 @@ import createCache from "@emotion/cache";
 import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import type { StoryFn } from "@storybook/react-vite";
 
-const mockDate = new Date("2024-08-20");
+const mockDate = new Date("2026-08-20");
 const RealDate = Date;
 
 class MockedDate extends RealDate {
