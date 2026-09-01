@@ -1,8 +1,8 @@
 import CardPropsType from "./types";
 
-const calculateSize = (size?: CardPropsType["size"], selected?: boolean, borderWidth?: string, outlined?: boolean) => {
-  return `width: ${size?.width === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - (${borderWidth} * 2))` : "fit-content"};
-    height: ${size?.height === "fillParent" ? "100%" : selected || outlined ? `calc-size(fit-content, size - (${borderWidth} * 2))` : "fit-content"};`;
+const calculateSize = (size?: CardPropsType["size"]) => {
+  return `width: ${size?.width === "fillParent" ? "100%" : "fit-content"};
+    height: ${size?.height === "fillParent" ? "100%" : "fit-content"};`;
 };
 export const getCardStyles = (
   mode: CardPropsType["mode"],
@@ -13,6 +13,7 @@ export const getCardStyles = (
   let hover = "";
   let focus = "";
   let active = "";
+
   const borderWidth = selected
     ? "var(--border-width-m)"
     : mode === "outlined"
@@ -24,38 +25,58 @@ export const getCardStyles = (
     ${
       mode === "outlined" && !selected
         ? `border: ${borderWidth} var(--border-style-default) var(--border-color-neutral-light);`
-        : selected
-          ? `border: ${borderWidth} var(--border-style-default) var(--border-color-primary-strong);`
-          : ``
+        : "border-width: var(--border-width-none);"
     }
     ${interactive ? "cursor: pointer;" : ""}
-    ${calculateSize(size, selected, borderWidth, mode === "outlined")}
+    ${calculateSize(size)}
   `;
-  if (interactive && !selected) {
+
+  if (interactive) {
     if (mode === "elevated") {
       hover = `box-shadow: var(--shadow-300);`;
       focus = `box-shadow: var(--shadow-100); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: calc(var(--border-width-m) * -1);`;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
       active = `box-shadow: var(--shadow-100);`;
     } else if (mode === "outlined") {
-      hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
-      focus = `border-width: var(--border-width-m); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); 
-        ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
-      active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong); ${calculateSize(size, selected, "var(--border-width-m)", true)}`;
+      if (selected) {
+        hover = `border-width: var(--border-width-none);`;
+        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        active = `border-width: var(--border-width-none);`;
+      } else {
+        hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);outline-offset: var(--border-width-none);`;
+        focus = `border-width: var(--boselectedrder-width-m); 
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);outline-offset: var(--border-width-none);`;
+        active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);outline-offset: var(--border-width-none);`;
+      }
     }
-  } else if (selected) {
-    hover = `border-color: var(--border-color-primary-stronger);`;
-    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
-    active = `border-color: var(--border-color-primary-strong);`;
   }
 
   return `
         ${commonStyles}
         &:hover { ${hover} }
         &:focus { ${focus} }
+        &:focus-visible { ${focus} }
         &:active { ${active} }
     `;
+};
+
+export const getSelectableWrapperStyles = (selected: boolean) => {
+  let hover = "";
+  let focus = "";
+  let active = "";
+
+  if (selected) {
+    hover = `outline-color: var(--border-color-primary-stronger);`;
+    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+    active = `outline-color: var(--border-color-primary-strong);`;
+  }
+
+  return `
+        &:hover { ${hover} }
+        &:focus { ${focus} }
+        &:active { ${active} }
+        outline: ${selected ? "var(--border-width-m) var(--border-style-default) var(--border-color-primary-strong)" : ""};
+      `;
 };
 
 export const handleEvent = (
