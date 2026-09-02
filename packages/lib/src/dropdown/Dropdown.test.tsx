@@ -19,6 +19,7 @@ const options = [
   {
     value: "2",
     label: "Ebay",
+    hasDivider: true,
   },
   {
     value: "3",
