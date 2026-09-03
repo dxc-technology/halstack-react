@@ -35,54 +35,6 @@
     "apps/*",
     "packages/*"
   ],
-  "overrides": {
-    "@joshwooding/vite-plugin-react-docgen-typescript": {
-      "glob": "^11.0.0"
-    },
-    "@eslint/config-array": {
-      "minimatch": "^10.0.0"
-    },
-    "@eslint/eslintrc": {
-      "minimatch": "^10.0.0"
-    },
-    "@typescript-eslint/typescript-estree": {
-      "minimatch": "^10.0.0"
-    },
-    "eslint": {
-      "minimatch": "^10.0.0"
-    },
-    "eslint-plugin-import": {
-      "minimatch": "^10.0.0"
-    },
-    "eslint-plugin-jsx-a11y": {
-      "minimatch": "^10.0.0"
-    },
-    "eslint-plugin-react": {
-      "minimatch": "^10.0.0"
-    },
-    "@jest/reporters": {
-      "brace-expansion": "^5.0.8"
-    },
-    "jest-config": {
-      "brace-expansion": "^5.0.8"
-    },
-    "jest-runtime": {
-      "brace-expansion": "^5.0.8"
-    },
-    "test-exclude": {
-      "brace-expansion": "^5.0.8"
-    },
-    "mout": "1.2.4",
-    "ciebase": {
-      "mout": "1.2.4"
-    },
-    "ciecam02": {
-      "mout": "1.2.4"
-    },
-    "postcss": ">=8.5.10",
-    "esbuild": "0.28.1",
-    "sharp": "0.35.3"
-  },
   "dependencies": {
     "react-joyride": "^3.0.2"
   }
