@@ -170,8 +170,8 @@ const DxcMessageInput = ({
       value: newValue,
       minLength,
       maxLength,
-      minLengthErrorMessage: translatedLabels.formFields.lengthErrorMessage,
-      maxLengthErrorMessage: translatedLabels.formFields.lengthErrorMessage,
+      minLengthErrorMessage: (min: number) => translatedLabels.formFields.lengthErrorMessage(min, maxLength),
+      maxLengthErrorMessage: (max: number) => translatedLabels.formFields.lengthErrorMessage(minLength, max),
     });
 
     if (lengthError) {
@@ -202,8 +202,8 @@ const DxcMessageInput = ({
       value: event.target.value,
       minLength,
       maxLength,
-      minLengthErrorMessage: translatedLabels.formFields.lengthErrorMessage,
-      maxLengthErrorMessage: translatedLabels.formFields.lengthErrorMessage,
+      minLengthErrorMessage: (min: number) => translatedLabels.formFields.lengthErrorMessage(min, maxLength),
+      maxLengthErrorMessage: (max: number) => translatedLabels.formFields.lengthErrorMessage(minLength, max),
     });
 
     if (lengthError) {

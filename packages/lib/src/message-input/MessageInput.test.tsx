@@ -186,12 +186,12 @@ describe("Message Input component tests", () => {
     fireEvent.change(input, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length undefined.",
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length undefined.",
+      error: "Min length 5, max length 10.",
     });
 
     fireEvent.change(input, { target: { value: "test-maximum-length" } });
