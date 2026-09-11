@@ -22,7 +22,6 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import { useVoiceTranscription } from "./useVoiceTranscription";
 import DxcSelect from "../select/Select";
-import { getLengthErrorMessage } from "../common/utils";
 import DxcTypography from "../typography/Typography";
 
 const sizes = {
@@ -166,13 +165,12 @@ const DxcMessageInput = ({
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
 
-    const lengthError = getLengthErrorMessage({
-      value: newValue,
-      minLength,
-      maxLength,
-      minLengthErrorMessage: (min: number) => translatedLabels.formFields.lengthErrorMessage(min, maxLength),
-      maxLengthErrorMessage: (max: number) => translatedLabels.formFields.lengthErrorMessage(minLength, max),
-    });
+    let lengthError: string | undefined;
+    if (minLength != null && newValue.length < minLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    } else if (maxLength != null && newValue.length > maxLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    }
 
     if (lengthError) {
       onChange?.({ value: newValue, error: lengthError });
@@ -198,13 +196,12 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
 
-    const lengthError = getLengthErrorMessage({
-      value: event.target.value,
-      minLength,
-      maxLength,
-      minLengthErrorMessage: (min: number) => translatedLabels.formFields.lengthErrorMessage(min, maxLength),
-      maxLengthErrorMessage: (max: number) => translatedLabels.formFields.lengthErrorMessage(minLength, max),
-    });
+    let lengthError: string | undefined;
+    if (minLength != null && event.target.value.length < minLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    } else if (maxLength != null && event.target.value.length > maxLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    }
 
     if (lengthError) {
       onBlur?.({ value: event.target.value, error: lengthError });
