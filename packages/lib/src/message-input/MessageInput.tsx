@@ -22,7 +22,6 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import { useVoiceTranscription } from "./useVoiceTranscription";
 import DxcSelect from "../select/Select";
-import { getLengthErrorMessage } from "../common/utils";
 import DxcTypography from "../typography/Typography";
 
 const sizes = {
@@ -143,9 +142,8 @@ const DxcMessageInput = ({
   tabIndex,
   value,
 }: PromptInputPropsType) => {
-  const languageContext = useContext(HalstackLanguageContext);
-  const translatedLabels = languageContext.labels;
-  const locale = languageContext.locale ?? "en-US";
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const locale = "en-US";
   const inputId = `input-${useId()}`;
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -162,18 +160,17 @@ const DxcMessageInput = ({
   } = useVoiceTranscription({
     lang: locale,
   });
-  const dropdownOptions = [{ label: languageContext.labels.messageInput.attachFileButtonTitle, value: "fileorphoto" }];
+  const dropdownOptions = [{ label: translatedLabels.messageInput.attachFileButtonTitle, value: "fileorphoto" }];
 
   const changeValue = (newValue: string) => {
     if (value == null) setInnerValue(newValue);
 
-    const lengthError = getLengthErrorMessage({
-      value: newValue,
-      minLength,
-      maxLength,
-      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
-      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
-    });
+    let lengthError: string | undefined;
+    if (minLength != null && newValue.length < minLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    } else if (maxLength != null && newValue.length > maxLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    }
 
     if (lengthError) {
       onChange?.({ value: newValue, error: lengthError });
@@ -199,13 +196,12 @@ const DxcMessageInput = ({
   const handleInputOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
     setIsFocused(false);
 
-    const lengthError = getLengthErrorMessage({
-      value: event.target.value,
-      minLength,
-      maxLength,
-      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
-      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
-    });
+    let lengthError: string | undefined;
+    if (minLength != null && event.target.value.length < minLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    } else if (maxLength != null && event.target.value.length > maxLength) {
+      lengthError = translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength);
+    }
 
     if (lengthError) {
       onBlur?.({ value: event.target.value, error: lengthError });
@@ -326,7 +322,7 @@ const DxcMessageInput = ({
         )}
         <InputWrapper>
           <MessageArea
-            aria-label={languageContext.labels.messageInput.inputAriaLabel}
+            aria-label={translatedLabels.messageInput.inputAriaLabel}
             aria-errormessage={error ? `error-${inputId}` : undefined}
             aria-invalid={!!error}
             disabled={isGenerating || disabled}
@@ -390,13 +386,13 @@ const DxcMessageInput = ({
                 onClick={toggleVoiceRecognition}
                 title={
                   isRecording
-                    ? languageContext.labels.messageInput.stopRecordingButtonTitle
-                    : languageContext.labels.messageInput.recordAudioButtonTitle
+                    ? translatedLabels.messageInput.stopRecordingButtonTitle
+                    : translatedLabels.messageInput.recordAudioButtonTitle
                 }
                 aria-label={
                   isRecording
-                    ? languageContext.labels.messageInput.stopRecordingButtonTitle
-                    : languageContext.labels.messageInput.recordAudioButtonTitle
+                    ? translatedLabels.messageInput.stopRecordingButtonTitle
+                    : translatedLabels.messageInput.recordAudioButtonTitle
                 }
               />
             )}
@@ -408,13 +404,13 @@ const DxcMessageInput = ({
               onClick={!isGenerating ? handleSubmit : handleStop}
               title={
                 !isGenerating
-                  ? languageContext.labels.messageInput.sendButtonTitle
-                  : languageContext.labels.messageInput.stopButtonTitle
+                  ? translatedLabels.messageInput.sendButtonTitle
+                  : translatedLabels.messageInput.stopButtonTitle
               }
               aria-label={
                 !isGenerating
-                  ? languageContext.labels.messageInput.sendButtonTitle
-                  : languageContext.labels.messageInput.stopButtonTitle
+                  ? translatedLabels.messageInput.sendButtonTitle
+                  : translatedLabels.messageInput.stopButtonTitle
               }
             />
           </DxcFlex>

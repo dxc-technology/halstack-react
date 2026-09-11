@@ -186,23 +186,23 @@ describe("Message Input component tests", () => {
     fireEvent.change(input, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "The minimum length is 5.",
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "The minimum length is 5.",
+      error: "Min length 5, max length 10.",
     });
 
     fireEvent.change(input, { target: { value: "test-maximum-length" } });
     expect(onChange).toHaveBeenCalledWith({
       value: "test-maximum-length",
-      error: "The maximum length is 10.",
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "test-maximum-length",
-      error: "The maximum length is 10.",
+      error: "Min length 5, max length 10.",
     });
 
     fireEvent.change(input, { target: { value: "length" } });
@@ -435,7 +435,7 @@ describe("useVoiceTranscription", () => {
   });
 
   test("resets transcript and isRecording when recognition ends automatically", () => {
-    const { result } = renderHook(() => useVoiceTranscription({ lang: "eb-US" }));
+    const { result } = renderHook(() => useVoiceTranscription({ lang: "en-US" }));
 
     act(() => {
       result.current.startRecording();
