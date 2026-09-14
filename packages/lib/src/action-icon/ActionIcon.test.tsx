@@ -1,8 +1,26 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import DxcActionIcon from "./ActionIcon";
+import { ActionIconPropTypes } from "./types";
 
 describe("ActionIcon component tests", () => {
+  test.each([
+    ["xsmall", "24px", "var(--height-s)"],
+    ["small", "32px", "var(--height-m)"],
+    ["medium", "40px", "var(--height-xl)"],
+    ["large", "56px", "var(--height-xxxl)"],
+    ["xlarge", "72px", "72px"],
+    ["xxlarge", "80px", "80px"],
+  ])("ActionIcon width matches its height for %s size", (size, width, height) => {
+    const { getByRole } = render(
+      <DxcActionIcon icon="house" size={size as ActionIconPropTypes["size"]} onClick={() => {}} />
+    );
+    const actionIcon = getByRole("button");
+
+    expect(actionIcon).toHaveStyle(`width: ${width}`);
+    expect(actionIcon).toHaveStyle(`height: ${height}`);
+  });
+
   test("ActionIcon renders correctly", () => {
     const { getByRole } = render(<DxcActionIcon icon="house" />);
     const ActionIcon = getByRole("img", { hidden: true });
