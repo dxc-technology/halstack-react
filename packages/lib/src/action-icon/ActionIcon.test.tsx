@@ -12,8 +12,10 @@ describe("ActionIcon component tests", () => {
     ["xlarge", "72px", "72px"],
     ["xxlarge", "80px", "80px"],
   ])("ActionIcon width matches its height for %s size", (size, width, height) => {
-    const { getByRole } = render(<DxcActionIcon icon="house" size={size as ActionIconPropTypes["size"]} />);
-    const actionIcon = getByRole("img", { hidden: true });
+    const { getByRole } = render(
+      <DxcActionIcon icon="house" size={size as ActionIconPropTypes["size"]} onClick={() => {}} />
+    );
+    const actionIcon = getByRole("button");
 
     expect(actionIcon).toHaveStyle(`width: ${width}`);
     expect(actionIcon).toHaveStyle(`height: ${height}`);
