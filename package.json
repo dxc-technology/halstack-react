@@ -15,14 +15,14 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
-    "@storybook/addon-a11y": "^9.1.10",
-    "@storybook/addon-links": "^9.1.10",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-links": "^10.6.0",
     "@types/color": "^4.2.0",
     "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
-    "storybook-addon-pseudo-states": "^9.1.10",
+    "storybook-addon-pseudo-states": "^10.6.0",
     "turbo": "^2.9.14",
     "typescript": "^5.6.3"
   },

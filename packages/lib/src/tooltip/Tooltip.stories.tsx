@@ -5,7 +5,7 @@ import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import styled from "@emotion/styled";
 
 export default {

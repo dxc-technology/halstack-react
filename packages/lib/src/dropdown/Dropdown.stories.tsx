@@ -6,7 +6,7 @@ import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
 import preview from "../../.storybook/preview";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Dropdown",

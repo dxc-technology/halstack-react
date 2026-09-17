@@ -9,7 +9,7 @@ import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import DateUnitPicker from "./DateUnitPicker";
-import { fireEvent, screen, userEvent, within } from "storybook/internal/test";
+import { fireEvent, screen, userEvent, within } from "storybook/test";
 import { HalstackProvider } from "../HalstackContext";
 import { getMonthPickerItems, getYearPickerItems } from "./utils";
 

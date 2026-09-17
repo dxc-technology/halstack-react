@@ -6,7 +6,7 @@ import DxcFlex from "../flex/Flex";
 import DxcFooter from "./Footer";
 import DxcLink from "../link/Link";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import { useEffect } from "react";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcHeading from "../heading/Heading";
