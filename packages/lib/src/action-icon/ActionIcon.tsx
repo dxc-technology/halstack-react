@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { ActionIconPropTypes, RefType } from "./types";
-import { getBackgroundColor, getBorderRadius, getColor, getIconSize, getOutlineWidth, getWidth } from "./utils";
+import { getBackgroundColor, getBorderRadius, getColor, getIconSize, getOutlineWidth, getSize } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
@@ -28,8 +28,8 @@ const ActionIconContainer = styled.div<
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ size }) => getWidth(size)};
-  aspect-ratio: 1 / 1;
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
   text-decoration: none;
   border-radius: ${({ shape, size }) => getBorderRadius(shape, size)};
   background-color: ${({ color }) => getBackgroundColor(color)};

@@ -48,7 +48,7 @@ const borderRadiusMap = {
   xxlarge: "var(--border-radius-l)",
 };
 
-const widthMap = {
+const sizeMap = {
   xsmall: "24px",
   small: "32px",
   medium: "40px",
@@ -91,7 +91,7 @@ export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: Actio
   return "100%";
 };
 
-export const getWidth = (size: ActionIconPropTypes["size"]) => (size && widthMap[size] ? widthMap[size] : "40px");
+export const getSize = (size: ActionIconPropTypes["size"]) => (size && sizeMap[size] ? sizeMap[size] : "40px");
 
 export const getIconSize = (size: ActionIconPropTypes["size"]) =>
   size && iconSizeMap[size] ? iconSizeMap[size] : "var(--height-s)";
