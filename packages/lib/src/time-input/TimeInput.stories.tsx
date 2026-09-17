@@ -6,7 +6,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/common/disabledRules";
 import DxcContainer from "../container/Container";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {

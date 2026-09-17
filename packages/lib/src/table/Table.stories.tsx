@@ -4,7 +4,7 @@ import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import DxcTable from "./Table";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Table",

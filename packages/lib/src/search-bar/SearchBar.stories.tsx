@@ -6,7 +6,7 @@ import { useState } from "react";
 import DxcSearchBar from "./SearchBar";
 import DxcFlex from "../flex/Flex";
 import DxcContainer from "../container/Container";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Search Bar",

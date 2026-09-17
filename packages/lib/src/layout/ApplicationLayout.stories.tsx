@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import { useEffect } from "react";
 import { HalstackProvider } from "../HalstackContext";
 import lakeImage from "../../.storybook/assets/images/lake.jpg";

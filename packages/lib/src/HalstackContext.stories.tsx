@@ -10,7 +10,7 @@ import DxcDialog from "./dialog/Dialog";
 import DxcInset from "./inset/Inset";
 import DxcAlert from "./alert/Alert";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import lakeImage from "./../.storybook/assets/images/lake.jpg";
 import woodenDockImage from "./../.storybook/assets/images/wooden_dock.avif";
 import snakeRiverImage from "./../.storybook/assets/images/snake_river.jpg";

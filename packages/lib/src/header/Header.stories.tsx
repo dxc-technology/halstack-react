@@ -7,7 +7,7 @@ import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "../layout/ApplicationLayout";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcButton from "../button/Button";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import preview from "../../.storybook/preview";
 import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 

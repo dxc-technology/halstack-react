@@ -6,7 +6,7 @@ import disabledRules from "../../test/accessibility/rules/specific/select/disabl
 import DxcFlex from "../flex/Flex";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Select",
