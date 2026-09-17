@@ -13,7 +13,7 @@ import DxcDateInput from "../date-input/DateInput";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcTooltip from "../tooltip/Tooltip";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { screen, userEvent } from "storybook/internal/test";
+import { screen, userEvent } from "storybook/test";
 import disabledRules from "../../test/accessibility/rules/specific/dialog/disabledRules";
 import preview from "../../.storybook/preview";
 

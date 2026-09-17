@@ -4,7 +4,7 @@ import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import DxcNavigationTree from "./NavigationTree";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import NavigationTreeContext from "./NavigationTreeContext";
 import SingleItem from "../base-menu/SingleItem";
 

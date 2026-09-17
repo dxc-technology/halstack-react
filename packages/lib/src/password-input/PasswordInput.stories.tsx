@@ -3,7 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import DxcPasswordInput from "./PasswordInput";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Password Input",

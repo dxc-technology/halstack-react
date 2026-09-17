@@ -6,7 +6,7 @@ import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import preview from "../../.storybook/preview";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Text Input",

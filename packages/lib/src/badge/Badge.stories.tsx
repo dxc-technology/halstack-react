@@ -5,7 +5,7 @@ import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Badge",
