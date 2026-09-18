@@ -2,13 +2,6 @@ import { DxcMessageInput, DxcButton, DxcFlex, DxcInset } from "@dxc-technology/h
 import { useRef } from "react";
 
 const code = `() => {
-  const onChange = ({ value }) => {
-    setValue(value);
-  };
-  
-  const onBlur = ({ value }) => {
-    console.log("Input blurred with value:", value);
-  };
 
   const onButtonClick = async ({type, value}) => {
     if (type === "submit") {
