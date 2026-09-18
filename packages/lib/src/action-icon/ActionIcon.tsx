@@ -28,8 +28,8 @@ const ActionIconContainer = styled.div<
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${({ size }) => getSize(size)};
   height: ${({ size }) => getSize(size)};
-  aspect-ratio: 1 / 1;
   text-decoration: none;
   border-radius: ${({ shape, size }) => getBorderRadius(shape, size)};
   background-color: ${({ color }) => getBackgroundColor(color)};
