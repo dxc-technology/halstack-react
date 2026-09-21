@@ -18,6 +18,7 @@ const config: Config = {
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
   },
+  transformIgnorePatterns: ["<rootDir>/../../node_modules/(?!(react-data-grid)/)"],
 };
 
 export default config;

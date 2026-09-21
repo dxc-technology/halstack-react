@@ -13,7 +13,6 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-vitest"),
-    getAbsolutePath("@vitest/coverage-v8"),
     getAbsolutePath("storybook-addon-pseudo-states"),
   ],
   core: {
