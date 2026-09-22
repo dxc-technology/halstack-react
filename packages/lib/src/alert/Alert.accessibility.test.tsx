@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcAlert from "./Alert";
 import { vi } from "vitest";
+import TooltipContext from "../tooltip/TooltipContext";
 
 global.ResizeObserver = vi.fn(function ResizeObserver() {
   return {
@@ -30,10 +31,13 @@ describe("Alert component accessibility tests", () => {
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for modal mode", async () => {
-    const { container } = render(
-      <DxcAlert title="Info" mode="modal" message={{ text: "info-alert-text", onClose: () => {} }} />
+    const { findByRole } = render(
+      <TooltipContext.Provider value>
+        <DxcAlert title="Info" mode="modal" closable message={{ text: "info-alert-text", onClose: () => {} }} />
+      </TooltipContext.Provider>
     );
-    const results = await axe(container);
+    const alertDialog = await findByRole("alertdialog");
+    const results = await axe(alertDialog);
     expect(results.violations).toHaveLength(0);
   });
 });
