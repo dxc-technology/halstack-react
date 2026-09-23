@@ -29,20 +29,3 @@ jobs:
 
       - name: Test library accessibility
         run: npm run test:accessibility
-
-      - name: Deploy via SFTP
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_USER: ${{ secrets.SFTP_USER }}
-        run: |
-          mkdir -p ~/.ssh
-
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/ssh_file.pem
-
-          chmod 600 ~/.ssh/ssh_file.pem
-
-          ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
-
-          ssh -i ~/.ssh/ssh_file.pem $SFTP_USER@$SFTP_HOST "rm -r halstack/18"
-          EOF
