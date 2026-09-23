@@ -38,3 +38,24 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
           TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Deploy via SFTP
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+        run: |
+          MAJOR_VERSION="${TAG_NAME%%.*}"
+          echo "Target folder: halstack/$MAJOR_VERSION/"
+          mkdir -p ~/.ssh
+
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/ssh_file.pem
+
+          chmod 600 ~/.ssh/ssh_file.pem
+
+          ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
+
+          sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
+          -mkdir halstack/$MAJOR_VERSION
+          put -r ./apps/website/out/* halstack/$MAJOR_VERSION/
+          EOF
