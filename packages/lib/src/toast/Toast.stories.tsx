@@ -8,7 +8,7 @@ import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
 import DxcDialog from "../dialog/Dialog";
 import DxcInset from "../inset/Inset";
-import { screen, userEvent, within } from "storybook/internal/test";
+import { screen, userEvent, within } from "storybook/test";
 
 export default {
   title: "Toast",

@@ -10,7 +10,7 @@ describe("Card component tests", () => {
     width: "100%",
     height: "250px",
     objectFit: "cover",
-    src: "https://picsum.photos/id/11/1920/1080",
+    src: "http://localhost/imagesrc",
   } as CardPropsType["image"];
   test("Card renders with correct content", () => {
     const { getByText } = render(<DxcCard>test-card</DxcCard>);

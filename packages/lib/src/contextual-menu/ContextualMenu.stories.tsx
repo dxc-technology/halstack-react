@@ -6,7 +6,7 @@ import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "../base-menu/SingleItem";
 import ContextualMenuContext from "../base-menu/BaseMenuContext";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Contextual Menu",

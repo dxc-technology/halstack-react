@@ -1,5 +1,5 @@
 import { DxcImage, DxcInset } from "@dxc-technology/halstack-react";
-import woodenDockImage from "../images/wooden_dock.png";
+import woodenDockImage from "../images/wooden_dock.avif";
 
 const code = `() => {
   return (

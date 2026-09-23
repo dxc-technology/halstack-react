@@ -3,6 +3,7 @@ import DxcAvatar from "./Avatar";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
 
 export default {
   title: "Avatar",
@@ -78,54 +79,54 @@ export const Chromatic: Story = {
           <Title title="circle" theme="light" level={3} />
           <Title title="xsmall" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xsmall" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xsmall" />
           </ExampleContainer>
           <Title title="small" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="small" />
+            <DxcAvatar imageSrc={woodenDockImage} size="small" />
           </ExampleContainer>
           <Title title="small" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="medium" />
+            <DxcAvatar imageSrc={woodenDockImage} size="medium" />
           </ExampleContainer>
           <Title title="large" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="large" />
+            <DxcAvatar imageSrc={woodenDockImage} size="large" />
           </ExampleContainer>
           <Title title="xlarge" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xlarge" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xlarge" />
           </ExampleContainer>
           <Title title="xxlarge" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xxlarge" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xxlarge" />
           </ExampleContainer>
         </>
         <>
           <Title title="square" theme="light" level={3} />
           <Title title="xsmall" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xsmall" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xsmall" shape="square" />
           </ExampleContainer>
           <Title title="small" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="small" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="small" shape="square" />
           </ExampleContainer>
           <Title title="small" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="medium" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="medium" shape="square" />
           </ExampleContainer>
           <Title title="large" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="large" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="large" shape="square" />
           </ExampleContainer>
           <Title title="xlarge" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xlarge" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xlarge" shape="square" />
           </ExampleContainer>
           <Title title="xxlarge" theme="light" level={4} />
           <ExampleContainer>
-            <DxcAvatar imageSrc="https://picsum.photos/id/1022/200/300" size="xxlarge" shape="square" />
+            <DxcAvatar imageSrc={woodenDockImage} size="xxlarge" shape="square" />
           </ExampleContainer>
         </>
       </>

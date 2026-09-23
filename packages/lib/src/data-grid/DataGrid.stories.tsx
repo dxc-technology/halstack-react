@@ -10,7 +10,7 @@ import DxcBadge from "../badge/Badge";
 import { ActionsCellPropsType } from "../table/types";
 import { isKeyOfRow } from "./utils";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Data Grid",

@@ -60,6 +60,31 @@ describe("DxcSidenav component", () => {
     expect(getByText("Dashboard")).toBeTruthy();
     expect(getByText("Settings")).toBeTruthy();
   });
+  test("Sidenav opens and closes a group submenu in a collapsed navigation menu", () => {
+    const navItems = [
+      {
+        label: "Parent group",
+        items: [
+          {
+            label: "Nested group",
+            items: [{ label: "Nested item" }],
+          },
+        ],
+      },
+    ];
+    const { getByLabelText, getByText, queryByText } = render(
+      <DxcSidenav navItems={navItems} defaultExpanded={false} />
+    );
+
+    fireEvent.click(getByLabelText("Parent group").closest("button")!);
+    expect(getByText("Nested group")).toBeInTheDocument();
+
+    fireEvent.click(getByText("Parent group"));
+    expect(queryByText("Nested group")).not.toBeInTheDocument();
+
+    fireEvent.click(getByText("Parent group"));
+    expect(getByText("Nested group")).toBeInTheDocument();
+  });
 
   test("Sidenav renders link items correctly", () => {
     const navItems = [{ label: "Dashboard", href: "/dashboard" }];

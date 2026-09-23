@@ -7,7 +7,7 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcButton from "../button/Button";
 import DxcAvatar from "../avatar/Avatar";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import disabledRules from "../../test/accessibility/rules/specific/sidenav/disabledRules";
 import preview from "../../.storybook/preview";
 import DxcApplicationLayout from "../layout/ApplicationLayout";
