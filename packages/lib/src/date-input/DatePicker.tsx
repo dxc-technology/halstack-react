@@ -10,11 +10,6 @@ import { YearMonthPicker } from "./YearMonthPicker";
 import { calculateIsYearFirst } from "./utils";
 
 const DatePickerContainer = styled.div`
-  padding: var(--spacing-padding-m) var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xs);
-  background-color: var(--color-bg-neutral-lightest);
-  box-shadow: var(--shadow-200);
-  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
-  border-radius: var(--border-radius-s);
   width: fit-content;
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);

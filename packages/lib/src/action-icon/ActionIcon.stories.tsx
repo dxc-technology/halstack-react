@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 import DxcActionIcon from "./ActionIcon";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";

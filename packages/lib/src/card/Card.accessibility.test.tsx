@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcCard from "./Card";
 import CardPropsType from "./types";
+import woodenDockImage from "../../.storybook/assets/images/wooden_dock.avif";
 
 describe("Card component accessibility tests", () => {
   const image = {
@@ -9,7 +10,7 @@ describe("Card component accessibility tests", () => {
     width: "100%",
     height: "250px",
     objectFit: "cover",
-    src: "https://picsum.photos/id/11/1920/1080",
+    src: woodenDockImage,
   } as CardPropsType["image"];
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcCard image={image}>test-card</DxcCard>);

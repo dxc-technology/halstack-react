@@ -6,6 +6,28 @@ import createCache from "@emotion/cache";
 import { INITIAL_VIEWPORTS } from "storybook/viewport";
 import type { StoryFn } from "@storybook/react-vite";
 
+const mockDate = new Date("2026-08-20");
+const RealDate = Date;
+
+class MockedDate extends RealDate {
+  constructor(...args: [] | ConstructorParameters<typeof Date>) {
+    if (args.length === 0) {
+      super(mockDate.getTime());
+    } else {
+      super(...args);
+    }
+  }
+
+  static now(): number {
+    return mockDate.getTime();
+  }
+}
+
+Object.setPrototypeOf(MockedDate, RealDate);
+Object.setPrototypeOf(MockedDate.prototype, RealDate.prototype);
+
+globalThis.Date = MockedDate as typeof Date;
+
 const emotionCache = createCache({ key: "css", prepend: true });
 
 // Prevent ResizeObserver loop limit exceeded errors from failing tests

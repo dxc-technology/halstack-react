@@ -3,7 +3,7 @@ import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
 import type { Margin, Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { userEvent, within } from "storybook/internal/test";
+import { userEvent, within } from "storybook/test";
 
 export default {
   title: "Tabs",

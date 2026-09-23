@@ -1,93 +1,61 @@
-import { useContext, useEffect, useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps } from "./types";
-import * as Popover from "@radix-ui/react-popover";
 import { useGroupItem } from "./useGroupItem";
 import BaseMenuContext from "./BaseMenuContext";
+import DxcPopover from "../popover/Popover";
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const navigationTreeId = `sidenav-${useId()}`;
   const contextValue = useContext(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(
     items,
     contextValue,
     props.defaultOpen
   );
-  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
-  useEffect(() => {
-    setPortalContainer(document?.getElementById(`${navigationTreeId}-portal`));
-  }, []);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(true);
+
+  const toggleSubMenu = () => {
+    setIsSubMenuOpen((prev) => !prev);
+  };
 
   return hasPopOver ? (
     <>
-      <Popover.Root open={isOpen}>
-        <Popover.Trigger
-          aria-controls={undefined}
-          aria-expanded={undefined}
-          aria-haspopup={undefined}
-          asChild
-          type={undefined}
-        >
-          <ItemAction
-            aria-controls={isOpen ? groupMenuId : undefined}
-            aria-expanded={isOpen ? true : undefined}
-            collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
-            onClick={() => {
-              toggleOpen();
-            }}
-            selected={groupSelected && !isOpen}
-            {...props}
-          />
-        </Popover.Trigger>
-        {portalContainer && (
-          <Popover.Portal container={portalContainer}>
+      <DxcPopover
+        offset={isHorizontal ? 16 : 0}
+        align={isHorizontal ? "start" : "end"}
+        side={isHorizontal ? "bottom" : "right"}
+        onClose={() => {
+          if (isOpen) {
+            toggleOpen();
+          }
+        }}
+        asChild
+        popoverContent={
+          <>
             <BaseMenuContext.Provider
               value={{ ...contextValue, displayGroupLines: false, hasPopOver: false, closePopOver: toggleOpen }}
             >
-              <Popover.Content
-                aria-label="Group details"
-                onKeyDown={(event) => {
-                  if (event.key === "Escape") {
-                    toggleOpen();
+              {!isHorizontal && props.depthLevel === 0 && (
+                <ItemAction
+                  aria-controls={isSubMenuOpen ? groupMenuId : undefined}
+                  aria-expanded={isSubMenuOpen ? true : undefined}
+                  aria-pressed={groupSelected && !isSubMenuOpen}
+                  collapseIcon={
+                    isSubMenuOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />
                   }
-                }}
-                align="start"
-                side={isHorizontal ? "bottom" : "right"}
-                style={{
-                  zIndex: "var(--z-contextualmenu)",
-                  padding: "var(--spacing-padding-xs)",
-                  boxShadow: "var(--shadow-100)",
-                  backgroundColor: "var(--color-bg-neutral-lightest)",
-                  borderRadius: "var(--border-radius-m)",
-                  ...(isHorizontal
-                    ? {}
-                    : {
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "var(--spacing-gap-xxs)",
-                      }),
-                }}
-                sideOffset={isHorizontal ? 16 : 0}
-                onInteractOutside={() => toggleOpen()}
-              >
-                {!isHorizontal && props.depthLevel === 0 && (
-                  <ItemAction
-                    aria-controls={isOpen ? groupMenuId : undefined}
-                    aria-expanded={isOpen ? true : undefined}
-                    aria-pressed={groupSelected && !isOpen}
-                    collapseIcon={
-                      isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />
-                    }
-                    onClick={() => toggleOpen()}
-                    selected={groupSelected && !isOpen}
-                    {...props}
-                    icon={undefined}
-                  />
-                )}
+                  onClick={() => {
+                    toggleSubMenu();
+                  }}
+                  selected={groupSelected && !isSubMenuOpen}
+                  {...props}
+                  icon={undefined}
+                />
+              )}
+              {isSubMenuOpen && (
                 <SubMenu id={groupMenuId} depthLevel={props.depthLevel} isPopOver={true}>
                   {items.map((item, index) => (
                     <MenuItem
@@ -97,12 +65,23 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                     />
                   ))}
                 </SubMenu>
-              </Popover.Content>
+              )}
             </BaseMenuContext.Provider>
-          </Popover.Portal>
-        )}
-      </Popover.Root>
-      <div id={`${navigationTreeId}-portal`} style={{ position: "absolute" }} />
+          </>
+        }
+        isOpen={isOpen}
+      >
+        <ItemAction
+          aria-controls={isOpen ? groupMenuId : undefined}
+          aria-expanded={isOpen ? true : undefined}
+          collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
+          onClick={() => {
+            toggleOpen();
+          }}
+          selected={groupSelected && !isOpen}
+          {...props}
+        />
+      </DxcPopover>
     </>
   ) : (
     <>

@@ -7,14 +7,15 @@ import {
   DxcGrid,
   DxcContainer,
 } from "@dxc-technology/halstack-react";
+import resultsetImage from "../../code/images/resultsetTable.png";
 
 const code = `() => {
   const image = {
-    alt: "Example image",
+ alt: "Resultset Table image",
     width: "100%",
-    height: "100%",
+    height: "150px",
     objectFit: "cover",
-    src: "https://picsum.photos/id/11/1920/1080",
+    src: resultsetImage.src,
   };
 
   const content = (
@@ -53,6 +54,7 @@ const scope = {
   DxcHeading,
   DxcInset,
   DxcParagraph,
+  resultsetImage,
 };
 
 export default { code, scope };

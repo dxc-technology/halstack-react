@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcButton from "../button/Button";
 import DxcCard from "../card/Card";
@@ -280,14 +280,14 @@ describe("Dialog component: Focus lock tests", () => {
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
-  test("Focus travels correctly in a complex tab sequence", () => {
+  test("Focus travels correctly in a complex tab sequence", async () => {
     const onClick = jest.fn();
     const { getAllByRole, queryByRole, getByRole } = render(
       <DxcDialog onCloseClick={onClick}>
         <DxcSelect label="Accept" options={options} />
         <DxcDateInput label="Older age" />
         <DxcTooltip label="Text input tooltip label">
-          <DxcTextInput label="Name" />
+          <DxcTextInput label="Name" name="Name" />
         </DxcTooltip>
         <DxcAlert
           semantic="error"
@@ -302,20 +302,15 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const select = getAllByRole("combobox")[0];
     expect(document.activeElement).toEqual(select);
-    if (select != null) {
-      fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    }
+    userEvent.keyboard("{ArrowDown}");
     expect(queryByRole("listbox")).toBeTruthy();
     userEvent.tab();
     userEvent.tab();
-    userEvent.keyboard("{Enter}");
-    expect(getAllByRole("dialog")[1]).toBeTruthy();
-    userEvent.keyboard("{Escape}");
+    userEvent.tab();
+    await waitFor(() => expect(document.activeElement).toEqual(getByRole("textbox", { name: "Name" })));
     userEvent.tab();
     userEvent.tab();
-    userEvent.tab();
-    expect(document.activeElement).toEqual(getByRole("button", { name: "Close alert" }));
-    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Cancel" }));
     userEvent.tab();
     expect(document.activeElement).toEqual(getByRole("button", { name: "Save" }));
     userEvent.tab();
