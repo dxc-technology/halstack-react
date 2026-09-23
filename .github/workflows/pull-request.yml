@@ -44,7 +44,8 @@ jobs:
 
           ssh-keyscan -H -p 22 $SFTP_HOST >> ~/.ssh/known_hosts
 
+          ssh -i ~/.ssh/ssh_file.pem $SFTP_USER@$SFTP_HOST "rm -r halstack/18"
+
           sftp -i ~/.ssh/ssh_file.pem -b - $SFTP_USER@$SFTP_HOST <<EOF
-          rm -r halstack/18
           put -r ./apps/website/out/* halstack/next/
           EOF
