@@ -1,5 +1,5 @@
 import { ReactNode, SetStateAction } from "react";
-import { Column, RenderSortStatusProps, SortColumn, renderTextEditor } from "react-data-grid";
+import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
@@ -23,7 +23,7 @@ export const convertToRDGColumns = (
   draggable: gridColumn.draggable,
   editable: gridColumn.textEditable,
   headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
-  renderEditCell: gridColumn.textEditable ? renderTextEditor : undefined,
+  renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
     <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
       {row[gridColumn.key]}
