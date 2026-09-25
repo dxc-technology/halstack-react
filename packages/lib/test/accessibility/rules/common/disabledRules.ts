@@ -10,8 +10,6 @@ const disabledRules = [
   "region",
   // Disable label rule to prevent error from inputs that have no label on purpose (even though it is not really recommended for accessibility)
   "label",
-  // TODO: REMOVE
-  "color-contrast",
 ];
 
 export default disabledRules;
