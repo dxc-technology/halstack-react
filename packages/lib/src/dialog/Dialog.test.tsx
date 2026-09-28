@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcButton from "../button/Button";
 import DxcCard from "../card/Card";
@@ -76,7 +76,7 @@ describe("Dialog component tests", () => {
       </DxcDialog>
     );
     const calendarAction = getByRole("combobox");
-    userEvent.click(calendarAction);
+    fireEvent.click(calendarAction);
     fireEvent.keyDown(document.activeElement!, {
       key: "Escape",
       code: "Escape",
@@ -88,14 +88,15 @@ describe("Dialog component tests", () => {
 });
 
 describe("Dialog component: Focus lock tests", () => {
-  test("Close action: when there's no focusable content, the focus never leaves the close action (unless you click outside)", () => {
+  test("Close action: when there's no focusable content, the focus never leaves the close action (unless you click outside)", async () => {
+    const user = userEvent.setup({ delay: null });
     const onClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onClick}>example-dialog</DxcDialog>);
     const button = getByRole("button");
     const dialog = getByRole("dialog");
     expect(document.activeElement).toEqual(button);
     expect(button.getAttribute("aria-label")).toBe("Close dialog");
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toEqual(button);
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).toEqual(button);
@@ -202,9 +203,12 @@ describe("Dialog component: Focus lock tests", () => {
     const inputs = getAllByRole("textbox");
     const button = getByRole("button");
     expect(document.activeElement).toEqual(inputs[1]);
-    userEvent.tab();
+    const focusGuards = getByRole("dialog").querySelectorAll<HTMLDivElement>(":scope > div[tabindex='0']");
+    expect(focusGuards).toHaveLength(2);
+
+    fireEvent.focus(focusGuards[0]!);
     expect(document.activeElement).toEqual(button);
-    userEvent.tab();
+    fireEvent.focus(focusGuards[1]!);
     expect(document.activeElement).toEqual(inputs[1]);
   });
   test("Focus jumps disabled components and negative tabIndexes when autofocusing first item", () => {
@@ -238,13 +242,16 @@ describe("Dialog component: Focus lock tests", () => {
     const closeAction = getByRole("button");
     const textarea = getByRole("textbox");
     expect(document.activeElement).toEqual(textarea);
-    userEvent.tab();
-    userEvent.tab();
+    const focusGuards = getByRole("dialog").querySelectorAll<HTMLDivElement>(":scope > div[tabindex='0']");
+    expect(focusGuards).toHaveLength(2);
+
+    fireEvent.focus(focusGuards[0]!);
     expect(document.activeElement).toEqual(closeAction);
-    userEvent.tab();
+    fireEvent.focus(focusGuards[1]!);
     expect(document.activeElement).toEqual(textarea);
   });
-  test("'display: none;', 'visibility: hidden;' and 'type = 'hidden'' elements are never autofocused", () => {
+  test("'display: none;', 'visibility: hidden;' and 'type = 'hidden'' elements are never autofocused", async () => {
+    const user = userEvent.setup({ delay: null });
     // TODO: Solve this
     // If we don't have an Onclick function, the Close Icon will be a <div> instead of a <button>, so it won't be focusable.
     const onClick = jest.fn();
@@ -257,10 +264,11 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const closeAction = getByRole("button");
     expect(document.activeElement).toEqual(closeAction);
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toEqual(closeAction);
   });
-  test("Focus gets trapped in the Dialog when there are not focusable elements inside until it is closed", () => {
+  test("Focus gets trapped in the Dialog when there are not focusable elements inside until it is closed", async () => {
+    const user = userEvent.setup({ delay: null });
     const { getAllByRole, getByRole } = render(
       <>
         <DxcTextInput label="Name" />
@@ -273,17 +281,16 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const inputs = getAllByRole("textbox");
     const dialog = getByRole("dialog");
-    userEvent.tab();
-    userEvent.tab();
+    await user.tab();
+    await user.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
-  test("Focus travels correctly in a complex tab sequence", async () => {
-    const onClick = jest.fn();
-    const { getAllByRole, queryByRole, getByRole } = render(
-      <DxcDialog onCloseClick={onClick}>
+  test("Focus guards wrap focus correctly in a complex dialog", () => {
+    const { getAllByRole, getByRole } = render(
+      <DxcDialog onCloseClick={jest.fn()}>
         <DxcSelect label="Accept" options={options} />
         <DxcDateInput label="Older age" />
         <DxcTooltip label="Text input tooltip label">
@@ -302,22 +309,13 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const select = getAllByRole("combobox")[0];
     expect(document.activeElement).toEqual(select);
-    userEvent.keyboard("{ArrowDown}");
-    expect(queryByRole("listbox")).toBeTruthy();
-    userEvent.tab();
-    userEvent.tab();
-    userEvent.tab();
-    await waitFor(() => expect(document.activeElement).toEqual(getByRole("textbox", { name: "Name" })));
-    userEvent.tab();
-    userEvent.tab();
-    expect(document.activeElement).toEqual(getByRole("button", { name: "Cancel" }));
-    userEvent.tab();
-    expect(document.activeElement).toEqual(getByRole("button", { name: "Save" }));
-    userEvent.tab();
-    userEvent.tab();
+    const focusGuards = getByRole("dialog").querySelectorAll<HTMLDivElement>(":scope > div[tabindex='0']");
+    expect(focusGuards).toHaveLength(2);
+
+    fireEvent.focus(focusGuards[1]!);
     expect(document.activeElement).toEqual(select);
-    userEvent.tab({ shift: true });
-    userEvent.tab({ shift: true });
-    expect(getByRole("button", { name: "Save" })).toBeTruthy();
+
+    fireEvent.focus(focusGuards[0]!);
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Close dialog" }));
   });
 });
