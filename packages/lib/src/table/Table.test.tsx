@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render } from "@testing-library/react";
 import DxcTable from "./Table";
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -108,14 +107,14 @@ describe("Table component tests", () => {
     if (!dropdown) {
       throw new Error("Expected the actions dropdown to be rendered");
     }
-    await Promise.resolve(userEvent.click(dropdown));
+    await Promise.resolve(fireEvent.click(dropdown));
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
-    await Promise.resolve(userEvent.click(option));
+    await Promise.resolve(fireEvent.click(option));
     expect(onSelectOption).toHaveBeenCalledWith("3");
     const action = getAllByRole("button")[0];
     if (action) {
-      await Promise.resolve(userEvent.click(action));
+      await Promise.resolve(fireEvent.click(action));
     }
     expect(onClick).toHaveBeenCalled();
   });
