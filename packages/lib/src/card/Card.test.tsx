@@ -40,17 +40,19 @@ describe("Card component tests", () => {
     expect(cardElement).toHaveAttribute("href", "https://example.com");
   });
 
-  test("Card renders as a button when onClick is provided", () => {
+  test("Card renders as a button when onClick is provided", async () => {
+    const user = userEvent.setup();
     const onClickMock = jest.fn();
     const { getByRole } = render(<DxcCard onClick={onClickMock}>test-card</DxcCard>);
     const cardElement = getByRole("button");
     expect(cardElement).toBeTruthy();
     expect(cardElement).toHaveTextContent("test-card");
-    userEvent.click(cardElement);
+    await user.click(cardElement);
     expect(onClickMock).toHaveBeenCalled();
   });
 
-  test("Card renders as a checkbox when selectable is true", () => {
+  test("Card renders as a checkbox when selectable is true", async () => {
+    const user = userEvent.setup();
     const onSelectionChangeMock = jest.fn();
     const { getByRole } = render(
       <DxcCard selectable onSelectionChange={onSelectionChangeMock}>
@@ -61,7 +63,7 @@ describe("Card component tests", () => {
     expect(cardElement).toBeTruthy();
     expect(cardElement).toHaveTextContent("test-card");
     expect(cardElement).toHaveAttribute("aria-checked", "false");
-    userEvent.click(cardElement);
+    await user.click(cardElement);
     expect(onSelectionChangeMock).toHaveBeenCalledWith(true);
   });
 
@@ -75,7 +77,8 @@ describe("Card component tests", () => {
     expect(queryByText("test-card")).toBeNull();
   });
 
-  test("Card with selectable and href should not be selectable", () => {
+  test("Card with selectable and href should not be selectable", async () => {
+    const user = userEvent.setup();
     const onSelectionChangeMock = jest.fn();
     const { getByText } = render(
       <DxcCard selectable selected href="https://example.com" onSelectionChange={onSelectionChangeMock}>
@@ -85,27 +88,29 @@ describe("Card component tests", () => {
     const cardElement = getByText("test-card");
     expect(cardElement).toBeTruthy();
     expect(cardElement.tagName).toBe("A");
-    userEvent.click(cardElement);
+    await user.click(cardElement);
     expect(onSelectionChangeMock).not.toHaveBeenCalled();
     expect(cardElement).toHaveAttribute("href", "https://example.com");
     expect(cardElement).not.toHaveAttribute("aria-checked");
   });
 
-  test("Card keyboard support when it is not selectable", () => {
+  test("Card keyboard support when it is not selectable", async () => {
+    const user = userEvent.setup();
     const onClickMock = jest.fn();
     const { getByRole } = render(<DxcCard onClick={onClickMock}>test-card</DxcCard>);
     const cardElement = getByRole("button");
     expect(cardElement).toBeTruthy();
     expect(cardElement).toHaveTextContent("test-card");
-    userEvent.tab();
+    await user.tab();
     expect(cardElement).toHaveFocus();
-    userEvent.keyboard("{Enter}");
+    await user.keyboard("{Enter}");
     expect(onClickMock).toHaveBeenCalled();
-    userEvent.keyboard(" ");
+    await user.keyboard(" ");
     expect(onClickMock).toHaveBeenCalledTimes(2);
   });
 
-  test("Card keyboard support when it is selectable", () => {
+  test("Card keyboard support when it is selectable", async () => {
+    const user = userEvent.setup();
     const onSelectionChangeMock = jest.fn();
     const { getByRole } = render(
       <DxcCard selectable onSelectionChange={onSelectionChangeMock}>
@@ -115,11 +120,11 @@ describe("Card component tests", () => {
     const cardElement = getByRole("checkbox");
     expect(cardElement).toBeTruthy();
     expect(cardElement).toHaveTextContent("test-card");
-    userEvent.tab();
+    await user.tab();
     expect(cardElement).toHaveFocus();
-    userEvent.keyboard("{Enter}");
+    await user.keyboard("{Enter}");
     expect(onSelectionChangeMock).toHaveBeenCalledWith(true);
-    userEvent.keyboard(" ");
+    await user.keyboard(" ");
     expect(onSelectionChangeMock).toHaveBeenCalledWith(false);
   });
 });
