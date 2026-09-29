@@ -70,23 +70,26 @@ describe("Textarea component tests", () => {
     expect(textarea.value).toBe("Example text");
   });
 
-  test("Disabled textarea can not be modified", () => {
+  test("Disabled textarea can not be modified", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByLabelText } = render(<DxcTextarea label="Example label" onChange={onChange} disabled />);
     const textarea = getByLabelText("Example label");
-    userEvent.type(textarea, "Test");
+    await user.type(textarea, "Test");
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  test("Read-only textarea does not trigger onChange function", () => {
+  test("Read-only textarea does not trigger onChange function", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByLabelText } = render(<DxcTextarea label="Example label" onChange={onChange} readOnly />);
     const textarea = getByLabelText("Example label");
-    userEvent.type(textarea, "Test");
+    await user.type(textarea, "Test");
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  test("Read-only textarea sends its value on submit", () => {
+  test("Read-only textarea sends its value on submit", async () => {
+    const user = userEvent.setup();
     const handlerOnSubmit = jest.fn((e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
@@ -100,7 +103,7 @@ describe("Textarea component tests", () => {
       </form>
     );
     const submit = getByText("Submit");
-    userEvent.click(submit);
+    await user.click(submit);
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
 
@@ -124,7 +127,8 @@ describe("Textarea component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "Test" });
   });
 
-  test("Not optional constraint (onChange)", () => {
+  test("Not optional constraint (onChange)", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByLabelText } = render(
       <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} />
@@ -134,7 +138,7 @@ describe("Textarea component tests", () => {
     fireEvent.change(textarea, { target: { value: "Test" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "Test" });
-    userEvent.clear(textarea);
+    await user.clear(textarea);
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "",
@@ -142,7 +146,8 @@ describe("Textarea component tests", () => {
     });
   });
 
-  test("Pattern constraint", () => {
+  test("Pattern constraint", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByLabelText } = render(
@@ -168,7 +173,7 @@ describe("Textarea component tests", () => {
       value: "pattern test",
       error: "Please match the format requested.",
     });
-    userEvent.clear(textarea);
+    await user.clear(textarea);
     fireEvent.change(textarea, { target: { value: "pattern4&" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "pattern4&" });
@@ -177,7 +182,8 @@ describe("Textarea component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "pattern4&" });
   });
 
-  test("Length constraint", () => {
+  test("Length constraint", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByLabelText } = render(
@@ -204,7 +210,7 @@ describe("Textarea component tests", () => {
       value: "test",
       error: "The minimum length is 5.",
     });
-    userEvent.clear(textarea);
+    await user.clear(textarea);
     fireEvent.change(textarea, { target: { value: "this is a longer value" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
@@ -217,7 +223,7 @@ describe("Textarea component tests", () => {
       value: "this is a longer value",
       error: "The maximum length is 10.",
     });
-    userEvent.clear(textarea);
+    await user.clear(textarea);
     fireEvent.change(textarea, { target: { value: "length" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "length" });
