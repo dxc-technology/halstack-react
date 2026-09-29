@@ -60,8 +60,8 @@ describe("Toast component tests", () => {
     });
   });
   test("Toast disappears after the specified duration", async () => {
-    const user = userEvent.setup();
     jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={4250}>
         <ToastPage />
@@ -83,8 +83,8 @@ describe("Toast component tests", () => {
     jest.useRealTimers();
   });
   test("If duration > 5000, the toast disappears at 5000ms", async () => {
-    const user = userEvent.setup();
     jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={1000000}>
         <ToastPage />
@@ -101,8 +101,8 @@ describe("Toast component tests", () => {
     jest.useRealTimers();
   });
   test("If duration < 3000, the toast disappears at 3000ms", async () => {
-    const user = userEvent.setup();
     jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={100}>
         <ToastPage />
@@ -185,8 +185,8 @@ describe("Toast component tests", () => {
     });
   });
   test("Loading toast is never removed automatically", async () => {
-    const user = userEvent.setup();
     jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByText } = render(
       <DxcToastsQueue>
         <ToastPage />
@@ -216,8 +216,8 @@ describe("Toast component tests", () => {
     });
   });
   test("Loading toast can be removed programmatically", async () => {
-    const user = userEvent.setup();
     jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByText, queryByText } = render(
       <DxcToastsQueue>
         <ToastPage />
