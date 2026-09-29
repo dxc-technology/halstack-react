@@ -47,18 +47,20 @@ const ToastPage = ({ onClick }: { onClick?: () => void }) => {
 
 describe("Toast component tests", () => {
   test("Renders the component", async () => {
+    const user = userEvent.setup();
     const { getByText } = render(
       <DxcToastsQueue>
         <ToastPage />
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
     await waitFor(() => {
       expect(getByText("This is a simple toast.")).toBeTruthy();
     });
   });
-  test("Toast disappears after the specified duration", () => {
+  test("Toast disappears after the specified duration", async () => {
+    const user = userEvent.setup();
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={4250}>
@@ -66,7 +68,7 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
 
     act(() => {
       jest.advanceTimersByTime(4249);
@@ -80,7 +82,8 @@ describe("Toast component tests", () => {
 
     jest.useRealTimers();
   });
-  test("If duration > 5000, the toast disappears at 5000ms", () => {
+  test("If duration > 5000, the toast disappears at 5000ms", async () => {
+    const user = userEvent.setup();
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={1000000}>
@@ -88,7 +91,7 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
 
     act(() => {
       jest.advanceTimersByTime(5001);
@@ -97,7 +100,8 @@ describe("Toast component tests", () => {
 
     jest.useRealTimers();
   });
-  test("If duration < 3000, the toast disappears at 3000ms", () => {
+  test("If duration < 3000, the toast disappears at 3000ms", async () => {
+    const user = userEvent.setup();
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue duration={100}>
@@ -105,7 +109,7 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
 
     act(() => {
       jest.advanceTimersByTime(3001);
@@ -115,20 +119,22 @@ describe("Toast component tests", () => {
     jest.useRealTimers();
   });
   test("Clear action removes the toast", async () => {
+    const user = userEvent.setup();
     const { getByText, getByLabelText, queryByText } = render(
       <DxcToastsQueue>
         <ToastPage />
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
     const clearButton = getByLabelText("Clear toast");
-    userEvent.click(clearButton);
+    await user.click(clearButton);
     await waitFor(() => {
       expect(queryByText("This is a simple toast.")).toBeFalsy();
     });
   });
-  test("Action button executes the onClick function", () => {
+  test("Action button executes the onClick function", async () => {
+    const user = userEvent.setup();
     const onClick = jest.fn();
     const { getByText } = render(
       <DxcToastsQueue>
@@ -136,12 +142,13 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Show toast");
-    userEvent.click(button);
+    await user.click(button);
     const actionButton = getByText("Action");
-    userEvent.click(actionButton);
+    await user.click(actionButton);
     expect(onClick).toHaveBeenCalled();
   });
   test("Toast queue can only accumulate 5 toasts at the same time", async () => {
+    const user = userEvent.setup();
     const { getByText, getAllByText } = render(
       <DxcToastsQueue>
         <ToastPage />
@@ -149,13 +156,14 @@ describe("Toast component tests", () => {
     );
     const button = getByText("Show toast");
     for (let i = 0; i < 6; i++) {
-      userEvent.click(button);
+      await user.click(button);
     }
     await waitFor(() => {
       expect(getAllByText("This is a simple toast.").length).toBe(5);
     });
   });
   test("Toast queue removes the older toast when more than 5 toast accumulate", async () => {
+    const user = userEvent.setup();
     const { getByText, getAllByText, queryByText } = render(
       <DxcToastsQueue>
         <ToastPage />
@@ -164,19 +172,20 @@ describe("Toast component tests", () => {
     const infoBtn = getByText("Show info toast");
     const defaultBtn = getByText("Show toast");
 
-    userEvent.click(infoBtn);
+    await user.click(infoBtn);
     await waitFor(() => {
       expect(getByText("This is an information toast.")).toBeTruthy();
     });
     for (let i = 0; i < 6; i++) {
-      userEvent.click(defaultBtn);
+      await user.click(defaultBtn);
     }
     await waitFor(() => {
       expect(queryByText("This is an information toast.")).toBeFalsy();
       expect(getAllByText("This is a simple toast.").length).toBe(5);
     });
   });
-  test("Loading toast is never removed automatically", () => {
+  test("Loading toast is never removed automatically", async () => {
+    const user = userEvent.setup();
     jest.useFakeTimers();
     const { getByText } = render(
       <DxcToastsQueue>
@@ -184,7 +193,7 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Show loading toast");
-    userEvent.click(button);
+    await user.click(button);
     act(() => {
       jest.advanceTimersByTime(10000); // over 5000ms
     });
@@ -192,20 +201,22 @@ describe("Toast component tests", () => {
     jest.useRealTimers();
   });
   test("Loading toast can be cleared", async () => {
+    const user = userEvent.setup();
     const { getByLabelText, getByText, queryByText } = render(
       <DxcToastsQueue>
         <ToastPage />
       </DxcToastsQueue>
     );
     const button = getByText("Show loading toast");
-    userEvent.click(button);
+    await user.click(button);
     const clearButton = getByLabelText("Clear toast");
-    userEvent.click(clearButton);
+    await user.click(clearButton);
     await waitFor(() => {
       expect(queryByText("Loading...")).toBeFalsy();
     });
   });
   test("Loading toast can be removed programmatically", async () => {
+    const user = userEvent.setup();
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
       <DxcToastsQueue>
@@ -213,7 +224,7 @@ describe("Toast component tests", () => {
       </DxcToastsQueue>
     );
     const button = getByText("Load process");
-    userEvent.click(button);
+    await user.click(button);
     await waitFor(() => {
       expect(getByText("Loading process...")).toBeTruthy();
     });
