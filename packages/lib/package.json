@@ -33,7 +33,6 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "react": "^19.0.0",
-    "react-data-grid": "7.0.0-beta.61",
     "react-dom": "^19.0.0"
   },
   "dependencies": {
@@ -59,6 +58,7 @@
     "@emotion/babel-plugin": "^11.13.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "react-data-grid": "7.0.0-beta.61",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-links": "^10.6.0",
     "@storybook/addon-vitest": "^10.6.0",
