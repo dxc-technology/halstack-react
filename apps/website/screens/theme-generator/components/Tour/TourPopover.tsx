@@ -58,7 +58,7 @@ const TourPopover = ({
               </DxcFlex>
             ) : (
               <DxcFlex justifyContent="space-between">
-                <DxcButton label="Skip tour" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
+                <DxcButton label="Skip step" mode="tertiary" size={{ height: "medium" }} onClick={controls.skip} />
                 <DxcFlex gap="var(--spacing-gap-s)">
                   {index > 0 && (
                     <DxcButton

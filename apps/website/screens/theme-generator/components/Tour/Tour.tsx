@@ -232,6 +232,7 @@ const Tour = ({ currentStep, onTourStepIndexChange }: TourProps) => {
     arrowBase: 12,
     arrowSize: 6,
     offset: 0,
+    scrollOffset: 120,
   };
 
   return (
@@ -241,6 +242,7 @@ const Tour = ({ currentStep, onTourStepIndexChange }: TourProps) => {
         run={runTour}
         steps={currentStep === 0 ? firstStepTour : currentStep === 1 ? secondStepTour : thirdStepTour}
         stepIndex={tourStepIndex}
+        scrollToFirstStep
         tooltipComponent={(tooltipProps) => (
           <TourPopover {...tooltipProps} onFinish={handleFinishTour} onRestart={handleRestartTour} />
         )}
