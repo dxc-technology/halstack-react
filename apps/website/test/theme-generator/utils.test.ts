@@ -54,12 +54,12 @@ describe("theme-generator utils", () => {
 
   describe("generatePalette", () => {
     it("should generate palette with 10 colors", () => {
-      const palette = generatePalette("#FF5733" as CssColor);
+      const palette = generatePalette("#FF5733");
       expect(palette).toHaveLength(10);
     });
 
     it("should return array of hex colors", () => {
-      const palette = generatePalette("#FF5733" as CssColor);
+      const palette = generatePalette("#FF5733");
       palette.forEach((color) => {
         expect(color).toMatch(/^#[0-9a-fA-F]{6}$/);
       });
@@ -75,13 +75,13 @@ describe("theme-generator utils", () => {
     });
 
     it("should return consistent palette structure", () => {
-      const palette = generatePalette("#5F249F" as CssColor);
+      const palette = generatePalette("#5F249F");
       expect(palette).toHaveLength(10);
       expect(Array.isArray(palette)).toBe(true);
     });
 
     it("should return correct values from mocked Leonardo", () => {
-      const palette = generatePalette("#5F249F" as CssColor);
+      const palette = generatePalette("#5F249F");
       expect(palette[0]).toBe("#fff5f5");
       expect(palette[9]).toBe("#ff6565");
     });
@@ -90,9 +90,9 @@ describe("theme-generator utils", () => {
   describe("generateTokens", () => {
     it("should include base color tokens for all provided colors", () => {
       const tokens = generateTokens({
-        primary: "#111111" as CssColor,
-        secondary: "#222222" as CssColor,
-        neutral: "#333333" as CssColor,
+        primary: "#111111",
+        secondary: "#222222",
+        neutral: "#333333",
       });
 
       expect(tokens["--color-primary-50"]).toBeDefined();
@@ -105,8 +105,8 @@ describe("theme-generator utils", () => {
 
     it("should include alpha tokens", () => {
       const tokens = generateTokens({
-        primary: "#111111" as CssColor,
-        neutral: "#333333" as CssColor,
+        primary: "#111111",
+        neutral: "#333333",
       });
 
       expect(tokens["--color-alpha-100-a"]).toBeDefined();
@@ -116,7 +116,7 @@ describe("theme-generator utils", () => {
 
     it("should include absolute color tokens", () => {
       const tokens = generateTokens({
-        primary: "#111111" as CssColor,
+        primary: "#111111",
       });
 
       expect(tokens["--color-absolutes-black"]).toBe("#000000");
@@ -125,7 +125,7 @@ describe("theme-generator utils", () => {
 
     it("should generate correct alpha values with opacity", () => {
       const tokens = generateTokens({
-        neutral: "#999999" as CssColor,
+        neutral: "#999999",
       });
 
       expect(tokens["--color-alpha-100-a"]).toMatch(/^#[0-9a-fA-F]{6}1a$/);
@@ -134,7 +134,7 @@ describe("theme-generator utils", () => {
 
     it("should handle single color input", () => {
       const tokens = generateTokens({
-        primary: "#FF5733" as CssColor,
+        primary: "#FF5733",
       });
 
       expect(Object.keys(tokens).length).toBeGreaterThan(0);
@@ -143,7 +143,7 @@ describe("theme-generator utils", () => {
 
     it("should convert color names to lowercase in tokens", () => {
       const tokens = generateTokens({
-        Primary: "#FF5733" as CssColor,
+        Primary: "#FF5733",
       });
 
       expect(tokens["--color-primary-50"]).toBeDefined();
@@ -151,7 +151,7 @@ describe("theme-generator utils", () => {
 
     it("should use default neutral color if not provided", () => {
       const tokens = generateTokens({
-        primary: "#FF5733" as CssColor,
+        primary: "#FF5733",
       });
 
       // Alpha tokens should still be generated with default neutral

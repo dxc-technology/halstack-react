@@ -30,7 +30,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
   const [filter, setFilter] = useState("");
-  const { asPath: currentPath } = useRouter();
+  const { asPath: currentPath, basePath } = useRouter();
   const isThemeGenerator = currentPath.includes("/theme-generator");
 
   const matchPaths = (linkPath: string) => {
@@ -59,7 +59,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
           label: link.label,
           icon: link.icon,
           items: normalizeNavTabs(link.links),
-        } as GroupItem;
+        };
       }
 
       return createNavItem(link);
@@ -106,7 +106,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${basePath}/favicon.png`} />
       </Head>
       <DxcApplicationLayout
         logo={{ src: dxcLogo, alt: "DXC Technology" }}
