@@ -21,6 +21,14 @@ jobs:
           node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build library and website
+        env:
+          NEXT_PUBLIC_SITE_VERSION: next
+        run: npm run build
+
       - name: Deploy via SFTP
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
