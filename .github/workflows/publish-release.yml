@@ -44,6 +44,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_USER: ${{ secrets.SFTP_USER }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
           MAJOR_VERSION="${TAG_NAME%%.*}"
           echo "Target folder: halstack/$MAJOR_VERSION/"
