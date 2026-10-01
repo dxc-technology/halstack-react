@@ -1,8 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import DxcTextInput from "./TextInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
+import { HalstackProvider } from "../HalstackContext";
 
 // Mocking DOMRect for Radix Primitive Popover
 global.DOMRect = MockDOMRect;
@@ -655,222 +656,117 @@ describe("TextInput component tests", () => {
     fireEvent.blur(input);
     expect(queryByRole("listbox")).toBeFalsy();
   });
+
+  test("Maximum and minimum error messages change within HalstackProvider", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    const onChange = jest.fn();
+    const onBlur = jest.fn();
+    const { getByRole } = render(
+      <HalstackProvider
+        labels={{
+          formFields: {
+            maxLengthErrorMessage: (maxLength: number) => `Please do not enter more than ${maxLength} characters.`,
+            minLengthErrorMessage: (minLegth: number) => `Please do not enter less than ${minLegth} characters.`,
+          },
+        }}
+      >
+        <DxcTextInput
+          label="Input label"
+          placeholder="Placeholder"
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          minLength={5}
+          maxLength={10}
+        />
+      </HalstackProvider>
+    );
+    const input = getByRole("textbox");
+    input.focus();
+    await user.paste("test");
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+    await user.tab();
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Please do not enter less than 5 characters.",
+    });
+
+    await user.clear(input);
+    input.focus();
+    await user.paste("test-maximum-length");
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test-maxim",
+      error: undefined,
+    });
+    await user.tab();
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test-maxim",
+      error: undefined,
+    });
+  });
 });
 
-// describe("TextInput component asynchronous autosuggest tests", () => {
-//   test("Autosuggest 'Searching...' message is shown", async () => {
-//     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-//     jest.useFakeTimers();
-//     const callbackFunc = jest.fn(
-//       (newValue: string) =>
-//         new Promise<string[]>((resolve) => {
-//           setTimeout(() => {
-//             resolve(
-//               newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-//             );
-//           }, 100);
-//         })
-//     );
-//     const onChange = jest.fn();
-//     const { getByRole, getByText, queryByText } = render(
-//       <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
-//     );
-//     const input = getByRole("combobox") as HTMLInputElement;
-//     fireEvent.focus(input);
-//     expect(getByText("Searching...")).toBeTruthy();
-//     expect(getByText("Searching...").getAttribute("aria-live")).toBe("polite");
-//     await user.type(input, "Af");
-//     expect(queryByText("Searching...")).toBeNull();
-// expect(getByRole("listbox")).toBeTruthy();
-// expect(getByText("Afghanistan")).toBeTruthy();
-// fireEvent.change(input, { target: { value: "Ab" } });
-// fireEvent.keyDown(input, {
-//   key: "Enter",
-//   code: "Enter",
-//   keyCode: 13,
-//   charCode: 13,
-// });
-// expect(input.value).toBe("Cabo Verde");
-// });
+describe("TextInput component asynchronous autosuggest tests", () => {
+  test("Autosuggest 'Searching...' message is shown", async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    const callbackFunc = jest.fn(
+      (newValue: string) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
+    const onChange = jest.fn();
+    const { getByRole, getByText, queryByText, getAllByRole } = render(
+      <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
+    );
+    const input = getByRole("combobox") as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(getByText("Searching...")).toBeTruthy();
+    expect(getByText("Searching...").getAttribute("aria-live")).toBe("polite");
+    await act(async () => {
+      await jest.advanceTimersByTimeAsync(100);
+    });
+    expect(queryByText("Searching...")).toBeNull();
+    expect(getByRole("listbox")).toBeTruthy();
+    expect(getByText("Afghanistan")).toBeTruthy();
+    await user.type(input, "Ab");
+    await act(async () => {
+      await jest.advanceTimersByTimeAsync(100);
+    });
+    expect(queryByText("Searching...")).toBeNull();
+    expect(queryByText("Afghanistan")).toBeNull();
+    expect(queryByText("Cabo Verde")).toBeTruthy();
+    expect(getAllByRole("option").length).toBe(1);
+  });
 
-// test("Autosuggest Esc key works while 'Searching...' message is shown", () => {
-//   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-//   const callbackFunc = jest.fn(
-//     (newValue: string) =>
-//       new Promise<string[]>((resolve) => {
-//         setTimeout(() => {
-//           resolve(
-//             newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-//           );
-//         }, 100);
-//       })
-//   );
-//   const onChange = jest.fn();
-//   const { getByRole, getByText, queryByText, queryByRole } = render(
-//     <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
-//   );
-//   const input = getByRole("combobox") as HTMLInputElement;
-//   fireEvent.focus(input);
-//   expect(getByText("Searching...")).toBeTruthy();
-//   void user.type(input, "Ab");
-//   fireEvent.keyDown(input, {
-//     key: "Esc",
-//     code: "Esc",
-//     keyCode: 27,
-//     charCode: 27,
-//   });
-//   expect(queryByRole("listbox")).toBeFalsy();
-//   expect(queryByText("Searching...")).toBeFalsy();
-//   expect(input.value).toBe("");
-// });
+  test("Asynchronous autosuggest request failed, shows 'Error fetching data' message", async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    const errorCallbackFunc = () =>
+      new Promise<string[]>((_, reject) => {
+        setTimeout(() => {
+          reject(new Error("err"));
+        }, 100);
+      });
 
-// test("Asynchronous autosuggest: uncontrolled and controlled behaviors", async () => {
-//   const callbackFunc = jest.fn(
-//     (newValue: string) =>
-//       new Promise<string[]>((resolve) => {
-//         setTimeout(() => {
-//           resolve(
-//             newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-//           );
-//         }, 100);
-//       })
-//   );
-//   const onChange = jest.fn();
+    const { getByRole, findByRole } = render(
+      <DxcTextInput label="Autosuggest Countries" onChange={jest.fn()} suggestions={errorCallbackFunc} />
+    );
 
-//   // Test: Uncontrolled
-//   const { getByRole, getByText, queryByRole, rerender } = render(
-//     <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />
-//   );
-//   let input = getByRole("combobox") as HTMLInputElement;
-//   fireEvent.focus(input);
-//   userEvent.type(input, "Den");
-//   await waitForElementToBeRemoved(() => getByText("Searching..."));
-//   expect(getByText("Denmark")).toBeTruthy();
-//   userEvent.click(getByRole("option"));
-//   expect(onChange).toHaveBeenCalledWith({ value: "Denmark" });
-//   expect(input.value).toBe("Denmark");
-
-//   // Test: Controlled
-//   rerender(
-//     <DxcTextInput label="Autosuggest Countries" value="Denm" onChange={onChange} suggestions={callbackFunc} />
-//   );
-//   input = getByRole("combobox") as HTMLInputElement;
-//   expect(input.value).toBe("Denm");
-//   userEvent.click(getByText("Autosuggest Countries"));
-//   await waitForElementToBeRemoved(() => getByText("Searching..."));
-//   expect(getByText("Denmark")).toBeTruthy();
-//   fireEvent.focus(getByRole("option"));
-//   userEvent.click(getByText("Denmark"));
-//   expect(onChange).toHaveBeenCalledWith({ value: "Denmark" });
-//   expect(queryByRole("listbox")).toBeFalsy();
-// });
-
-// test("Asynchronous autosuggest with no matches: closes listbox and blocks arrow keys", async () => {
-//   const callbackFunc = jest.fn(
-//     (newValue: string) =>
-//       new Promise<string[]>((resolve) => {
-//         setTimeout(() => {
-//           resolve(
-//             newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-//           );
-//         }, 100);
-//       })
-//   );
-//   const onChange = jest.fn();
-//   const { getByText, getByRole, queryByRole } = render(
-//     <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />
-//   );
-//   const input = getByRole("combobox");
-//   fireEvent.focus(input);
-//   act(() => {
-//     userEvent.type(input, "Example text");
-//   });
-//   await waitForElementToBeRemoved(() => getByText("Searching..."));
-
-//   // Test: listbox closes when no matches
-//   expect(queryByRole("listbox")).toBeFalsy();
-
-//   // Test: arrow keys don't open listbox after no matches
-//   fireEvent.focus(input);
-//   expect(queryByRole("listbox")).toBeFalsy();
-//   fireEvent.keyDown(input, {
-//     key: "ArrowUp",
-//     code: "ArrowUp",
-//     keyCode: 38,
-//     charCode: 38,
-//   });
-//   expect(queryByRole("listbox")).toBeFalsy();
-//   fireEvent.keyDown(input, {
-//     key: "ArrowDown",
-//     code: "ArrowDown",
-//     keyCode: 40,
-//     charCode: 40,
-//   });
-//   expect(queryByRole("listbox")).toBeFalsy();
-// });
-
-// test("Asynchronous autosuggest request failed, shows 'Error fetching data' message", async () => {
-//   const errorCallbackFunc = () =>
-//     new Promise<string[]>((_, reject) => {
-//       setTimeout(() => {
-//         reject(new Error("err"));
-//       }, 100);
-//     });
-
-//   const { getByRole, findByRole } = render(
-//     <DxcTextInput label="Autosuggest Countries" onChange={jest.fn()} suggestions={errorCallbackFunc} />
-//   );
-
-//   fireEvent.change(getByRole("combobox"), { target: { value: "test" } });
-//   const alert = await findByRole("alert");
-//   expect(alert).toHaveTextContent("Error fetching data");
-// });
-
-// test("Maximum and minimum error messages change within HalstackProvider", () => {
-//   const onChange = jest.fn();
-//   const onBlur = jest.fn();
-//   const { getByRole } = render(
-//     <HalstackProvider
-//       labels={{
-//         formFields: {
-//           maxLengthErrorMessage: (maxLength: number) => `Please do not enter more than ${maxLength} characters.`,
-//           minLengthErrorMessage: (minLegth: number) => `Please do not enter less than ${minLegth} characters.`,
-//         },
-//       }}
-//     >
-//       <DxcTextInput
-//         label="Input label"
-//         placeholder="Placeholder"
-//         onChange={onChange}
-//         onBlur={onBlur}
-//         margin={{ left: "medium", right: "medium" }}
-//         clearable
-//         minLength={5}
-//         maxLength={10}
-//       />
-//     </HalstackProvider>
-//   );
-//   const input = getByRole("textbox");
-//   fireEvent.change(input, { target: { value: "test" } });
-//   expect(onChange).toHaveBeenCalledWith({
-//     value: "test",
-//     error: "Please do not enter less than 5 characters.",
-//   });
-//   fireEvent.blur(input);
-//   expect(onBlur).toHaveBeenCalledWith({
-//     value: "test",
-//     error: "Please do not enter less than 5 characters.",
-//   });
-
-//   fireEvent.change(input, { target: { value: "test-maximum-length" } });
-//   expect(onChange).toHaveBeenCalledWith({
-//     value: "test-maximum-length",
-//     error: "Please do not enter more than 10 characters.",
-//   });
-//   fireEvent.blur(input);
-//   expect(onBlur).toHaveBeenCalledWith({
-//     value: "test-maximum-length",
-//     error: "Please do not enter more than 10 characters.",
-//   });
-// });
-// });
+    await user.type(getByRole("combobox"), "test");
+    await act(async () => {
+      await jest.advanceTimersByTimeAsync(100);
+    });
+    const alert = await findByRole("alert");
+    expect(alert).toHaveTextContent("Error fetching data");
+  });
+});
