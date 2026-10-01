@@ -9,7 +9,6 @@
     "storybook": "turbo storybook",
     "test-storybook": "turbo test-storybook",
     "test": "turbo test",
-    "test:accessibility": "turbo test:accessibility",
     "prepare": "husky",
     "test:watch": "turbo test:watch"
   },

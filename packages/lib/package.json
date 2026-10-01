@@ -24,7 +24,6 @@
     "storybook": "storybook dev -p 6006",
     "test-storybook": "vitest --project=storybook",
     "test": "jest --env=jsdom --config=./jest.config.ts",
-    "test:accessibility": "vitest run --config=vitest.config.accessibility.ts",
     "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2"
