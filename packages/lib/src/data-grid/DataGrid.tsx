@@ -218,7 +218,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return <>{row.expandedChildContent}</>;
             }
             // if row has expandable content
             return (
@@ -384,16 +384,16 @@ const DxcDataGrid = ({
           );
           if (innerSortedRows.some((row) => uniqueRowId in row)) {
             rowsToRender
-              .filter((row) => row.isExpandedChildContent)
-              .map((expandedRow) =>
+              .filter((row) => Boolean(row.isExpandedChildContent))
+              .forEach((expandedRow) => {
                 addRow(
                   innerSortedRows,
                   innerSortedRows.findIndex(
                     (trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey
                   ) + 1,
                   expandedRow
-                )
-              );
+                );
+              });
             return innerSortedRows;
           }
         } else {

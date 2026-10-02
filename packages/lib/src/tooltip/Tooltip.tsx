@@ -117,7 +117,7 @@ export const Tooltip = ({
         <Provider delayDuration={300}>
           <Root>
             <Trigger asChild {...rest}>
-              {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
+              <>{hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}</>
             </Trigger>
             <Portal>
               <StyledTooltipContent side={position} sideOffset={8}>
