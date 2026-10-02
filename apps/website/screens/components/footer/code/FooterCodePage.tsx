@@ -157,6 +157,26 @@ const sections = [
               <TableCode>0</TableCode>
             </td>
           </tr>
+          <tr>
+            <td>variant</td>
+            <td>
+              <TableCode>'branded' | 'neutral'</TableCode>
+            </td>
+            <td>
+              The available footer variants:
+              <ul>
+                <li>
+                  <strong>branded</strong>: Footer with branded styling.
+                </li>
+                <li>
+                  <strong>neutral</strong>: Footer with neutral styling.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'branded'</TableCode>
+            </td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

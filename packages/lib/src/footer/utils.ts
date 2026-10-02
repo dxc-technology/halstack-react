@@ -30,7 +30,7 @@ function getLuminance(color: string): number {
 
 export const getContrastColor = (bgColor: string) => {
   const luminance = getLuminance(bgColor);
-  return luminance > 0.179 ? "var(--color-fg-neutral-dark)" : "var(--color-fg-neutral-bright)";
+  return luminance > 0.179 ? "var(--color-fg-primary-stronger)" : "var(--color-fg-neutral-bright)";
 };
 
 export const getResponsiveStyles = {

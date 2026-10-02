@@ -127,13 +127,14 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const BottomContainer = styled.div<{ textColor: string; width: number }>`
+const BottomContainer = styled.div<{ textColor: string; width: number; variant: FooterPropsType["variant"] }>`
   width: 100%;
   min-height: var(--height-xl);
   display: grid;
   grid-template-columns: 60% var(--spacing-gap-ml) 1fr;
   align-items: center;
-  background-color: var(--color-bg-primary-strong);
+  background-color: ${({ variant }) => (variant === "branded" ? "var(--color-bg-primary-strong)" : "var(--color-bg-primary-lightest)")};
+  border-top: ${({ variant }) => (variant === "branded" ? "" : "var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger)")};
   color: ${({ textColor }) => textColor};
   padding: var(--spacing-padding-none) var(--spacing-padding-xl);
   box-sizing: border-box;
@@ -213,6 +214,7 @@ const DxcFooter = ({
   mode = "default",
   rightContent,
   socialLinks,
+  variant = "branded",
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const translatedLabels = use(HalstackLanguageContext).labels;
@@ -233,10 +235,10 @@ const DxcFooter = ({
       ) : themedLogos?.footerReducedLogo ? (
         <LogoImg mode={mode} alt={"Footer logo"} src={themedLogos.footerReducedLogo} title={"Footer logo"} />
       ) : (
-        dxcSmallLogo
+        dxcSmallLogo(variant === "neutral" ? "#0E1020" : undefined)
       );
     }
-  }, [mode, logo, themedLogos]);
+  }, [mode, logo, themedLogos, variant]);
 
   const footerRef = useRef<HTMLDivElement>(null);
   const width = useWidth(footerRef);
@@ -285,7 +287,7 @@ const DxcFooter = ({
           )}
         </MainContainer>
       )}
-      <BottomContainer ref={bottomContainerRef} textColor={textColor} width={width}>
+      <BottomContainer ref={bottomContainerRef} variant={variant} textColor={textColor} width={width}>
         {mode === "default" && bottomLinks && (
           <BottomLinks textColor={textColor} width={width}>
             {bottomLinks?.map((link, index) => (

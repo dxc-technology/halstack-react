@@ -76,6 +76,10 @@ type FooterPropsType = {
    * inside the leftContent and rightContent.
    */
   tabIndex?: number;
+  /**
+   * Visual variant of the footer.
+   */
+  variant?: "branded" | "neutral";
 };
 
 export default FooterPropsType;
