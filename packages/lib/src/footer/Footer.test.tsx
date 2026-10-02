@@ -28,6 +28,10 @@ describe("Footer component tests", () => {
     const { getByTitle } = render(<DxcFooter />);
     expect(getByTitle("DXC Logo")).toBeTruthy();
   });
+  test("Footer renders the reduced neutral logo in black", () => {
+    const { container } = render(<DxcFooter mode="reduced" variant="neutral" />);
+    expect(container.querySelector("svg path")?.getAttribute("fill")).toBe("#0E1020");
+  });
   test("Footer renders with social links", () => {
     const { getByRole } = render(<DxcFooter socialLinks={social} />);
     const socialIcon = getByRole("link");

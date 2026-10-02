@@ -203,6 +203,10 @@ const Footer = () => (
       <DxcFooter />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Neutral" theme="light" level={4} />
+      <DxcFooter variant="neutral" bottomLinks={bottom} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With custom logo" theme="light" level={4} />
       <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
@@ -423,6 +427,10 @@ const Footer = () => (
       <DxcFooter mode="reduced" />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Neutral Reduced" theme="light" level={4} />
+      <DxcFooter variant="neutral" mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Reduced with custom logo" theme="light" level={4} />
       <DxcFooter mode="reduced" logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
@@ -436,9 +444,11 @@ const Footer = () => (
           },
         }}
       >
-        <DxcFooter />
-        <DxcFooter mode="reduced" />
-        <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcFooter />
+          <DxcFooter mode="reduced" />
+          <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+        </DxcFlex>
       </HalstackProvider>
     </ExampleContainer>
   </>
