@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { forwardRef } from "react";
+import { JSX, forwardRef } from "react";
 import { spaces } from "../common/variables";
 import ButtonPropsType, { Mode, Semantic, Size } from "./types";
 import DxcIcon from "../icon/Icon";

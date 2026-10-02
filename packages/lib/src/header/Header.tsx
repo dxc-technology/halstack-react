@@ -6,7 +6,7 @@ import DxcDivider from "../divider/Divider";
 import DxcHeading from "../heading/Heading";
 import { isGroupItem } from "../base-menu/utils";
 import { GroupItem, Item } from "../base-menu/types";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { JSX, useContext, useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";

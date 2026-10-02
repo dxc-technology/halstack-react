@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo } from "react";
+import { JSX, createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
@@ -49,9 +49,11 @@ const HalstackThemed = styled.div<{ coreTheme?: ThemeType["tokens"] }>`
   ${(props) => {
     if (props.coreTheme)
       return css`
-        ${Object.keys(props.coreTheme).length
-          ? Object.entries(props.coreTheme).map(([key, val]) => `${key}: ${val};`)
-          : coreTokens}
+        ${
+          Object.keys(props.coreTheme).length
+            ? Object.entries(props.coreTheme).map(([key, val]) => `${key}: ${val};`)
+            : coreTokens
+        }
         ${aliasTokens}
       `;
     else {

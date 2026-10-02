@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { KeyboardEvent, useEffect, useId, useState } from "react";
+import { JSX, KeyboardEvent, useEffect, useId, useState } from "react";
 import styled from "@emotion/styled";
 import { DateUnitPickerPropsType } from "./types";
 import scrollbarStyles from "../styles/scroll";

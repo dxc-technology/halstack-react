@@ -1,4 +1,4 @@
-import { Children, KeyboardEvent, useMemo, useState } from "react";
+import { JSX, Children, KeyboardEvent, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import NavTabsPropsType from "./types";
 import Tab from "./Tab";

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useCallback, ReactNode, useContext } from "react";
+import { JSX, useMemo, useRef, useState, useCallback, ReactNode, useContext } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";

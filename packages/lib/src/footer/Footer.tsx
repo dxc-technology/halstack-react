@@ -1,4 +1,4 @@
-import { isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { JSX, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";

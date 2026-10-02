@@ -1,4 +1,4 @@
-import { memo, MouseEvent, useContext, useId, useState } from "react";
+import { JSX, memo, MouseEvent, useContext, useId, useState } from "react";
 import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";

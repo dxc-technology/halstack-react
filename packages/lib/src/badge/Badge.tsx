@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import BadgePropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import { forwardRef } from "react";
+import { JSX, forwardRef } from "react";
 
 const contextualColorMap = {
   primary: {
