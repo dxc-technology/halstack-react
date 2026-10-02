@@ -18,7 +18,6 @@
     "storybook": {},
     "test-storybook": {},
     "test": {},
-    "test:accessibility": {},
     "test:watch": {
       "cache": false,
       "persistent": true

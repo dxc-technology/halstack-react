@@ -1,4 +1,4 @@
-import { useContext, useEffect, useId, useState } from "react";
+import { JSX, useContext, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";

@@ -68,12 +68,13 @@ describe("Message Input component tests", () => {
     expect(getByText("This is an error")).toBeInTheDocument();
   });
 
-  test("calls onChange when user types", () => {
+  test("calls onChange when user types", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByRole } = render(<DxcMessageInput onChange={onChange} />);
     const input = getByRole("textbox");
 
-    userEvent.type(input, "Hello");
+    await user.type(input, "Hello");
 
     expect(onChange).toHaveBeenCalledTimes(5);
     expect(onChange).toHaveBeenLastCalledWith({ value: "Hello" });
@@ -84,62 +85,66 @@ describe("Message Input component tests", () => {
     const { getByRole } = render(<DxcMessageInput onBlur={onBlur} />);
     const input = getByRole("textbox");
 
-    userEvent.click(input);
-    userEvent.type(input, "Test");
-    userEvent.tab();
+    fireEvent.change(input, { target: { value: "Test" } });
+    fireEvent.blur(input);
 
     expect(onBlur).toHaveBeenCalledWith({ value: "Test" });
   });
 
-  test("calls onButtonClick when Enter key is pressed", () => {
+  test("calls onButtonClick when Enter key is pressed", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByRole } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
-    userEvent.click(input);
-    userEvent.type(input, "Test message{Enter}");
+    await user.click(input);
+    await user.type(input, "Test message{Enter}");
 
     expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "Test message" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
-  test("does not call onButtonClick when Shift+Enter is pressed", () => {
+  test("does not call onButtonClick when Shift+Enter is pressed", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByRole } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
-    userEvent.click(input);
-    userEvent.type(input, "Line 1{Shift>}{Enter}{/Shift}Line 2");
+    await user.click(input);
+    await user.type(input, "Line 1{Shift>}{Enter}{/Shift}Line 2");
 
     expect(onButtonClick).not.toHaveBeenCalled();
   });
 
-  test("does not call onButtonClick when Enter is pressed and component is disabled", () => {
+  test("does not call onButtonClick when Enter is pressed and component is disabled", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByRole } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
-    userEvent.type(input, "Test message{Enter}");
+    await user.type(input, "Test message{Enter}");
 
     expect(onButtonClick).not.toHaveBeenCalled();
   });
 
-  test("does not call onButtonClick when Enter is pressed and isGenerating is true", () => {
+  test("does not call onButtonClick when Enter is pressed and isGenerating is true", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByRole } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
     const input = getByRole("textbox");
 
-    userEvent.type(input, "Test message{Enter}");
+    await user.type(input, "Test message{Enter}");
 
     expect(onButtonClick).not.toHaveBeenCalled();
   });
 
-  test("calls onButtonClick when submit button is clicked", () => {
+  test("calls onButtonClick when submit button is clicked", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Send message");
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
 
     expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
@@ -167,12 +172,13 @@ describe("Message Input component tests", () => {
     expect(stopButton).toBeInTheDocument();
   });
 
-  test("calls onButtonClick with 'stop' when stop button is clicked", () => {
+  test("calls onButtonClick with 'stop' when stop button is clicked", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByLabelText } = render(<DxcMessageInput isGenerating onButtonClick={onButtonClick} />);
     const stopButton = getByLabelText("Stop request");
 
-    userEvent.click(stopButton);
+    await user.click(stopButton);
 
     expect(onButtonClick).toHaveBeenCalledWith({ type: "stop" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
@@ -218,14 +224,15 @@ describe("Message Input component tests", () => {
     expect(input).toHaveAttribute("maxLength", "10");
   });
 
-  test("works as controlled component", () => {
+  test("works as controlled component", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByRole, rerender } = render(<DxcMessageInput value="Initial" onChange={onChange} />);
     const input = getByRole("textbox");
 
     expect(input).toHaveValue("Initial");
 
-    userEvent.type(input, " text");
+    await user.type(input, " text");
 
     rerender(<DxcMessageInput value="Initial text" onChange={onChange} />);
     expect(input).toHaveValue("Initial text");
@@ -258,9 +265,9 @@ describe("Message Input component tests", () => {
     const { getByRole } = render(<DxcMessageInput selectOptions={selectOptions} />);
     const select = getByRole("combobox");
 
-    userEvent.click(select);
+    fireEvent.click(select);
     const option1 = getByRole("option", { name: "Option 1" });
-    userEvent.click(option1);
+    fireEvent.click(option1);
 
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith("option1");
@@ -271,12 +278,13 @@ describe("Message Input component tests", () => {
     expect(queryByText("This is an error")).not.toBeInTheDocument();
   });
 
-  test("does not call onButtonClick when disabled", () => {
+  test("does not call onButtonClick when disabled", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByLabelText } = render(<DxcMessageInput disabled onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Send message");
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
 
     expect(onButtonClick).not.toHaveBeenCalled();
   });
@@ -295,7 +303,7 @@ describe("Message Input component tests", () => {
     const dropdown = getByRole("button", { name: "Show options" });
 
     // Simulate selecting the option
-    userEvent.click(dropdown);
+    fireEvent.click(dropdown);
 
     expect(dropdown).toBeInTheDocument();
   });
@@ -318,12 +326,13 @@ describe("Message Input component tests", () => {
     expect(callbackFile).toHaveBeenCalled();
   });
 
-  test("calls onButtonClick with submit when submit button is clicked", () => {
+  test("calls onButtonClick with submit when submit button is clicked", async () => {
+    const user = userEvent.setup();
     const onButtonClick = jest.fn();
     const { getByLabelText } = render(<DxcMessageInput onButtonClick={onButtonClick} />);
     const submitButton = getByLabelText("Send message");
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
     expect(onButtonClick).toHaveBeenCalledWith({ type: "submit", value: "" });
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });

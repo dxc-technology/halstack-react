@@ -1,22 +1,19 @@
-import { forwardRef, useContext, useEffect, useRef, useState } from "react";
+import { forwardRef, useContext, useLayoutEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcTextInput from "../text-input/TextInput";
 import PasswordInputPropsType, { RefType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 
-const setInputType = (type: string, element: HTMLDivElement | null) => {
-  element?.getElementsByTagName("input")[0]?.setAttribute("type", type);
-};
-
-const setAriaAttributes = (ariaExpanded: "true" | "false", element: HTMLDivElement | null) => {
-  const buttonElement = element?.getElementsByTagName("button")[0];
-  buttonElement?.setAttribute("aria-expanded", ariaExpanded);
-};
-
-const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
+const PasswordInput = styled.div<{
+  size: PasswordInputPropsType["size"];
+  isPasswordVisible: boolean;
+}>`
   ${(props) => props.size === "fillParent" && "width: 100%;"}
   & ::-ms-reveal {
     display: none;
+  }
+  & input {
+    -webkit-text-security: ${(props) => (props.isPasswordVisible ? "none" : "disc")};
   }
 `;
 
@@ -43,27 +40,37 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
     ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const inputRef = useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const { passwordInput } = useContext(HalstackLanguageContext).labels;
 
-    useEffect(() => {
-      (() => {
-        if (isPasswordVisible) {
-          setInputType("text", inputRef.current);
-          if (passwordInput.inputHidePasswordTitle) {
-            setAriaAttributes("true", inputRef.current);
-          }
-        } else {
-          setInputType("password", inputRef.current);
-          if (passwordInput.inputShowPasswordTitle) {
-            setAriaAttributes("false", inputRef.current);
-          }
+    useLayoutEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+      const inputEl = container.querySelector("input");
+      if (!inputEl) return;
+
+      const targetType = isPasswordVisible ? "text" : "password";
+
+      if (inputEl.getAttribute("type") !== targetType) {
+        inputEl.setAttribute("type", targetType);
+      }
+      const buttonEl = container.querySelector("button");
+      if (buttonEl) {
+        buttonEl.setAttribute("aria-expanded", isPasswordVisible ? "true" : "false");
+      }
+      const observer = new MutationObserver(() => {
+        if (inputEl.getAttribute("type") !== targetType) {
+          inputEl.setAttribute("type", targetType);
         }
-      })();
-    }, [isPasswordVisible, passwordInput]);
+      });
+      observer.observe(inputEl, { attributes: true, attributeFilter: ["type"] });
+      return () => {
+        observer.disconnect();
+      };
+    }, [isPasswordVisible]);
 
     return (
-      <PasswordInput ref={ref} size={size}>
+      <PasswordInput ref={ref} size={size} isPasswordVisible={isPasswordVisible}>
         <DxcTextInput
           label={label}
           name={name}
@@ -71,7 +78,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
           helperText={helperText}
           action={{
             onClick: () => {
-              setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
+              setIsPasswordVisible((prev) => !prev);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
             title: isPasswordVisible ? passwordInput?.inputHidePasswordTitle : passwordInput?.inputShowPasswordTitle,
@@ -86,7 +93,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
           minLength={minLength}
           maxLength={maxLength}
           autocomplete={autocomplete}
-          ref={inputRef}
+          ref={containerRef}
           tabIndex={tabIndex}
           ariaLabel={ariaLabel}
         />

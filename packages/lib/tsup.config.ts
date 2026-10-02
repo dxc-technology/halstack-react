@@ -15,6 +15,7 @@ export default defineConfig({
     ".woff2": "dataurl",
   },
   external: ["react", "react-data-grid", "react-dom", "@emotion/react", "@emotion/styled"],
+  noExternal: ["react-data-grid"],
   format: ["cjs", "esm"],
   injectStyle: true,
   splitting: false,

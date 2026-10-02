@@ -46,21 +46,23 @@ describe("DxcTimeInput rendering", () => {
     expect(spinbuttons).toHaveLength(4); // hour + minute + second + dayPeriod
   });
 
-  it("renders clear button when clearable is true", () => {
+  it("renders clear button when clearable is true", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getAllByRole } = render(<DxcTimeInput clearable value="05:05 AM" onChange={mockOnChange} />);
     const buttons = getAllByRole("button");
     expect(buttons).toHaveLength(2);
-    if (buttons[0]) userEvent.click(buttons[0]);
+    if (buttons[0]) await user.click(buttons[0]);
     expect(mockOnChange).toHaveBeenCalledWith("");
   });
 
-  it("renders time picker and values are correctly selected", () => {
+  it("renders time picker and values are correctly selected", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getAllByRole } = render(<DxcTimeInput value="05:30 AM" onChange={mockOnChange} />);
     const pickerButton = getByRole("button");
     expect(pickerButton).toBeTruthy();
-    userEvent.click(pickerButton);
+    await user.click(pickerButton);
     const hourButton = getAllByRole("option", { name: "05" }).find((hourButton) => hourButton.id.includes("hour"));
     const minuteButton = getAllByRole("option", { name: "30" }).find((minuteButton) =>
       minuteButton.id.includes("minute")
@@ -71,7 +73,7 @@ describe("DxcTimeInput rendering", () => {
     expect(amButton?.getAttribute("aria-selected")).toBe("true");
 
     const newHourButton = getAllByRole("option", { name: "10" }).find((hourButton) => hourButton.id.includes("hour"));
-    if (newHourButton) userEvent.click(newHourButton);
+    if (newHourButton) await user.click(newHourButton);
     expect(mockOnChange).toHaveBeenCalledWith("10:30 AM");
   });
 
@@ -80,72 +82,76 @@ describe("DxcTimeInput rendering", () => {
     expect(getByText("Invalid time")).toBeTruthy();
   });
 
-  it("Calls onBlur with the correct value", () => {
+  it("Calls onBlur with the correct value", async () => {
+    const user = userEvent.setup();
     const mockOnBlur = jest.fn();
     const mockOnChange = jest.fn();
     const { getAllByRole } = render(<DxcTimeInput label="Time input" onBlur={mockOnBlur} onChange={mockOnChange} />);
     const inputs = getAllByRole("spinbutton");
     expect(inputs).toHaveLength(3); // hour + minute + dayPeriod
-    userEvent.tab();
+    await user.tab();
     expect(inputs[0]).toHaveFocus();
-    userEvent.keyboard("{ArrowUp}");
+    await user.keyboard("{ArrowUp}");
     expect(mockOnChange).toHaveBeenCalledWith("01: ");
-    userEvent.tab();
+    await user.tab();
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowDown}");
     expect(mockOnChange).toHaveBeenCalledWith("01:59 ");
-    userEvent.tab();
+    await user.tab();
     expect(inputs[2]).toHaveFocus();
-    userEvent.keyboard("{A}");
+    await user.keyboard("{A}");
     expect(mockOnChange).toHaveBeenCalledWith("01:59 AM");
-    userEvent.tab();
+    await user.tab();
     expect(mockOnBlur).toHaveBeenCalledWith({ value: "01:59 AM", error: undefined });
   });
 
-  it("TimePicker click interaction", () => {
+  it("TimePicker click interaction", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getByText, getAllByText } = render(<DxcTimeInput label="Time input" onChange={mockOnChange} />);
     const button = getByRole("button");
     expect(button).toBeTruthy();
-    userEvent.click(button);
+    await user.click(button);
     expect(getByText("AM")).toBeTruthy();
     const hourbutton = getAllByText("07");
-    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    if (hourbutton[0]) await user.click(hourbutton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("07:00 AM");
     const minuteButton = getAllByText("30");
-    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    if (minuteButton[0]) await user.click(minuteButton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
     const amButton = getAllByText("AM")[0];
     expect(amButton).toBeTruthy();
-    if (amButton) userEvent.click(amButton);
+    if (amButton) await user.click(amButton);
     expect(mockOnChange).toHaveBeenCalledWith("07:30 AM");
   });
 
-  it("TimePicker keyboard interaction", () => {
+  it("TimePicker keyboard interaction", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getByText } = render(<DxcTimeInput label="Time input" onChange={mockOnChange} />);
     const button = getByRole("button");
     expect(button).toBeTruthy();
-    userEvent.click(button);
+    await user.click(button);
     expect(getByText("AM")).toBeTruthy();
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard("{Enter}");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("03:00 AM");
-    userEvent.tab();
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{Enter}");
+    await user.tab();
+    await user.keyboard("{ArrowUp}");
+    await user.keyboard("{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("03:55 AM");
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard(" ");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard(" ");
     expect(mockOnChange).toHaveBeenCalledWith("03:00 AM");
-    userEvent.tab();
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard("{Enter}");
+    await user.tab();
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("03:00 PM");
   });
 
-  it("TimeInput correctly move focus when each spinbutton is completed", () => {
+  it("TimeInput correctly move focus when each spinbutton is completed", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getAllByRole, getByText } = render(
       <DxcTimeInput
@@ -162,39 +168,40 @@ describe("DxcTimeInput rendering", () => {
     expect(inputs[0]).toHaveValue(23);
     expect(inputs[1]).toHaveValue(30);
     expect(inputs[2]).toHaveValue(0);
-    userEvent.click(getByText("23"));
+    await user.click(getByText("23"));
     expect(inputs[0]).toHaveFocus();
-    userEvent.keyboard("1");
-    userEvent.keyboard("0");
+    await user.keyboard("1");
+    await user.keyboard("0");
     expect(mockOnChange).toHaveBeenCalledWith("10:30:00");
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("{ArrowUp}");
+    await user.keyboard("{ArrowUp}");
     expect(mockOnChange).toHaveBeenCalledWith("10:31:00");
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowDown}");
     expect(mockOnChange).toHaveBeenCalledWith("10:29:00");
-    userEvent.keyboard("4");
-    userEvent.keyboard("5");
+    await user.keyboard("4");
+    await user.keyboard("5");
     expect(mockOnChange).toHaveBeenCalledWith("10:45:00");
     expect(inputs[2]).toHaveFocus();
-    userEvent.keyboard("{ArrowDown}");
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{ArrowUp}");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowUp}");
+    await user.keyboard("{ArrowUp}");
     expect(mockOnChange).toHaveBeenCalledWith("10:45:01");
-    userEvent.keyboard("3");
-    userEvent.keyboard("0");
+    await user.keyboard("3");
+    await user.keyboard("0");
     expect(mockOnChange).toHaveBeenCalledWith("10:45:30");
     expect(inputs[2]).toHaveFocus();
     const buttons = getAllByRole("button");
     expect(buttons).toHaveLength(2);
-    if (buttons[0]) userEvent.click(buttons[0]);
+    if (buttons[0]) await user.click(buttons[0]);
     expect(mockOnChange).toHaveBeenCalledWith("");
     expect(inputs[0]?.getAttribute("aria-valuenow")).toBeNull();
     expect(inputs[1]?.getAttribute("aria-valuenow")).toBeNull();
     expect(inputs[2]?.getAttribute("aria-valuenow")).toBeNull();
   });
 
-  it("Navigate timeInput using the keyboard", () => {
+  it("Navigate timeInput using the keyboard", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getAllByRole } = render(
       <DxcTimeInput
@@ -212,33 +219,34 @@ describe("DxcTimeInput rendering", () => {
     expect(inputs[1]).toHaveValue(30);
     expect(inputs[2]).toHaveValue(0);
     expect(inputs[3]).toHaveValue(0); // AM
-    userEvent.tab();
+    await user.tab();
     expect(inputs[0]).toHaveFocus();
-    userEvent.keyboard("{ArrowRight}");
+    await user.keyboard("{ArrowRight}");
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("{ArrowRight}");
+    await user.keyboard("{ArrowRight}");
     expect(inputs[2]).toHaveFocus();
-    userEvent.keyboard("{ArrowRight}");
+    await user.keyboard("{ArrowRight}");
     expect(inputs[3]).toHaveFocus();
-    userEvent.keyboard("{ArrowLeft}");
+    await user.keyboard("{ArrowLeft}");
     expect(inputs[2]).toHaveFocus();
-    userEvent.keyboard("{ArrowLeft}");
+    await user.keyboard("{ArrowLeft}");
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("{ArrowLeft}");
+    await user.keyboard("{ArrowLeft}");
     expect(inputs[0]).toHaveFocus();
-    userEvent.tab();
-    userEvent.tab();
-    userEvent.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
     expect(inputs[3]).toHaveFocus();
     const buttons = getAllByRole("button");
     expect(buttons).toHaveLength(2);
-    userEvent.tab();
+    await user.tab();
     expect(buttons[0]).toHaveFocus();
-    userEvent.tab();
+    await user.tab();
     expect(buttons[1]).toHaveFocus();
   });
 
-  it("Mixing keyboard inputs", () => {
+  it("Mixing keyboard inputs", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getAllByRole } = render(
       <DxcTimeInput
@@ -256,18 +264,19 @@ describe("DxcTimeInput rendering", () => {
     expect(inputs[1]).toHaveValue(30);
     expect(inputs[2]).toHaveValue(0);
     expect(inputs[3]).toHaveValue(0); // AM
-    userEvent.tab();
+    await user.tab();
     expect(inputs[0]).toHaveFocus();
-    userEvent.keyboard("1");
-    userEvent.keyboard("2");
+    await user.keyboard("1");
+    await user.keyboard("2");
     expect(mockOnChange).toHaveBeenCalledWith("12:30:00 AM");
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("{ArrowUp}");
-    userEvent.keyboard("{5}");
+    await user.keyboard("{ArrowUp}");
+    await user.keyboard("{5}");
     expect(mockOnChange).toHaveBeenCalledWith("12:05:00 AM");
   });
 
-  it("Time input with finnish locale", () => {
+  it("Time input with finnish locale", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getAllByText } = render(
       <HalstackProvider localeTag="fi-FI">
@@ -276,19 +285,20 @@ describe("DxcTimeInput rendering", () => {
     );
     const button = getByRole("button");
     expect(button).toBeTruthy();
-    userEvent.click(button);
+    await user.click(button);
     const hourbutton = getAllByText("16");
-    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    if (hourbutton[0]) await user.click(hourbutton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("16.00.00");
     const minuteButton = getAllByText("30");
-    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    if (minuteButton[0]) await user.click(minuteButton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("16.30.00");
     const secondButton = getAllByText("45");
-    if (secondButton[1]) userEvent.click(secondButton[1]);
+    if (secondButton[1]) await user.click(secondButton[1]);
     expect(mockOnChange).toHaveBeenCalledWith("16.30.45");
   });
 
-  it("Time input with taiwanese locale", () => {
+  it("Time input with taiwanese locale", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getAllByText } = render(
       <HalstackProvider localeTag="zh-TW">
@@ -297,21 +307,22 @@ describe("DxcTimeInput rendering", () => {
     );
     const button = getByRole("button");
     expect(button).toBeTruthy();
-    userEvent.click(button);
+    await user.click(button);
     const amButton = getAllByText("AM")[0];
-    if (amButton) userEvent.click(amButton);
+    if (amButton) await user.click(amButton);
     const hourbutton = getAllByText("07");
-    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    if (hourbutton[0]) await user.click(hourbutton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 07:00:00");
     const minuteButton = getAllByText("30");
-    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    if (minuteButton[0]) await user.click(minuteButton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 07:30:00");
     const secondButton = getAllByText("45");
-    if (secondButton[1]) userEvent.click(secondButton[1]);
+    if (secondButton[1]) await user.click(secondButton[1]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 07:30:45");
   });
 
-  it("Time input with taiwanese locale, but using keyboard to input time", () => {
+  it("Time input with taiwanese locale, but using keyboard to input time", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getAllByRole } = render(
       <HalstackProvider localeTag="zh-TW">
@@ -320,22 +331,23 @@ describe("DxcTimeInput rendering", () => {
     );
     const inputs = getAllByRole("spinbutton");
     expect(inputs).toHaveLength(4);
-    userEvent.tab();
+    await user.tab();
     expect(inputs[0]).toHaveFocus();
-    userEvent.keyboard("p");
+    await user.keyboard("p");
     expect(inputs[1]).toHaveFocus();
-    userEvent.keyboard("1");
-    userEvent.keyboard("2");
+    await user.keyboard("1");
+    await user.keyboard("2");
     expect(inputs[2]).toHaveFocus();
-    userEvent.keyboard("{3}");
-    userEvent.keyboard("{4}");
+    await user.keyboard("{3}");
+    await user.keyboard("{4}");
     expect(inputs[3]).toHaveFocus();
-    userEvent.keyboard("{5}");
-    userEvent.keyboard("{6}");
+    await user.keyboard("{5}");
+    await user.keyboard("{6}");
     expect(mockOnChange).toHaveBeenCalledWith("PM 12:34:56");
   });
 
-  it("Time input with chinese locale, but using time picker", () => {
+  it("Time input with chinese locale, but using time picker", async () => {
+    const user = userEvent.setup();
     const mockOnChange = jest.fn();
     const { getByRole, getAllByText } = render(
       <HalstackProvider localeTag="zh-CN">
@@ -344,17 +356,17 @@ describe("DxcTimeInput rendering", () => {
     );
     const button = getByRole("button");
     expect(button).toBeTruthy();
-    userEvent.click(button);
+    await user.click(button);
     const amButton = getAllByText("AM")[0];
-    if (amButton) userEvent.click(amButton);
+    if (amButton) await user.click(amButton);
     const hourbutton = getAllByText("12");
-    if (hourbutton[0]) userEvent.click(hourbutton[0]);
+    if (hourbutton[0]) await user.click(hourbutton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 12:00:00");
     const minuteButton = getAllByText("30");
-    if (minuteButton[0]) userEvent.click(minuteButton[0]);
+    if (minuteButton[0]) await user.click(minuteButton[0]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:00");
     const secondButton = getAllByText("50");
-    if (secondButton[1]) userEvent.click(secondButton[1]);
+    if (secondButton[1]) await user.click(secondButton[1]);
     expect(mockOnChange).toHaveBeenCalledWith("AM 12:30:50");
   });
 });

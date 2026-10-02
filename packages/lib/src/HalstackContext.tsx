@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo } from "react";
+import { JSX, createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";

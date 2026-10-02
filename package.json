@@ -9,7 +9,6 @@
     "storybook": "turbo storybook",
     "test-storybook": "turbo test-storybook",
     "test": "turbo test",
-    "test:accessibility": "turbo test:accessibility",
     "prepare": "husky",
     "test:watch": "turbo test:watch"
   },
@@ -42,7 +41,9 @@
     "ciecam02": {
       "mout": "1.2.4"
     },
-    "esbuild": "0.28.1"
+    "esbuild": "0.28.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
   },
   "dependencies": {
     "react-joyride": "^3.0.2"

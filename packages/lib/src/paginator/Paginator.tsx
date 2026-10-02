@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { JSX, useContext, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";

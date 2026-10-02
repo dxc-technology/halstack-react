@@ -1,4 +1,4 @@
-import { Children, useCallback, useMemo, useState } from "react";
+import { JSX, Children, useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";

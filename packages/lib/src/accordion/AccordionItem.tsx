@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useId, cloneElement, useMemo } from "react";
+import { JSX, ReactElement, useContext, useId, cloneElement, useMemo } from "react";
 import styled from "@emotion/styled";
 import { AccordionItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -187,7 +187,9 @@ const AccordionItem = ({
                     </IconContainer>
                   ) : (
                     <StatusContainer subLabel={subLabel}>
-                      {disabled ? cloneElement(badge?.element as ReactElement, { color: "neutral" }) : badge?.element}
+                      {disabled
+                        ? cloneElement(badge?.element as ReactElement<{ color?: string }>, { color: "neutral" })
+                        : badge?.element}
                     </StatusContainer>
                   )}
                 </OptionalElement>
@@ -205,12 +207,16 @@ const AccordionItem = ({
               )}
               {badge && badge?.position === "after" && !assistiveText && (
                 <StatusContainer subLabel={subLabel}>
-                  {disabled ? cloneElement(badge.element as ReactElement, { color: "neutral" }) : badge.element}
+                  {disabled
+                    ? cloneElement(badge.element as ReactElement<{ color?: string }>, { color: "neutral" })
+                    : badge.element}
                 </StatusContainer>
               )}
               {badge?.position !== "after" && statusLight && !assistiveText && (
                 <StatusContainer subLabel={subLabel}>
-                  {disabled ? cloneElement(statusLight as ReactElement, { mode: "default" }) : statusLight}
+                  {disabled
+                    ? cloneElement(statusLight as ReactElement<{ mode?: string }>, { mode: "default" })
+                    : statusLight}
                 </StatusContainer>
               )}
               <CollapseIndicator disabled={disabled}>

@@ -101,7 +101,7 @@ const Tab = forwardRef(
     ref: Ref<HTMLAnchorElement | HTMLDivElement>
   ) => {
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
-    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>();
+    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
     const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 

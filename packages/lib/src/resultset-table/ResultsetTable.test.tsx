@@ -1,5 +1,4 @@
-import { act, fireEvent, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render } from "@testing-library/react";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcResultsetTable from "./ResultsetTable";
 
@@ -375,12 +374,12 @@ describe("Resultset table component tests", () => {
     expect(getByText("Louis")).toBeTruthy();
     expect(getByText("Lana")).toBeTruthy();
     expect(getAllByRole("row").length - 1).toEqual(3);
-    const goToPageSelect = getAllByRole("button")[3];
+    const goToPageSelect = getAllByRole("combobox")[0];
     if (goToPageSelect) {
-      userEvent.click(goToPageSelect);
+      fireEvent.click(goToPageSelect);
     }
     const goToPageOption = getByText("2");
-    userEvent.click(goToPageOption);
+    fireEvent.click(goToPageOption);
     expect(getByText("4 to 6 of 10")).toBeTruthy();
     expect(getByText("Rick")).toBeTruthy();
     expect(getByText("Mark")).toBeTruthy();
@@ -551,23 +550,17 @@ describe("Resultset table component tests", () => {
         },
       ],
     ];
-    const { getAllByRole, getByRole, getByText } = render(
+    const { getByRole, getByText, getByTitle } = render(
       <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />
     );
-    const dropdown = getAllByRole("button")[2];
-    act(() => {
-      if (dropdown) {
-        userEvent.click(dropdown);
-      }
-    });
+    const dropdown = getByTitle("icon1");
+    fireEvent.click(dropdown);
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
-    userEvent.click(option);
+    fireEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("3");
-    const action = getAllByRole("button")[1];
-    if (action) {
-      userEvent.click(action);
-    }
+    const action = getByRole("button", { name: "icon2" });
+    fireEvent.click(action);
     expect(onClick).toHaveBeenCalled();
   });
 
