@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import { ReactElement } from "react";
 import AvatarPageLayout from "screens/components/avatar/AvatarPageLayout";
 import AvatarCodePage from "screens/components/avatar/code/AvatarCodePage";
 
