@@ -1,15 +1,8 @@
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../../test/accessibility/axe-helper";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcTextInput from "./TextInput";
 import MockDOMRect from "../../test/mocks/domRectMock";
 import { vi } from "vitest";
-
-// TODO: REMOVE
-import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
-
-const disabledRules = {
-  rules: formatRules(rules),
-};
 
 const countries = [
   "Afghanistan",
@@ -77,7 +70,7 @@ describe("TextInput component accessibility tests", () => {
         clearable
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for autocomplete mode", async () => {
@@ -100,7 +93,7 @@ describe("TextInput component accessibility tests", () => {
         autocomplete="on"
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for suggestions mode", async () => {
@@ -123,7 +116,7 @@ describe("TextInput component accessibility tests", () => {
         suggestions={countries}
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for pattern mode", async () => {
@@ -146,7 +139,7 @@ describe("TextInput component accessibility tests", () => {
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for optional mode", async () => {
@@ -169,7 +162,7 @@ describe("TextInput component accessibility tests", () => {
         optional
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for error mode", async () => {
@@ -192,7 +185,7 @@ describe("TextInput component accessibility tests", () => {
         clearable
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for read-only mode", async () => {
@@ -214,7 +207,7 @@ describe("TextInput component accessibility tests", () => {
         readOnly
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
@@ -235,7 +228,7 @@ describe("TextInput component accessibility tests", () => {
         disabled
       />
     );
-    const results = await axe(baseElement, disabledRules);
+    const results = await axe(baseElement);
     expect(results.violations).toHaveLength(0);
   });
 });
