@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, HTMLAttributes, TableHTMLAttributes } from "react";
+import { useEffect, useMemo, useRef, useState, ComponentProps, HTMLAttributes, TableHTMLAttributes } from "react";
 import styled from "@emotion/styled";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -141,9 +141,7 @@ const DxcResultsetTable = ({
         <TableVirtuoso
           data={filteredResultset}
           components={{
-            Scroller: (props: HTMLAttributes<HTMLDivElement>, ref: React.Ref<HTMLDivElement>) => (
-              <TableContainer margin={margin} {...props} ref={ref} />
-            ),
+            Scroller: (props: ComponentProps<"div">) => <TableContainer margin={margin} {...props} />,
             Table: (props: TableHTMLAttributes<HTMLTableElement>) => <Table mode={mode} {...props} />,
             TableRow: (props: HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />,
           }}
