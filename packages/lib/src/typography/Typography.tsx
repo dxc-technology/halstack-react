@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { use, useMemo } from "react";
 import styled from "@emotion/styled";
 import TypographyPropsTypes from "./types";
 import TypographyContext from "./TypographyContext";
@@ -22,7 +22,7 @@ const Typography = styled.span<TypographyPropsTypes>`
 `;
 
 export default function DxcTypography({ children, ...props }: TypographyPropsTypes) {
-  const componentContext = useContext(TypographyContext);
+  const componentContext = use(TypographyContext);
 
   const contextValue = useMemo(
     () => ({
@@ -33,8 +33,8 @@ export default function DxcTypography({ children, ...props }: TypographyPropsTyp
   );
 
   return (
-    <TypographyContext.Provider value={contextValue}>
+    <TypographyContext value={contextValue}>
       <Typography {...contextValue}>{children}</Typography>
-    </TypographyContext.Provider>
+    </TypographyContext>
   );
 }

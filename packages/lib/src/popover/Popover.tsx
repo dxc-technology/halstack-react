@@ -65,7 +65,7 @@ const DxcPopover = ({
             type={undefined}
             asChild
           >
-            <>{children}</>
+            {children}
           </Popover.Trigger>
         ) : (
           <Popover.Trigger

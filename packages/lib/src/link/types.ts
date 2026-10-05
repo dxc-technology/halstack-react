@@ -2,9 +2,17 @@ import { Margin, SVG, Space } from "../common/utils";
 
 export type LinkProps = {
   /**
+   * Text of the link.
+   */
+  children: string;
+  /**
    * If true, the link will be disabled.
    */
   disabled?: boolean;
+  /**
+   * Page to be opened when the user clicks on the link.
+   */
+  href?: string;
   /**
    * If true, the color is inherited from parent.
    */
@@ -18,9 +26,10 @@ export type LinkProps = {
    */
   iconPosition?: "before" | "after";
   /**
-   * Page to be opened when the user clicks on the link.
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  href?: string;
+  margin?: Space | Margin;
   /**
    * If true, the page is opened in a new browser tab.
    */
@@ -31,14 +40,9 @@ export type LinkProps = {
    */
   onClick?: () => void;
   /**
-   * Text of the link.
+   * Ref of the link element.
    */
-  children: string;
-  /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
-   */
-  margin?: Space | Margin;
+  ref?: React.Ref<HTMLAnchorElement>;
   /**
    * Value of the tabindex.
    */

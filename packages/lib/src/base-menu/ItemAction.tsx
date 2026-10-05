@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react";
+import { memo } from "react";
 import styled from "@emotion/styled";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -79,68 +79,64 @@ const Control = styled.span`
   gap: var(--spacing-gap-s);
 `;
 
-const ItemAction = memo(
-  forwardRef<HTMLAnchorElement, ItemActionProps>((props, ref) => {
-    const {
-      hasTooltip,
-      modifiedBadge,
-      displayControlsAfter,
-      hasPopOver,
-      displayGroupLines,
-      isHorizontal,
-      handleTextMouseEnter,
-      getWrapper,
-    } = useItemAction(props);
-    const { depthLevel, selected, href, label, icon, collapseIcon, onClick, ...rest } = props;
-    const ariaPressed = !href ? !!selected : undefined;
-    const ariaSelected = href ? !!selected : undefined;
-    return getWrapper(
-      <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
-        <Action
-          ref={ref}
-          as={href ? "a" : "button"}
-          role={href ? "link" : "button"}
-          depthLevel={depthLevel}
-          selected={selected}
-          displayGroupLines={!!displayGroupLines}
-          hasPopOver={hasPopOver}
-          isHorizontal={isHorizontal}
-          {...(href && { href })}
-          onClick={onClick}
-          {...rest}
-          aria-pressed={ariaPressed}
-          aria-selected={ariaSelected}
-        >
-          <Label aria-label={hasPopOver ? label : undefined}>
-            {!displayControlsAfter && collapseIcon && (
-              <Control>
-                <Icon>{collapseIcon}</Icon>
-              </Control>
-            )}
-            {(((icon || hasPopOver) && !isHorizontal) || (isHorizontal && icon)) && (
-              <TooltipWrapper condition={hasPopOver} label={label}>
-                <Icon>
-                  {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}
-                </Icon>
-              </TooltipWrapper>
-            )}
-            {(!hasPopOver || isHorizontal) && (
-              <Text selected={props.selected} onMouseEnter={handleTextMouseEnter}>
-                {label}
-              </Text>
-            )}
-          </Label>
-          {(!hasPopOver || isHorizontal) && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
+const ItemAction = memo(({ ...props }: ItemActionProps) => {
+  const {
+    hasTooltip,
+    modifiedBadge,
+    displayControlsAfter,
+    hasPopOver,
+    displayGroupLines,
+    isHorizontal,
+    handleTextMouseEnter,
+    getWrapper,
+  } = useItemAction(props);
+  const { depthLevel, selected, href, label, icon, collapseIcon, onClick, ...rest } = props;
+  const ariaPressed = !href ? !!selected : undefined;
+  const ariaSelected = href ? !!selected : undefined;
+  return getWrapper(
+    <TooltipWrapper condition={hasTooltip} label={label} {...rest}>
+      <Action
+        ref={props.ref}
+        as={href ? "a" : "button"}
+        role={href ? "link" : "button"}
+        depthLevel={depthLevel}
+        selected={selected}
+        displayGroupLines={!!displayGroupLines}
+        hasPopOver={hasPopOver}
+        isHorizontal={isHorizontal}
+        {...(href && { href })}
+        onClick={onClick}
+        {...rest}
+        aria-pressed={ariaPressed}
+        aria-selected={ariaSelected}
+      >
+        <Label aria-label={hasPopOver ? label : undefined}>
+          {!displayControlsAfter && collapseIcon && (
             <Control>
-              {modifiedBadge}
-              {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
+              <Icon>{collapseIcon}</Icon>
             </Control>
           )}
-        </Action>
-      </TooltipWrapper>
-    );
-  })
-);
+          {(((icon || hasPopOver) && !isHorizontal) || (isHorizontal && icon)) && (
+            <TooltipWrapper condition={hasPopOver} label={label}>
+              <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon ? icon : <DxcIcon icon="topic" />}</Icon>
+            </TooltipWrapper>
+          )}
+          {(!hasPopOver || isHorizontal) && (
+            <Text selected={props.selected} onMouseEnter={handleTextMouseEnter}>
+              {label}
+            </Text>
+          )}
+        </Label>
+        {(!hasPopOver || isHorizontal) && (modifiedBadge || (displayControlsAfter && collapseIcon)) && (
+          <Control>
+            {modifiedBadge}
+            {displayControlsAfter && collapseIcon && <Icon>{collapseIcon}</Icon>}
+          </Control>
+        )}
+      </Action>
+    </TooltipWrapper>
+  );
+});
 
 ItemAction.displayName = "ItemAction";
 

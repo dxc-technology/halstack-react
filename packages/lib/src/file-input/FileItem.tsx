@@ -1,4 +1,4 @@
-import { JSX, memo, MouseEvent, useContext, useId, useState } from "react";
+import { JSX, memo, MouseEvent, use, useId, useState } from "react";
 import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";
@@ -120,7 +120,7 @@ const FileItem = ({
   tabIndex,
   size = "medium",
 }: FileItemProps): JSX.Element => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const [hasTooltip, setHasTooltip] = useState(false);
   const fileNameId = useId();
 

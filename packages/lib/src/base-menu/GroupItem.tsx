@@ -1,4 +1,4 @@
-import { useContext, useId, useState } from "react";
+import { use, useId, useState } from "react";
 import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
@@ -10,7 +10,7 @@ import DxcPopover from "../popover/Popover";
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const contextValue = useContext(BaseMenuContext) ?? {};
+  const contextValue = use(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(
     items,
     contextValue,
@@ -36,7 +36,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         asChild
         popoverContent={
           <>
-            <BaseMenuContext.Provider
+            <BaseMenuContext
               value={{ ...contextValue, displayGroupLines: false, hasPopOver: false, closePopOver: toggleOpen }}
             >
               {!isHorizontal && props.depthLevel === 0 && (
@@ -66,7 +66,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
                   ))}
                 </SubMenu>
               )}
-            </BaseMenuContext.Provider>
+            </BaseMenuContext>
           </>
         }
         isOpen={isOpen}

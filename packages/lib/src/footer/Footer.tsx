@@ -1,4 +1,4 @@
-import { JSX, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { JSX, isValidElement, use, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -215,8 +215,8 @@ const DxcFooter = ({
   socialLinks,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
-  const themedLogos = useContext(HalstackLogosContext);
+  const translatedLabels = use(HalstackLanguageContext).labels;
+  const themedLogos = use(HalstackLogosContext);
 
   const footerLogo = useMemo(() => {
     if (logo && typeof logo.src === "string") {

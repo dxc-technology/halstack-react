@@ -1,4 +1,4 @@
-import { JSX, useMemo, useRef, useState, useCallback, ReactNode, useContext } from "react";
+import { JSX, useMemo, useRef, useState, useCallback, ReactNode, use } from "react";
 import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
@@ -67,7 +67,7 @@ const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{childr
 const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
   const [headerHeight, setHeaderHeight] = useState("0px");
   const [hideMainContent, setHideMainContent] = useState(false);
-  const themedLogos = useContext(HalstackLogosContext);
+  const themedLogos = use(HalstackLogosContext);
 
   const handleHeaderHeight = useCallback(
     (headerElement: HTMLDivElement | null) => {
@@ -94,7 +94,7 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
 
   return (
     <ApplicationLayoutContainer ref={ref} header={header}>
-      <ApplicationLayoutContext.Provider value={contextValue}>
+      <ApplicationLayoutContext value={contextValue}>
         {header && <HeaderContainer ref={handleHeaderHeight}>{header}</HeaderContainer>}
         <BodyContainer hasSidenav={!!sidenav}>
           {sidenav && <SidenavContainer headerHeight={headerHeight}>{sidenav}</SidenavContainer>}
@@ -111,7 +111,7 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
             )}
           </FooterContainer>
         )}
-      </ApplicationLayoutContext.Provider>
+      </ApplicationLayoutContext>
     </ApplicationLayoutContainer>
   );
 };

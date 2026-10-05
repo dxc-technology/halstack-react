@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { use } from "react";
 import slugify from "slugify";
 import styled from "@emotion/styled";
 import DxcHeading from "../heading/Heading";
@@ -60,7 +60,7 @@ const Link = styled.a`
 `;
 
 export default function DxcQuickNav({ links, title }: QuickNavTypes) {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const isHashRouter = (): boolean => {
     if (typeof window === "undefined") return false;
     return window.location.href.includes("/#/");

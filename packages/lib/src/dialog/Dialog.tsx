@@ -1,4 +1,4 @@
-import { JSX, useContext, useEffect, useId, useState } from "react";
+import { JSX, use, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { responsiveSizes } from "../common/variables";
@@ -68,7 +68,7 @@ const DxcDialog = ({
   disableFocusLock = false,
 }: DialogPropsType): JSX.Element => {
   const id = useId();
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

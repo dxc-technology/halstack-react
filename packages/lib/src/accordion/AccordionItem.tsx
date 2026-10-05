@@ -1,4 +1,4 @@
-import { JSX, ReactElement, useContext, useId, cloneElement, useMemo } from "react";
+import { JSX, ReactElement, use, useId, cloneElement, useMemo } from "react";
 import styled from "@emotion/styled";
 import { AccordionItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -152,7 +152,7 @@ const AccordionItem = ({
   tabIndex = 0,
 }: AccordionItemProps): JSX.Element => {
   const id = useId();
-  const { activeIndex, handlerActiveChange, index, independent } = useContext(AccordionContext) ?? {};
+  const { activeIndex, handlerActiveChange, index, independent } = use(AccordionContext) ?? {};
   const isItemExpanded = useMemo(
     () =>
       independent

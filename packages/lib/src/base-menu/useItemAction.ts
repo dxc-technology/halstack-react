@@ -1,11 +1,11 @@
-import { useState, useContext, cloneElement, ReactElement, ReactNode } from "react";
+import { useState, use, cloneElement, ReactNode, ReactElement } from "react";
 import BaseMenuContext from "./BaseMenuContext";
 import { ItemActionProps } from "./types";
 
 export function useItemAction({ badge, renderItem }: ItemActionProps) {
   const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge as ReactElement<{ size?: string }>, { size: "small" });
-  const { displayControlsAfter, hasPopOver, displayGroupLines, isHorizontal } = useContext(BaseMenuContext) ?? {};
+  const { displayControlsAfter, hasPopOver, displayGroupLines, isHorizontal } = use(BaseMenuContext) ?? {};
 
   const handleTextMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
     const text = event.currentTarget;

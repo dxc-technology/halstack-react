@@ -92,17 +92,17 @@ const HalstackProvider = ({
 
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
-      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? defaultThemedLogos}>
+      <HalstackLogosContext value={opinionatedTheme?.logos ?? defaultThemedLogos}>
         {parsedLabels || localeTag ? (
-          <HalstackLanguageContext.Provider
+          <HalstackLanguageContext
             value={{ labels: parsedLabels ?? defaultTranslatedComponentLabels, locale: localeTag }}
           >
             {children}
-          </HalstackLanguageContext.Provider>
+          </HalstackLanguageContext>
         ) : (
           children
         )}
-      </HalstackLogosContext.Provider>
+      </HalstackLogosContext>
     </HalstackThemed>
   );
 };

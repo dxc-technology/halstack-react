@@ -55,7 +55,7 @@ const DxcNavTabs = ({ iconPosition = "left", tabIndex = 0, children }: NavTabsPr
   return (
     <NavTabsContainer onKeyDown={handleOnKeyDown} role="tablist" aria-label="Navigation tabs">
       <Underline />
-      <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
+      <NavTabsContext value={contextValue}>{children}</NavTabsContext>
     </NavTabsContainer>
   );
 };

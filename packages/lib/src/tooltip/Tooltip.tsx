@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { cloneElement, isValidElement, useContext } from "react";
+import { cloneElement, isValidElement, use } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import TooltipContext from "./TooltipContext";
@@ -110,9 +110,9 @@ export const Tooltip = ({
   position = "bottom",
   ...rest
 }: { hasAdditionalContainer?: boolean } & TooltipPropsType) => {
-  const hasTooltip = useContext(TooltipContext);
+  const hasTooltip = use(TooltipContext);
   return (
-    <TooltipContext.Provider value>
+    <TooltipContext value>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
           <Root>
@@ -134,7 +134,7 @@ export const Tooltip = ({
       ) : (
         children
       )}
-    </TooltipContext.Provider>
+    </TooltipContext>
   );
 };
 

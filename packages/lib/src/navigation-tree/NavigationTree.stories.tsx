@@ -176,7 +176,7 @@ const NavigationTree = () => (
 
 const Single = () => (
   <DxcContainer width="300px">
-    <NavigationTreeContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
+    <NavigationTreeContext value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
       <Title title="Default" theme="light" level={3} />
       <ExampleContainer>
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
@@ -193,8 +193,8 @@ const Single = () => (
       <ExampleContainer pseudoState="pseudo-active">
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
       </ExampleContainer>
-    </NavigationTreeContext.Provider>
-    <NavigationTreeContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
+    </NavigationTreeContext>
+    <NavigationTreeContext value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
       <Title title="Selected" theme="light" level={3} />
       <ExampleContainer>
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
@@ -207,7 +207,7 @@ const Single = () => (
       <ExampleContainer pseudoState="pseudo-active">
         <SingleItem {...items[0]!} id={0} depthLevel={0} />
       </ExampleContainer>
-    </NavigationTreeContext.Provider>
+    </NavigationTreeContext>
   </DxcContainer>
 );
 

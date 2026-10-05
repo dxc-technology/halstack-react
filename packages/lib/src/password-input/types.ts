@@ -1,40 +1,24 @@
 import { Margin, Space } from "../common/utils";
 
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Props = {
   /**
-   * Text to be placed above the password input.
+   * Specifies a string to be used as the name for the password input element when no `label` is provided.
    */
-  label?: string;
+  ariaLabel?: string;
   /**
-   * Name attribute of the input element.
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
+   * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
-  name?: string;
-  /**
-   * Value of the input element. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
-   */
-  value?: string;
-  /**
-   * Helper text to be placed above the password.
-   */
-  helperText?: string;
+  autocomplete?: string;
   /**
    * If true, the password input will have an action to clear the entered value.
    */
   clearable?: boolean;
-  /**
-   * This function will be called when the user types within the input
-   * element of the component. An object including the current value and
-   * the error (if the value entered is not valid) will be passed to this
-   * function. If there is no error, error will not be defined.
-   * */
-  onChange?: (val: { value: string; error?: string }) => void;
-  /**
-   * This function will be called when the input element loses the focus.
-   * An object including the input value and the error (if the value entered is
-   * not valid) will be passed to this function. If there is no error, error will
-   * not be defined.
-   */
-  onBlur?: (val: { value: string; error?: string }) => void;
   /**
    * If it is a defined value and also a truthy string, the component will
    * change its appearance, showing the error below the password input
@@ -45,25 +29,18 @@ type Props = {
    */
   error?: string;
   /**
-   * Regular expression that defines the valid format allowed by the
-   * password input. This will be checked both when the input element loses the
-   * focus and while typing within it. If the string entered does not match
-   * the pattern, the onBlur and onChange functions will be called with the
-   * current value and an internal error informing that this value does not
-   * match the pattern. If the pattern is met, the error parameter of both
-   * events will not be defined.
+   * Helper text to be placed above the password.
    */
-  pattern?: string;
+  helperText?: string;
   /**
-   * Specifies the minimum length allowed by the password input.
-   * This will be checked both when the input element loses the
-   * focus and while typing within it. If the string entered does not
-   * comply the minimum length, the onBlur and onChange functions will be called
-   * with the current value and an internal error informing that the value
-   * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will not be defined.
+   * Text to be placed above the password input.
    */
-  minLength?: number;
+  label?: string;
+  /**
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+   */
+  margin?: Space | Margin;
   /**
    * Specifies the maximum length allowed by the password input.
    * This will be checked both when the input element loses the
@@ -75,15 +52,47 @@ type Props = {
    */
   maxLength?: number;
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
-   * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
+   * Specifies the minimum length allowed by the password input.
+   * This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not
+   * comply the minimum length, the onBlur and onChange functions will be called
+   * with the current value and an internal error informing that the value
+   * length does not comply the specified range. If a valid length is
+   * reached, the error parameter of both events will not be defined.
    */
-  autocomplete?: string;
+  minLength?: number;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+   * Name attribute of the input element.
    */
-  margin?: Space | Margin;
+  name?: string;
+  /**
+   * This function will be called when the input element loses the focus.
+   * An object including the input value and the error (if the value entered is
+   * not valid) will be passed to this function. If there is no error, error will
+   * not be defined.
+   */
+  onBlur?: (val: { value: string; error?: string }) => void;
+  /**
+   * This function will be called when the user types within the input
+   * element of the component. An object including the current value and
+   * the error (if the value entered is not valid) will be passed to this
+   * function. If there is no error, error will not be defined.
+   * */
+  onChange?: (val: { value: string; error?: string }) => void;
+  /**
+   * Regular expression that defines the valid format allowed by the
+   * password input. This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not match
+   * the pattern, the onBlur and onChange functions will be called with the
+   * current value and an internal error informing that this value does not
+   * match the pattern. If the pattern is met, the error parameter of both
+   * events will not be defined.
+   */
+  pattern?: string;
+  /**
+   * Reference to the input element.
+   */
+  ref?: RefType;
   /**
    * Size of the component.
    */
@@ -93,14 +102,9 @@ type Props = {
    */
   tabIndex?: number;
   /**
-   * Specifies a string to be used as the name for the password input element when no `label` is provided.
+   * Value of the input element. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */
-  ariaLabel?: string;
+  value?: string;
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;

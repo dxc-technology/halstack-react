@@ -49,7 +49,7 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
   }, []);
 
   return (
-    <ToastContext.Provider value={add}>
+    <ToastContext value={add}>
       <div id={`toasts-${id}-portal`} style={{ position: "absolute" }} />
       {portalContainer &&
         createPortal(
@@ -68,6 +68,6 @@ export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueu
           portalContainer
         )}
       {children}
-    </ToastContext.Provider>
+    </ToastContext>
   );
 }

@@ -1,3 +1,8 @@
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Option = {
   /**
    * Label of the option placed next to the radio input.
@@ -82,6 +87,10 @@ type RadioGroupProps = {
    */
   readOnly?: boolean;
   /**
+   * Reference to the component.
+   */
+  ref?: RefType;
+  /**
    * Sets the orientation of the options within the radio group.
    */
   stacking?: "row" | "column";
@@ -96,11 +105,6 @@ type RadioGroupProps = {
    */
   value?: string;
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 /**
  * Radio input prop types.

@@ -1,7 +1,6 @@
-import { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { ActionIconPropTypes, RefType } from "./types";
+import { ActionIconPropTypes } from "./types";
 import { getBackgroundColor, getBorderRadius, getColor, getIconSize, getOutlineWidth, getSize } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -97,54 +96,50 @@ export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
   }
 `;
 
-const ForwardedActionIcon = forwardRef<RefType, ActionIconPropTypes>(
-  (
-    {
-      ariaLabel,
-      content,
-      color = "transparent",
-      disabled = false,
-      icon,
-      linkHref,
-      onClick,
-      shape = "square",
-      size = "medium",
-      tabIndex = 0,
-      title,
-    },
-    ref
-  ) => {
-    return (
-      <Tooltip label={title}>
-        <ActionIconContainer
-          size={size}
-          onClick={!disabled ? onClick : undefined}
-          hasAction={!!onClick || !!linkHref}
-          tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
-          role={onClick ? "button" : undefined}
-          as={linkHref ? "a" : onClick ? "button" : "div"}
-          type={onClick && !linkHref ? "button" : undefined}
-          href={!disabled ? linkHref : undefined}
-          aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
-          disabled={disabled}
-          ref={ref}
-          shape={shape}
-          color={color}
-        >
-          {content ? (
-            content
-          ) : (
-            <IconContainerWrapper disabled={disabled} hasAction={!!onClick || !!linkHref}>
-              <IconContainer size={size} color={color}>
-                {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
-              </IconContainer>
-            </IconContainerWrapper>
-          )}
-        </ActionIconContainer>
-      </Tooltip>
-    );
-  }
-);
+const ForwardedActionIcon = ({
+  ariaLabel,
+  content,
+  color = "transparent",
+  disabled = false,
+  icon,
+  linkHref,
+  onClick,
+  ref,
+  shape = "square",
+  size = "medium",
+  tabIndex = 0,
+  title,
+}: ActionIconPropTypes) => {
+  return (
+    <Tooltip label={title}>
+      <ActionIconContainer
+        size={size}
+        onClick={!disabled ? onClick : undefined}
+        hasAction={!!onClick || !!linkHref}
+        tabIndex={!disabled && (onClick || linkHref) ? tabIndex : undefined}
+        role={onClick ? "button" : undefined}
+        as={linkHref ? "a" : onClick ? "button" : "div"}
+        type={onClick && !linkHref ? "button" : undefined}
+        href={!disabled ? linkHref : undefined}
+        aria-label={(onClick || linkHref) && (ariaLabel || title || "Action Icon")}
+        disabled={disabled}
+        ref={ref}
+        shape={shape}
+        color={color}
+      >
+        {content ? (
+          content
+        ) : (
+          <IconContainerWrapper disabled={disabled} hasAction={!!onClick || !!linkHref}>
+            <IconContainer size={size} color={color}>
+              {icon && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+            </IconContainer>
+          </IconContainerWrapper>
+        )}
+      </ActionIconContainer>
+    </Tooltip>
+  );
+};
 
 ForwardedActionIcon.displayName = "ActionIcon";
 

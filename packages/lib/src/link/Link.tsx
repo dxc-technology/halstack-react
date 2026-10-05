@@ -1,4 +1,3 @@
-import { forwardRef, Ref } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -69,41 +68,37 @@ const IconContainer = styled.div`
   }
 `;
 
-const DxcLink = forwardRef(
-  (
-    {
-      children,
-      disabled,
-      href,
-      icon,
-      iconPosition = "before",
-      inheritColor,
-      margin,
-      newWindow,
-      onClick,
-      tabIndex = 0,
-      ...otherProps
-    }: LinkProps,
-    ref: Ref<HTMLAnchorElement>
-  ) => (
-    <Link
-      as={onClick && !href ? "button" : "a"}
-      tabIndex={tabIndex}
-      onClick={!disabled ? onClick : undefined}
-      href={!disabled && href ? href : undefined}
-      target={href ? (newWindow ? "_blank" : "_self") : undefined}
-      disabled={disabled}
-      inheritColor={inheritColor}
-      margin={margin}
-      ref={ref}
-      {...otherProps}
-    >
-      <LinkContent iconPosition={iconPosition} inheritColor={inheritColor}>
-        {children}
-        {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
-      </LinkContent>
-    </Link>
-  )
+const DxcLink = ({
+  children,
+  disabled,
+  href,
+  icon,
+  iconPosition = "before",
+  inheritColor,
+  margin,
+  newWindow,
+  onClick,
+  tabIndex = 0,
+  ref,
+  ...otherProps
+}: LinkProps) => (
+  <Link
+    as={onClick && !href ? "button" : "a"}
+    tabIndex={tabIndex}
+    onClick={!disabled ? onClick : undefined}
+    href={!disabled && href ? href : undefined}
+    target={href ? (newWindow ? "_blank" : "_self") : undefined}
+    disabled={disabled}
+    inheritColor={inheritColor}
+    margin={margin}
+    ref={ref}
+    {...otherProps}
+  >
+    <LinkContent iconPosition={iconPosition} inheritColor={inheritColor}>
+      {children}
+      {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+    </LinkContent>
+  </Link>
 );
 
 DxcLink.displayName = "DxcLink";

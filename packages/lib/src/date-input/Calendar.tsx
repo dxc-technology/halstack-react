@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { JSX, useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
+import { JSX, use, useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
 import styled from "@emotion/styled";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -102,7 +102,7 @@ const Calendar = ({
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const id = useId();
-  const languageContext = useContext(HalstackLanguageContext);
+  const languageContext = use(HalstackLanguageContext);
   const translatedLabels = languageContext?.labels;
   const localeTag = languageContext?.locale || undefined;
   const locale = localeTag ? new Intl.Locale(validateLocale(localeTag) ? localeTag : "en") : undefined;
