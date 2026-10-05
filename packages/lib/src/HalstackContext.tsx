@@ -20,17 +20,16 @@ const HalstackLanguageContext = createContext<LocalizedContext>({ labels: defaul
 const HalstackLogosContext = createContext<Record<string, string | undefined>>(defaultThemedLogos);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
-  const parsedLabels = defaultTranslatedComponentLabels;
+  const parsedLabels = { ...defaultTranslatedComponentLabels };
   (Object.keys(labels) as (keyof TranslatedLabels)[]).forEach((component) => {
-    if (parsedLabels[component]) {
-      const componentLabels = labels[component];
-      if (componentLabels != null) {
-        (Object.keys(parsedLabels[component]) as (keyof typeof componentLabels)[]).forEach((label) => {
-          if (componentLabels[label]) {
-            parsedLabels[component][label] = componentLabels[label];
-          }
-        });
-      }
+    const componentLabels = labels[component];
+    if (componentLabels != null) {
+      Object.assign(parsedLabels, {
+        [component]: {
+          ...parsedLabels[component],
+          ...componentLabels,
+        },
+      });
     }
   });
   return parsedLabels;

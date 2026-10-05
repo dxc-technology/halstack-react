@@ -19,7 +19,7 @@ const code = `() => {
           />
           <DxcDateInput
             label="Date"
-            placeholder="Select a date"
+            placeholder
             optional
           />
           </DxcFlex>
