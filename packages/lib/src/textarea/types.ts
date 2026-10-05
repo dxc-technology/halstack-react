@@ -1,5 +1,10 @@
 import { Margin, Space } from "../common/utils";
 
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Props = {
   /**
    * Specifies a string to be used as the name for the textarea element when no `label` is provided.
@@ -104,6 +109,10 @@ type Props = {
    */
   readOnly?: boolean;
   /**
+   * Reference to the container element of the textarea component.
+   */
+  ref?: RefType;
+  /**
    * Number of rows of the textarea.
    */
   rows?: number;
@@ -127,10 +136,5 @@ type Props = {
    */
   verticalGrow?: "auto" | "manual" | "none";
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;

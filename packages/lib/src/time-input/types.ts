@@ -1,3 +1,8 @@
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Props = {
   /**
    * Specifies a string to be used as the name for the timeInput element when no `label` is provided.
@@ -61,6 +66,10 @@ type Props = {
    */
   readOnly?: boolean;
   /**
+   * Reference to the component.
+   */
+  ref?: RefType;
+  /**
    * If true, the component will display seconds and allow the user to input them. Otherwise, seconds will not be shown and the user will not be able to input them.
    */
   showSeconds?: boolean;
@@ -82,11 +91,6 @@ type Props = {
   value?: string;
 };
 
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
-
 export type TimeSpinButtonPropsType = {
   ariaLabel?: string;
   value: number | undefined;
@@ -95,6 +99,7 @@ export type TimeSpinButtonPropsType = {
   tabIndex: number;
   dataType?: "hour" | "minute" | "second" | "dayPeriod";
   readOnly: boolean;
+  ref?: React.Ref<HTMLSpanElement>;
   disabled: boolean;
   isControlled: boolean;
   onComplete?: () => void;

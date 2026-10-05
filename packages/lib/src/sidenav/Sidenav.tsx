@@ -4,7 +4,7 @@ import SidenavPropsType from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
-import { useContext, useEffect, useRef, useState } from "react";
+import { JSX, use, useEffect, useRef, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import DxcInset from "../inset/Inset";
 import ApplicationLayoutContext from "../layout/ApplicationLayoutContext";
@@ -105,7 +105,7 @@ const DxcSidenav = ({
 }: SidenavPropsType): JSX.Element => {
   const isBelowLarge = useBreakpoint("large");
   const isBelowMedium = useBreakpoint("medium");
-  const { logo, headerExists, setHideMainContent } = useContext(ApplicationLayoutContext);
+  const { logo, headerExists, setHideMainContent } = use(ApplicationLayoutContext);
   const isControlled = expanded !== undefined;
   const { width, sidenavRef, isResizing, startResize } = useResize({
     minWidth: MIN_WIDTH,

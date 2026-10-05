@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DateUnitPicker from "./DateUnitPicker";
@@ -14,7 +14,7 @@ const YearMonthPickersContainer = styled.div`
 export const YearMonthPicker = ({ isYearFirst, selectedDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
   const [selectedYear, setSelectedYear] = useState<number | null>(selectedDate?.get("year") || null);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(selectedDate?.get("month") || null);
-  const languageContext = useContext(HalstackLanguageContext);
+  const languageContext = use(HalstackLanguageContext);
 
   const yearItems = getYearPickerItems();
   const monthItems = getMonthPickerItems(languageContext.labels.calendar.months);

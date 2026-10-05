@@ -1,9 +1,9 @@
-import { useCallback, useContext, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
+import { useCallback, use, useEffect, useId, useState, DragEvent, ChangeEvent } from "react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
-import FileInputPropsType, { FileData, RefType } from "./types";
+import FileInputPropsType, { FileData } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { getFilePreview, isFileIncluded } from "./utils";
 import HelperText from "../styles/forms/HelperText";
@@ -107,256 +107,252 @@ const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
   font-weight: var(--typography-helper-text-regular);
 `;
 
-const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
-  (
-    {
-      mode = "file",
-      label,
-      buttonLabel,
-      dropAreaLabel,
-      helperText = "",
-      accept,
-      minSize,
-      maxSize,
-      showPreview = false,
-      multiple = true,
-      disabled = false,
-      callbackFile,
-      size = "medium",
-      value,
-      margin,
-      tabIndex = 0,
-      optional = false,
-    },
-    ref
-  ): JSX.Element => {
-    const [isDragging, setIsDragging] = useState(false);
-    const [files, setFiles] = useState<FileData[]>([]);
-    const fileInputId = `file-input-${useId()}`;
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
+const DxcFileInput = ({
+  mode = "file",
+  label,
+  buttonLabel,
+  dropAreaLabel,
+  helperText = "",
+  accept,
+  minSize,
+  maxSize,
+  showPreview = false,
+  multiple = true,
+  disabled = false,
+  callbackFile,
+  size = "medium",
+  value,
+  margin,
+  tabIndex = 0,
+  optional = false,
+  ref,
+}: FileInputPropsType) => {
+  const [isDragging, setIsDragging] = useState(false);
+  const [files, setFiles] = useState<FileData[]>([]);
+  const fileInputId = `file-input-${useId()}`;
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
-    const checkFileSize = (file: File) => {
-      if (minSize && file.size < minSize) {
-        return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      } else if (maxSize && file.size > maxSize) {
-        return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-      }
-    };
+  const checkFileSize = (file: File) => {
+    if (minSize && file.size < minSize) {
+      return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+    } else if (maxSize && file.size > maxSize) {
+      return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+    }
+  };
 
-    const getFilesToAdd = async (selectedFiles: File[]) => {
-      const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
-        (previews: string[]) =>
-          selectedFiles.map((file, index) => {
-            const fileInfo = {
-              file,
-              error: checkFileSize(file),
-              preview: previews[index],
-            };
-            return fileInfo;
-          })
-      );
-      return filesToAdd.filter((file) => !isFileIncluded(file, files));
-    };
-
-    const addFile = async (selectedFiles: File[]) => {
-      const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.slice(0, 1));
-      const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
-      callbackFile?.(finalFiles);
-    };
-
-    const selectFiles = (e: ChangeEvent<HTMLInputElement>) => {
-      const selectedFiles = e.target.files;
-      if (selectedFiles) {
-        const filesArray = Array.from(selectedFiles);
-        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
-        e.target.value = "";
-      }
-    };
-
-    const onDelete = useCallback(
-      (fileName: string) => {
-        const filesCopy = [...files];
-        const fileToRemove = filesCopy.find((file) => file.file.name === fileName);
-        if (fileToRemove) {
-          const fileIndex = filesCopy.indexOf(fileToRemove);
-          filesCopy.splice(fileIndex, 1);
-          callbackFile?.(filesCopy);
-        }
-      },
-      [files, callbackFile]
+  const getFilesToAdd = async (selectedFiles: File[]) => {
+    const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
+      (previews: string[]) =>
+        selectedFiles.map((file, index) => {
+          const fileInfo = {
+            file,
+            error: checkFileSize(file),
+            preview: previews[index],
+          };
+          return fileInfo;
+        })
     );
+    return filesToAdd.filter((file) => !isFileIncluded(file, files));
+  };
 
-    const handleClick = () => {
-      document.getElementById(fileInputId)?.click();
-    };
-    const handleDrag = (e: DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      e.stopPropagation();
-    };
-    const handleDragIn = (e: DragEvent<HTMLDivElement>) => {
-      if (e.dataTransfer.items.length > 0) {
-        setIsDragging(true);
+  const addFile = async (selectedFiles: File[]) => {
+    const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.slice(0, 1));
+    const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
+    callbackFile?.(finalFiles);
+  };
+
+  const selectFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = e.target.files;
+    if (selectedFiles) {
+      const filesArray = Array.from(selectedFiles);
+      addFile(filesArray).catch((err) => console.error("Error adding files:", err));
+      e.target.value = "";
+    }
+  };
+
+  const onDelete = useCallback(
+    (fileName: string) => {
+      const filesCopy = [...files];
+      const fileToRemove = filesCopy.find((file) => file.file.name === fileName);
+      if (fileToRemove) {
+        const fileIndex = filesCopy.indexOf(fileToRemove);
+        filesCopy.splice(fileIndex, 1);
+        callbackFile?.(filesCopy);
       }
-    };
-    const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
-      // only if dragged items leave container (outside, not to children)
-      const { relatedTarget } = e;
-      if (relatedTarget instanceof Node && !e.currentTarget.contains(relatedTarget)) {
-        setIsDragging(false);
-      }
-    };
-    const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      e.stopPropagation();
+    },
+    [files, callbackFile]
+  );
+
+  const handleClick = () => {
+    document.getElementById(fileInputId)?.click();
+  };
+  const handleDrag = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const handleDragIn = (e: DragEvent<HTMLDivElement>) => {
+    if (e.dataTransfer.items.length > 0) {
+      setIsDragging(true);
+    }
+  };
+  const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
+    // only if dragged items leave container (outside, not to children)
+    const { relatedTarget } = e;
+    if (relatedTarget instanceof Node && !e.currentTarget.contains(relatedTarget)) {
       setIsDragging(false);
-      const filesObject = e.dataTransfer.files;
-      if (filesObject.length > 0) {
-        const filesArray = Array.from(filesObject);
-        addFile(filesArray).catch((err) => console.error("Error adding files:", err));
+    }
+  };
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const filesObject = e.dataTransfer.files;
+    if (filesObject.length > 0) {
+      const filesArray = Array.from(filesObject);
+      addFile(filesArray).catch((err) => console.error("Error adding files:", err));
+    }
+  };
+
+  useEffect(() => {
+    const getFiles = async () => {
+      if (value) {
+        const valueFiles = await Promise.all(
+          value.map(async (file) => {
+            if (file.preview) {
+              return file;
+            }
+            const preview = await getFilePreview(file.file);
+            return { ...file, preview };
+          })
+        );
+        setFiles(valueFiles);
       }
     };
+    getFiles().catch((err) => {
+      console.error("Error fetching file previews:", err);
+    });
+  }, [value]);
 
-    useEffect(() => {
-      const getFiles = async () => {
-        if (value) {
-          const valueFiles = await Promise.all(
-            value.map(async (file) => {
-              if (file.preview) {
-                return file;
-              }
-              const preview = await getFilePreview(file.file);
-              return { ...file, preview };
-            })
-          );
-          setFiles(valueFiles);
-        }
-      };
-      getFiles().catch((err) => {
-        console.error("Error fetching file previews:", err);
-      });
-    }, [value]);
-
-    return (
-      <FileInputContainer margin={margin} ref={ref} mode={mode} size={size}>
-        {label && (
-          <Label disabled={disabled} hasMargin={!helperText} htmlFor={fileInputId}>
-            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-          </Label>
-        )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-        {mode === "file" ? (
-          <FileContainer singleFileMode={!multiple && files.length === 1}>
-            <ValueInput
-              id={fileInputId}
-              type="file"
-              accept={accept}
-              multiple={multiple}
-              onChange={selectFiles}
-              disabled={disabled}
-              readOnly
-              required={!optional}
-            />
+  return (
+    <FileInputContainer margin={margin} ref={ref} mode={mode} size={size}>
+      {label && (
+        <Label disabled={disabled} hasMargin={!helperText} htmlFor={fileInputId}>
+          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+        </Label>
+      )}
+      {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+      {mode === "file" ? (
+        <FileContainer singleFileMode={!multiple && files.length === 1}>
+          <ValueInput
+            id={fileInputId}
+            type="file"
+            accept={accept}
+            multiple={multiple}
+            onChange={selectFiles}
+            disabled={disabled}
+            readOnly
+            required={!optional}
+          />
+          <DxcButton
+            mode="secondary"
+            label={
+              buttonLabel ??
+              (multiple
+                ? translatedLabels.fileInput.multipleButtonLabelDefault
+                : translatedLabels.fileInput.singleButtonLabelDefault)
+            }
+            onClick={handleClick}
+            disabled={disabled}
+            size={{ width: "fitContent", height: "medium" }}
+            tabIndex={tabIndex}
+          />
+          {files.length > 0 && (
+            <FileItemListContainer role="list">
+              {files.map((file, index) => (
+                <FileItem
+                  fileName={file.file.name}
+                  error={file.error}
+                  singleFileMode={!multiple && files.length === 1}
+                  showPreview={mode === "file" && !multiple ? false : showPreview}
+                  preview={file.preview ?? ""}
+                  type={file.file.type}
+                  onDelete={onDelete}
+                  tabIndex={tabIndex}
+                  key={`file-${index}`}
+                  size={size}
+                />
+              ))}
+            </FileItemListContainer>
+          )}
+        </FileContainer>
+      ) : (
+        <Container>
+          <ValueInput
+            id={fileInputId}
+            type="file"
+            accept={accept}
+            multiple={multiple}
+            onChange={selectFiles}
+            disabled={disabled}
+            readOnly
+            required={!optional}
+          />
+          <DragDropArea
+            isDragging={isDragging}
+            disabled={disabled}
+            size={size}
+            mode={mode}
+            onDrop={handleDrop}
+            onDragEnter={handleDragIn}
+            onDragOver={handleDrag}
+            onDragLeave={handleDragOut}
+          >
             <DxcButton
               mode="secondary"
-              label={
-                buttonLabel ??
-                (multiple
-                  ? translatedLabels.fileInput.multipleButtonLabelDefault
-                  : translatedLabels.fileInput.singleButtonLabelDefault)
-              }
+              label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
               onClick={handleClick}
               disabled={disabled}
               size={{ width: "fitContent", height: "medium" }}
-              tabIndex={tabIndex}
             />
-            {files.length > 0 && (
-              <FileItemListContainer role="list">
-                {files.map((file, index) => (
-                  <FileItem
-                    fileName={file.file.name}
-                    error={file.error}
-                    singleFileMode={!multiple && files.length === 1}
-                    showPreview={mode === "file" && !multiple ? false : showPreview}
-                    preview={file.preview ?? ""}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                    key={`file-${index}`}
-                    size={size}
-                  />
-                ))}
-              </FileItemListContainer>
+            {mode === "dropzone" ? (
+              <DropzoneLabel disabled={disabled}>
+                {dropAreaLabel ??
+                  (multiple
+                    ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                    : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+              </DropzoneLabel>
+            ) : (
+              <FiledropLabel disabled={disabled}>
+                {dropAreaLabel ??
+                  (multiple
+                    ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                    : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+              </FiledropLabel>
             )}
-          </FileContainer>
-        ) : (
-          <Container>
-            <ValueInput
-              id={fileInputId}
-              type="file"
-              accept={accept}
-              multiple={multiple}
-              onChange={selectFiles}
-              disabled={disabled}
-              readOnly
-              required={!optional}
-            />
-            <DragDropArea
-              isDragging={isDragging}
-              disabled={disabled}
-              size={size}
-              mode={mode}
-              onDrop={handleDrop}
-              onDragEnter={handleDragIn}
-              onDragOver={handleDrag}
-              onDragLeave={handleDragOut}
-            >
-              <DxcButton
-                mode="secondary"
-                label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
-                onClick={handleClick}
-                disabled={disabled}
-                size={{ width: "fitContent", height: "medium" }}
-              />
-              {mode === "dropzone" ? (
-                <DropzoneLabel disabled={disabled}>
-                  {dropAreaLabel ??
-                    (multiple
-                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                </DropzoneLabel>
-              ) : (
-                <FiledropLabel disabled={disabled}>
-                  {dropAreaLabel ??
-                    (multiple
-                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                </FiledropLabel>
-              )}
-            </DragDropArea>
-            {files.length > 0 && (
-              <FileItemListContainer role="list">
-                {files.map((file, index) => (
-                  <FileItem
-                    fileName={file.file.name}
-                    error={file.error}
-                    singleFileMode={false}
-                    showPreview={showPreview}
-                    preview={file.preview ?? ""}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                    key={`file-${index}`}
-                    size={size}
-                  />
-                ))}
-              </FileItemListContainer>
-            )}
-          </Container>
-        )}
-      </FileInputContainer>
-    );
-  }
-);
+          </DragDropArea>
+          {files.length > 0 && (
+            <FileItemListContainer role="list">
+              {files.map((file, index) => (
+                <FileItem
+                  fileName={file.file.name}
+                  error={file.error}
+                  singleFileMode={false}
+                  showPreview={showPreview}
+                  preview={file.preview ?? ""}
+                  type={file.file.type}
+                  onDelete={onDelete}
+                  tabIndex={tabIndex}
+                  key={`file-${index}`}
+                  size={size}
+                />
+              ))}
+            </FileItemListContainer>
+          )}
+        </Container>
+      )}
+    </FileInputContainer>
+  );
+};
 
 DxcFileInput.displayName = "DxcFileInput";
 

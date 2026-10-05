@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { SubMenuProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
-import { useContext } from "react";
+import { use } from "react";
 
 const SubMenuContainer = styled.ul<{
   depthLevel: number;
@@ -36,7 +36,7 @@ export default function SubMenu({
   isHorizontal = false,
   isPopOver = false,
 }: SubMenuProps) {
-  const { displayGroupLines } = useContext(BaseMenuContext) ?? {};
+  const { displayGroupLines } = use(BaseMenuContext) ?? {};
   return (
     <SubMenuContainer
       id={id}

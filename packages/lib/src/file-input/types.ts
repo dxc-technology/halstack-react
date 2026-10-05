@@ -1,5 +1,10 @@
 import { Margin, Space } from "../common/utils";
 
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 export type FileData = {
   /**
    * Error of the file. If it is defined, it will be shown and the file item will be mark as invalid.
@@ -65,6 +70,10 @@ type CommonProps = {
    */
   optional?: boolean;
   /**
+   * Reference to the component.
+   */
+  ref?: RefType;
+  /**
    * If true, if the file is an image, a preview of it will be shown. If not, an icon refering to the file type will be shown.
    */
   showPreview?: boolean;
@@ -109,11 +118,6 @@ type FileModeProps = CommonProps & {
    */
   mode?: "file";
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 type Props = DropModeProps | FileModeProps;
 

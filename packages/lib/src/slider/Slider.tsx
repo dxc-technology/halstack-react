@@ -1,7 +1,7 @@
-import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
+import { ChangeEvent, MouseEvent, useId, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import SliderPropsType, { RefType } from "./types";
+import SliderPropsType from "./types";
 import { calculateWidth, roundUp, stepPrecision } from "./utils";
 import DxcNumberInput from "../number-input/NumberInput";
 import HelperText from "../styles/forms/HelperText";
@@ -73,10 +73,12 @@ const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
     ${!disabled && `background-color: var(--color-fg-secondary-stronger);`}
   }
   &:hover {
-    ${!disabled &&
-    `background-color: var(--color-fg-secondary-strong);
+    ${
+      !disabled &&
+      `background-color: var(--color-fg-secondary-strong);
      height: var(--height-xxs);
-     width: 16px;`}
+     width: 16px;`
+    }
   }
 `;
 const thumbFocusStyles = css`
@@ -146,131 +148,127 @@ const Tick = styled.option<{
   ${({ currentTick }) => currentTick && "visibility: hidden;"};
 `;
 
-const DxcSlider = forwardRef<RefType, SliderPropsType>(
-  (
-    {
-      ariaLabel = "Slider",
-      defaultValue = 0,
-      disabled = false,
-      helperText,
-      label,
-      labelFormatCallback,
-      margin,
-      marks,
-      maxValue = 100,
-      minValue = 0,
-      name,
-      onChange,
-      onDragEnd,
-      showLimitsValues,
-      showInput,
-      size = "fillParent",
-      step = 1,
-      value,
-    },
-    ref
-  ) => {
-    const labelId = `label-${useId()}`;
-    const [innerValue, setInnerValue] = useState(defaultValue);
-    const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());
-    const roundedUpValue = useMemo(
-      () => roundUp(value ?? innerValue, step, minValue, maxValue),
-      [innerValue, maxValue, minValue, step, value]
-    );
-    const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
-    const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
+const DxcSlider = ({
+  ariaLabel = "Slider",
+  defaultValue = 0,
+  disabled = false,
+  helperText,
+  label,
+  labelFormatCallback,
+  margin,
+  marks,
+  maxValue = 100,
+  minValue = 0,
+  name,
+  onChange,
+  onDragEnd,
+  ref,
+  showLimitsValues,
+  showInput,
+  size = "fillParent",
+  step = 1,
+  value,
+}: SliderPropsType) => {
+  const labelId = `label-${useId()}`;
+  const [innerValue, setInnerValue] = useState(defaultValue);
+  const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());
+  const roundedUpValue = useMemo(
+    () => roundUp(value ?? innerValue, step, minValue, maxValue),
+    [innerValue, maxValue, minValue, step, value]
+  );
+  const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
+  const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
-    const changeValue = (newValue: string) => {
-      if (showInput) setInputValue(newValue);
-      const numberValue = Number(newValue);
-      if (value == null) setInnerValue(numberValue);
-      onChange?.(numberValue);
-    };
+  const changeValue = (newValue: string) => {
+    if (showInput) setInputValue(newValue);
+    const numberValue = Number(newValue);
+    if (value == null) setInnerValue(numberValue);
+    onChange?.(numberValue);
+  };
 
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      changeValue(event.target.value);
-    };
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    changeValue(event.target.value);
+  };
 
-    const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
-      const sliderIntegerValue = Number((event.target as HTMLInputElement).value);
-      onDragEnd?.(sliderIntegerValue);
-    };
+  const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
+    const sliderIntegerValue = Number((event.target as HTMLInputElement).value);
+    onDragEnd?.(sliderIntegerValue);
+  };
 
-    const handlerNumberInputOnChange = (event: { value: string; error?: string }) => {
-      changeValue(event.value);
-    };
+  const handlerNumberInputOnChange = (event: { value: string; error?: string }) => {
+    changeValue(event.value);
+  };
 
-    const handlerNumberInputOnBlur = (event: { value: string; error?: string }) => {
-      const textInputIntegerValue = Number(event.value);
-      if (textInputIntegerValue < minValue) changeValue(minValue.toString());
-      else if (textInputIntegerValue > maxValue) changeValue(maxValue.toString());
-      else changeValue(roundUp(textInputIntegerValue, step, minValue, maxValue).toString());
-    };
+  const handlerNumberInputOnBlur = (event: { value: string; error?: string }) => {
+    const textInputIntegerValue = Number(event.value);
+    if (textInputIntegerValue < minValue) changeValue(minValue.toString());
+    else if (textInputIntegerValue > maxValue) changeValue(maxValue.toString());
+    else changeValue(roundUp(textInputIntegerValue, step, minValue, maxValue).toString());
+  };
 
-    return (
-      <SliderContainer margin={margin} size={size} ref={ref}>
-        {label && (
-          <Label id={labelId} disabled={disabled}>
-            {label}
-          </Label>
-        )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-        <MainContainer showInput={showInput}>
-          <LimitsValueGrid showLimitsValues={showLimitsValues}>
-            {showLimitsValues && <LimitLabel disabled={disabled}>{minLabel}</LimitLabel>}
-            <SliderInputContainer>
-              <SliderInput
-                aria-label={label ? undefined : ariaLabel}
-                aria-labelledby={label ? labelId : undefined}
-                aria-orientation="horizontal"
-                aria-valuemax={maxValue}
-                aria-valuemin={minValue}
-                aria-valuenow={value ?? innerValue}
-                disabled={disabled}
-                max={maxValue}
-                min={minValue}
-                onChange={handleOnChange}
-                onMouseUp={handleOnMouseUp}
-                role="slider"
-                step={step}
-                type="range"
-                value={roundedUpValue}
-              />
-              {marks && (
-                <TicksContainer>
-                  {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => {
-                    const tick = minValue + index * step;
-                    return (
-                      <Tick
-                        currentTick={roundedUpValue === stepPrecision(tick, step)}
-                        disabled={disabled}
-                        key={`tickmark-${index}`}
-                        value={tick.toString()}
-                      />
-                    );
-                  })}
-                </TicksContainer>
-              )}
-            </SliderInputContainer>
-            {showLimitsValues && <LimitLabel disabled={disabled}>{maxLabel}</LimitLabel>}
-          </LimitsValueGrid>
-          {showInput && (
-            <DxcNumberInput
+  return (
+    <SliderContainer margin={margin} size={size} ref={ref}>
+      {label && (
+        <Label id={labelId} disabled={disabled}>
+          {label}
+        </Label>
+      )}
+      {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+      <MainContainer showInput={showInput}>
+        <LimitsValueGrid showLimitsValues={showLimitsValues}>
+          {showLimitsValues && <LimitLabel disabled={disabled}>{minLabel}</LimitLabel>}
+          <SliderInputContainer>
+            <SliderInput
+              aria-label={label ? undefined : ariaLabel}
+              aria-labelledby={label ? labelId : undefined}
+              aria-orientation="horizontal"
+              aria-valuemax={maxValue}
+              aria-valuemin={minValue}
+              aria-valuenow={value ?? innerValue}
               disabled={disabled}
-              name={name}
-              onBlur={handlerNumberInputOnBlur}
-              onChange={handlerNumberInputOnChange}
-              showControls={false}
-              size="fillParent"
+              max={maxValue}
+              min={minValue}
+              onChange={handleOnChange}
+              onMouseUp={handleOnMouseUp}
+              role="slider"
               step={step}
-              value={inputValue}
+              type="range"
+              value={roundedUpValue}
             />
-          )}
-        </MainContainer>
-      </SliderContainer>
-    );
-  }
-);
+            {marks && (
+              <TicksContainer>
+                {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => {
+                  const tick = minValue + index * step;
+                  return (
+                    <Tick
+                      currentTick={roundedUpValue === stepPrecision(tick, step)}
+                      disabled={disabled}
+                      key={`tickmark-${index}`}
+                      value={tick.toString()}
+                    />
+                  );
+                })}
+              </TicksContainer>
+            )}
+          </SliderInputContainer>
+          {showLimitsValues && <LimitLabel disabled={disabled}>{maxLabel}</LimitLabel>}
+        </LimitsValueGrid>
+        {showInput && (
+          <DxcNumberInput
+            disabled={disabled}
+            name={name}
+            onBlur={handlerNumberInputOnBlur}
+            onChange={handlerNumberInputOnChange}
+            showControls={false}
+            size="fillParent"
+            step={step}
+            value={inputValue}
+          />
+        )}
+      </MainContainer>
+    </SliderContainer>
+  );
+};
 
 DxcSlider.displayName = "DxcSlider";
 

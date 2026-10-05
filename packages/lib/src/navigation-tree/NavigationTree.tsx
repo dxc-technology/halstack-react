@@ -76,7 +76,7 @@ export default function DxcNavigationTree({
 
   return (
     <NavigationTreeContainer displayBorder={displayBorder} ref={NavigationTreeRef}>
-      <NavigationTreeContext.Provider value={contextValue}>
+      <NavigationTreeContext value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
           (itemsWithId as SectionWithId[]).map((item, index) => (
             <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
@@ -88,7 +88,7 @@ export default function DxcNavigationTree({
             ))}
           </SubMenu>
         )}
-      </NavigationTreeContext.Provider>
+      </NavigationTreeContext>
     </NavigationTreeContainer>
   );
 }

@@ -9,8 +9,11 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./src/index.ts",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js"
+    }
   },
   "files": [
     "dist"
@@ -24,7 +27,6 @@
     "storybook": "storybook dev -p 6006",
     "test-storybook": "vitest --project=storybook",
     "test": "jest --env=jsdom --config=./jest.config.ts",
-    "test:accessibility": "vitest run --config=vitest.config.accessibility.ts",
     "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2"
@@ -32,9 +34,8 @@
   "peerDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "react": "^18.3.1",
-    "react-data-grid": "7.0.0-beta.44",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
@@ -59,6 +60,7 @@
     "@emotion/babel-plugin": "^11.13.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "react-data-grid": "7.0.0-beta.61",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-links": "^10.6.0",
     "@storybook/addon-vitest": "^10.6.0",
@@ -66,13 +68,13 @@
     "@storybook/react-vite": "^10.6.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.0.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/color": "^3.0.6",
     "@types/eslint": "^9.6.1",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "4.7.0",
     "@vitest/browser": "^4.1.10",
     "@vitest/browser-playwright": "^4.1.9",
