@@ -1,4 +1,4 @@
-import { KeyboardEvent, MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { JSX, KeyboardEvent, MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
   negTabIndex: ':not([tabindex^="-"])',

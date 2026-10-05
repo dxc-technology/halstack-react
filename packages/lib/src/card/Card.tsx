@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useContext, useEffect, useState } from "react";
+import { Ref, use, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import CardPropsType from "./types";
 import DxcImage from "../image/Image";
@@ -94,149 +94,145 @@ const LoadingContentRow = styled.div`
   height: var(--height-s);
 `;
 
-const DxcCard = forwardRef(
-  (
-    {
-      children,
-      defaultSelected,
-      direction = "column",
-      emptySize,
-      href,
-      imagePosition = "before",
-      image,
-      isEmpty = false,
-      isLoading = false,
-      loadingSize,
-      mode = "elevated",
-      newWindow = false,
-      onSelectionChange,
-      onClick,
-      selectable = false,
-      selected,
-      size = { width: "fitContent", height: "fitContent" },
-      tabIndex = 0,
-    }: CardPropsType,
-    ref: Ref<HTMLAnchorElement | HTMLDivElement>
-  ) => {
-    const isInteractive = !!(onClick || onSelectionChange) || selectable;
-    const [internalSelected, setInternalSelected] = useState(
-      selected !== undefined ? selected : defaultSelected || false
-    );
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
+const DxcCard = ({
+  children,
+  defaultSelected,
+  direction = "column",
+  emptySize,
+  href,
+  imagePosition = "before",
+  image,
+  isEmpty = false,
+  isLoading = false,
+  loadingSize,
+  mode = "elevated",
+  newWindow = false,
+  onSelectionChange,
+  onClick,
+  ref,
+  selectable = false,
+  selected,
+  size = { width: "fitContent", height: "fitContent" },
+  tabIndex = 0,
+}: CardPropsType) => {
+  const isInteractive = !!(onClick || onSelectionChange) || selectable;
+  const [internalSelected, setInternalSelected] = useState(
+    selected !== undefined ? selected : defaultSelected || false
+  );
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
-    useEffect(() => {
-      if (selected !== undefined) {
-        setInternalSelected(selected);
-      }
-    }, [selected]);
-
-    if (isEmpty) {
-      return (
-        <EmptyCard mode={mode} emptySize={emptySize} size={size}>
-          <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
-            <DxcTypography
-              color="var(--color-fg-neutral-strong)"
-              fontSize={emptyIconSizes[emptySize?.iconSize || "medium"]}
-            >
-              <DxcIcon icon="text_snippet" />
-            </DxcTypography>
-            <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
-              {translatedLabels?.card?.noContent || "No content"}
-            </DxcTypography>
-          </DxcFlex>
-        </EmptyCard>
-      );
-    } else if (isLoading) {
-      return (
-        <LoadingCard
-          direction={direction}
-          imagePosition={imagePosition}
-          mode={mode}
-          loadingSize={loadingSize}
-          size={size}
-        >
-          {image && <LoadingImageContainer image={image} isLoading={isLoading} />}
-          <LoadingContent>
-            <LoadingContentRow />
-            <LoadingContentRow />
-            <LoadingContentRow />
-          </LoadingContent>
-        </LoadingCard>
-      );
-    } else if (href) {
-      return (
-        <CardLink
-          direction={direction}
-          size={size}
-          imagePosition={imagePosition}
-          mode={mode}
-          interactive={true}
-          tabIndex={tabIndex}
-          {...(href && {
-            href,
-            target: newWindow ? "_blank" : "_self",
-          })}
-          role="link"
-          onClick={(event) => {
-            handleEvent(event, onClick);
-          }}
-          ref={ref as Ref<HTMLAnchorElement>}
-          onKeyDown={(event) => {
-            handleEvent(event, onClick);
-          }}
-        >
-          {image && (
-            <ImageContainer image={image}>
-              <DxcImage {...image} />
-            </ImageContainer>
-          )}
-          {children}
-        </CardLink>
-      );
-    } else {
-      return (
-        <Card
-          direction={direction}
-          size={size}
-          imagePosition={imagePosition}
-          mode={mode}
-          selectable={selectable}
-          selected={selectable && internalSelected}
-          interactive={isInteractive}
-          tabIndex={isInteractive ? tabIndex : undefined}
-          role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
-          onClick={(event) => {
-            handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
-          }}
-          onKeyDown={(event) => {
-            handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
-          }}
-          aria-checked={selectable ? internalSelected : undefined}
-          ref={ref as Ref<HTMLDivElement>}
-        >
-          {selectable ? (
-            <SelectableWrapper selected={internalSelected}>
-              {image && (
-                <ImageContainer image={image}>
-                  <DxcImage {...image} />
-                </ImageContainer>
-              )}
-              {children}
-            </SelectableWrapper>
-          ) : (
-            <>
-              {image && (
-                <ImageContainer image={image}>
-                  <DxcImage {...image} />
-                </ImageContainer>
-              )}
-              {children}
-            </>
-          )}
-        </Card>
-      );
+  useEffect(() => {
+    if (selected !== undefined) {
+      setInternalSelected(selected);
     }
+  }, [selected]);
+
+  if (isEmpty) {
+    return (
+      <EmptyCard mode={mode} emptySize={emptySize} size={size}>
+        <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
+          <DxcTypography
+            color="var(--color-fg-neutral-strong)"
+            fontSize={emptyIconSizes[emptySize?.iconSize || "medium"]}
+          >
+            <DxcIcon icon="text_snippet" />
+          </DxcTypography>
+          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
+            {translatedLabels?.card?.noContent || "No content"}
+          </DxcTypography>
+        </DxcFlex>
+      </EmptyCard>
+    );
+  } else if (isLoading) {
+    return (
+      <LoadingCard
+        direction={direction}
+        imagePosition={imagePosition}
+        mode={mode}
+        loadingSize={loadingSize}
+        size={size}
+      >
+        {image && <LoadingImageContainer image={image} isLoading={isLoading} />}
+        <LoadingContent>
+          <LoadingContentRow />
+          <LoadingContentRow />
+          <LoadingContentRow />
+        </LoadingContent>
+      </LoadingCard>
+    );
+  } else if (href) {
+    return (
+      <CardLink
+        direction={direction}
+        size={size}
+        imagePosition={imagePosition}
+        mode={mode}
+        interactive={true}
+        tabIndex={tabIndex}
+        {...(href && {
+          href,
+          target: newWindow ? "_blank" : "_self",
+        })}
+        role="link"
+        onClick={(event) => {
+          handleEvent(event, onClick);
+        }}
+        ref={ref as Ref<HTMLAnchorElement>}
+        onKeyDown={(event) => {
+          handleEvent(event, onClick);
+        }}
+      >
+        {image && (
+          <ImageContainer image={image}>
+            <DxcImage {...image} />
+          </ImageContainer>
+        )}
+        {children}
+      </CardLink>
+    );
+  } else {
+    return (
+      <Card
+        direction={direction}
+        size={size}
+        imagePosition={imagePosition}
+        mode={mode}
+        selectable={selectable}
+        selected={selectable && internalSelected}
+        interactive={isInteractive}
+        tabIndex={isInteractive ? tabIndex : undefined}
+        role={selectable ? "checkbox" : isInteractive ? "button" : undefined}
+        onClick={(event) => {
+          handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
+        }}
+        onKeyDown={(event) => {
+          handleEvent(event, onClick, onSelectionChange, internalSelected, setInternalSelected, selected, selectable);
+        }}
+        aria-checked={selectable ? internalSelected : undefined}
+        ref={ref as Ref<HTMLDivElement>}
+      >
+        {selectable ? (
+          <SelectableWrapper selected={internalSelected}>
+            {image && (
+              <ImageContainer image={image}>
+                <DxcImage {...image} />
+              </ImageContainer>
+            )}
+            {children}
+          </SelectableWrapper>
+        ) : (
+          <>
+            {image && (
+              <ImageContainer image={image}>
+                <DxcImage {...image} />
+              </ImageContainer>
+            )}
+            {children}
+          </>
+        )}
+      </Card>
+    );
   }
-);
+};
 
 export default DxcCard;

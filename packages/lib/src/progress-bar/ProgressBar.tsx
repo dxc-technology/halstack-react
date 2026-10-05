@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { JSX, useEffect, useId, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import ProgressBarPropsType from "./types";

@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { JSX, use, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
@@ -80,7 +80,7 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const width = useWidth(containerRef);

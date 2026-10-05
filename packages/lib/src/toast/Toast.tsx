@@ -1,4 +1,4 @@
-import { memo, useContext, useState, useRef, useEffect } from "react";
+import { memo, use, useState, useRef, useEffect } from "react";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
@@ -93,7 +93,7 @@ const DxcToast = ({
   const [isClosing, setIsClosing] = useState(false);
   const toastRef = useRef<HTMLOutputElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
   // Timeouts
   const clearClosingAnimationTimer = useTimeout(() => setIsClosing(true), loading ? undefined : duration - 300);

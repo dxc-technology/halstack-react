@@ -1,7 +1,7 @@
 import { Dayjs } from "dayjs";
 import { Margin, Space } from "../common/utils";
 
-export type RefType = HTMLDivElement;
+export type RefType = React.Ref<HTMLDivElement>;
 
 type Props = {
   /**
@@ -99,6 +99,10 @@ type Props = {
    * Specifies a string to be used as the name for the date input element when no `label` is provided.
    */
   ariaLabel?: string;
+  /**
+   * Ref object to access the date input element.
+   */
+  ref?: RefType;
 };
 
 export type DateType = { day: number; month: number; year: number };

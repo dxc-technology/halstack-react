@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react";
+import { memo } from "react";
 import styled from "@emotion/styled";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
@@ -16,41 +16,49 @@ const DropdownMenuContainer = styled.ul`
   ${scrollbarStyles}
 `;
 
-const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
-  ({ id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles }, ref) => (
-    <DxcBleed space="var(--spacing-padding-xs)">
-      <DropdownMenuContainer
-        onMouseDown={(event) => {
-          // Prevent the onBlur event from closing menu when clicking on the menu since
-          // it is implemented with a Portal and the menu is not a direct child of the container
-          event.preventDefault();
-        }}
-        onKeyDown={onKeyDown}
-        id={id}
-        role="menu"
-        aria-labelledby={dropdownTriggerId}
-        aria-orientation="vertical"
-        aria-activedescendant={visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined}
-        tabIndex={0}
-        ref={ref}
-        style={styles}
-      >
-        {options.map((option, index) => (
-          <>
-            <DropdownMenuItem
-              id={`${id}-option-${index}`}
-              key={`${id}-option-${option.value}`}
-              visuallyFocused={index === visualFocusIndex}
-              iconPosition={iconsPosition}
-              onClick={menuItemOnClick}
-              option={option}
-            />
-            {option.hasDivider && <DxcDivider />}
-          </>
-        ))}
-      </DropdownMenuContainer>
-    </DxcBleed>
-  )
+const DropdownMenu = ({
+  id,
+  dropdownTriggerId,
+  iconsPosition,
+  visualFocusIndex,
+  menuItemOnClick,
+  onKeyDown,
+  options,
+  ref,
+  styles,
+}: DropdownMenuProps) => (
+  <DxcBleed space="var(--spacing-padding-xs)">
+    <DropdownMenuContainer
+      onMouseDown={(event) => {
+        // Prevent the onBlur event from closing menu when clicking on the menu since
+        // it is implemented with a Portal and the menu is not a direct child of the container
+        event.preventDefault();
+      }}
+      onKeyDown={onKeyDown}
+      id={id}
+      role="menu"
+      aria-labelledby={dropdownTriggerId}
+      aria-orientation="vertical"
+      aria-activedescendant={visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined}
+      tabIndex={0}
+      ref={ref}
+      style={styles}
+    >
+      {options.map((option, index) => (
+        <>
+          <DropdownMenuItem
+            id={`${id}-option-${index}`}
+            key={`${id}-option-${option.value}`}
+            visuallyFocused={index === visualFocusIndex}
+            iconPosition={iconsPosition}
+            onClick={menuItemOnClick}
+            option={option}
+          />
+          {option.hasDivider && <DxcDivider />}
+        </>
+      ))}
+    </DropdownMenuContainer>
+  </DxcBleed>
 );
 
 export default memo(DropdownMenu);

@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode, Ref } from "react";
 import { SVG } from "../common/utils";
 
 export type RefType = HTMLDivElement;
@@ -6,15 +6,7 @@ export type RefType = HTMLDivElement;
 type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Shape = "circle" | "square";
 type Color =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "success"
-  | "info"
-  | "neutral"
-  | "warning"
-  | "error"
-  | "transparent";
+  "primary" | "secondary" | "tertiary" | "success" | "info" | "neutral" | "warning" | "error" | "transparent";
 export interface Status {
   mode: "default" | "info" | "success" | "warning" | "error";
   position: "top" | "bottom";
@@ -45,6 +37,10 @@ type CommonProps = {
    * This function will be called when the user clicks the Action Icon. Makes it behave as a button.
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
+  /**
+   * Ref to the Action Icon container element.
+   */
+  ref?: Ref<RefType>;
   /**
    * This will determine if the Action Icon will be rounded square or a circle.
    */

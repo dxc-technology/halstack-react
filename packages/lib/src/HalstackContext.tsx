@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo } from "react";
+import { JSX, createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
@@ -91,17 +91,17 @@ const HalstackProvider = ({
 
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
-      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? defaultThemedLogos}>
+      <HalstackLogosContext value={opinionatedTheme?.logos ?? defaultThemedLogos}>
         {parsedLabels || localeTag ? (
-          <HalstackLanguageContext.Provider
+          <HalstackLanguageContext
             value={{ labels: parsedLabels ?? defaultTranslatedComponentLabels, locale: localeTag }}
           >
             {children}
-          </HalstackLanguageContext.Provider>
+          </HalstackLanguageContext>
         ) : (
           children
         )}
-      </HalstackLogosContext.Provider>
+      </HalstackLogosContext>
     </HalstackThemed>
   );
 };

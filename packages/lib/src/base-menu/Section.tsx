@@ -1,4 +1,4 @@
-import { useContext, useId } from "react";
+import { use, useId } from "react";
 import styled from "@emotion/styled";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
@@ -23,7 +23,7 @@ const Title = styled.h2`
 
 export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
-  const { hasPopOver } = useContext(BaseMenuContext) ?? {};
+  const { hasPopOver } = use(BaseMenuContext) ?? {};
   return (
     <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {!hasPopOver && section.title && <Title id={id}>{section.title}</Title>}

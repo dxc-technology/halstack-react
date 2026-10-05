@@ -1,4 +1,4 @@
-import { Children, useCallback, useMemo, useState } from "react";
+import { JSX, Children, useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -71,7 +71,7 @@ const AccordionItemWithProvider = ({
     [index, contextValue.activeIndex, contextValue.handlerActiveChange, contextValue.independent]
   );
 
-  return <AccordionContext.Provider value={memoizedContext}>{child}</AccordionContext.Provider>;
+  return <AccordionContext value={memoizedContext}>{child}</AccordionContext>;
 };
 
 const DxcAccordion = (props: AccordionPropsType): JSX.Element => {

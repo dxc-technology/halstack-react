@@ -1,14 +1,4 @@
-import {
-  ChangeEvent,
-  FocusEvent,
-  KeyboardEvent,
-  MouseEvent,
-  useContext,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, FocusEvent, KeyboardEvent, MouseEvent, use, useEffect, useId, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
 import PromptInputPropsType from "./types";
@@ -143,7 +133,7 @@ const DxcMessageInput = ({
   tabIndex,
   value,
 }: PromptInputPropsType) => {
-  const languageContext = useContext(HalstackLanguageContext);
+  const languageContext = use(HalstackLanguageContext);
   const translatedLabels = languageContext.labels;
   const locale = languageContext.locale ?? "en-US";
   const inputId = `input-${useId()}`;

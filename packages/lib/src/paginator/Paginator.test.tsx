@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render } from "@testing-library/react";
 import DxcPaginator from "./Paginator";
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -55,11 +54,11 @@ describe("Paginator component tests", () => {
     );
     const goToPageSelect = getAllByRole("combobox")[0];
     if (goToPageSelect) {
-      userEvent.click(goToPageSelect);
+      fireEvent.click(goToPageSelect);
     }
     const goToPageOption = getByText("2");
     if (goToPageOption) {
-      userEvent.click(goToPageOption);
+      fireEvent.click(goToPageOption);
     }
     expect(onClick).toHaveBeenCalledWith(2);
   });
@@ -71,7 +70,7 @@ describe("Paginator component tests", () => {
     );
     const nextButton = getAllByRole("button")[2];
     if (nextButton) {
-      userEvent.click(nextButton);
+      fireEvent.click(nextButton);
     }
     expect(onClick).toHaveBeenCalled();
   });
@@ -91,11 +90,11 @@ describe("Paginator component tests", () => {
     );
     const select = getAllByText("10")[0];
     if (select) {
-      userEvent.click(select);
+      fireEvent.click(select);
     }
     const itemPerPageOption = getByText("15");
     if (itemPerPageOption) {
-      userEvent.click(itemPerPageOption);
+      fireEvent.click(itemPerPageOption);
     }
     expect(onClick).toHaveBeenCalledWith(15);
   });
@@ -108,7 +107,7 @@ describe("Paginator component tests", () => {
     const nextButton = getAllByRole("button")[2];
     expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
     if (nextButton) {
-      userEvent.click(nextButton);
+      fireEvent.click(nextButton);
     }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
@@ -121,7 +120,7 @@ describe("Paginator component tests", () => {
     const lastButton = getAllByRole("button")[3];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
     if (lastButton) {
-      userEvent.click(lastButton);
+      fireEvent.click(lastButton);
     }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
@@ -134,7 +133,7 @@ describe("Paginator component tests", () => {
     const lastButton = getAllByRole("button")[0];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
     if (lastButton) {
-      userEvent.click(lastButton);
+      fireEvent.click(lastButton);
     }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
@@ -147,7 +146,7 @@ describe("Paginator component tests", () => {
     const lastButton = getAllByRole("button")[1];
     expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
     if (lastButton) {
-      userEvent.click(lastButton);
+      fireEvent.click(lastButton);
     }
     expect(onClick).toHaveBeenCalledTimes(0);
   });

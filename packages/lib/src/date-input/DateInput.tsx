@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect, useId, useCallback, useContext, forwardRef, useMemo } from "react";
+import { useState, useRef, useEffect, useId, useCallback, use, useMemo } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { HalstackLanguageContext } from "../HalstackContext";
-import DateInputPropsType, { RefType } from "./types";
+import DateInputPropsType from "./types";
 import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -75,226 +75,220 @@ const StyledPopoverContent = styled.div`
   }
 `;
 
-const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
-  (
-    {
-      label,
-      name,
-      defaultValue = "",
-      value,
-      format,
-      helperText,
-      placeholder = false,
-      clearable,
-      disabled,
-      readOnly,
-      optional,
-      onChange,
-      onBlur,
-      error,
-      autocomplete,
-      margin,
-      size,
-      tabIndex,
-      ariaLabel = "Date input",
-    },
-    ref
-  ): JSX.Element => {
-    const [innerValue, setInnerValue] = useState(defaultValue);
-    const [isOpen, setIsOpen] = useState(false);
-    const calendarId = `date-picker-${useId()}`;
-    const languageContext = useContext(HalstackLanguageContext);
-    const locale = languageContext.locale ? languageContext.locale : undefined;
-    const formatter = useMemo(() => {
-      return format ? format : locale ? getFormatFromLocale(locale) : "dd-MM-yyyy";
-    }, [format, locale]);
-    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", formatter));
-    const [lastValidYear, setLastValidYear] = useState<number | null>(
-      innerValue || value
-        ? !formatter.toUpperCase().includes("YYYY") &&
-          +getValueForPicker(value ?? innerValue, formatter).format("YY") < 68
-          ? 2000
-          : 1900
-        : null
-    );
-    const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
+const DxcDateInput = ({
+  label,
+  name,
+  defaultValue = "",
+  value,
+  format,
+  helperText,
+  placeholder = false,
+  clearable,
+  disabled,
+  readOnly,
+  optional,
+  onChange,
+  onBlur,
+  error,
+  autocomplete,
+  margin,
+  size,
+  tabIndex,
+  ariaLabel = "Date input",
+  ref,
+}: DateInputPropsType) => {
+  const [innerValue, setInnerValue] = useState(defaultValue);
+  const [isOpen, setIsOpen] = useState(false);
+  const calendarId = `date-picker-${useId()}`;
+  const languageContext = use(HalstackLanguageContext);
+  const locale = languageContext.locale ? languageContext.locale : undefined;
+  const formatter = useMemo(() => {
+    return format ? format : locale ? getFormatFromLocale(locale) : "dd-MM-yyyy";
+  }, [format, locale]);
+  const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", formatter));
+  const [lastValidYear, setLastValidYear] = useState<number | null>(
+    innerValue || value
+      ? !formatter.toUpperCase().includes("YYYY") &&
+        +getValueForPicker(value ?? innerValue, formatter).format("YY") < 68
+        ? 2000
+        : 1900
+      : null
+  );
+  const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
 
-    const translatedLabels = languageContext.labels;
-    const dateRef = useRef<HTMLDivElement | null>(null);
-    const popoverContentRef = useRef<HTMLDivElement | null>(null);
+  const translatedLabels = languageContext.labels;
+  const dateRef = useRef<HTMLInputElement | null>(null);
+  const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
-    const handleCalendarOnClick = (newDate: Dayjs) => {
-      const newValue = newDate.format(formatter.toUpperCase());
-      if (!value) {
-        setDayjsDate(newDate);
-        setInnerValue(newValue);
-      }
-      setLastValidYear(newDate.get("year"));
-      if (newDate.set("day", newDate.get("date")).toJSON()) {
-        onChange?.({
-          value: newValue,
-          date: newDate.toDate(),
-        });
-      } else {
-        onChange?.({
-          value: newValue,
-        });
-      }
-    };
-
-    const handleOnChange = ({ value: newValue, error: inputError }: { value: string; error?: string }) => {
-      if (value == null) {
-        setInnerValue(newValue);
-      }
-      const newDate = getDate(newValue, formatter, lastValidYear, setLastValidYear);
-      const invalidDateMessage =
-        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
-      const callbackParams = {
+  const handleCalendarOnClick = (newDate: Dayjs) => {
+    const newValue = newDate.format(formatter.toUpperCase());
+    if (!value) {
+      setDayjsDate(newDate);
+      setInnerValue(newValue);
+    }
+    setLastValidYear(newDate.get("year"));
+    if (newDate.set("day", newDate.get("date")).toJSON()) {
+      onChange?.({
         value: newValue,
-        error: inputError || invalidDateMessage || undefined,
-      };
-      if (newDate.isValid()) {
-        setDayjsDate(newDate);
-        onChange?.({
-          ...callbackParams,
-          date: newDate.toDate(),
-        });
-      } else {
-        onChange?.(callbackParams);
-        setLastValidYear((validYear) => dayjsDate.get("year") ?? validYear);
-        setDayjsDate(dayjs(null));
-      }
+        date: newDate.toDate(),
+      });
+    } else {
+      onChange?.({
+        value: newValue,
+      });
+    }
+  };
+
+  const handleOnChange = ({ value: newValue, error: inputError }: { value: string; error?: string }) => {
+    if (value == null) {
+      setInnerValue(newValue);
+    }
+    const newDate = getDate(newValue, formatter, lastValidYear, setLastValidYear);
+    const invalidDateMessage =
+      newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+    const callbackParams = {
+      value: newValue,
+      error: inputError || invalidDateMessage || undefined,
     };
-    const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
-      const date = getDate(blurValue, formatter, lastValidYear, setLastValidYear);
-      const invalidDateMessage =
-        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
-      const callbackParams = {
-        value: blurValue,
-        error: inputError || invalidDateMessage || undefined,
-      };
-      if (date.isValid()) {
-        onBlur?.({
-          ...callbackParams,
-          date: date.toDate(),
-        });
-      } else {
-        onBlur?.(callbackParams);
-      }
+    if (newDate.isValid()) {
+      setDayjsDate(newDate);
+      onChange?.({
+        ...callbackParams,
+        date: newDate.toDate(),
+      });
+    } else {
+      onChange?.(callbackParams);
+      setLastValidYear((validYear) => dayjsDate.get("year") ?? validYear);
+      setDayjsDate(dayjs(null));
+    }
+  };
+  const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
+    const date = getDate(blurValue, formatter, lastValidYear, setLastValidYear);
+    const invalidDateMessage =
+      blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+    const callbackParams = {
+      value: blurValue,
+      error: inputError || invalidDateMessage || undefined,
     };
+    if (date.isValid()) {
+      onBlur?.({
+        ...callbackParams,
+        date: date.toDate(),
+      });
+    } else {
+      onBlur?.(callbackParams);
+    }
+  };
 
-    const adjustSideOffset = useCallback(() => {
-      if (error != null) {
-        setTimeout(() => {
-          if (popoverContentRef.current && dateRef.current) {
-            const popoverRect = popoverContentRef.current.getBoundingClientRect();
-            const triggerRect = dateRef.current.querySelector('[id^="input"]')?.getBoundingClientRect();
-            const errorMessageHeight = dateRef.current
-              .querySelector('[id^="error-input"]')
-              ?.getBoundingClientRect().height;
-            setSideOffset(
-              triggerRect?.bottom != null && popoverRect.top > triggerRect.bottom
-                ? errorMessageHeight != null
-                  ? -errorMessageHeight
-                  : 0
-                : SIDEOFFSET
-            );
-          }
-        }, 0);
-      }
-    }, [error]);
-
-    const openCalendar = () => {
-      setIsOpen(!isOpen);
-      adjustSideOffset();
-    };
-    const closeCalendar = () => {
-      setIsOpen(false);
-    };
-
-    useEffect(() => {
-      window.addEventListener("scroll", adjustSideOffset);
-      return () => {
-        window.removeEventListener("scroll", adjustSideOffset);
-      };
-    }, [adjustSideOffset]);
-
-    useEffect(() => {
-      if (value || value === "") {
-        setDayjsDate(getDate(value, formatter, lastValidYear, setLastValidYear));
-      }
-    }, [value, formatter, lastValidYear]);
-
-    useEffect(() => {
-      if (!disabled) {
-        const actionButtonElement = dateRef.current?.querySelector("[aria-label='Select date']");
-        actionButtonElement?.setAttribute("aria-haspopup", "true");
-        actionButtonElement?.setAttribute("role", "combobox");
-        actionButtonElement?.setAttribute("aria-expanded", `${isOpen}`);
-        actionButtonElement?.setAttribute("aria-controls", calendarId);
-        if (isOpen) {
-          actionButtonElement?.setAttribute("aria-describedby", calendarId);
+  const adjustSideOffset = useCallback(() => {
+    if (error != null) {
+      setTimeout(() => {
+        if (popoverContentRef.current && dateRef.current) {
+          const popoverRect = popoverContentRef.current.getBoundingClientRect();
+          const triggerRect = dateRef.current.querySelector('[id^="input"]')?.getBoundingClientRect();
+          const errorMessageHeight = dateRef.current
+            .querySelector('[id^="error-input"]')
+            ?.getBoundingClientRect().height;
+          setSideOffset(
+            triggerRect?.bottom != null && popoverRect.top > triggerRect.bottom
+              ? errorMessageHeight != null
+                ? -errorMessageHeight
+                : 0
+              : SIDEOFFSET
+          );
         }
-      }
-    }, [isOpen, disabled, calendarId]);
+      }, 0);
+    }
+  }, [error]);
 
-    return (
-      <>
-        <DateInputContainer margin={margin} size={size} ref={ref}>
-          {label && (
-            <Label
-              htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
-              disabled={disabled}
-              hasHelperText={!!helperText}
-            >
-              {label}{" "}
-              {optional && (
-                <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
-              )}
-            </Label>
-          )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <DxcPopover
-            asChild
-            isOpen={isOpen}
-            onClose={closeCalendar}
-            offset={sideOffset}
-            align="end"
-            popoverContent={
-              <StyledPopoverContent ref={popoverContentRef}>
-                <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} format={formatter} />
-              </StyledPopoverContent>
-            }
+  const openCalendar = () => {
+    setIsOpen(!isOpen);
+    adjustSideOffset();
+  };
+  const closeCalendar = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", adjustSideOffset);
+    return () => {
+      window.removeEventListener("scroll", adjustSideOffset);
+    };
+  }, [adjustSideOffset]);
+
+  useEffect(() => {
+    if (value || value === "") {
+      setDayjsDate(getDate(value, formatter, lastValidYear, setLastValidYear));
+    }
+  }, [value, formatter, lastValidYear]);
+
+  useEffect(() => {
+    if (!disabled) {
+      const actionButtonElement = dateRef.current?.querySelector("[aria-label='Select date']");
+      actionButtonElement?.setAttribute("aria-haspopup", "true");
+      actionButtonElement?.setAttribute("role", "combobox");
+      actionButtonElement?.setAttribute("aria-expanded", `${isOpen}`);
+      actionButtonElement?.setAttribute("aria-controls", calendarId);
+      if (isOpen) {
+        actionButtonElement?.setAttribute("aria-describedby", calendarId);
+      }
+    }
+  }, [isOpen, disabled, calendarId]);
+
+  return (
+    <>
+      <DateInputContainer margin={margin} size={size} ref={ref}>
+        {label && (
+          <Label
+            htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
+            disabled={disabled}
+            hasHelperText={!!helperText}
           >
-            <DxcTextInput
-              name={name}
-              defaultValue={defaultValue}
-              value={value ?? innerValue}
-              placeholder={placeholder ? formatter.toUpperCase() : undefined}
-              action={{
-                onClick: openCalendar,
-                icon: "filled_calendar_today",
-                title: !disabled ? translatedLabels.dateInput.datePickerActionTitle : undefined,
-              }}
-              clearable={clearable}
-              disabled={disabled}
-              readOnly={readOnly}
-              optional={optional}
-              onChange={handleOnChange}
-              onBlur={handleOnBlur}
-              error={error}
-              autocomplete={autocomplete}
-              size={size}
-              tabIndex={tabIndex}
-              ref={dateRef}
-              ariaLabel={ariaLabel}
-            />
-          </DxcPopover>
-        </DateInputContainer>
-      </>
-    );
-  }
-);
+            {label}{" "}
+            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        <DxcPopover
+          asChild
+          isOpen={isOpen}
+          onClose={closeCalendar}
+          offset={sideOffset}
+          align="end"
+          popoverContent={
+            <StyledPopoverContent ref={popoverContentRef}>
+              <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} format={formatter} />
+            </StyledPopoverContent>
+          }
+        >
+          <DxcTextInput
+            name={name}
+            defaultValue={defaultValue}
+            value={value ?? innerValue}
+            placeholder={placeholder ? formatter.toUpperCase() : undefined}
+            action={{
+              onClick: openCalendar,
+              icon: "filled_calendar_today",
+              title: !disabled ? translatedLabels.dateInput.datePickerActionTitle : undefined,
+            }}
+            clearable={clearable}
+            disabled={disabled}
+            readOnly={readOnly}
+            optional={optional}
+            onChange={handleOnChange}
+            onBlur={handleOnBlur}
+            error={error}
+            autocomplete={autocomplete}
+            size={size}
+            tabIndex={tabIndex}
+            ref={dateRef}
+            ariaLabel={ariaLabel}
+          />
+        </DxcPopover>
+      </DateInputContainer>
+    </>
+  );
+};
 
 DxcDateInput.displayName = "DxcDateInput";
 

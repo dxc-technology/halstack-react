@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useRef, forwardRef } from "react";
+import { use, useLayoutEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -65,7 +65,7 @@ const VirtualizedListbox = ({
   virtualizedHeight,
   visualFocusIndex,
 }: ListboxProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const virtuosoRef = useRef<VirtuosoHandle>(null);
 
   const isSearchEmpty = searchable && (options.length === 0 || !groupsHaveOptions(options));
@@ -137,7 +137,7 @@ const VirtualizedListbox = ({
     switch (item?.type) {
       case "selectAll":
         return (
-          <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+          <CheckboxContext value={{ partial: selectionType === "indeterminate" }}>
             <ListOption
               id={`${id}-option-0`}
               isLastOption={lastOptionIndex === 0}
@@ -149,7 +149,7 @@ const VirtualizedListbox = ({
               option={{ label: translatedLabels.select.selectAllLabel, value: "" }}
               visualFocused={getGlobalIndex(visualFocusIndex) === index}
             />
-          </CheckboxContext.Provider>
+          </CheckboxContext>
         );
 
       case "optionalItem":
@@ -176,7 +176,7 @@ const VirtualizedListbox = ({
       case "groupHeader": {
         const groupSelectionType = getGroupSelectionType(item.group.options, currentValue as string[]);
         return (
-          <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }} key={item.id}>
+          <CheckboxContext value={{ partial: groupSelectionType === "indeterminate" }} key={item.id}>
             <ListOption
               id={item.id}
               isLastOption={false}
@@ -188,7 +188,7 @@ const VirtualizedListbox = ({
               visualFocused={getGlobalIndex(visualFocusIndex) === index}
             />
             <></>
-          </CheckboxContext.Provider>
+          </CheckboxContext>
         );
       }
 
@@ -245,7 +245,7 @@ const VirtualizedListbox = ({
           }
           itemContent={(index) => renderItem(index)}
           components={{
-            List: forwardRef((props, ref) => (
+            List: ({ ref, ...props }) => (
               <div
                 ref={ref}
                 role="listbox"
@@ -254,7 +254,7 @@ const VirtualizedListbox = ({
                 id={id}
                 {...props}
               />
-            )),
+            ),
             Header: () =>
               isSearchEmpty ? (
                 <OptionsSystemMessage>
@@ -287,7 +287,7 @@ const NonVirtualizedListbox = ({
   styles,
   visualFocusIndex,
 }: ListboxProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const listboxRef = useRef<HTMLDivElement>(null);
   let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 
@@ -297,7 +297,7 @@ const NonVirtualizedListbox = ({
       globalMappingIndex++;
 
       return (
-        <CheckboxContext.Provider value={{ partial: groupSelectionType === "indeterminate" }}>
+        <CheckboxContext value={{ partial: groupSelectionType === "indeterminate" }}>
           <ListOption
             id={groupId}
             isLastOption={lastOptionIndex === globalMappingIndex}
@@ -312,7 +312,7 @@ const NonVirtualizedListbox = ({
             }}
             visualFocused={visualFocusIndex === globalMappingIndex}
           />
-        </CheckboxContext.Provider>
+        </CheckboxContext>
       );
     } else
       return (
@@ -393,7 +393,7 @@ const NonVirtualizedListbox = ({
       );
     else if (multiple && enableSelectAll) {
       return (
-        <CheckboxContext.Provider value={{ partial: selectionType === "indeterminate" }}>
+        <CheckboxContext value={{ partial: selectionType === "indeterminate" }}>
           <ListOption
             id={`${id}-option-${0}`}
             isLastOption={lastOptionIndex === 0}
@@ -408,7 +408,7 @@ const NonVirtualizedListbox = ({
             }}
             visualFocused={visualFocusIndex === 0}
           />
-        </CheckboxContext.Provider>
+        </CheckboxContext>
       );
     }
   };
