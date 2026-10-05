@@ -27,7 +27,7 @@ const Table = styled.table<{ mode: TablePropsType["mode"] }>`
   width: 100%;
 
   & tr {
-    border-bottom: var(--border-width-s) solid var(--border-color-neutral-lighter);
+    border-bottom: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-lighter);
     height: ${({ mode }) => (mode === "default" ? "var(--height-xxl)" : "var(--height-l)")};
   }
   & td {
@@ -42,12 +42,13 @@ const Table = styled.table<{ mode: TablePropsType["mode"] }>`
     text-align: start;
   }
   & th {
-    background-color: var(--color-fg-primary-strong);
-    color: var(--color-fg-neutral-bright);
+    background-color: var(--color-bg-neutral-lighter);
+    border-bottom: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
+    color: var(--color-fg-neutral-dark);
     font-family: var(--typography-font-family);
     font-size: var(--typography-label-m);
     font-style: normal;
-    font-weight: var(--typography-label-regular);
+    font-weight: var(--typography-label-semibold);
     line-height: normal;
     padding: var(--spacing-padding-s) var(--spacing-padding-m);
     text-align: start;
