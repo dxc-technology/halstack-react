@@ -76,6 +76,7 @@ type ItemActionProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
   depthLevel: number;
   icon?: Item["icon"];
   label: Item["label"];
+  ref?: React.Ref<HTMLAnchorElement> | undefined;
   selected: Item["selected"];
   href?: Item["href"];
   renderItem?: Item["renderItem"];

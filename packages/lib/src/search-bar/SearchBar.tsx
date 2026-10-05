@@ -3,7 +3,7 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import { SearchBarProps } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { KeyboardEvent, useContext, useRef, useState } from "react";
+import { KeyboardEvent, use, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { css } from "@emotion/react";
 import DxcIcon from "../icon/Icon";
@@ -68,7 +68,7 @@ const DxcSearchBar = ({
   onEnter,
   placeholder = "Search...",
 }: SearchBarProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const inputRef = useRef<HTMLInputElement>(null);
   const [innerValue, setInnerValue] = useState("");
 

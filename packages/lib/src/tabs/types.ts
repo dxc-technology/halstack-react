@@ -20,6 +20,7 @@ type CommonTabProps = {
   children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
+  ref?: React.Ref<HTMLButtonElement>;
 };
 
 export type TabProps =

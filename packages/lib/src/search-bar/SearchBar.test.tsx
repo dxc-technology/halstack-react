@@ -16,7 +16,7 @@ describe("SearchBarTrigger component tests", () => {
     const { getByRole } = render(<DxcSearchBarTrigger onTriggerClick={onTriggerClick} />);
 
     const button = getByRole("button");
-    userEvent.click(button);
+    fireEvent.click(button);
 
     expect(onTriggerClick).toHaveBeenCalledTimes(1);
   });
@@ -30,69 +30,75 @@ describe("SearchBar component tests", () => {
     expect(text).toBeTruthy();
   });
 
-  test("Calls onChange when typing", () => {
+  test("Calls onChange when typing", async () => {
+    const user = userEvent.setup();
     const onChange = jest.fn();
     const { getByRole } = render(<DxcSearchBar onChange={onChange} />);
 
     const input = getByRole("textbox") as HTMLInputElement;
-    userEvent.type(input, "hello");
+    await user.type(input, "hello");
 
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenLastCalledWith("hello");
   });
 
-  test("Calls onEnter with value when pressing Enter", () => {
+  test("Calls onEnter with value when pressing Enter", async () => {
+    const user = userEvent.setup();
     const onEnter = jest.fn();
     const { getByRole } = render(<DxcSearchBar onEnter={onEnter} />);
 
     const input = getByRole("textbox") as HTMLInputElement;
-    userEvent.type(input, "search text");
+    await user.type(input, "search text");
     fireEvent.keyDown(input, { key: "Enter" });
 
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEnter).toHaveBeenCalledWith("search text");
   });
 
-  test("Clears value when clicking clear icon", () => {
+  test("Clears value when clicking clear icon", async () => {
     const { getByRole } = render(<DxcSearchBar />);
 
     const input = getByRole("textbox") as HTMLInputElement;
-    userEvent.type(input, "abc");
+    const user = userEvent.setup();
+    await user.type(input, "abc");
 
     const clearButton = getByRole("button");
     expect(clearButton).toBeTruthy();
 
-    userEvent.click(clearButton);
+    await user.click(clearButton);
     expect(input.value).toBe("");
   });
 
-  test("Clears value when pressing Escape", () => {
+  test("Clears value when pressing Escape", async () => {
+    const user = userEvent.setup();
     const { getByRole } = render(<DxcSearchBar />);
 
     const input = getByRole("textbox") as HTMLInputElement;
-    userEvent.type(input, "xyz");
+    await user.type(input, "xyz");
     fireEvent.keyDown(input, { key: "Escape" });
 
     expect(input.value).toBe("");
   });
 
-  test("Calls onBlur with current value when blurred", () => {
+  test("Calls onBlur with current value when blurred", async () => {
+    const user = userEvent.setup();
     const onBlur = jest.fn();
     const { getByRole } = render(<DxcSearchBar onBlur={onBlur} />);
 
     const input = getByRole("textbox") as HTMLInputElement;
-    userEvent.type(input, "blur me");
+    await user.type(input, "blur me");
     fireEvent.blur(input);
 
     expect(onBlur).toHaveBeenCalledWith("blur me");
   });
 
-  test("Calls onCancel when Cancel button is clicked", () => {
+  test("Calls onCancel when Cancel button is clicked", async () => {
+    const user = userEvent.setup();
     const onCancel = jest.fn();
     const { getByRole } = render(<DxcSearchBar onCancel={onCancel} />);
 
     const cancelButton = getByRole("button", { name: /Cancel/i });
-    userEvent.click(cancelButton);
+    await user.click(cancelButton);
 
     expect(onCancel).toHaveBeenCalledTimes(1);
   });

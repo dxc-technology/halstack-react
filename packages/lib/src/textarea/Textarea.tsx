@@ -1,9 +1,9 @@
-import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, use, useEffect, useId, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { getLengthErrorMessage, getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
-import TextareaPropsType, { RefType } from "./types";
+import TextareaPropsType from "./types";
 import scrollbarStyles from "../styles/scroll";
 import ErrorMessage from "../styles/forms/ErrorMessage";
 import Label from "../styles/forms/Label";
@@ -64,151 +64,147 @@ const Textarea = styled.textarea<{
 
 const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
 
-const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
-  (
-    {
-      ariaLabel = "Text area",
-      autocomplete = "off",
-      defaultValue = "",
-      disabled = false,
-      error,
-      helperText,
-      label,
-      margin,
-      maxLength,
+const DxcTextarea = ({
+  ariaLabel = "Text area",
+  autocomplete = "off",
+  defaultValue = "",
+  disabled = false,
+  error,
+  helperText,
+  label,
+  margin,
+  maxLength,
+  minLength,
+  name,
+  onBlur,
+  onChange,
+  optional = false,
+  pattern,
+  placeholder,
+  readOnly = false,
+  ref,
+  rows = 4,
+  size = "medium",
+  tabIndex = 0,
+  value,
+  verticalGrow = "auto",
+}: TextareaPropsType) => {
+  const [innerValue, setInnerValue] = useState(defaultValue);
+  const textareaId = `textarea-${useId()}`;
+  const errorId = `error-${textareaId}`;
+  const translatedLabels = use(HalstackLanguageContext).labels;
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const prevValueRef = useRef<string | null>(null);
+
+  const changeValue = (newValue: string) => {
+    if (value == null) setInnerValue(newValue);
+
+    const lengthError = getLengthErrorMessage({
+      value: newValue,
       minLength,
-      name,
-      onBlur,
-      onChange,
-      optional = false,
-      pattern,
-      placeholder,
-      readOnly = false,
-      rows = 4,
-      size = "medium",
-      tabIndex = 0,
-      value,
-      verticalGrow = "auto",
-    },
-    ref
-  ) => {
-    const [innerValue, setInnerValue] = useState(defaultValue);
-    const textareaId = `textarea-${useId()}`;
-    const errorId = `error-${textareaId}`;
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-    const prevValueRef = useRef<string | null>(null);
+      maxLength,
+      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+    });
 
-    const changeValue = (newValue: string) => {
-      if (value == null) setInnerValue(newValue);
-
-      const lengthError = getLengthErrorMessage({
+    if (newValue === "" && !optional) {
+      onChange?.({
         value: newValue,
-        minLength,
-        maxLength,
-        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
-        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+        error: translatedLabels.formFields.requiredValueErrorMessage,
       });
+    } else if (lengthError) {
+      onChange?.({
+        value: newValue,
+        error: lengthError,
+      });
+    } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
+      onChange?.({
+        value: newValue,
+        error: translatedLabels.formFields.formatRequestedErrorMessage,
+      });
+    } else onChange?.({ value: newValue });
+  };
 
-      if (newValue === "" && !optional) {
-        onChange?.({
-          value: newValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
-        });
-      } else if (lengthError) {
-        onChange?.({
-          value: newValue,
-          error: lengthError,
-        });
-      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
-        onChange?.({
-          value: newValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
-        });
-      } else onChange?.({ value: newValue });
-    };
-
-    const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
-      const lengthError = getLengthErrorMessage({
+  const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+    const lengthError = getLengthErrorMessage({
+      value: event.target.value,
+      minLength,
+      maxLength,
+      minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
+      maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+    });
+    if (event.target.value === "" && !optional) {
+      onBlur?.({
         value: event.target.value,
-        minLength,
-        maxLength,
-        minLengthErrorMessage: translatedLabels.formFields.minLengthErrorMessage,
-        maxLengthErrorMessage: translatedLabels.formFields.maxLengthErrorMessage,
+        error: translatedLabels.formFields.requiredValueErrorMessage,
       });
-      if (event.target.value === "" && !optional) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
-        });
-      } else if (lengthError) {
-        onBlur?.({
-          value: event.target.value,
-          error: lengthError,
-        });
-      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
-        });
-      } else onBlur?.({ value: event.target.value });
-    };
+    } else if (lengthError) {
+      onBlur?.({
+        value: event.target.value,
+        error: lengthError,
+      });
+    } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
+      onBlur?.({
+        value: event.target.value,
+        error: translatedLabels.formFields.formatRequestedErrorMessage,
+      });
+    } else onBlur?.({ value: event.target.value });
+  };
 
-    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      changeValue(event.target.value);
-    };
+  const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    changeValue(event.target.value);
+  };
 
-    useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
-        const computedStyle = window.getComputedStyle(textareaRef.current);
-        const textareaLineHeight = parseInt(computedStyle.lineHeight ?? "0", 10);
-        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop ?? "0", 10) * 2;
-        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = (textareaRef.current.scrollHeight ?? 0) - textareaPaddingTopBottom;
-        textareaRef.current.style.height = `${newHeight}px`;
-        prevValueRef.current = value ?? innerValue;
-      }
-    }, [innerValue, rows, value, verticalGrow]);
+  useEffect(() => {
+    if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
+      const computedStyle = window.getComputedStyle(textareaRef.current);
+      const textareaLineHeight = parseInt(computedStyle.lineHeight ?? "0", 10);
+      const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop ?? "0", 10) * 2;
+      textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+      const newHeight = (textareaRef.current.scrollHeight ?? 0) - textareaPaddingTopBottom;
+      textareaRef.current.style.height = `${newHeight}px`;
+      prevValueRef.current = value ?? innerValue;
+    }
+  }, [innerValue, rows, value, verticalGrow]);
 
-    return (
-      <TextareaContainer margin={margin} size={size} ref={ref}>
-        {label && (
-          <Label disabled={disabled} hasMargin={!helperText} htmlFor={textareaId}>
-            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-          </Label>
-        )}
-        {helperText && (
-          <HelperText disabled={disabled} hasMargin>
-            {helperText}
-          </HelperText>
-        )}
-        <Textarea
-          aria-errormessage={error ? errorId : undefined}
-          aria-invalid={!!error}
-          aria-label={label ? undefined : ariaLabel}
-          aria-required={!disabled && !optional}
-          autoComplete={autocomplete}
-          disabled={disabled}
-          error={!!error}
-          id={textareaId}
-          maxLength={maxLength}
-          minLength={minLength}
-          name={name}
-          onBlur={handleOnBlur}
-          onChange={handleOnChange}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          ref={textareaRef}
-          rows={rows}
-          tabIndex={tabIndex}
-          value={value ?? innerValue}
-          verticalGrow={verticalGrow}
-        />
-        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
-      </TextareaContainer>
-    );
-  }
-);
+  return (
+    <TextareaContainer margin={margin} size={size} ref={ref}>
+      {label && (
+        <Label disabled={disabled} hasMargin={!helperText} htmlFor={textareaId}>
+          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+        </Label>
+      )}
+      {helperText && (
+        <HelperText disabled={disabled} hasMargin>
+          {helperText}
+        </HelperText>
+      )}
+      <Textarea
+        aria-errormessage={error ? errorId : undefined}
+        aria-invalid={!!error}
+        aria-label={label ? undefined : ariaLabel}
+        aria-required={!disabled && !optional}
+        autoComplete={autocomplete}
+        disabled={disabled}
+        error={!!error}
+        id={textareaId}
+        maxLength={maxLength}
+        minLength={minLength}
+        name={name}
+        onBlur={handleOnBlur}
+        onChange={handleOnChange}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        ref={textareaRef}
+        rows={rows}
+        tabIndex={tabIndex}
+        value={value ?? innerValue}
+        verticalGrow={verticalGrow}
+      />
+      {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
+    </TextareaContainer>
+  );
+};
 
 DxcTextarea.displayName = "DxcTextarea";
 

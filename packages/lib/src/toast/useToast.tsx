@@ -1,9 +1,9 @@
-import { useContext, useMemo } from "react";
+import { use, useMemo } from "react";
 import ToastContext from "./ToastContext";
 import { DefaultToast, SemanticToast, LoadingToast } from "./types";
 
 export default function useToast() {
-  const add = useContext(ToastContext);
+  const add = use(ToastContext);
 
   const toast = useMemo(
     () => ({

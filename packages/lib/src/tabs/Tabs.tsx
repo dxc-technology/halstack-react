@@ -4,7 +4,7 @@ import {
   KeyboardEvent,
   ReactElement,
   ReactNode,
-  useContext,
+  use,
   useEffect,
   useMemo,
   useRef,
@@ -104,7 +104,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const refTabListContainer = useRef<HTMLDivElement | null>(null);
   const refTabList = useRef<HTMLDivElement | null>(null);
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const viewWidth = useWidth(refTabList);
   const contextValue = useMemo(() => {
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
@@ -221,7 +221,7 @@ const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: Tabs
               ref={refTabList}
               role="tablist"
             >
-              <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
+              <TabsContext value={contextValue}>{children}</TabsContext>
             </ScrollableTabsList>
           </TabsContent>
           {viewWidth < totalTabsWidth && (

@@ -1,4 +1,4 @@
-import { memo, useContext, useMemo, useState } from "react";
+import { JSX, memo, use, useMemo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import { DatePickerPropsType } from "./types";
@@ -80,7 +80,7 @@ const DatePicker = ({ date, onDateSelect, id, format }: DatePickerPropsType): JS
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
-  const languageContext = useContext(HalstackLanguageContext);
+  const languageContext = use(HalstackLanguageContext);
   const translatedLabels = languageContext.labels;
   const isYearFirst = calculateIsYearFirst(format);
 

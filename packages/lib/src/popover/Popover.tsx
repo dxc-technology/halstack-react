@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useId, useRef, useState } from "react";
+import { JSX, useEffect, useId, useRef, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { PopoverPropsType } from "./types";
 

@@ -1,4 +1,4 @@
-import { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
+import { useEffect, use, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
@@ -86,88 +86,84 @@ const Underline = styled.span<{ active: TabProps["active"] }>`
     active ? "var(--border-color-primary-stronger)" : "var(--border-color-neutral-medium)"};
 `;
 
-const Tab = forwardRef(
-  (
-    {
-      active = false,
-      children,
-      disabled = false,
-      href,
-      icon,
-      onClick,
-      notificationNumber = false,
-      ...otherProps
-    }: TabProps,
-    ref: Ref<HTMLAnchorElement | HTMLDivElement>
-  ) => {
-    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
-    const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>();
-    const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
-    useImperativeHandle(ref, () => innerRef.current!, []);
+const Tab = ({
+  active = false,
+  children,
+  disabled = false,
+  href,
+  icon,
+  notificationNumber = false,
+  onClick,
+  ref,
+  ...otherProps
+}: TabProps) => {
+  const { iconPosition, tabIndex, focusedLabel } = use(NavTabsContext) ?? {};
+  const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
+  const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
+  useImperativeHandle(ref, () => innerRef.current!, []);
 
-    useEffect(() => {
-      if (focusedLabel === children?.toString()) {
-        tabRef?.current?.focus();
-      }
-    }, [children, focusedLabel]);
+  useEffect(() => {
+    if (focusedLabel === children?.toString()) {
+      tabRef?.current?.focus();
+    }
+  }, [children, focusedLabel]);
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement | HTMLAnchorElement>) => {
-      switch (event.key) {
-        case " ":
-        case "Enter":
-          event.preventDefault();
-          tabRef?.current?.click();
-          break;
-        default:
-          break;
-      }
-    };
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement | HTMLAnchorElement>) => {
+    switch (event.key) {
+      case " ":
+      case "Enter":
+        event.preventDefault();
+        tabRef?.current?.click();
+        break;
+      default:
+        break;
+    }
+  };
 
-    return (
-      <TabContainer>
-        <DxcInset space="var(--spacing-padding-xs)">
-          <TabLink
-            aria-disabled={disabled}
-            aria-selected={active}
-            disabled={disabled}
-            as={href ? "a" : onClick ? "button" : "div"}
-            href={!disabled ? href : undefined}
-            onClick={!disabled ? onClick : undefined}
-            iconPosition={iconPosition}
-            onKeyDown={handleOnKeyDown}
-            ref={(anchorRef: HTMLAnchorElement | HTMLDivElement | null) => {
-              tabRef.current = anchorRef;
-              if (ref) {
-                if (typeof ref === "function") ref(anchorRef);
-                else innerRef.current = anchorRef;
-              }
-            }}
-            role="tab"
-            tabIndex={active ? tabIndex : -1}
-            {...otherProps}
-          >
-            {icon && (
-              <IconContainer disabled={disabled}>
-                {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-              </IconContainer>
+  return (
+    <TabContainer>
+      <DxcInset space="var(--spacing-padding-xs)">
+        <TabLink
+          aria-disabled={disabled}
+          aria-selected={active}
+          disabled={disabled}
+          as={href ? "a" : onClick ? "button" : "div"}
+          href={!disabled ? href : undefined}
+          onClick={!disabled ? onClick : undefined}
+          iconPosition={iconPosition}
+          onKeyDown={handleOnKeyDown}
+          ref={(anchorRef: HTMLAnchorElement | HTMLDivElement | null) => {
+            tabRef.current = anchorRef;
+            if (ref) {
+              if (typeof ref === "function") ref(anchorRef);
+              else innerRef.current = anchorRef;
+            }
+          }}
+          role="tab"
+          tabIndex={active ? tabIndex : -1}
+          {...otherProps}
+        >
+          {icon && (
+            <IconContainer disabled={disabled}>
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+            </IconContainer>
+          )}
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+            <Label disabled={disabled}>{children}</Label>
+            {notificationNumber && !disabled && (
+              <DxcBadge
+                mode="notification"
+                size="small"
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
+              />
             )}
-            <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-              <Label disabled={disabled}>{children}</Label>
-              {notificationNumber && !disabled && (
-                <DxcBadge
-                  mode="notification"
-                  size="small"
-                  label={typeof notificationNumber === "number" ? notificationNumber : undefined}
-                />
-              )}
-            </DxcFlex>
-          </TabLink>
-        </DxcInset>
-        <Underline active={active} />
-      </TabContainer>
-    );
-  }
-);
+          </DxcFlex>
+        </TabLink>
+      </DxcInset>
+      <Underline active={active} />
+    </TabContainer>
+  );
+};
 
 Tab.displayName = "Tab";
 

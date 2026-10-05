@@ -1,5 +1,5 @@
 import { DxcBulletedList, DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import ReactMarkdown from "react-markdown";
 import Code from "./Code";
 import { Children } from "react";
 

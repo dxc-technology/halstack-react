@@ -1,6 +1,11 @@
 import { CSSProperties } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
+/**
+ * Reference to the select component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 export type ListOptionType = {
   /**
    * Element used as the icon that will be placed before the option label.
@@ -87,6 +92,10 @@ type CommonProps = {
    * Text to be put as placeholder of the select.
    */
   placeholder?: string;
+  /**
+   * Reference to the select component.
+   */
+  ref?: RefType;
   /**
    * If true, enables search functionality.
    */
@@ -221,11 +230,6 @@ export type ListboxProps = {
   virtualizedHeight?: string;
   visualFocusIndex: number;
 };
-
-/**
- * Reference to the select component.
- */
-export type RefType = HTMLDivElement;
 
 export type FlattenedItem =
   | { type: "selectAll"; id?: never }

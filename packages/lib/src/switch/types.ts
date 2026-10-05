@@ -1,5 +1,10 @@
 import { Margin, Space } from "../common/utils";
 
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Props = {
   /**
    * Specifies a string to be used as the name for the switch element when no `label` is provided.
@@ -45,6 +50,10 @@ type Props = {
    */
   optional?: boolean;
   /**
+   * Reference to the component.
+   */
+  ref?: RefType;
+  /**
    * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
@@ -58,10 +67,5 @@ type Props = {
    */
   value?: string;
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;

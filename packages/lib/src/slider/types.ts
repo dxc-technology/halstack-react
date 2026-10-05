@@ -1,5 +1,10 @@
 import { Margin, Space } from "../common/utils";
 
+/**
+ * Reference to the component.
+ */
+export type RefType = React.Ref<HTMLDivElement>;
+
 type Props = {
   /**
    * Specifies a string to be used as the name for the slider element when no `label` is provided.
@@ -58,6 +63,10 @@ type Props = {
    */
   onDragEnd?: (value: number) => void;
   /**
+   * Reference to the component.
+   */
+  ref?: RefType;
+  /**
    * Whether the input element for displaying/controlling the slider value should be displayed next to the slider.
    */
   showInput?: boolean;
@@ -78,10 +87,5 @@ type Props = {
    */
   value?: number;
 };
-
-/**
- * Reference to the component.
- */
-export type RefType = HTMLDivElement;
 
 export default Props;

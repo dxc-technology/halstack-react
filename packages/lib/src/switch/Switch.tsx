@@ -1,9 +1,9 @@
-import { forwardRef, KeyboardEvent, useContext, useState } from "react";
+import { KeyboardEvent, use, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import { HalstackLanguageContext } from "../HalstackContext";
-import SwitchPropsType, { RefType } from "./types";
+import SwitchPropsType from "./types";
 
 const sizes = {
   small: "60px",
@@ -110,83 +110,79 @@ const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: Swit
   }
 `;
 
-const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
-  (
-    {
-      ariaLabel = "Switch",
-      checked,
-      defaultChecked = false,
-      disabled,
-      label,
-      labelPosition = "before",
-      margin,
-      name,
-      onChange,
-      optional,
-      size = "fitContent",
-      tabIndex = 0,
-      value,
-    },
-    ref
-  ) => {
-    const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
+const DxcSwitch = ({
+  ariaLabel = "Switch",
+  checked,
+  defaultChecked = false,
+  disabled,
+  label,
+  labelPosition = "before",
+  margin,
+  name,
+  onChange,
+  optional,
+  ref,
+  size = "fitContent",
+  tabIndex = 0,
+  value,
+}: SwitchPropsType) => {
+  const [innerChecked, setInnerChecked] = useState(defaultChecked);
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
-    const handleOnChange = () => {
-      if (checked == null) setInnerChecked((currentInnerChecked) => !currentInnerChecked);
-      onChange?.(!(checked ?? innerChecked));
-    };
+  const handleOnChange = () => {
+    if (checked == null) setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+    onChange?.(!(checked ?? innerChecked));
+  };
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      switch (event.key) {
-        case "Enter":
-        case " ":
-          event.preventDefault();
-          setInnerChecked(!(checked ?? innerChecked));
-          onChange?.(!(checked ?? innerChecked));
-          break;
-        default:
-          break;
-      }
-    };
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        setInnerChecked(!(checked ?? innerChecked));
+        onChange?.(!(checked ?? innerChecked));
+        break;
+      default:
+        break;
+    }
+  };
 
-    return (
-      <SwitchContainer
-        aria-checked={checked ?? innerChecked}
-        aria-disabled={disabled}
-        aria-label={label ? undefined : ariaLabel}
+  return (
+    <SwitchContainer
+      aria-checked={checked ?? innerChecked}
+      aria-disabled={disabled}
+      aria-label={label ? undefined : ariaLabel}
+      disabled={disabled}
+      labelPosition={labelPosition}
+      margin={margin}
+      onClick={!disabled ? handleOnChange : undefined}
+      onKeyDown={!disabled ? handleOnKeyDown : undefined}
+      ref={ref}
+      role="switch"
+      size={size}
+      tabIndex={disabled ? -1 : tabIndex}
+    >
+      {label && (
+        <LabelContainer disabled={disabled} labelPosition={labelPosition}>
+          <Label>{label}</Label>
+          {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+        </LabelContainer>
+      )}
+      <Switch checked={checked ?? innerChecked} disabled={disabled} />
+      <input
+        aria-hidden
+        checked={checked ?? innerChecked}
         disabled={disabled}
-        labelPosition={labelPosition}
-        margin={margin}
-        onClick={!disabled ? handleOnChange : undefined}
-        onKeyDown={!disabled ? handleOnKeyDown : undefined}
-        ref={ref}
+        name={name}
+        readOnly
         role="switch"
-        size={size}
-        tabIndex={disabled ? -1 : tabIndex}
-      >
-        {label && (
-          <LabelContainer disabled={disabled} labelPosition={labelPosition}>
-            <Label>{label}</Label>
-            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
-          </LabelContainer>
-        )}
-        <Switch checked={checked ?? innerChecked} disabled={disabled} />
-        <input
-          aria-hidden
-          checked={checked ?? innerChecked}
-          disabled={disabled}
-          name={name}
-          readOnly
-          role="switch"
-          style={{ display: "none" }}
-          type="checkbox"
-          value={value}
-        />
-      </SwitchContainer>
-    );
-  }
-);
+        style={{ display: "none" }}
+        type="checkbox"
+        value={value}
+      />
+    </SwitchContainer>
+  );
+};
 
 DxcSwitch.displayName = "DxcSwitch";
 

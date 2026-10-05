@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Ref } from "react";
 
 type Space = {
   top?: string;
@@ -79,6 +79,10 @@ type Props = {
    * Custom content inside the container.
    */
   children?: ReactNode;
+  /**
+   * Reference to the container element.
+   */
+  ref?: Ref<HTMLDivElement>;
   /**
    * Sets the display CSS property.
    * The set of values is limited to the ones related to the outer display type.

@@ -20,66 +20,73 @@ describe("Password input component tests", () => {
     expect(getByText("Error message.")).toBeTruthy();
   });
 
-  test("onChange function is called correctly", () => {
+  test("onChange function is called correctly", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onChange = jest.fn();
     const { getByLabelText } = render(<DxcPasswordInput label="Password input" onChange={onChange} />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
-    userEvent.type(passwordInput, "Pa$$w0rd");
+    await user.type(passwordInput, "Pa$$w0rd");
     expect(onChange).toHaveBeenCalledWith({ value: "P" });
     expect(passwordInput.value).toBe("Pa$$w0rd");
   });
 
-  test("onBlur function is called correctly", () => {
+  test("onBlur function is called correctly", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onBlur = jest.fn();
     const { getByLabelText } = render(<DxcPasswordInput label="Password input" onBlur={onBlur} />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
-    userEvent.type(passwordInput, "Pa$$w0rd");
+    await user.type(passwordInput, "Pa$$w0rd");
     fireEvent.blur(passwordInput);
     expect(onBlur).toHaveBeenCalledWith({ value: "Pa$$w0rd" });
     expect(passwordInput.value).toBe("Pa$$w0rd");
   });
 
-  test("Clear password input value", () => {
+  test("Clear password input value", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
-    userEvent.type(passwordInput, "Pa$$w0rd");
+    await user.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     const clearButton = getAllByRole("button")[0];
     if (clearButton) {
-      userEvent.click(clearButton);
+      await user.click(clearButton);
     }
     expect(passwordInput.value).toBe("");
   });
 
-  test("Non clearable password input has no clear icon", () => {
+  test("Non clearable password input has no clear icon", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
-    userEvent.type(passwordInput, "Pa$$w0rd");
+    await user.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     const buttons = getAllByRole("button");
     expect(buttons.length).toBe(1);
   });
 
-  test("Show/hide password input button works correctly", () => {
+  test("Show/hide password input button works correctly", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
-    userEvent.type(passwordInput, "Pa$$w0rd");
-    expect(passwordInput.value).toBe("Pa$$w0rd");
     expect(passwordInput.type).toBe("password");
+    await user.type(passwordInput, "Pa$$w0rd");
+    expect(passwordInput.value).toBe("Pa$$w0rd");
+
     const showButton = getAllByRole("button")[1];
     if (showButton) {
-      userEvent.click(showButton);
+      await user.click(showButton);
     }
     expect(passwordInput.type).toBe("text");
   });
 
-  test("Password input has correct accessibility attributes", () => {
+  test("Password input has correct accessibility attributes", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const showButton = getByRole("button");
     expect(getByLabelText("Password input")).toBeTruthy();
     expect(showButton.getAttribute("aria-expanded")).toBe("false");
     expect(showButton.getAttribute("aria-label")).toBe("Show password");
-    userEvent.click(showButton);
+    await user.click(showButton);
     expect(showButton.getAttribute("aria-expanded")).toBe("true");
     expect(showButton.getAttribute("aria-label")).toBe("Hide password");
   });

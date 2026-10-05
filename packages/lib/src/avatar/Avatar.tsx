@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import AvatarPropsType, { ContentType, LabelWrapperType } from "./types";
 import { getBorderWidth, getFontSize, getInitials, getModeColor } from "./utils";
 import DxcTypography from "../typography/Typography";
@@ -152,72 +152,64 @@ const LabelWrapper = ({ condition, children, primaryText, secondaryText }: Label
     <>{children}</>
   );
 
-const DxcAvatar = forwardRef<HTMLDivElement, AvatarPropsType>(
-  (
-    {
-      color = "neutral",
-      disabled = false,
-      icon = "person",
-      imageSrc,
-      label,
-      linkHref,
-      onClick,
-      primaryText,
-      secondaryText,
-      shape = "circle",
-      size = "medium",
-      status,
-      tabIndex = 0,
-      title,
-    }: AvatarPropsType,
-    ref
-  ) => {
-    const [error, setError] = useState<boolean>(false);
-    const initials = useMemo(() => getInitials(label), [label]);
-    const handleError = useCallback(() => setError(true), []);
-    const hasAction = !disabled && (!!onClick || !!linkHref);
+const DxcAvatar = ({
+  color = "neutral",
+  disabled = false,
+  icon = "person",
+  imageSrc,
+  label,
+  linkHref,
+  onClick,
+  primaryText,
+  ref,
+  secondaryText,
+  shape = "circle",
+  size = "medium",
+  status,
+  tabIndex = 0,
+  title,
+}: AvatarPropsType) => {
+  const [error, setError] = useState<boolean>(false);
+  const initials = useMemo(() => getInitials(label), [label]);
+  const handleError = useCallback(() => setError(true), []);
+  const hasAction = !disabled && (!!onClick || !!linkHref);
 
-    return (
-      <LabelWrapper
-        condition={!!(primaryText || secondaryText)}
-        primaryText={primaryText}
-        secondaryText={secondaryText}
-      >
-        <DxcActionIcon
-          ref={ref}
-          ariaLabel={label}
-          content={content({
-            hasAction,
-            onClick,
-            linkHref,
-            disabled,
-            imageSrc,
-            error,
-            handleError,
-            label,
-            title,
-            size,
-            initials,
-            icon,
-            color,
-            status,
-          })}
-          color={
-            ["primary", "secondary", "tertiary", "success", "info", "neutral", "warning", "error"].includes(color)
-              ? color
-              : "neutral"
-          }
-          disabled={disabled}
-          linkHref={linkHref}
-          onClick={onClick}
-          shape={shape}
-          size={size}
-          tabIndex={tabIndex}
-          title={title}
-        />
-      </LabelWrapper>
-    );
-  }
-);
+  return (
+    <LabelWrapper condition={!!(primaryText || secondaryText)} primaryText={primaryText} secondaryText={secondaryText}>
+      <DxcActionIcon
+        ref={ref}
+        ariaLabel={label}
+        content={content({
+          hasAction,
+          onClick,
+          linkHref,
+          disabled,
+          imageSrc,
+          error,
+          handleError,
+          label,
+          title,
+          size,
+          initials,
+          icon,
+          color,
+          status,
+        })}
+        color={
+          ["primary", "secondary", "tertiary", "success", "info", "neutral", "warning", "error"].includes(color)
+            ? color
+            : "neutral"
+        }
+        disabled={disabled}
+        linkHref={linkHref}
+        onClick={onClick}
+        shape={shape}
+        size={size}
+        tabIndex={tabIndex}
+        title={title}
+      />
+    </LabelWrapper>
+  );
+};
 
 export default DxcAvatar;

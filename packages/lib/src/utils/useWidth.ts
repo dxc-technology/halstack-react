@@ -5,7 +5,7 @@ import { useLayoutEffect, useState } from "react";
  * @param target
  * @returns
  */
-const useWidth = <T extends Element>(ref: React.RefObject<T>) => {
+const useWidth = <T extends Element>(ref: React.RefObject<T | null>) => {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {

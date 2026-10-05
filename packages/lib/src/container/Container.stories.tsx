@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";

@@ -6,7 +6,7 @@ import DxcDivider from "../divider/Divider";
 import DxcHeading from "../heading/Heading";
 import { isGroupItem } from "../base-menu/utils";
 import { GroupItem, Item } from "../base-menu/types";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { JSX, use, useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
 import DxcButton from "../button/Button";
@@ -144,7 +144,7 @@ const DxcHeader = ({
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const logo = useContext(ApplicationLayoutContext).logo || undefined;
+  const logo = use(ApplicationLayoutContext).logo || undefined;
 
   useEffect(() => {
     const handleResize = () => {

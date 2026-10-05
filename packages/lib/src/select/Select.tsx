@@ -1,11 +1,10 @@
 import {
   ChangeEvent,
   FocusEvent,
-  forwardRef,
   KeyboardEvent,
   MouseEvent,
   useCallback,
-  useContext,
+  use,
   useId,
   useMemo,
   useRef,
@@ -33,7 +32,7 @@ import {
   getGroupSelectionType,
   computeNewValue,
 } from "./utils";
-import SelectPropsType, { ListOptionGroupType, ListOptionType, RefType } from "./types";
+import SelectPropsType, { ListOptionGroupType, ListOptionType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
@@ -172,469 +171,461 @@ const SearchInput = styled.input`
   font-weight: var(--typography-label-regular);
 `;
 
-const DxcSelect = forwardRef<RefType, SelectPropsType>(
-  (
-    {
-      ariaLabel = "Select",
-      defaultValue,
-      disabled = false,
-      enableSelectAll = false,
-      error,
-      helperText,
-      label,
-      margin,
-      multiple = false,
-      name,
-      onBlur,
-      onChange,
-      optional = false,
-      options,
-      placeholder = "",
-      searchable = false,
-      searchByStartsWith = false,
-      size = "medium",
-      tabIndex = 0,
-      value,
-      virtualizedHeight,
-    },
-    ref
-  ) => {
-    const id = `select-${useId()}`;
-    const errorId = `error-${id}`;
-    const labelId = `label-${id}`;
-    const listboxId = `${id}-listbox`;
-    const selectInputId = `select-input-${id}`;
+const DxcSelect = ({
+  ariaLabel = "Select",
+  defaultValue,
+  disabled = false,
+  enableSelectAll = false,
+  error,
+  helperText,
+  label,
+  margin,
+  multiple = false,
+  name,
+  onBlur,
+  onChange,
+  optional = false,
+  options,
+  placeholder = "",
+  ref,
+  searchable = false,
+  searchByStartsWith = false,
+  size = "medium",
+  tabIndex = 0,
+  value,
+  virtualizedHeight,
+}: SelectPropsType) => {
+  const id = `select-${useId()}`;
+  const errorId = `error-${id}`;
+  const labelId = `label-${id}`;
+  const listboxId = `${id}-listbox`;
+  const selectInputId = `select-input-${id}`;
 
-    const [hasTooltip, setHasTooltip] = useState(false);
-    const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
-    const [isOpen, changeIsOpen] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
-    const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
+  const [hasTooltip, setHasTooltip] = useState(false);
+  const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
+  const [isOpen, changeIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const selectRef = useRef<HTMLDivElement | null>(null);
-    const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const selectRef = useRef<HTMLDivElement | null>(null);
+  const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
-    const width = useWidth(selectRef);
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const width = useWidth(selectRef);
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
-    const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
-    const filteredOptions = useMemo(
-      () => filterOptionsBySearchValue(options, searchValue, searchByStartsWith),
-      [options, searchValue, searchByStartsWith]
-    );
-    const lastOptionIndex = useMemo(
-      () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple, enableSelectAll),
-      [options, filteredOptions, searchable, optional, multiple, enableSelectAll]
-    );
-    const { selectedOption, singleSelectionIndex } = useMemo(
-      () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
-      [value, innerValue, options, multiple, optional, optionalItem]
-    );
-    const selectableOptionsValues = useMemo(() => getSelectableOptionsValues(options), [options]);
-    const selectionType = useMemo(
-      () => getSelectionType(options, (value ?? innerValue) as string[]),
-      [innerValue, options, value]
-    );
+  const optionalItem = useMemo(() => ({ label: placeholder, value: "" }), [placeholder]);
+  const filteredOptions = useMemo(
+    () => filterOptionsBySearchValue(options, searchValue, searchByStartsWith),
+    [options, searchValue, searchByStartsWith]
+  );
+  const lastOptionIndex = useMemo(
+    () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple, enableSelectAll),
+    [options, filteredOptions, searchable, optional, multiple, enableSelectAll]
+  );
+  const { selectedOption, singleSelectionIndex } = useMemo(
+    () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
+    [value, innerValue, options, multiple, optional, optionalItem]
+  );
+  const selectableOptionsValues = useMemo(() => getSelectableOptionsValues(options), [options]);
+  const selectionType = useMemo(
+    () => getSelectionType(options, (value ?? innerValue) as string[]),
+    [innerValue, options, value]
+  );
 
-    const openListbox = () => {
-      if (!isOpen && canOpenListbox(options, disabled)) {
-        changeIsOpen(true);
-      }
-    };
+  const openListbox = () => {
+    if (!isOpen && canOpenListbox(options, disabled)) {
+      changeIsOpen(true);
+    }
+  };
 
-    const closeListbox = () => {
-      if (isOpen) {
-        changeIsOpen(false);
-        changeVisualFocusIndex(-1);
-      }
-    };
+  const closeListbox = () => {
+    if (isOpen) {
+      changeIsOpen(false);
+      changeVisualFocusIndex(-1);
+    }
+  };
 
-    const handleOnChangeValue = useCallback(
-      (newOption?: ListOptionType | ListOptionType[]) => {
-        if (newOption) {
-          if (multiple) {
-            if (value == null) {
-              // uncontrolled mode: safely update using functional updates
-              setInnerValue((prev) => {
-                const newValue = computeNewValue(prev as string[], newOption);
-                onChange?.({
-                  value: newValue as string & string[],
-                  error: notOptionalCheck(newValue, multiple, optional)
-                    ? translatedLabels.formFields.requiredValueErrorMessage
-                    : undefined,
-                });
-                return newValue;
-              });
-            } else {
-              // controlled mode: just call onChange
-              const newValue = computeNewValue((value ?? innerValue) as string[], newOption);
+  const handleOnChangeValue = useCallback(
+    (newOption?: ListOptionType | ListOptionType[]) => {
+      if (newOption) {
+        if (multiple) {
+          if (value == null) {
+            // uncontrolled mode: safely update using functional updates
+            setInnerValue((prev) => {
+              const newValue = computeNewValue(prev as string[], newOption);
               onChange?.({
                 value: newValue as string & string[],
                 error: notOptionalCheck(newValue, multiple, optional)
                   ? translatedLabels.formFields.requiredValueErrorMessage
                   : undefined,
               });
-            }
+              return newValue;
+            });
           } else {
-            if (!Array.isArray(newOption)) {
-              if (value == null) setInnerValue(newOption.value);
-              onChange?.({
-                value: newOption.value as string & string[],
-                error: notOptionalCheck(newOption.value, multiple, optional)
-                  ? translatedLabels.formFields.requiredValueErrorMessage
-                  : undefined,
-              });
-            }
+            // controlled mode: just call onChange
+            const newValue = computeNewValue((value ?? innerValue) as string[], newOption);
+            onChange?.({
+              value: newValue as string & string[],
+              error: notOptionalCheck(newValue, multiple, optional)
+                ? translatedLabels.formFields.requiredValueErrorMessage
+                : undefined,
+            });
+          }
+        } else {
+          if (!Array.isArray(newOption)) {
+            if (value == null) setInnerValue(newOption.value);
+            onChange?.({
+              value: newOption.value as string & string[],
+              error: notOptionalCheck(newOption.value, multiple, optional)
+                ? translatedLabels.formFields.requiredValueErrorMessage
+                : undefined,
+            });
           }
         }
-      },
-      [multiple, value, onChange, optional, translatedLabels]
-    );
-
-    const handleOnClick = () => {
-      if (searchable) selectSearchInputRef?.current?.focus();
-      if (isOpen) {
-        closeListbox();
-        setSearchValue("");
-      } else openListbox();
-    };
-
-    const handleOnFocus = (event: FocusEvent<HTMLInputElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget) && searchable) selectSearchInputRef?.current?.focus();
-    };
-
-    const handleOnBlur = (event: FocusEvent<HTMLInputElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget)) {
-        closeListbox();
-        setSearchValue("");
-
-        const currentValue = value ?? innerValue;
-        if (notOptionalCheck(currentValue, multiple, optional))
-          onBlur?.({
-            value: currentValue as string & string[],
-            error: translatedLabels.formFields.requiredValueErrorMessage,
-          });
-        else onBlur?.({ value: currentValue as string & string[] });
       }
-    };
+    },
+    [multiple, value, onChange, optional, translatedLabels]
+  );
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      switch (event.key) {
-        case "Down":
-        case "ArrowDown":
-          event.preventDefault();
-          if (
-            singleSelectionIndex != null &&
-            (!isOpen ||
-              (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-          )
-            changeVisualFocusIndex(singleSelectionIndex);
-          else
-            changeVisualFocusIndex((currentVisualFocusIndex) =>
-              currentVisualFocusIndex < lastOptionIndex ? currentVisualFocusIndex + 1 : 0
-            );
-          openListbox();
-          break;
-        case "Up":
-        case "ArrowUp":
-          event.preventDefault();
-          if (
-            singleSelectionIndex != null &&
-            (!isOpen ||
-              (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-          )
-            changeVisualFocusIndex(singleSelectionIndex);
-          else
-            changeVisualFocusIndex((currentVisualFocusIndex) =>
-              currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
-                ? lastOptionIndex
-                : currentVisualFocusIndex - 1
-            );
-          openListbox();
-          break;
-        case "Esc":
-        case "Escape":
-          event.preventDefault();
-          if (isOpen) event.stopPropagation();
-          closeListbox();
-          setSearchValue("");
-          break;
-        case "Enter":
-          if (isOpen && visualFocusIndex >= 0) {
-            let accLength = (multiple ? enableSelectAll : optional) ? 1 : 0;
-            if (searchable && filteredOptions.length > 0) {
-              if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
-              else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
-              else if (isArrayOfGroupedOptions(filteredOptions) && enableSelectAll) {
-                if (groupsHaveOptions(filteredOptions))
-                  filteredOptions.some((group) => {
-                    if (visualFocusIndex === accLength) {
-                      handleSelectAllGroup(group);
-                      return true;
-                    } else {
-                      accLength++;
-                      return group.options.some((option) => {
-                        if (visualFocusIndex === accLength) {
-                          handleOnChangeValue(option);
-                          return true;
-                        } else accLength++;
-                      });
-                    }
-                  });
-              } else if (isArrayOfGroupedOptions(filteredOptions)) {
-                if (groupsHaveOptions(filteredOptions))
-                  filteredOptions.some((group) => {
-                    const groupLength = accLength + group.options.length;
-                    if (groupLength > visualFocusIndex)
-                      handleOnChangeValue(group.options[visualFocusIndex - accLength]);
-                    accLength = groupLength;
-                    return groupLength > visualFocusIndex;
-                  });
-              } else handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
-            } else if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
-            else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
-            else if (isArrayOfGroupedOptions(options) && enableSelectAll)
-              options.some((group) => {
-                if (visualFocusIndex === accLength) {
-                  handleSelectAllGroup(group);
-                  return true;
-                } else {
-                  accLength++;
-                  return group.options.some((option) => {
-                    if (visualFocusIndex === accLength) {
-                      handleOnChangeValue(option);
-                      return true;
-                    } else accLength++;
-                  });
-                }
-              });
-            else if (isArrayOfGroupedOptions(options))
-              options.some((group) => {
-                const groupLength = accLength + group.options.length;
-                if (groupLength > visualFocusIndex) handleOnChangeValue(group.options[visualFocusIndex - accLength]);
-                accLength = groupLength;
-                return groupLength > visualFocusIndex;
-              });
-            else handleOnChangeValue(options[visualFocusIndex - accLength]);
+  const handleOnClick = () => {
+    if (searchable) selectSearchInputRef?.current?.focus();
+    if (isOpen) {
+      closeListbox();
+      setSearchValue("");
+    } else openListbox();
+  };
 
-            if (!multiple) closeListbox();
-            setSearchValue("");
-          }
-          break;
-        default:
-          break;
-      }
-    };
+  const handleOnFocus = (event: FocusEvent<HTMLInputElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget) && searchable) selectSearchInputRef?.current?.focus();
+  };
 
-    const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
-      const text = event.currentTarget;
-      setHasTooltip(text.scrollWidth > text.clientWidth);
-    };
+  const handleOnBlur = (event: FocusEvent<HTMLInputElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      closeListbox();
+      setSearchValue("");
 
-    const handleSearchIOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setSearchValue(event.target.value);
-      changeVisualFocusIndex(-1);
-      openListbox();
-    };
-
-    const handleClearOptionsActionOnClick = (event?: MouseEvent<HTMLButtonElement>) => {
-      event?.stopPropagation();
-      const empty: string[] = [];
-      if (value == null) setInnerValue(empty);
-      if (!optional)
-        onChange?.({
-          value: empty as string & string[],
+      const currentValue = value ?? innerValue;
+      if (notOptionalCheck(currentValue, multiple, optional))
+        onBlur?.({
+          value: currentValue as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else onChange?.({ value: empty as string & string[] });
-    };
+      else onBlur?.({ value: currentValue as string & string[] });
+    }
+  };
 
-    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLElement>) => {
-      event.stopPropagation();
-      setSearchValue("");
-    };
-
-    const handleOptionOnClick = useCallback(
-      (option: ListOptionType | ListOptionType[]) => {
-        handleOnChangeValue(option);
-        if (!multiple) closeListbox();
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case "Down":
+      case "ArrowDown":
+        event.preventDefault();
+        if (
+          singleSelectionIndex != null &&
+          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+        )
+          changeVisualFocusIndex(singleSelectionIndex);
+        else
+          changeVisualFocusIndex((currentVisualFocusIndex) =>
+            currentVisualFocusIndex < lastOptionIndex ? currentVisualFocusIndex + 1 : 0
+          );
+        openListbox();
+        break;
+      case "Up":
+      case "ArrowUp":
+        event.preventDefault();
+        if (
+          singleSelectionIndex != null &&
+          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+        )
+          changeVisualFocusIndex(singleSelectionIndex);
+        else
+          changeVisualFocusIndex((currentVisualFocusIndex) =>
+            currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
+              ? lastOptionIndex
+              : currentVisualFocusIndex - 1
+          );
+        openListbox();
+        break;
+      case "Esc":
+      case "Escape":
+        event.preventDefault();
+        if (isOpen) event.stopPropagation();
+        closeListbox();
         setSearchValue("");
-      },
-      [closeListbox, handleOnChangeValue, multiple]
-    );
+        break;
+      case "Enter":
+        if (isOpen && visualFocusIndex >= 0) {
+          let accLength = (multiple ? enableSelectAll : optional) ? 1 : 0;
+          if (searchable && filteredOptions.length > 0) {
+            if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
+            else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
+            else if (isArrayOfGroupedOptions(filteredOptions) && enableSelectAll) {
+              if (groupsHaveOptions(filteredOptions))
+                filteredOptions.some((group) => {
+                  if (visualFocusIndex === accLength) {
+                    handleSelectAllGroup(group);
+                    return true;
+                  } else {
+                    accLength++;
+                    return group.options.some((option) => {
+                      if (visualFocusIndex === accLength) {
+                        handleOnChangeValue(option);
+                        return true;
+                      } else accLength++;
+                    });
+                  }
+                });
+            } else if (isArrayOfGroupedOptions(filteredOptions)) {
+              if (groupsHaveOptions(filteredOptions))
+                filteredOptions.some((group) => {
+                  const groupLength = accLength + group.options.length;
+                  if (groupLength > visualFocusIndex) handleOnChangeValue(group.options[visualFocusIndex - accLength]);
+                  accLength = groupLength;
+                  return groupLength > visualFocusIndex;
+                });
+            } else handleOnChangeValue(filteredOptions[visualFocusIndex - accLength]);
+          } else if (!multiple && visualFocusIndex === 0 && optional) handleOnChangeValue(optionalItem);
+          else if (multiple && visualFocusIndex === 0 && enableSelectAll) handleSelectAllOnClick();
+          else if (isArrayOfGroupedOptions(options) && enableSelectAll)
+            options.some((group) => {
+              if (visualFocusIndex === accLength) {
+                handleSelectAllGroup(group);
+                return true;
+              } else {
+                accLength++;
+                return group.options.some((option) => {
+                  if (visualFocusIndex === accLength) {
+                    handleOnChangeValue(option);
+                    return true;
+                  } else accLength++;
+                });
+              }
+            });
+          else if (isArrayOfGroupedOptions(options))
+            options.some((group) => {
+              const groupLength = accLength + group.options.length;
+              if (groupLength > visualFocusIndex) handleOnChangeValue(group.options[visualFocusIndex - accLength]);
+              accLength = groupLength;
+              return groupLength > visualFocusIndex;
+            });
+          else handleOnChangeValue(options[visualFocusIndex - accLength]);
 
-    const handleSelectAllOnClick = useCallback(() => {
-      if (selectionType === "checked") handleClearOptionsActionOnClick();
-      else {
-        if (value == null) setInnerValue(selectableOptionsValues);
-        onChange?.({ value: selectableOptionsValues as string & string[] });
-      }
-    }, [handleClearOptionsActionOnClick, innerValue, multiple, onChange, options, value]);
+          if (!multiple) closeListbox();
+          setSearchValue("");
+        }
+        break;
+      default:
+        break;
+    }
+  };
 
-    const handleSelectAllGroup = useCallback(
-      (group: ListOptionGroupType) => {
-        const groupSelectionType = getGroupSelectionType(group.options, (value ?? innerValue) as string[]);
-        handleOptionOnClick(
-          groupSelectionType === "indeterminate"
-            ? group.options.filter((option) => !(value ?? innerValue).includes(option.value))
-            : group.options
-        );
-      },
-      [handleOptionOnClick, innerValue, value]
-    );
+  const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
+  };
 
-    return (
-      <>
-        <SelectContainer margin={margin} ref={ref} size={size}>
-          {label && (
-            <Label
-              disabled={disabled}
-              hasMargin={!helperText}
-              id={labelId}
-              onClick={() => {
-                selectRef?.current?.focus();
-              }}
-            >
-              {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-            </Label>
-          )}
-          {helperText && (
-            <HelperText disabled={disabled} hasMargin>
-              {helperText}
-            </HelperText>
-          )}
-          <DxcPopover
-            popoverContent={
-              <Listbox
-                ariaLabelledBy={labelId}
-                currentValue={value ?? innerValue}
-                enableSelectAll={enableSelectAll}
-                handleOptionOnClick={handleOptionOnClick}
-                handleGroupOnClick={handleSelectAllGroup}
-                handleSelectAllOnClick={handleSelectAllOnClick}
-                virtualizedHeight={virtualizedHeight}
-                id={listboxId}
-                lastOptionIndex={lastOptionIndex}
-                multiple={multiple}
-                optional={optional}
-                optionalItem={optionalItem}
-                options={searchable ? filteredOptions : options}
-                searchable={searchable}
-                selectionType={selectionType}
-                styles={{ width }}
-                visualFocusIndex={visualFocusIndex}
-              />
-            }
-            isOpen={isOpen}
-            onOpenAutoFocus={(event) => {
-              // Avoid select to lose focus when the list is opened
-              event.preventDefault();
+  const handleSearchIOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    changeVisualFocusIndex(-1);
+    openListbox();
+  };
+
+  const handleClearOptionsActionOnClick = (event?: MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation();
+    const empty: string[] = [];
+    if (value == null) setInnerValue(empty);
+    if (!optional)
+      onChange?.({
+        value: empty as string & string[],
+        error: translatedLabels.formFields.requiredValueErrorMessage,
+      });
+    else onChange?.({ value: empty as string & string[] });
+  };
+
+  const handleClearSearchActionOnClick = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    setSearchValue("");
+  };
+
+  const handleOptionOnClick = useCallback(
+    (option: ListOptionType | ListOptionType[]) => {
+      handleOnChangeValue(option);
+      if (!multiple) closeListbox();
+      setSearchValue("");
+    },
+    [closeListbox, handleOnChangeValue, multiple]
+  );
+
+  const handleSelectAllOnClick = useCallback(() => {
+    if (selectionType === "checked") handleClearOptionsActionOnClick();
+    else {
+      if (value == null) setInnerValue(selectableOptionsValues);
+      onChange?.({ value: selectableOptionsValues as string & string[] });
+    }
+  }, [handleClearOptionsActionOnClick, innerValue, multiple, onChange, options, value]);
+
+  const handleSelectAllGroup = useCallback(
+    (group: ListOptionGroupType) => {
+      const groupSelectionType = getGroupSelectionType(group.options, (value ?? innerValue) as string[]);
+      handleOptionOnClick(
+        groupSelectionType === "indeterminate"
+          ? group.options.filter((option) => !(value ?? innerValue).includes(option.value))
+          : group.options
+      );
+    },
+    [handleOptionOnClick, innerValue, value]
+  );
+
+  return (
+    <>
+      <SelectContainer margin={margin} ref={ref} size={size}>
+        {label && (
+          <Label
+            disabled={disabled}
+            hasMargin={!helperText}
+            id={labelId}
+            onClick={() => {
+              selectRef?.current?.focus();
             }}
-            onCloseAutoFocus={(event) => {
-              // Avoid select to lose focus when the list is closed
-              event.preventDefault();
-            }}
-            asChild
           >
-            <Select
-              aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-              aria-controls={isOpen ? listboxId : undefined}
-              aria-disabled={disabled}
-              aria-errormessage={error ? errorId : undefined}
-              aria-expanded={isOpen}
-              aria-haspopup="listbox"
-              aria-invalid={!!error}
-              aria-label={label ? undefined : ariaLabel}
-              aria-labelledby={label ? labelId : undefined}
-              aria-required={!disabled && !optional}
-              disabled={disabled}
-              error={!!error}
-              id={selectInputId}
-              onBlur={handleOnBlur}
-              onClick={handleOnClick}
-              onFocus={handleOnFocus}
-              onKeyDown={handleOnKeyDown}
-              ref={selectRef}
-              role="combobox"
-              tabIndex={disabled ? -1 : tabIndex}
-            >
-              {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
-                <SelectionIndicator disabled={disabled}>
-                  <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                  <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
-                    <ClearOptionsAction
-                      aria-label={translatedLabels.select.actionClearSelectionTitle}
-                      disabled={disabled}
-                      onClick={handleClearOptionsActionOnClick}
-                      onMouseDown={(event) => {
-                        // Avoid input to lose focus when pressed
-                        event.preventDefault();
-                      }}
-                      tabIndex={-1}
-                    >
-                      <DxcIcon icon="clear" />
-                    </ClearOptionsAction>
-                  </TooltipWrapper>
-                </SelectionIndicator>
-              )}
-              <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
-                <SearchableValueContainer>
-                  <input
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+        )}
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
+        )}
+        <DxcPopover
+          popoverContent={
+            <Listbox
+              ariaLabelledBy={labelId}
+              currentValue={value ?? innerValue}
+              enableSelectAll={enableSelectAll}
+              handleOptionOnClick={handleOptionOnClick}
+              handleGroupOnClick={handleSelectAllGroup}
+              handleSelectAllOnClick={handleSelectAllOnClick}
+              virtualizedHeight={virtualizedHeight}
+              id={listboxId}
+              lastOptionIndex={lastOptionIndex}
+              multiple={multiple}
+              optional={optional}
+              optionalItem={optionalItem}
+              options={searchable ? filteredOptions : options}
+              searchable={searchable}
+              selectionType={selectionType}
+              styles={{ width }}
+              visualFocusIndex={visualFocusIndex}
+            />
+          }
+          isOpen={isOpen}
+          onOpenAutoFocus={(event) => {
+            // Avoid select to lose focus when the list is opened
+            event.preventDefault();
+          }}
+          onCloseAutoFocus={(event) => {
+            // Avoid select to lose focus when the list is closed
+            event.preventDefault();
+          }}
+          asChild
+        >
+          <Select
+            aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
+            aria-controls={isOpen ? listboxId : undefined}
+            aria-disabled={disabled}
+            aria-errormessage={error ? errorId : undefined}
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-invalid={!!error}
+            aria-label={label ? undefined : ariaLabel}
+            aria-labelledby={label ? labelId : undefined}
+            aria-required={!disabled && !optional}
+            disabled={disabled}
+            error={!!error}
+            id={selectInputId}
+            onBlur={handleOnBlur}
+            onClick={handleOnClick}
+            onFocus={handleOnFocus}
+            onKeyDown={handleOnKeyDown}
+            ref={selectRef}
+            role="combobox"
+            tabIndex={disabled ? -1 : tabIndex}
+          >
+            {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
+              <SelectionIndicator disabled={disabled}>
+                <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
+                <TooltipWrapper condition={!disabled} label={translatedLabels.select.actionClearSelectionTitle}>
+                  <ClearOptionsAction
+                    aria-label={translatedLabels.select.actionClearSelectionTitle}
                     disabled={disabled}
-                    name={name}
-                    type="hidden"
-                    value={
-                      multiple
-                        ? (Array.isArray(value) ? value : Array.isArray(innerValue) ? innerValue : []).join(",")
-                        : (value ?? innerValue)
-                    }
-                  />
-                  {searchable && (
-                    <SearchInput
-                      aria-labelledby={label ? labelId : undefined}
-                      autoComplete="nope"
-                      autoCorrect="nope"
-                      disabled={disabled}
-                      onChange={handleSearchIOnChange}
-                      ref={selectSearchInputRef}
-                      size={1}
-                      value={searchValue}
-                    />
-                  )}
-                  {(!searchable || searchValue === "") && (
-                    <SelectedOption
-                      atBackground={
-                        (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
-                        (searchable && isOpen)
-                      }
-                      disabled={disabled}
-                      onMouseEnter={handleOnMouseEnter}
-                    >
-                      {getSelectedOptionLabel(placeholder, selectedOption)}
-                    </SelectedOption>
-                  )}
-                </SearchableValueContainer>
-              </TooltipWrapper>
-              <DxcFlex alignItems="center">
-                {searchable && searchValue.length > 0 && (
-                  <DxcActionIcon
-                    size="xsmall"
-                    icon="clear"
-                    onClick={handleClearSearchActionOnClick}
+                    onClick={handleClearOptionsActionOnClick}
+                    onMouseDown={(event) => {
+                      // Avoid input to lose focus when pressed
+                      event.preventDefault();
+                    }}
                     tabIndex={-1}
-                    title={!disabled ? translatedLabels.select.actionClearSearchTitle : undefined}
+                  >
+                    <DxcIcon icon="clear" />
+                  </ClearOptionsAction>
+                </TooltipWrapper>
+              </SelectionIndicator>
+            )}
+            <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
+              <SearchableValueContainer>
+                <input
+                  disabled={disabled}
+                  name={name}
+                  type="hidden"
+                  value={
+                    multiple
+                      ? (Array.isArray(value) ? value : Array.isArray(innerValue) ? innerValue : []).join(",")
+                      : (value ?? innerValue)
+                  }
+                />
+                {searchable && (
+                  <SearchInput
+                    aria-labelledby={label ? labelId : undefined}
+                    autoComplete="nope"
+                    autoCorrect="nope"
+                    disabled={disabled}
+                    onChange={handleSearchIOnChange}
+                    ref={selectSearchInputRef}
+                    size={1}
+                    value={searchValue}
                   />
                 )}
-                <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
-              </DxcFlex>
-            </Select>
-          </DxcPopover>
-          {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
-        </SelectContainer>
-      </>
-    );
-  }
-);
+                {(!searchable || searchValue === "") && (
+                  <SelectedOption
+                    atBackground={
+                      (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) || (searchable && isOpen)
+                    }
+                    disabled={disabled}
+                    onMouseEnter={handleOnMouseEnter}
+                  >
+                    {getSelectedOptionLabel(placeholder, selectedOption)}
+                  </SelectedOption>
+                )}
+              </SearchableValueContainer>
+            </TooltipWrapper>
+            <DxcFlex alignItems="center">
+              {searchable && searchValue.length > 0 && (
+                <DxcActionIcon
+                  size="xsmall"
+                  icon="clear"
+                  onClick={handleClearSearchActionOnClick}
+                  tabIndex={-1}
+                  title={!disabled ? translatedLabels.select.actionClearSearchTitle : undefined}
+                />
+              )}
+              <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
+            </DxcFlex>
+          </Select>
+        </DxcPopover>
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
+      </SelectContainer>
+    </>
+  );
+};
 
 DxcSelect.displayName = "DxcSelect";
 
