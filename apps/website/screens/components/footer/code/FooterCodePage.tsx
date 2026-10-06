@@ -166,12 +166,16 @@ const sections = [
               The available footer variants:
               <ul>
                 <li>
-                  <strong>branded</strong>: Footer with branded styling.
+                  <strong>branded</strong>: Footer with branded styling, using the primary brand background and
+                  contrasting content colors.
                 </li>
                 <li>
-                  <strong>neutral</strong>: Footer with neutral styling.
+                  <strong>neutral</strong>: Footer with neutral styling, using a neutral background and content colors
+                  instead of the branded treatment.
                 </li>
               </ul>
+              Changing the variant only changes the footer's visual styling; its layout, content, and behavior remain
+              the same.
             </td>
             <td>
               <TableCode>'branded'</TableCode>
