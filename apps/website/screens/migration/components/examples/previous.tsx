@@ -12,7 +12,7 @@ const code = `() => {
         <DxcContainer
           width="100%"
           height="40px"
-          background={{color: "#6F4B97"}}
+          background={{color: "#2351b0"}}
          />
         <DxcContainer
           width="100%"
