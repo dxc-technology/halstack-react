@@ -196,19 +196,20 @@ const bottomLong = [
   },
 ];
 
-const Footer = () => (
+const FooterExamples = ({ variant }: { variant?: "branded" | "neutral" }) => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcFooter />
+      <DxcFooter variant={variant} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With custom logo" theme="light" level={4} />
-      <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+      <DxcFooter variant={variant} logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
       <DxcFooter
+        variant={variant}
         socialLinks={social}
         bottomLinks={bottom}
         leftContent={
@@ -248,6 +249,7 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="With long content" theme="light" level={4} />
       <DxcFooter
+        variant={variant}
         socialLinks={social}
         bottomLinks={bottomLong}
         copyright="This is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text, this is a long copyright text."
@@ -341,6 +343,7 @@ const Footer = () => (
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
       <DxcFooter
+        variant={variant}
         copyright="Copyright"
         socialLinks={socialMaterialIcons}
         bottomLinks={bottom}
@@ -381,6 +384,7 @@ const Footer = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter
+        variant={variant}
         copyright="Copyright"
         socialLinks={social}
         bottomLinks={bottom}
@@ -420,11 +424,11 @@ const Footer = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
-      <DxcFooter mode="reduced" />
+      <DxcFooter variant={variant} mode="reduced" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced with custom logo" theme="light" level={4} />
-      <DxcFooter mode="reduced" logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+      <DxcFooter variant={variant} mode="reduced" logo={{ src: woodenDockImage, alt: "Custom logo" }} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Themed footer" theme="light" level={4} />
@@ -436,13 +440,26 @@ const Footer = () => (
           },
         }}
       >
-        <DxcFooter />
-        <DxcFooter mode="reduced" />
-        <DxcFooter logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
+          <DxcFooter variant={variant} />
+          <DxcFooter variant={variant} mode="reduced" />
+          <DxcFooter variant={variant} logo={{ src: woodenDockImage, alt: "Custom logo" }} />
+        </DxcFlex>
       </HalstackProvider>
     </ExampleContainer>
   </>
 );
+
+const Footer = () => (
+  <>
+    <Title title="Default" theme="light" level={3} />
+    <FooterExamples />
+    <Title title="Neutral" theme="light" level={3} />
+    <FooterExamples variant="neutral" />
+  </>
+);
+
+const NeutralFooter = () => <FooterExamples variant="neutral" />;
 
 const dxcLogo = (
   <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
@@ -665,6 +682,10 @@ type Story = StoryObj<typeof DxcFooter>;
 
 export const Chromatic: Story = {
   render: Footer,
+};
+
+export const Neutral: Story = {
+  render: NeutralFooter,
 };
 
 export const Responsive: Story = {

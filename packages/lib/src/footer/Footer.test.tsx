@@ -28,6 +28,10 @@ describe("Footer component tests", () => {
     const { getByTitle } = render(<DxcFooter />);
     expect(getByTitle("DXC Logo")).toBeTruthy();
   });
+  test("Footer renders the reduced neutral logo in black", () => {
+    const { container } = render(<DxcFooter mode="reduced" variant="neutral" />);
+    expect(container.querySelector("svg path")?.getAttribute("fill")).toBe("#0E1020");
+  });
   test("Footer renders with social links", () => {
     const { getByRole } = render(<DxcFooter socialLinks={social} />);
     const socialIcon = getByRole("link");
@@ -109,11 +113,11 @@ describe("Footer component tests", () => {
 });
 
 describe("getContrastColor function", () => {
-  test("should return black color for light backgrounds", () => {
-    expect(getContrastColor("#FFFFFF")).toBe("var(--color-fg-neutral-dark)");
-    expect(getContrastColor("#F5F5F5")).toBe("var(--color-fg-neutral-dark)");
-    expect(getContrastColor("rgb(255, 255, 255)")).toBe("var(--color-fg-neutral-dark)");
-    expect(getContrastColor("rgb(245, 245, 245)")).toBe("var(--color-fg-neutral-dark)");
+  test("should return primary stronger for light backgrounds", () => {
+    expect(getContrastColor("#FFFFFF")).toBe("var(--color-fg-primary-stronger)");
+    expect(getContrastColor("#F5F5F5")).toBe("var(--color-fg-primary-stronger)");
+    expect(getContrastColor("rgb(255, 255, 255)")).toBe("var(--color-fg-primary-stronger)");
+    expect(getContrastColor("rgb(245, 245, 245)")).toBe("var(--color-fg-primary-stronger)");
   });
 
   test("should return white color for dark backgrounds", () => {
