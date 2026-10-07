@@ -64,10 +64,11 @@ const DataGridContainer = styled.div<{
     border-top-left-radius: var(--border-radius-s);
     border-top-right-radius: var(--border-radius-s);
     .rdg-cell {
-      font-weight: var(--font-weight-bold);
-      color: var(--color-fg-neutral-bright);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-fg-neutral-dark);
       padding: 0px var(--spacing-padding-xs);
-      background-color: var(--color-bg-primary-strong);
+      background-color: var(--color-bg-neutral-lighter);
+      border-bottom: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
       .sortIconContainer {
         margin-left: var(--spacing-gap-s);
         display: flex;
