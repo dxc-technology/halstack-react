@@ -450,7 +450,14 @@ const FooterExamples = ({ variant }: { variant?: "branded" | "neutral" }) => (
   </>
 );
 
-const Footer = () => <FooterExamples />;
+const Footer = () => (
+  <>
+    <Title title="Default" theme="light" level={3} />
+    <FooterExamples />
+    <Title title="Neutral" theme="light" level={3} />
+    <FooterExamples variant="neutral" />
+  </>
+);
 
 const NeutralFooter = () => <FooterExamples variant="neutral" />;
 
