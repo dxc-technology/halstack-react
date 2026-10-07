@@ -1,13 +1,4 @@
-import {
-  ComponentPropsWithoutRef,
-  forwardRef,
-  KeyboardEvent,
-  useCallback,
-  useId,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { ComponentProps, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -120,16 +111,14 @@ const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   }
 `;
 
-const DropdownTriggerWithTooltip = forwardRef<HTMLButtonElement, ComponentPropsWithoutRef<typeof DropdownTrigger>>(
-  ({ title, ...props }, ref) =>
-    title ? (
-      <Tooltip label={title}>
-        <DropdownTrigger {...props} ref={ref} title={title} />
-      </Tooltip>
-    ) : (
-      <DropdownTrigger {...props} ref={ref} />
-    )
-);
+const DropdownTriggerWithTooltip = ({ title, ref, ...props }: ComponentProps<typeof DropdownTrigger>) =>
+  title ? (
+    <Tooltip label={title}>
+      <DropdownTrigger {...props} ref={ref} title={title} />
+    </Tooltip>
+  ) : (
+    <DropdownTrigger {...props} ref={ref} />
+  );
 
 const DxcDropdown = ({
   options,

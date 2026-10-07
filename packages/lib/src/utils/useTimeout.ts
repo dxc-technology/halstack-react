@@ -9,8 +9,8 @@ import { useRef, useCallback, useEffect } from "react";
  * @returns Function to clear the timeout
  */
 export default function useTimeout(callback: () => void, delay?: number) {
-  const savedCallback = useRef<() => void>();
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const savedCallback = useRef<() => void>(undefined);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const clearTimerCallback = useCallback(() => clearTimeout(timerRef.current), []);
 
   useEffect(() => {

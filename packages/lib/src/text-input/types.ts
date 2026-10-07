@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { JSX, CSSProperties, ReactNode } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
 type Action = {
@@ -65,6 +65,10 @@ type Props = {
    * and the custom action will not execute its onClick event.
    */
   readOnly?: boolean;
+  /**
+   * Ref to the input element.
+   */
+  ref?: React.Ref<HTMLInputElement>;
   /**
    * If true, the input will be optional, showing '(Optional)'
    * next to the label. Otherwise, the field will be considered required and an error will be

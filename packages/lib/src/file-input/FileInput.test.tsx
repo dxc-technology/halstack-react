@@ -270,6 +270,7 @@ describe("FileInput component tests", () => {
   });
 
   test("Renders file items and delete one file", async () => {
+    const user = userEvent.setup();
     const callbackFile = jest.fn();
     const { getByText, getAllByRole } = render(
       <DxcFileInput
@@ -283,10 +284,12 @@ describe("FileInput component tests", () => {
       expect(getByText("file1.png")).toBeTruthy();
       expect(getByText("file2.txt")).toBeTruthy();
       expect(getByText("Error message")).toBeTruthy();
-      const removeBtn = getAllByRole("button")[1];
-      if (removeBtn != null) {
-        userEvent.click(removeBtn);
-      }
+    });
+    const removeBtn = getAllByRole("button")[1];
+    if (removeBtn != null) {
+      await user.click(removeBtn);
+    }
+    await waitFor(() => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           error: "Error message",
@@ -300,7 +303,7 @@ describe("FileInput component tests", () => {
   test("CallbackFile is correctly called", async () => {
     const newFile = new File(["newFile"], "newFile.pdf", { type: "pdf" });
     const callbackFile = jest.fn();
-    const { getByLabelText } = render(
+    const { getByLabelText, getByText } = render(
       <DxcFileInput
         label="File input label"
         helperText="File input helper text"
@@ -309,8 +312,12 @@ describe("FileInput component tests", () => {
       />
     );
     await waitFor(() => {
-      const inputFile = getByLabelText("File input label");
-      fireEvent.change(inputFile, { target: { files: [newFile] } });
+      expect(getByText("file1.png")).toBeTruthy();
+      expect(getByText("file2.txt")).toBeTruthy();
+    });
+    const inputFile = getByLabelText("File input label");
+    fireEvent.change(inputFile, { target: { files: [newFile] } });
+    await waitFor(() => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,

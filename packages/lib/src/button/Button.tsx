@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { forwardRef } from "react";
 import { spaces } from "../common/variables";
 import ButtonPropsType, { Mode, Semantic, Size } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -67,48 +66,42 @@ const IconContainer = styled.div<{
   }
 `;
 
-const DxcButton = forwardRef<HTMLButtonElement, ButtonPropsType>(
-  (
-    {
-      disabled,
-      icon,
-      iconPosition = "before",
-      label,
-      margin,
-      mode = "primary",
-      onClick,
-      semantic = "default",
-      size = { height: "large", width: "fitContent" },
-      tabIndex = 0,
-      title,
-      type = "button",
-    },
-    ref
-  ): JSX.Element => {
-    return (
-      <Tooltip label={title}>
-        <Button
-          aria-label={title}
-          disabled={disabled}
-          iconOnly={!!icon && !label}
-          iconPosition={iconPosition}
-          margin={margin}
-          onClick={onClick}
-          semantic={semantic}
-          size={size}
-          tabIndex={disabled ? -1 : tabIndex}
-          type={type}
-          $mode={mode}
-          ref={ref}
-        >
-          {label && <LabelContainer>{label}</LabelContainer>}
-          {icon && (
-            <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-          )}
-        </Button>
-      </Tooltip>
-    );
-  }
-);
+const DxcButton = ({
+  disabled,
+  icon,
+  iconPosition = "before",
+  label,
+  margin,
+  mode = "primary",
+  onClick,
+  ref,
+  semantic = "default",
+  size = { height: "large", width: "fitContent" },
+  tabIndex = 0,
+  title,
+  type = "button",
+}: ButtonPropsType) => {
+  return (
+    <Tooltip label={title}>
+      <Button
+        aria-label={title}
+        disabled={disabled}
+        iconOnly={!!icon && !label}
+        iconPosition={iconPosition}
+        margin={margin}
+        onClick={onClick}
+        semantic={semantic}
+        size={size}
+        tabIndex={disabled ? -1 : tabIndex}
+        type={type}
+        $mode={mode}
+        ref={ref}
+      >
+        {label && <LabelContainer>{label}</LabelContainer>}
+        {icon && <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+      </Button>
+    </Tooltip>
+  );
+};
 
 export default DxcButton;

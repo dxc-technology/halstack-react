@@ -176,7 +176,7 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               For example: <Code>color/bg/primary/strong</Code> → maps to a core token like{" "}
-              <Code>color/primary/700</Code> (<Code>#6F4B97</Code>)
+              <Code>color/primary/700</Code> (<Code>#2351b0</Code>)
             </DxcParagraph>
             <DxcParagraph>
               By separating raw values from their semantic role, we not only enable easy theming and quick adjustments

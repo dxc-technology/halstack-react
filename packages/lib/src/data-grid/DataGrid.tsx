@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import DataGrid, { SortColumn } from "react-data-grid";
+import { JSX, useEffect, useMemo, useState } from "react";
+import { DataGrid, SortColumn } from "react-data-grid";
 import styled from "@emotion/styled";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
@@ -218,7 +218,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || null;
+              return <>{row.expandedChildContent}</>;
             }
             // if row has expandable content
             return (
@@ -384,16 +384,16 @@ const DxcDataGrid = ({
           );
           if (innerSortedRows.some((row) => uniqueRowId in row)) {
             rowsToRender
-              .filter((row) => row.isExpandedChildContent)
-              .map((expandedRow) =>
+              .filter((row) => Boolean(row.isExpandedChildContent))
+              .forEach((expandedRow) => {
                 addRow(
                   innerSortedRows,
                   innerSortedRows.findIndex(
                     (trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey
                   ) + 1,
                   expandedRow
-                )
-              );
+                );
+              });
             return innerSortedRows;
           }
         } else {

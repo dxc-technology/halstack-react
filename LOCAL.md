@@ -61,6 +61,5 @@ Here is a list of the most common commands you will use:
 - `turbo storybook:build` - Build the Storybook.
 - `turbo storybook:deploy` - Deploy the Storybook to GitHub Pages.
 - `turbo test` - Run the tests.
-- `turbo test:accessibility` - Run the accessibility tests.
 - `turbo test:watch` - Run the tests in watch mode.
 - `turbo test-storybook` - Run the Storybook tests.

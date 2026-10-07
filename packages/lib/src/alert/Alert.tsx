@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { useState, useId, useEffect, useCallback, useContext, useMemo } from "react";
+import { useState, useId, useEffect, useCallback, use, useMemo } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcDivider from "../divider/Divider";
@@ -105,7 +105,7 @@ const DxcAlert = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));

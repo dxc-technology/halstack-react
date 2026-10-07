@@ -32,7 +32,8 @@ const options = [
 ];
 
 describe("Dropdown component tests", () => {
-  test("Renders with correct aria attributes", () => {
+  test("Renders with correct aria attributes", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getAllByRole, getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
@@ -41,7 +42,7 @@ describe("Dropdown component tests", () => {
     expect(dropdown.getAttribute("aria-haspopup")).toBe("true");
     expect(dropdown.getAttribute("aria-expanded")).toBeNull();
     expect(dropdown.getAttribute("aria-activedescendant")).toBeNull();
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     const menu = getByRole("menu");
     expect(dropdown.getAttribute("aria-controls")).toBe(menu.id);
     expect(dropdown.getAttribute("aria-expanded")).toBe("true");
@@ -50,29 +51,31 @@ describe("Dropdown component tests", () => {
     expect(menu.getAttribute("aria-labelledby")).toBe(dropdown.id);
     expect(getAllByRole("menuitem").length).toBe(4);
   });
-  test("Button trigger is not interactive when disabled", () => {
+  test("Button trigger is not interactive when disabled", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole, queryByText } = render(
       <DxcDropdown disabled options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
     expect(queryByRole("menu")).toBeFalsy();
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     expect(queryByRole("menu")).toBeFalsy();
     expect(queryByText("Amazon")).toBeFalsy();
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     expect(queryByRole("menu")).toBeFalsy();
     expect(dropdown.getAttribute("aria-expanded")).toBeNull();
   });
-  test("onSelectOption function is called correctly when an option is clicked", () => {
+  test("onSelectOption function is called correctly when an option is clicked", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByText } = render(
       <DxcDropdown options={options} onSelectOption={onSelectOption} label="dropdown-test" />
     );
     const dropdown = getByText("dropdown-test");
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     const option = getByText("Aliexpress");
-    userEvent.click(option);
+    await user.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
   test("Menu button key events — Arrow up opens the list and moves the focus to the last menu item", () => {
@@ -166,12 +169,13 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
-  test("Menu key events — Arrow up, if focus is on the first menu item, moves focus to the last menu item.", () => {
+  test("Menu key events — Arrow up, if focus is on the first menu item, moves focus to the last menu item.", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     const menu = getByRole("menu");
     fireEvent.keyDown(menu, {
       key: "ArrowUp",
@@ -188,12 +192,13 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
-  test("Menu key events — Arrow down moves the focus to the next menu item", () => {
+  test("Menu key events — Arrow down moves the focus to the next menu item", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     const menu = getByRole("menu");
     fireEvent.keyDown(menu, {
       key: "ArrowDown",
@@ -243,12 +248,13 @@ describe("Dropdown component tests", () => {
     });
     expect(onSelectOption).toHaveBeenCalledWith("1");
   });
-  test("Menu key events — Enter key selects the current focused item and closes the menu", () => {
+  test("Menu key events — Enter key selects the current focused item and closes the menu", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     fireEvent.keyDown(getByRole("menu"), {
       key: "Enter",
       code: "Enter",
@@ -259,12 +265,13 @@ describe("Dropdown component tests", () => {
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
   });
-  test("Menu key events — Esc closes the menu and sets focus on the menu button", () => {
+  test("Menu key events — Esc closes the menu and sets focus on the menu button", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     fireEvent.keyDown(getByRole("menu"), {
       key: "Esc",
       code: "Esc",
@@ -295,12 +302,13 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-  test("Menu key events — End moves the focus to the last menu item", () => {
+  test("Menu key events — End moves the focus to the last menu item", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
     fireEvent.keyDown(menu, {
@@ -332,12 +340,13 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-  test("Menu key events — PageDown moves the focus to the last menu item", () => {
+  test("Menu key events — PageDown moves the focus to the last menu item", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
     );
-    userEvent.click(getByRole("button"));
+    await user.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
     fireEvent.keyDown(menu, {
@@ -348,13 +357,14 @@ describe("Dropdown component tests", () => {
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
-  test("Menu key events — Tab closes the menu and sets focus to the next element", () => {
+  test("Menu key events — Tab closes the menu and sets focus to the next element", async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     expect(getByRole("menu")).toBeTruthy();
     fireEvent.keyDown(getByRole("menu"), {
       key: "Tab",
@@ -364,15 +374,16 @@ describe("Dropdown component tests", () => {
     });
     expect(queryByRole("menu")).toBeFalsy();
   });
-  test("Dropdown does not trigger form submission when inside a form", () => {
+  test("Dropdown does not trigger form submission when inside a form", async () => {
     const onSubmit = jest.fn();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByRole } = render(
       <form onSubmit={onSubmit}>
         <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={() => {}} />
       </form>
     );
     const dropdown = getByRole("button");
-    userEvent.click(dropdown);
+    await user.click(dropdown);
     expect(onSubmit).not.toHaveBeenCalled();
   });
 });

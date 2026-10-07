@@ -1,3 +1,4 @@
+import { Ref } from "react";
 import { SVG } from "../common/utils";
 
 type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
@@ -42,6 +43,10 @@ type Props = {
    * Text to be displayed as label next to the avatar.
    */
   primaryText?: string;
+  /**
+   * Ref to the avatar container element.
+   */
+  ref?: Ref<HTMLDivElement>;
   /**
    * Text to be displayed as sublabel next to the avatar.
    */

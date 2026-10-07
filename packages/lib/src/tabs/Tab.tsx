@@ -1,4 +1,4 @@
-import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
+import { KeyboardEvent, use, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
@@ -92,90 +92,96 @@ const Underline = styled.span<{ active: boolean }>`
     active ? "var(--border-color-primary-stronger)" : "var(--border-color-neutral-medium)"};
 `;
 
-const DxcTab = forwardRef(
-  (
-    { active, disabled, icon, label, notificationNumber, onClick, onHover, title, tabId = label }: TabProps,
-    ref: Ref<HTMLButtonElement>
-  ) => {
-    const {
-      activeTabId,
-      focusedTabId,
-      iconPosition,
-      isControlled,
-      setActiveTabId,
-      tabIndex = 0,
-    } = useContext(TabsContext) ?? {};
-    const tabRef = useRef<HTMLButtonElement | null>(null);
+const DxcTab = ({
+  active,
+  disabled,
+  icon,
+  label,
+  notificationNumber,
+  onClick,
+  onHover,
+  ref,
+  title,
+  tabId = label,
+}: TabProps) => {
+  const {
+    activeTabId,
+    focusedTabId,
+    iconPosition,
+    isControlled,
+    setActiveTabId,
+    tabIndex = 0,
+  } = use(TabsContext) ?? {};
+  const tabRef = useRef<HTMLButtonElement | null>(null);
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-      switch (event.key) {
-        case " ":
-        case "Enter":
-          event.preventDefault();
-          tabRef?.current?.click();
-          break;
-        default:
-          break;
-      }
-    };
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case " ":
+      case "Enter":
+        event.preventDefault();
+        tabRef?.current?.click();
+        break;
+      default:
+        break;
+    }
+  };
 
-    useEffect(() => {
-      if (focusedTabId === tabId) tabRef?.current?.focus();
-    }, [focusedTabId, tabId]);
+  useEffect(() => {
+    if (focusedTabId === tabId) tabRef?.current?.focus();
+  }, [focusedTabId, tabId]);
 
-    useEffect(() => {
-      if (active) setActiveTabId?.(tabId ?? "");
-    }, [active, tabId, setActiveTabId]);
+  useEffect(() => {
+    if (active) setActiveTabId?.(tabId ?? "");
+  }, [active, tabId, setActiveTabId]);
 
-    return (
-      <Tooltip label={title}>
-        <Tab
-          aria-selected={activeTabId === tabId}
-          disabled={disabled}
-          hasLabelAndIcon={Boolean(icon && label)}
-          iconPosition={iconPosition}
-          onClick={() => {
-            if (!isControlled) {
-              setActiveTabId?.(tabId ?? "");
+  return (
+    <Tooltip label={title}>
+      <Tab
+        aria-selected={activeTabId === tabId}
+        disabled={disabled}
+        hasLabelAndIcon={Boolean(icon && label)}
+        iconPosition={iconPosition}
+        onClick={() => {
+          if (!isControlled) {
+            setActiveTabId?.(tabId ?? "");
+          }
+          onClick?.();
+        }}
+        onKeyDown={handleOnKeyDown}
+        onMouseEnter={() => onHover?.()}
+        ref={(anchorRef) => {
+          tabRef.current = anchorRef;
+          if (ref) {
+            if (typeof ref === "function") ref(anchorRef);
+            else {
+              const currentRef = ref;
+              currentRef.current = anchorRef;
             }
-            onClick?.();
-          }}
-          onKeyDown={handleOnKeyDown}
-          onMouseEnter={() => onHover?.()}
-          ref={(anchorRef) => {
-            tabRef.current = anchorRef;
-            if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else {
-                const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
-                currentRef.current = anchorRef;
-              }
-            }
-          }}
-          role="tab"
-          tabIndex={activeTabId === label && !disabled ? tabIndex : -1}
-          type="button"
-          aria-label={label ?? tabId ?? "tab"}
-        >
-          <LabelIconContainer iconPosition={iconPosition}>
-            {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
-            {label && <Label>{label}</Label>}
-          </LabelIconContainer>
-          {!disabled && notificationNumber && (
-            <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>
-              <DxcBadge
-                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
-                mode="notification"
-                size="small"
-              />
-            </BadgeContainer>
-          )}
-          <Underline active={activeTabId === tabId} />
-        </Tab>
-      </Tooltip>
-    );
-  }
-);
+          }
+        }}
+        role="tab"
+        tabIndex={activeTabId === label && !disabled ? tabIndex : -1}
+        type="button"
+        aria-label={label ?? tabId ?? "tab"}
+      >
+        <LabelIconContainer iconPosition={iconPosition}>
+          {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+          {label && <Label>{label}</Label>}
+        </LabelIconContainer>
+        {!disabled && notificationNumber && (
+          <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>
+            <DxcBadge
+              label={typeof notificationNumber === "number" ? notificationNumber : undefined}
+              mode="notification"
+              size="small"
+            />
+          </BadgeContainer>
+        )}
+        <Underline active={activeTabId === tabId} />
+      </Tab>
+    </Tooltip>
+  );
+};
 
 DxcTab.displayName = "DxcTab";
 

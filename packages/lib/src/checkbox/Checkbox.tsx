@@ -1,7 +1,7 @@
-import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
+import { use, useState, useRef, useId, KeyboardEvent } from "react";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
-import CheckboxPropsType, { RefType } from "./types";
+import CheckboxPropsType from "./types";
 import { calculateWidth, icons, spaces } from "./utils";
 import CheckboxContext from "./CheckboxContext";
 
@@ -70,95 +70,91 @@ const CheckboxContainer = styled.div<{
   }
 `;
 
-const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
-  (
-    {
-      ariaLabel = "Checkbox",
-      checked,
-      defaultChecked = false,
-      disabled = false,
-      label = "",
-      labelPosition = "before",
-      margin,
-      name = "",
-      onChange,
-      optional = false,
-      readOnly = false,
-      size = "fitContent",
-      tabIndex = 0,
-      value,
-    },
-    ref
-  ) => {
-    const labelId = `label-checkbox-${useId()}`;
-    const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const checkboxRef = useRef<HTMLSpanElement | null>(null);
-    const translatedLabels = useContext(HalstackLanguageContext).labels;
-    const { partial } = useContext(CheckboxContext) ?? {};
+const DxcCheckbox = ({
+  ariaLabel = "Checkbox",
+  checked,
+  defaultChecked = false,
+  disabled = false,
+  label = "",
+  labelPosition = "before",
+  margin,
+  name = "",
+  onChange,
+  optional = false,
+  readOnly = false,
+  ref,
+  size = "fitContent",
+  tabIndex = 0,
+  value,
+}: CheckboxPropsType) => {
+  const labelId = `label-checkbox-${useId()}`;
+  const [innerChecked, setInnerChecked] = useState(defaultChecked);
+  const checkboxRef = useRef<HTMLSpanElement | null>(null);
+  const translatedLabels = use(HalstackLanguageContext).labels;
+  const { partial } = use(CheckboxContext) ?? {};
 
-    const handleOnChange = () => {
-      if (!disabled && !readOnly) {
-        if (document.activeElement !== checkboxRef.current) checkboxRef.current?.focus();
-        if (checked == null) setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
-        onChange?.(!(checked ?? innerChecked));
-      }
-    };
+  const handleOnChange = () => {
+    if (!disabled && !readOnly) {
+      if (document.activeElement !== checkboxRef.current) checkboxRef.current?.focus();
+      if (checked == null) setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
+      onChange?.(!(checked ?? innerChecked));
+    }
+  };
 
-    const handleOnKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
-      switch (event.key) {
-        case " ":
-          event.preventDefault();
-          handleOnChange();
-          break;
-        default:
-          break;
-      }
-    };
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
+    switch (event.key) {
+      case " ":
+        event.preventDefault();
+        handleOnChange();
+        break;
+      default:
+        break;
+    }
+  };
 
-    return (
-      <CheckboxContainer
+  return (
+    <CheckboxContainer
+      disabled={disabled}
+      labelPosition={labelPosition}
+      margin={margin}
+      onClick={handleOnChange}
+      readOnly={readOnly}
+      ref={ref}
+      size={size}
+    >
+      {label && (
+        <Label aria-label={label} disabled={disabled} id={labelId}>
+          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+        </Label>
+      )}
+      <Checkbox
+        aria-checked={checked ?? innerChecked}
+        aria-disabled={disabled}
+        aria-label={label ? undefined : ariaLabel}
+        aria-labelledby={label ? labelId : undefined}
+        aria-readonly={readOnly}
+        aria-required={!disabled && !optional}
         disabled={disabled}
-        labelPosition={labelPosition}
-        margin={margin}
-        onClick={handleOnChange}
+        onKeyDown={handleOnKeyDown}
         readOnly={readOnly}
-        ref={ref}
-        size={size}
+        role="checkbox"
+        ref={checkboxRef}
+        tabIndex={disabled ? -1 : tabIndex}
       >
-        {label && (
-          <Label aria-label={label} disabled={disabled} id={labelId}>
-            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-          </Label>
-        )}
-        <Checkbox
-          aria-checked={checked ?? innerChecked}
-          aria-disabled={disabled}
-          aria-label={label ? undefined : ariaLabel}
-          aria-labelledby={label ? labelId : undefined}
-          aria-readonly={readOnly}
-          aria-required={!disabled && !optional}
-          disabled={disabled}
-          onKeyDown={handleOnKeyDown}
-          readOnly={readOnly}
-          role="checkbox"
-          ref={checkboxRef}
-          tabIndex={disabled ? -1 : tabIndex}
-        >
-          {partial ? icons.partial : (checked ?? innerChecked) ? icons.checked : icons.unchecked}
-        </Checkbox>
-        <input
-          checked={checked ?? innerChecked}
-          disabled={disabled}
-          name={name}
-          readOnly
-          style={{ display: "none" }}
-          type="checkbox"
-          value={value}
-        />
-      </CheckboxContainer>
-    );
-  }
-);
+        {partial ? icons.partial : (checked ?? innerChecked) ? icons.checked : icons.unchecked}
+      </Checkbox>
+      <input
+        checked={checked ?? innerChecked}
+        disabled={disabled}
+        name={name}
+        readOnly
+        style={{ display: "none" }}
+        type="checkbox"
+        value={value}
+      />
+    </CheckboxContainer>
+  );
+};
 
 DxcCheckbox.displayName = "DxcCheckbox";
 

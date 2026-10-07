@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useRef } from "react";
+import { memo, use, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
@@ -49,7 +49,7 @@ const Suggestions = ({
   value,
   visualFocusIndex,
 }: SuggestionsProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {

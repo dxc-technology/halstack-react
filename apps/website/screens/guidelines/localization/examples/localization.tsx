@@ -14,7 +14,7 @@ const labels = {
         <DxcFlex direction="column" gap="2rem">
           <DxcDateInput
             label="Date"
-            placeholder="Select a date"
+            placeholder
             optional
           />
           <DxcTimeInput

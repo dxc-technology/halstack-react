@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { use } from "react";
 import DxcButton from "../button/Button";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { SearchBarTriggerProps } from "./types";
 
 const DxcSearchBarTrigger = ({ onTriggerClick }: SearchBarTriggerProps) => {
-  const translatedLabels = useContext(HalstackLanguageContext).labels;
+  const translatedLabels = use(HalstackLanguageContext).labels;
   return (
     <DxcButton
       onClick={onTriggerClick}

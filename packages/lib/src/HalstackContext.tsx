@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo } from "react";
+import { JSX, createContext, ReactNode, useMemo } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { coreTokens, aliasTokens } from "./styles/tokens";
@@ -20,17 +20,16 @@ const HalstackLanguageContext = createContext<LocalizedContext>({ labels: defaul
 const HalstackLogosContext = createContext<Record<string, string | undefined>>(defaultThemedLogos);
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
-  const parsedLabels = defaultTranslatedComponentLabels;
+  const parsedLabels = { ...defaultTranslatedComponentLabels };
   (Object.keys(labels) as (keyof TranslatedLabels)[]).forEach((component) => {
-    if (parsedLabels[component]) {
-      const componentLabels = labels[component];
-      if (componentLabels != null) {
-        (Object.keys(parsedLabels[component]) as (keyof typeof componentLabels)[]).forEach((label) => {
-          if (componentLabels[label]) {
-            parsedLabels[component][label] = componentLabels[label];
-          }
-        });
-      }
+    const componentLabels = labels[component];
+    if (componentLabels != null) {
+      Object.assign(parsedLabels, {
+        [component]: {
+          ...parsedLabels[component],
+          ...componentLabels,
+        },
+      });
     }
   });
   return parsedLabels;
@@ -49,9 +48,11 @@ const HalstackThemed = styled.div<{ coreTheme?: ThemeType["tokens"] }>`
   ${(props) => {
     if (props.coreTheme)
       return css`
-        ${Object.keys(props.coreTheme).length
-          ? Object.entries(props.coreTheme).map(([key, val]) => `${key}: ${val};`)
-          : coreTokens}
+        ${
+          Object.keys(props.coreTheme).length
+            ? Object.entries(props.coreTheme).map(([key, val]) => `${key}: ${val};`)
+            : coreTokens
+        }
         ${aliasTokens}
       `;
     else {
@@ -90,17 +91,17 @@ const HalstackProvider = ({
 
   return (
     <HalstackThemed coreTheme={parsedCoreTheme}>
-      <HalstackLogosContext.Provider value={opinionatedTheme?.logos ?? defaultThemedLogos}>
+      <HalstackLogosContext value={opinionatedTheme?.logos ?? defaultThemedLogos}>
         {parsedLabels || localeTag ? (
-          <HalstackLanguageContext.Provider
+          <HalstackLanguageContext
             value={{ labels: parsedLabels ?? defaultTranslatedComponentLabels, locale: localeTag }}
           >
             {children}
-          </HalstackLanguageContext.Provider>
+          </HalstackLanguageContext>
         ) : (
           children
         )}
-      </HalstackLogosContext.Provider>
+      </HalstackLogosContext>
     </HalstackThemed>
   );
 };

@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render } from "@testing-library/react";
 import DxcBreadcrumbs from "./Breadcrumbs";
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -39,7 +38,7 @@ describe("Breadcrumbs component tests", () => {
     const dropdown = getByRole("button");
     expect(queryByText("User Menu")).toBeFalsy();
     expect(queryByText("Preferences")).toBeFalsy();
-    userEvent.click(dropdown);
+    fireEvent.click(dropdown);
     expect(getByText("User Menu")).toBeTruthy();
     expect(getByText("Preferences")).toBeTruthy();
   });
@@ -51,7 +50,7 @@ describe("Breadcrumbs component tests", () => {
     expect(queryByText("Home")).toBeFalsy();
     expect(queryByText("User Menu")).toBeFalsy();
     expect(queryByText("Preferences")).toBeFalsy();
-    userEvent.click(dropdown);
+    fireEvent.click(dropdown);
     expect(getByText("Home")).toBeTruthy();
     expect(getByText("User Menu")).toBeTruthy();
     expect(getByText("Preferences")).toBeTruthy();
@@ -73,7 +72,7 @@ describe("Breadcrumbs component tests", () => {
         ]}
       />
     );
-    userEvent.click(getByText("Home"));
+    fireEvent.click(getByText("Home"));
     expect(onItemClick).toHaveBeenCalledWith("/home");
   });
   test("The onClick prop from an item is properly called (collapsed)", () => {
@@ -89,8 +88,8 @@ describe("Breadcrumbs component tests", () => {
         itemsBeforeCollapse={2}
       />
     );
-    userEvent.click(getByRole("button"));
-    userEvent.click(getByText("Preferences"));
+    fireEvent.click(getByRole("button"));
+    fireEvent.click(getByText("Preferences"));
     expect(onItemClick).toHaveBeenCalledWith("/");
   });
   test("handleOnClick prevents default and calls onClick when href is provided", () => {
@@ -105,7 +104,7 @@ describe("Breadcrumbs component tests", () => {
       />
     );
     const homeLink = getByText("Home");
-    userEvent.click(homeLink);
+    fireEvent.click(homeLink);
     expect(onItemClick).toHaveBeenCalledWith("/home");
   });
   test("handleOnMouseEnter sets title when text overflows", () => {
@@ -124,8 +123,7 @@ describe("Breadcrumbs component tests", () => {
     Object.defineProperty(currentPageElement, "scrollWidth", { value: 200, configurable: true });
     Object.defineProperty(currentPageElement, "clientWidth", { value: 100, configurable: true });
 
-    // Simulate mouse enter
-    userEvent.hover(currentPageElement);
+    fireEvent.mouseEnter(currentPageElement);
 
     // Check if title is set when there's overflow
     expect(currentPageElement.title).toBe("Very Long Current Page Label That Should Overflow");
