@@ -179,6 +179,7 @@
   --border-color-success-medium: var(--color-semantic02-600);
   --border-color-warning-light: var(--color-semantic03-300);
   --border-color-warning-medium: var(--color-semantic03-500);
+  --border-color-warning-strong: var(--color-semantic03-600);
   --border-color-error-light: var(--color-semantic04-300);
   --border-color-error-medium: var(--color-semantic04-600);
   --border-color-error-strong: var(--color-semantic04-700);

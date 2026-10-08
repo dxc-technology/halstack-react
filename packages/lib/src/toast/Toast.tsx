@@ -38,7 +38,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   min-width: 200px;
   max-width: 600px;
   width: fit-content;
-  border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).primaryColor};
+  border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).borderColor};
   border-radius: var(--border-radius-s);
   box-shadow: var(--shadow-100);
   display: inline-flex;
