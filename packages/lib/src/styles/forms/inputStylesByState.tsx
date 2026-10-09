@@ -5,8 +5,9 @@ const inputStylesByState = (disabled: boolean, error: boolean, readOnly: boolean
   border-radius: var(--border-radius-s);
   border: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"} var(--border-style-default)
     ${(() => {
-      if (disabled || readOnly) return "var(--border-color-neutral-lighter)";
+      if (disabled) return "var(--border-color-neutral-lighter)";
       else if (error) return "var(--border-color-error-medium)";
+      else if (readOnly) return "var(--border-color-neutral-light)";
       else return "var(--border-color-neutral-strong)";
     })()};
   ${
