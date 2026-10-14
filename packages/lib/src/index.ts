@@ -57,28 +57,32 @@ export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
 
 // types exports
+export type { Space, Margin, SVG, Size, Shape, Color } from "./common/types";
 export type {
-    AccordionProps as DxcAccordionProps,
-    AccordionItemProps as DxcAccordionItemProps,
+  AccordionProps as DxcAccordionProps,
+  AccordionItemProps as DxcAccordionItemProps,
 } from "./accordion/types";
 export type {
-    AlertProps as DxcAlertProps,
-    AlertAction as DxcAlertAction,
-    AlertMessage as DxcAlertMessage,
+  AlertProps as DxcAlertProps,
+  AlertAction as DxcAlertAction,
+  AlertMessage as DxcAlertMessage,
 } from "./alert/types";
 export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
 export type { BadgeProps as DxcBadgeProps } from "./badge/types";
 export type {
-    BreadcrumbsProps as DxcBreadcrumbsProps,
-    BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
+  BreadcrumbsProps as DxcBreadcrumbsProps,
+  BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
 } from "./breadcrumbs/types";
 export type {
-    BulletedListProps as DxcBulletedListProps,
-    BulletedListItemProps as DxcBulletedListItemProps,
+  BulletedListProps as DxcBulletedListProps,
+  BulletedListItemProps as DxcBulletedListItemProps,
 } from "./bulleted-list/types";
 export type {
-    ButtonProps as DxcButtonPropsType,
-    ButtonMode as DxcButtonMode,
-    ButtonSemantic as DxcButtonSemantic,
-    ButtonSize as DxcButtonSize,
+  ButtonProps as DxcButtonPropsType,
+  ButtonMode as DxcButtonMode,
+  ButtonSemantic as DxcButtonSemantic,
+  ButtonSize as DxcButtonSize,
 } from "./button/types";
+export type { CardProps as DxcCardProps } from "./card/types";
+export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
+export type { ChipProps as DxcChipProps } from "./chip/types";

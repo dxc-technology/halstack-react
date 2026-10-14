@@ -1,4 +1,5 @@
 import { ReactNode, Ref } from "react";
+import { PrettifyTypes } from "../common/types";
 
 export type Spacing = {
   top?: string;
@@ -23,21 +24,24 @@ export type BorderProperties = {
   style?: string;
   color?: string;
 };
-export type Border =
+export type Border = PrettifyTypes<
   | BorderProperties
   | {
       top?: BorderProperties;
       right?: BorderProperties;
       bottom?: BorderProperties;
       left?: BorderProperties;
-    };
+    }
+>;
 
-export type Outline = BorderProperties & {
-  offset?: string;
-};
+export type Outline = PrettifyTypes<
+  BorderProperties & {
+    offset?: string;
+  }
+>;
 
 export type OverflowValues = "visible" | "hidden" | "clip" | "scroll" | "auto";
-export type Overflow = OverflowValues | { x?: OverflowValues; y?: OverflowValues };
+export type Overflow = PrettifyTypes<OverflowValues | { x?: OverflowValues; y?: OverflowValues }>;
 
 export type ContainerProps = {
   /**
@@ -171,3 +175,5 @@ export type StyledProps = Omit<ContainerProps, "display" | "width" | "height" | 
   $overflow?: Overflow;
   $width?: string;
 };
+
+export type { ContainerProps as default };
