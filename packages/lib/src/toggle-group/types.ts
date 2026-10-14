@@ -1,4 +1,4 @@
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
 type OptionIcon = {
   /**

@@ -1,8 +1,10 @@
-type Item = {
+import { PrettifyTypes } from "../common/types";
+
+export type BreadcrumbsItem = {
   href?: string;
   label: string;
 };
-type Props = {
+export type BreadcrumbsProps = {
   /**
    * Provides a label that describes the type of navigation enabled by
    * the component.
@@ -11,7 +13,7 @@ type Props = {
   /**
    * Array of objects representing the items of the breadcrumbs.
    */
-  items: Item[];
+  items: BreadcrumbsItem[];
   /**
    * Number of items before showing a collapsed version of the
    * breadcrumbs. It can't be lower than two (root/collapsed action and
@@ -34,9 +36,9 @@ type Props = {
   showRoot?: boolean;
 };
 
-export type ItemPropsType = Item & {
-  isCurrentPage?: boolean;
-  onClick?: (href: string) => void;
-};
-
-export default Props;
+export type BreadcrumbsItemProps = PrettifyTypes<
+  BreadcrumbsItem & {
+    isCurrentPage?: boolean;
+    onClick?: (href: string) => void;
+  }
+>;

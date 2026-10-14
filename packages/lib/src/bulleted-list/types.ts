@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { PrettifyTypes, SVG } from "../common/types";
 
-type IconProps = {
+type BulletedListIconProps = {
   /**
    * Defines the style of the bullet point in the list.
    */
@@ -16,7 +16,7 @@ type IconProps = {
   children: ReactNode;
 };
 
-type OtherProps = {
+type BulletedListWithoutIconProps = {
   /**
    * Defines the style of the bullet point in the list.
    */
@@ -31,13 +31,11 @@ type OtherProps = {
   children: ReactNode;
 };
 
-type Props = IconProps | OtherProps;
+export type BulletedListProps = PrettifyTypes<BulletedListIconProps | BulletedListWithoutIconProps>;
 
-export type BulletedListItemPropsType = {
+export type BulletedListItemProps = {
   /**
    * Text to be shown in the list.
    */
   children?: ReactNode;
 };
-
-export default Props;

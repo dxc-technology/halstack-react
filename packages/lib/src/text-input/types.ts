@@ -1,5 +1,5 @@
 import { JSX, CSSProperties, ReactNode } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
 type Action = {
   /**

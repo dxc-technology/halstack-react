@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import styled from "@emotion/styled";
-import BreadcrumbsProps from "./types";
+import { BreadcrumbsProps } from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
 import Item from "./Item";

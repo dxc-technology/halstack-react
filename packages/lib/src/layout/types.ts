@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
 export type AppLayoutMainPropsType = {
   /**

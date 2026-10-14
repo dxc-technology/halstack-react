@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
 type CommonItemProps = {
   badge?: ReactElement;

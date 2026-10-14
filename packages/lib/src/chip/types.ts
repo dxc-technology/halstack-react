@@ -1,4 +1,4 @@
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 import AvatarProps from "../avatar/types";
 
 export type ChipAvatarType = {

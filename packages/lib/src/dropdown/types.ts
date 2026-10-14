@@ -1,5 +1,5 @@
 import { CSSProperties, KeyboardEvent } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
 type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 

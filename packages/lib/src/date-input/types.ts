@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
 export type RefType = React.Ref<HTMLDivElement>;
 

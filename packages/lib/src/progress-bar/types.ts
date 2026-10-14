@@ -1,11 +1,4 @@
-import { Space } from "../common/utils";
-
-type Size = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
+import { Margin, Space } from "../common/types";
 
 type Props = {
   /**
@@ -34,7 +27,7 @@ type Props = {
    * an object with 'top', 'bottom', 'left' and 'right' properties
    * in order to specify different margin sizes.
    */
-  margin?: Space | Size;
+  margin?: Space | Margin;
   /**
    * Specifies a string to be used as the name for the progress bar element when no `label` is provided.
    */

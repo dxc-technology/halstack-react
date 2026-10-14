@@ -55,3 +55,29 @@ export { default as DxcTypography } from "./typography/Typography";
 export { default as DxcWizard } from "./wizard/Wizard";
 export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
+
+export type {
+  AccordionProps as DxcAccordionProps,
+  AccordionItemProps as DxcAccordionItemProps,
+} from "./accordion/types";
+export type {
+  AlertProps as DxcAlertProps,
+  AlertAction as DxcAlertAction,
+  AlertMessage as DxcAlertMessage,
+} from "./alert/types";
+export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
+export type { BadgeProps as DxcBadgeProps } from "./badge/types";
+export type {
+  BreadcrumbsProps as DxcBreadcrumbsProps,
+  BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
+} from "./breadcrumbs/types";
+export type {
+  BulletedListProps as DxcBulletedListProps,
+  BulletedListItemProps as DxcBulletedListItemProps,
+} from "./bulleted-list/types";
+export type {
+  ButtonProps as DxcButtonPropsType,
+  ButtonMode as DxcButtonMode,
+  ButtonSemantic as DxcButtonSemantic,
+  ButtonSize as DxcButtonSize,
+} from "./button/types";

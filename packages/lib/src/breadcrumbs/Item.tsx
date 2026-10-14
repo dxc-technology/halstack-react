@@ -1,8 +1,8 @@
 import { useRef, MouseEvent } from "react";
 import styled from "@emotion/styled";
-import { ItemPropsType } from "./types";
+import { BreadcrumbsItemProps } from "./types";
 
-const ListItem = styled.li<{ isCurrentPage?: ItemPropsType["isCurrentPage"] }>`
+const ListItem = styled.li<{ isCurrentPage?: BreadcrumbsItemProps["isCurrentPage"] }>`
   display: flex;
   align-items: center;
   color: var(--color-fg-neutral-dark);
@@ -44,7 +44,7 @@ const Text = styled.span`
   }
 `;
 
-const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
+const Item = ({ isCurrentPage = false, href, label, onClick }: BreadcrumbsItemProps) => {
   const currentItemRef = useRef<HTMLSpanElement | null>(null);
 
   const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {

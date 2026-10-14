@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { PrettifyTypes, SVG } from "../common/types";
 
-type Action = {
+export type AlertAction = {
   /**
    * The icon of the action. It can be a string with the name of the icon or an SVG component.
    */
@@ -16,7 +16,7 @@ type Action = {
   onClick: () => void;
 };
 
-type Message = {
+export type AlertMessage = {
   /**
    * The function that will be executed when the user clicks on the close action button.
    */
@@ -39,11 +39,11 @@ type CommonProps = {
   /**
    * Primary action of the alert.
    */
-  primaryAction?: Action;
+  primaryAction?: AlertAction;
   /**
    * Secondary action of the alert.
    */
-  secondaryAction?: Action;
+  secondaryAction?: AlertAction;
   /**
    * Specifies the semantic meaning of the alert.
    */
@@ -64,7 +64,7 @@ type ModeSpecificProps =
        * and the presence of the onClose attribute is mandatory, since the management of the closing
        * of the alert relies completely on the user.
        */
-      message?: Message | Message[];
+      message?: AlertMessage | AlertMessage[];
       /**
        * The mode of the alert.
        */
@@ -79,19 +79,17 @@ type ModeSpecificProps =
        * and the presence of the onClose attribute is mandatory, since the management of the closing
        * of the alert relies completely on the user.
        */
-      message: Required<Message>;
+      message: Required<AlertMessage>;
       /**
        * The mode of the alert.
        */
       mode: "modal";
     };
 
-type Props = CommonProps & ModeSpecificProps;
+export type AlertProps = PrettifyTypes<CommonProps & ModeSpecificProps>;
 
 export type ModalAlertWrapperProps = {
   condition: boolean;
   onClose?: () => void;
   children: ReactNode;
 };
-
-export default Props;
