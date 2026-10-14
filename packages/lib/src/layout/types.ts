@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 import { SVG } from "../common/types";
 
-export type AppLayoutMainPropsType = {
+export type AppLayoutMainProps = {
   /**
    * Everything between the tags will be displayed as the content of the main part of the application.
    */
@@ -53,7 +53,7 @@ export type ApplicationLayoutContextType = {
   setHideMainContent: (hide: boolean) => void;
 };
 
-type ApplicationLayoutPropsType = {
+export type ApplicationLayoutProps = {
   /**
    * Logo properties.
    */
@@ -73,7 +73,7 @@ type ApplicationLayoutPropsType = {
   /**
    * Use the DxcApplicationLayout.Main provided to render main content.
    */
-  children: ReactElement<AppLayoutMainPropsType>;
+  children: ReactElement<AppLayoutMainProps>;
 };
 
-export default ApplicationLayoutPropsType;
+export type { ApplicationLayoutProps as default };

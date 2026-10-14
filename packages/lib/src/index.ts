@@ -57,7 +57,14 @@ export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
 
 // types exports
-export type { Space, Margin, SVG, Size, Shape, Color } from "./common/types";
+export type {
+  Space as DxcSpace,
+  Margin as DxcMargin,
+  SVG as DxcSVG,
+  Size as DxcSize,
+  Shape as DxcShape,
+  Color as DxcColor,
+} from "./common/types";
 export type {
   AccordionProps as DxcAccordionProps,
   AccordionItemProps as DxcAccordionItemProps,
@@ -67,8 +74,17 @@ export type {
   AlertAction as DxcAlertAction,
   AlertMessage as DxcAlertMessage,
 } from "./alert/types";
+export type {
+  ApplicationLayoutProps as DxcAppLayoutProps,
+  AppLayoutMainProps as DxcAppLayoutMainProps,
+} from "./layout/types";
 export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
 export type { BadgeProps as DxcBadgeProps } from "./badge/types";
+export type {
+  BaseItem as DxcBaseItem,
+  BaseGroupItem as DxcBaseGroupItem,
+  BaseSection as DxcBaseSection,
+} from "./base-menu/types";
 export type {
   BreadcrumbsProps as DxcBreadcrumbsProps,
   BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
@@ -78,7 +94,7 @@ export type {
   BulletedListItemProps as DxcBulletedListItemProps,
 } from "./bulleted-list/types";
 export type {
-  ButtonProps as DxcButtonPropsType,
+  ButtonProps as DxcButtonProps,
   ButtonMode as DxcButtonMode,
   ButtonSemantic as DxcButtonSemantic,
   ButtonSize as DxcButtonSize,
@@ -86,3 +102,15 @@ export type {
 export type { CardProps as DxcCardProps } from "./card/types";
 export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";
+export type { ContextualMenuProps as DxcContextualMenuProps } from "./contextual-menu/types";
+export type {
+  HeaderProps as DxcHeaderProps,
+  HeaderMainNavPropsType as DxcHeaderMainNavPropsType,
+  HeaderSearchBarProps as DxcHeaderSearchBarProps,
+  HeaderGroupItem as DxcHeaderGroupItem,
+} from "./header/types";
+export type {
+  SidenavProps as DxcSidenavProps,
+  SidenavSection as DxcSidenavSection,
+  SidenavSearchbarProps as DxcSidenavSearchbarProps,
+} from "./sidenav/types";

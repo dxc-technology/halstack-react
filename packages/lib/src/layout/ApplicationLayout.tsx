@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import DxcFooter from "../footer/Footer";
 import DxcHeader from "../header/Header";
 import DxcSidenav from "../sidenav/Sidenav";
-import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
+import { ApplicationLayoutProps, AppLayoutMainProps } from "./types";
 import { bottomLinks, findChildType, socialLinks, year } from "./utils";
 import ApplicationLayoutContext from "./ApplicationLayoutContext";
 import { responsiveSizes } from "../common/variables";
@@ -62,9 +62,9 @@ const FooterContainer = styled.div`
   width: 100%;
 `;
 
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <div>{children}</div>;
+const Main = ({ children }: AppLayoutMainProps): JSX.Element => <div>{children}</div>;
 
-const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutPropsType): JSX.Element => {
+const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: ApplicationLayoutProps): JSX.Element => {
   const [headerHeight, setHeaderHeight] = useState("0px");
   const [hideMainContent, setHideMainContent] = useState(false);
   const themedLogos = use(HalstackLogosContext);
@@ -80,7 +80,7 @@ const DxcApplicationLayout = ({ logo, header, sidenav, footer, children }: Appli
   );
 
   const contextValue = useMemo(() => {
-    const logoToUse: ApplicationLayoutPropsType["logo"] = {
+    const logoToUse: ApplicationLayoutProps["logo"] = {
       src: logo?.src || themedLogos?.mainLogo || "",
       alt: logo?.alt || "",
     };
