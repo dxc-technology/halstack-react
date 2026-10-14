@@ -184,26 +184,26 @@ export const PseudoStates: Story = {
   ),
 };
 
-export const Types: Story = {
-  render: () => (
-    <>
-      <Title title="Icon (custom)" theme="light" level={2} />
-      <ActionIconRow
-        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        shapes={["circle"]}
-        groupBy={["size"]}
-        colors={undefined}
-      />
-      <Title title="Icon (default)" theme="light" level={2} />
-      <ActionIconRow
-        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        shapes={["circle"]}
-        groupBy={["size"]}
-        colors={undefined}
-      />
-    </>
-  ),
-};
+// export const Types: Story = {
+//   render: () => (
+//     <>
+//       <Title title="Icon (custom)" theme="light" level={2} />
+//       <ActionIconRow
+//         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+//         shapes={["circle"]}
+//         groupBy={["size"]}
+//         colors={["neutral"]}
+//       />
+//       <Title title="Icon (default)" theme="light" level={2} />
+//       <ActionIconRow
+//         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+//         shapes={["circle"]}
+//         groupBy={["size"]}
+//         colors={["neutral"]}
+//       />
+//     </>
+//   ),
+// };
 
 const Tooltip = () => (
   <>
