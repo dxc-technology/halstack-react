@@ -94,3 +94,5 @@ export type ContentType = {
   color: Color;
   status?: AvatarStatus;
 };
+
+export type { AvatarProps as default };

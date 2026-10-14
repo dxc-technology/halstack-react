@@ -30,7 +30,7 @@ type ActionIconRowProps = {
 const ActionIconRow = ({
   sizes = ["medium"],
   shapes = ["circle"],
-  colors = ["neutral"],
+  colors = [undefined],
   statusModes,
   statusPositions = [],
   pseudoStates = [],
@@ -144,6 +144,7 @@ export const Shapes: Story = {
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["circle", "square"]}
         groupBy={["shape", "size"]}
+        colors={["neutral"]}
       />
     </>
   ),
@@ -156,9 +157,10 @@ export const Colors: Story = {
       <ActionIconRow
         sizes={["medium"]}
         shapes={["circle"]}
-        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info", undefined]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info"]}
         groupBy={["color"]}
       />
+      <ActionIconRow colors={undefined} sizes={["medium"]} shapes={["circle"]} groupBy={["color"]} />
     </>
   ),
 };

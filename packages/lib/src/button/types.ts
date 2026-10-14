@@ -68,3 +68,5 @@ export type ButtonProps = {
    */
   type?: "button" | "reset" | "submit";
 };
+
+export type { ButtonProps as default };

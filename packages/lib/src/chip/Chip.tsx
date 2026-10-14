@@ -4,7 +4,7 @@ import ChipPropsType, { ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
 import { isValidElement, ReactNode, useState } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 import { getChipStyles } from "./utils";
 
 const Chip = styled.div<{

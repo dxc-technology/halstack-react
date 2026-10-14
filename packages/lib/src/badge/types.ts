@@ -58,3 +58,5 @@ export type NotificationBadgeProps = CommonProps & {
 };
 
 export type BadgeProps = PrettifyTypes<ContextualBadgeProps> | PrettifyTypes<NotificationBadgeProps>;
+
+export type { BadgeProps as default };

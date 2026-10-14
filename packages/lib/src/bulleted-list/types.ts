@@ -39,3 +39,5 @@ export type BulletedListItemProps = {
    */
   children?: ReactNode;
 };
+
+export type { BulletedListProps as default };

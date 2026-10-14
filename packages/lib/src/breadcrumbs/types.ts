@@ -42,3 +42,5 @@ export type BreadcrumbsItemProps = PrettifyTypes<
     onClick?: (href: string) => void;
   }
 >;
+
+export type { BreadcrumbsProps as default };

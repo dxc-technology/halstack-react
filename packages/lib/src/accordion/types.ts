@@ -111,3 +111,5 @@ export type AccordionContextProps = {
   handlerActiveChange?: (index: number | number[]) => void;
   independent?: boolean;
 };
+
+export type { AccordionProps as default };

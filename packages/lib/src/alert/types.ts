@@ -56,35 +56,35 @@ type CommonProps = {
 
 type ModeSpecificProps =
   | {
-      /**
-       * List of messages to be displayed. Each message has a close action that will,
-       * apart from remove from the alert the current message, call the onClose if it is defined.
-       * If the message is an array, the alert will show a navigation bar to move between the messages.
-       * The modal mode only allows one message per alert. In this case, the message must be an object
-       * and the presence of the onClose attribute is mandatory, since the management of the closing
-       * of the alert relies completely on the user.
-       */
-      message?: AlertMessage | AlertMessage[];
-      /**
-       * The mode of the alert.
-       */
-      mode?: "inline" | "banner";
-    }
+    /**
+     * List of messages to be displayed. Each message has a close action that will,
+     * apart from remove from the alert the current message, call the onClose if it is defined.
+     * If the message is an array, the alert will show a navigation bar to move between the messages.
+     * The modal mode only allows one message per alert. In this case, the message must be an object
+     * and the presence of the onClose attribute is mandatory, since the management of the closing
+     * of the alert relies completely on the user.
+     */
+    message?: AlertMessage | AlertMessage[];
+    /**
+     * The mode of the alert.
+     */
+    mode?: "inline" | "banner";
+  }
   | {
-      /**
-       * List of messages to be displayed. Each message has a close action that will,
-       * apart from remove from the alert the current message, call the onClose if it is defined.
-       * If the message is an array, the alert will show a navigation bar to move between the messages.
-       * The modal mode only allows one message per alert. In this case, the message must be an object
-       * and the presence of the onClose attribute is mandatory, since the management of the closing
-       * of the alert relies completely on the user.
-       */
-      message: Required<AlertMessage>;
-      /**
-       * The mode of the alert.
-       */
-      mode: "modal";
-    };
+    /**
+     * List of messages to be displayed. Each message has a close action that will,
+     * apart from remove from the alert the current message, call the onClose if it is defined.
+     * If the message is an array, the alert will show a navigation bar to move between the messages.
+     * The modal mode only allows one message per alert. In this case, the message must be an object
+     * and the presence of the onClose attribute is mandatory, since the management of the closing
+     * of the alert relies completely on the user.
+     */
+    message: Required<AlertMessage>;
+    /**
+     * The mode of the alert.
+     */
+    mode: "modal";
+  };
 
 export type AlertProps = PrettifyTypes<CommonProps & ModeSpecificProps>;
 
@@ -93,3 +93,5 @@ export type ModalAlertWrapperProps = {
   onClose?: () => void;
   children: ReactNode;
 };
+
+export type { AlertProps as default };

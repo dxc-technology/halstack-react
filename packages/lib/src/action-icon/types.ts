@@ -53,3 +53,5 @@ type CommonProps = {
 export type ActionIconProps =
   | (CommonProps & { content: ReactNode; icon?: string | SVG })
   | (CommonProps & { content?: ReactNode; icon: string | SVG });
+
+export type { ActionIconProps as default };
