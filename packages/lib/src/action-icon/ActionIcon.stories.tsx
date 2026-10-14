@@ -192,12 +192,14 @@ export const Types: Story = {
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["circle"]}
         groupBy={["size"]}
+        colors={undefined}
       />
       <Title title="Icon (default)" theme="light" level={2} />
       <ActionIconRow
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["circle"]}
         groupBy={["size"]}
+        colors={undefined}
       />
     </>
   ),
