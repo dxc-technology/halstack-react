@@ -1,7 +1,11 @@
 import { getMargin } from "../common/utils";
-import ButtonPropsType, { Mode, Semantic, Size } from "./types";
+import { ButtonProps, ButtonMode, ButtonSemantic, ButtonSize } from "./types";
 
-export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | "selected", size: Size) => {
+export const getButtonStyles = (
+  mode: ButtonMode,
+  semantic: ButtonSemantic | "unselected" | "selected",
+  size: ButtonSize
+) => {
   let enabled = "";
   let hover = "";
   let active = "";
@@ -207,12 +211,12 @@ const widths = {
   fitContent: "fit-content",
 };
 
-export const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>
+export const calculateWidth = (margin: ButtonProps["margin"], size: ButtonProps["size"]) =>
   size?.width === "fillParent"
     ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size?.width && widths[size?.width];
 
-export const getHeight = (height: Size["height"]) => {
+export const getHeight = (height: ButtonSize["height"]) => {
   switch (height) {
     case "small":
       return "var(--height-s)";

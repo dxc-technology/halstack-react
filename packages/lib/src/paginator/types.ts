@@ -1,4 +1,4 @@
-type Props = {
+export type PaginatorProps = {
   /**
    * Number of the current selected page.
    */
@@ -36,4 +36,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default Props;
+export type { PaginatorProps as default };

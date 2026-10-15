@@ -1,4 +1,4 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
 type Props = {
   /**

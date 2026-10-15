@@ -1,4 +1,4 @@
-export type PopoverPropsType = {
+export type PopoverProps = {
   /** Action that triggers the popover to open. */
   actionToOpen?: "click" | "hover";
   /** Alignment of the popover relative to the trigger element. */
@@ -29,3 +29,5 @@ export type PopoverPropsType = {
   /** Side of the trigger where the popover will appear. */
   side?: "top" | "bottom" | "left" | "right";
 };
+
+export type { PopoverProps as default };

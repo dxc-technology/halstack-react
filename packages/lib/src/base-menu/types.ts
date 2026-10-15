@@ -1,30 +1,30 @@
 import { ButtonHTMLAttributes, Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
-type CommonItemProps = {
+type BaseCommonItemProps = {
   badge?: ReactElement;
   icon?: string | SVG;
   label: string;
 };
 
-type Item = CommonItemProps & {
+type BaseItem = BaseCommonItemProps & {
   onSelect?: () => void;
   selected?: boolean;
   href?: string;
   renderItem?: (props: { children: ReactNode }) => ReactNode;
 };
 
-type GroupItem = CommonItemProps & {
-  items: (Item | GroupItem)[];
+type BaseGroupItem = BaseCommonItemProps & {
+  items: (BaseItem | BaseGroupItem)[];
   defaultOpen?: boolean;
 };
-type Section = { items: (Item | GroupItem)[]; title?: string };
-type Props = {
+type BaseSection = { items: (BaseItem | BaseGroupItem)[]; title?: string };
+type BaseMenuProps = {
   /**
    * Array of items to be displayed in the menu.
    * Each item can be a single/simple item, a group item or a section.
    */
-  items: (Item | GroupItem)[] | Section[];
+  items: (BaseItem | BaseGroupItem)[] | BaseSection[];
   /**
    * If true the menu will be displayed with a border.
    */
@@ -52,41 +52,41 @@ type Props = {
   onSelectItem?: () => void;
 };
 
-type ItemWithId = Item & { id: number };
+type BaseItemWithId = BaseItem & { id: number };
 
-type GroupItemWithId = Omit<GroupItem, "items"> & {
-  items: (ItemWithId | GroupItemWithId)[];
+type BaseGroupItemWithId = Omit<BaseGroupItem, "items"> & {
+  items: (BaseItemWithId | BaseGroupItemWithId)[];
 };
 
-type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+type BaseSectionWithId = { items: (BaseItemWithId | BaseGroupItemWithId)[]; title?: string };
 
-type SingleItemProps = ItemWithId & {
+type BaseSingleItemProps = BaseItemWithId & {
   depthLevel: number;
 };
-type GroupItemProps = GroupItemWithId & {
+type BaseGroupItemProps = BaseGroupItemWithId & {
   depthLevel: number;
 };
-type MenuItemProps = {
-  item: ItemWithId | GroupItemWithId;
+type BaseMenuItemProps = {
+  item: BaseItemWithId | BaseGroupItemWithId;
   depthLevel?: number;
 };
-type ItemActionProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
-  badge?: Item["badge"];
+type BaseItemActionProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
+  badge?: BaseItem["badge"];
   collapseIcon?: ReactNode;
   depthLevel: number;
-  icon?: Item["icon"];
-  label: Item["label"];
+  icon?: BaseItem["icon"];
+  label: BaseItem["label"];
   ref?: React.Ref<HTMLAnchorElement> | undefined;
-  selected: Item["selected"];
-  href?: Item["href"];
-  renderItem?: Item["renderItem"];
+  selected: BaseItem["selected"];
+  href?: BaseItem["href"];
+  renderItem?: BaseItem["renderItem"];
 };
-type SectionProps = {
-  section: SectionWithId;
+type BaseSectionProps = {
+  section: BaseSectionWithId;
   index: number;
   length: number;
 };
-type SubMenuProps = {
+type BaseSubMenuProps = {
   children: ReactNode;
   id?: string;
   depthLevel?: number;
@@ -105,20 +105,20 @@ type BaseMenuContextProps = {
 };
 
 export type {
-  CommonItemProps,
+  BaseCommonItemProps,
   BaseMenuContextProps,
-  GroupItem,
-  GroupItemProps,
-  GroupItemWithId,
-  Item,
-  ItemActionProps,
-  ItemWithId,
-  SubMenuProps,
-  MenuItemProps,
-  Section,
-  SectionWithId,
-  SectionProps,
-  SingleItemProps,
+  BaseGroupItem,
+  BaseGroupItemProps,
+  BaseGroupItemWithId,
+  BaseItem,
+  BaseItemActionProps,
+  BaseItemWithId,
+  BaseSubMenuProps,
+  BaseMenuItemProps,
+  BaseSection,
+  BaseSectionWithId,
+  BaseSectionProps,
+  BaseSingleItemProps,
+  BaseMenuProps,
+  BaseMenuProps as default,
 };
-
-export default Props;

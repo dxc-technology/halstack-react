@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
 type Action = {
   /**

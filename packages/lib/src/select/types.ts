@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
 /**
  * Reference to the select component.

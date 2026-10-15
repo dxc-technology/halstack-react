@@ -1,6 +1,6 @@
 import { Ref, use, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import CardPropsType from "./types";
+import { CardProps } from "./types";
 import DxcImage from "../image/Image";
 import { getCardStyles, emptyIconSizes, handleEvent, getSelectableWrapperStyles } from "./utils";
 import DxcFlex from "../flex/Flex";
@@ -9,13 +9,13 @@ import DxcTypography from "../typography/Typography";
 import { HalstackLanguageContext } from "../HalstackContext";
 
 const Card = styled.div<{
-  mode: CardPropsType["mode"];
-  direction?: CardPropsType["direction"];
-  imagePosition?: CardPropsType["imagePosition"];
+  mode: CardProps["mode"];
+  direction?: CardProps["direction"];
+  imagePosition?: CardProps["imagePosition"];
   selectable?: boolean;
   interactive?: boolean;
   selected?: boolean;
-  size?: CardPropsType["size"];
+  size?: CardProps["size"];
 }>`
   display: flex;
   flex-direction: ${({ direction, imagePosition }) =>
@@ -38,7 +38,7 @@ const SelectableWrapper = styled.div<{ selected: boolean }>`
   overflow: hidden;
 `;
 
-const EmptyCard = styled(Card)<{ emptySize?: CardPropsType["emptySize"] }>`
+const EmptyCard = styled(Card)<{ emptySize?: CardProps["emptySize"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +47,7 @@ const EmptyCard = styled(Card)<{ emptySize?: CardPropsType["emptySize"] }>`
   background: var(--color-bg-neutral-lighter);
 `;
 
-const LoadingCard = styled(Card)<{ loadingSize?: CardPropsType["loadingSize"] }>`
+const LoadingCard = styled(Card)<{ loadingSize?: CardProps["loadingSize"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +60,7 @@ const CardLink = styled(Card.withComponent("a"))`
   text-decoration: none;
 `;
 
-const ImageContainer = styled.div<{ image: CardPropsType["image"]; isLoading?: CardPropsType["isLoading"] }>`
+const ImageContainer = styled.div<{ image: CardProps["image"]; isLoading?: CardProps["isLoading"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ const DxcCard = ({
   selected,
   size = { width: "fitContent", height: "fitContent" },
   tabIndex = 0,
-}: CardPropsType) => {
+}: CardProps) => {
   const isInteractive = !!(onClick || onSelectionChange) || selectable;
   const [internalSelected, setInternalSelected] = useState(
     selected !== undefined ? selected : defaultSelected || false

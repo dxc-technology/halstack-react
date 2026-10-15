@@ -1,20 +1,14 @@
 import { ReactNode, Ref } from "react";
+import { PrettifyTypes } from "../common/types";
 
-type Space = {
+export type Spacing = {
   top?: string;
   right?: string;
   bottom?: string;
   left?: string;
 };
 
-type Inset = {
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-};
-
-type Background = {
+export type Background = {
   attachment?: string;
   clip?: string;
   color?: string;
@@ -30,23 +24,26 @@ export type BorderProperties = {
   style?: string;
   color?: string;
 };
-type Border =
+export type Border = PrettifyTypes<
   | BorderProperties
   | {
       top?: BorderProperties;
       right?: BorderProperties;
       bottom?: BorderProperties;
       left?: BorderProperties;
-    };
+    }
+>;
 
-type Outline = BorderProperties & {
-  offset?: string;
-};
+export type Outline = PrettifyTypes<
+  BorderProperties & {
+    offset?: string;
+  }
+>;
 
-type OverflowValues = "visible" | "hidden" | "clip" | "scroll" | "auto";
-type Overflow = OverflowValues | { x?: OverflowValues; y?: OverflowValues };
+export type OverflowValues = "visible" | "hidden" | "clip" | "scroll" | "auto";
+export type Overflow = PrettifyTypes<OverflowValues | { x?: OverflowValues; y?: OverflowValues }>;
 
-type Props = {
+export type ContainerProps = {
   /**
    * Based on the CSS property background allows configuring all properties related to the background of a container.
    *
@@ -108,11 +105,11 @@ type Props = {
    * Based on the CSS property inset this prop is a shorthand that corresponds
    * to the top, right, bottom, and/or left properties.
    */
-  inset?: Inset;
+  inset?: Spacing;
   /**
    * Size of the margin to be applied to the container.
    */
-  margin?: string | Space;
+  margin?: string | Spacing;
   /**
    * Sets the max-width CSS property.
    *
@@ -151,7 +148,7 @@ type Props = {
   /**
    * Size of the padding to be applied to the container.
    */
-  padding?: string | Space;
+  padding?: string | Spacing;
   /**
    * Sets the position CSS property.
    *
@@ -172,11 +169,11 @@ type Props = {
   zIndex?: "auto" | number;
 };
 
-export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
+export type StyledProps = Omit<ContainerProps, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
   $height?: string;
   $overflow?: Overflow;
   $width?: string;
 };
 
-export default Props;
+export type { ContainerProps as default };

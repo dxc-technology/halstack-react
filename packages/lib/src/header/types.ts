@@ -1,21 +1,24 @@
 import { ReactNode } from "react";
-import { CommonItemProps, Item } from "../base-menu/types";
+import { BaseCommonItemProps, BaseItem } from "../base-menu/types";
 import { SearchBarProps } from "../search-bar/types";
+import { PrettifyTypes } from "../common/types";
 
-type GroupItem = CommonItemProps & {
-  items: Item[];
-};
+export type HeaderGroupItem = PrettifyTypes<
+  BaseCommonItemProps & {
+    items: BaseItem[];
+  }
+>;
 
-type MainNavPropsType = (GroupItem | Item)[];
+export type HeaderMainNavPropsType = (HeaderGroupItem | PrettifyTypes<BaseItem>)[];
 
-type SearchBarHeaderProps = Omit<SearchBarProps, "autoFocus" | "disabled">;
+export type HeaderSearchBarProps = Omit<SearchBarProps, "autoFocus" | "disabled">;
 
-type Props = {
+export type HeaderProps = {
   appTitle?: string;
-  navItems?: MainNavPropsType;
+  navItems?: HeaderMainNavPropsType;
   responsiveBottomContent?: ReactNode;
-  searchBar?: SearchBarHeaderProps;
+  searchBar?: HeaderSearchBarProps;
   sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);
 };
 
-export default Props;
+export type { HeaderProps as default };

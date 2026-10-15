@@ -1,9 +1,9 @@
-import BleedPropsType from "./types";
+import { BleedProps } from "./types";
 import DxcContainer from "../container/Container";
 
 const getNegativeValue = (value?: string) => (value ? `calc(${value} * -1)` : null);
 
-const DxcBleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType) => (
+const DxcBleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedProps) => (
   <DxcContainer
     margin={{
       top: getNegativeValue(top) ?? getNegativeValue(vertical) ?? getNegativeValue(space) ?? "0rem",

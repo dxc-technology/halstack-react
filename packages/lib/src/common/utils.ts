@@ -1,15 +1,5 @@
-import { ReactNode, SVGProps } from "react";
 import { spaces } from "./variables";
-
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-export type SVG = ReactNode & SVGProps<SVGSVGElement>;
-export type Side = keyof Margin;
+import { Space, Margin, Side } from "./types";
 
 export const getMargin = (marginProp: Space | Margin | undefined, side: Side) =>
   marginProp && typeof marginProp === "object"

@@ -3,10 +3,11 @@ import styled from "@emotion/styled";
 import MenuItem from "../base-menu/MenuItem";
 import Section from "../base-menu/Section";
 import SubMenu from "../base-menu/SubMenu";
-import ContextualMenuContext from "../base-menu/BaseMenuContext";
-import ContextualMenuPropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
+import ContextualMenuContext from "./ContextualMenuContext";
+import { ContextualMenuProps } from "./types";
 import scrollbarStyles from "../styles/scroll";
 import { addIdToItems, isSection } from "../base-menu/utils";
+import { BaseGroupItemWithId, BaseItemWithId, BaseSectionWithId } from "../base-menu/types";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
@@ -24,7 +25,7 @@ const ContextualMenu = styled.div`
   ${scrollbarStyles}
 `;
 
-export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
+export default function DxcContextualMenu({ items }: ContextualMenuProps) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
@@ -48,12 +49,12 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
     <ContextualMenu ref={contextualMenuRef}>
       <ContextualMenuContext value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
-          (itemsWithId as SectionWithId[]).map((item, index) => (
+          (itemsWithId as BaseSectionWithId[]).map((item, index) => (
             <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
           ))
         ) : (
           <SubMenu>
-            {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
+            {(itemsWithId as (BaseGroupItemWithId | BaseItemWithId)[]).map((item, index) => (
               <MenuItem item={item} key={`${item.label}-${index}`} />
             ))}
           </SubMenu>

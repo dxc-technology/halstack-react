@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import type { Space, Margin, SVG } from "../common/utils";
+import type { Space, Margin, SVG } from "../common/types";
 
 export type TabsContextProps = {
   activeTabId?: string;
