@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from "dayjs";
 import styled from "@emotion/styled";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { HalstackLanguageContext } from "../HalstackContext";
-import DateInputPropsType from "./types";
+import { DateInputProps } from "./types";
 import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -22,12 +22,12 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin: DateInputPropsType["margin"], size: DateInputPropsType["size"]) =>
+const calculateWidth = (margin: DateInputProps["margin"], size: DateInputProps["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
 
-const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
+const DateInputContainer = styled.div<{ margin: DateInputProps["margin"]; size: DateInputProps["size"] }>`
   ${(props) => props.size === "fillParent" && "width: 100%;"}
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; si
 `;
 
 const Label = styled.label<{
-  disabled: DateInputPropsType["disabled"];
+  disabled: DateInputProps["disabled"];
   hasHelperText: boolean;
 }>`
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
@@ -56,13 +56,13 @@ const Label = styled.label<{
 `;
 
 const OptionalLabel = styled.span<{
-  disabled: DateInputPropsType["disabled"];
+  disabled: DateInputProps["disabled"];
 }>`
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger);")};
   font-weight: var(--typography-label-regular);
 `;
 
-const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
+const HelperText = styled.span<{ disabled: DateInputProps["disabled"] }>`
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger);")};
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
@@ -96,7 +96,7 @@ const DxcDateInput = ({
   tabIndex,
   ariaLabel = "Date input",
   ref,
-}: DateInputPropsType) => {
+}: DateInputProps) => {
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [isOpen, setIsOpen] = useState(false);
   const calendarId = `date-picker-${useId()}`;

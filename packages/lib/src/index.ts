@@ -77,6 +77,7 @@ export type {
 export type {
   ApplicationLayoutProps as DxcAppLayoutProps,
   AppLayoutMainProps as DxcAppLayoutMainProps,
+  AppLayoutLogo as DxcAppLayoutLogo,
 } from "./layout/types";
 export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
 export type { BadgeProps as DxcBadgeProps } from "./badge/types";
@@ -104,11 +105,45 @@ export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";
 export type { ContextualMenuProps as DxcContextualMenuProps } from "./contextual-menu/types";
 export type {
+  DataGridProps as DxcDataGridProps,
+  DataGridRow as DxcDataGridRow,
+  DataGridHierarchyRow as DxcDataGridHierarchyRow,
+  DataGridExpandableRow as DxcDataGridExpandableRow,
+  DataGridExpandableRows as DxcDataGridExpandableRows,
+  DataGridHierarchyRows as DxcDataGridHierarchyRows,
+  DataGridSelectableProps as DxcDataGridSelectableProps,
+  DataGridBasicProps as DxcDataGridBasicProps,
+  DataGridColumn as DxcDataGridColumn,
+} from "./data-grid/types";
+export type { DateInputProps as DxcDateInputProps } from "./date-input/types";
+export type { DialogProps as DxcDialogProps } from "./dialog/types";
+export type { DropdownProps as DxcDropdownProps, DropdownOption as DxcDropdownOption } from "./dropdown/types";
+export type { FileInputProps as DxcFileInputProps, FileData as DxcFileData } from "./file-input/types";
+export type { FlexProps as DxcFlexProps } from "./flex/types";
+export type {
+  FooterProps as DxcFooterProps,
+  FooterBottomLink as DxcFooterBottomLink,
+  FooterSocialLink as DxcFooterSocialLink,
+  FooterLogo as DxcFooterLogo,
+} from "./footer/types";
+export type {
+  GridProps as DxcGridProps,
+  GridGap as DxcGridGap,
+  GridCell as DxcGridCell,
+  GridItemProps as DxcGridItemProps,
+  GridPlaceSelfValues as DxcGridPlaceSelfValues,
+  GridPlaceContentValues as DxcGridPlaceContentValues,
+  GridPlaceItemsValues as DxcGridPlaceItemsValues,
+} from "./grid/types";
+export type {
   HeaderProps as DxcHeaderProps,
   HeaderMainNavPropsType as DxcHeaderMainNavPropsType,
   HeaderSearchBarProps as DxcHeaderSearchBarProps,
   HeaderGroupItem as DxcHeaderGroupItem,
 } from "./header/types";
+export type { HeadingProps as DxcHeadingProps } from "./heading/types";
+export type { ImageProps as DxcImageProps } from "./image/types";
+export type { InsetProps as DxcInsetProps } from "./inset/types";
 export type {
   SidenavProps as DxcSidenavProps,
   SidenavSection as DxcSidenavSection,

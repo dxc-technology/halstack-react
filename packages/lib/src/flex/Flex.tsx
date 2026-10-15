@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import FlexPropsType, { StyledProps } from "./types";
+import type { FlexProps, StyledProps } from "./types";
 
 const Flex = styled.div<StyledProps>`
   display: flex;
@@ -20,7 +20,7 @@ const Flex = styled.div<StyledProps>`
   `}
 `;
 
-const DxcFlex = ({ basis, direction, fullHeight = false, gap, grow, order, shrink, wrap, ...props }: FlexPropsType) => (
+const DxcFlex = ({ basis, direction, fullHeight = false, gap, grow, order, shrink, wrap, ...props }: FlexProps) => (
   <Flex
     $basis={basis}
     $direction={direction}

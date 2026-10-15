@@ -3,7 +3,7 @@ import { Margin, Space } from "../common/types";
 
 export type RefType = React.Ref<HTMLDivElement>;
 
-type Props = {
+export type DateInputProps = {
   /**
    * Initial value of the input element, only when it is uncontrolled.
    */
@@ -184,4 +184,4 @@ export type DateUnitPickerPropsType = {
   unit?: "month" | "year";
 };
 
-export default Props;
+export type { DateInputProps as default };

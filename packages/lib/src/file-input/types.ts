@@ -1,4 +1,4 @@
-import { Margin, Space } from "../common/types";
+import { Margin, PrettifyTypes, Space } from "../common/types";
 
 /**
  * Reference to the component.
@@ -119,7 +119,7 @@ type FileModeProps = CommonProps & {
   mode?: "file";
 };
 
-type Props = DropModeProps | FileModeProps;
+export type FileInputProps = PrettifyTypes<DropModeProps | FileModeProps>;
 
 /**
  * Single file item preview.
@@ -136,4 +136,4 @@ export type FileItemProps = {
   size: "medium" | "fillParent";
 };
 
-export default Props;
+export type { FileInputProps as default };

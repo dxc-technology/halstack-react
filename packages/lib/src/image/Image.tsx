@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
-import ImagePropsType from "./types";
+import { ImageProps } from "./types";
 
 const Figure = styled.figure`
   display: flex;
@@ -18,7 +18,7 @@ const CaptionContainer = styled.figcaption`
   font-weight: var(--typography-label-regular);
 `;
 
-const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
+const CaptionWrapper = ({ caption, children }: { caption: ImageProps["caption"]; children: ReactNode }) =>
   caption != null ? (
     <Figure>
       {children}
@@ -41,7 +41,7 @@ export default function DxcImage({
   src,
   srcSet,
   width,
-}: ImagePropsType) {
+}: ImageProps) {
   return (
     <CaptionWrapper caption={caption}>
       <img

@@ -119,5 +119,6 @@ export type {
   BaseSectionWithId,
   BaseSectionProps,
   BaseSingleItemProps,
+  BaseMenuProps,
   BaseMenuProps as default,
 };
