@@ -1,6 +1,6 @@
 import { Margin, Space } from "../common/types";
 
-type Props = {
+export type ProgressBarProps = {
   /**
    * Text to be placed above the progress bar.
    */
@@ -34,4 +34,4 @@ type Props = {
   ariaLabel?: string;
 };
 
-export default Props;
+export type { ProgressBarProps as default };

@@ -77,6 +77,7 @@ export type {
 export type {
   ApplicationLayoutProps as DxcAppLayoutProps,
   AppLayoutMainProps as DxcAppLayoutMainProps,
+  AppLayoutSidenavProps as DxcAppLayoutSidenavProps,
   AppLayoutLogo as DxcAppLayoutLogo,
 } from "./layout/types";
 export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
@@ -144,6 +145,12 @@ export type {
 export type { HeadingProps as DxcHeadingProps } from "./heading/types";
 export type { ImageProps as DxcImageProps } from "./image/types";
 export type { InsetProps as DxcInsetProps } from "./inset/types";
+export type { LinkProps as DxcLinkProps } from "./link/types";
+export type { MessageInputProps as DxcMessageInputProps } from "./message-input/types";
+export type { NavTabsProps as DxcNavTabsProps, NavTabsTabProps as DxcNavTabsTabProps } from "./nav-tabs/types";
+export type { NumberInputProps as DxcNumberInputProps } from "./number-input/types";
+export type { PaginatorProps as DxcPaginatorProps } from "./paginator/types";
+export type { PasswordProps as DxcPasswordInputProps } from "./password-input/types";
 export type {
   SidenavProps as DxcSidenavProps,
   SidenavSection as DxcSidenavSection,

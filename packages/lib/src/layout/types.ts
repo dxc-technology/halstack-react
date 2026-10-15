@@ -8,7 +8,7 @@ export type AppLayoutMainProps = {
   children: ReactNode;
 };
 
-type LogoPropsType = {
+export type AppLayoutLogo = {
   /**
    * Alternative text for the logo image.
    */
@@ -27,7 +27,7 @@ type LogoPropsType = {
   src: string | SVG;
 };
 
-export type AppLayoutSidenavPropsType = {
+export type AppLayoutSidenavProps = {
   /**
    * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
@@ -38,11 +38,11 @@ export type AppLayoutSidenavPropsType = {
   title?: ReactNode;
 };
 
-export type ApplicationLayoutContextType = {
+export type ApplicationLayoutContext = {
   /**
    * Logo properties.
    */
-  logo?: LogoPropsType;
+  logo?: AppLayoutLogo;
   /**
    * Indicates if the header exists.
    */
@@ -57,7 +57,7 @@ export type ApplicationLayoutProps = {
   /**
    * Logo properties.
    */
-  logo?: LogoPropsType;
+  logo?: AppLayoutLogo;
   /**
    * Header content.
    */

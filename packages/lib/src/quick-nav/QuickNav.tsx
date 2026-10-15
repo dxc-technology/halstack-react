@@ -3,7 +3,7 @@ import slugify from "slugify";
 import styled from "@emotion/styled";
 import DxcHeading from "../heading/Heading";
 import { HalstackLanguageContext } from "../HalstackContext";
-import QuickNavTypes from "./types";
+import { QuickNavProps } from "./types";
 
 const QuickNavContainer = styled.div`
   display: flex;
@@ -59,7 +59,7 @@ const Link = styled.a`
   }
 `;
 
-export default function DxcQuickNav({ links, title }: QuickNavTypes) {
+export default function DxcQuickNav({ links, title }: QuickNavProps) {
   const translatedLabels = use(HalstackLanguageContext).labels;
   const isHashRouter = (): boolean => {
     if (typeof window === "undefined") return false;

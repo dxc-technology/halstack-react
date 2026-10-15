@@ -48,3 +48,5 @@ export type LinkProps = {
    */
   tabIndex?: number;
 };
+
+export type { LinkProps as default };
