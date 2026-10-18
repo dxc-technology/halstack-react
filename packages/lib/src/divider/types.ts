@@ -10,7 +10,7 @@ type Props = {
   /**
    * Modifies the color of the divider.
    */
-  color?: "lightGrey" | "mediumGrey" | "darkGrey";
+  colorWeight?: "light" | "medium" | "dark";
   /**
    * Specifies whether the divider serves a purely decorative purpose
    * or functions as a semantic separator for content. Additionally, it

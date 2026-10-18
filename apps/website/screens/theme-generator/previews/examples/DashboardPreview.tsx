@@ -74,7 +74,7 @@ const DashboardPreview = ({ logos }: { logos: Logos }) => {
                   </DxcFlex>
                   <DxcInset horizontal="var(--spacing-padding-xl)">
                     <DxcInset top="var(--spacing-padding-xl)">
-                      <DxcDivider orientation="horizontal" color="mediumGrey" />
+                      <DxcDivider orientation="horizontal" colorWeight="medium" />
                     </DxcInset>
                     <DxcInset space="var(--spacing-padding-xs)" top="var(--spacing-padding-xl)">
                       <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)" alignSelf="stretch">

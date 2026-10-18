@@ -27,7 +27,7 @@ const LandingSteps = ({ steps }: { steps: { title: string; description: string }
             {index !== steps.length - 1 && (
               <DxcContainer width="48px">
                 <DxcFlex fullHeight alignItems="center" justifyContent="center">
-                  <DxcDivider color="lightGrey" />
+                  <DxcDivider colorWeight="light" />
                 </DxcFlex>
               </DxcContainer>
             )}

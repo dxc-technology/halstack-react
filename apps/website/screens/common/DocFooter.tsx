@@ -18,7 +18,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             Report an issue on GitHub
           </DxcLink>
         </DxcFlex>
-        <DxcDivider color="darkGrey" />
+        <DxcDivider colorWeight="dark" />
         <DxcFlex justifyContent="space-between">
           <DxcFlex direction="column" gap="var(--spacing-gap-ml)">
             {previousLink && (

@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import DividerPropsType from "./types";
 
 const StyledDivider = styled.hr<DividerPropsType>`
-  ${({ orientation, weight, color }) => `
+  ${({ orientation, weight, colorWeight }) => `
     border-color: ${
-      color === "lightGrey"
+      colorWeight === "light"
         ? "var(--border-color-neutral-lighter)"
-        : color === "mediumGrey"
+        : colorWeight === "medium"
           ? "var(--border-color-neutral-medium)"
           : "var(--border-color-neutral-strongest)"
     };
@@ -22,7 +22,7 @@ const StyledDivider = styled.hr<DividerPropsType>`
 `;
 
 export default function DxcDivider({
-  color = "mediumGrey",
+  colorWeight = "medium",
   decorative = true,
   orientation = "horizontal",
   weight = "regular",
@@ -31,7 +31,7 @@ export default function DxcDivider({
     <StyledDivider
       aria-hidden={decorative}
       aria-orientation={orientation}
-      color={color}
+      colorWeight={colorWeight}
       orientation={orientation}
       weight={weight}
     />

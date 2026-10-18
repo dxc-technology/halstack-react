@@ -214,7 +214,7 @@ const DxcSidenav = ({
             {bottomContent && (
               <>
                 <DxcInset horizontal="var(--spacing-padding-xs)">
-                  <DxcDivider color="lightGrey" />
+                  <DxcDivider colorWeight="light" />
                 </DxcInset>
                 <DxcFlex direction="column" gap="var(--spacing-gap-l)">
                   {bottomContent}

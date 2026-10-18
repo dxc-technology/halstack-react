@@ -77,7 +77,7 @@ const Divider = () => (
           augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
           Commodo sagittis volutpat id lorem.
         </DxcParagraph>
-        <DxcDivider color="lightGrey" />
+        <DxcDivider colorWeight="light" />
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -103,7 +103,7 @@ const Divider = () => (
           augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
           Commodo sagittis volutpat id lorem.
         </DxcParagraph>
-        <DxcDivider color="darkGrey" />
+        <DxcDivider colorWeight="dark" />
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -181,7 +181,7 @@ const Divider = () => (
           augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
           Commodo sagittis volutpat id lorem.
         </DxcParagraph>
-        <DxcDivider orientation="vertical" color="lightGrey" />
+        <DxcDivider orientation="vertical" colorWeight="light" />
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
@@ -207,7 +207,7 @@ const Divider = () => (
           augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
           Commodo sagittis volutpat id lorem.
         </DxcParagraph>
-        <DxcDivider orientation="vertical" color="darkGrey" />
+        <DxcDivider orientation="vertical" colorWeight="dark" />
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra

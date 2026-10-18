@@ -223,7 +223,7 @@ export default function DxcWizard({
           </Step>
           {i !== steps.length - 1 && (
             <DividerContainer mode={mode}>
-              <DxcDivider color="darkGrey" orientation={mode} />
+              <DxcDivider colorWeight="dark" orientation={mode} />
             </DividerContainer>
           )}
         </StepContainer>

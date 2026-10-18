@@ -21,13 +21,13 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>color</td>
+            <td>colorWeight</td>
             <td>
-              <TableCode>'lightGrey' | 'mediumGrey' | 'darkGrey'</TableCode>
+              <TableCode>'light' | 'medium' | 'dark'</TableCode>
             </td>
             <td>Modifies the color of the divider.</td>
             <td>
-              <TableCode>'mediumGrey'</TableCode>
+              <TableCode>'medium'</TableCode>
             </td>
           </tr>
           <tr>
