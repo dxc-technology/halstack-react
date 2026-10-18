@@ -2,6 +2,10 @@ import { ReactNode } from "react";
 
 type Props = {
   /**
+   * Id of the element (usually the title of the dialog) that labels the dialog.
+   */
+  ariaLabelledBy?: string;
+  /**
    * If true, the close button will be visible.
    */
   closable?: boolean;

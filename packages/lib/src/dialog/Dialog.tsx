@@ -58,6 +58,7 @@ const CloseIconActionContainer = styled.div`
 `;
 
 const DxcDialog = ({
+  ariaLabelledBy,
   children,
   // Will have sense to be closable if onCloseClick is passed?
   closable = true,
@@ -97,7 +98,13 @@ const DxcDialog = ({
         createPortal(
           <DialogContainer>
             {overlay && <Overlay onClick={onBackgroundClick} />}
-            <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
+            <Dialog
+              aria-label={ariaLabelledBy ? undefined : "Dialog"}
+              aria-labelledby={ariaLabelledBy}
+              aria-modal={overlay}
+              closable={closable}
+              role="dialog"
+            >
               {!disableFocusLock ? (
                 <FocusLock>
                   {children}

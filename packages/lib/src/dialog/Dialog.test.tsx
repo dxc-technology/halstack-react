@@ -50,6 +50,15 @@ describe("Dialog component tests", () => {
     expect(getByRole("dialog")).toBeTruthy();
     expect(getByRole("dialog").getAttribute("aria-modal")).toBe("false");
   });
+  test("Dialog is labelled by the element referenced in ariaLabelledBy", () => {
+    const { getByRole } = render(
+      <DxcDialog ariaLabelledBy="dialog-title">
+        <h2 id="dialog-title">Delivery address</h2>
+      </DxcDialog>
+    );
+    expect(getByRole("dialog", { name: "Delivery address" })).toBeTruthy();
+    expect(getByRole("dialog").getAttribute("aria-label")).toBeNull();
+  });
   test("Calls correct function onCloseClick", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
