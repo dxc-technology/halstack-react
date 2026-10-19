@@ -62,7 +62,7 @@ const DropdownTrigger = styled.button<{
     !props.disabled &&
     `
       &:focus {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: -2px;
       }
       &:hover, &:active {

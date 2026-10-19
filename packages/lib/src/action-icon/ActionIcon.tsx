@@ -45,7 +45,7 @@ const ActionIconContainer = styled.div<
       &:active:enabled {
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
-        outline-color: var(--border-color-secondary-medium);
+        outline-color: var(--border-color-neutral-dark);
         outline-offset: -2px;
       }
     `}

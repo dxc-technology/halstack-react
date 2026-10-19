@@ -9,7 +9,7 @@ export const getChipStyles = (mode: ChipPropsType["mode"], selected?: boolean) =
   const commonStyles = `
     &:focus {
       border-color: transparent;
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     }`;
 
   switch (mode) {
