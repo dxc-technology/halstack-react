@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
-import { SVG } from "../common/types";
+import { PrettifyTypes, SVG } from "../common/types";
 
 type BaseCommonItemProps = {
   badge?: ReactElement;
@@ -7,17 +7,21 @@ type BaseCommonItemProps = {
   label: string;
 };
 
-type BaseItem = BaseCommonItemProps & {
-  onSelect?: () => void;
-  selected?: boolean;
-  href?: string;
-  renderItem?: (props: { children: ReactNode }) => ReactNode;
-};
+type BaseItem = PrettifyTypes<
+  BaseCommonItemProps & {
+    onSelect?: () => void;
+    selected?: boolean;
+    href?: string;
+    renderItem?: (props: { children: ReactNode }) => ReactNode;
+  }
+>;
 
-type BaseGroupItem = BaseCommonItemProps & {
-  items: (BaseItem | BaseGroupItem)[];
-  defaultOpen?: boolean;
-};
+type BaseGroupItem = PrettifyTypes<
+  BaseCommonItemProps & {
+    items: (BaseItem | BaseGroupItem)[];
+    defaultOpen?: boolean;
+  }
+>;
 type BaseSection = { items: (BaseItem | BaseGroupItem)[]; title?: string };
 type BaseMenuProps = {
   /**

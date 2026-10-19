@@ -56,6 +56,8 @@ export { default as DxcWizard } from "./wizard/Wizard";
 export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
 
+export { coreTokens as DxcCoreTokens, aliasTokens as DxcAliasTokens } from "./styles/tokens";
+
 // types exports
 export type {
   Action as DxcAction,
