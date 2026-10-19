@@ -5,7 +5,7 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
 import { getGroupSelectionType, groupsHaveOptions } from "./utils";
 import scrollbarStyles from "../styles/scroll";
-import { FlattenedItem, ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
+import { FlattenedItem, ListboxProps, SelectOptionGroup, SelectOption } from "./types";
 import CheckboxContext from "../checkbox/CheckboxContext";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 import DxcBleed from "../bleed/Bleed";
@@ -291,7 +291,7 @@ const NonVirtualizedListbox = ({
   const listboxRef = useRef<HTMLDivElement>(null);
   let globalMappingIndex = (multiple ? enableSelectAll : optional) ? 0 : -1;
 
-  const getGroupOption = (groupId: string, option: ListOptionGroupType) => {
+  const getGroupOption = (groupId: string, option: SelectOptionGroup) => {
     if (multiple && enableSelectAll) {
       const groupSelectionType = getGroupSelectionType(option.options, currentValue as string[]);
       globalMappingIndex++;
@@ -322,7 +322,7 @@ const NonVirtualizedListbox = ({
       );
   };
 
-  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
+  const mapOptionFunc = (option: SelectOption | SelectOptionGroup, mapIndex: number) => {
     if ("options" in option) {
       const groupId = `${id}-group-${mapIndex}`;
 

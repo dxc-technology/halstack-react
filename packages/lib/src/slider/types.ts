@@ -5,7 +5,7 @@ import { Margin, Space } from "../common/types";
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-type Props = {
+export type SliderProps = {
   /**
    * Specifies a string to be used as the name for the slider element when no `label` is provided.
    */
@@ -88,4 +88,4 @@ type Props = {
   value?: number;
 };
 
-export default Props;
+export type { SliderProps as default };

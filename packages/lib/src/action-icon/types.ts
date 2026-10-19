@@ -1,9 +1,9 @@
 import { MouseEvent, ReactNode, Ref } from "react";
-import { SVG, Color, Shape, Size } from "../common/types";
+import { SVG, Color, Shape, Size, Mode } from "../common/types";
 
 export type RefType = HTMLDivElement;
 export interface Status {
-  mode: "default" | "info" | "success" | "warning" | "error";
+  mode: Mode;
   position: "top" | "bottom";
 }
 

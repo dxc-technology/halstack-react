@@ -2,15 +2,15 @@ import { useEffect, useMemo, useRef, useState, ComponentProps, HTMLAttributes, T
 import styled from "@emotion/styled";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
-import ResultsetTablePropsType, { Column, Row } from "./types";
+import { ResultSetTableProps, ResultSetTableColumn, ResultSetTableRow } from "./types";
 import { assignIdsToRows, getMinItemsPerPageIndex, getMaxItemsPerPageIndex, sortArray } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { TableVirtuoso } from "react-virtuoso";
 import { Table, TableContainer } from "../styles/tables/tablesStyles";
 
 const SortingHeader = styled.span<{
-  isSortable: Column["isSortable"];
-  mode: ResultsetTablePropsType["mode"];
+  isSortable: ResultSetTableColumn["isSortable"];
+  mode: ResultSetTableProps["mode"];
 }>`
   display: flex;
   align-items: center;
@@ -43,7 +43,7 @@ const DxcResultsetTable = ({
   showGoToPage = true,
   tabIndex = 0,
   virtualizedHeight,
-}: ResultsetTablePropsType) => {
+}: ResultSetTableProps) => {
   const [page, setPage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
@@ -146,7 +146,7 @@ const DxcResultsetTable = ({
             TableRow: (props: HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />,
           }}
           fixedHeaderContent={renderHeaderRow}
-          itemContent={(_index: number, row: { id: string; cells: Row }) => (
+          itemContent={(_index: number, row: { id: string; cells: ResultSetTableRow }) => (
             <>
               {row.cells.map((cellContent, cellIndex) => (
                 <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>

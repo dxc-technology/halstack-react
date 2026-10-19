@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
-import { Margin, SVG, Space } from "../common/types";
+import { Margin, PrettifyTypes, SVG, Space } from "../common/types";
 
 /**
  * Reference to the select component.
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-export type ListOptionType = {
+export type SelectOption = {
   /**
    * Element used as the icon that will be placed before the option label.
    * It can be an inline SVG or Material Symbol name. If the url option
@@ -26,7 +26,7 @@ export type ListOptionType = {
   value: string;
 };
 
-export type ListOptionGroupType = {
+export type SelectOptionGroup = {
   /**
    * Label of the group to be shown in the select's listbox.
    */
@@ -34,7 +34,7 @@ export type ListOptionGroupType = {
   /**
    * List of the grouped options.
    */
-  options: ListOptionType[];
+  options: SelectOption[];
 };
 
 type CommonProps = {
@@ -87,7 +87,7 @@ type CommonProps = {
   /**
    * An array of objects representing the selectable options.
    */
-  options: ListOptionType[] | ListOptionGroupType[];
+  options: SelectOption[] | SelectOptionGroup[];
   /**
    * Text to be put as placeholder of the select.
    */
@@ -191,20 +191,20 @@ type MultipleSelect = CommonProps & {
   value?: string[];
 };
 
-type Props = SingleSelect | MultipleSelect;
+export type SelectProps = PrettifyTypes<SingleSelect | MultipleSelect>;
 
 /**
  * Single option of the select component.
  */
-export type OptionProps = {
+export type ListboxOptionProps = {
   id: string;
   isGroupedOption?: boolean;
   isLastOption: boolean;
   isSelected: boolean;
   isSelectAllOption?: boolean;
   multiple: boolean;
-  option: ListOptionType;
-  onClick: (option: ListOptionType) => void;
+  option: SelectOption;
+  onClick: (option: SelectOption) => void;
   visualFocused: boolean;
 };
 
@@ -215,15 +215,15 @@ export type ListboxProps = {
   ariaLabelledBy: string;
   currentValue: string | string[];
   enableSelectAll: boolean;
-  handleGroupOnClick: (group: ListOptionGroupType) => void;
-  handleOptionOnClick: (option: ListOptionType) => void;
+  handleGroupOnClick: (group: SelectOptionGroup) => void;
+  handleOptionOnClick: (option: SelectOption) => void;
   handleSelectAllOnClick: () => void;
   id: string;
   lastOptionIndex: number;
   multiple: boolean;
   optional: boolean;
-  optionalItem: ListOptionType;
-  options: ListOptionType[] | ListOptionGroupType[];
+  optionalItem: SelectOption;
+  options: SelectOption[] | SelectOptionGroup[];
   searchable: boolean;
   selectionType: "checked" | "unchecked" | "indeterminate";
   styles: CSSProperties;
@@ -235,7 +235,7 @@ export type FlattenedItem =
   | { type: "selectAll"; id?: never }
   | { type: "optionalItem"; id?: never }
   | { type: "groupLabel"; label: string; id: string }
-  | { type: "groupHeader"; group: ListOptionGroupType; id: string }
-  | { type: "option"; option: ListOptionType; id: string; isGroupedOption?: boolean };
+  | { type: "groupHeader"; group: SelectOptionGroup; id: string }
+  | { type: "option"; option: SelectOption; id: string; isGroupedOption?: boolean };
 
-export default Props;
+export type { SelectProps as default };

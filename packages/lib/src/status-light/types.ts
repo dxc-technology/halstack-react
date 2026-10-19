@@ -1,7 +1,6 @@
-type Mode = "default" | "info" | "success" | "warning" | "error";
-type Size = "small" | "medium" | "large";
+import { Mode } from "../common/types";
 
-type Props = {
+export type StatusLightProps = {
   /**
    * It will define the color of the light based on its semantic meaning.
    */
@@ -13,7 +12,7 @@ type Props = {
   /**
    *  Size of the component. Should be defined based on its importance and/or available space.
    */
-  size?: Size;
+  size?: "small" | "medium" | "large";
 };
 
-export default Props;
+export type { StatusLightProps as default };

@@ -1,6 +1,6 @@
-import ToastPropsType, { QueuedToast } from "./types";
+import { ToastProps, QueuedToast } from "./types";
 
-export default function getSemantic(semantic: ToastPropsType["semantic"]) {
+export default function getSemantic(semantic: ToastProps["semantic"]) {
   switch (semantic) {
     case "default":
       return {

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import StatusLightPropsType from "./types";
+import iStatusLightProps from "./types";
 
-const getModeColor = (mode: Required<StatusLightPropsType>["mode"]) => {
+const getModeColor = (mode: Required<iStatusLightProps>["mode"]) => {
   switch (mode) {
     case "default":
       return "var(--color-fg-neutral-strong);";
@@ -16,7 +16,7 @@ const getModeColor = (mode: Required<StatusLightPropsType>["mode"]) => {
   }
 };
 
-const getSizeValues = (size: Required<StatusLightPropsType>["size"]) => {
+const getSizeValues = (size: Required<iStatusLightProps>["size"]) => {
   switch (size) {
     case "small":
       return {
@@ -36,7 +36,7 @@ const getSizeValues = (size: Required<StatusLightPropsType>["size"]) => {
   }
 };
 
-const StatusLightContainer = styled.div<{ size: Required<StatusLightPropsType>["size"] }>`
+const StatusLightContainer = styled.div<{ size: Required<iStatusLightProps>["size"] }>`
   display: inline-flex;
   align-items: center;
   gap: ${({ size }) => (size === "small" ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)")};
@@ -44,8 +44,8 @@ const StatusLightContainer = styled.div<{ size: Required<StatusLightPropsType>["
 `;
 
 const Dot = styled.div<{
-  mode: Required<StatusLightPropsType>["mode"];
-  size: Required<StatusLightPropsType>["size"];
+  mode: Required<iStatusLightProps>["mode"];
+  size: Required<iStatusLightProps>["size"];
 }>`
   background-color: ${({ mode }) => getModeColor(mode)};
   border-radius: 50%;
@@ -55,8 +55,8 @@ const Dot = styled.div<{
 `;
 
 const Label = styled.span<{
-  mode: Required<StatusLightPropsType>["mode"];
-  size: Required<StatusLightPropsType>["size"];
+  mode: Required<iStatusLightProps>["mode"];
+  size: Required<iStatusLightProps>["size"];
 }>`
   color: ${({ mode }) => getModeColor(mode)};
   font-family: var(--typography-font-family);
@@ -67,7 +67,7 @@ const Label = styled.span<{
   white-space: nowrap;
 `;
 
-export default function DxcStatusLight({ label, mode = "default", size = "medium" }: StatusLightPropsType) {
+export default function DxcStatusLight({ label, mode = "default", size = "medium" }: iStatusLightProps) {
   return (
     <StatusLightContainer role="status" size={size}>
       <Dot mode={mode} size={size} aria-hidden="true" />

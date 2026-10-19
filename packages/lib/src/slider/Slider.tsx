@@ -1,7 +1,7 @@
 import { ChangeEvent, MouseEvent, useId, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import SliderPropsType from "./types";
+import { SliderProps } from "./types";
 import { calculateWidth, roundUp, stepPrecision } from "./utils";
 import DxcNumberInput from "../number-input/NumberInput";
 import HelperText from "../styles/forms/HelperText";
@@ -9,8 +9,8 @@ import Label from "../styles/forms/Label";
 import { css } from "@emotion/react";
 
 const SliderContainer = styled.div<{
-  margin: SliderPropsType["margin"];
-  size: SliderPropsType["size"];
+  margin: SliderProps["margin"];
+  size: SliderProps["size"];
 }>`
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ const SliderContainer = styled.div<{
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-const MainContainer = styled.div<{ showInput: SliderPropsType["showInput"] }>`
+const MainContainer = styled.div<{ showInput: SliderProps["showInput"] }>`
   display: grid;
   gap: var(--spacing-gap-l);
   ${({ showInput }) => showInput && "grid-template-columns: 1fr 64px;"};
@@ -34,7 +34,7 @@ const MainContainer = styled.div<{ showInput: SliderPropsType["showInput"] }>`
   place-items: center;
 `;
 
-const LimitsValueGrid = styled.div<{ showLimitsValues: SliderPropsType["showLimitsValues"] }>`
+const LimitsValueGrid = styled.div<{ showLimitsValues: SliderProps["showLimitsValues"] }>`
   display: grid;
   align-items: center;
   gap: var(--spacing-gap-ml);
@@ -43,7 +43,7 @@ const LimitsValueGrid = styled.div<{ showLimitsValues: SliderPropsType["showLimi
 `;
 
 const LimitLabel = styled.span<{
-  disabled: SliderPropsType["disabled"];
+  disabled: SliderProps["disabled"];
 }>`
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
@@ -59,7 +59,7 @@ const SliderInputContainer = styled.div`
   min-width: 184px;
 `;
 
-const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
+const thumbStyles = (disabled: SliderProps["disabled"]) => css`
   -webkit-appearance: none;
   width: 12px;
   height: var(--height-xxxs);
@@ -86,10 +86,10 @@ const thumbFocusStyles = css`
   outline-offset: 2px;
 `;
 const SliderInput = styled.input<{
-  disabled: SliderPropsType["disabled"];
-  max: Required<SliderPropsType>["maxValue"];
-  min: Required<SliderPropsType>["minValue"];
-  value: Required<SliderPropsType>["value"];
+  disabled: SliderProps["disabled"];
+  max: Required<SliderProps>["maxValue"];
+  min: Required<SliderProps>["minValue"];
+  value: Required<SliderProps>["value"];
 }>`
   -webkit-appearance: none;
   margin: 0;
@@ -136,7 +136,7 @@ const TicksContainer = styled.datalist`
 `;
 
 const Tick = styled.option<{
-  disabled: SliderPropsType["disabled"];
+  disabled: SliderProps["disabled"];
   currentTick: boolean;
 }>`
   all: unset;
@@ -168,7 +168,7 @@ const DxcSlider = ({
   size = "fillParent",
   step = 1,
   value,
-}: SliderPropsType) => {
+}: SliderProps) => {
   const labelId = `label-${useId()}`;
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());

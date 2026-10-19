@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Margin, Space } from "../common/types";
+import { Margin, PrettifyTypes, Space } from "../common/types";
 
-export type Column = {
+export type ResultSetTableColumn = {
   /**
    * Column display value.
    */
@@ -12,7 +12,7 @@ export type Column = {
   isSortable?: boolean;
 };
 
-type Cell = {
+export type ResultSetTableRow = {
   /**
    * Value to be displayed in the cell.
    */
@@ -22,15 +22,13 @@ type Cell = {
    * column. If not indicated displayValue will be used for sorting.
    */
   sortValue?: string | number | Date;
-};
-
-export type Row = Cell[];
+}[];
 
 type CommonProps = {
   /**
    * An array of objects representing the columns of the table.
    */
-  columns: Column[];
+  columns: ResultSetTableColumn[];
   /**
    * Size of the margin to be applied to the component. You can pass an object with 'top',
    * 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -46,7 +44,7 @@ type CommonProps = {
    * An array of objects representing the rows of the table, you will have
    * as many objects as columns in the table.
    */
-  rows: Row[];
+  rows: ResultSetTableRow[];
   /**
    * Value of the tabindex attribute applied to the sortable icon.
    */
@@ -103,6 +101,6 @@ type NonPaginatedProps = CommonProps & {
   showGoToPage?: never;
 };
 
-type Props = PaginatedProps | NonPaginatedProps;
+export type ResultSetTableProps = PrettifyTypes<PaginatedProps | NonPaginatedProps>;
 
-export default Props;
+export type { ResultSetTableProps as default };

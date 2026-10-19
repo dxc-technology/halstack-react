@@ -20,7 +20,7 @@ import NumberInputContext from "../number-input/NumberInputContext";
 import { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
-import TextInputPropsType, { AutosuggestWrapperProps } from "./types";
+import { TextInputProps, AutosuggestWrapperProps } from "./types";
 import {
   calculateWidth,
   decrementNumber,
@@ -41,8 +41,8 @@ import { getLengthErrorMessage } from "../common/utils";
 import DxcPopover from "../popover/Popover";
 
 const TextInputContainer = styled.div<{
-  margin: TextInputPropsType["margin"];
-  size: TextInputPropsType["size"];
+  margin: TextInputProps["margin"];
+  size: TextInputProps["size"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -58,9 +58,9 @@ const TextInputContainer = styled.div<{
 `;
 
 const TextInput = styled.div<{
-  disabled: Required<TextInputPropsType>["disabled"];
+  disabled: Required<TextInputProps>["disabled"];
   error: boolean;
-  readOnly: Required<TextInputPropsType>["readOnly"];
+  readOnly: Required<TextInputProps>["readOnly"];
 }>`
   position: relative;
   display: flex;
@@ -72,7 +72,7 @@ const TextInput = styled.div<{
 `;
 
 const Input = styled.input<{
-  alignment: TextInputPropsType["alignment"];
+  alignment: TextInputProps["alignment"];
 }>`
   max-width: 100%;
   background: none;
@@ -96,7 +96,7 @@ const Input = styled.input<{
   ${({ disabled }) => disabled && "cursor: not-allowed;"}
 `;
 
-const Addon = styled.span<{ disabled: TextInputPropsType["disabled"]; type: "prefix" | "suffix" }>`
+const Addon = styled.span<{ disabled: TextInputProps["disabled"]; type: "prefix" | "suffix" }>`
   ${({ disabled, type }) => {
     const color = disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)";
     return `color: ${color}; border-${type === "prefix" ? "right" : "left"}: var(--border-width-s) var(--border-style-default) ${color};`;
@@ -140,7 +140,7 @@ const DxcTextInput = ({
   suggestions,
   tabIndex = 0,
   value,
-}: TextInputPropsType) => {
+}: TextInputProps) => {
   const inputId = `input-${useId()}`;
   const autosuggestId = `suggestions-${inputId}`;
   const errorId = `error-${inputId}`;

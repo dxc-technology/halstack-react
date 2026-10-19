@@ -3,7 +3,7 @@
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-type RadioGroupOption = {
+export type RadioGroupOption = {
   /**
    * Label of the option placed next to the radio input.
    */

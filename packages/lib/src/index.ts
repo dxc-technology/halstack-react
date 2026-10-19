@@ -58,6 +58,7 @@ export { default as useToast } from "./toast/useToast";
 
 // types exports
 export type {
+  Action as DxcAction,
   Space as DxcSpace,
   Margin as DxcMargin,
   SVG as DxcSVG,
@@ -150,9 +151,38 @@ export type { MessageInputProps as DxcMessageInputProps } from "./message-input/
 export type { NavTabsProps as DxcNavTabsProps, NavTabsTabProps as DxcNavTabsTabProps } from "./nav-tabs/types";
 export type { NumberInputProps as DxcNumberInputProps } from "./number-input/types";
 export type { PaginatorProps as DxcPaginatorProps } from "./paginator/types";
-export type { PasswordProps as DxcPasswordInputProps } from "./password-input/types";
+export type { PasswordInputProps as DxcPasswordInputProps } from "./password-input/types";
+export type {
+  RadioGroupProps as DxcRadioGroupProps,
+  RadioGroupOption as DxcRadioGroupOption,
+} from "./radio-group/types";
+export type {
+  ResultSetTableProps as DxcResultSetTableProps,
+  ResultSetTableColumn as DxcResultSetTableColumn,
+  ResultSetTableRow as DxcResultSetTableRow,
+} from "./resultset-table/types";
+export type {
+  SelectProps as DxcSelectProps,
+  SelectOption as DxcSelectOption,
+  SelectOptionGroup as DxcSelectOptionGroup,
+} from "./select/types";
 export type {
   SidenavProps as DxcSidenavProps,
   SidenavSection as DxcSidenavSection,
   SidenavSearchbarProps as DxcSidenavSearchbarProps,
 } from "./sidenav/types";
+export type { SliderProps as DxcSliderProps } from "./slider/types";
+export type { SpinnerProps as DxcSpinnerProps } from "./spinner/types";
+export type { StatusLightProps as DxcStatusLightProps } from "./status-light/types";
+export type { SwitchProps as DxcSwitchProps } from "./switch/types";
+export type { TableProps as DxcTableProps, ActionsCellProps as DxcActionsCellProps } from "./table/types";
+export type { TabsProps as DxcTabsProps, TabsTabProps as DxcTabsTabProps } from "./tabs/types";
+export type { TextInputProps as DxcTextInputProps } from "./text-input/types";
+export type { TextAreaProps as DxcTextareaProps } from "./textarea/types";
+export type {
+  DefaultToast as DxcDefaultToast,
+  LoadingToast as DxcLoadingToast,
+  SemanticToast as DxcSemanticToast,
+  ToastsQueueProps as DxcToastsQueueProps,
+  ToastProps as DxcToastProps,
+} from "./toast/types";

@@ -1,8 +1,8 @@
 import { Ref } from "react";
-import { SVG, Color, Size, Shape } from "../common/types";
+import { SVG, Color, Size, Shape, Mode } from "../common/types";
 
 export type AvatarStatus = {
-  mode: "default" | "info" | "success" | "warning" | "error";
+  mode: Mode;
   position: "top" | "bottom";
 };
 

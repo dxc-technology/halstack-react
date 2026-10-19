@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Row } from "./types";
+import { ResultSetTableRow } from "./types";
 
-export const assignIdsToRows = (resultset: Row[]) =>
+export const assignIdsToRows = (resultset: ResultSetTableRow[]) =>
   resultset.length > 0
     ? resultset.map((row, index) => ({
         cells: row,
@@ -15,7 +15,7 @@ export const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPag
 export const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
-  resultset: Row[],
+  resultset: ResultSetTableRow[],
   page: number
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
@@ -24,7 +24,11 @@ export const isDateType = (value: ReactNode | Date): boolean => value instanceof
 export const normalizeSortValue = (sortValue: string | Date | ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-export const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
+export const sortArray = (
+  index: number,
+  order: "ascending" | "descending",
+  resultset: { id: string; cells: ResultSetTableRow }[]
+) =>
   resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1.cells[index]?.sortValue || element1.cells[index]?.displayValue);
     const sortValueB = normalizeSortValue(element2.cells[index]?.sortValue || element2.cells[index]?.displayValue);

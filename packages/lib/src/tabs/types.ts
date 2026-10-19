@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import type { Space, Margin, SVG } from "../common/types";
+import type { Space, Margin, SVG, PrettifyTypes } from "../common/types";
 
 export type TabsContextProps = {
   activeTabId?: string;
@@ -23,11 +23,15 @@ type CommonTabProps = {
   ref?: React.Ref<HTMLButtonElement>;
 };
 
-export type TabProps =
-  | (CommonTabProps & { tabId: string; label?: string; icon?: string | SVG })
-  | (CommonTabProps & { tabId?: string; label: string; icon?: string | SVG });
+export type TabsTabProps = PrettifyTypes<
+  CommonTabProps &
+    (
+      | { tabId: string; label?: string; icon?: string | SVG }
+      | (CommonTabProps & { tabId?: string; label: string; icon?: string | SVG })
+    )
+>;
 
-type TabsProps = {
+export type TabsProps = {
   /**
    * Whether the icon should appear above or to the left of the label.
    */
@@ -47,6 +51,4 @@ type TabsProps = {
   children?: ReactNode;
 };
 
-type Props = TabsProps;
-
-export default Props;
+export type { TabsProps as default };
