@@ -88,7 +88,7 @@ const SelectionIndicator = styled.div<{ disabled: SelectPropsType["disabled"] }>
   min-height: var(--height-s);
   border-radius: var(--border-radius-xs);
   border: var(--border-width-s) var(--border-style-default)
-    ${({ disabled }) => (disabled ? "var(--border-color-neutral-strong)" : "var(--border-color-neutral-light)")};
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-lighter)" : "var(--border-color-neutral-strong)")};
 `;
 
 const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
@@ -96,7 +96,7 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   place-items: center;
   background-color: ${({ disabled }) => (disabled ? "transparent" : "var(--color-bg-neutral-lighter)")};
   border-right: var(--border-width-s) var(--border-style-default)
-    ${({ disabled }) => (disabled ? "var(--border-color-neutral-medium)" : "var(--border-color-neutral-light)")};
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-lighter)" : "var(--border-color-neutral-strong)")};
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
