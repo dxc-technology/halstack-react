@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import MenuItem from "../base-menu/MenuItem";
 import Section from "../base-menu/Section";
 import SubMenu from "../base-menu/SubMenu";
-import ContextualMenuContext from "./ContextualMenuContext";
+import BaseMenuContext from "../base-menu/BaseMenuContext";
 import { ContextualMenuProps } from "./types";
 import scrollbarStyles from "../styles/scroll";
 import { addIdToItems, isSection } from "../base-menu/utils";
@@ -47,7 +47,7 @@ export default function DxcContextualMenu({ items }: ContextualMenuProps) {
 
   return (
     <ContextualMenu ref={contextualMenuRef}>
-      <ContextualMenuContext value={contextValue}>
+      <BaseMenuContext value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
           (itemsWithId as BaseSectionWithId[]).map((item, index) => (
             <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
@@ -59,7 +59,7 @@ export default function DxcContextualMenu({ items }: ContextualMenuProps) {
             ))}
           </SubMenu>
         )}
-      </ContextualMenuContext>
+      </BaseMenuContext>
     </ContextualMenu>
   );
 }
