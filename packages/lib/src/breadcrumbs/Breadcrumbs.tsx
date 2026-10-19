@@ -4,7 +4,7 @@ import { BreadcrumbsProps } from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
 import Item from "./Item";
-import { Option } from "../dropdown/types";
+import { DropdownOption } from "../dropdown/types";
 import DxcFlex from "../flex/Flex";
 
 const OrderedList = styled.ol`
@@ -57,7 +57,9 @@ const DxcBreadcrumbs = ({
                 icon={<DxcIcon icon="more_horiz" />}
                 margin={showRoot ? { left: "small" } : undefined}
                 onSelectOption={handleOnSelectOption}
-                options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }) as Option)}
+                options={items
+                  .slice(showRoot ? 1 : 0, -1)
+                  .map(({ label, href }) => ({ label, value: href }) as DropdownOption)}
                 title="More options"
               />
             </DxcFlex>

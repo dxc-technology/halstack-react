@@ -186,3 +186,7 @@ export type {
   ToastsQueueProps as DxcToastsQueueProps,
   ToastProps as DxcToastProps,
 } from "./toast/types";
+export type { ToggleGroupProps as DxcToggleGroupProps, ToggleOption as DxcToggleOption } from "./toggle-group/types";
+export type { TooltipProps as DxcTooltipProps } from "./tooltip/types";
+export type { TypographyProps as DxcTypographyProps } from "./typography/types";
+export type { WizardProps as DxcWizardProps, WizardStepProps as DxcWizardStepProps } from "./wizard/types";

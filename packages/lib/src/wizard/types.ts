@@ -1,6 +1,6 @@
 import { Margin, SVG, Space } from "../common/types";
 
-export type StepProps = {
+export type WizardStepProps = {
   /**
    * Step label.
    */
@@ -23,7 +23,7 @@ export type StepProps = {
   valid?: boolean;
 };
 
-type Props = {
+export type WizardProps = {
   /**
    * The wizard can be shown in horizontal or vertical.
    */
@@ -44,7 +44,7 @@ type Props = {
   /**
    * An array of objects representing the steps.
    */
-  steps: StepProps[];
+  steps: WizardStepProps[];
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -56,4 +56,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default Props;
+export type { WizardProps as default };

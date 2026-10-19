@@ -1,6 +1,6 @@
-import { Margin, SVG, Space } from "../common/types";
+import { Margin, PrettifyTypes, SVG, Space } from "../common/types";
 
-type OptionIcon = {
+type ToggleOptionIcon = {
   /**
    * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
@@ -16,7 +16,7 @@ type OptionIcon = {
   title: string;
 };
 
-type OptionLabel = {
+type ToggleOptionLabel = {
   /**
    * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
@@ -32,16 +32,18 @@ type OptionLabel = {
   title?: never;
 };
 
-type Option = {
-  /**
-   * If true, the option will be disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Number with the option inner value.
-   */
-  value: number;
-} & (OptionIcon | OptionLabel);
+export type ToggleOption = PrettifyTypes<
+  {
+    /**
+     * If true, the option will be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * Number with the option inner value.
+     */
+    value: number;
+  } & (ToggleOptionIcon | ToggleOptionLabel)
+>;
 
 type CommonProps = {
   /**
@@ -52,7 +54,7 @@ type CommonProps = {
   /**
    * An array of objects representing the selectable options.
    */
-  options: Option[];
+  options: ToggleOption[];
   /**
    * The orientation of the toggle group.
    */
@@ -105,6 +107,6 @@ type SingleSelectionToggleGroup = {
   value?: number;
 };
 
-type Props = CommonProps & (MultipleSelectionToggleGroup | SingleSelectionToggleGroup);
+export type ToggleGroupProps = PrettifyTypes<CommonProps & (MultipleSelectionToggleGroup | SingleSelectionToggleGroup)>;
 
-export default Props;
+export type { ToggleGroupProps as default };
