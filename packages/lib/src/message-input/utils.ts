@@ -12,39 +12,47 @@ export const getFilePreview = (file: File): string => {
 };
 
 export const inputStylesByStatePromptInput = (disabled: boolean, error: boolean, focus?: boolean) => css`
-  background-color: ${disabled
-    ? `var(--color-bg-neutral-lighter)`
-    : `var(--color-bg-neutral-lightest);
-`};
+  background-color: ${
+    disabled
+      ? `var(--color-bg-neutral-lighter)`
+      : `var(--color-bg-neutral-lightest);
+`
+  };
 
   border-radius: var(--border-radius-l);
   border-width: ${!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)"};
   border-style: var(--border-style-default);
-  border-color: ${disabled
-    ? "var(--border-color-neutral-strong)"
-    : error
-      ? "var(--border-color-error-medium)"
-      : "var(--border-color-neutral-lighter)"};
+  border-color: ${
+    disabled
+      ? "var(--border-color-neutral-strong)"
+      : error
+        ? "var(--border-color-error-medium)"
+        : "var(--border-color-neutral-lighter)"
+  };
 
-  ${!disabled
-    ? `
+  ${
+    !disabled
+      ? `
       &:hover {
         border-color: ${error ? "var(--border-color-error-strong)" : "var(--border-color-primary-strong)"};
       }
 
       &:focus {
         outline-offset: -2px;
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         border-color: transparent;
       }
     `
-    : "cursor: not-allowed;"};
+      : "cursor: not-allowed;"
+  };
 
-  ${focus && !disabled
-    ? `
+  ${
+    focus && !disabled
+      ? `
       outline-offset: -2px;
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
       border-color: transparent;
     `
-    : ""};
+      : ""
+  };
 `;
