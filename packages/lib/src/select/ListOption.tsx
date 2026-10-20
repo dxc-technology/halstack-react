@@ -20,7 +20,7 @@ const OptionItem = styled.li<{
   }
   ${({ visualFocused }) =>
     visualFocused &&
-    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: -2px;"}
+    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark); outline-offset: -2px;"}
 `;
 
 const StyledOption = styled.span<{

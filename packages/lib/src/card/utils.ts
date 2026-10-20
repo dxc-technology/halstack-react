@@ -35,17 +35,17 @@ export const getCardStyles = (
     if (mode === "elevated") {
       hover = `box-shadow: var(--shadow-300);`;
       focus = `box-shadow: var(--shadow-100); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
       active = `box-shadow: var(--shadow-100);`;
     } else if (mode === "outlined") {
       if (selected) {
         hover = `border-width: var(--border-width-none);`;
-        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
         active = `border-width: var(--border-width-none);`;
       } else {
         hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);outline-offset: var(--border-width-none);`;
-        focus = `border-width: var(--boselectedrder-width-m); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);outline-offset: var(--border-width-none);`;
+        focus = `border-width: var(--border-width-m); 
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);outline-offset: var(--border-width-none);`;
         active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);outline-offset: var(--border-width-none);`;
       }
     }
@@ -67,7 +67,7 @@ export const getSelectableWrapperStyles = (selected: boolean) => {
 
   if (selected) {
     hover = `outline-color: var(--border-color-primary-stronger);`;
-    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
     active = `outline-color: var(--border-color-primary-strong);`;
   }
 

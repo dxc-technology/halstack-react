@@ -109,7 +109,7 @@ const SocialAnchor = styled.a`
 
   &:focus,
   &:focus-visible {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     outline-offset: 0px;
   }
 `;

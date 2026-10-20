@@ -82,7 +82,7 @@ const thumbStyles = (disabled: SliderProps["disabled"]) => css`
   }
 `;
 const thumbFocusStyles = css`
-  outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+  outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   outline-offset: 2px;
 `;
 const SliderInput = styled.input<{

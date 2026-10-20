@@ -55,7 +55,7 @@ const Link = styled.a`
     color: var(--color-fg-primary-strong);
   }
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
 `;
 

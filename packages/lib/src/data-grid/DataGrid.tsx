@@ -52,7 +52,7 @@ const DataGridContainer = styled.div<{
     background-color: var(--color-bg-neutral-lightest);
 
     &[aria-selected="true"] {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     }
     .rdg-text-editor:focus {
       border-color: transparent;

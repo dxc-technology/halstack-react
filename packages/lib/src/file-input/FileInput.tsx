@@ -79,7 +79,7 @@ const DragDropArea = styled.div<{
     props.isDragging &&
     `
       background-color: var(--color-bg-secondary-lightest);
-      border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      border: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     `}
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;

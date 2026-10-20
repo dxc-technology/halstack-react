@@ -41,7 +41,7 @@ const TabLink = styled.div<
         background-color: var(--color-bg-primary-lighter);
       }
       :focus {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: calc(var(--border-width-m) * -1);
       }
       :active {
