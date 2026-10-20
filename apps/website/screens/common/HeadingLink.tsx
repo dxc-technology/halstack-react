@@ -40,7 +40,7 @@ const HeadingAnchor = styled.a`
   }
   &:focus {
     opacity: 1;
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     outline-offset: -4px;
   }
   &:hover {

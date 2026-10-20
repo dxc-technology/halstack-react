@@ -113,7 +113,7 @@ const Step = styled.button<{
       }
     `}
   &:focus:enabled {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   &:disabled {
     cursor: not-allowed;
