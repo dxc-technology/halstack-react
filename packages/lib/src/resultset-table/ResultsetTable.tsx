@@ -23,7 +23,7 @@ const SortingHeader = styled.span<{
       ? `border-radius: var(--border-radius-xs);
          cursor: pointer;
          &:focus {
-           outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);s
+           outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
          }`
       : "cursor: default;"}
 `;

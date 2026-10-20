@@ -19,7 +19,7 @@ const SuggestionContainer = styled.li<{
   }
   ${({ visuallyFocused }) =>
     visuallyFocused &&
-    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: -2px;"}
+    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark); outline-offset: -2px;"}
 `;
 
 const StyledSuggestion = styled.span`
