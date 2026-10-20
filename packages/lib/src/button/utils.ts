@@ -15,7 +15,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
     border-radius: var(--border-radius-s);
 
     &:focus:enabled {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
       outline-offset: -2px;
     }`;
 

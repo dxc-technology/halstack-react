@@ -45,7 +45,7 @@ const HeaderButton = styled.button`
     background-color: var(--color-bg-primary-light);
   }
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   &:active {
     color: var(--color-fg-neutral-bright);

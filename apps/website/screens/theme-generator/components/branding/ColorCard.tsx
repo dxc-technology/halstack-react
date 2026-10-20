@@ -17,7 +17,7 @@ const ColorBox = styled.button<{ color: string }>`
   &:focus {
     outline-style: solid;
     outline-width: var(--border-width-m);
-    outline-color: var(--border-color-secondary-medium);
+    outline-color: var(--border-color-neutral-dark);
     outline-offset: 2px;
   }
 `;

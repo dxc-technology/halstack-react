@@ -55,7 +55,7 @@ const PickerButton = styled.button<{
     color: var(--color-fg-neutral-dark);
   }
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   &:active {
     color: var(--color-fg-neutral-bright);

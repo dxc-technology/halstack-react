@@ -35,7 +35,7 @@ const Link = styled.a<{
   ${({ disabled, inheritColor }) =>
     !inheritColor && !disabled && "&:visited { color: var(--color-fg-primary-strongest); }"};
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     ${({ disabled }) => disabled && "outline: none"}
   }
 `;

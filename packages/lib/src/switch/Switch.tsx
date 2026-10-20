@@ -53,7 +53,7 @@ const SwitchContainer = styled.div<{
     /* Thumb focus */
     &:not([aria-disabled="true"]) {
       > span::before {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: var(--spacing-padding-xxxs);
       }
     }

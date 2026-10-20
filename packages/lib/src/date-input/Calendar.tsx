@@ -79,7 +79,7 @@ const DayCellButton = styled.button<{
     `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-lighter);`}
 
   &:focus {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   &:hover {
     background-color: ${(props) =>

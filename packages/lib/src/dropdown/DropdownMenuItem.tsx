@@ -21,7 +21,7 @@ const DropdownMenuItemContainer = styled.li<{
   ${(props) =>
     props.visuallyFocused &&
     `
-  outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); 
+  outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark); 
   outline-offset: calc(-1 * var(--border-width-m));
 `}
   &:first-child {
