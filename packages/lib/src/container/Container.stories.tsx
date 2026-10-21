@@ -270,7 +270,7 @@ const Container = () => (
     <ExampleContainer>
       <DxcContainer
         outline={{
-          color: "var(--border-color-secondary-medium)",
+          color: "var(--border-color-neutral-dark)",
           style: "var(--border-style-default)",
           offset: "var(--spacing-padding-xxxs)",
         }}
