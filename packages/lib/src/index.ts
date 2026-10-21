@@ -90,6 +90,7 @@ export type {
   BaseGroupItem as DxcBaseGroupItem,
   BaseSection as DxcBaseSection,
 } from "./base-menu/types";
+export type { BleedProps as DxcBleedProps } from "./bleed/types";
 export type {
   BreadcrumbsProps as DxcBreadcrumbsProps,
   BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
@@ -121,6 +122,7 @@ export type {
 } from "./data-grid/types";
 export type { DateInputProps as DxcDateInputProps } from "./date-input/types";
 export type { DialogProps as DxcDialogProps } from "./dialog/types";
+export type { DividerProps as DxcDividerProps } from "./divider/types";
 export type { DropdownProps as DxcDropdownProps, DropdownOption as DxcDropdownOption } from "./dropdown/types";
 export type { FileInputProps as DxcFileInputProps, FileData as DxcFileData } from "./file-input/types";
 export type { FlexProps as DxcFlexProps } from "./flex/types";
