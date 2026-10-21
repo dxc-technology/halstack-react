@@ -108,6 +108,15 @@ export type {
 export type { CardProps as DxcCardProps } from "./card/types";
 export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";
+export type {
+  ContainerProps as DxcContainerProps,
+  ContainerSpacing as DxcContainerSpacing,
+  ContainerBackground as DxcContainerBackground,
+  ContainerBorderProperties as DxcContainerBorderProperties,
+  ContainerBorder as DxcContainerBorder,
+  ContainerOutline as DxcContainerOutline,
+  ContainerOverflow as DxcOverflow,
+} from "./container/types";
 export type { ContextualMenuProps as DxcContextualMenuProps } from "./contextual-menu/types";
 export type {
   DataGridProps as DxcDataGridProps,
@@ -125,7 +134,7 @@ export type { DialogProps as DxcDialogProps } from "./dialog/types";
 export type { DividerProps as DxcDividerProps } from "./divider/types";
 export type { DropdownProps as DxcDropdownProps, DropdownOption as DxcDropdownOption } from "./dropdown/types";
 export type { FileInputProps as DxcFileInputProps, FileData as DxcFileData } from "./file-input/types";
-export type { FlexProps as DxcFlexProps } from "./flex/types";
+export type { FlexProps as DxcFlexProps, FlexGap as DxcFlexGap } from "./flex/types";
 export type {
   FooterProps as DxcFooterProps,
   FooterBottomLink as DxcFooterBottomLink,
@@ -156,6 +165,9 @@ export type { NavTabsProps as DxcNavTabsProps, NavTabsTabProps as DxcNavTabsTabP
 export type { NumberInputProps as DxcNumberInputProps } from "./number-input/types";
 export type { PaginatorProps as DxcPaginatorProps } from "./paginator/types";
 export type { PasswordInputProps as DxcPasswordInputProps } from "./password-input/types";
+export type { PopoverProps as DxcPopoverProps } from "./popover/types";
+export type { ProgressBarProps as DxcProgressBarProps } from "./progress-bar/types";
+export type { QuickNavProps as DxcQuickNavProps, QuickNavLink as DxcQuickNavLink } from "./quick-nav/types";
 export type {
   RadioGroupProps as DxcRadioGroupProps,
   RadioGroupOption as DxcRadioGroupOption,
@@ -183,6 +195,7 @@ export type { TableProps as DxcTableProps, ActionsCellProps as DxcActionsCellPro
 export type { TabsProps as DxcTabsProps, TabsTabProps as DxcTabsTabProps } from "./tabs/types";
 export type { TextInputProps as DxcTextInputProps } from "./text-input/types";
 export type { TextAreaProps as DxcTextareaProps } from "./textarea/types";
+export type { TimeInputProps as DxcTimeInputProps } from "./time-input/types";
 export type {
   DefaultToast as DxcDefaultToast,
   LoadingToast as DxcLoadingToast,

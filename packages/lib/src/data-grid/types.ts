@@ -240,11 +240,8 @@ type DataGridBasicProps = {
 type DataGridProps = PrettifyTypes<
   CommonProps &
     (DataGridPaginatedProps | DataGridNonPaginatedProps) &
-    (
-      | (DataGridBasicProps & DataGridSelectableProps)
-      | (DataGridExpandableRows & DataGridSelectableProps)
-      | (DataGridHierarchyRows & DataGridSelectableProps)
-    )
+    (DataGridBasicProps | DataGridExpandableRows | DataGridHierarchyRows) &
+    DataGridSelectableProps
 >;
 
 export type {
