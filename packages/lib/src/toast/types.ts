@@ -60,7 +60,7 @@ type QueuedToast = PrettifyTypes<
   }
 >;
 
-type ToastContext = (toast: ToastType, semantic: Semantic) => () => void;
+type ToastContextType = (toast: ToastType, semantic: Semantic) => () => void;
 
 type ToastProps = {
   action?: Action;
@@ -92,7 +92,7 @@ export type {
   QueuedToast,
   Semantic,
   SemanticToast,
-  ToastContext,
+  ToastContextType,
   ToastsQueueProps,
   ToastType,
   ToastProps,

@@ -9,13 +9,13 @@ export type HeaderGroupItem = PrettifyTypes<
   }
 >;
 
-export type HeaderMainNavPropsType = (HeaderGroupItem | PrettifyTypes<BaseItem>)[];
+export type HeaderMainNavProps = (HeaderGroupItem | PrettifyTypes<BaseItem>)[];
 
 export type HeaderSearchBarProps = Omit<SearchBarProps, "autoFocus" | "disabled">;
 
 export type HeaderProps = {
   appTitle?: string;
-  navItems?: HeaderMainNavPropsType;
+  navItems?: HeaderMainNavProps;
   responsiveBottomContent?: ReactNode;
   searchBar?: HeaderSearchBarProps;
   sideContent?: ReactNode | ((isResponsive: boolean) => ReactNode);

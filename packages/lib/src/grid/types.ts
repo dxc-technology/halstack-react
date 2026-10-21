@@ -8,11 +8,12 @@ type GridPlaceContentValues =
   "baseline" | "center" | "end" | "normal" | "space-around" | "space-between" | "space-evenly" | "start" | "stretch";
 type GridPlaceItemsValues = "baseline" | "center" | "end" | "normal" | "start" | "stretch";
 type PlaceObject<Type, Suffix extends string> = {
-  [Property in Extract<keyof Type, string> as `${Property}${Capitalize<Suffix>}`]: Type[Property];
+  [Property in keyof Type as Property extends string ? `${Property}${Capitalize<Suffix>}` : never]: Type[Property];
 };
+
 type PlaceGeneric<PlaceValues, Element extends string> =
-  | PlaceObject<{ align: PlaceValues; justify?: PlaceValues }, Element>
-  | PlaceObject<{ align?: PlaceValues; justify: PlaceValues }, Element>
+  | PlaceObject<{ align?: PlaceValues; justify?: PlaceValues }, Element>
+  | PlaceObject<{ align: PlaceValues; justify: PlaceValues }, Element>
   | PlaceValues;
 
 type GridItemProps = {

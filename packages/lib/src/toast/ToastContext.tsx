@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { ToastContext } from "./types";
+import { ToastContextType } from "./types";
 
-export default createContext<ToastContext | null>(null);
+export default createContext<ToastContextType | null>(null);

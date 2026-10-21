@@ -115,7 +115,7 @@ export type {
   ContainerBorderProperties as DxcContainerBorderProperties,
   ContainerBorder as DxcContainerBorder,
   ContainerOutline as DxcContainerOutline,
-  ContainerOverflow as DxcOverflow,
+  ContainerOverflow as DxcContainerOverflow,
 } from "./container/types";
 export type { ContextualMenuProps as DxcContextualMenuProps } from "./contextual-menu/types";
 export type {
@@ -152,7 +152,7 @@ export type {
 } from "./grid/types";
 export type {
   HeaderProps as DxcHeaderProps,
-  HeaderMainNavPropsType as DxcHeaderMainNavPropsType,
+  HeaderMainNavProps as DxcHeaderMainNavProps,
   HeaderSearchBarProps as DxcHeaderSearchBarProps,
   HeaderGroupItem as DxcHeaderGroupItem,
 } from "./header/types";
