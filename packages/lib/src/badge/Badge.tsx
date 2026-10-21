@@ -22,7 +22,7 @@ const contextualColorMap = {
   },
   info: {
     background: "var(--color-bg-info-lighter)",
-    text: "var(--color-fg-info-stronger)",
+    text: "var(--color-fg-info-strongest)",
   },
   neutral: {
     background: "var(--color-bg-neutral-light)",
@@ -39,7 +39,7 @@ const contextualColorMap = {
 };
 
 const notificationColor = {
-  background: "var(--color-bg-error-strong)",
+  background: "var(--color-bg-error-stronger)",
   text: "var(--color-fg-neutral-bright)",
 };
 
