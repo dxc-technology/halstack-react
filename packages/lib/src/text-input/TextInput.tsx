@@ -98,8 +98,9 @@ const Input = styled.input<{
 
 const Addon = styled.span<{ disabled: TextInputPropsType["disabled"]; type: "prefix" | "suffix" }>`
   ${({ disabled, type }) => {
-    const color = disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)";
-    return `color: ${color}; border-${type === "prefix" ? "right" : "left"}: var(--border-width-s) var(--border-style-default) ${color};`;
+    const textColor = disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)";
+    const borderColor = disabled ? "var(--border-color-neutral-lighter)" : "var(--border-color-neutral-strong)";
+    return `color: ${textColor}; border-${type === "prefix" ? "right" : "left"}: var(--border-width-s) var(--border-style-default) ${borderColor};`;
   }};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
