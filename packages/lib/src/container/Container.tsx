@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { BorderProperties, StyledProps, ContainerProps } from "./types";
+import { ContainerBorderProperties, StyledProps, ContainerProps } from "./types";
 
-const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
+const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: ContainerBorderProperties) =>
   `border-${direction}: ${borderProperties.width ?? ""} ${borderProperties.style ?? ""} ${
     borderProperties.color ?? ""
   };`;
