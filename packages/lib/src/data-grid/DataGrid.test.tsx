@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { DataGridColumn, DataGridHierarchyRow } from "./types";
 
 Object.defineProperty(window, "getComputedStyle", {
   value: () => ({
@@ -18,7 +18,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
-const columns: GridColumn[] = [
+const columns: DataGridColumn[] = [
   {
     key: "id",
     label: "ID",
@@ -64,7 +64,7 @@ const expandableRows = [
   },
 ];
 
-const hierarchyRows: HierarchyGridRow[] = [
+const hierarchyRows: DataGridHierarchyRow[] = [
   {
     name: "Root Node 1",
     value: "1",
@@ -210,7 +210,7 @@ const hierarchyRows: HierarchyGridRow[] = [
       },
     ],
   },
-] as HierarchyGridRow[];
+] as DataGridHierarchyRow[];
 
 const loadedChildrenMock = [
   { id: "child-1", name: "Child 1", value: "Child 1" },
@@ -219,7 +219,7 @@ const loadedChildrenMock = [
 
 const childrenTriggerMock = jest.fn().mockResolvedValue(loadedChildrenMock);
 
-const hierarchyRowsLazy: HierarchyGridRow[] = [
+const hierarchyRowsLazy: DataGridHierarchyRow[] = [
   {
     name: "Root Node 1 Lazy",
     value: "1",
@@ -246,7 +246,7 @@ const hierarchyRowsLazy: HierarchyGridRow[] = [
     value: "5",
     id: "lazy-e",
   },
-] as HierarchyGridRow[];
+] as DataGridHierarchyRow[];
 
 describe("Data grid component tests", () => {
   beforeAll(() => {
