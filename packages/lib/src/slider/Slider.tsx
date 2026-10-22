@@ -207,7 +207,7 @@ const DxcSlider = ({
   };
 
   return (
-    <SliderContainer margin={margin} size={size} ref={ref}>
+    <SliderContainer aria-disabled={disabled} margin={margin} size={size} ref={ref}>
       {label && (
         <Label id={labelId} disabled={disabled}>
           {label}

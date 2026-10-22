@@ -488,7 +488,7 @@ const DxcTextInput = ({
 
   return (
     <>
-      <TextInputContainer margin={margin} ref={ref} size={size}>
+      <TextInputContainer aria-disabled={disabled} margin={margin} ref={ref} size={size}>
         {label && (
           <Label disabled={disabled} hasMargin={!helperText} htmlFor={inputId}>
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
