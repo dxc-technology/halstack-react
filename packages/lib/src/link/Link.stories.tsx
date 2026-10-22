@@ -56,7 +56,7 @@ const Link = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
-      <span style={{ color: "#fabada" }}>
+      <span style={{ color: "#333333" }}>
         This is a <DxcLink inheritColor>Test</DxcLink>.
       </span>
     </ExampleContainer>
