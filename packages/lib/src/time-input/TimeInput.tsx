@@ -193,6 +193,7 @@ const DxcTimeInput = ({
   return (
     <>
       <TimeInputContainer
+        aria-disabled={disabled}
         size={size}
         ref={ref}
         onBlur={() => {
