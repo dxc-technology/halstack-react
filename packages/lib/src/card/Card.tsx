@@ -132,12 +132,16 @@ const DxcCard = ({
       <EmptyCard mode={mode} emptySize={emptySize} size={size}>
         <DxcFlex direction="column" alignItems="center" gap="var(--spacing-gap-xs)">
           <DxcTypography
-            color="var(--color-fg-neutral-strong)"
+            color="var(--color-fg-neutral-strongest)"
             fontSize={emptyIconSizes[emptySize?.iconSize || "medium"]}
           >
             <DxcIcon icon="text_snippet" />
           </DxcTypography>
-          <DxcTypography color="var(--color-fg-neutral-strong)" fontSize="var(--typography-label-s)">
+          <DxcTypography
+            color="var(--color-fg-neutral-strongest)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-regular)"
+          >
             {translatedLabels?.card?.noContent || "No content"}
           </DxcTypography>
         </DxcFlex>
