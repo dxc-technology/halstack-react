@@ -86,7 +86,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
         case "default":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
           color: var(--color-fg-primary-strong);`;
-          hover = `background-color: var(--color-bg-primary-strong); 
+          hover = `background-color: var(--color-bg-primary-stronger); 
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-primary-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -96,7 +96,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
         case "error":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-error-medium);
           color: var(--color-fg-error-medium);`;
-          hover = `background-color: var(--color-bg-error-strong);
+          hover = `background-color: var(--color-bg-error-stronger);
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-error-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -108,7 +108,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           color: var(--color-fg-warning-medium);`;
           hover = `background-color: var(--color-bg-warning-stronger);
           color: var(--color-fg-neutral-bright);`;
-          active = `background-color: var(--color-bg-warning-strongest);
+          active = `background-color: var(--color-bg-warning-stronger);
           color: var(--color-fg-neutral-bright);`;
           disabled = `border-color: var(--border-color-warning-light);
           color: var(--color-fg-warning-light);`;
@@ -116,9 +116,9 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
         case "success":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-success-medium);
           color: var(--color-fg-success-medium);`;
-          hover = `background-color: var(--color-bg-success-strong);
+          hover = `background-color: var(--color-bg-success-stronger);
           color: var(--color-fg-neutral-bright);`;
-          active = `background-color: var(--color-bg-success-strongest);
+          active = `background-color: var(--color-bg-success-stronger);
           color: var(--color-fg-neutral-bright);`;
           disabled = `border-color: var(--border-color-success-light);
           color: var(--color-fg-success-light);`;
@@ -126,7 +126,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
         case "info":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-info-strong);
           color: var(--color-fg-info-strong);`;
-          hover = `background: var(--color-bg-info-strong);
+          hover = `background: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
