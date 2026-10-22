@@ -4,26 +4,30 @@ export default function getSemantic(semantic: ToastProps["semantic"]) {
   switch (semantic) {
     case "default":
       return {
-        primaryColor: "var(--border-color-primary-stronger)",
+        primaryColor: "var(--color-fg-primary-stronger)",
         secondaryColor: "var(--color-bg-primary-lighter)",
+        borderColor: "var(--border-color-primary-stronger)",
         icon: "",
       };
     case "info":
       return {
-        primaryColor: "var(--border-color-info-strong)",
+        primaryColor: "var(--color-fg-info-strong)",
         secondaryColor: "var(--color-bg-info-lighter)",
+        borderColor: "var(--border-color-info-strong)",
         icon: "filled_info",
       };
     case "success":
       return {
-        primaryColor: "var(--border-color-success-medium)",
+        primaryColor: "var(--color-fg-success-medium)",
         secondaryColor: "var(--color-bg-success-lighter)",
+        borderColor: "var(--border-color-success-medium)",
         icon: "filled_check_circle",
       };
     case "warning":
       return {
-        primaryColor: "var(--border-color-warning-medium)",
+        primaryColor: "var(--color-fg-warning-strong)",
         secondaryColor: "var(--color-bg-warning-lighter)",
+        borderColor: "var(--border-color-warning-strong)",
         icon: "filled_warning",
       };
   }
