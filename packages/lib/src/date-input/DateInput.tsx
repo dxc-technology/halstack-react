@@ -237,7 +237,7 @@ const DxcDateInput = ({
 
   return (
     <>
-      <DateInputContainer margin={margin} size={size} ref={ref}>
+      <DateInputContainer aria-disabled={disabled} margin={margin} size={size} ref={ref}>
         {label && (
           <Label
             htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}

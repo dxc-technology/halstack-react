@@ -478,7 +478,7 @@ const DxcSelect = ({
 
   return (
     <>
-      <SelectContainer margin={margin} ref={ref} size={size}>
+      <SelectContainer aria-disabled={disabled} margin={margin} ref={ref} size={size}>
         {label && (
           <Label
             disabled={disabled}

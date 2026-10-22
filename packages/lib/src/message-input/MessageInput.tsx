@@ -284,6 +284,7 @@ const DxcMessageInput = ({
   return (
     <DxcContainer width={sizes[size]}>
       <MessageInput
+        aria-disabled={disabled}
         disabled={disabled}
         error={!!error}
         focus={isFocused}

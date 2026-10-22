@@ -84,6 +84,7 @@ const DxcButton = ({
   return (
     <Tooltip label={title}>
       <Button
+        aria-disabled={disabled}
         aria-label={title}
         disabled={disabled}
         iconOnly={!!icon && !label}

@@ -142,7 +142,7 @@ const DxcRadioGroup = ({
   };
 
   return (
-    <RadioGroupContainer ref={ref}>
+    <RadioGroupContainer aria-disabled={disabled} ref={ref}>
       {label && (
         <Label disabled={disabled} hasMargin={!helperText} id={labelId}>
           {label}
