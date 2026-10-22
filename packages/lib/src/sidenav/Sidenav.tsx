@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
-import SidenavPropsType from "./types";
+import { SidenavProps } from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcButton from "../button/Button";
 import DxcImage from "../image/Image";
@@ -102,7 +102,7 @@ const DxcSidenav = ({
   defaultExpanded,
   onExpandedChange,
   searchBar,
-}: SidenavPropsType): JSX.Element => {
+}: SidenavProps): JSX.Element => {
   const isBelowLarge = useBreakpoint("large");
   const isBelowMedium = useBreakpoint("medium");
   const { logo, headerExists, setHideMainContent } = use(ApplicationLayoutContext);

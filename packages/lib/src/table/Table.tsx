@@ -3,14 +3,14 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import TablePropsType, { ActionsCellPropsType } from "./types";
+import { TableProps, ActionsCellProps } from "./types";
 import scrollbarStyles from "../styles/scroll";
 import { useMemo } from "react";
 
-const calculateWidth = (margin: TablePropsType["margin"]) =>
+const calculateWidth = (margin: TableProps["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const TableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
+const TableContainer = styled.div<{ margin: TableProps["margin"] }>`
   width: ${({ margin }) => calculateWidth(margin)};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
@@ -22,7 +22,7 @@ const TableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   ${scrollbarStyles}
 `;
 
-const Table = styled.table<{ mode: TablePropsType["mode"] }>`
+const Table = styled.table<{ mode: TableProps["mode"] }>`
   border-collapse: collapse;
   width: 100%;
 
@@ -81,7 +81,7 @@ const ActionsContainer = styled.div`
   }
 `;
 
-const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
+const DxcActionsCell = ({ actions }: ActionsCellProps) => {
   const actionIcons = useMemo(() => actions.filter((action) => !action.options), [actions]);
   const dropdownAction = useMemo(() => actions.find((action) => action.options), [actions]);
 
@@ -116,7 +116,7 @@ const DxcActionsCell = ({ actions }: ActionsCellPropsType) => {
   );
 };
 
-const DxcTable = ({ children, margin, mode = "default" }: TablePropsType) => (
+const DxcTable = ({ children, margin, mode = "default" }: TableProps) => (
   <TableContainer margin={margin}>
     <Table mode={mode}>{children}</Table>
   </TableContainer>

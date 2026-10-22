@@ -55,3 +55,155 @@ export { default as DxcTypography } from "./typography/Typography";
 export { default as DxcWizard } from "./wizard/Wizard";
 export { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 export { default as useToast } from "./toast/useToast";
+
+export { coreTokens as DxcCoreTokens, aliasTokens as DxcAliasTokens } from "./styles/tokens";
+
+// types exports
+export type {
+  Action as DxcAction,
+  Space as DxcSpace,
+  Margin as DxcMargin,
+  SVG as DxcSVG,
+  Size as DxcSize,
+  Shape as DxcShape,
+  Color as DxcColor,
+} from "./common/types";
+export type {
+  AccordionProps as DxcAccordionProps,
+  AccordionItemProps as DxcAccordionItemProps,
+} from "./accordion/types";
+export type {
+  AlertProps as DxcAlertProps,
+  AlertAction as DxcAlertAction,
+  AlertMessage as DxcAlertMessage,
+} from "./alert/types";
+export type {
+  ApplicationLayoutProps as DxcAppLayoutProps,
+  AppLayoutMainProps as DxcAppLayoutMainProps,
+  AppLayoutSidenavProps as DxcAppLayoutSidenavProps,
+  AppLayoutLogo as DxcAppLayoutLogo,
+} from "./layout/types";
+export type { AvatarProps as DxcAvatarProps, AvatarStatus as DxcAvatarStatus } from "./avatar/types";
+export type { BadgeProps as DxcBadgeProps } from "./badge/types";
+export type {
+  BaseItem as DxcBaseItem,
+  BaseGroupItem as DxcBaseGroupItem,
+  BaseSection as DxcBaseSection,
+} from "./base-menu/types";
+export type { BleedProps as DxcBleedProps } from "./bleed/types";
+export type {
+  BreadcrumbsProps as DxcBreadcrumbsProps,
+  BreadcrumbsItemProps as DxcBreadcrumbsItemProps,
+} from "./breadcrumbs/types";
+export type {
+  BulletedListProps as DxcBulletedListProps,
+  BulletedListItemProps as DxcBulletedListItemProps,
+} from "./bulleted-list/types";
+export type {
+  ButtonProps as DxcButtonProps,
+  ButtonMode as DxcButtonMode,
+  ButtonSemantic as DxcButtonSemantic,
+  ButtonSize as DxcButtonSize,
+} from "./button/types";
+export type { CardProps as DxcCardProps } from "./card/types";
+export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
+export type { ChipProps as DxcChipProps } from "./chip/types";
+export type {
+  ContainerProps as DxcContainerProps,
+  ContainerSpacing as DxcContainerSpacing,
+  ContainerBackground as DxcContainerBackground,
+  ContainerBorderProperties as DxcContainerBorderProperties,
+  ContainerBorder as DxcContainerBorder,
+  ContainerOutline as DxcContainerOutline,
+  ContainerOverflow as DxcContainerOverflow,
+} from "./container/types";
+export type { ContextualMenuProps as DxcContextualMenuProps } from "./contextual-menu/types";
+export type {
+  DataGridProps as DxcDataGridProps,
+  DataGridRow as DxcDataGridRow,
+  DataGridHierarchyRow as DxcDataGridHierarchyRow,
+  DataGridExpandableRow as DxcDataGridExpandableRow,
+  DataGridExpandableRows as DxcDataGridExpandableRows,
+  DataGridHierarchyRows as DxcDataGridHierarchyRows,
+  DataGridSelectableProps as DxcDataGridSelectableProps,
+  DataGridBasicProps as DxcDataGridBasicProps,
+  DataGridColumn as DxcDataGridColumn,
+} from "./data-grid/types";
+export type { DateInputProps as DxcDateInputProps } from "./date-input/types";
+export type { DialogProps as DxcDialogProps } from "./dialog/types";
+export type { DividerProps as DxcDividerProps } from "./divider/types";
+export type { DropdownProps as DxcDropdownProps, DropdownOption as DxcDropdownOption } from "./dropdown/types";
+export type { FileInputProps as DxcFileInputProps, FileData as DxcFileData } from "./file-input/types";
+export type { FlexProps as DxcFlexProps, FlexGap as DxcFlexGap } from "./flex/types";
+export type {
+  FooterProps as DxcFooterProps,
+  FooterBottomLink as DxcFooterBottomLink,
+  FooterSocialLink as DxcFooterSocialLink,
+  FooterLogo as DxcFooterLogo,
+} from "./footer/types";
+export type {
+  GridProps as DxcGridProps,
+  GridGap as DxcGridGap,
+  GridCell as DxcGridCell,
+  GridItemProps as DxcGridItemProps,
+  GridPlaceSelfValues as DxcGridPlaceSelfValues,
+  GridPlaceContentValues as DxcGridPlaceContentValues,
+  GridPlaceItemsValues as DxcGridPlaceItemsValues,
+} from "./grid/types";
+export type {
+  HeaderProps as DxcHeaderProps,
+  HeaderMainNavProps as DxcHeaderMainNavProps,
+  HeaderSearchBarProps as DxcHeaderSearchBarProps,
+  HeaderGroupItem as DxcHeaderGroupItem,
+} from "./header/types";
+export type { HeadingProps as DxcHeadingProps } from "./heading/types";
+export type { ImageProps as DxcImageProps } from "./image/types";
+export type { InsetProps as DxcInsetProps } from "./inset/types";
+export type { LinkProps as DxcLinkProps } from "./link/types";
+export type { MessageInputProps as DxcMessageInputProps } from "./message-input/types";
+export type { NavTabsProps as DxcNavTabsProps, NavTabsTabProps as DxcNavTabsTabProps } from "./nav-tabs/types";
+export type { NumberInputProps as DxcNumberInputProps } from "./number-input/types";
+export type { PaginatorProps as DxcPaginatorProps } from "./paginator/types";
+export type { PasswordInputProps as DxcPasswordInputProps } from "./password-input/types";
+export type { PopoverProps as DxcPopoverProps } from "./popover/types";
+export type { ProgressBarProps as DxcProgressBarProps } from "./progress-bar/types";
+export type { QuickNavProps as DxcQuickNavProps, QuickNavLink as DxcQuickNavLink } from "./quick-nav/types";
+export type {
+  RadioGroupProps as DxcRadioGroupProps,
+  RadioGroupOption as DxcRadioGroupOption,
+} from "./radio-group/types";
+export type {
+  ResultSetTableProps as DxcResultSetTableProps,
+  ResultSetTableColumn as DxcResultSetTableColumn,
+  ResultSetTableRow as DxcResultSetTableRow,
+} from "./resultset-table/types";
+export type {
+  SelectProps as DxcSelectProps,
+  SelectOption as DxcSelectOption,
+  SelectOptionGroup as DxcSelectOptionGroup,
+} from "./select/types";
+export type {
+  SidenavProps as DxcSidenavProps,
+  SidenavSection as DxcSidenavSection,
+  SidenavSearchbarProps as DxcSidenavSearchbarProps,
+} from "./sidenav/types";
+export type { SliderProps as DxcSliderProps } from "./slider/types";
+export type { SpinnerProps as DxcSpinnerProps } from "./spinner/types";
+export type { StatusLightProps as DxcStatusLightProps } from "./status-light/types";
+export type { SwitchProps as DxcSwitchProps } from "./switch/types";
+export type { TableProps as DxcTableProps, ActionsCellProps as DxcActionsCellProps } from "./table/types";
+export type { TabsProps as DxcTabsProps, TabsTabProps as DxcTabsTabProps } from "./tabs/types";
+export type { TextInputProps as DxcTextInputProps } from "./text-input/types";
+export type { TextAreaProps as DxcTextareaProps } from "./textarea/types";
+export type { TimeInputProps as DxcTimeInputProps } from "./time-input/types";
+export type {
+  DefaultToast as DxcDefaultToast,
+  LoadingToast as DxcLoadingToast,
+  SemanticToast as DxcSemanticToast,
+  ToastsQueueProps as DxcToastsQueueProps,
+  ToastProps as DxcToastProps,
+} from "./toast/types";
+export type { ToggleGroupProps as DxcToggleGroupProps, ToggleOption as DxcToggleOption } from "./toggle-group/types";
+export type { TooltipProps as DxcTooltipProps } from "./tooltip/types";
+export type { TypographyProps as DxcTypographyProps } from "./typography/types";
+export type { WizardProps as DxcWizardProps, WizardStepProps as DxcWizardStepProps } from "./wizard/types";

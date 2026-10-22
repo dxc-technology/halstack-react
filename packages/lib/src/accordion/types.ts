@@ -1,5 +1,5 @@
 import { ReactNode, ReactElement } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, PrettifyTypes, SVG, Space } from "../common/types";
 
 export type AccordionItemProps = {
   /**
@@ -103,7 +103,7 @@ type NonIndependentProps = CommonProps & {
   onActiveChange?: (index: number[]) => void;
 };
 
-type Props = IndependentProps | NonIndependentProps;
+export type AccordionProps = PrettifyTypes<IndependentProps | NonIndependentProps>;
 
 export type AccordionContextProps = {
   index: number;
@@ -112,4 +112,4 @@ export type AccordionContextProps = {
   independent?: boolean;
 };
 
-export default Props;
+export type { AccordionProps as default };

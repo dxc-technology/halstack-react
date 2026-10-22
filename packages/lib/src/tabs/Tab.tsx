@@ -4,7 +4,7 @@ import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import TabsContext from "./TabsContext";
-import { TabProps, TabsContextProps } from "./types";
+import { TabsTabProps, TabsContextProps } from "./types";
 
 export const sharedTabStyles = `
   background-color: var(--color-bg-neutral-lightest);
@@ -103,7 +103,7 @@ const DxcTab = ({
   ref,
   title,
   tabId = label,
-}: TabProps) => {
+}: TabsTabProps) => {
   const {
     activeTabId,
     focusedTabId,

@@ -1,12 +1,12 @@
 import { use, useState, useRef, useId, KeyboardEvent } from "react";
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
-import CheckboxPropsType from "./types";
+import { CheckboxProps } from "./types";
 import { calculateWidth, icons, spaces } from "./utils";
 import CheckboxContext from "./CheckboxContext";
 
 const Label = styled.span<{
-  disabled: CheckboxPropsType["disabled"];
+  disabled: CheckboxProps["disabled"];
 }>`
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
@@ -18,8 +18,8 @@ const Label = styled.span<{
 `;
 
 const Checkbox = styled.span<{
-  disabled: CheckboxPropsType["disabled"];
-  readOnly: CheckboxPropsType["readOnly"];
+  disabled: CheckboxProps["disabled"];
+  readOnly: CheckboxProps["readOnly"];
 }>`
   display: flex;
   border-radius: var(--border-radius-s);
@@ -38,11 +38,11 @@ const Checkbox = styled.span<{
 `;
 
 const CheckboxContainer = styled.div<{
-  disabled: CheckboxPropsType["disabled"];
-  labelPosition: CheckboxPropsType["labelPosition"];
-  margin: CheckboxPropsType["margin"];
-  readOnly: CheckboxPropsType["readOnly"];
-  size: CheckboxPropsType["size"];
+  disabled: CheckboxProps["disabled"];
+  labelPosition: CheckboxProps["labelPosition"];
+  margin: CheckboxProps["margin"];
+  readOnly: CheckboxProps["readOnly"];
+  size: CheckboxProps["size"];
 }>`
   display: flex;
   align-items: center;
@@ -86,7 +86,7 @@ const DxcCheckbox = ({
   size = "fitContent",
   tabIndex = 0,
   value,
-}: CheckboxPropsType) => {
+}: CheckboxProps) => {
   const labelId = `label-checkbox-${useId()}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
   const checkboxRef = useRef<HTMLSpanElement | null>(null);

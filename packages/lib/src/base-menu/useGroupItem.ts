@@ -1,14 +1,18 @@
 import { useId, useMemo, useState } from "react";
-import { BaseMenuContextProps, GroupItemProps } from "./types";
+import { BaseMenuContextProps, BaseGroupItemProps } from "./types";
 
-const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number): boolean =>
+const isGroupSelected = (items: BaseGroupItemProps["items"], selectedItemId?: number): boolean =>
   items.some((item) => {
     if ("items" in item) return isGroupSelected(item.items, selectedItemId);
     else if (selectedItemId !== -1) return item.id === selectedItemId;
     else return !!item.selected;
   });
 
-export const useGroupItem = (items: GroupItemProps["items"], context: BaseMenuContextProps, defaultOpen?: boolean) => {
+export const useGroupItem = (
+  items: BaseGroupItemProps["items"],
+  context: BaseMenuContextProps,
+  defaultOpen?: boolean
+) => {
   const groupMenuId = `group-menu-${useId()}`;
   const { selectedItemId, hasPopOver } = context ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import BadgePropsType from "./types";
+import { BadgeProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
@@ -82,13 +82,13 @@ const sizeMap = {
   },
 };
 
-const getColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
+const getColor = (mode: BadgeProps["mode"], color: BadgeProps["color"]) =>
   mode === "contextual" && color ? contextualColorMap[color].text : notificationColor.text;
 
-const getBackgroundColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
+const getBackgroundColor = (mode: BadgeProps["mode"], color: BadgeProps["color"]) =>
   mode === "contextual" && color ? contextualColorMap[color].background : notificationColor.background;
 
-const getPadding = (mode: BadgePropsType["mode"], size: BadgePropsType["size"], label: BadgePropsType["label"]) =>
+const getPadding = (mode: BadgeProps["mode"], size: BadgeProps["size"], label: BadgeProps["label"]) =>
   size &&
   (mode === "contextual"
     ? sizeMap[size].padding.contextual
@@ -97,10 +97,10 @@ const getPadding = (mode: BadgePropsType["mode"], size: BadgePropsType["size"], 
       : sizeMap[size].padding.notification);
 
 const BadgeContainer = styled.div<{
-  label: BadgePropsType["label"];
-  mode: BadgePropsType["mode"];
-  color: BadgePropsType["color"];
-  size: BadgePropsType["size"];
+  label: BadgeProps["label"];
+  mode: BadgeProps["mode"];
+  color: BadgeProps["color"];
+  size: BadgeProps["size"];
 }>`
   box-sizing: border-box;
   border-radius: ${(props) => props.size && sizeMap[props.size].borderRadius};
@@ -117,7 +117,7 @@ const BadgeContainer = styled.div<{
   color: ${(props) => getColor(props.mode, props.color)};
 `;
 
-const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
+const IconContainer = styled.div<{ size: BadgeProps["size"] }>`
   display: flex;
   font-size: ${(props) => props.size && sizeMap[props.size].iconSize};
 
@@ -127,7 +127,7 @@ const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
   }
 `;
 
-const Label = styled.span<{ size: BadgePropsType["size"] }>`
+const Label = styled.span<{ size: BadgeProps["size"] }>`
   font-family: var(--typography-font-family);
   font-size: ${(props) => props.size && sizeMap[props.size].fontSize};
   font-style: normal;
@@ -145,7 +145,7 @@ const DxcBadge = ({
   notificationLimit = 99,
   ref,
   size = "medium",
-}: BadgePropsType) => (
+}: BadgeProps) => (
   <Tooltip label={title}>
     <BadgeContainer
       label={label}

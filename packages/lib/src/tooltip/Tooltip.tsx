@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { cloneElement, isValidElement, use } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
-import TooltipPropsType, { TooltipWrapperProps } from "./types";
+import { TooltipProps, TooltipWrapperProps } from "./types";
 import TooltipContext from "./TooltipContext";
 
 const TooltipTriggerContainer = styled.div`
@@ -109,7 +109,7 @@ export const Tooltip = ({
   label,
   position = "bottom",
   ...rest
-}: { hasAdditionalContainer?: boolean } & TooltipPropsType) => {
+}: { hasAdditionalContainer?: boolean } & TooltipProps) => {
   const hasTooltip = use(TooltipContext);
   return (
     <TooltipContext value>
@@ -149,6 +149,6 @@ export const TooltipWrapper = ({ condition, children, label, ...rest }: TooltipW
     children
   );
 
-const DxcTooltip = (props: TooltipPropsType) => <Tooltip {...props} hasAdditionalContainer />;
+const DxcTooltip = (props: TooltipProps) => <Tooltip {...props} hasAdditionalContainer />;
 
 export default DxcTooltip;

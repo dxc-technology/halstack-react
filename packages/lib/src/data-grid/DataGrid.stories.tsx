@@ -4,10 +4,10 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { DataGridColumn, DataGridHierarchyRow } from "./types";
 import preview from "../../.storybook/preview";
 import DxcBadge from "../badge/Badge";
-import { ActionsCellPropsType } from "../table/types";
+import { ActionsCellProps } from "../table/types";
 import { isKeyOfRow } from "./utils";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/test";
@@ -27,7 +27,7 @@ export default {
   },
 } satisfies Meta<typeof DxcDataGrid>;
 
-const actions: ActionsCellPropsType["actions"] = [
+const actions: ActionsCellProps["actions"] = [
   {
     title: "icon",
     onClick: (value?) => {
@@ -102,7 +102,7 @@ const actions: ActionsCellPropsType["actions"] = [
   },
 ];
 
-const columns: GridColumn[] = [
+const columns: DataGridColumn[] = [
   {
     key: "id",
     label: "ID",
@@ -306,7 +306,7 @@ const expandableRowsPaginated = [
   },
 ];
 
-const childcolumns: GridColumn[] = [
+const childcolumns: DataGridColumn[] = [
   {
     key: "name",
     label: "Name",
@@ -442,11 +442,11 @@ const childRows = [
       },
     ],
   },
-] as HierarchyGridRow[];
+] as DataGridHierarchyRow[];
 
-const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
+const childrenTrigger = (open: boolean, triggerRow: DataGridHierarchyRow) => {
   if (open) {
-    return new Promise<HierarchyGridRow[]>((resolve) => {
+    return new Promise<DataGridHierarchyRow[]>((resolve) => {
       setTimeout(() => {
         resolve([
           {
@@ -461,11 +461,11 @@ const childrenTrigger = (open: boolean, triggerRow: HierarchyGridRow) => {
             id: `${triggerRow.id as string}-child-2`,
             childrenTrigger,
           },
-        ] as unknown as HierarchyGridRow[]);
+        ] as unknown as DataGridHierarchyRow[]);
       }, 5000);
     });
   } else {
-    return [] as HierarchyGridRow[];
+    return [] as DataGridHierarchyRow[];
   }
 };
 
@@ -494,7 +494,7 @@ const childRowsLazy = [
     id: "lazy-d",
     childrenTrigger,
   },
-] as unknown as HierarchyGridRow[];
+] as unknown as DataGridHierarchyRow[];
 
 const childRowsPaginated = [
   {
@@ -613,9 +613,9 @@ const childRowsPaginated = [
       },
     ],
   },
-] as HierarchyGridRow[];
+] as DataGridHierarchyRow[];
 
-const customSortColumns: GridColumn[] = [
+const customSortColumns: DataGridColumn[] = [
   {
     key: "id",
     label: "ID",

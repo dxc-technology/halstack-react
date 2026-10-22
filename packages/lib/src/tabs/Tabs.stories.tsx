@@ -1,7 +1,7 @@
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
-import type { Margin, Space } from "../common/utils";
+import type { Margin, Space } from "../common/types";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/test";
 

@@ -1,4 +1,4 @@
-import TextInputPropsType from "./types";
+import { TextInputProps } from "./types";
 import { getMargin } from "../common/utils";
 
 const sizes = {
@@ -8,7 +8,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-export const calculateWidth = (margin: TextInputPropsType["margin"], size: TextInputPropsType["size"]) =>
+export const calculateWidth = (margin: TextInputProps["margin"], size: TextInputProps["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
@@ -43,18 +43,18 @@ export const makeCancelable = (promise: Promise<string[]>) => {
   };
 };
 
-export const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
+export const hasSuggestions = (suggestions: TextInputProps["suggestions"]) =>
   typeof suggestions === "function" || (suggestions ? suggestions.length > 0 : false);
 
 export const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
 export const isNumberIncorrect = (
   value: number,
-  minNumber: TextInputPropsType["minLength"],
-  maxNumber: TextInputPropsType["maxLength"]
+  minNumber: TextInputProps["minLength"],
+  maxNumber: TextInputProps["maxLength"]
 ) => (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
 
-export const patternMismatch = (pattern: TextInputPropsType["pattern"], value: string) =>
+export const patternMismatch = (pattern: TextInputProps["pattern"], value: string) =>
   pattern != null && !new RegExp(pattern).test(value);
 
 export const transformSpecialChars = (str: string) => {
