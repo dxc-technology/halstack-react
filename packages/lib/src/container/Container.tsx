@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
+import { ContainerBorderProperties, StyledProps, ContainerProps } from "./types";
 
-const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
+const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: ContainerBorderProperties) =>
   `border-${direction}: ${borderProperties.width ?? ""} ${borderProperties.style ?? ""} ${
     borderProperties.color ?? ""
   };`;
@@ -82,7 +82,7 @@ const Container = styled.div<StyledProps>`
   padding-left: ${({ padding }) => (typeof padding === "object" && padding.left ? padding.left : "")};
 `;
 
-const DxcContainer = ({ display, width, height, overflow, ref, ...props }: ContainerPropsType) => (
+const DxcContainer = ({ display, width, height, overflow, ref, ...props }: ContainerProps) => (
   <Container ref={ref} $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
 );
 

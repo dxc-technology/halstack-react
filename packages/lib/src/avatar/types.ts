@@ -1,15 +1,12 @@
 import { Ref } from "react";
-import { SVG } from "../common/utils";
+import { SVG, Color, Size, Shape, Mode } from "../common/types";
 
-type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Shape = "circle" | "square";
-type Color = "primary" | "secondary" | "tertiary" | "success" | "info" | "neutral" | "warning" | "error";
-export interface Status {
-  mode: "default" | "info" | "success" | "warning" | "error";
+export type AvatarStatus = {
+  mode: Mode;
   position: "top" | "bottom";
-}
+};
 
-type Props = {
+export type AvatarProps = {
   /**
    * Affects the visual style of the avatar. It can be used following semantic purposes or not.
    */
@@ -63,7 +60,7 @@ type Props = {
    * Defines the color of the status indicator displayed on the avatar and where it will be placed.
    * If not provided, no indicator will be rendered.
    */
-  status?: Status;
+  status?: AvatarStatus;
   /**
    * Value of the tabindex attribute. It will only apply when the onClick property is passed.
    */
@@ -95,7 +92,7 @@ export type ContentType = {
   initials: string;
   icon?: string | SVG;
   color: Color;
-  status?: Status;
+  status?: AvatarStatus;
 };
 
-export default Props;
+export type { AvatarProps as default };

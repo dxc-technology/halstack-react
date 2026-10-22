@@ -1,8 +1,8 @@
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
-export type Semantic = "default" | "error" | "warning" | "success" | "info";
-export type Mode = "primary" | "secondary" | "tertiary";
-export type Size = {
+export type ButtonSemantic = "default" | "error" | "warning" | "success" | "info";
+export type ButtonMode = "primary" | "secondary" | "tertiary";
+export type ButtonSize = {
   /**
    * Height of the button.
    */
@@ -13,7 +13,7 @@ export type Size = {
   width?: "small" | "medium" | "large" | "fillParent" | "fitContent";
 };
 
-type Props = {
+export type ButtonProps = {
   /**
    * If true, the component will be disabled.
    */
@@ -38,7 +38,7 @@ type Props = {
   /**
    * The available button modes.
    */
-  mode?: Mode;
+  mode?: ButtonMode;
   /**
    * This function will be called when the user clicks the button.
    */
@@ -50,11 +50,11 @@ type Props = {
   /**
    * Specifies the semantic meaning of the buttons, which determines its color.
    */
-  semantic?: Semantic;
+  semantic?: ButtonSemantic;
   /**
    * Size of the component.
    */
-  size?: Size;
+  size?: ButtonSize;
   /**
    * Value of the tabindex attribute.
    */
@@ -69,4 +69,4 @@ type Props = {
   type?: "button" | "reset" | "submit";
 };
 
-export default Props;
+export type { ButtonProps as default };

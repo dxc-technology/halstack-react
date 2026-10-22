@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SubMenuProps } from "./types";
+import { BaseSubMenuProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
 import { use } from "react";
 
@@ -35,7 +35,7 @@ export default function SubMenu({
   depthLevel = 0,
   isHorizontal = false,
   isPopOver = false,
-}: SubMenuProps) {
+}: BaseSubMenuProps) {
   const { displayGroupLines } = use(BaseMenuContext) ?? {};
   return (
     <SubMenuContainer

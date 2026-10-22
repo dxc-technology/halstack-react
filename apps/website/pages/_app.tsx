@@ -11,8 +11,7 @@ import "../global-styles.css";
 import createCache, { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import Link from "next/link";
-import { GroupItem, Item, Section } from "../../../packages/lib/src/base-menu/types";
-import { isGroupItem } from "../../../packages/lib/src/base-menu/utils";
+import { DxcBaseGroupItem, DxcBaseItem, DxcBaseSection } from "@dxc-technology/halstack-react";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { dxcLogo } from "@/common/images/dxc_logo";
 
@@ -23,6 +22,8 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
   emotionCache?: EmotionCache;
 };
+
+export const isGroupItem = (item: DxcBaseItem | DxcBaseGroupItem): item is DxcBaseGroupItem => "items" in item;
 
 const clientSideEmotionCache = createCache({ key: "css", prepend: true });
 
@@ -39,7 +40,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
   };
 
-  const createNavItem = (link: LinkDetails): Item => ({
+  const createNavItem = (link: LinkDetails): DxcBaseItem => ({
     label: link.label,
     href: link.path,
     selected: matchPaths(link.path),
@@ -52,7 +53,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     ),
   });
 
-  const normalizeNavTabs = (links: (LinkDetails | LinksSectionDetails)[]): (Item | GroupItem)[] => {
+  const normalizeNavTabs = (links: (LinkDetails | LinksSectionDetails)[]): (DxcBaseItem | DxcBaseGroupItem)[] => {
     return links.map((link) => {
       if ("links" in link) {
         return {
@@ -66,8 +67,8 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     });
   };
 
-  const filterNavTree = (items: (Item | GroupItem)[], q: string): (Item | GroupItem)[] => {
-    const result: (Item | GroupItem)[] = [];
+  const filterNavTree = (items: (DxcBaseItem | DxcBaseGroupItem)[], q: string): (DxcBaseItem | DxcBaseGroupItem)[] => {
+    const result: (DxcBaseItem | DxcBaseGroupItem)[] = [];
 
     for (const item of items) {
       if (isGroupItem(item)) {
@@ -87,7 +88,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
     return result;
   };
 
-  const navItems: Section[] = useMemo(() => {
+  const navItems: DxcBaseSection[] = useMemo(() => {
     const q = filter.trim().toLowerCase();
 
     return LinksSections.map((section) => {

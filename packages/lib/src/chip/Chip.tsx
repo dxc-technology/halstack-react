@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
-import ChipPropsType, { ChipAvatarType } from "./types";
+import { ChipProps, ChipAvatarType } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcAvatar from "../avatar/Avatar";
 import { isValidElement, ReactNode, useState } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 import { getChipStyles } from "./utils";
 
 const Chip = styled.div<{
-  disabled: ChipPropsType["disabled"];
-  mode: ChipPropsType["mode"];
-  selected: ChipPropsType["selected"];
+  disabled: ChipProps["disabled"];
+  mode: ChipProps["mode"];
+  selected: ChipProps["selected"];
   isAvatar?: boolean;
   type?: string;
 }>`
@@ -32,7 +32,7 @@ const Chip = styled.div<{
   ${({ mode, selected }) => getChipStyles(mode, selected)}
 `;
 
-const ContentWrapper = styled.div<{ mode: ChipPropsType["mode"] }>`
+const ContentWrapper = styled.div<{ mode: ChipProps["mode"] }>`
   max-width: ${({ mode }) => (mode === "dismissible" ? "calc(100% - var(--spacing-gap-xxs) - 24px)" : "100%")};
   display: inline-flex;
   align-items: center;
@@ -96,7 +96,7 @@ const DxcChip = ({
   selected,
   tabIndex = 0,
   ref,
-}: ChipPropsType) => {
+}: ChipProps) => {
   const [innerSelected, setInnerSelected] = useState(false);
 
   if (mode === "selectable" && isAvatarType(prefix) && !label) {

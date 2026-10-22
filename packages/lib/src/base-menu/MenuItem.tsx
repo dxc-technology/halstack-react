@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import GroupItem from "./GroupItem";
 import SingleItem from "./SingleItem";
-import { MenuItemProps } from "./types";
+import { BaseMenuItemProps } from "./types";
 import { isGroupItem } from "./utils";
 
 const MenuItemContainer = styled.li`
@@ -9,7 +9,7 @@ const MenuItemContainer = styled.li`
   gap: var(--spacing-gap-xs);
 `;
 
-export default function MenuItem({ item, depthLevel = 0 }: MenuItemProps) {
+export default function MenuItem({ item, depthLevel = 0 }: BaseMenuItemProps) {
   return (
     <MenuItemContainer role="menuitem">
       {isGroupItem(item) ? (

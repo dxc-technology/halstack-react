@@ -3,16 +3,16 @@ import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
-import FileInputPropsType, { FileData } from "./types";
+import { FileInputProps, FileData } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { getFilePreview, isFileIncluded } from "./utils";
 import HelperText from "../styles/forms/HelperText";
 import Label from "../styles/forms/Label";
 
 const FileInputContainer = styled.div<{
-  margin: FileInputPropsType["margin"];
-  mode: FileInputPropsType["mode"];
-  size: FileInputPropsType["size"];
+  margin: FileInputProps["margin"];
+  mode: FileInputProps["mode"];
+  size: FileInputProps["size"];
 }>`
   display: flex;
   flex-direction: column;
@@ -56,10 +56,10 @@ const Container = styled.div`
 `;
 
 const DragDropArea = styled.div<{
-  mode: FileInputPropsType["mode"];
-  disabled: FileInputPropsType["disabled"];
+  mode: FileInputProps["mode"];
+  disabled: FileInputProps["disabled"];
   isDragging: boolean;
-  size: FileInputPropsType["size"];
+  size: FileInputProps["size"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -84,7 +84,7 @@ const DragDropArea = styled.div<{
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
-const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
+const DropzoneLabel = styled.div<{ disabled: FileInputProps["disabled"] }>`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -97,7 +97,7 @@ const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
   font-weight: var(--typography-helper-text-regular);
 `;
 
-const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
+const FiledropLabel = styled.span<{ disabled: FileInputProps["disabled"] }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -126,7 +126,7 @@ const DxcFileInput = ({
   tabIndex = 0,
   optional = false,
   ref,
-}: FileInputPropsType) => {
+}: FileInputProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileData[]>([]);
   const fileInputId = `file-input-${useId()}`;

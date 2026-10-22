@@ -1,9 +1,7 @@
 import { CSSProperties, KeyboardEvent } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
-type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
-
-export type Option = {
+export type DropdownOption = {
   /**
    * Option display value.
    */
@@ -22,11 +20,11 @@ export type Option = {
   hasDivider?: boolean;
 };
 
-type Props = {
+export type DropdownProps = {
   /**
    * An array of objects representing the options.
    */
-  options: Option[];
+  options: DropdownOption[];
   /**
    * In case options include icons, whether the icon should appear
    * after or before the label.
@@ -70,7 +68,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
    * Value of the tabindex attribute.
    */
@@ -89,8 +87,8 @@ export type DropdownMenuProps = {
   visualFocusIndex: number;
   menuItemOnClick: (value: string) => void;
   onKeyDown: (event: KeyboardEvent<HTMLUListElement>) => void;
-  options: Option[];
-  ref: React.Ref<HTMLUListElement>;
+  options: DropdownOption[];
+  ref?: React.Ref<HTMLUListElement>;
   styles: CSSProperties;
 };
 
@@ -99,7 +97,7 @@ export type DropdownMenuItemProps = {
   visuallyFocused: boolean;
   iconPosition: "before" | "after";
   onClick: (value: string) => void;
-  option: Option;
+  option: DropdownOption;
 };
 
-export default Props;
+export type { DropdownProps as default };

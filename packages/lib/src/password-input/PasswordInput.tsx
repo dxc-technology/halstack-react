@@ -1,11 +1,11 @@
 import { use, useLayoutEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import DxcTextInput from "../text-input/TextInput";
-import PasswordInputPropsType from "./types";
+import { PasswordInputProps } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 
 const PasswordInput = styled.div<{
-  size: PasswordInputPropsType["size"];
+  size: PasswordInputProps["size"];
   isPasswordVisible: boolean;
 }>`
   ${(props) => props.size === "fillParent" && "width: 100%;"}
@@ -35,7 +35,7 @@ const DxcPasswordInput = ({
   tabIndex = 0,
   ariaLabel = "Password input",
   ref,
-}: PasswordInputPropsType) => {
+}: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const containerRef = useRef<HTMLInputElement | null>(null);
   const { passwordInput } = use(HalstackLanguageContext).labels;

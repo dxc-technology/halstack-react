@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import ButtonPropsType, { Mode, Semantic, Size } from "./types";
+import { ButtonMode, ButtonSemantic, ButtonSize, ButtonProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { calculateWidth, getButtonStyles, getHeight } from "./utils";
 
 const Button = styled.button<{
   iconOnly: boolean;
-  iconPosition: ButtonPropsType["iconPosition"];
-  margin: ButtonPropsType["margin"];
-  semantic: Semantic;
-  size: Size;
-  $mode: Mode;
+  iconPosition: ButtonProps["iconPosition"];
+  margin: ButtonProps["margin"];
+  semantic: ButtonSemantic;
+  size: ButtonSize;
+  $mode: ButtonMode;
 }>`
   display: inline-flex;
   align-items: center;
@@ -54,7 +54,7 @@ const LabelContainer = styled.span`
 `;
 
 const IconContainer = styled.div<{
-  size: Size;
+  size: ButtonSize;
 }>`
   display: flex;
   font-size: ${({ size }) =>
@@ -80,7 +80,7 @@ const DxcButton = ({
   tabIndex = 0,
   title,
   type = "button",
-}: ButtonPropsType) => {
+}: ButtonProps) => {
   return (
     <Tooltip label={title}>
       <Button

@@ -1,13 +1,13 @@
 import { memo } from "react";
 import styled from "@emotion/styled";
-import { ItemActionProps } from "./types";
+import { BaseItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 import { useItemAction } from "./useItemAction";
 
 const Action = styled.a<{
-  depthLevel: ItemActionProps["depthLevel"];
-  selected: ItemActionProps["selected"];
+  depthLevel: BaseItemActionProps["depthLevel"];
+  selected: BaseItemActionProps["selected"];
   displayGroupLines: boolean;
   hasPopOver?: boolean;
   isHorizontal?: boolean;
@@ -60,7 +60,7 @@ const Icon = styled.span`
   }
 `;
 
-const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
+const Text = styled.span<{ selected: BaseItemActionProps["selected"] }>`
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -79,7 +79,7 @@ const Control = styled.span`
   gap: var(--spacing-gap-s);
 `;
 
-const ItemAction = memo(({ ...props }: ItemActionProps) => {
+const ItemAction = memo(({ ...props }: BaseItemActionProps) => {
   const {
     hasTooltip,
     modifiedBadge,

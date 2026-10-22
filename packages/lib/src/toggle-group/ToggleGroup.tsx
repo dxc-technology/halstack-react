@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import ToggleGroupPropsType from "./types";
+import { ToggleGroupProps } from "./types";
 import { getButtonStyles, getHeight } from "../button/utils";
 
-const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
+const ToggleGroup = styled.div<{ margin: ToggleGroupProps["margin"] }>`
   display: flex;
   &[aria-orientation="vertical"] {
     flex-direction: column;
@@ -51,9 +51,9 @@ const IconContainer = styled.div`
 `;
 
 const isToggleButtonSelected = (
-  multiple: ToggleGroupPropsType["multiple"],
+  multiple: ToggleGroupProps["multiple"],
   optionValue: number,
-  value: ToggleGroupPropsType["value"]
+  value: ToggleGroupProps["value"]
 ) => (multiple ? Array.isArray(value) && value.includes(optionValue) : optionValue === value);
 
 export default function DxcToggleGroup({
@@ -65,7 +65,7 @@ export default function DxcToggleGroup({
   orientation = "horizontal",
   tabIndex = 0,
   value,
-}: ToggleGroupPropsType) {
+}: ToggleGroupProps) {
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
   const handleOnChange = (selectedOption: number) => {

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
+import { PrettifyTypes } from "../common/types";
 
-type Gap = { rowGap: string; columnGap?: string } | { rowGap?: string; columnGap: string } | string;
+export type FlexGap = { rowGap: string; columnGap?: string } | { rowGap?: string; columnGap: string } | string;
 
 type CommonProps = {
   /**
@@ -60,72 +61,76 @@ type CommonProps = {
   alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
 };
 
-type Props = CommonProps & {
-  /**
-   * Sets the flex-direction CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
-   */
-  direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  /**
-   * Sets the flex-wrap CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
-   */
-  wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  /**
-   * Sets the gap CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
-   */
-  gap?: Gap;
-  /**
-   * Sets the order CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/order
-   */
-  order?: number;
-  /**
-   * If true, the flex container will take the full height of its parent.
-   */
-  fullHeight?: boolean;
-  /**
-   * Sets the flex-grow CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
-   */
-  grow?: number;
-  /**
-   * Sets the flex-shrink CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
-   */
-  shrink?: number;
-  /**
-   * Sets the flex-basis CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis
-   */
-  basis?: string;
-  /**
-   * Sets a custom HTML tag.
-   */
-  as?: keyof HTMLElementTagNameMap;
-  /**
-   * Custom content inside the flex container.
-   */
-  children: ReactNode;
-};
+export type FlexProps = PrettifyTypes<
+  CommonProps & {
+    /**
+     * Sets the flex-direction CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+     */
+    direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    /**
+     * Sets the flex-wrap CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+     */
+    wrap?: "nowrap" | "wrap" | "wrap-reverse";
+    /**
+     * Sets the gap CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+     */
+    gap?: FlexGap;
+    /**
+     * Sets the order CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/order
+     */
+    order?: number;
+    /**
+     * If true, the flex container will take the full height of its parent.
+     */
+    fullHeight?: boolean;
+    /**
+     * Sets the flex-grow CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
+     */
+    grow?: number;
+    /**
+     * Sets the flex-shrink CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
+     */
+    shrink?: number;
+    /**
+     * Sets the flex-basis CSS property.
+     *
+     * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis
+     */
+    basis?: string;
+    /**
+     * Sets a custom HTML tag.
+     */
+    as?: keyof HTMLElementTagNameMap;
+    /**
+     * Custom content inside the flex container.
+     */
+    children: ReactNode;
+  }
+>;
 
-export type StyledProps = CommonProps & {
-  $direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  $wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  $gap?: Gap;
-  $fullHeight?: boolean;
-  $order?: number;
-  $grow?: number;
-  $shrink?: number;
-  $basis?: string;
-};
+export type StyledProps = PrettifyTypes<
+  CommonProps & {
+    $direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    $wrap?: "nowrap" | "wrap" | "wrap-reverse";
+    $gap?: FlexGap;
+    $fullHeight?: boolean;
+    $order?: number;
+    $grow?: number;
+    $shrink?: number;
+    $basis?: string;
+  }
+>;
 
-export default Props;
+export type { FlexProps as default };

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type Props = {
+export type TooltipProps = {
   /**
    * Content in which the Tooltip will be displayed.
    */
@@ -21,4 +21,4 @@ export type TooltipWrapperProps = {
   label?: string;
 };
 
-export default Props;
+export type { TooltipProps as default };

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
-type SocialLink = {
+type FooterSocialLink = {
   /**
    * URL of the page the link goes to.
    */
@@ -16,7 +16,7 @@ type SocialLink = {
   title: string;
 };
 
-type BottomLink = {
+type FooterBottomLink = {
   /**
    * URL of the page the link goes to.
    */
@@ -27,7 +27,7 @@ type BottomLink = {
   text: string;
 };
 
-type Logo = {
+type FooterLogo = {
   /**
    * Source of the logo image.
    */
@@ -38,12 +38,12 @@ type Logo = {
   alt: string;
 };
 
-type FooterPropsType = {
+type FooterProps = {
   /**
    * An array of objects representing the links that will be rendered at
    * the bottom part of the footer.
    */
-  bottomLinks?: BottomLink[];
+  bottomLinks?: FooterBottomLink[];
   /**
    * The text that will be displayed as copyright disclaimer.
    */
@@ -55,7 +55,7 @@ type FooterPropsType = {
   /**
    * Logo to be displayed inside the footer
    */
-  logo?: Logo;
+  logo?: FooterLogo;
   /**
    * Determines the visual style and layout
    * - "default": The default mode with full content and styling.
@@ -70,7 +70,7 @@ type FooterPropsType = {
    * An array of objects representing the links that will be rendered as
    * icons at the top-right side of the footer.
    */
-  socialLinks?: SocialLink[];
+  socialLinks?: FooterSocialLink[];
   /**
    * Value of the tabindex for all interactive elements, except those
    * inside the leftContent and rightContent.
@@ -82,4 +82,4 @@ type FooterPropsType = {
   variant?: "branded" | "neutral";
 };
 
-export default FooterPropsType;
+export type { FooterProps as default, FooterProps, FooterBottomLink, FooterLogo, FooterSocialLink };

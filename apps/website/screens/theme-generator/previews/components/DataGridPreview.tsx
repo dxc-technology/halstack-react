@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DxcDataGrid, DxcContainer } from "@dxc-technology/halstack-react";
-import type { GridColumn } from "../../../../../../packages/lib/src/data-grid/types";
+import type { DxcDataGridColumn } from "@dxc-technology/halstack-react";
 
 const actions = [
   {
@@ -16,7 +16,7 @@ const actions = [
   },
 ];
 
-const columns: GridColumn[] = [
+const columns: DxcDataGridColumn[] = [
   {
     key: "id",
     label: "ID",

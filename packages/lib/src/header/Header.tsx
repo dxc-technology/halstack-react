@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import DxcGrid from "../grid/Grid";
-import HeaderProps from "./types";
+import { HeaderProps } from "./types";
 import DxcImage from "../image/Image";
 import DxcDivider from "../divider/Divider";
 import DxcHeading from "../heading/Heading";
 import { isGroupItem } from "../base-menu/utils";
-import { GroupItem, Item } from "../base-menu/types";
+import { BaseGroupItem, BaseItem } from "../base-menu/types";
 import { JSX, use, useEffect, useMemo, useState } from "react";
 import DxcNavigationTree from "../navigation-tree/NavigationTree";
 import { responsiveSizes } from "../common/variables";
@@ -114,13 +114,13 @@ const Overlay = styled.div`
  * @param level current level of recursion.
  * @return Processed navigation items with limited levels.
  */
-const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (GroupItem | Item)[] => {
+const sanitizeNavItems = (navItems: HeaderProps["navItems"], level?: number): (BaseGroupItem | BaseItem)[] => {
   if (!navItems) return [];
   if (!level) level = 0;
-  const sanitizedItems = navItems.reduce<(GroupItem | Item)[]>((acc, item) => {
+  const sanitizedItems = navItems.reduce<(BaseGroupItem | BaseItem)[]>((acc, item) => {
     if (isGroupItem(item)) {
       if (level < LEVEL_LIMIT) {
-        const processedGroup: GroupItem = {
+        const processedGroup: BaseGroupItem = {
           ...item,
           items: sanitizeNavItems(item.items, level + 1),
         };

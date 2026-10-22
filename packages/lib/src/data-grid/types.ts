@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import { SortColumn } from "react-data-grid";
+import { PrettifyTypes } from "../common/types";
 
-export type GridColumn = {
+type DataGridColumn = {
   /**
    * Key that will be rendered from each row in rows.
    */
@@ -40,67 +41,71 @@ export type GridColumn = {
   alignment?: "left" | "right" | "center";
 };
 
-export type GridRow = {
+type DataGridRow = {
   /**
    * List of rows that will be rendered in each cell based on the key in each column.
    */
   [key: string]: ReactNode | undefined;
 };
 
-export type HierarchyGridRow = GridRow & {
-  /**
-   * Array of child rows nested under this row, enabling hierarchical (tree-like) structures.
-   * These child rows will be displayed when the parent row is expanded.
-   */
-  childRows?: HierarchyGridRow[] | GridRow[];
-  /**
-   * Function called when a row with children is expanded or collapsed (based on the value of `open`).
-   * Returns (or resolves to) the array of child rows nested under this row to display when expanded.
-   */
-  childrenTrigger?: (
-    open?: boolean,
-    triggerRow?: HierarchyGridRow
-  ) => (HierarchyGridRow[] | GridRow[]) | Promise<HierarchyGridRow[] | GridRow[]>;
-  /**
-   * Indicates whether child rows are currently being loaded.
-   */
-  loadingChildren?: boolean;
-  /**
-   * Indicates the level of nesting for this row in the hierarchy.
-   */
-  rowLevel?: number;
-  /**
-   * Reference to the parent row's unique identifier.
-   */
-  parentKey?: string | number;
-  /**
-   * Indicates whether child rows are currently visible.
-   */
-  visibleChildren?: boolean;
-};
+type DataGridHierarchyRow = PrettifyTypes<
+  DataGridRow & {
+    /**
+     * Array of child rows nested under this row, enabling hierarchical (tree-like) structures.
+     * These child rows will be displayed when the parent row is expanded.
+     */
+    childRows?: DataGridHierarchyRow[] | DataGridRow[];
+    /**
+     * Function called when a row with children is expanded or collapsed (based on the value of `open`).
+     * Returns (or resolves to) the array of child rows nested under this row to display when expanded.
+     */
+    childrenTrigger?: (
+      open?: boolean,
+      triggerRow?: DataGridHierarchyRow
+    ) => (DataGridHierarchyRow[] | DataGridRow[]) | Promise<DataGridHierarchyRow[] | DataGridRow[]>;
+    /**
+     * Indicates whether child rows are currently being loaded.
+     */
+    loadingChildren?: boolean;
+    /**
+     * Indicates the level of nesting for this row in the hierarchy.
+     */
+    rowLevel?: number;
+    /**
+     * Reference to the parent row's unique identifier.
+     */
+    parentKey?: string | number;
+    /**
+     * Indicates whether child rows are currently visible.
+     */
+    visibleChildren?: boolean;
+  }
+>;
 
-export type ExpandableGridRow = GridRow & {
-  expandedContent?: ReactNode;
-  expandedContentHeight?: number;
-  contentIsExpanded?: boolean;
-};
+type DataGridExpandableRow = PrettifyTypes<
+  DataGridRow & {
+    expandedContent?: ReactNode;
+    expandedContentHeight?: number;
+    contentIsExpanded?: boolean;
+  }
+>;
 
-export type ExpandableRows = {
-  rows: ExpandableGridRow[];
+type DataGridExpandableRows = {
+  rows: DataGridExpandableRow[];
   /**
    * Whether the rows can expand or not.
    */
   expandable: true;
   /**
-   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type DataGridHierarchyRow[].
    */
   uniqueRowId: string;
 };
 
-export type HierarchyRows = {
-  rows: HierarchyGridRow[];
+type DataGridHierarchyRows = {
+  rows: DataGridHierarchyRow[];
   /**
-   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type DataGridHierarchyRow[].
    */
   uniqueRowId: string;
   /**
@@ -109,7 +114,7 @@ export type HierarchyRows = {
   expandable?: false;
 };
 
-export type SelectableGridProps =
+type DataGridSelectableProps =
   | {
       /**
        * Whether the rows are selectable or not.
@@ -124,7 +129,7 @@ export type SelectableGridProps =
        */
       onSelectRows: (selectedRows: Set<number | string>) => void;
       /**
-       * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+       * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type DataGridHierarchyRow[].
        */
       uniqueRowId: string;
     }
@@ -135,7 +140,7 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
-type PaginatedProps = {
+type DataGridPaginatedProps = {
   /**
    * If true, paginator will be displayed.
    */
@@ -171,7 +176,7 @@ type PaginatedProps = {
   defaultPage?: number;
 };
 
-type NonPaginatedProps = {
+type DataGridNonPaginatedProps = {
   /**
    * If true, paginator will be displayed.
    */
@@ -207,16 +212,16 @@ type NonPaginatedProps = {
   defaultPage?: never;
 };
 
-export type CommonProps = {
-  columns: GridColumn[];
+type CommonProps = {
+  columns: DataGridColumn[];
   /**
    * Extra row that will be always visible.
    */
-  summaryRow?: GridRow;
+  summaryRow?: DataGridRow;
   /**
    * Function called whenever a cell is edited.
    */
-  onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  onGridRowsChange?: (_rows: DataGridRow[] | DataGridHierarchyRow[] | DataGridExpandableRow[]) => void;
   /**
    * Function called whenever a column is sorted. Receives the sorted
    * column and direction, or `undefined` if no sorting is applied.
@@ -224,20 +229,30 @@ export type CommonProps = {
   onSort?: (_sortColumn?: SortColumn) => void;
 };
 
-export type BasicGridProps = {
-  rows: GridRow[];
+type DataGridBasicProps = {
+  rows: DataGridRow[];
   /**
    * Whether the rows can expand or not.
    */
   expandable?: false;
 };
 
-type Props = CommonProps &
-  (PaginatedProps | NonPaginatedProps) &
-  (
-    | (BasicGridProps & SelectableGridProps)
-    | (ExpandableRows & SelectableGridProps)
-    | (HierarchyRows & SelectableGridProps)
-  );
+type DataGridProps = PrettifyTypes<
+  CommonProps &
+    (DataGridPaginatedProps | DataGridNonPaginatedProps) &
+    (DataGridBasicProps | DataGridExpandableRows | DataGridHierarchyRows) &
+    DataGridSelectableProps
+>;
 
-export default Props;
+export type {
+  DataGridColumn,
+  DataGridRow,
+  DataGridHierarchyRow,
+  DataGridExpandableRow,
+  DataGridExpandableRows,
+  DataGridHierarchyRows,
+  DataGridSelectableProps,
+  DataGridBasicProps,
+  DataGridProps,
+  DataGridProps as default,
+};

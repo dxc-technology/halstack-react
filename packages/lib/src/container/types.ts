@@ -1,20 +1,14 @@
 import { ReactNode, Ref } from "react";
+import { PrettifyTypes } from "../common/types";
 
-type Space = {
+export type ContainerSpacing = {
   top?: string;
   right?: string;
   bottom?: string;
   left?: string;
 };
 
-type Inset = {
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-};
-
-type Background = {
+export type ContainerBackground = {
   attachment?: string;
   clip?: string;
   color?: string;
@@ -25,38 +19,41 @@ type Background = {
   size?: string;
 };
 
-export type BorderProperties = {
+export type ContainerBorderProperties = {
   width?: string;
   style?: string;
   color?: string;
 };
-type Border =
-  | BorderProperties
+export type ContainerBorder = PrettifyTypes<
+  | ContainerBorderProperties
   | {
-      top?: BorderProperties;
-      right?: BorderProperties;
-      bottom?: BorderProperties;
-      left?: BorderProperties;
-    };
+      top?: ContainerBorderProperties;
+      right?: ContainerBorderProperties;
+      bottom?: ContainerBorderProperties;
+      left?: ContainerBorderProperties;
+    }
+>;
 
-type Outline = BorderProperties & {
-  offset?: string;
-};
+export type ContainerOutline = PrettifyTypes<
+  ContainerBorderProperties & {
+    offset?: string;
+  }
+>;
 
-type OverflowValues = "visible" | "hidden" | "clip" | "scroll" | "auto";
-type Overflow = OverflowValues | { x?: OverflowValues; y?: OverflowValues };
+export type OverflowValues = "visible" | "hidden" | "clip" | "scroll" | "auto";
+export type ContainerOverflow = PrettifyTypes<OverflowValues | { x?: OverflowValues; y?: OverflowValues }>;
 
-type Props = {
+export type ContainerProps = {
   /**
    * Based on the CSS property background allows configuring all properties related to the background of a container.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background
    */
-  background?: Background;
+  background?: ContainerBackground;
   /**
    * Based on the CSS property border allows configuring all properties related to the border of a container.
    */
-  border?: Border;
+  border?: ContainerBorder;
   /**
    * Sets the border-radius CSS property.
    *
@@ -108,11 +105,11 @@ type Props = {
    * Based on the CSS property inset this prop is a shorthand that corresponds
    * to the top, right, bottom, and/or left properties.
    */
-  inset?: Inset;
+  inset?: ContainerSpacing;
   /**
    * Size of the margin to be applied to the container.
    */
-  margin?: string | Space;
+  margin?: string | ContainerSpacing;
   /**
    * Sets the max-width CSS property.
    *
@@ -141,17 +138,17 @@ type Props = {
    * Based on the CSS property outline allows configuring all properties related
    * to the outline of a container.
    */
-  outline?: Outline;
+  outline?: ContainerOutline;
   /**
    * Sets the overflow CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
    */
-  overflow?: Overflow;
+  overflow?: ContainerOverflow;
   /**
    * Size of the padding to be applied to the container.
    */
-  padding?: string | Space;
+  padding?: string | ContainerSpacing;
   /**
    * Sets the position CSS property.
    *
@@ -172,11 +169,11 @@ type Props = {
   zIndex?: "auto" | number;
 };
 
-export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
+export type StyledProps = Omit<ContainerProps, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
   $height?: string;
-  $overflow?: Overflow;
+  $overflow?: ContainerOverflow;
   $width?: string;
 };
 
-export default Props;
+export type { ContainerProps as default };

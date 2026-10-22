@@ -1,12 +1,12 @@
 import { JSX, useEffect, useId, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import ProgressBarPropsType from "./types";
+import { ProgressBarProps } from "./types";
 import DxcFlex from "../flex/Flex";
 import { auxTextStyles, labelTextStyles, textColorStyles } from "./utils";
 
 const ProgressBarContainer = styled.div<{
-  overlay: ProgressBarPropsType["overlay"];
+  overlay: ProgressBarProps["overlay"];
 }>`
   display: flex;
   flex-wrap: wrap;
@@ -33,8 +33,8 @@ const Overlay = styled.div`
 `;
 
 const MainContainer = styled.div<{
-  overlay: ProgressBarPropsType["overlay"];
-  margin: ProgressBarPropsType["margin"];
+  overlay: ProgressBarProps["overlay"];
+  margin: ProgressBarProps["margin"];
 }>`
   width: ${(props) => (props.overlay ? "80%" : "100%")};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -53,7 +53,7 @@ const MainContainer = styled.div<{
 `;
 
 const ProgressBarLabel = styled.div<{
-  overlay: ProgressBarPropsType["overlay"];
+  overlay: ProgressBarProps["overlay"];
 }>`
   ${labelTextStyles};
   ${(props) => textColorStyles(props.overlay)};
@@ -64,21 +64,21 @@ const ProgressBarLabel = styled.div<{
 `;
 
 const ProgressBarProgress = styled.div<{
-  overlay: ProgressBarPropsType["overlay"];
+  overlay: ProgressBarProps["overlay"];
 }>`
   ${auxTextStyles};
   ${(props) => textColorStyles(props.overlay)};
   flex-shrink: 0;
 `;
 
-const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
+const HelperText = styled.span<{ overlay: ProgressBarProps["overlay"] }>`
   ${(props) => textColorStyles(props.overlay)};
   ${auxTextStyles};
 `;
 
 const LinearProgress = styled.div<{
-  helperText: ProgressBarPropsType["helperText"];
-  overlay: ProgressBarPropsType["overlay"];
+  helperText: ProgressBarProps["helperText"];
+  overlay: ProgressBarProps["overlay"];
 }>`
   position: relative;
   border-radius: var(--border-radius-m);
@@ -88,9 +88,9 @@ const LinearProgress = styled.div<{
 `;
 
 const LinearProgressBar = styled.span<{
-  overlay: ProgressBarPropsType["overlay"];
+  overlay: ProgressBarProps["overlay"];
   variant: "determinate" | "indeterminate";
-  value: ProgressBarPropsType["value"];
+  value: ProgressBarProps["value"];
 }>`
   position: absolute;
   top: 0;
@@ -145,7 +145,7 @@ const DxcProgressBar = ({
   showValue,
   margin,
   ariaLabel = "Progress bar",
-}: ProgressBarPropsType): JSX.Element => {
+}: ProgressBarProps): JSX.Element => {
   const labelId = `label-${useId()}`;
   const [innerValue, setInnerValue] = useState<number | undefined>();
 
