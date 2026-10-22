@@ -137,6 +137,7 @@ const DxcTab = ({
   return (
     <Tooltip label={title}>
       <Tab
+        aria-disabled={disabled}
         aria-selected={activeTabId === tabId}
         disabled={disabled}
         hasLabelAndIcon={Boolean(icon && label)}

@@ -110,6 +110,7 @@ export default function DxcToggleGroup({
             <ToggleButton
               aria-label={option.title}
               aria-pressed={selected}
+              aria-disabled={option.disabled}
               disabled={option.disabled}
               onClick={() => {
                 handleOnChange(option.value);

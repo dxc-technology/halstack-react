@@ -183,6 +183,7 @@ export default function DxcWizard({
         <StepContainer key={`step${i}`} lastStep={i === steps.length - 1} mode={mode}>
           <Step
             aria-current={(currentStep ?? innerCurrent) === i ? "step" : false}
+            aria-disabled={step.disabled}
             disabled={step.disabled}
             mode={mode}
             onClick={() => {

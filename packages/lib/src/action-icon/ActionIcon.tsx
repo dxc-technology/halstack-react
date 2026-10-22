@@ -114,6 +114,7 @@ const ForwardedActionIcon = ({
   return (
     <Tooltip label={title}>
       <ActionIconContainer
+        aria-disabled={disabled}
         size={size}
         onClick={!disabled ? onClick : undefined}
         hasAction={!!onClick || !!linkHref}

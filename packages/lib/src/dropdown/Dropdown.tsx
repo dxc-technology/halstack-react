@@ -256,7 +256,7 @@ const DxcDropdown = ({
 
   return (
     <>
-      <DropdownContainer margin={margin} size={size}>
+      <DropdownContainer aria-disabled={disabled} margin={margin} size={size}>
         <DxcPopover
           asChild
           isOpen={isOpen}
