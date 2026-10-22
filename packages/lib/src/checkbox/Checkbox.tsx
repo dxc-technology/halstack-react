@@ -114,6 +114,7 @@ const DxcCheckbox = ({
 
   return (
     <CheckboxContainer
+      aria-disabled={disabled}
       disabled={disabled}
       labelPosition={labelPosition}
       margin={margin}

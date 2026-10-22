@@ -234,7 +234,7 @@ const DxcFileInput = ({
   }, [value]);
 
   return (
-    <FileInputContainer margin={margin} ref={ref} mode={mode} size={size}>
+    <FileInputContainer aria-disabled={disabled} margin={margin} ref={ref} mode={mode} size={size}>
       {label && (
         <Label disabled={disabled} hasMargin={!helperText} htmlFor={fileInputId}>
           {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}

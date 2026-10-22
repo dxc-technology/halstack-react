@@ -118,6 +118,7 @@ const DxcChip = ({
       type={mode === "selectable" ? "button" : undefined}
       aria-label={mode === "selectable" ? label || "Chip" : label}
       aria-pressed={mode === "selectable" ? isSelected : undefined}
+      aria-disabled={disabled}
       disabled={disabled}
       isAvatar={isAvatarType(prefix)}
       onClick={mode === "selectable" && !disabled ? handleSelectableClick : undefined}

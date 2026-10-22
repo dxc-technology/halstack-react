@@ -88,6 +88,7 @@ const DxcLink = ({
     onClick={!disabled ? onClick : undefined}
     href={!disabled && href ? href : undefined}
     target={href ? (newWindow ? "_blank" : "_self") : undefined}
+    aria-disabled={disabled}
     disabled={disabled}
     inheritColor={inheritColor}
     margin={margin}
