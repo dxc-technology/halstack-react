@@ -121,7 +121,7 @@ const Tab = ({
   };
 
   return (
-    <TabContainer aria-disabled={disabled}>
+    <TabContainer>
       <DxcInset space="var(--spacing-padding-xs)">
         <TabLink
           aria-disabled={disabled}
