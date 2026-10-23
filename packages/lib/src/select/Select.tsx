@@ -32,7 +32,7 @@ import {
   getGroupSelectionType,
   computeNewValue,
 } from "./utils";
-import SelectPropsType, { ListOptionGroupType, ListOptionType } from "./types";
+import type { SelectProps, SelectOptionGroup, SelectOption } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ErrorMessage from "../styles/forms/ErrorMessage";
@@ -42,8 +42,8 @@ import inputStylesByState from "../styles/forms/inputStylesByState";
 import DxcPopover from "../popover/Popover";
 
 const SelectContainer = styled.div<{
-  margin: SelectPropsType["margin"];
-  size: SelectPropsType["size"];
+  margin: SelectProps["margin"];
+  size: SelectProps["size"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -62,7 +62,7 @@ const SelectContainer = styled.div<{
 `;
 
 const Select = styled.div<{
-  disabled: Required<SelectPropsType>["disabled"];
+  disabled: Required<SelectProps>["disabled"];
   error: boolean;
 }>`
   position: relative;
@@ -81,22 +81,22 @@ const Select = styled.div<{
   }
 `;
 
-const SelectionIndicator = styled.div<{ disabled: SelectPropsType["disabled"] }>`
+const SelectionIndicator = styled.div<{ disabled: SelectProps["disabled"] }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-width: 48px;
   min-height: var(--height-s);
   border-radius: var(--border-radius-xs);
   border: var(--border-width-s) var(--border-style-default)
-    ${({ disabled }) => (disabled ? "var(--border-color-neutral-strong)" : "var(--border-color-neutral-light)")};
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-lighter)" : "var(--border-color-neutral-strong)")};
 `;
 
-const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
+const SelectionNumber = styled.span<{ disabled: SelectProps["disabled"] }>`
   display: grid;
   place-items: center;
   background-color: ${({ disabled }) => (disabled ? "transparent" : "var(--color-bg-neutral-lighter)")};
   border-right: var(--border-width-s) var(--border-style-default)
-    ${({ disabled }) => (disabled ? "var(--border-color-neutral-medium)" : "var(--border-color-neutral-light)")};
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-lighter)" : "var(--border-color-neutral-strong)")};
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
@@ -138,7 +138,7 @@ const SearchableValueContainer = styled.div`
 `;
 
 const SelectedOption = styled.span<{
-  disabled: SelectPropsType["disabled"];
+  disabled: SelectProps["disabled"];
   atBackground: boolean;
 }>`
   grid-area: 1 / 1 / 1 / 1;
@@ -194,7 +194,7 @@ const DxcSelect = ({
   tabIndex = 0,
   value,
   virtualizedHeight,
-}: SelectPropsType) => {
+}: SelectProps) => {
   const id = `select-${useId()}`;
   const errorId = `error-${id}`;
   const labelId = `label-${id}`;
@@ -246,7 +246,7 @@ const DxcSelect = ({
   };
 
   const handleOnChangeValue = useCallback(
-    (newOption?: ListOptionType | ListOptionType[]) => {
+    (newOption?: SelectOption | SelectOption[]) => {
       if (newOption) {
         if (multiple) {
           if (value == null) {
@@ -448,7 +448,7 @@ const DxcSelect = ({
   };
 
   const handleOptionOnClick = useCallback(
-    (option: ListOptionType | ListOptionType[]) => {
+    (option: SelectOption | SelectOption[]) => {
       handleOnChangeValue(option);
       if (!multiple) closeListbox();
       setSearchValue("");
@@ -465,7 +465,7 @@ const DxcSelect = ({
   }, [handleClearOptionsActionOnClick, innerValue, multiple, onChange, options, value]);
 
   const handleSelectAllGroup = useCallback(
-    (group: ListOptionGroupType) => {
+    (group: SelectOptionGroup) => {
       const groupSelectionType = getGroupSelectionType(group.options, (value ?? innerValue) as string[]);
       handleOptionOnClick(
         groupSelectionType === "indeterminate"
@@ -478,7 +478,7 @@ const DxcSelect = ({
 
   return (
     <>
-      <SelectContainer margin={margin} ref={ref} size={size}>
+      <SelectContainer aria-disabled={disabled} margin={margin} ref={ref} size={size}>
         {label && (
           <Label
             disabled={disabled}

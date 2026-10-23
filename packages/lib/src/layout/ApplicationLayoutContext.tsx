@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { ApplicationLayoutContextType } from "./types";
+import { ApplicationLayoutContext } from "./types";
 
-export default createContext<ApplicationLayoutContextType>({
+export default createContext<ApplicationLayoutContext>({
   logo: undefined,
   headerExists: false,
   setHideMainContent: () => {},

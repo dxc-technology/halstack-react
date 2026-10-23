@@ -1,13 +1,13 @@
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { OptionProps } from "./types";
+import { ListboxOptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const OptionItem = styled.li<{
-  visualFocused: OptionProps["visualFocused"];
-  selected: OptionProps["isSelected"];
+  visualFocused: ListboxOptionProps["visualFocused"];
+  selected: ListboxOptionProps["isSelected"];
 }>`
   list-style: none;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
@@ -20,14 +20,14 @@ const OptionItem = styled.li<{
   }
   ${({ visualFocused }) =>
     visualFocused &&
-    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); outline-offset: -2px;"}
+    "outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark); outline-offset: -2px;"}
 `;
 
 const StyledOption = styled.span<{
-  grouped: OptionProps["isGroupedOption"];
-  last: OptionProps["isLastOption"];
-  selected: OptionProps["isSelected"];
-  visualFocused: OptionProps["visualFocused"];
+  grouped: ListboxOptionProps["isGroupedOption"];
+  last: ListboxOptionProps["isLastOption"];
+  selected: ListboxOptionProps["isSelected"];
+  visualFocused: ListboxOptionProps["visualFocused"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -66,7 +66,7 @@ const OptionContent = styled.span`
   }
 `;
 
-const OptionLabel = styled.span<{ isSelectAllOption: OptionProps["isSelectAllOption"] }>`
+const OptionLabel = styled.span<{ isSelectAllOption: ListboxOptionProps["isSelectAllOption"] }>`
   ${({ isSelectAllOption }) => isSelectAllOption && "font-weight: var(--typography-label-semibold);"}
   overflow: hidden;
   text-overflow: ellipsis;
@@ -83,7 +83,7 @@ const ListOption = ({
   onClick,
   option,
   visualFocused,
-}: OptionProps) => {
+}: ListboxOptionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
   const checkboxRef = useRef<HTMLDivElement>(null);
 

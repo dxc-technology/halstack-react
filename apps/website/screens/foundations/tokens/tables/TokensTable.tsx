@@ -1,6 +1,6 @@
 import { TableCode } from "@/common/Code";
 import { DxcTable } from "@dxc-technology/halstack-react";
-import { aliasTokens, coreTokens } from "../../../../../../packages/lib/src/styles/tokens";
+import { DxcAliasTokens, DxcCoreTokens } from "@dxc-technology/halstack-react";
 import getTokensByCategory from "./utils/mapCategory";
 
 const TokensTable = ({ categories, type }: { categories: string[]; type: "alias" | "core" }) => (
@@ -12,7 +12,12 @@ const TokensTable = ({ categories, type }: { categories: string[]; type: "alias"
       </tr>
     </thead>
     <tbody>
-      {getTokensByCategory(type === "alias" ? aliasTokens : coreTokens, categories).map(([token, value]) => (
+      {getTokensByCategory(
+        type === "alias"
+          ? (DxcAliasTokens as Record<string, string | number>)
+          : (DxcCoreTokens as Record<string, string | number>),
+        categories
+      ).map(([token, value]) => (
         <tr key={token}>
           <td>
             <TableCode>{token}</TableCode>

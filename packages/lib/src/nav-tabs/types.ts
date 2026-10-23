@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { SVG } from "../common/types";
 
 export type NavTabsContextProps = {
   focusedLabel: string | undefined;
@@ -7,7 +7,7 @@ export type NavTabsContextProps = {
   tabIndex: number;
 };
 
-export type TabProps = {
+type NavTabsTabProps = {
   /**
    * Whether the tab is active or not.
    */
@@ -46,7 +46,7 @@ export type TabProps = {
   ref?: React.Ref<HTMLAnchorElement | HTMLDivElement>;
 };
 
-type Props = {
+type NavTabsProps = {
   /**
    * Contains one or more DxcNavTabs.Tab.
    */
@@ -61,4 +61,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default Props;
+export type { NavTabsProps as default, NavTabsProps, NavTabsTabProps };

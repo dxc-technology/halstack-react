@@ -13,14 +13,14 @@ import {
 import styled from "@emotion/styled";
 import TabsContext from "./TabsContext";
 import DxcTab, { sharedTabStyles } from "./Tab";
-import TabsPropsType, { TabProps } from "./types";
+import { TabsProps, TabsTabProps } from "./types";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { getPreviousTabIndex, getNextTabIndex } from "./utils";
 import useWidth from "../utils/useWidth";
 
-const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
+const TabsContainer = styled.div<{ margin: TabsProps["margin"] }>`
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -81,15 +81,15 @@ const TabsContent = styled.div`
 
 const ScrollableTabsList = styled.div<{
   enabled: boolean;
-  iconPosition: TabsPropsType["iconPosition"];
+  iconPosition: TabsProps["iconPosition"];
 }>`
   display: flex;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   height: ${({ iconPosition }) => (iconPosition === "top" ? "72px" : "var(--height-xxl)")};
 `;
 
-const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: TabsPropsType) => {
-  const isTabElement = (child: ReactNode): child is ReactElement<TabProps> => isValidElement<TabProps>(child);
+const DxcTabs = ({ children, iconPosition = "left", margin, tabIndex = 0 }: TabsProps) => {
+  const isTabElement = (child: ReactNode): child is ReactElement<TabsTabProps> => isValidElement<TabsTabProps>(child);
   const childrenArray = useMemo(() => Children.toArray(children).filter(isTabElement), [children]);
   const [activeTabId, setActiveTabId] = useState<string>(() => {
     const activeChild = childrenArray.find(

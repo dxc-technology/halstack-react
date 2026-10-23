@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import DividerPropsType from "./types";
+import { DividerProps } from "./types";
 
-const StyledDivider = styled.hr<DividerPropsType>`
+const StyledDivider = styled.hr<DividerProps>`
   ${({ orientation, weight, color }) => `
     border-color: ${
       color === "lightGrey"
@@ -26,7 +26,7 @@ export default function DxcDivider({
   decorative = true,
   orientation = "horizontal",
   weight = "regular",
-}: DividerPropsType) {
+}: DividerProps) {
   return (
     <StyledDivider
       aria-hidden={decorative}

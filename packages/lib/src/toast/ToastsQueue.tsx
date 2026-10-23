@@ -2,7 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import DxcToast from "./Toast";
-import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
+import { QueuedToast, Semantic, ToastsQueueProps, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
 import ToastContext from "./ToastContext";
 import { generateUniqueToastId } from "./utils";
@@ -25,7 +25,7 @@ const ToastsQueue = styled.section`
   }
 `;
 
-export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueuePropsType) {
+export default function DxcToastsQueue({ children, duration = 3000 }: ToastsQueueProps) {
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   const adjustedDuration = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);

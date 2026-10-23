@@ -27,14 +27,14 @@ const AccordionTrigger = styled.button`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   :focus,
   :focus-visible {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   :hover:enabled,
   :active:enabled {
     background-color: var(--color-bg-primary-lighter);
   }
   :active:enabled {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
 
   &[aria-expanded="true"] {
@@ -171,6 +171,7 @@ const AccordionItem = ({
         id={`accordion-${id}`}
         onClick={disabled ? undefined : handleAccordionState}
         disabled={disabled}
+        aria-disabled={disabled}
         tabIndex={disabled ? -1 : tabIndex}
         aria-expanded={isItemExpanded}
         aria-controls={`accordion-panel-${id}`}

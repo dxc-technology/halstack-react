@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { ActionIconPropTypes } from "./types";
+import { ActionIconProps } from "./types";
 import { getBackgroundColor, getBorderRadius, getColor, getIconSize, getOutlineWidth, getSize } from "./utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -8,10 +8,10 @@ import { Tooltip } from "../tooltip/Tooltip";
 const ActionIconContainer = styled.div<
   {
     hasAction?: boolean;
-    shape: ActionIconPropTypes["shape"];
-    size: ActionIconPropTypes["size"];
-    disabled?: ActionIconPropTypes["disabled"];
-    color: ActionIconPropTypes["color"];
+    shape: ActionIconProps["shape"];
+    size: ActionIconProps["size"];
+    disabled?: ActionIconProps["disabled"];
+    color?: ActionIconProps["color"];
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
   /* Reset button default styles when rendered as button */
@@ -45,7 +45,7 @@ const ActionIconContainer = styled.div<
       &:active:enabled {
         outline-style: solid;
         outline-width: ${getOutlineWidth(size)};
-        outline-color: var(--border-color-secondary-medium);
+        outline-color: var(--border-color-neutral-dark);
         outline-offset: -2px;
       }
     `}
@@ -62,7 +62,7 @@ const ActionIconContainer = styled.div<
 
 const IconContainerWrapper = styled.div<{
   hasAction?: boolean;
-  disabled: ActionIconPropTypes["disabled"];
+  disabled: ActionIconProps["disabled"];
 }>`
   height: 100%;
   width: 100%;
@@ -82,7 +82,7 @@ const IconContainerWrapper = styled.div<{
     `}
 `;
 
-export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
+export const IconContainer = styled.div<{ size: ActionIconProps["size"] }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +100,7 @@ export const IconContainer = styled.div<{ size: ActionIconPropTypes["size"] }>`
 const ForwardedActionIcon = ({
   ariaLabel,
   content,
-  color = "transparent",
+  color = undefined,
   disabled = false,
   icon,
   linkHref,
@@ -110,10 +110,11 @@ const ForwardedActionIcon = ({
   size = "medium",
   tabIndex = 0,
   title,
-}: ActionIconPropTypes) => {
+}: ActionIconProps) => {
   return (
     <Tooltip label={title}>
       <ActionIconContainer
+        aria-disabled={disabled}
         size={size}
         onClick={!disabled ? onClick : undefined}
         hasAction={!!onClick || !!linkHref}

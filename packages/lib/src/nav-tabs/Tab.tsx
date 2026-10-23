@@ -2,7 +2,7 @@ import { useEffect, use, useRef, useImperativeHandle, KeyboardEvent } from "reac
 import styled from "@emotion/styled";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
-import NavTabsPropsType, { TabProps } from "./types";
+import { NavTabsProps, NavTabsTabProps } from "./types";
 import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 import DxcInset from "../inset/Inset";
@@ -15,8 +15,8 @@ const TabContainer = styled.div`
 
 const TabLink = styled.div<
   {
-    disabled: TabProps["disabled"];
-    iconPosition: NavTabsPropsType["iconPosition"];
+    disabled: NavTabsTabProps["disabled"];
+    iconPosition: NavTabsProps["iconPosition"];
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >`
   box-sizing: border-box;
@@ -41,7 +41,7 @@ const TabLink = styled.div<
         background-color: var(--color-bg-primary-lighter);
       }
       :focus {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: calc(var(--border-width-m) * -1);
       }
       :active {
@@ -51,7 +51,7 @@ const TabLink = styled.div<
 `;
 
 const Label = styled.span<{
-  disabled: TabProps["disabled"];
+  disabled: NavTabsTabProps["disabled"];
 }>`
   display: inline;
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
@@ -65,7 +65,7 @@ const Label = styled.span<{
 `;
 
 const IconContainer = styled.div<{
-  disabled: TabProps["disabled"];
+  disabled: NavTabsTabProps["disabled"];
 }>`
   display: flex;
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
@@ -76,7 +76,7 @@ const IconContainer = styled.div<{
   }
 `;
 
-const Underline = styled.span<{ active: TabProps["active"] }>`
+const Underline = styled.span<{ active: NavTabsTabProps["active"] }>`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -96,7 +96,7 @@ const Tab = ({
   onClick,
   ref,
   ...otherProps
-}: TabProps) => {
+}: NavTabsTabProps) => {
   const { iconPosition, tabIndex, focusedLabel } = use(NavTabsContext) ?? {};
   const tabRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
   const innerRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);

@@ -1,7 +1,7 @@
 import { ChangeEvent, FocusEvent, KeyboardEvent, MouseEvent, use, useEffect, useId, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import scrollbarStyles from "../styles/scroll";
-import PromptInputPropsType from "./types";
+import { MessageInputProps } from "./types";
 import { getFilePreview, getSelectedOption, inputStylesByStatePromptInput } from "./utils";
 import DxcButton from "../button/Button";
 import DxcChip from "../chip/Chip";
@@ -23,7 +23,7 @@ const sizes = {
 } as const;
 
 const MessageInput = styled.div<{
-  disabled: Required<PromptInputPropsType>["disabled"];
+  disabled: Required<MessageInputProps>["disabled"];
   error: boolean;
   focus: boolean;
   hasFiles?: boolean;
@@ -132,7 +132,7 @@ const DxcMessageInput = ({
   size = "medium",
   tabIndex,
   value,
-}: PromptInputPropsType) => {
+}: MessageInputProps) => {
   const languageContext = use(HalstackLanguageContext);
   const translatedLabels = languageContext.labels;
   const locale = languageContext.locale ?? "en-US";
@@ -284,6 +284,7 @@ const DxcMessageInput = ({
   return (
     <DxcContainer width={sizes[size]}>
       <MessageInput
+        aria-disabled={disabled}
         disabled={disabled}
         error={!!error}
         focus={isFocused}

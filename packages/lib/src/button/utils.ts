@@ -1,7 +1,11 @@
 import { getMargin } from "../common/utils";
-import ButtonPropsType, { Mode, Semantic, Size } from "./types";
+import { ButtonProps, ButtonMode, ButtonSemantic, ButtonSize } from "./types";
 
-export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | "selected", size: Size) => {
+export const getButtonStyles = (
+  mode: ButtonMode,
+  semantic: ButtonSemantic | "unselected" | "selected",
+  size: ButtonSize
+) => {
   let enabled = "";
   let hover = "";
   let active = "";
@@ -15,7 +19,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
     border-radius: var(--border-radius-s);
 
     &:focus:enabled {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
       outline-offset: -2px;
     }`;
 
@@ -33,36 +37,36 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           break;
         case "selected":
         case "default":
-          enabled = `background-color: var(--color-bg-primary-strong);`;
-          hover = `background-color: var(--color-bg-primary-stronger);`;
+          enabled = `background-color: var(--color-bg-primary-stronger);`;
+          hover = `background-color: var(--color-bg-primary-strongest);`;
           active = `background-color: var(--color-bg-primary-strongest);`;
           disabled = `background-color: var(--color-bg-primary-lightest);
           color: var(--color-fg-primary-light);`;
           break;
         case "error":
-          enabled = `background-color: var(--color-bg-error-strong);`;
-          hover = `background-color: var(--color-bg-error-stronger);`;
+          enabled = `background-color: var(--color-bg-error-stronger);`;
+          hover = `background-color: var(--color-bg-error-strongest);`;
           active = `background-color: var(--color-bg-error-strongest);`;
           disabled = `background-color: var(--color-bg-error-lightest);
           color: var(--color-fg-error-light);`;
           break;
         case "warning":
-          enabled = `background-color: var(--color-bg-warning-strong);`;
-          hover = `background-color: var(--color-bg-warning-stronger);`;
+          enabled = `background-color: var(--color-bg-warning-stronger);`;
+          hover = `background-color: var(--color-bg-warning-strongest);`;
           active = `background-color: var(--color-bg-warning-strongest);`;
           disabled = `background-color: var(--color-bg-warning-lightest);
           color: var(--color-fg-warning-light);`;
           break;
         case "success":
-          enabled = `background-color: var(--color-bg-success-strong);`;
-          hover = `background-color: var(--color-bg-success-stronger);`;
+          enabled = `background-color: var(--color-bg-success-stronger);`;
+          hover = `background-color: var(--color-bg-success-strongest);`;
           active = `background-color: var(--color-bg-success-strongest);`;
           disabled = `background-color: var(--color-bg-success-lightest);
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `background-color: var(--color-bg-info-strong);`;
-          hover = `background-color: var(--color-bg-info-stronger);`;
+          enabled = `background-color: var(--color-bg-info-stronger);`;
+          hover = `background-color: var(--color-bg-info-strongest);`;
           active = `background-color: var(--color-bg-info-strongest);`;
           disabled = `background-color: var(--color-bg-info-lightest);
           color: var(--color-fg-info-medium);`;
@@ -85,8 +89,8 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
       switch (semantic) {
         case "default":
           enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
-          color: var(--color-fg-primary-strong);`;
-          hover = `background-color: var(--color-bg-primary-strong); 
+          color: var(--color-fg-primary-stronger);`;
+          hover = `background-color: var(--color-bg-primary-stronger); 
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-primary-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -94,9 +98,9 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           color: var(--color-fg-primary-light);`;
           break;
         case "error":
-          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-error-medium);
-          color: var(--color-fg-error-medium);`;
-          hover = `background-color: var(--color-bg-error-strong);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-error-strong);
+          color: var(--color-fg-error-strong);`;
+          hover = `background-color: var(--color-bg-error-stronger);
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-error-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -104,29 +108,29 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
           color: var(--color-fg-error-light);`;
           break;
         case "warning":
-          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-warning-medium);
-          color: var(--color-fg-warning-medium);`;
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-warning-strong);
+          color: var(--color-fg-warning-stronger);`;
           hover = `background-color: var(--color-bg-warning-stronger);
           color: var(--color-fg-neutral-bright);`;
-          active = `background-color: var(--color-bg-warning-strongest);
+          active = `background-color: var(--color-bg-warning-stronger);
           color: var(--color-fg-neutral-bright);`;
           disabled = `border-color: var(--border-color-warning-light);
           color: var(--color-fg-warning-light);`;
           break;
         case "success":
-          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-success-medium);
-          color: var(--color-fg-success-medium);`;
-          hover = `background-color: var(--color-bg-success-strong);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-success-strong);
+          color: var(--color-fg-success-strong);`;
+          hover = `background-color: var(--color-bg-success-stronger);
           color: var(--color-fg-neutral-bright);`;
-          active = `background-color: var(--color-bg-success-strongest);
+          active = `background-color: var(--color-bg-success-stronger);
           color: var(--color-fg-neutral-bright);`;
           disabled = `border-color: var(--border-color-success-light);
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-info-strong);
-          color: var(--color-fg-info-strong);`;
-          hover = `background: var(--color-bg-info-strong);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-info-stronger);
+          color: var(--color-fg-info-stronger);`;
+          hover = `background: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
           active = `background-color: var(--color-bg-info-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -151,31 +155,31 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
     case "tertiary":
       switch (semantic) {
         case "default":
-          enabled = `color: var(--color-fg-primary-strong);`;
+          enabled = `color: var(--color-fg-primary-stronger);`;
           hover = `background-color: var(--color-bg-primary-lighter);`;
           active = `background-color: var(--color-bg-primary-light);`;
           disabled = `color: var(--color-fg-primary-light);`;
           break;
         case "error":
-          enabled = `color: var(--color-fg-error-medium);`;
-          hover = `var(--color-bg-error-lighter);`;
+          enabled = `color: var(--color-fg-error-strong);`;
+          hover = `background-color: var(--color-bg-error-lighter);`;
           active = `background-color: background: var(--color-bg-error-light);`;
           disabled = `color: var(--color-fg-error-light);`;
           break;
         case "warning":
-          enabled = `color: var(--color-fg-warning-medium);`;
+          enabled = `color: var(--color-fg-warning-stronger);`;
           hover = `background-color: var(--color-bg-warning-lighter);`;
           active = `background-color: var(--color-bg-warning-light);`;
           disabled = `color: var(--color-fg-warning-light);`;
           break;
         case "success":
-          enabled = `color: var(--color-fg-success-medium);`;
+          enabled = `color: var(--color-fg-success-strong);`;
           hover = `background-color: var(--color-bg-success-lighter);`;
           active = `background-color: var(--color-bg-success-light);`;
           disabled = `color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `color: var(--color-fg-info-strong);`;
+          enabled = `color: var(--color-fg-info-stronger);`;
           hover = `background-color: var(--color-bg-info-lighter);`;
           active = `background-color: var(--color-bg-info-light);`;
           disabled = `color: var(--color-fg-info-medium);`;
@@ -183,7 +187,7 @@ export const getButtonStyles = (mode: Mode, semantic: Semantic | "unselected" | 
       }
       return `${commonStyles}
         background-color: transparent;
-        color: var(--color-fg-primary-strong);
+        color: var(--color-fg-primary-stronger);
         ${enabled}
         &:hover:enabled {
           ${hover}
@@ -207,12 +211,12 @@ const widths = {
   fitContent: "fit-content",
 };
 
-export const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>
+export const calculateWidth = (margin: ButtonProps["margin"], size: ButtonProps["size"]) =>
   size?.width === "fillParent"
     ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size?.width && widths[size?.width];
 
-export const getHeight = (height: Size["height"]) => {
+export const getHeight = (height: ButtonSize["height"]) => {
   switch (height) {
     case "small":
       return "var(--height-s)";

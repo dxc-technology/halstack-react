@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import { HalstackLanguageContext } from "../HalstackContext";
-import SwitchPropsType from "./types";
+import { SwitchProps } from "./types";
 
 const sizes = {
   small: "60px",
@@ -13,12 +13,12 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType["size"]) =>
+const calculateWidth = (margin: SwitchProps["margin"], size: SwitchProps["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
 
-const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]) =>
+const getTrackColor = (checked: SwitchProps["checked"], disabled: SwitchProps["disabled"]) =>
   disabled
     ? checked
       ? "var(--color-bg-primary-lighter)"
@@ -28,10 +28,10 @@ const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchProp
       : "var(--color-bg-neutral-strong)";
 
 const SwitchContainer = styled.div<{
-  disabled: SwitchPropsType["disabled"];
-  labelPosition: SwitchPropsType["labelPosition"];
-  margin: SwitchPropsType["margin"];
-  size: SwitchPropsType["size"];
+  disabled: SwitchProps["disabled"];
+  labelPosition: SwitchProps["labelPosition"];
+  margin: SwitchProps["margin"];
+  size: SwitchProps["size"];
 }>`
   display: inline-grid;
   grid-template-columns: ${({ labelPosition }) =>
@@ -53,7 +53,7 @@ const SwitchContainer = styled.div<{
     /* Thumb focus */
     &:not([aria-disabled="true"]) {
       > span::before {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: var(--spacing-padding-xxxs);
       }
     }
@@ -61,8 +61,8 @@ const SwitchContainer = styled.div<{
 `;
 
 const LabelContainer = styled.span<{
-  disabled: SwitchPropsType["disabled"];
-  labelPosition: SwitchPropsType["labelPosition"];
+  disabled: SwitchProps["disabled"];
+  labelPosition: SwitchProps["labelPosition"];
 }>`
   display: flex;
   gap: var(--spacing-gap-xs);
@@ -81,12 +81,12 @@ const Label = styled.span`
 `;
 
 const OptionalLabel = styled.span<{
-  disabled: SwitchPropsType["disabled"];
+  disabled: SwitchProps["disabled"];
 }>`
   ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
 `;
 
-const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
+const Switch = styled.span<{ checked: SwitchProps["checked"]; disabled: SwitchProps["disabled"] }>`
   position: relative;
   width: 36px;
   height: var(--height-xxxs);
@@ -125,7 +125,7 @@ const DxcSwitch = ({
   size = "fitContent",
   tabIndex = 0,
   value,
-}: SwitchPropsType) => {
+}: SwitchProps) => {
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
   const translatedLabels = use(HalstackLanguageContext).labels;
 

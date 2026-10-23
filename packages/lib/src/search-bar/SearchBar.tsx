@@ -33,7 +33,7 @@ const SearchBarContainer = styled.div<{ disabled: Required<SearchBarProps>["disa
           &:focus-visible {
             border-color: transparent;
             outline-offset: -2px;
-            outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+            outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
           }
         `
       : css`
@@ -105,7 +105,7 @@ const DxcSearchBar = ({
 
   return (
     <DxcFlex gap="var(--spacing-gap-m)" alignItems="center" justifyContent="center" grow={1}>
-      <SearchBarContainer disabled={disabled}>
+      <SearchBarContainer aria-disabled={disabled} disabled={disabled}>
         <DxcIcon icon="search" aria-hidden="true" />
         <SearchBarInput
           ref={inputRef}

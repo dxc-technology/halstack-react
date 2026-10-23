@@ -2,7 +2,7 @@ import { FocusEvent, KeyboardEvent, useCallback, use, useId, useMemo, useState }
 import styled from "@emotion/styled";
 import { HalstackLanguageContext } from "../HalstackContext";
 import RadioInput from "./RadioInput";
-import RadioGroupPropsType from "./types";
+import { RadioGroupProps } from "./types";
 import Label from "../styles/forms/Label";
 import HelperText from "../styles/forms/HelperText";
 import ErrorMessage from "../styles/forms/ErrorMessage";
@@ -13,7 +13,7 @@ const RadioGroupContainer = styled.div`
   flex-direction: column;
 `;
 
-const RadioGroup = styled.div<{ stacking: RadioGroupPropsType["stacking"] }>`
+const RadioGroup = styled.div<{ stacking: RadioGroupProps["stacking"] }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: ${({ stacking }) => stacking};
@@ -39,7 +39,7 @@ const DxcRadioGroup = ({
   stacking = "column",
   tabIndex = 0,
   value,
-}: RadioGroupPropsType) => {
+}: RadioGroupProps) => {
   const id = `radio-group-${useId()}`;
   const labelId = `label-${id}`;
   const errorId = `error-${id}`;
@@ -142,7 +142,7 @@ const DxcRadioGroup = ({
   };
 
   return (
-    <RadioGroupContainer ref={ref}>
+    <RadioGroupContainer aria-disabled={disabled} ref={ref}>
       {label && (
         <Label disabled={disabled} hasMargin={!helperText} id={labelId}>
           {label}

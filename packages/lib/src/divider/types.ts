@@ -1,4 +1,4 @@
-type Props = {
+export type DividerProps = {
   /**
    * The divider can be shown in horizontal or vertical.
    */
@@ -19,4 +19,4 @@ type Props = {
   decorative?: boolean;
 };
 
-export default Props;
+export type { DividerProps as default };

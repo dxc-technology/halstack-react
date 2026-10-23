@@ -4,7 +4,7 @@ import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import TabsContext from "./TabsContext";
-import { TabProps, TabsContextProps } from "./types";
+import { TabsTabProps, TabsContextProps } from "./types";
 
 export const sharedTabStyles = `
   background-color: var(--color-bg-neutral-lightest);
@@ -21,7 +21,7 @@ export const sharedTabStyles = `
     background: var(--color-bg-primary-lighter);
   }
   &:focus:enabled {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     outline-offset: -2px;
   }
   &:disabled {
@@ -103,7 +103,7 @@ const DxcTab = ({
   ref,
   title,
   tabId = label,
-}: TabProps) => {
+}: TabsTabProps) => {
   const {
     activeTabId,
     focusedTabId,
@@ -137,6 +137,7 @@ const DxcTab = ({
   return (
     <Tooltip label={title}>
       <Tab
+        aria-disabled={disabled}
         aria-selected={activeTabId === tabId}
         disabled={disabled}
         hasLabelAndIcon={Boolean(icon && label)}

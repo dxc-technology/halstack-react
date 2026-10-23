@@ -1,7 +1,7 @@
-import InsetPropsType from "./types";
+import { InsetProps } from "./types";
 import DxcContainer from "../container/Container";
 
-export default function DxcInset({ bottom, children, horizontal, left, right, space, top, vertical }: InsetPropsType) {
+export default function DxcInset({ bottom, children, horizontal, left, right, space, top, vertical }: InsetProps) {
   return (
     <DxcContainer
       padding={{

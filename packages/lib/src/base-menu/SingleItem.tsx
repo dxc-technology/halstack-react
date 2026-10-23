@@ -1,9 +1,9 @@
 import { use, useEffect } from "react";
 import ItemAction from "./ItemAction";
-import { SingleItemProps } from "./types";
+import { BaseSingleItemProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
 
-export default function SingleItem({ id, onSelect, selected = false, ...props }: SingleItemProps) {
+export default function SingleItem({ id, onSelect, selected = false, ...props }: BaseSingleItemProps) {
   const { selectedItemId, setSelectedItemId, hasPopOver, closePopOver, onSelectItem } = use(BaseMenuContext) ?? {};
 
   const handleClick = () => {

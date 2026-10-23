@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
-import DropdownPropsType from "./types";
+import { DropdownProps } from "./types";
 import DxcPopover from "../popover/Popover";
 import { Tooltip } from "../tooltip/Tooltip";
 
@@ -17,15 +17,15 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
+const calculateWidth = (margin: DropdownProps["margin"], size: DropdownProps["size"]) =>
   size != null &&
   (size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size]);
 
 const DropdownContainer = styled.div<{
-  margin: DropdownPropsType["margin"];
-  size: DropdownPropsType["size"];
+  margin: DropdownProps["margin"];
+  size: DropdownProps["size"];
 }>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -40,9 +40,9 @@ const DropdownContainer = styled.div<{
 `;
 
 const DropdownTrigger = styled.button<{
-  label: DropdownPropsType["label"];
-  margin: DropdownPropsType["margin"];
-  size: DropdownPropsType["size"];
+  label: DropdownProps["label"];
+  margin: DropdownProps["margin"];
+  size: DropdownProps["size"];
 }>`
   display: flex;
   justify-content: space-between;
@@ -62,7 +62,7 @@ const DropdownTrigger = styled.button<{
     !props.disabled &&
     `
       &:focus {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
         outline-offset: -2px;
       }
       &:hover, &:active {
@@ -71,7 +71,7 @@ const DropdownTrigger = styled.button<{
   `};
 `;
 
-const DropdownTriggerContent = styled.span<{ iconPosition: DropdownPropsType["iconPosition"] }>`
+const DropdownTriggerContent = styled.span<{ iconPosition: DropdownProps["iconPosition"] }>`
   display: flex;
   ${({ iconPosition }) => (iconPosition === "after" ? "flex-direction: row-reverse;" : "flex-direction: row;")}
   align-items: center;
@@ -90,7 +90,7 @@ const DropdownTriggerLabel = styled.span`
 `;
 
 const DropdownTriggerIcon = styled.span<{
-  disabled: DropdownPropsType["disabled"];
+  disabled: DropdownProps["disabled"];
 }>`
   display: flex;
   font-size: var(--height-xs);
@@ -101,7 +101,7 @@ const DropdownTriggerIcon = styled.span<{
   }
 `;
 
-const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
+const CaretIcon = styled.span<{ disabled: DropdownProps["disabled"] }>`
   display: flex;
   font-size: var(--typography-label-l);
 
@@ -134,7 +134,7 @@ const DxcDropdown = ({
   size = "fitContent",
   tabIndex = 0,
   title,
-}: DropdownPropsType) => {
+}: DropdownProps) => {
   const id = useId();
   const triggerId = `trigger-${id}`;
   const menuId = `menu-${id}`;
@@ -256,7 +256,7 @@ const DxcDropdown = ({
 
   return (
     <>
-      <DropdownContainer margin={margin} size={size}>
+      <DropdownContainer aria-disabled={disabled} margin={margin} size={size}>
         <DxcPopover
           asChild
           isOpen={isOpen}

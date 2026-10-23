@@ -2,7 +2,7 @@ import { use, useId } from "react";
 import styled from "@emotion/styled";
 import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
-import { SectionProps } from "./types";
+import { BaseSectionProps } from "./types";
 import BaseMenuContext from "./BaseMenuContext";
 import DxcInset from "../inset/Inset";
 import DxcDivider from "../divider/Divider";
@@ -21,7 +21,7 @@ const Title = styled.h2`
   padding: var(--spacing-padding-xxs);
 `;
 
-export default function Section({ index, length, section }: SectionProps) {
+export default function Section({ index, length, section }: BaseSectionProps) {
   const id = `section-${useId()}`;
   const { hasPopOver } = use(BaseMenuContext) ?? {};
   return (

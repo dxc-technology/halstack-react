@@ -1,5 +1,5 @@
 import { DxcContainer, DxcFlex } from "@dxc-technology/halstack-react";
-import { FileData } from "../../../../../packages/lib/src/file-input/types";
+import type { DxcFileData } from "@dxc-technology/halstack-react";
 import { Colors, Logos } from "../types";
 import BrandingLogoGrid from "../components/branding/BrandingLogoGrid";
 import { brandingIcon, infoIcon, paletteIcon } from "./icons";
@@ -63,7 +63,7 @@ const BrandingDetails = ({
     });
   };
 
-  const updateLogoValue = (logoType: string, files: FileData[]) => {
+  const updateLogoValue = (logoType: string, files: DxcFileData[]) => {
     onLogosChange({
       ...logos,
       [logoType]: files,

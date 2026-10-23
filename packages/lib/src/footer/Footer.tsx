@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
-import FooterPropsType from "./types";
+import { FooterProps } from "./types";
 import { HalstackLanguageContext, HalstackLogosContext } from "../HalstackContext";
 import { getContrastColor, getResponsiveStyles } from "./utils";
 import DxcLink from "../link/Link";
@@ -11,7 +11,7 @@ import useWidth from "../utils/useWidth";
 import { css } from "@emotion/react";
 
 const FooterContainer = styled.footer<{
-  mode?: FooterPropsType["mode"];
+  mode?: FooterProps["mode"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -53,7 +53,7 @@ const LeftContainer = styled.div<{ width: number }>`
     `}
 `;
 
-const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
+const LogoContainer = styled.span<{ mode?: FooterProps["mode"] }>`
   max-height: ${(props) => (props?.mode === "default" ? "var(--height-xl)" : "var(--height-xxs)")};
   width: fit-content;
   text-align: center;
@@ -72,7 +72,7 @@ const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
   }
 `;
 
-const LogoImg = styled.img<{ mode: FooterPropsType["mode"] }>`
+const LogoImg = styled.img<{ mode: FooterProps["mode"] }>`
   max-height: ${(props) => (props.mode === "default" ? "var(--height-m)" : "var(--height-xxs)")};
   width: auto;
 `;
@@ -109,7 +109,7 @@ const SocialAnchor = styled.a`
 
   &:focus,
   &:focus-visible {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
     outline-offset: 0px;
   }
 `;
@@ -127,7 +127,7 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const BottomContainer = styled.div<{ textColor: string; width: number; variant: FooterPropsType["variant"] }>`
+const BottomContainer = styled.div<{ textColor: string; width: number; variant: FooterProps["variant"] }>`
   width: 100%;
   min-height: var(--height-xl);
   display: grid;
@@ -216,7 +216,7 @@ const DxcFooter = ({
   socialLinks,
   variant = "branded",
   tabIndex = 0,
-}: FooterPropsType): JSX.Element => {
+}: FooterProps): JSX.Element => {
   const translatedLabels = use(HalstackLanguageContext).labels;
   const themedLogos = use(HalstackLogosContext);
 

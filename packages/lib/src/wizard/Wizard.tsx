@@ -3,14 +3,14 @@ import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
 import DxcDivider from "../divider/Divider";
 import DxcIcon from "../icon/Icon";
-import WizardPropsType, { StepProps } from "./types";
+import { WizardProps, WizardStepProps } from "./types";
 import DxcFlex from "../flex/Flex";
 import icons from "./Icons";
 import { css } from "@emotion/react";
 
 const Wizard = styled.div<{
-  margin: WizardPropsType["margin"];
-  mode: WizardPropsType["mode"];
+  margin: WizardProps["margin"];
+  mode: WizardProps["mode"];
 }>`
   display: flex;
   flex-direction: ${({ mode }) => (mode === "vertical" ? "column" : "row")};
@@ -26,7 +26,7 @@ const Wizard = styled.div<{
 
 const StepContainer = styled.div<{
   lastStep: boolean;
-  mode: WizardPropsType["mode"];
+  mode: WizardProps["mode"];
 }>`
   flex-grow: ${({ lastStep }) => (lastStep ? "0" : "1")};
   display: grid;
@@ -35,7 +35,7 @@ const StepContainer = styled.div<{
 
 const IconContainer = styled.div<{
   current: boolean;
-  disabled: StepProps["disabled"];
+  disabled: WizardStepProps["disabled"];
   visited: boolean;
 }>`
   box-sizing: border-box;
@@ -76,7 +76,7 @@ const Description = styled.span`
 `;
 
 const Step = styled.button<{
-  mode: WizardPropsType["mode"];
+  mode: WizardProps["mode"];
   unvisited: boolean;
 }>`
   display: flex;
@@ -113,7 +113,7 @@ const Step = styled.button<{
       }
     `}
   &:focus:enabled {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
   }
   &:disabled {
     cursor: not-allowed;
@@ -155,7 +155,7 @@ const ValidityIconContainer = styled.div<{ disabled?: boolean; valid: boolean }>
   }
 `;
 
-const DividerContainer = styled.div<{ mode: WizardPropsType["mode"] }>`
+const DividerContainer = styled.div<{ mode: WizardProps["mode"] }>`
   display: grid;
   place-items: center;
   ${({ mode }) => mode === "vertical" && "width: 32px"};
@@ -169,7 +169,7 @@ export default function DxcWizard({
   onStepClick,
   steps,
   tabIndex = 0,
-}: WizardPropsType) {
+}: WizardProps) {
   const [innerCurrent, setInnerCurrentStep] = useState(defaultCurrentStep);
 
   const handleStepOnClick = (newValue: number) => {
@@ -183,6 +183,7 @@ export default function DxcWizard({
         <StepContainer key={`step${i}`} lastStep={i === steps.length - 1} mode={mode}>
           <Step
             aria-current={(currentStep ?? innerCurrent) === i ? "step" : false}
+            aria-disabled={step.disabled}
             disabled={step.disabled}
             mode={mode}
             onClick={() => {

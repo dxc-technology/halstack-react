@@ -5,7 +5,7 @@ import DxcActionIcon from "./ActionIcon";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer, { PseudoState } from "../../.storybook/components/ExampleContainer";
-import { ActionIconPropTypes, Status } from "./types";
+import { ActionIconProps, Status } from "./types";
 
 export default {
   title: "ActionIcon",
@@ -17,10 +17,10 @@ type Story = StoryObj<typeof DxcActionIcon>;
 type GroupingKey = "size" | "shape" | "color" | "statusPosition" | "statusMode" | "pseudoState";
 
 type ActionIconRowProps = {
-  sizes?: ActionIconPropTypes["size"][];
-  shapes?: ActionIconPropTypes["shape"][];
-  colors?: ActionIconPropTypes["color"][];
-  icon?: ActionIconPropTypes["icon"];
+  sizes?: ActionIconProps["size"][];
+  shapes?: ActionIconProps["shape"][];
+  colors?: ActionIconProps["color"][];
+  icon?: ActionIconProps["icon"];
   statusModes?: Status["mode"][];
   statusPositions?: (Status["position"] | undefined)[];
   pseudoStates?: (PseudoState | "disabled" | undefined)[];
@@ -30,7 +30,7 @@ type ActionIconRowProps = {
 const ActionIconRow = ({
   sizes = ["medium"],
   shapes = ["circle"],
-  colors = ["neutral"],
+  colors = [undefined],
   statusModes,
   statusPositions = [],
   pseudoStates = [],
@@ -58,9 +58,9 @@ const ActionIconRow = ({
   const renderGroup = (
     level: number,
     filters: {
-      size?: ActionIconPropTypes["size"];
-      shape?: ActionIconPropTypes["shape"];
-      color?: ActionIconPropTypes["color"];
+      size?: ActionIconProps["size"];
+      shape?: ActionIconProps["shape"];
+      color?: ActionIconProps["color"];
       statusMode?: Status["mode"];
       statusPosition?: Status["position"];
       pseudoState?: PseudoState | "disabled";
@@ -117,9 +117,9 @@ const ActionIconRow = ({
 
     return values.map((value) => {
       const newFilters = { ...filters };
-      if (key === "size") newFilters.size = value as ActionIconPropTypes["size"];
-      else if (key === "shape") newFilters.shape = value as ActionIconPropTypes["shape"];
-      else if (key === "color") newFilters.color = value as ActionIconPropTypes["color"];
+      if (key === "size") newFilters.size = value as ActionIconProps["size"];
+      else if (key === "shape") newFilters.shape = value as ActionIconProps["shape"];
+      else if (key === "color") newFilters.color = value as ActionIconProps["color"];
       else if (key === "statusPosition") newFilters.statusPosition = value as Status["position"];
       else if (key === "statusMode") newFilters.statusMode = value as Status["mode"];
       else if (key === "pseudoState") newFilters.pseudoState = value as PseudoState | "disabled";
@@ -144,6 +144,7 @@ export const Shapes: Story = {
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["circle", "square"]}
         groupBy={["shape", "size"]}
+        colors={["neutral"]}
       />
     </>
   ),
@@ -156,9 +157,10 @@ export const Colors: Story = {
       <ActionIconRow
         sizes={["medium"]}
         shapes={["circle"]}
-        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info", "transparent"]}
+        colors={["neutral", "primary", "secondary", "tertiary", "success", "warning", "error", "info"]}
         groupBy={["color"]}
       />
+      <ActionIconRow colors={undefined} sizes={["medium"]} shapes={["circle"]} groupBy={["color"]} />
     </>
   ),
 };
@@ -167,10 +169,10 @@ export const PseudoStates: Story = {
   render: () => (
     <>
       <Title title="Pseudo states" theme="light" level={2} />
-      <DxcActionIcon color="transparent" icon="settings" onClick={() => console.log("hello")} />
+      <DxcActionIcon icon="settings" onClick={() => console.log("hello")} />
 
       <ActionIconRow
-        colors={["transparent"]}
+        colors={undefined}
         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
         shapes={["square"]}
         statusModes={["success"]}
@@ -182,24 +184,26 @@ export const PseudoStates: Story = {
   ),
 };
 
-export const Types: Story = {
-  render: () => (
-    <>
-      <Title title="Icon (custom)" theme="light" level={2} />
-      <ActionIconRow
-        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        shapes={["circle"]}
-        groupBy={["size"]}
-      />
-      <Title title="Icon (default)" theme="light" level={2} />
-      <ActionIconRow
-        sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
-        shapes={["circle"]}
-        groupBy={["size"]}
-      />
-    </>
-  ),
-};
+// export const Types: Story = {
+//   render: () => (
+//     <>
+//       <Title title="Icon (custom)" theme="light" level={2} />
+//       <ActionIconRow
+//         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+//         shapes={["circle"]}
+//         groupBy={["size"]}
+//         colors={["neutral"]}
+//       />
+//       <Title title="Icon (default)" theme="light" level={2} />
+//       <ActionIconRow
+//         sizes={["xsmall", "small", "medium", "large", "xlarge", "xxlarge"]}
+//         shapes={["circle"]}
+//         groupBy={["size"]}
+//         colors={["neutral"]}
+//       />
+//     </>
+//   ),
+// };
 
 const Tooltip = () => (
   <>

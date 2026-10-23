@@ -1,14 +1,14 @@
-import CardPropsType from "./types";
+import { CardProps } from "./types";
 
-const calculateSize = (size?: CardPropsType["size"]) => {
+const calculateSize = (size?: CardProps["size"]) => {
   return `width: ${size?.width === "fillParent" ? "100%" : "fit-content"};
     height: ${size?.height === "fillParent" ? "100%" : "fit-content"};`;
 };
 export const getCardStyles = (
-  mode: CardPropsType["mode"],
+  mode: CardProps["mode"],
   interactive: boolean,
   selected?: boolean,
-  size?: CardPropsType["size"]
+  size?: CardProps["size"]
 ) => {
   let hover = "";
   let focus = "";
@@ -35,17 +35,17 @@ export const getCardStyles = (
     if (mode === "elevated") {
       hover = `box-shadow: var(--shadow-300);`;
       focus = `box-shadow: var(--shadow-100); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
       active = `box-shadow: var(--shadow-100);`;
     } else if (mode === "outlined") {
       if (selected) {
         hover = `border-width: var(--border-width-none);`;
-        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+        focus = `border-width: var(--border-width-none); outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
         active = `border-width: var(--border-width-none);`;
       } else {
         hover = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-medium);outline-offset: var(--border-width-none);`;
-        focus = `border-width: var(--boselectedrder-width-m); 
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);outline-offset: var(--border-width-none);`;
+        focus = `border-width: var(--border-width-m); 
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);outline-offset: var(--border-width-none);`;
         active = `border-width: var(--border-width-m); border-color: var(--border-color-neutral-strong);outline-offset: var(--border-width-none);`;
       }
     }
@@ -67,7 +67,7 @@ export const getSelectableWrapperStyles = (selected: boolean) => {
 
   if (selected) {
     hover = `outline-color: var(--border-color-primary-stronger);`;
-    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);`;
+    focus = `outline: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);`;
     active = `outline-color: var(--border-color-primary-strong);`;
   }
 
@@ -81,8 +81,8 @@ export const getSelectableWrapperStyles = (selected: boolean) => {
 
 export const handleEvent = (
   event: React.KeyboardEvent | React.MouseEvent,
-  onClick?: CardPropsType["onClick"],
-  onSelectionChange?: CardPropsType["onSelectionChange"],
+  onClick?: CardProps["onClick"],
+  onSelectionChange?: CardProps["onSelectionChange"],
   internalSelected?: boolean,
   setInternalSelected?: React.Dispatch<React.SetStateAction<boolean>>,
   selected?: boolean,

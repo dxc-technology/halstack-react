@@ -1,11 +1,11 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
 /**
  * Reference to the component.
  */
 export type RefType = HTMLDivElement;
 
-type Props = {
+export type CheckboxProps = {
   /**
    * Specifies a string to be used as the name for the checkbox element when no `label` is provided.
    */
@@ -78,4 +78,4 @@ export type CheckboxContextProps = {
   partial: boolean;
 };
 
-export default Props;
+export type { CheckboxProps as default };
