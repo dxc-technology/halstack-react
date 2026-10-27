@@ -12,22 +12,23 @@ const YearMonthPickersContainer = styled.div`
 `;
 
 export const YearMonthPicker = ({ isYearFirst, selectedDate, today, onYearMonthComplete }: YearMonthPickerProps) => {
-  const [selectedYear, setSelectedYear] = useState<number | null>(selectedDate?.get("year") || null);
-  const [selectedMonth, setSelectedMonth] = useState<number | null>(selectedDate?.get("month") || null);
+  const dateToUse = selectedDate?.isValid() ? selectedDate : today;
+  const [selectedYear, setSelectedYear] = useState<number | null>(dateToUse.get("year"));
+  const [selectedMonth, setSelectedMonth] = useState<number | null>(dateToUse.get("month"));
   const languageContext = use(HalstackLanguageContext);
 
   const yearItems = getYearPickerItems();
   const monthItems = getMonthPickerItems(languageContext.labels.calendar.months);
 
   const handleOnYearSelect = (year: number) => {
-    const newDate = selectedDate.set("year", year);
+    const newDate = dateToUse.set("year", year);
     const finalDate = selectedMonth != null ? newDate.set("month", selectedMonth) : newDate;
     setSelectedYear(year);
     onYearMonthComplete(finalDate);
   };
 
   const handleOnMonthSelect = (month: number) => {
-    const newDate = selectedDate.set("month", month);
+    const newDate = dateToUse.set("month", month);
     const finalDate = selectedYear != null ? newDate.set("year", selectedYear) : newDate;
     setSelectedMonth(month);
     onYearMonthComplete(finalDate);
