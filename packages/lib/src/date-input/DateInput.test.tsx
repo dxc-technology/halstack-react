@@ -100,6 +100,17 @@ describe("DateInput component tests", () => {
     ).toBeTruthy();
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
+  test("Year month picker focuses the current month and year when no date is selected", async () => {
+    const user = userEvent.setup();
+    const { getByRole } = render(<DxcDateInput />);
+    const currentDate = dayjs();
+
+    await user.click(getByRole("combobox"));
+    await user.click(getByRole("button", { name: currentDate.format("MMMM YYYY") }));
+
+    expect(getByRole("option", { name: currentDate.format("MMMM") })).toHaveAttribute("tabindex", "0");
+    expect(getByRole("option", { name: currentDate.format("YYYY") })).toHaveAttribute("tabindex", "0");
+  });
   test("Calendar renders with correct date: value prop", async () => {
     const user = userEvent.setup();
     const { getByText, getByRole, getAllByText } = render(<DxcDateInput value="20-10-2019" />);
