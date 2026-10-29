@@ -203,7 +203,7 @@ export const getButtonStyles = (
   }
 };
 
-const widths = {
+export const widths = {
   small: "42px",
   medium: "120px",
   large: "240px",
