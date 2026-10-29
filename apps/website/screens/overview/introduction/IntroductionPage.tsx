@@ -120,7 +120,11 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               A public version of the Halstack Design System UI Library is also available through the{" "}
-              <Link href="https://www.figma.com/community" passHref legacyBehavior>
+              <Link
+                href="https://www.figma.com/community/file/1541775953498525606/halstack-ds-ui-library"
+                passHref
+                legacyBehavior
+              >
                 <DxcLink newWindow>Figma Community</DxcLink>
               </Link>
               , where it can be explored and accessed freely.
