@@ -8,7 +8,7 @@ const code = `() => (
         Halstack is an Open Source Design System built and maintained by DXC Technology 
         with the purpose of providing all the necessary tools for designing 
         and implementing accessible, intuitive and consistent User Experiences 
-        with Figma, UXPin and React.
+        with Figma and React.
       </DxcParagraph>
       <DxcButton label="Click me!" onClick={() => alert("Hello world!")} />
     </DxcFlex>
