@@ -2,6 +2,7 @@ import { DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcFlex } from "@dx
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
+import Link from "next/link";
 
 const sections = [
   {
@@ -10,7 +11,7 @@ const sections = [
       <DxcParagraph>
         Halstack is an open source Design System built and maintained by DXC Technology with the purpose of providing
         all the necessary tools for designing and implementing accessible, intuitive and consistent user experiences
-        with Figma, UXPin and React.
+        with Figma and React.
       </DxcParagraph>
     ),
     subSections: [
@@ -111,38 +112,21 @@ const sections = [
       {
         title: "Figma",
         content: (
-          <DxcParagraph>
-            Halstack Design System is built on top of Figma, a web-based design tool that allows designers to create
-            designs and prototypes. The Halstack Figma library contains all the design assets that are part of the
-            Design System, and it is the source of truth for all the design decisions made by the Design System team.
-          </DxcParagraph>
+          <>
+            <DxcParagraph>
+              The Halstack Design System Foundations and UI Kit are established as predefined libraries in Figma for all
+              teams within the ISB organization. These libraries provide a shared source of truth for design assets,
+              styles, tokens, and components, ensuring consistency across products and teams.
+            </DxcParagraph>
+            <DxcParagraph>
+              A public version of the Halstack Design System UI Library is also available through the{" "}
+              <Link href="https://www.figma.com/community" passHref legacyBehavior>
+                <DxcLink newWindow>Figma Community</DxcLink>
+              </Link>
+              , where it can be explored and accessed freely.
+            </DxcParagraph>
+          </>
         ),
-      },
-      {
-        title: "UXPin",
-        content: (
-          <DxcParagraph>
-            UXPin is a low-code solution that can be leveraged to generate React code on top of Halstack components
-            directly from the prototypes. This tool is used to generate the React code for the components that are part
-            of the Halstack Design System.
-          </DxcParagraph>
-        ),
-        subSections: [
-          {
-            title: "Prototyping library",
-            content: (
-              <DxcParagraph>
-                The prototyping library is a Halstack CDK component-based design library for fast prototyping, reducing
-                the gap between designers and developers. Also,{" "}
-                <DxcLink href="https://www.uxpin.com/merge" newWindow>
-                  UXPin Merge
-                </DxcLink>{" "}
-                is a low-code solution that can be leveraged to generate React code on top of Halstack components
-                directly from the prototypes.
-              </DxcParagraph>
-            ),
-          },
-        ],
       },
       {
         title: "React library",
