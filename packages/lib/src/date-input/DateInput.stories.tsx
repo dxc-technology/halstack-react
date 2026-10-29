@@ -302,6 +302,13 @@ const YearMonthPickerZhCn = () => (
   </ExampleContainer>
 );
 
+const YearMonthPickerWithoutSelection = () => (
+  <ExampleContainer expanded>
+    <Title title="Year/Month picker without a selected date" theme="light" level={4} />
+    <DxcDateInput label="Date input" />
+  </ExampleContainer>
+);
+
 type Story = StoryObj<typeof DxcDateInput>;
 
 export const Chromatic: Story = {
@@ -368,6 +375,20 @@ export const DatePickerTooltipAfter: Story = {
 
 export const YearMonthPickerWithLocale: Story = {
   render: YearMonthPickerZhCn,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const calendarAction = await canvas.findByRole("combobox");
+    await userEvent.click(calendarAction);
+    const dialog = await screen.findByRole("dialog");
+    const yearMonthTrigger = within(dialog).getAllByRole("button")[1];
+    if (yearMonthTrigger != null) {
+      await userEvent.click(yearMonthTrigger);
+    }
+  },
+};
+
+export const YearMonthPickerWithoutSelectedDate: Story = {
+  render: YearMonthPickerWithoutSelection,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const calendarAction = await canvas.findByRole("combobox");
