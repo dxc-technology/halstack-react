@@ -275,6 +275,15 @@ const DatePickerToday = () => {
           items={yearItems}
         />
       </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Isolated date unit picker without a selected date" theme="light" level={4} />
+        <DateUnitPicker
+          selectedDate={null}
+          onDateUnitSelect={() => {}}
+          today={dayjs("2026-04-03", "YYYY-MM-DD")}
+          items={yearItems}
+        />
+      </ExampleContainer>
     </>
   );
 };
@@ -299,13 +308,6 @@ const YearMonthPickerZhCn = () => (
     <HalstackProvider localeTag="zh-CN">
       <DxcDateInput label="Date input" format="dd-yyyy-mm" defaultValue="06-1905-05" />
     </HalstackProvider>
-  </ExampleContainer>
-);
-
-const YearMonthPickerWithoutSelection = () => (
-  <ExampleContainer expanded>
-    <Title title="Year/Month picker without a selected date" theme="light" level={4} />
-    <DxcDateInput label="Date input" />
   </ExampleContainer>
 );
 
@@ -375,20 +377,6 @@ export const DatePickerTooltipAfter: Story = {
 
 export const YearMonthPickerWithLocale: Story = {
   render: YearMonthPickerZhCn,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const calendarAction = await canvas.findByRole("combobox");
-    await userEvent.click(calendarAction);
-    const dialog = await screen.findByRole("dialog");
-    const yearMonthTrigger = within(dialog).getAllByRole("button")[1];
-    if (yearMonthTrigger != null) {
-      await userEvent.click(yearMonthTrigger);
-    }
-  },
-};
-
-export const YearMonthPickerWithoutSelectedDate: Story = {
-  render: YearMonthPickerWithoutSelection,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const calendarAction = await canvas.findByRole("combobox");
