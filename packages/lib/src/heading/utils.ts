@@ -24,6 +24,6 @@ export const getHeadingWeight = (weight: HeadingProps["weight"]) => {
     case "regular":
       return "var(--typography-heading-regular)";
     case "light":
-      return "var(--typography-heading-light)";
+      return "var(--typography-heading-extra-light)";
   }
 };

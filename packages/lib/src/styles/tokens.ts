@@ -161,7 +161,7 @@ export const coreTokens = {
   "--font-weight-semibold": "600",
   "--font-weight-bold": "700",
   "--font-family-mono": "Source Code Pro, mono",
-  "--font-family-sans": "Open Sans, sans-serif",
+  "--font-family-sans": "Inter, sans-serif",
   "--font-style-lightitalic": "light italic",
   "--font-style-normal": "normal",
   "--line-style-dashed": "dashed",

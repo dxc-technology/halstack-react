@@ -91,6 +91,9 @@ const Typography = () => (
       <DxcTypography display="block" fontWeight="400">
         400.
       </DxcTypography>
+      <DxcTypography display="block" fontWeight="500">
+        500.
+      </DxcTypography>
       <DxcTypography display="block" fontWeight="600">
         600.
       </DxcTypography>

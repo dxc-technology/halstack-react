@@ -156,12 +156,13 @@
   --font-size-40: 40px;
   --font-size-48: 48px;
   --font-size-60: 60px;
+  --font-weight-extra-light: 200;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-family-mono: Source Code Pro, mono;
-  --font-family-sans: Open Sans, sans-serif;
+  --font-family-sans: Inter, sans-serif;
   --font-style-lightitalic: light italic;
   --font-style-normal: normal;
   --line-style-dashed: dashed;
@@ -360,7 +361,7 @@
   --typography-heading-l: var(--font-size-24);
   --typography-heading-xl: var(--font-size-32);
   --typography-heading-xxl: var(--font-size-40);
-  --typography-heading-light: var(--font-weight-light);
+  --typography-heading-extra-light: var(--font-weight-extra-light);
   --typography-heading-regular: var(--font-weight-regular);
   --typography-heading-semibold: var(--font-weight-semibold);
   --typography-helper-text-s: var(--font-size-12);
