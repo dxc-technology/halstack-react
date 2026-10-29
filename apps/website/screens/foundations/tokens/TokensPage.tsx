@@ -5,7 +5,7 @@ import PageHeading from "@/common/PageHeading";
 import DxcQuickNavContainer from "@/common/QuickNavContainer";
 import { DxcAlert, DxcBulletedList, DxcFlex, DxcHeading, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import componentTokens from "./images/component_tokens.gif";
+import componentTokens from "./images/component_tokens.png";
 
 const sections = [
   {

@@ -5,10 +5,10 @@ import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Link from "next/link";
 import layoutStructure from "./images/layoutStructure.png";
-import anatomyColumns from "./images/anatomyColumns.jpg";
-import anatomyGutter from "./images/anatomyGutter.jpg";
-import anatomyMargin from "./images/anatomyMargin.jpg";
-import pageStructure from "./images/pageStructure.jpg";
+import anatomyColumns from "./images/anatomyColumns.png";
+import anatomyGutter from "./images/anatomyGutter.png";
+import anatomyMargin from "./images/anatomyMargin.png";
+import pageStructure from "./images/pageStructure.png";
 import Code from "@/common/Code";
 import Figure from "@/common/Figure";
 
