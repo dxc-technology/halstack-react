@@ -12,6 +12,7 @@ import DateUnitPicker from "./DateUnitPicker";
 import { fireEvent, screen, userEvent, within } from "storybook/test";
 import { HalstackProvider } from "../HalstackContext";
 import { getMonthPickerItems, getYearPickerItems } from "./utils";
+import { YearMonthPicker } from "./YearMonthPicker";
 
 export default {
   title: "Date Input",
@@ -276,12 +277,12 @@ const DatePickerToday = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Isolated date unit picker without a selected date" theme="light" level={4} />
-        <DateUnitPicker
-          selectedDate={null}
-          onDateUnitSelect={() => {}}
+        <Title title="YearMonth picker without a selected date" theme="light" level={4} />
+        <YearMonthPicker
+          isYearFirst={true}
+          selectedDate={dayjs("23", "YYYY-MM-DD")}
+          onYearMonthComplete={() => {}}
           today={dayjs("2026-04-03", "YYYY-MM-DD")}
-          items={yearItems}
         />
       </ExampleContainer>
     </>
