@@ -5,6 +5,8 @@ import openSansLatinExt from "./fonts/Open-sans-latin-ext.woff2";
 import openSansSymbols from "./fonts/Open-sans-symbols.woff2";
 import openSansLatinItalic from "./fonts/Open-sans-latin-italic.woff2";
 import openSansLatinExtItalic from "./fonts/Open-sans-latin-ext-italic.woff2";
+import interVariable from "./fonts/Inter-VariableFont_opsz,wght.woff2";
+import interItalicVariable from "./fonts/Inter-Italic-VariableFont_opsz,wght.woff2";
 
 const FONT_FACE_ID = "halstack-material-symbols";
 
@@ -34,6 +36,22 @@ if (typeof document !== "undefined" && !document.getElementById(FONT_FACE_ID)) {
         direction: ltr;
         -webkit-font-feature-settings: 'liga';
         -webkit-font-smoothing: antialiased;
+    }
+
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("${interVariable}") format('woff2');
+    }
+
+    @font-face {
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("${interItalicVariable}") format('woff2');
     }
 
     /* math */
