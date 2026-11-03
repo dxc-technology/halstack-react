@@ -124,6 +124,12 @@
         "icon": "smart_button"
       },
       {
+        "label": "Button link",
+        "path": "/components/button-link",
+        "status": "stable",
+        "icon": "smart_button"
+      },
+      {
         "label": "Checkbox",
         "path": "/components/checkbox",
         "status": "stable",
