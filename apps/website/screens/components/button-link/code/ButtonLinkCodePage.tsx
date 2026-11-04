@@ -3,6 +3,11 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
+import icons from "./examples/icons";
+import semantic from "./examples/semantic";
+import sizes from "./examples/sizes";
 
 const sections = [
   {
@@ -154,27 +159,27 @@ const sections = [
       </DxcTable>
     ),
   },
-  // {
-  //   title: "Examples",
-  //   subSections: [
-  //     {
-  //       title: "Basic usage",
-  //       content: <Example example={basicUsage} defaultIsVisible />,
-  //     },
-  //     {
-  //       title: "Icons",
-  //       content: <Example example={icons} defaultIsVisible />,
-  //     },
-  //     {
-  //       title: "Semantic",
-  //       content: <Example example={semantic} defaultIsVisible />,
-  //     },
-  //     {
-  //       title: "Size",
-  //       content: <Example example={sizes} defaultIsVisible />,
-  //     },
-  //   ],
-  // },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Basic usage",
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Icons",
+        content: <Example example={icons} defaultIsVisible />,
+      },
+      {
+        title: "Semantic",
+        content: <Example example={semantic} defaultIsVisible />,
+      },
+      {
+        title: "Size",
+        content: <Example example={sizes} defaultIsVisible />,
+      },
+    ],
+  },
 ];
 
 const ButtonLinkCodePage = () => (
