@@ -39,6 +39,19 @@ const ButtonLink = styled.a<{
   }};
 `;
 
+const IconContainer = styled.div<{
+  size: ButtonSize;
+}>`
+  display: flex;
+  font-size: ${({ size }) =>
+    size.height === "medium" || size.height === "small" ? "var(--height-xxs)" : "var(--height-s)"};
+  svg {
+    height: ${({ size }) =>
+      size.height === "medium" || size.height === "small" ? "var(--height-xxs)" : "var(--height-s)"};
+    width: ${({ size }) => (size.height === "medium" || size.height === "small" ? "16" : "24")}px;
+  }
+`;
+
 const DxcButtonLink = ({
   disabled,
   href,
@@ -72,7 +85,7 @@ const DxcButtonLink = ({
       {...otherProps}
     >
       {label}
-      {icon && <span>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</span>}
+      {icon && <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
     </ButtonLink>
   </Tooltip>
 );

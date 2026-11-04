@@ -1,11 +1,4 @@
-import {
-  DxcBulletedList,
-  DxcFlex,
-  DxcParagraph,
-  DxcAlert,
-  DxcTypography,
-  DxcTable,
-} from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTypography, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -162,14 +155,6 @@ const sections = [
           Primary actions are made more prominent with larger buttons, while secondary actions use smaller buttons to
           avoid distraction.
         </DxcParagraph>
-        <DxcAlert
-          title="Sizes"
-          semantic="warning"
-          message={{
-            text: "To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single interface.",
-          }}
-          closable={false}
-        />
       </>
     ),
     subSections: [
