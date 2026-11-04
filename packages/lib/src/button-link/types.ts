@@ -1,7 +1,7 @@
 import { SVG } from "../common/types";
 import type { ButtonMode, ButtonSize } from "../button/types";
 
-export type ButtonLinkProps = {
+type CommonProps = {
   /**
    * If true, the link will be disabled.
    */
@@ -11,17 +11,9 @@ export type ButtonLinkProps = {
    */
   href: string;
   /**
-   * Material Symbol name or SVG element as the icon that will be placed next to the link text.
-   */
-  icon?: string | SVG;
-  /**
    * Indicates the position of the icon in the component.
    */
   iconPosition?: "before" | "after";
-  /**
-   * Text to be placed in the button link.
-   */
-  label?: string;
   /**
    * The available button link modes.
    */
@@ -53,5 +45,29 @@ export type ButtonLinkProps = {
    */
   title?: string;
 };
+
+type LabelProps = {
+  /**
+   * Material Symbol name or SVG element as the icon that will be placed next to the link text.
+   */
+  icon?: string | SVG;
+  /**
+   * Text to be placed in the button link.
+   */
+  label: string;
+};
+
+type IconProps = {
+  /**
+   * Material Symbol name or SVG element as the icon that will be placed next to the link text.
+   */
+  icon: string | SVG;
+  /**
+   * Text to be placed in the button link.
+   */
+  label?: string;
+};
+
+export type ButtonLinkProps = CommonProps & (LabelProps | IconProps);
 
 export type { ButtonLinkProps as default };

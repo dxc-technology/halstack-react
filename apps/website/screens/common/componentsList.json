@@ -124,12 +124,6 @@
         "icon": "smart_button"
       },
       {
-        "label": "Button link",
-        "path": "/components/button-link",
-        "status": "stable",
-        "icon": "smart_button"
-      },
-      {
         "label": "Checkbox",
         "path": "/components/checkbox",
         "status": "stable",
@@ -296,6 +290,12 @@
         "path": "/components/breadcrumbs",
         "status": "stable",
         "icon": "arrow_back"
+      },
+      {
+        "label": "Button link",
+        "path": "/components/button-link",
+        "status": "stable",
+        "icon": "smart_button"
       },
       {
         "label": "Contextual menu",

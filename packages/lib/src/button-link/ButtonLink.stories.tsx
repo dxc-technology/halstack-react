@@ -38,6 +38,7 @@ const facebookIcon = (
 
 const ButtonLink = () => (
   <>
+    <DxcButtonLink href="#" />
     <Title title="Default size" theme="light" level={2} />
     <Title title="Primary" theme="light" level={3} />
     <Title title="Default" theme="light" level={4} />

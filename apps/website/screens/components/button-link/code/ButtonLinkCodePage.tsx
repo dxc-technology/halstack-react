@@ -57,7 +57,8 @@ const sections = [
               </DxcLink>{" "}
               name or SVG element as the icon that will be placed next to the link text. When using Material Symbols,
               replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>.
+              symbol name with <TableCode>"filled_"</TableCode>. Required if no <TableCode>label</TableCode> is
+              provided.
             </td>
             <td>-</td>
           </tr>
@@ -76,7 +77,9 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Text to be placed in the button link.</td>
+            <td>
+              Text to be placed in the button link. Required if no <TableCode>icon</TableCode> is provided.
+            </td>
             <td>-</td>
           </tr>
           <tr>
