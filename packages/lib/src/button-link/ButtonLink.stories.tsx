@@ -38,7 +38,6 @@ const facebookIcon = (
 
 const ButtonLink = () => (
   <>
-    <DxcButtonLink href="#" />
     <Title title="Default size" theme="light" level={2} />
     <Title title="Primary" theme="light" level={3} />
     <Title title="Default" theme="light" level={4} />
@@ -71,7 +70,7 @@ const ButtonLink = () => (
         <DxcButtonLink href="#not-visited" label="Button Link" icon="home" iconPosition="after" mode="primary" />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
-        <DxcButtonLink href="#not-visited" icon="home" mode="primary" title="Home" />
+        <DxcButtonLink href="#not-visited" icon="home" mode="primary" title="Home" ariaLabel="Home" />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <DxcButtonLink href="#not-visited" icon={facebookIcon} mode="primary" title="Facebook" />

@@ -58,6 +58,7 @@ const DxcButtonLink = ({
   icon,
   iconPosition = "before",
   label,
+  ariaLabel,
   mode = "primary",
   newWindow,
   onClick,
@@ -75,7 +76,7 @@ const DxcButtonLink = ({
       href={!disabled && href ? href : undefined}
       target={href ? (newWindow ? "_blank" : "_self") : undefined}
       aria-disabled={disabled}
-      aria-label={label || title}
+      aria-label={ariaLabel || label || title}
       disabled={disabled}
       $mode={mode}
       size={size}

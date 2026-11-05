@@ -295,7 +295,7 @@
         "label": "Button link",
         "path": "/components/button-link",
         "status": "stable",
-        "icon": "smart_button"
+        "icon": "outbound"
       },
       {
         "label": "Contextual menu",

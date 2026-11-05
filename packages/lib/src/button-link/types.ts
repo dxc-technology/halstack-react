@@ -41,7 +41,7 @@ type CommonProps = {
   tabIndex?: number;
   /**
    * Text to be displayed as a tooltip when hovering over the link.
-   * If there is no label, the title will be used as the aria-label.
+   * If there is no aria-label or label, the title will be used as the aria-label.
    */
   title?: string;
 };
@@ -55,6 +55,10 @@ type LabelProps = {
    * Text to be placed in the button link.
    */
   label: string;
+  /**
+   * Text to be used as aria-label for the button link. If provided, it takes precedence over the label as the accessible name.
+   */
+  ariaLabel?: string;
 };
 
 type IconProps = {
@@ -66,7 +70,22 @@ type IconProps = {
    * Text to be placed in the button link.
    */
   label?: string;
-};
+} & (
+  | {
+      /**
+       * Text to be displayed as a tooltip when hovering over the link. Required when no ariaLabel is provided.
+       */
+      title: string;
+      ariaLabel?: string;
+    }
+  | {
+      /**
+       * Text to be used as aria-label for the button link. Required when no title is provided.
+       */
+      ariaLabel: string;
+      title?: string;
+    }
+);
 
 export type ButtonLinkProps = CommonProps & (LabelProps | IconProps);
 

@@ -24,6 +24,17 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Text to be used as aria-label for the button link. If provided, it takes precedence over the label as the
+              accessible name. It will be required if no <Code>label</Code> or <Code>title</Code> are provided.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>disabled</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -57,8 +68,7 @@ const sections = [
               </DxcLink>{" "}
               name or SVG element as the icon that will be placed next to the link text. When using Material Symbols,
               replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
-              symbol name with <TableCode>"filled_"</TableCode>. Required if no <TableCode>label</TableCode> is
-              provided.
+              symbol name with <TableCode>"filled_"</TableCode>. Required if no <Code>label</Code> is provided.
             </td>
             <td>-</td>
           </tr>
@@ -78,7 +88,7 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Text to be placed in the button link. Required if no <TableCode>icon</TableCode> is provided.
+              Text to be placed in the button link. Required if no <Code>icon</Code> is provided.
             </td>
             <td>-</td>
           </tr>
