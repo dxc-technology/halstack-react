@@ -86,14 +86,14 @@ describe("ThemeGeneratorConfigPage", () => {
     expect(mockGenerateTokens).toHaveBeenCalledTimes(1);
 
     expect(mockGenerateTokens).toHaveBeenCalledWith({
-      primary: "#5F249F",
-      secondary: "#0067B3",
-      tertiary: "#F7CF2B",
-      semantic01: "#0067B3",
-      semantic02: "#59D97D",
-      semantic03: "#F59F3D",
-      semantic04: "#FE344F",
-      neutral: "#999999",
+      primary: "#004aac",
+      secondary: "#d14600",
+      tertiary: "#f1d85a",
+      neutral: "#0e1020",
+      semantic01: "#189edc",
+      semantic02: "#25a766",
+      semantic03: "#ffae41",
+      semantic04: "#e6321e",
     });
 
     expect(screen.getByText("Preview how your theme applies")).toBeInTheDocument();
