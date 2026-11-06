@@ -586,4 +586,15 @@ describe("Number input component tests", () => {
     }
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
+  test("Number input keeps type number while typing so typed digits keep their order", async () => {
+    const user = userEvent.setup();
+    const { getByLabelText } = render(<DxcNumberInput label="Number label" />);
+    const number = getByLabelText("Number label") as HTMLInputElement;
+    await user.click(number);
+    await user.keyboard("1");
+    expect(number.getAttribute("type")).toBe("number");
+    await user.keyboard("5");
+    expect(number.getAttribute("type")).toBe("number");
+    expect(number.value).toBe("15");
+  });
 });
