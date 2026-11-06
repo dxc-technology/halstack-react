@@ -10,6 +10,7 @@ export { default as DxcBleed } from "./bleed/Bleed";
 export { default as DxcBreadcrumbs } from "./breadcrumbs/Breadcrumbs";
 export { default as DxcBulletedList } from "./bulleted-list/BulletedList";
 export { default as DxcButton } from "./button/Button";
+export { default as DxcButtonLink } from "./button-link/ButtonLink";
 export { default as DxcCard } from "./card/Card";
 export { default as DxcCheckbox } from "./checkbox/Checkbox";
 export { default as DxcChip } from "./chip/Chip";
