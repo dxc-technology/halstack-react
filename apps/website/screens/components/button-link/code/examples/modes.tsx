@@ -4,11 +4,9 @@ const code = `() => {
   return (
     <DxcInset space="var(--spacing-padding-xl)">
       <DxcFlex gap="var(--spacing-gap-l)">
-        <DxcButtonLink href="#" label="Search" />
-        <DxcButtonLink href="#" semantic="error" label="Cancel" />
-        <DxcButtonLink href="#" semantic="warning" label="Report" />
-        <DxcButtonLink href="#" semantic="success" label="Confirm" />
-        <DxcButtonLink href="#" semantic="info" label="Details" />
+        <DxcButtonLink href="#" label="Primary" />
+        <DxcButtonLink href="#" mode="secondary" label="Secondary" />
+        <DxcButtonLink href="#" mode="tertiary" label="Tertiary" />
       </DxcFlex>
     </DxcInset>
   );

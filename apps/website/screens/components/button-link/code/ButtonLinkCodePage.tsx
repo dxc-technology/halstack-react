@@ -6,7 +6,7 @@ import StatusBadge from "@/common/StatusBadge";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import semantic from "./examples/semantic";
+import modes from "./examples/modes";
 import sizes from "./examples/sizes";
 
 const sections = [
@@ -184,8 +184,8 @@ const sections = [
         content: <Example example={icons} defaultIsVisible />,
       },
       {
-        title: "Semantic",
-        content: <Example example={semantic} defaultIsVisible />,
+        title: "Modes",
+        content: <Example example={modes} defaultIsVisible />,
       },
       {
         title: "Size",
