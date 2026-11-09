@@ -106,6 +106,7 @@ export type {
   ButtonSemantic as DxcButtonSemantic,
   ButtonSize as DxcButtonSize,
 } from "./button/types";
+export type { ButtonLinkProps as DxcButtonLinkProps } from "./button-link/types";
 export type { CardProps as DxcCardProps } from "./card/types";
 export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";

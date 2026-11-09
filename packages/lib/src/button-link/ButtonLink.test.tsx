@@ -84,4 +84,20 @@ describe("ButtonLink component tests", () => {
       expect(queryByRole("tooltip")).toBeFalsy();
     });
   });
+  test("Falls back to the default padding when no height is provided", () => {
+    const { getByRole, rerender } = render(<DxcButtonLink label="Button Link" href="#" size={{ width: "small" }} />);
+    expect(getByRole("link")).toHaveStyle({ width: "42px" });
+    rerender(<DxcButtonLink href="#" icon="home" title="Go home" size={{ width: "small" }} />);
+    expect(getByRole("link")).toHaveAttribute("aria-label", "Go home");
+  });
+  test("Renders icon-only buttons for every height", () => {
+    const { getByRole, rerender } = render(
+      <DxcButtonLink href="#" icon="home" title="Go home" size={{ height: "small" }} />
+    );
+    expect(getByRole("link")).toHaveAttribute("aria-label", "Go home");
+    rerender(<DxcButtonLink href="#" icon="home" title="Go home" size={{ height: "medium" }} />);
+    expect(getByRole("link")).toHaveAttribute("aria-label", "Go home");
+    rerender(<DxcButtonLink href="#" icon="home" title="Go home" size={{ height: "large" }} />);
+    expect(getByRole("link")).toHaveAttribute("aria-label", "Go home");
+  });
 });
