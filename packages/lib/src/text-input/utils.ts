@@ -151,9 +151,8 @@ export const incrementNumber = (
   }
 };
 
-export const setNumberProps = (type?: string, min?: number, max?: number, step?: number, ref?: HTMLInputElement) => {
+export const setNumberProps = (min?: number, max?: number, step?: number, ref?: HTMLInputElement) => {
   if (min != null) ref?.setAttribute("min", min.toString());
   if (max != null) ref?.setAttribute("max", max.toString());
   if (step != null) ref?.setAttribute("step", step.toString());
-  if (type != null) ref?.setAttribute("type", type);
 };

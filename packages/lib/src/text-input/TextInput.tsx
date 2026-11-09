@@ -477,7 +477,6 @@ const DxcTextInput = ({
     }
     if (numberInputContext != null) {
       setNumberProps(
-        numberInputContext.typeNumber,
         numberInputContext.minNumber,
         numberInputContext.maxNumber,
         numberInputContext.stepNumber,
@@ -548,7 +547,7 @@ const DxcTextInput = ({
               maxLength={maxLength}
               minLength={minLength}
               tabIndex={tabIndex}
-              type="text"
+              type={numberInputContext?.typeNumber ?? "text"}
               value={value ?? innerValue}
             />
             <DxcFlex>
