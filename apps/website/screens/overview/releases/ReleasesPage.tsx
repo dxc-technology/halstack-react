@@ -28,6 +28,12 @@ const sections = [
         <DxcParagraph>Every major release of Halstack is collected below:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <DxcLink href="https://developer.assure.dxc.com/halstack/17/overview/introduction/">Halstack 17</DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.assure.dxc.com/halstack/16/overview/introduction/">Halstack 16</DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <DxcLink href="https://developer.assure.dxc.com/halstack/15/overview/introduction/">Halstack 15</DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -75,9 +81,9 @@ const sections = [
           <DxcParagraph>
             To check the latest features under development by the Halstack team, you can access the <Code>next</Code>{" "}
             version of the documentation through this{" "}
-            <DxcLink href="https://developer.assure.dxc.com/halstack/next/">link</DxcLink>. Please note that this version is
-            unstable and may contain minor bugs. For a better experience with Halstack, we recommend, if possible,
-            always using the latest release available.
+            <DxcLink href="https://developer.assure.dxc.com/halstack/next/">link</DxcLink>. Please note that this
+            version is unstable and may contain minor bugs. For a better experience with Halstack, we recommend, if
+            possible, always using the latest release available.
           </DxcParagraph>
         ),
       },

@@ -4,7 +4,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
-import iconsHalstack from "./images/icons_halstack.jpg";
+import iconsHalstack from "./images/icons_halstack.png";
 import materialIcons from "./images/material_icons.png";
 import customIncorrect from "./images/custom_incorrect.jpg";
 import customCorrect from "./images/custom_correct.jpg";
