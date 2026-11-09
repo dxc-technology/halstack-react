@@ -39,14 +39,14 @@ const ThemeGeneratorConfigPage = () => {
   const [currentStep, setCurrentStep] = useState<Step>(0);
   const [tourStepIndex, setTourStepIndex] = useState(0);
   const [colors, setColors] = useState<Colors>({
-    primary: "#5F249F",
-    secondary: "#0067B3",
-    tertiary: "#F7CF2B",
-    neutral: "#999999",
-    info: "#0067B3",
-    success: "#59D97D",
-    error: "#FE344F",
-    warning: "#F59F3D",
+    primary: "#004aac",
+    secondary: "#d14600",
+    tertiary: "#f1d85a",
+    neutral: "#0e1020",
+    info: "#189edc",
+    success: "#25a766",
+    error: "#e6321e",
+    warning: "#ffae41",
   });
   const [logos, setLogos] = useState({
     mainLogo: [] as FileData[],
