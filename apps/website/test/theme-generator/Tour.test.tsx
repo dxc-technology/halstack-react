@@ -5,6 +5,12 @@ import { useRouter } from "next/router";
 import Tour from "../../screens/theme-generator/components/Tour/Tour";
 import type { TourPopoverProps } from "../../screens/theme-generator/components/Tour/types";
 
+global.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+
 jest.mock("next/router", () => ({ useRouter: jest.fn() }));
 
 type MockEvent = { type?: string; action?: string; status?: string; index?: number };
@@ -18,8 +24,6 @@ type MockJoyrideProps = {
 };
 type JoyrideMockModule = { __state: { last: MockJoyrideProps | undefined } };
 
-// Minimal Joyride stand-in: it records the latest props and renders the custom tooltip for the
-// current step. Popover controls emit the same events the real library emits (next/prev/skip).
 jest.mock("react-joyride", () => {
   const { createElement } = jest.requireActual<typeof import("react")>("react");
   const joyrideState: { last: MockJoyrideProps | undefined } = { last: undefined };
@@ -86,9 +90,13 @@ const SECTIONS = [
   { section: 2, title: "Review theme" },
 ] as const;
 
+const tourElement = (currentStep: number) => (
+  <Tour currentStep={currentStep} onTourStepIndexChange={onTourStepIndexChange} />
+);
+
 const renderTour = ({ currentStep = 0, welcome = false }: { currentStep?: number; welcome?: boolean } = {}) => {
   mockUseRouter.mockReturnValue({ query: welcome ? { tour: "true" } : {}, replace: routerReplace });
-  return render(<Tour currentStep={currentStep} onTourStepIndexChange={onTourStepIndexChange} />);
+  return render(tourElement(currentStep));
 };
 
 const emitEvent = (event: MockEvent) => {
@@ -97,11 +105,19 @@ const emitEvent = (event: MockEvent) => {
   });
 };
 
-const goToNextStep = (index: number) => emitEvent({ type: "step:after", action: "next", index, status: "running" });
+const emitStepAfter = (action: string, index: number) =>
+  emitEvent({ type: "step:after", action, index, status: "running" });
 
-const goToPrevStep = (index: number) => emitEvent({ type: "step:after", action: "prev", index, status: "running" });
+const goToNextStep = (index: number) => emitStepAfter("next", index);
+
+const goToPrevStep = (index: number) => emitStepAfter("prev", index);
 
 const startTour = () => fireEvent.click(screen.getByRole("button", { name: "Get Started!" }));
+
+const startTourFromWelcome = () => {
+  renderTour({ welcome: true });
+  startTour();
+};
 
 const WELCOME_TITLE = "Welcome to Halstack Theme Generator";
 
@@ -112,154 +128,130 @@ beforeEach(() => {
 });
 
 describe("Tour", () => {
-  describe("welcome dialog", () => {
-    it("does not show the welcome dialog or run the tour without the tour query parameter", () => {
-      renderTour();
+  it("does not show the welcome dialog or run the tour without the tour query parameter", () => {
+    renderTour();
 
-      expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("opens the welcome dialog from the Take a tour URL and removes the query parameter", () => {
-      renderTour({ welcome: true });
-
-      expect(screen.getByText(WELCOME_TITLE)).toBeInTheDocument();
-      expect(routerReplace).toHaveBeenCalledWith("/theme-generator/configuration", undefined, { shallow: true });
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("closes the welcome dialog with Skip tour without starting the tour", () => {
-      renderTour({ welcome: true });
-      fireEvent.click(screen.getByRole("button", { name: "Skip tour" }));
-
-      expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("closes the welcome dialog with its close button without starting the tour", () => {
-      renderTour({ welcome: true });
-      fireEvent.click(screen.getByRole("button", { name: "Close dialog" }));
-
-      expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("closes the welcome dialog when the tour starts", () => {
-      renderTour({ welcome: true });
-      startTour();
-
-      expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
-      expect(currentProps().run).toBe(true);
-    });
+    expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
+    expect(currentProps().run).toBe(false);
   });
 
-  describe("starting a section", () => {
-    it.each(SECTIONS)("starts section $section at its first step", ({ section, title }) => {
-      renderTour({ currentStep: section, welcome: true });
-      startTour();
+  it("opens the welcome dialog from the Take a tour URL and removes the query parameter", () => {
+    renderTour({ welcome: true });
 
-      expect(currentProps().run).toBe(true);
-      expect(currentProps().stepIndex).toBe(0);
-      expect(screen.getByText(title)).toBeInTheDocument();
-      expect(screen.getByText("1 / 3")).toBeInTheDocument();
-    });
-
-    it("does not start the following section when the welcome dialog was skipped", () => {
-      const { rerender } = renderTour({ welcome: true });
-      fireEvent.click(screen.getByRole("button", { name: "Skip tour" }));
-
-      rerender(<Tour currentStep={1} onTourStepIndexChange={onTourStepIndexChange} />);
-      expect(currentProps().run).toBe(false);
-    });
+    expect(screen.getByText(WELCOME_TITLE)).toBeInTheDocument();
+    expect(routerReplace).toHaveBeenCalledWith("/theme-generator/configuration", undefined, { shallow: true });
+    expect(currentProps().run).toBe(false);
   });
 
-  describe("navigation", () => {
-    it("moves forward and back through the steps and reports the index", () => {
-      renderTour({ welcome: true });
-      startTour();
+  it("closes the welcome dialog with Skip tour without starting the tour", () => {
+    renderTour({ welcome: true });
+    fireEvent.click(screen.getByRole("button", { name: "Skip tour" }));
 
-      goToNextStep(0);
-      expect(currentProps().stepIndex).toBe(1);
-      expect(onTourStepIndexChange).toHaveBeenLastCalledWith(1);
-      expect(screen.getByText("2 / 3")).toBeInTheDocument();
-
-      goToPrevStep(1);
-      expect(currentProps().stepIndex).toBe(0);
-      expect(onTourStepIndexChange).toHaveBeenLastCalledWith(0);
-    });
-
-    it("ignores step events with other actions", () => {
-      renderTour({ welcome: true });
-      startTour();
-      onTourStepIndexChange.mockClear();
-
-      emitEvent({ type: "step:after", action: "update", index: 0 });
-      emitEvent({ type: "tour:start", action: "start", index: 0 });
-
-      expect(onTourStepIndexChange).not.toHaveBeenCalled();
-      expect(currentProps().stepIndex).toBe(0);
-    });
-
-    it("shows Skip step and the navigation controls on non-final steps", () => {
-      renderTour({ welcome: true });
-      startTour();
-
-      expect(screen.getByRole("button", { name: "Skip step" })).toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: "Got it!" })).not.toBeInTheDocument();
-    });
+    expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
+    expect(currentProps().run).toBe(false);
   });
 
-  describe("ending a section", () => {
-    it.each(["finished", "skipped", "paused"])("stops the tour when the status is %s", (status) => {
-      renderTour({ welcome: true });
-      startTour();
-      emitEvent({ status, action: "next", index: 0, type: "tour:end" });
+  it("closes the welcome dialog with its close button without starting the tour", () => {
+    renderTour({ welcome: true });
+    fireEvent.click(screen.getByRole("button", { name: "Close dialog" }));
 
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("stops the tour when the popover is closed", () => {
-      renderTour({ welcome: true });
-      startTour();
-      emitEvent({ action: "close", status: "running", index: 0, type: "tour:end" });
-
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("stops the tour when Skip step is clicked", () => {
-      renderTour({ welcome: true });
-      startTour();
-      fireEvent.click(screen.getByRole("button", { name: "Skip step" }));
-
-      expect(currentProps().run).toBe(false);
-    });
-
-    it("finishes the tour from the last step with Got it!", () => {
-      renderTour({ welcome: true });
-      startTour();
-      goToNextStep(0);
-      goToNextStep(1);
-
-      expect(screen.getByText("Upload assets")).toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: "Skip step" })).not.toBeInTheDocument();
-      fireEvent.click(screen.getByRole("button", { name: "Got it!" }));
-
-      expect(currentProps().run).toBe(false);
-    });
+    expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
+    expect(currentProps().run).toBe(false);
   });
 
-  describe("restarting a section", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-    });
+  it("closes the welcome dialog when the tour starts", () => {
+    startTourFromWelcome();
 
-    afterEach(() => {
-      jest.useRealTimers();
-    });
+    expect(screen.queryByText(WELCOME_TITLE)).not.toBeInTheDocument();
+    expect(currentProps().run).toBe(true);
+  });
 
-    it("restarts the current section from its first step after a short delay", () => {
-      renderTour({ welcome: true });
-      startTour();
+  it.each(SECTIONS)("starts section $section at its first step", ({ section, title }) => {
+    renderTour({ currentStep: section, welcome: true });
+    startTour();
+
+    expect(currentProps().run).toBe(true);
+    expect(currentProps().stepIndex).toBe(0);
+    expect(screen.getByText(title)).toBeInTheDocument();
+    expect(screen.getByText("1 / 3")).toBeInTheDocument();
+  });
+
+  it("does not start the following section when the welcome dialog was skipped", () => {
+    const { rerender } = renderTour({ welcome: true });
+    fireEvent.click(screen.getByRole("button", { name: "Skip tour" }));
+
+    rerender(tourElement(1));
+    expect(currentProps().run).toBe(false);
+  });
+
+  it("moves forward and back through the steps and reports the index", () => {
+    startTourFromWelcome();
+
+    goToNextStep(0);
+    expect(currentProps().stepIndex).toBe(1);
+    expect(onTourStepIndexChange).toHaveBeenLastCalledWith(1);
+    expect(screen.getByText("2 / 3")).toBeInTheDocument();
+
+    goToPrevStep(1);
+    expect(currentProps().stepIndex).toBe(0);
+    expect(onTourStepIndexChange).toHaveBeenLastCalledWith(0);
+  });
+
+  it("ignores step events with other actions", () => {
+    startTourFromWelcome();
+    onTourStepIndexChange.mockClear();
+
+    emitEvent({ type: "step:after", action: "update", index: 0 });
+    emitEvent({ type: "tour:start", action: "start", index: 0 });
+
+    expect(onTourStepIndexChange).not.toHaveBeenCalled();
+    expect(currentProps().stepIndex).toBe(0);
+  });
+
+  it("shows Skip step and the navigation controls on non-final steps", () => {
+    startTourFromWelcome();
+
+    expect(screen.getByRole("button", { name: "Skip step" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Got it!" })).not.toBeInTheDocument();
+  });
+
+  it.each(["finished", "skipped", "paused"])("stops the tour when the status is %s", (status) => {
+    startTourFromWelcome();
+    emitEvent({ status, action: "next", index: 0, type: "tour:end" });
+
+    expect(currentProps().run).toBe(false);
+  });
+
+  it("stops the tour when the popover is closed", () => {
+    startTourFromWelcome();
+    emitEvent({ action: "close", status: "running", index: 0, type: "tour:end" });
+
+    expect(currentProps().run).toBe(false);
+  });
+
+  it("stops the tour when Skip step is clicked", () => {
+    startTourFromWelcome();
+    fireEvent.click(screen.getByRole("button", { name: "Skip step" }));
+
+    expect(currentProps().run).toBe(false);
+  });
+
+  it("finishes the tour from the last step with Got it!", () => {
+    startTourFromWelcome();
+    goToNextStep(0);
+    goToNextStep(1);
+
+    expect(screen.getByText("Upload assets")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Skip step" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Got it!" }));
+
+    expect(currentProps().run).toBe(false);
+  });
+
+  it("restarts the current section from its first step after a short delay", () => {
+    jest.useFakeTimers();
+    try {
+      startTourFromWelcome();
       goToNextStep(0);
       goToNextStep(1);
       onTourStepIndexChange.mockClear();
@@ -275,30 +267,30 @@ describe("Tour", () => {
       });
       expect(currentProps().run).toBe(true);
       expect(currentProps().stepIndex).toBe(0);
-    });
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
-  describe("moving between sections", () => {
-    it("starts the next section automatically after the current one finishes", () => {
-      const { rerender } = renderTour({ welcome: true });
-      startTour();
-      emitEvent({ status: "finished", action: "next", index: 2, type: "tour:end" });
-      expect(currentProps().run).toBe(false);
+  it("starts the next section automatically after the current one finishes", () => {
+    const { rerender } = renderTour({ welcome: true });
+    startTour();
+    emitEvent({ status: "finished", action: "next", index: 2, type: "tour:end" });
+    expect(currentProps().run).toBe(false);
 
-      rerender(<Tour currentStep={1} onTourStepIndexChange={onTourStepIndexChange} />);
+    rerender(tourElement(1));
 
-      expect(currentProps().run).toBe(true);
-      expect(currentProps().stepIndex).toBe(0);
-      expect(screen.getByText("Preview theme")).toBeInTheDocument();
-    });
+    expect(currentProps().run).toBe(true);
+    expect(currentProps().stepIndex).toBe(0);
+    expect(screen.getByText("Preview theme")).toBeInTheDocument();
+  });
 
-    it("does not start the next section again after the last section ends", () => {
-      const { rerender } = renderTour({ currentStep: 2, welcome: true });
-      startTour();
-      emitEvent({ status: "finished", action: "next", index: 2, type: "tour:end" });
+  it("does not start the next section again after the last section ends", () => {
+    const { rerender } = renderTour({ currentStep: 2, welcome: true });
+    startTour();
+    emitEvent({ status: "finished", action: "next", index: 2, type: "tour:end" });
 
-      rerender(<Tour currentStep={2} onTourStepIndexChange={onTourStepIndexChange} />);
-      expect(currentProps().run).toBe(false);
-    });
+    rerender(tourElement(2));
+    expect(currentProps().run).toBe(false);
   });
 });
