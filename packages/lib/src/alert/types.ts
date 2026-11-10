@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { PrettifyTypes, SVG } from "../common/types";
 
-type Action = {
+export type AlertAction = {
   /**
    * The icon of the action. It can be a string with the name of the icon or an SVG component.
    */
@@ -16,7 +16,7 @@ type Action = {
   onClick: () => void;
 };
 
-type Message = {
+export type AlertMessage = {
   /**
    * The function that will be executed when the user clicks on the close action button.
    */
@@ -39,11 +39,11 @@ type CommonProps = {
   /**
    * Primary action of the alert.
    */
-  primaryAction?: Action;
+  primaryAction?: AlertAction;
   /**
    * Secondary action of the alert.
    */
-  secondaryAction?: Action;
+  secondaryAction?: AlertAction;
   /**
    * Specifies the semantic meaning of the alert.
    */
@@ -56,37 +56,37 @@ type CommonProps = {
 
 type ModeSpecificProps =
   | {
-      /**
-       * List of messages to be displayed. Each message has a close action that will,
-       * apart from remove from the alert the current message, call the onClose if it is defined.
-       * If the message is an array, the alert will show a navigation bar to move between the messages.
-       * The modal mode only allows one message per alert. In this case, the message must be an object
-       * and the presence of the onClose attribute is mandatory, since the management of the closing
-       * of the alert relies completely on the user.
-       */
-      message?: Message | Message[];
-      /**
-       * The mode of the alert.
-       */
-      mode?: "inline" | "banner";
-    }
+    /**
+     * List of messages to be displayed. Each message has a close action that will,
+     * apart from remove from the alert the current message, call the onClose if it is defined.
+     * If the message is an array, the alert will show a navigation bar to move between the messages.
+     * The modal mode only allows one message per alert. In this case, the message must be an object
+     * and the presence of the onClose attribute is mandatory, since the management of the closing
+     * of the alert relies completely on the user.
+     */
+    message?: AlertMessage | AlertMessage[];
+    /**
+     * The mode of the alert.
+     */
+    mode?: "inline" | "banner";
+  }
   | {
-      /**
-       * List of messages to be displayed. Each message has a close action that will,
-       * apart from remove from the alert the current message, call the onClose if it is defined.
-       * If the message is an array, the alert will show a navigation bar to move between the messages.
-       * The modal mode only allows one message per alert. In this case, the message must be an object
-       * and the presence of the onClose attribute is mandatory, since the management of the closing
-       * of the alert relies completely on the user.
-       */
-      message: Required<Message>;
-      /**
-       * The mode of the alert.
-       */
-      mode: "modal";
-    };
+    /**
+     * List of messages to be displayed. Each message has a close action that will,
+     * apart from remove from the alert the current message, call the onClose if it is defined.
+     * If the message is an array, the alert will show a navigation bar to move between the messages.
+     * The modal mode only allows one message per alert. In this case, the message must be an object
+     * and the presence of the onClose attribute is mandatory, since the management of the closing
+     * of the alert relies completely on the user.
+     */
+    message: Required<AlertMessage>;
+    /**
+     * The mode of the alert.
+     */
+    mode: "modal";
+  };
 
-type Props = CommonProps & ModeSpecificProps;
+export type AlertProps = PrettifyTypes<CommonProps & ModeSpecificProps>;
 
 export type ModalAlertWrapperProps = {
   condition: boolean;
@@ -94,4 +94,4 @@ export type ModalAlertWrapperProps = {
   children: ReactNode;
 };
 
-export default Props;
+export type { AlertProps as default };

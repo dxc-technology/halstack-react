@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { useState, useId, useEffect, useCallback, use, useMemo } from "react";
-import AlertPropsType from "./types";
+import { AlertProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcDivider from "../divider/Divider";
 import DxcActionIcon from "../action-icon/ActionIcon";
@@ -11,8 +11,8 @@ import ModalAlertWrapper from "./ModalAlertWrapper";
 import { HalstackLanguageContext } from "../HalstackContext";
 
 const AlertContainer = styled.div<{
-  semantic: AlertPropsType["semantic"];
-  mode: AlertPropsType["mode"];
+  semantic: AlertProps["semantic"];
+  mode: AlertProps["mode"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -35,7 +35,7 @@ const AlertContainer = styled.div<{
   overflow: hidden;
 `;
 
-const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: AlertPropsType["semantic"] }>`
+const TitleContainer = styled.div<{ mode: AlertProps["mode"]; semantic: AlertProps["semantic"] }>`
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -55,13 +55,13 @@ const typographyStyles = css`
   font-weight: var(--typography-helper-text-regular);
 `;
 
-const Title = styled.span<{ mode: AlertPropsType["mode"] }>`
+const Title = styled.span<{ mode: AlertProps["mode"] }>`
   ${typographyStyles}
   font-size: ${(props) => (props.mode === "modal" ? "var(--typography-title-xl)" : "var(--typography-title-s)")};
   font-weight: var(--typography-title-bold);
 `;
 
-const Message = styled.div<{ mode: AlertPropsType["mode"] }>`
+const Message = styled.div<{ mode: AlertProps["mode"] }>`
   ${typographyStyles}
   white-space: ${(props) => props.mode === "banner" && "nowrap"};
   text-overflow: ${(props) => props.mode === "banner" && "ellipsis"};
@@ -79,7 +79,7 @@ const NavigationText = styled.span`
   font-size: var(--typography-helper-text-s);
 `;
 
-const getIcon = (semantic: AlertPropsType["semantic"]) => {
+const getIcon = (semantic: AlertProps["semantic"]) => {
   switch (semantic) {
     case "info":
       return <DxcIcon icon="filled_info" />;
@@ -100,7 +100,7 @@ const DxcAlert = ({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) => {
+}: AlertProps) => {
   const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 

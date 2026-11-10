@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import { HalstackLanguageContext } from "../HalstackContext";
-import ToastPropsType from "./types";
+import { ToastProps } from "./types";
 import useTimeout from "../utils/useTimeout";
 import { responsiveSizes } from "../common/variables";
 import getSemantic from "./utils";
@@ -33,12 +33,12 @@ const fadeOutDown = keyframes`
   }
 `;
 
-const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
+const Toast = styled.output<{ semantic: ToastProps["semantic"]; isClosing: boolean }>`
   box-sizing: border-box;
   min-width: 200px;
   max-width: 600px;
   width: fit-content;
-  border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).primaryColor};
+  border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).borderColor};
   border-radius: var(--border-radius-s);
   box-shadow: var(--shadow-100);
   display: inline-flex;
@@ -57,7 +57,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   }
 `;
 
-const ContentContainer = styled.div<{ loading: ToastPropsType["loading"]; semantic: ToastPropsType["semantic"] }>`
+const ContentContainer = styled.div<{ loading: ToastProps["loading"]; semantic: ToastProps["semantic"] }>`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-s);
@@ -80,16 +80,7 @@ const Message = styled.span`
   white-space: nowrap;
 `;
 
-const DxcToast = ({
-  action,
-  duration,
-  hideSemanticIcon,
-  icon,
-  loading,
-  message,
-  onClear,
-  semantic,
-}: ToastPropsType) => {
+const DxcToast = ({ action, duration, hideSemanticIcon, icon, loading, message, onClear, semantic }: ToastProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const toastRef = useRef<HTMLOutputElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import inputStylesByState from "../styles/forms/inputStylesByState";
-import TimeInputPropsType from "./types";
+import { TimeInputProps } from "./types";
 import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 import { HalstackLanguageContext } from "../HalstackContext";
 import Label from "../styles/forms/Label";
@@ -21,7 +21,7 @@ const sizes = {
 };
 
 const TimeInputContainer = styled.div<{
-  size: TimeInputPropsType["size"];
+  size: TimeInputProps["size"];
 }>`
   box-sizing: border-box;
   display: flex;
@@ -34,9 +34,9 @@ const TimeInputContainer = styled.div<{
 `;
 
 const TimeInputField = styled.div<{
-  disabled: Required<TimeInputPropsType>["disabled"];
+  disabled: Required<TimeInputProps>["disabled"];
   error: boolean;
-  readOnly: Required<TimeInputPropsType>["readOnly"];
+  readOnly: Required<TimeInputProps>["readOnly"];
 }>`
   position: relative;
   display: flex;
@@ -74,7 +74,7 @@ const DxcTimeInput = ({
   tabIndex = 0,
   timeFormat,
   value,
-}: TimeInputPropsType) => {
+}: TimeInputProps) => {
   const inputId = `input-${useId()}`;
   const errorId = `error-${useId()}`;
   const [hourValue, setHourValue] = useState<number | undefined>(undefined);
@@ -193,6 +193,7 @@ const DxcTimeInput = ({
   return (
     <>
       <TimeInputContainer
+        aria-disabled={disabled}
         size={size}
         ref={ref}
         onBlur={() => {

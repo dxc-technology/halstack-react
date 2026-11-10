@@ -34,3 +34,5 @@ export type SearchBarProps = {
    */
   placeholder?: string;
 };
+
+export type { SearchBarProps as default };

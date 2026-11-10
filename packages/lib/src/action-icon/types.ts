@@ -1,20 +1,11 @@
 import { MouseEvent, ReactNode, Ref } from "react";
-import { SVG } from "../common/utils";
+import { SVG, Color, Shape, Size, Mode } from "../common/types";
 
 export type RefType = HTMLDivElement;
-
-type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Shape = "circle" | "square";
-type Color =
-  "primary" | "secondary" | "tertiary" | "success" | "info" | "neutral" | "warning" | "error" | "transparent";
 export interface Status {
-  mode: "default" | "info" | "success" | "warning" | "error";
+  mode: Mode;
   position: "top" | "bottom";
 }
-
-export type ActionIconPropTypes =
-  | (CommonProps & { content: ReactNode; icon?: string | SVG })
-  | (CommonProps & { content?: ReactNode; icon: string | SVG });
 
 type CommonProps = {
   /**
@@ -58,3 +49,9 @@ type CommonProps = {
    */
   title?: string;
 };
+
+export type ActionIconProps =
+  | (CommonProps & { content: ReactNode; icon?: string | SVG })
+  | (CommonProps & { content?: ReactNode; icon: string | SVG });
+
+export type { ActionIconProps as default };

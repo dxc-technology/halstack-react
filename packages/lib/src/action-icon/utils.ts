@@ -1,4 +1,4 @@
-import { ActionIconPropTypes } from "./types";
+import { ActionIconProps } from "./types";
 
 const contextualColorMap = {
   primary: {
@@ -75,13 +75,13 @@ const outlineWidthMap = {
   xxlarge: "var(--border-width-l)",
 };
 
-export const getColor = (color: ActionIconPropTypes["color"]) =>
+export const getColor = (color: ActionIconProps["color"]) =>
   color && contextualColorMap[color] ? contextualColorMap[color].text : contextualColorMap.transparent.text;
 
-export const getBackgroundColor = (color: ActionIconPropTypes["color"]) =>
+export const getBackgroundColor = (color: ActionIconProps["color"]) =>
   color && contextualColorMap[color] ? contextualColorMap[color].background : contextualColorMap.transparent.background;
 
-export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: ActionIconPropTypes["size"]) => {
+export const getBorderRadius = (shape: ActionIconProps["shape"], size: ActionIconProps["size"]) => {
   if (shape === "circle") {
     return "100%";
   }
@@ -91,10 +91,10 @@ export const getBorderRadius = (shape: ActionIconPropTypes["shape"], size: Actio
   return "100%";
 };
 
-export const getSize = (size: ActionIconPropTypes["size"]) => (size && sizeMap[size] ? sizeMap[size] : "40px");
+export const getSize = (size: ActionIconProps["size"]) => (size && sizeMap[size] ? sizeMap[size] : "40px");
 
-export const getIconSize = (size: ActionIconPropTypes["size"]) =>
+export const getIconSize = (size: ActionIconProps["size"]) =>
   size && iconSizeMap[size] ? iconSizeMap[size] : "var(--height-s)";
 
-export const getOutlineWidth = (size: ActionIconPropTypes["size"]) =>
+export const getOutlineWidth = (size: ActionIconProps["size"]) =>
   size && outlineWidthMap[size] ? outlineWidthMap[size] : "var(--border-width-m)";

@@ -1,6 +1,6 @@
-import HeadingPropsType from "./types";
+import { HeadingProps } from "./types";
 
-export const getHeadingSize = (level: HeadingPropsType["level"]) => {
+export const getHeadingSize = (level: HeadingProps["level"]) => {
   switch (level) {
     case 1:
       return "var(--typography-heading-xxl)";
@@ -17,7 +17,7 @@ export const getHeadingSize = (level: HeadingPropsType["level"]) => {
   }
 };
 
-export const getHeadingWeight = (weight: HeadingPropsType["weight"]) => {
+export const getHeadingWeight = (weight: HeadingProps["weight"]) => {
   switch (weight) {
     case "default":
       return "var(--typography-heading-semibold)";

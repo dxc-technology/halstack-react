@@ -1,8 +1,6 @@
 import QuickNavContainer from "@/common/QuickNavContainer";
-import DxcFlex from "../../../../../../packages/lib/src/flex/Flex";
 import DocFooter from "@/common/DocFooter";
-import DxcParagraph from "../../../../../../packages/lib/src/paragraph/Paragraph";
-import { DxcBulletedList } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import messageInputAnatomy from "./images/message-input-anatomy.png";

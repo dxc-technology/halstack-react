@@ -3,7 +3,7 @@ import Title from "../../.storybook/components/Title";
 import disabledRules from "../../test/accessibility/rules/specific/dropdown/disabledRules";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
-import { Option } from "./types";
+import { DropdownOption } from "./types";
 import preview from "../../.storybook/preview";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { userEvent, within } from "storybook/test";
@@ -36,7 +36,7 @@ const iconSVGLarge = (
 );
 const icons = [iconSVG, iconSVGLarge, "nutrition"];
 
-const defaultOptions: Option[] = [
+const defaultOptions: DropdownOption[] = [
   {
     value: "1",
     label: "Amazon",
@@ -72,7 +72,7 @@ const defaultOptions: Option[] = [
     label: "Gearbest shop",
   },
 ];
-const options: Option[] = [
+const options: DropdownOption[] = [
   {
     value: "1",
     label: "Amazon with a very long text",
@@ -87,7 +87,7 @@ const options: Option[] = [
     label: "Apple",
   },
 ];
-const optionWithIcon: Option[] = [
+const optionWithIcon: DropdownOption[] = [
   {
     value: "1",
     label: "Ebay",

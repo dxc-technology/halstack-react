@@ -5,7 +5,7 @@ export type SelectOption = {
   selected?: boolean;
 };
 
-type Props = {
+export type MessageInputProps = {
   /**
    * If true, the voice recording button will be shown.
    */
@@ -106,4 +106,4 @@ type Props = {
   value?: string;
 };
 
-export default Props;
+export type { MessageInputProps as default };

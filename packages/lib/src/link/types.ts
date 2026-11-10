@@ -1,4 +1,4 @@
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, SVG, Space } from "../common/types";
 
 export type LinkProps = {
   /**
@@ -48,3 +48,5 @@ export type LinkProps = {
    */
   tabIndex?: number;
 };
+
+export type { LinkProps as default };

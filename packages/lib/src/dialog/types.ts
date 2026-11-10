@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type Props = {
+export type DialogProps = {
   /**
    * If true, the close button will be visible.
    */
@@ -40,4 +40,4 @@ type Props = {
   disableFocusLock?: boolean;
 };
 
-export default Props;
+export type { DialogProps as default };

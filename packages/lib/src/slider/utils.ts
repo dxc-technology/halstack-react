@@ -1,4 +1,4 @@
-import SliderPropsType from "./types";
+import { SliderProps } from "./types";
 import { getMargin } from "../common/utils";
 
 const sizes = {
@@ -7,7 +7,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-export const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
+export const calculateWidth = (margin: SliderProps["margin"], size: SliderProps["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { TimeSpinButtonPropsType } from "./types";
+import { TimeSpinButtonProps } from "./types";
 import { use, useEffect, useMemo, useRef, useState } from "react";
 import { handleKeyDown, pad, returnDayPeriod, generateDisplayValue } from "./utils";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -43,7 +43,7 @@ const TimeSpinButton = ({
   onComplete,
   onNext,
   onPrevious,
-}: TimeSpinButtonPropsType) => {
+}: TimeSpinButtonProps) => {
   const [innerValue, setInnerValue] = useState<number | undefined>(value);
   const spanRef = useRef<HTMLSpanElement | null>(null);
   const translatedLabels = use(HalstackLanguageContext).labels;

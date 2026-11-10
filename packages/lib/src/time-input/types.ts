@@ -3,7 +3,7 @@
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-type Props = {
+export type TimeInputProps = {
   /**
    * Specifies a string to be used as the name for the timeInput element when no `label` is provided.
    */
@@ -91,7 +91,7 @@ type Props = {
   value?: string;
 };
 
-export type TimeSpinButtonPropsType = {
+export type TimeSpinButtonProps = {
   ariaLabel?: string;
   value: number | undefined;
   minValue: number;
@@ -108,7 +108,7 @@ export type TimeSpinButtonPropsType = {
   onPrevious?: () => void;
 };
 
-export type TimePickerPropsType = {
+export type TimePickerProps = {
   onPickTime: (hours: number, minutes: number, seconds?: number, dayPeriod?: number) => void;
   timeFormat: "12" | "24";
   dayPeriodPosition?: "before" | "after";
@@ -121,4 +121,4 @@ export type TimePickerPropsType = {
   tabIndex?: number;
 };
 
-export default Props;
+export type { TimeInputProps as default };

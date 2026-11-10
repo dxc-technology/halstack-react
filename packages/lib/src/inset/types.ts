@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type Props = {
+type InsetProps = {
   /**
    * Applies the spacing scale to the bottom side.
    */
@@ -35,4 +35,4 @@ type Props = {
   vertical?: string;
 };
 
-export default Props;
+export type { InsetProps, InsetProps as default };

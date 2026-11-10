@@ -1,7 +1,7 @@
 import { JSX, useEffect, useMemo, useState } from "react";
 import { DataGrid, SortColumn } from "react-data-grid";
 import styled from "@emotion/styled";
-import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
+import type { DataGridProps, DataGridHierarchyRow, DataGridRow, DataGridExpandableRow } from "./types";
 import "react-data-grid/lib/styles.css";
 import {
   convertToRDGColumns,
@@ -177,8 +177,10 @@ const DxcDataGrid = ({
   onPageChange,
   totalItems,
   defaultPage = 1,
-}: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>([...rows]);
+}: DataGridProps): JSX.Element => {
+  const [rowsToRender, setRowsToRender] = useState<DataGridRow[] | DataGridHierarchyRow[] | DataGridExpandableRow[]>([
+    ...rows,
+  ]);
   const [page, changePage] = useState(defaultPage);
   const [colHeight, setColHeight] = useState(36);
   const [loadingChildren, setLoadingChildren] = useState<(string | number)[]>([]);
@@ -232,11 +234,8 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    const rowHasHierarchy = (row: GridRow | HierarchyGridRow): row is HierarchyGridRow => {
-      return (
-        (Array.isArray(row.childRows) && row.childRows?.length > 0) ||
-        typeof (row as HierarchyGridRow)?.childrenTrigger === "function"
-      );
+    const rowHasHierarchy = (row: DataGridRow | DataGridHierarchyRow): row is DataGridHierarchyRow => {
+      return (Array.isArray(row.childRows) && row.childRows?.length > 0) || typeof row?.childrenTrigger === "function";
     };
     if (!expandable && rows.some((row) => rowHasHierarchy(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
@@ -366,14 +365,14 @@ const DxcDataGrid = ({
     });
   };
 
-  const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
+  const onRowsChange = (newRows: DataGridRow[] | DataGridHierarchyRow[] | DataGridExpandableRow[]) => {
     // call function to change rows, like when they have been edited
     if (typeof onGridRowsChange === "function") {
       onGridRowsChange(newRows);
     }
   };
 
-  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
+  const sortedRows = useMemo((): readonly DataGridRow[] | DataGridHierarchyRow[] | DataGridExpandableRow[] => {
     const sortFunctions = getCustomSortFn(columns);
     if (!onSort) {
       if (sortColumns.length > 0 && uniqueRowId) {

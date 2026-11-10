@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef } from "react";
 import styled from "@emotion/styled";
 import DxcTextInput from "../text-input/TextInput";
-import NumberInputPropsType from "./types";
+import { NumberInputProps } from "./types";
 import NumberInputContext from "./NumberInputContext";
 
-const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
+const NumberInputContainer = styled.div<{ size: NumberInputProps["size"] }>`
   ${({ size }) => size === "fillParent" && "width: 100%;"}
 
   // Chrome, Safari, Edge, Opera
@@ -45,7 +45,7 @@ const DxcNumberInput = ({
   suffix,
   tabIndex,
   value,
-}: NumberInputPropsType) => {
+}: NumberInputProps) => {
   const numberInputRef = useRef<HTMLInputElement | null>(null);
 
   const contextValue = useMemo(

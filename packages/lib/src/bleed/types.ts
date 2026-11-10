@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type Props = {
+export type BleedProps = {
   /**
    * Applies the spacing scale to all sides.
    */
@@ -35,4 +35,4 @@ type Props = {
   children: ReactNode;
 };
 
-export default Props;
+export type { BleedProps as default };

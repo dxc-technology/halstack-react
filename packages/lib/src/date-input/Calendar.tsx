@@ -70,7 +70,7 @@ const DayCellButton = styled.button<{
     props.selected
       ? "var(--color-fg-neutral-bright);"
       : !props.actualMonth
-        ? "var(--color-fg-neutral-medium);"
+        ? "var(--color-fg-neutral-strong);"
         : "var(--color-fg-neutral-dark);"};
 
   ${(props) =>

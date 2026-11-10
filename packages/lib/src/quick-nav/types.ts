@@ -1,4 +1,4 @@
-type Link = {
+export type QuickNavLink = {
   /**
    * Label to be shown in the link.
    */
@@ -6,10 +6,10 @@ type Link = {
   /**
    * Sublinks of the link.
    */
-  links?: Link[];
+  links?: QuickNavLink[];
 };
 
-type Props = {
+export type QuickNavProps = {
   /**
    * Title of the quick nav component.
    */
@@ -17,7 +17,7 @@ type Props = {
   /**
    * Links to be shown inside the quick nav component.
    */
-  links: Link[];
+  links: QuickNavLink[];
 };
 
-export default Props;
+export type { QuickNavProps as default };

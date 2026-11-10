@@ -1,11 +1,11 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
 /**
  * Reference to the component.
  */
 export type RefType = React.Ref<HTMLInputElement>;
 
-type Props = {
+export type NumberInputProps = {
   /**
    * Text to be placed above the number.
    */
@@ -131,11 +131,11 @@ type Props = {
 };
 
 export type NumberInputContextProps = {
-  maxNumber: Props["max"];
-  minNumber: Props["min"];
-  showControls: Props["showControls"];
-  stepNumber: Props["step"];
+  maxNumber: NumberInputProps["max"];
+  minNumber: NumberInputProps["min"];
+  showControls: NumberInputProps["showControls"];
+  stepNumber: NumberInputProps["step"];
   typeNumber?: string;
 };
 
-export default Props;
+export type { NumberInputProps as default };

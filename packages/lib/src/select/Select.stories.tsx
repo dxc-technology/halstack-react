@@ -304,6 +304,17 @@ const Select = () => (
       <Title title="Multiple clear actived" theme="light" level={4} />
       <DxcSelect label="Multiple select" options={singleOptions} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Multiple selection disabled" theme="light" level={4} />
+      <DxcSelect
+        label="Multiple select"
+        searchable
+        options={singleOptions}
+        multiple
+        defaultValue={["1", "2"]}
+        disabled
+      />
+    </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small size" theme="light" level={4} />

@@ -3,12 +3,12 @@ import DxcIcon from "../icon/Icon";
 import SubMenu from "./SubMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
-import { GroupItemProps } from "./types";
+import { BaseGroupItemProps } from "./types";
 import { useGroupItem } from "./useGroupItem";
 import BaseMenuContext from "./BaseMenuContext";
 import DxcPopover from "../popover/Popover";
 
-const GroupItem = ({ items, ...props }: GroupItemProps) => {
+const GroupItem = ({ items, ...props }: BaseGroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
   const contextValue = use(BaseMenuContext) ?? {};
   const { groupSelected, isOpen, toggleOpen, hasPopOver, isHorizontal } = useGroupItem(

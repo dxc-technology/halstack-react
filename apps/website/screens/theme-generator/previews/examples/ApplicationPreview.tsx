@@ -13,7 +13,7 @@ import {
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { Logos } from "screens/theme-generator/types";
-import { GridRow } from "../../../../../../packages/lib/src/data-grid/types";
+import type { DxcDataGridRow } from "@dxc-technology/halstack-react";
 
 const columnsDatagrid = [
   {
@@ -348,7 +348,7 @@ const ApplicationPreview = ({ logos }: { logos: Logos }) => {
               </DxcFlex>
               <DxcDataGrid
                 columns={columnsDatagrid}
-                rows={rowsDatagrid as GridRow[]}
+                rows={rowsDatagrid as DxcDataGridRow[]}
                 uniqueRowId="policyId"
                 selectable
                 selectedRows={selectedRows}

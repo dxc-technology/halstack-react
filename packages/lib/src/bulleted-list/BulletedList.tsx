@@ -2,7 +2,7 @@ import { JSX, Children } from "react";
 import styled from "@emotion/styled";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
-import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
+import { BulletedListProps, BulletedListItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
 const ListContainer = styled.div`
@@ -79,9 +79,9 @@ const ListItem = styled.li`
   padding: var(--spacing-padding-none);
 `;
 
-const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
+const BulletedListItem = ({ children }: BulletedListItemProps): JSX.Element => <>{children}</>;
 
-const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => (
+const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListProps): JSX.Element => (
   <ListContainer>
     <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
       {Children.map(children, (child, index) => (

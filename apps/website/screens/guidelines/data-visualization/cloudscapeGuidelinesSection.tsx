@@ -1,7 +1,6 @@
 import { SectionType } from "@/common/Section";
-import DxcParagraph from "../../../../../packages/lib/src/paragraph/Paragraph";
 import Link from "next/link";
-import { DxcBulletedList, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import cloudscapeBarImage from "./images/cloudscape_bar_chart.png";
 import cloudscapePieImage from "./images/cloudscape_pie_chart.png";

@@ -1,4 +1,4 @@
-import { SVG } from "../../../../packages/lib/src/common/utils";
+import type { DxcSVG } from "@dxc-technology/halstack-react";
 import componentsList from "./componentsList.json";
 
 export type ComponentStatus = "experimental" | "new" | "stable" | "legacy" | "deprecated";
@@ -7,13 +7,13 @@ export type LinkDetails = {
   label: string;
   path: string;
   status?: ComponentStatus;
-  icon?: string | SVG;
+  icon?: string | DxcSVG;
 };
 
 export type LinksSectionDetails = {
   label: string;
   links: (LinkDetails | LinksSectionDetails)[];
-  icon?: string | SVG;
+  icon?: string | DxcSVG;
 };
 
 type NavigationLinks = {

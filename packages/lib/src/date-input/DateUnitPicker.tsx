@@ -75,7 +75,7 @@ const DateUnitPicker = ({
   const ariaLabel = `${unit.charAt(0).toUpperCase() + unit.slice(1)} Picker`;
 
   const id = useId();
-  const [itemToFocus, setItemToFocus] = useState(selectedDate ? selectedDate.get(unit) : dayjs().get(unit));
+  const [itemToFocus, setItemToFocus] = useState(selectedDate?.isValid() ? selectedDate.get(unit) : currentValue);
 
   useEffect(() => {
     const itemToFocusEl = document.getElementById(`${id}_${unit}_${itemToFocus}`);

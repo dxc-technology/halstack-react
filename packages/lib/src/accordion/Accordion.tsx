@@ -2,15 +2,15 @@ import { JSX, Children, useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import AccordionPropsType, { AccordionContextProps } from "./types";
+import { AccordionProps, AccordionContextProps } from "./types";
 import AccordionContext from "./AccordionContext";
 import AccordionItem from "./AccordionItem";
 
-const calculateWidth = (margin: AccordionPropsType["margin"]) =>
+const calculateWidth = (margin: AccordionProps["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionContainer = styled.div<{
-  margin: AccordionPropsType["margin"];
+  margin: AccordionProps["margin"];
 }>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "var(--spacing-padding-none)")};
@@ -74,7 +74,7 @@ const AccordionItemWithProvider = ({
   return <AccordionContext value={memoizedContext}>{child}</AccordionContext>;
 };
 
-const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
+const DxcAccordion = (props: AccordionProps): JSX.Element => {
   const { children, defaultIndexActive, independent, indexActive, margin, onActiveChange } = props;
 
   const [innerIndexActive, setInnerIndexActive] = useState(

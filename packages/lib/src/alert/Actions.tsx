@@ -1,7 +1,7 @@
 import { memo } from "react";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
-import AlertPropsType from "./types";
+import { AlertProps } from "./types";
 
 const Actions = memo(
   ({
@@ -9,7 +9,7 @@ const Actions = memo(
     primaryAction,
     secondaryAction,
     semantic,
-  }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) =>
+  }: Pick<AlertProps, "mode" | "primaryAction" | "secondaryAction" | "semantic">) =>
     (primaryAction != null || secondaryAction != null) && (
       <DxcFlex gap="var(--spacing-gap-s)" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
         {secondaryAction?.onClick && (

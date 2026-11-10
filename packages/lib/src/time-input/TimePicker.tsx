@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { TimePickerPropsType } from "./types";
+import { TimePickerProps } from "./types";
 import { use, useEffect, useState } from "react";
 import TimePickerColumn from "./TimePickerColumn";
 import { handleColumnKeyDown } from "./utils";
@@ -25,7 +25,7 @@ const TimePicker = ({
   dayPeriod,
   id,
   tabIndex = 0,
-}: TimePickerPropsType) => {
+}: TimePickerProps) => {
   const [hourToFocus, setHourToFocus] = useState(hourValue ?? (timeFormat === "12" ? 1 : 0));
   const [minuteToFocus, setMinuteToFocus] = useState(minuteValue ?? 0);
   const [secondToFocus, setSecondToFocus] = useState(secondValue ?? 0);

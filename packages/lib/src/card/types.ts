@@ -6,7 +6,7 @@ type Size = {
   height?: "fillParent" | "fitContent";
 };
 
-type Props = {
+export type CardProps = {
   /**
    * Custom content that will be placed inside the component.
    */
@@ -98,4 +98,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default Props;
+export type { CardProps as default };

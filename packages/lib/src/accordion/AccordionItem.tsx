@@ -171,6 +171,7 @@ const AccordionItem = ({
         id={`accordion-${id}`}
         onClick={disabled ? undefined : handleAccordionState}
         disabled={disabled}
+        aria-disabled={disabled}
         tabIndex={disabled ? -1 : tabIndex}
         aria-expanded={isItemExpanded}
         aria-controls={`accordion-panel-${id}`}

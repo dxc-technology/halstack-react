@@ -1,12 +1,12 @@
 import { MouseEvent, useId, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { spaces } from "../common/variables";
-import SpinnerPropsType from "./types";
+import { SpinnerProps } from "./types";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const SpinnerContainer = styled.div<{
-  margin: SpinnerPropsType["margin"];
-  mode: SpinnerPropsType["mode"];
+  margin: SpinnerProps["margin"];
+  mode: SpinnerProps["mode"];
 }>`
   ${({ mode }) =>
     mode === "overlay" &&
@@ -48,7 +48,7 @@ const SpinnerContainer = styled.div<{
       : ""};
 `;
 
-const MainContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
+const MainContainer = styled.div<{ mode: SpinnerProps["mode"] }>`
   position: relative;
   display: grid;
   place-items: center;
@@ -106,7 +106,7 @@ const SVGTotalTrack = styled.svg`
   width: inherit;
 `;
 
-const TotalTrack = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
+const TotalTrack = styled.circle<{ mode: SpinnerProps["mode"] }>`
   animation: none;
   fill: transparent;
   stroke: var(--color-bg-neutral-lightest);
@@ -134,13 +134,13 @@ const SVGSpinner = styled.svg<{ determined: boolean }>`
   animation: ${({ determined }) => !determined && "1.4s linear infinite both spinner-svg"};
 `;
 
-const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) =>
+const determinateValue = (value: SpinnerProps["value"], strokeDashArray: number) =>
   value != null && value >= 0 && value <= 100 ? strokeDashArray * (1 - value / 100) : 0;
 
 const CircleSpinner = styled.circle<{
   determined: boolean;
-  inheritColor: SpinnerPropsType["inheritColor"];
-  value: SpinnerPropsType["value"];
+  inheritColor: SpinnerProps["inheritColor"];
+  value: SpinnerProps["value"];
 }>`
   fill: transparent;
   stroke-linecap: initial;
@@ -164,7 +164,7 @@ const CircleSpinner = styled.circle<{
     determined ? (mode !== "small" ? determinateValue(value, 409) : determinateValue(value, 38)) : ""};
 `;
 
-const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
+const Labels = styled.div<{ mode: SpinnerProps["mode"] }>`
   position: absolute;
   display: grid;
   gap: var(--spacing-gap-none);
@@ -194,7 +194,7 @@ const DxcSpinner = ({
   mode = "large",
   showValue,
   value,
-}: SpinnerPropsType) => {
+}: SpinnerProps) => {
   const labelId = useId();
   const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
   const [hasTooltip, setHasTooltip] = useState(false);

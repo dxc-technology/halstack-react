@@ -1,24 +1,7 @@
 import { JSX, CSSProperties, ReactNode } from "react";
-import { Margin, SVG, Space } from "../common/utils";
+import { Margin, Action, Space } from "../common/types";
 
-type Action = {
-  /**
-   * This function will be called when the user clicks the action.
-   */
-  onClick: () => void;
-  /**
-   * Icon to be placed in the action..
-   */
-  icon: string | SVG;
-  /**
-   * Text representing advisory information related
-   * to the button's action. Under the hood, this prop also serves
-   * as an accessible label for the component.
-   */
-  title?: string;
-};
-
-type Props = {
+export type TextInputProps = {
   /**
    * Sets the alignment inside the input.
    */
@@ -208,4 +191,4 @@ export type AutosuggestWrapperProps = {
   children: ReactNode;
 };
 
-export default Props;
+export type { TextInputProps as default };

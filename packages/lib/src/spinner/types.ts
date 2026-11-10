@@ -1,6 +1,6 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
-type Props = {
+export type SpinnerProps = {
   /**
    * Specifies a string to be used as the name for the spinner element when no `label` is provided or the `mode` is set to small.
    */
@@ -34,4 +34,4 @@ type Props = {
   value?: number;
 };
 
-export default Props;
+export type { SpinnerProps as default };

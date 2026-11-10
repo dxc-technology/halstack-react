@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type Props = {
+export type TypographyProps = {
   as?:
     | "a"
     | "blockquote"
@@ -35,6 +35,6 @@ export type Props = {
   whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
 };
 
-export type TypographyContextProps = Required<Omit<Props, "children">>;
+export type TypographyContextProps = Required<Omit<TypographyProps, "children">>;
 
-export default Props;
+export type { TypographyProps as default };

@@ -1,8 +1,8 @@
 import { useState, use, cloneElement, ReactNode, ReactElement } from "react";
 import BaseMenuContext from "./BaseMenuContext";
-import { ItemActionProps } from "./types";
+import { BaseItemActionProps } from "./types";
 
-export function useItemAction({ badge, renderItem }: ItemActionProps) {
+export function useItemAction({ badge, renderItem }: BaseItemActionProps) {
   const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge as ReactElement<{ size?: string }>, { size: "small" });
   const { displayControlsAfter, hasPopOver, displayGroupLines, isHorizontal } = use(BaseMenuContext) ?? {};

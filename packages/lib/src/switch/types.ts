@@ -1,11 +1,11 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
 /**
  * Reference to the component.
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-type Props = {
+export type SwitchProps = {
   /**
    * Specifies a string to be used as the name for the switch element when no `label` is provided.
    */
@@ -68,4 +68,4 @@ type Props = {
   value?: string;
 };
 
-export default Props;
+export type { SwitchProps as default };

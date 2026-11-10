@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import GridPropsType, { GridItemProps } from "./types";
+import { GridProps, GridItemProps } from "./types";
 
-const Grid = styled.div<GridPropsType>`
+const Grid = styled.div<GridProps>`
   display: grid;
   ${(props) => `
     ${props.templateColumns ? `grid-template-columns: ${props.templateColumns.join(" ")};` : ""}
@@ -91,7 +91,7 @@ const GridItem = styled.div<GridItemProps>`
   `}
 `;
 
-const DxcGrid = (props: GridPropsType) => <Grid {...props} />;
+const DxcGrid = (props: GridProps) => <Grid {...props} />;
 DxcGrid.Item = GridItem;
 
 export default DxcGrid;

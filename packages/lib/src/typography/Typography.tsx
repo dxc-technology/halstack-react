@@ -1,9 +1,9 @@
 import { use, useMemo } from "react";
 import styled from "@emotion/styled";
-import TypographyPropsTypes from "./types";
+import { TypographyProps } from "./types";
 import TypographyContext from "./TypographyContext";
 
-const Typography = styled.span<TypographyPropsTypes>`
+const Typography = styled.span<TypographyProps>`
   margin: 0px;
   display: ${({ display }) => display};
   color: ${({ color }) => color};
@@ -21,7 +21,7 @@ const Typography = styled.span<TypographyPropsTypes>`
   overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
 `;
 
-export default function DxcTypography({ children, ...props }: TypographyPropsTypes) {
+export default function DxcTypography({ children, ...props }: TypographyProps) {
   const componentContext = use(TypographyContext);
 
   const contextValue = useMemo(

@@ -3,7 +3,7 @@
  */
 export type RefType = React.Ref<HTMLDivElement>;
 
-type Option = {
+export type RadioGroupOption = {
   /**
    * Label of the option placed next to the radio input.
    */
@@ -20,7 +20,7 @@ type Option = {
   disabled?: boolean;
 };
 
-type RadioGroupProps = {
+export type RadioGroupProps = {
   /**
    * Specifies a string to be used as the name for the radio group when no `label` is provided.
    */
@@ -70,7 +70,7 @@ type RadioGroupProps = {
   /**
    * An array of objects representing the selectable options.
    */
-  options: Option[];
+  options: RadioGroupOption[];
   /**
    * This function will be called when the radio group loses the focus. An
    * object including the value and the error will be passed to this
@@ -120,4 +120,4 @@ export type RadioInputProps = {
   tabIndex: number;
 };
 
-export default RadioGroupProps;
+export type { RadioGroupProps as default };

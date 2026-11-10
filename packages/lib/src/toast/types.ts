@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SVG } from "../common/utils";
+import { SVG, PrettifyTypes } from "../common/types";
 
 type Action = {
   /**
@@ -26,35 +26,43 @@ type CommonProps = {
    */
   message: string;
 };
-type DefaultToast = CommonProps & {
-  /**
-   * Material Symbol name or SVG element as the icon that will be placed next to the panel label.
-   * When using Material Symbols, replace spaces with underscores.
-   * By default they are outlined if you want it to be filled prefix the symbol name with "filled_".
-   */
-  icon?: string | SVG;
-};
-type LoadingToast = CommonProps & {
-  loading: boolean;
-};
-type SemanticToast = CommonProps & {
-  /**
-   * Flag that allows to hide the semantic icon of the toast.
-   */
-  hideSemanticIcon?: boolean;
-};
+type DefaultToast = PrettifyTypes<
+  CommonProps & {
+    /**
+     * Material Symbol name or SVG element as the icon that will be placed next to the panel label.
+     * When using Material Symbols, replace spaces with underscores.
+     * By default they are outlined if you want it to be filled prefix the symbol name with "filled_".
+     */
+    icon?: string | SVG;
+  }
+>;
+type LoadingToast = PrettifyTypes<
+  CommonProps & {
+    loading: boolean;
+  }
+>;
+type SemanticToast = PrettifyTypes<
+  CommonProps & {
+    /**
+     * Flag that allows to hide the semantic icon of the toast.
+     */
+    hideSemanticIcon?: boolean;
+  }
+>;
 type ToastType = DefaultToast | LoadingToast | SemanticToast;
 
 type Semantic = "default" | "info" | "success" | "warning";
 
-type QueuedToast = ToastType & {
-  id: string;
-  semantic: Semantic;
-};
+type QueuedToast = PrettifyTypes<
+  ToastType & {
+    id: string;
+    semantic: Semantic;
+  }
+>;
 
 type ToastContextType = (toast: ToastType, semantic: Semantic) => () => void;
 
-type ToastPropsType = {
+type ToastProps = {
   action?: Action;
   duration: number;
   icon?: string | SVG;
@@ -65,7 +73,7 @@ type ToastPropsType = {
   hideSemanticIcon?: boolean;
 };
 
-type ToastsQueuePropsType = {
+type ToastsQueueProps = {
   /**
    * Tree of components from which the useToast hook can be triggered.
    */
@@ -77,15 +85,15 @@ type ToastsQueuePropsType = {
   duration?: number;
 };
 
-export default ToastPropsType;
+export type { ToastProps as default };
 export type {
-  CommonProps,
   DefaultToast,
   LoadingToast,
   QueuedToast,
   Semantic,
   SemanticToast,
   ToastContextType,
-  ToastsQueuePropsType,
+  ToastsQueueProps,
   ToastType,
+  ToastProps,
 };

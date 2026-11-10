@@ -1,6 +1,5 @@
-import SelectPropsType, { ListOptionType, ListOptionGroupType } from "./types";
+import type { SelectOption, SelectOptionGroup, SelectProps } from "./types";
 import { getMargin } from "../common/utils";
-import Props from "./types";
 
 const sizes = {
   small: "240px",
@@ -9,7 +8,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-export const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
+export const calculateWidth = (margin: SelectProps["margin"], size: SelectProps["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
@@ -23,20 +22,20 @@ export const notOptionalCheck = (value: string | string[], multiple: boolean, op
 /**
  * Checks if the option is a group (contains other options).
  */
-const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType =>
+const isOptionGroup = (option: SelectOption | SelectOptionGroup): option is SelectOptionGroup =>
   "options" in option && option.options != null;
 
 /**
  * Checks if the options are grouped options (groups and single options can't be mixed)
  */
-export const isArrayOfGroupedOptions = (options: Props["options"]): options is ListOptionGroupType[] =>
+export const isArrayOfGroupedOptions = (options: SelectProps["options"]): options is SelectOptionGroup[] =>
   options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options. If the options parameter is not an array of grouped options,
  * it will return true and not check nothing else.
  */
-export const groupsHaveOptions = (options: Props["options"]) =>
+export const groupsHaveOptions = (options: SelectProps["options"]) =>
   isArrayOfGroupedOptions(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
 
 /**
@@ -45,17 +44,17 @@ export const groupsHaveOptions = (options: Props["options"]) =>
  * - The listbox has more than one single option.
  * - The listbox has more than one group with options contained.
  */
-export const canOpenListbox = (options: Props["options"], disabled: boolean) =>
+export const canOpenListbox = (options: SelectProps["options"], disabled: boolean) =>
   !disabled && options.length > 0 && groupsHaveOptions(options);
 
 /**
  * Filters the options by the search value.
  */
 export const filterOptionsBySearchValue = (
-  options: Props["options"],
+  options: SelectProps["options"],
   searchValue: string,
-  searchByStartsWith: Props["searchByStartsWith"] = false
-): Props["options"] => {
+  searchByStartsWith: SelectProps["searchByStartsWith"] = false
+): SelectProps["options"] => {
   const matchesSearch = (label: string, search: string, searchByStartsWith: boolean) => {
     const upperLabel = label.toUpperCase();
     const upperSearch = search.toUpperCase();
@@ -81,15 +80,15 @@ export const filterOptionsBySearchValue = (
  * Returns the index of the last option, depending on several conditions.
  */
 export const getLastOptionIndex = (
-  options: Props["options"],
-  filteredOptions: Props["options"],
+  options: SelectProps["options"],
+  filteredOptions: SelectProps["options"],
   searchable: boolean,
   optional: boolean,
   multiple: boolean,
   enableSelectAll: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) =>
+  const reducer = (acc: number, current: SelectOptionGroup) =>
     acc + (current.options.length ?? 0) + (enableSelectAll ? 1 : 0);
 
   if (searchable && filteredOptions.length > 0) {
@@ -108,17 +107,17 @@ export const getLastOptionIndex = (
  */
 export const getSelectedOption = (
   value: string | string[],
-  options: Props["options"],
+  options: SelectProps["options"],
   multiple: boolean,
   optional: boolean,
-  optionalItem: ListOptionType
+  optionalItem: SelectOption
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
+  let selectedOption: SelectOption | SelectOption[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
     if (options.length > 0) {
-      options.forEach((option: ListOptionType | ListOptionGroupType) => {
+      options.forEach((option: SelectOption | SelectOptionGroup) => {
         if (isOptionGroup(option)) {
           option.options.forEach((singleOption) => {
             if (value.includes(singleOption.value) && Array.isArray(selectedOption)) {
@@ -135,7 +134,7 @@ export const getSelectedOption = (
     singleSelectionIndex = 0;
   } else if (options.length > 0) {
     let groupIndex = 0;
-    options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
+    options.some((option: SelectOption | SelectOptionGroup, index: number) => {
       if (isOptionGroup(option)) {
         option.options.some((singleOption) => {
           if (singleOption.value === value) {
@@ -166,10 +165,7 @@ export const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-export const getSelectedOptionLabel = (
-  placeholder: string,
-  selectedOption: ListOptionType | ListOptionType[] | null
-) =>
+export const getSelectedOptionLabel = (placeholder: string, selectedOption: SelectOption | SelectOption[] | null) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
@@ -185,7 +181,7 @@ export const getSelectedOptionLabel = (
  * @param value
  * @returns
  */
-export const getSelectionType = (options: Props["options"], value: string[]) => {
+export const getSelectionType = (options: SelectProps["options"], value: string[]) => {
   if (value.length > 0) {
     if (
       isArrayOfGroupedOptions(options)
@@ -206,7 +202,7 @@ export const getSelectionType = (options: Props["options"], value: string[]) => 
  * @param value
  * @returns boolean
  */
-export const getGroupSelectionType = (options: ListOptionType[], value: string[]) =>
+export const getGroupSelectionType = (options: SelectOption[], value: string[]) =>
   options.every((option) => value.includes(option.value))
     ? "checked"
     : options.some((option) => value.includes(option.value))
@@ -218,7 +214,7 @@ export const getGroupSelectionType = (options: ListOptionType[], value: string[]
  * @param options
  * @returns
  */
-export const getSelectableOptionsValues = (options: Props["options"]) =>
+export const getSelectableOptionsValues = (options: SelectProps["options"]) =>
   isArrayOfGroupedOptions(options)
     ? options.flatMap((group) => group.options.map((option) => option.value))
     : options.map((option) => option.value);
@@ -229,7 +225,7 @@ export const getSelectableOptionsValues = (options: Props["options"]) =>
  * @param newOptions Option or array of options to toggle
  * @returns Updated array of values
  */
-export const computeNewValue = (currentValue: string[], newOptions: ListOptionType | ListOptionType[]) => {
+export const computeNewValue = (currentValue: string[], newOptions: SelectOption | SelectOption[]) => {
   const optionsArray = Array.isArray(newOptions) ? newOptions : [newOptions];
   let updatedValue = [...currentValue];
 

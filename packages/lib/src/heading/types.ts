@@ -1,6 +1,6 @@
-import { Margin, Space } from "../common/utils";
+import { Margin, Space } from "../common/types";
 
-type Props = {
+type HeadingProps = {
   /**
    * Defines the heading level from 1 to 5. The styles of the heading are applied according to the level.
    * The html tag of the heading will be the one specified in the 'as' prop.
@@ -26,4 +26,4 @@ type Props = {
   margin?: Space | Margin;
 };
 
-export default Props;
+export type { HeadingProps, HeadingProps as default };

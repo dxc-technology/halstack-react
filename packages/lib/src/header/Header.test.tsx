@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import DxcHeader from "./Header";
-import { Item, GroupItem } from "../base-menu/types";
+import { BaseItem, BaseGroupItem } from "../base-menu/types";
 
 describe("Header component tests", () => {
   const mockMatchMedia = jest.fn();
@@ -52,7 +52,7 @@ describe("Header component tests", () => {
       removeEventListener: jest.fn(),
     }));
 
-    const navItems: Item[] = [{ label: "Home", onSelect: jest.fn() }];
+    const navItems: BaseItem[] = [{ label: "Home", onSelect: jest.fn() }];
     render(<DxcHeader navItems={navItems} />);
 
     const menuButton = screen.getByRole("button", { name: /toggle menu/i });
@@ -61,7 +61,7 @@ describe("Header component tests", () => {
   });
 
   test("handles nested group items beyond LEVEL_LIMIT (should be ignored)", () => {
-    const deepNestedItems: (Item | GroupItem)[] = [
+    const deepNestedItems: (BaseItem | BaseGroupItem)[] = [
       {
         label: "Services",
         items: [

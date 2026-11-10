@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { JSX, useEffect, useId, useRef, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { PopoverPropsType } from "./types";
+import { PopoverProps } from "./types";
 
 const PopoverWrapper = styled.div`
   width: fit-content;
@@ -44,7 +44,7 @@ const DxcPopover = ({
   onCloseAutoFocus,
   popoverContent,
   side = "bottom",
-}: PopoverPropsType): JSX.Element => {
+}: PopoverProps): JSX.Element => {
   const popOverId = `popover-${useId()}`;
   const isControlled = useRef(isOpen !== undefined);
 

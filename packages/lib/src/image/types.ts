@@ -1,6 +1,6 @@
 import { ReactEventHandler } from "react";
 
-type Props = {
+type ImageProps = {
   /**
    * Alternative text description displayed when the specified image is not loaded.
    *
@@ -66,4 +66,4 @@ type Props = {
   width?: string;
 };
 
-export default Props;
+export type { ImageProps, ImageProps as default };

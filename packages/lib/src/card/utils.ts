@@ -1,14 +1,14 @@
-import CardPropsType from "./types";
+import { CardProps } from "./types";
 
-const calculateSize = (size?: CardPropsType["size"]) => {
+const calculateSize = (size?: CardProps["size"]) => {
   return `width: ${size?.width === "fillParent" ? "100%" : "fit-content"};
     height: ${size?.height === "fillParent" ? "100%" : "fit-content"};`;
 };
 export const getCardStyles = (
-  mode: CardPropsType["mode"],
+  mode: CardProps["mode"],
   interactive: boolean,
   selected?: boolean,
-  size?: CardPropsType["size"]
+  size?: CardProps["size"]
 ) => {
   let hover = "";
   let focus = "";
@@ -81,8 +81,8 @@ export const getSelectableWrapperStyles = (selected: boolean) => {
 
 export const handleEvent = (
   event: React.KeyboardEvent | React.MouseEvent,
-  onClick?: CardPropsType["onClick"],
-  onSelectionChange?: CardPropsType["onSelectionChange"],
+  onClick?: CardProps["onClick"],
+  onSelectionChange?: CardProps["onSelectionChange"],
   internalSelected?: boolean,
   setInternalSelected?: React.Dispatch<React.SetStateAction<boolean>>,
   selected?: boolean,

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import MenuItem from "../base-menu/MenuItem";
-import NavigationTreePropsType, { GroupItemWithId, ItemWithId, SectionWithId } from "./types";
+import NavigationTreeProps, { BaseGroupItemWithId, BaseItemWithId, BaseSectionWithId } from "./types";
 import Section from "../base-menu/Section";
 import NavigationTreeContext from "../base-menu/BaseMenuContext";
 import scrollbarStyles from "../styles/scroll";
@@ -35,7 +35,7 @@ export default function DxcNavigationTree({
   hasPopOver = false,
   isHorizontal = false,
   onSelectItem,
-}: NavigationTreePropsType) {
+}: NavigationTreeProps) {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const NavigationTreeRef = useRef<HTMLDivElement | null>(null);
@@ -78,12 +78,12 @@ export default function DxcNavigationTree({
     <NavigationTreeContainer displayBorder={displayBorder} ref={NavigationTreeRef}>
       <NavigationTreeContext value={contextValue}>
         {itemsWithId[0] && isSection(itemsWithId[0]) ? (
-          (itemsWithId as SectionWithId[]).map((item, index) => (
+          (itemsWithId as BaseSectionWithId[]).map((item, index) => (
             <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
           ))
         ) : (
           <SubMenu isHorizontal={isHorizontal}>
-            {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
+            {(itemsWithId as (BaseGroupItemWithId | BaseItemWithId)[]).map((item, index) => (
               <MenuItem item={item} key={`${item.label}-${index}`} />
             ))}
           </SubMenu>

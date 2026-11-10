@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import { SearchBarProps } from "../search-bar/types";
-import { GroupItem, Item } from "../base-menu/types";
+import { BaseGroupItem, BaseItem } from "../base-menu/types";
 
-type Section = { items: (Item | GroupItem)[]; title?: string };
+export type SidenavSection = { items: (BaseItem | BaseGroupItem)[]; title?: string };
 
-type SearchbarSidenavProps = Omit<SearchBarProps, "autoFocus" | "disabled" | "onCancel">;
+export type SidenavSearchbarProps = Omit<SearchBarProps, "autoFocus" | "disabled" | "onCancel">;
 
-type Props = {
+export type SidenavProps = {
   /**
    * The content rendered in the bottom part of the sidenav, under the navigation menu.
    */
@@ -32,7 +32,7 @@ type Props = {
    * Array of items to be displayed in the navigation menu.
    * Each item can be a single/simple item, a group item or a section.
    */
-  navItems?: (Item | GroupItem)[] | Section[];
+  navItems?: (BaseItem | BaseGroupItem)[] | SidenavSection[];
   /**
    * Function called when the expansion state of the sidenav changes.
    */
@@ -40,11 +40,11 @@ type Props = {
   /**
    * When provided, a search bar will be rendered at the top of the sidenav.
    */
-  searchBar?: SearchbarSidenavProps;
+  searchBar?: SidenavSearchbarProps;
   /**
    * The additional content rendered in the upper part of the sidenav, under the branding.
    */
   topContent?: ReactNode;
 };
 
-export default Props;
+export type { SidenavProps as default };

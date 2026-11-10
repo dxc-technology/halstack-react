@@ -168,7 +168,7 @@ const DxcTextarea = ({
   }, [innerValue, rows, value, verticalGrow]);
 
   return (
-    <TextareaContainer margin={margin} size={size} ref={ref}>
+    <TextareaContainer aria-disabled={disabled} margin={margin} size={size} ref={ref}>
       {label && (
         <Label disabled={disabled} hasMargin={!helperText} htmlFor={textareaId}>
           {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
