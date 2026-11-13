@@ -3,6 +3,7 @@ import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAlert } from "./alert/Alert";
+export { default as DxcAmountInput } from "./amount-input/AmountInput";
 export { default as DxcApplicationLayout } from "./layout/ApplicationLayout";
 export { default as DxcAvatar } from "./avatar/Avatar";
 export { default as DxcBadge } from "./badge/Badge";
@@ -77,6 +78,11 @@ export type {
   AlertAction as DxcAlertAction,
   AlertMessage as DxcAlertMessage,
 } from "./alert/types";
+export type {
+  AmountInputProps as DxcAmountInputProps,
+  CurrencyConfigType as DxcCurrencyConfigType,
+  UnitsConfigType as DxcUnitsConfigType,
+} from "./amount-input/types";
 export type {
   ApplicationLayoutProps as DxcAppLayoutProps,
   AppLayoutMainProps as DxcAppLayoutMainProps,

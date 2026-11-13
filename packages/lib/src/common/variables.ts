@@ -19,14 +19,18 @@ export const responsiveSizes = {
 };
 
 export const defaultTranslatedComponentLabels = {
-  applicationLayout: {
-    visibilityToggleTitle: "Toggle sidenav visibility",
-  },
   alert: {
     previousMessageActionTitle: "Previous message",
     nextMessageActionTitle: "Next message",
     closeAlertActionTitle: "Close alert",
     closeMessageActionTitle: "Close message",
+  },
+  applicationLayout: {
+    visibilityToggleTitle: "Toggle sidenav visibility",
+  },
+  amountInput: {
+    valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
+    valueLessThanOrEqualToErrorMessage: (value: number) => `Value must be less than or equal to ${value}.`,
   },
   calendar: {
     daysShort: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
