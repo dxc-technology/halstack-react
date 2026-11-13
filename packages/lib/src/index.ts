@@ -24,6 +24,7 @@ export { default as DxcFileInput } from "./file-input/FileInput";
 export { default as DxcFlex } from "./flex/Flex";
 export { default as DxcGrid } from "./grid/Grid";
 export { default as DxcHeading } from "./heading/Heading";
+export { default as DxcIcon } from "./icon/Icon";
 export { default as DxcImage } from "./image/Image";
 export { default as DxcInset } from "./inset/Inset";
 export { default as DxcLink } from "./link/Link";
@@ -157,6 +158,7 @@ export type {
   HeaderGroupItem as DxcHeaderGroupItem,
 } from "./header/types";
 export type { HeadingProps as DxcHeadingProps } from "./heading/types";
+export type { IconProps as DxcIconProps } from "./icon/types";
 export type { ImageProps as DxcImageProps } from "./image/types";
 export type { InsetProps as DxcInsetProps } from "./inset/types";
 export type { LinkProps as DxcLinkProps } from "./link/types";

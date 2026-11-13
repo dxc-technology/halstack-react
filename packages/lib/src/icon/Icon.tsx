@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
+import IconProps from "./types";
 
 const IconContainer = styled.span<{
   icon: string;
   filled: boolean;
+  size?: string;
+  color?: string;
 }>`
   font-family: "Material Symbols Outlined";
   font-weight: normal;
@@ -18,18 +21,41 @@ const IconContainer = styled.span<{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
-  font-variation-settings: ${(props) => (props.filled ? "'FILL' 1" : "'FILL' 0")};
+  font-variation-settings: ${({ filled }) => (filled ? "'FILL' 1" : "'FILL' 0")};
+  color: ${({ color }) => color};
+  font-size: ${({ size }) => size};
   ::before {
-    content: "${(props) => props.icon}";
+    content: "${({ icon }) => icon}";
   }
 `;
 
-export default function DxcIcon({ icon }: { icon: string }) {
+const SvgContainer = styled.span<{
+  size?: string;
+  color?: string;
+}>`
+  color: ${({ color }) => color};
+  svg {
+    height: ${({ size }) => (size ? size : "var(--height-s)")};
+    width: auto;
+    fill: currentColor;
+  }
+`;
+
+export default function DxcIcon({ ariaLabel, color, icon, size }: IconProps) {
+  if (typeof icon !== "string")
+    return (
+      <SvgContainer aria-label={ariaLabel} aria-hidden={ariaLabel ? undefined : "true"} size={size} color={color}>
+        {icon}
+      </SvgContainer>
+    );
   return (
     <IconContainer
-      aria-hidden="true"
+      aria-label={ariaLabel}
+      aria-hidden={ariaLabel ? undefined : "true"}
       filled={icon.startsWith("filled_")}
       icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
+      size={size}
+      color={color}
       role="img"
     />
   );
