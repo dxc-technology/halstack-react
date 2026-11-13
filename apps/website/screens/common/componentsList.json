@@ -294,7 +294,7 @@
       {
         "label": "Button link",
         "path": "/components/button-link",
-        "status": "stable",
+        "status": "experimental",
         "icon": "outbound"
       },
       {
