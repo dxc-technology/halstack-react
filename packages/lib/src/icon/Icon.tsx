@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import IconProps from "./types";
+import { getIconName, isFilledIcon } from "../common/utils";
 
 const IconContainer = styled.span<{
   icon: string;
@@ -52,8 +53,8 @@ export default function DxcIcon({ ariaLabel, color, icon, size }: IconProps) {
     <IconContainer
       aria-label={ariaLabel}
       aria-hidden={ariaLabel ? undefined : "true"}
-      filled={icon.startsWith("filled_")}
-      icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
+      filled={isFilledIcon(icon)}
+      icon={getIconName(icon)}
       size={size}
       color={color}
       role="img"
