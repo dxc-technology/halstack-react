@@ -10,6 +10,7 @@ export { default as DxcBleed } from "./bleed/Bleed";
 export { default as DxcBreadcrumbs } from "./breadcrumbs/Breadcrumbs";
 export { default as DxcBulletedList } from "./bulleted-list/BulletedList";
 export { default as DxcButton } from "./button/Button";
+export { default as DxcButtonLink } from "./button-link/ButtonLink";
 export { default as DxcCard } from "./card/Card";
 export { default as DxcCheckbox } from "./checkbox/Checkbox";
 export { default as DxcChip } from "./chip/Chip";
@@ -105,6 +106,7 @@ export type {
   ButtonSemantic as DxcButtonSemantic,
   ButtonSize as DxcButtonSize,
 } from "./button/types";
+export type { ButtonLinkProps as DxcButtonLinkProps } from "./button-link/types";
 export type { CardProps as DxcCardProps } from "./card/types";
 export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";

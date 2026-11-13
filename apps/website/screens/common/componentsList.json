@@ -292,6 +292,12 @@
         "icon": "arrow_back"
       },
       {
+        "label": "Button link",
+        "path": "/components/button-link",
+        "status": "experimental",
+        "icon": "outbound"
+      },
+      {
         "label": "Contextual menu",
         "path": "/components/contextual-menu",
         "status": "stable",
