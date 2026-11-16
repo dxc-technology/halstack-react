@@ -39,6 +39,7 @@ export const sanitizeAmount = (
   return isNegative && sanitized ? `-${sanitized}` : sanitized;
 };
 
+// TODO: take into account config.symbolPosition
 export const formatString = (value: string, locale: string | undefined, config?: ConfigType): string => {
   let formatter = new Intl.NumberFormat(locale);
   if (config?.currencyConfig && config.currencyConfig.currency) {
@@ -56,6 +57,8 @@ export const formatString = (value: string, locale: string | undefined, config?:
       unitDisplay: config.unitsConfig.unitDisplay || "short",
     });
   }
+  console.log("Formatter:", formatter.formatToParts(parseFloat(value)));
+  // check for unit/currency and any literal part next to it in the formatted output and position them based on config.symbolPosition if provided
   return formatter
     .formatToParts(parseFloat(value))
     .map((part) => {
