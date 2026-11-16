@@ -1,9 +1,10 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import Image from "@/common/Image";
 import materialVariants from "./images/material_variants.png";
+import iconSizes from "./images/icon_sizes.png";
 
 const sections = [
   {
@@ -25,7 +26,8 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Actions:</strong> Represent common actions such as edit, delete, search, close, and add.
+              <strong>Actions:</strong> Represent actions within interactive components, such as edit, delete, search,
+              close, and add.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               <strong>Navigation:</strong> Help users identify navigation destinations and controls.
@@ -51,11 +53,11 @@ const sections = [
               Do not use an icon as the only source of information when its meaning is unclear.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Do not use icons as decorative replacements for text when the label is necessary to understand an action.
+              Do not use icons as decorative replacements for text when a label is necessary to understand an action.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Do not use icons to represent interactive behavior independently. Use an appropriate interactive
-              component, such as Button, when an action is required.
+              Do not use an icon as an interactive element on its own. When an action is required, use an appropriate
+              interactive component, such as Button, and use the icon to visually represent the action within it.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
@@ -66,8 +68,8 @@ const sections = [
     title: "Resources",
     content: (
       <DxcParagraph>
-        Halstack uses <strong>Material Icons</strong> as it’s <strong>primary icon</strong> resource and supports custom
-        SVG icons when an appropriate Material Icon is <strong>unavailable</strong>.
+        Halstack uses <strong>Material Icons</strong> as it’s <strong>primary icon resource</strong> and supports
+        <strong>custom SVG</strong> icons when an appropriate Material Icon is <strong>unavailable</strong>.
       </DxcParagraph>
     ),
     subSections: [
@@ -109,7 +111,8 @@ const sections = [
                 Ensure that the SVG scales correctly and recognizable at different sizes.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Define the SVG's colors within the asset or use currentColor when parent color inheritance is desired.
+                Define the SVG's colors within the asset or use <Code>currentColor</Code> when parent color inheritance
+                is desired.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
@@ -125,81 +128,10 @@ const sections = [
     ],
   },
   {
-    title: "Sizes",
-    content: (
-      <>
-        <DxcParagraph>
-          Halstack recommends a standard icon sizing scale to maintain visual consistency across components and
-          interfaces.
-        </DxcParagraph>
-        <DxcTable>
-          <thead>
-            <tr>
-              <th>Variant</th>
-              <th>Dimension</th>
-              <th>Usage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>Primary</strong>
-              </td>
-              <td>
-                For the principal call to action on the page; primary buttons should only appear once per screen (not
-                including the application header or in a modal dialog).
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Secondary</strong>
-              </td>
-              <td>
-                For less prominent actions; secondary buttons can be used in isolation or paired with a primary button
-                when there are multiple calls to action.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Text</strong>
-              </td>
-              <td>
-                For the least pronounced actions; often used in conjunction with a primary button (e.g. cancel in a
-                modal dialog).
-              </td>
-            </tr>
-          </tbody>
-        </DxcTable>
-        <DxcParagraph>
-          These are the recommended sizes, but icons can be resized using any of the available height tokens.
-        </DxcParagraph>
-        <DxcParagraph>
-          <strong>Material Icons</strong> inherit their font size from the surrounding text context by default, while
-          <strong>Custom SVG icons default is set to 24px</strong> when no size is specified.
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
-    title: "Color",
-    content: (
-      <>
-        <DxcParagraph>
-          Material Icons <strong>inherit their color</strong> from their parent component by <strong>default</strong>,
-          allowing them to remain visually consistent with surrounding text and interface components.
-        </DxcParagraph>
-        <DxcParagraph>
-          For <strong>custom SVG</strong>, color inheritance depends on the SVG using <Code>currentColor</Code> rather
-          than hardcoded fill or stroke values.
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
     title: "Accessibility",
     content: (
       <DxcParagraph>
-        Icon should be accessible to all users, including those using assistive technologies. Their accessibility
+        Icons should be accessible to all users, including those using assistive technologies. Their accessibility
         requirements depend on the purpose and context in which they are used.
       </DxcParagraph>
     ),
@@ -217,8 +149,8 @@ const sections = [
         title: "Meaningful icons",
         content: (
           <DxcParagraph>
-            Icon communicates meaningful information should have an accessible name that clearly describes their
-            purpose. Avoid relying on an icon alone when addtional text or context is necessary to understand it’s
+            Icons that communicate meaningful information should have an accessible name that clearly describes their
+            purpose. Avoid relying on an icon alone when additional text or context is necessary to understand its
             meaning.
           </DxcParagraph>
         ),
@@ -236,36 +168,135 @@ const sections = [
     ],
   },
   {
+    title: "Implementation notes",
+    content: (
+      <DxcParagraph>
+        The Icon component provides a consistent interface for displaying Material Icons and custom SVG icons in
+        Halstack.
+      </DxcParagraph>
+    ),
+    subSections: [
+      {
+        title: "Icon selection",
+        content: (
+          <DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Material Icons should be selected using their predefined Material Icon names.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Original Material Icon names should be preserved.</DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Custom SVGs can be provided when an icon is not available in the existing Material Icons library.
+            </DxcBulletedList.Item>
+          </DxcBulletedList.Item>
+        ),
+      },
+      {
+        title: "Size",
+        content: (
+          <>
+            <DxcParagraph>
+              Use available Halstack height tokens to define icon sizes when an explicit size is required.
+            </DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>Material Icons:</strong> Inherit their size from the parent element. When used standalone, they
+                inherit the font size of the <Code>{"<body>"}</Code> element.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>Custom SVGs:</strong> Do not automatically inherit their size from the parent element. They have
+                a default size of <strong>24px</strong> and can use available Halstack height tokens when a different
+                size is needed.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+            <DxcParagraph>Commonly used sizes include:</DxcParagraph>
+            <Image src={iconSizes} alt="Icon sizes" />
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>16px:</strong> For compact UI elements.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>20px:</strong> For medium-sized interactions.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>24px:</strong> Standard Material Icon size and default custom SVG size.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+            <DxcParagraph>
+              <em>
+                Commonly used icon sizes include 16px, 20px, and 24px. These are examples and do not limit the available
+                Halstack size tokens.
+              </em>
+            </DxcParagraph>
+          </>
+        ),
+      },
+      {
+        title: "Color",
+        content: (
+          <>
+            <DxcParagraph>
+              <strong>Material Icons</strong> inherit their color from their parent element by default, allowing them to
+              remain visually consistent with surrounding text and interface components.
+            </DxcParagraph>
+            <DxcParagraph>
+              For <strong>custom SVG icons</strong>, color inheritance depends on how the SVG is defined. SVGs using
+              <Code>currentColor</Code> inherit the color from their parent element, while SVGs with hardcoded{" "}
+              <Code>fill</Code> or <Code>stroke</Code> values retain their defined colors.
+            </DxcParagraph>
+            <DxcParagraph>
+              Color should not be the only means of communicating information. Provide additional visual or textual
+              context
+            </DxcParagraph>
+          </>
+        ),
+      },
+      {
+        title: "Behavior",
+        content: (
+          <>
+            <DxcParagraph>
+              The Icon component is primarily visual and does not manage independent interaction states.
+            </DxcParagraph>
+            <DxcParagraph>
+              Parent components are responsible for handling interaction and semantic states, such as hover, focus,
+              active, and disabled.
+            </DxcParagraph>
+            <DxcParagraph>
+              This approach keeps the Icon component reusable while allowing it to adapt to the behavior and context of
+              its parent component.
+            </DxcParagraph>
+          </>
+        ),
+      },
+    ],
+  },
+  {
     title: "Best practices",
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Use Material Icon whenever possible:</strong> Prefer <strong>Material Icon</strong> when an
-          appropriate is available to maintain consistency across Halstack applications.
+          <strong>Use Material Icon whenever possible:</strong> Prefer Material Icon when an appropriate is available to
+          maintain consistency across Halstack applications.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use Outlined as the default style:</strong> Use the Outlined style for general-purpose icons. Choose
-          filled when additional emphasis or visual distinction is needed.
+          <strong>Choose the appropriate visual style:</strong> Use Outlined as the default style. Choose Filled when
+          additional emphasis or visual distinction is needed.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Follow the standard sizing scale:</strong> Use the 16px, 20px and 24px sizes according to the
-          surrounding component, content hierachy, and available space.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Maintain visual consistency:</strong> Custom SVG icons should follow proportions, alignment, and
+          <strong>Maintain visual consistency:</strong> Ensure custom SVG icons follow the proportions, alignment, and
           visual weight of the existing icon library.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use color meaningfully:</strong> Allow icons to inherit color from their surrounding context and avoid
-          using color as the only way to communicate information.
+          <strong>Use icons purposefully:</strong> Choose icons that clearly support the meaning or function of the
+          surrounding content. Avoid using icons without a clear purpose.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Provide accessible context:</strong> Ensure meaningful icons have an accessible name. Pair icons with
+          <strong>Provide accessible context:</strong>Ensure meaningful icons have an accessible name. Pair icons with
           text when their meaning may not be immediately recognizable.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use appropriate interactive components:</strong> When an icon represents an actions, place it within
-          an appropriate interactive component, such as Button, button link or link, rather than treating the icon
+          <strong>Use appropriate interactive components: </strong> When an icon represents an action, place it within
+          an appropriate interactive component, such as a Button, button link, or link, rather than treating the icon
           itself as interactive.
         </DxcBulletedList.Item>
       </DxcBulletedList>
