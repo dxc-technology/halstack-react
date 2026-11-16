@@ -8,10 +8,8 @@ import iconsHalstack from "./images/icons_halstack.png";
 import materialIcons from "./images/material_icons.png";
 import customIncorrect from "./images/custom_incorrect.jpg";
 import customCorrect from "./images/custom_correct.jpg";
-import iconsSizes from "./images/icons_sizes.jpg";
 import accessibilityColor from "./images/accessibility_color.jpg";
 import iconsContext from "./images/icons_context.jpg";
-import iconsGrid from "./images/icons_grid.jpg";
 import Link from "next/link";
 import Code from "@/common/Code";
 
@@ -180,28 +178,26 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The <strong>outline</strong> icons are characterized by their lightweight, hollow appearance with thin
-              strokes and open shapes. They offer a modern, minimalist aesthetic that aligns well with Halstack's clean
-              UI philosophy.
+              <strong>Outlined icons</strong> are characterized by their lightweight appearance, thin strokes, and open
+              shapes.
             </DxcParagraph>
             <DxcParagraph>
-              This variant is our <strong>default style</strong> because it:
+              This is the <strong>default style</strong> in Halstack because it:
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Integrates seamlessly into interfaces without overwhelming other UI elements
+                Integrates seamlessly into interfaces without overwhelming other UI elements.
               </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Maintains legibility and clarity even at small sizes.</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Maintains legibility at different sizes.</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Provides a subtle visual cue without drawing excessive attention.
+                Provides subtle visual cues without drawing excessive attention.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Harmonizes with our typography, spacing, and component structure, particularly in low-density layouts.
+                Harmonizes with Halstack typography, spacing, and component structure.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
-              They are ideal for secondary actions, interface navigation structure (such as back arrows or menus) and
-              supporting text-based content without dominating the visual hierarchy.
+              <em>Outlined icons are suitable for navigation, secondary actions, and supporting content.</em>
             </DxcParagraph>
           </>
         ),
@@ -211,7 +207,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              <strong>Filled</strong> icons feature solid shapes with strong visual presence. This style creates a sense
+              <strong>Filled icons</strong> feature solid shapes with strong visual presence. This style creates a sense
               of emphasis and weight, making it suitable for highlighting actions or reinforcing key statuses in the UI.
             </DxcParagraph>
             <DxcParagraph>
@@ -245,66 +241,53 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          While Material Icons offer a wide range of visual representations, we acknowledge that there may be rare cases
-          where a concept, function, or domain-specific idea is not adequately covered.
+          Custom icons should maintain visual consistency with the existing Material Icons library. Avoid icons that are
+          overly detailed, multicolored, or visually inconsistent with the surrounding interface, as they may introduce
+          unnecessary visual noise.
         </DxcParagraph>
         <DxcParagraph>
-          In such cases, teams may need to create a <strong>custom icon</strong>. However, to ensure consistency and
-          maintain the integrity of the Halstack visual language, the following guidelines apply:
+          Custom icons should only be used when an appropriate icon is not available in the existing Material Icons
+          library.
         </DxcParagraph>
+        <DxcParagraph>When creating or using custom icons, consider the following:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Responsibility</strong>
-            <DxcParagraph>
-              The responsibility for designing a custom icon lies with the <strong>team that requires it</strong>. This
-              includes:
-            </DxcParagraph>
-            <DxcBulletedList type="circle">
-              <DxcBulletedList.Item>Defining the icon's intended meaning and use.</DxcBulletedList.Item>
-              <DxcBulletedList.Item>Designing or sourcing the visual asset.</DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Testing the icon within its intended context to ensure clarity and accessibility.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
+            Maintain visual consistency with Material Icons through appropriate proportions, stroke weight, alignment,
+            and level of detail.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Style consistency</strong>
-            <DxcParagraph>
-              It is <strong>highly encouraged</strong> that any custom icon:{" "}
-            </DxcParagraph>
-            <DxcBulletedList type="circle">
-              <DxcBulletedList.Item>
-                Follows the same <strong>visual style</strong> as the Material Icons being used in Halstack (either{" "}
-                <i>outline</i> or <i>filled</i>, depending on context).
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Matches the same <strong>stroke weight</strong>, <strong>corner radius</strong>, and{" "}
-                <strong>overall proportions</strong>.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Is optimized for the same grid size (typically 24×24 pixels).</DxcBulletedList.Item>
-            </DxcBulletedList>
-            <DxcParagraph>
-              Designing with these parameters in mind ensures visual cohesion with the rest of the interface.
-            </DxcParagraph>
+            <strong>Default size 24px</strong> for custom SVGs. When a different size is needed, use the available
+            Halstack height tokens.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <DxcHeading level={4} text="Technical considerations" />
+        <DxcParagraph>When creating custom SVG icons, consider the following technical guidelines:</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Use a consistent <Code>viewBox</Code> to maintain the icon's proportions when scaling.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Avoid unnecessary whitespace within the SVG to ensure proper alignment.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Preserve the original aspect ratio to prevent distortion when resizing.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Keep SVG paths and shapes as simple as possible to maintain clarity at different sizes.
           </DxcBulletedList.Item>
         </DxcBulletedList>
 
         <DxcGrid templateColumns={["repeat(2, 1fr)"]} gap="2rem">
           <DxcFlex direction="column" gap="2rem">
             <DxcParagraph>
-              In the first figure, we can see how the custom icon is{" "}
-              <strong>colorful, highly detailed and visually complex</strong>. This doesn't match the{" "}
-              <strong>monochromatic, simplified geometry</strong> of the Material Icons, as you can see on the same
-              example. Therefore, this custom icon introduces a visual "noise" that could potentially break the
-              consistency of the interface. While it may be visually appealing on its own, this custom icon feels out of
-              place when using it alongside the rest of the system, and <strong>should always be avoided</strong>.
+              Figure 1 shows an example of a custom icon that is overly detailed, multicolored, and visually complex.
+              Its appearance differs significantly from the monochromatic and simplified geometry of Material Icons,
+              introducing unnecessary visual noise and reducing consistency across the interface.
             </DxcParagraph>
             <DxcParagraph>
-              In contrast, the custom icon in the Figure 2 has been designed to{" "}
-              <strong>mimic the look and feel of the Material icons</strong>, as it uses the{" "}
-              <strong>same weight, proportions and stroke style</strong>. The level of detail is consistent and
-              balanced, and it integrates naturally into the UI, appearing as if it were part of the original set. This
-              is the kind of <strong>alignment</strong> we aim for when extending the icon set.
+              In contrast, Figure 2 shows a custom icon that follows the visual principles of Material Icons, using
+              consistent proportions, stroke weight, alignment, and level of detail. This allows the custom icon to
+              integrate naturally with the existing iconography.
             </DxcParagraph>
           </DxcFlex>
           <DxcFlex direction="column" gap="2rem">
@@ -324,35 +307,39 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Icons play an important role in user interaction and communication. To ensure that all users (including those
-          using assistive technologies) can fully understand and navigate Halstack-based interfaces, the following
-          accessibility best practices should be followed when using icons.
+          Icons play an important role in interaction and communication. They should be implemented in a way that
+          supports all users, including those using assistive technologies.
         </DxcParagraph>
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Provide meaning with labels</strong>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <strong>Informative icons</strong> (icons that convey meaning or trigger actions, like a "delete" or
-                "download" button) must be <strong>accompanied by accessible labels</strong>.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Use <Code>aria-label</Code>, <Code>aria-labelledby</Code>, or an associated <Code>label</Code> element
-                so screen readers can announce the icon's purpose.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
+            <strong>Provide accessible names for informative icons</strong>
+            <DxcParagraph>
+              Informative icons that communicate meaning not otherwise available through surrounding content should have
+              an accessible name.
+            </DxcParagraph>
+            <DxcParagraph>
+              Use appropriate accessibility attributes, such as <Code>aria-label</Code> or <Code>aria-labelledby</Code>,
+              depending on the implementation context. When the icon's meaning is already conveyed through adjacent
+              text, avoid providing redundant accessible names.
+            </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Hide decorative icons from Assistive Tech</strong>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <strong>Decorative icons</strong> (e.g., a chevron indicating expandable content, or a checkmark in a
-                success message) should not be read by screen readers.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Use <Code>aria-hidden="true"</Code> or mark them with <Code>role="presentation"</Code>.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
+            <strong>Provide accessible names for interactive icons</strong>
+            <DxcParagraph>
+              Icons used within interactive elements, such as buttons and links, should have an accessible name defined
+              by their parent element.
+            </DxcParagraph>
+            <DxcParagraph>
+              For example, an icon-only button should have an accessible label describing its action, such as "Edit" or
+              "Delete".
+            </DxcParagraph>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Hide decorative icons from assistive technologies</strong>
+            <DxcParagraph>
+              Decorative icons that do not provide additional information should be hidden from screen readers using{" "}
+              <Code>aria-hidden="true"</Code> or an appropriate presentation role.
+            </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Maintain color contrast</strong>
@@ -360,12 +347,19 @@ const sections = [
               <DxcFlex direction="column">
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    Icons must have <strong>sufficient contrast</strong> against their background, especially when used
-                    as status indicators (error, success, info).{" "}
+                    Icons that convey meaning or represent interface components should have sufficient contrast against
+                    adjacent colors.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Follow WCAG AA or AAA contrast ratios (minimum 3:1 for UI components and 4.5:1 for icons conveying
-                    meaning).
+                    Follow WCAG contrast requirements where applicable:
+                    <DxcBulletedList type="circle">
+                      <DxcBulletedList.Item>
+                        <strong>3:1</strong> for graphical objects and user interface components.
+                      </DxcBulletedList.Item>
+                      <DxcBulletedList.Item>
+                        <strong>4.5:1</strong> for normal text labels accompanying icons.
+                      </DxcBulletedList.Item>
+                    </DxcBulletedList>
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
               </DxcFlex>
@@ -386,8 +380,8 @@ const sections = [
                     in form validation, alerts, and interactive components.
                     <DxcBulletedList type="circle">
                       <DxcBulletedList.Item>
-                        This ensures understanding for users with cognitive disabilities, color blindness, or screen
-                        reader usage.
+                        This helps users understand information regardless of their familiarity with an icon or their
+                        ability to perceive visual cues.
                       </DxcBulletedList.Item>
                     </DxcBulletedList>
                   </DxcBulletedList.Item>
@@ -404,40 +398,14 @@ const sections = [
             <strong>Use consistent size and hit areas</strong>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Icons inside clickable areas (e.g., buttons or toggles) must have a minimum{" "}
-                <strong>touch target size of 44×44px</strong> to support users with motor impairments.
+                Ensure that interactive elements containing icons, such as buttons and toggles, provide an adequate
+                target size and spacing.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Ensure icon-only buttons are large enough and padded properly, not just visually aligned.{" "}
+                The parent interactive component is responsible for providing the appropriate hit area. A 44 × 44px
+                target is a useful accessibility recommendation for improved usability.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-      </>
-    ),
-  },
-  {
-    title: "Implementation notes",
-    content: (
-      <>
-        <DxcParagraph>
-          Using icons in our components is simple — just set the relevant prop to a Material Symbol name. To display the
-          filled version, prefix the icon name with <Code>filled_</Code>.
-        </DxcParagraph>
-        <DxcParagraph>
-          If you need to use icons <strong>outside of our components</strong>, make sure the{" "}
-          <strong>font family</strong> is set to <Code>Material Symbols Outlined</Code>. This font is automatically
-          loaded when using our components; otherwise, it must be manually imported or installed.
-        </DxcParagraph>
-        <DxcParagraph>
-          To toggle between filled and unfilled icons, use the <Code>font-variation-settings</Code> CSS property:
-        </DxcParagraph>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            <Code>'FILL' 0</Code> for <strong>outlined</strong>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <Code>'FILL' 1</Code> for <strong>filled</strong>
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -451,78 +419,53 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Handling icons in frames</strong>
             <DxcParagraph>
-              Material Icons are carefully designed and optimized within a <strong>24×24 pixel frame</strong>. This
-              frame includes built-in padding and alignment rules that ensure the icon scales correctly and aligns
-              visually with text and components.
+              Material Icons are designed around a <strong>24 × 24px grid</strong>, which provides consistent
+              proportions and alignment.
             </DxcParagraph>
             <DxcParagraph>
-              <strong>Avoid resizing or cropping the icon inside its original frame</strong>. Doing so may lead to
-              misalignment, uneven spacing, or loss of visual balance.
+              Avoid unnecessarily cropping or distorting icons. When using different sizes, preserve the original
+              proportions.
             </DxcParagraph>
-            <Figure caption="Material icons with grid and safe area">
-              <Image src={iconsGrid} alt="Material icons with grid and safe area" />
-            </Figure>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Keep the default icon names</strong>
             <DxcParagraph>
-              Each Material Icon comes with a predefined name (e.g., <Code>edit</Code>, <Code>check_circle</Code>,{" "}
-              <Code>menu</Code>). We <strong>recommend keeping this name unchanged</strong> when importing or using the
-              icon in Figma or code, as it makes collaboration between design and development easier and it aligns with
-              the original documentation and Material search.
+              Use the original predefined Material Icon names when referencing icons in Figma or code. This makes
+              collaboration between design and development easier and keeps references aligned with the Material Icons
+              library.
             </DxcParagraph>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Use consistent sizes</strong>
-            <DxcParagraph>Halstack commonly uses icons at these sizes:</DxcParagraph>
-            <DxcBulletedList type="circle">
-              <DxcBulletedList.Item>
-                <strong>16x16 px</strong> — for compact UI elements (e.g., small buttons, tags)
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>20x20 px</strong> — for medium-sized interactions
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>24x24 px</strong> — default size, used in most components
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
-            <DxcParagraph>
-              These sizes map directly to our <strong>height tokens</strong>. Other sizes from the height scale are
-              acceptable, but use them <strong>only when necessary</strong>, such as in hero banners or extra-large
-              action areas.
-            </DxcParagraph>
-            <Figure caption="Halstack commonly used sizes for icons">
-              <Image src={iconsSizes} alt="Halstack commonly used sizes for icons" />
-            </Figure>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Respect spacing and alignment</strong>
             <DxcParagraph>
-              Icons should align vertically centered with adjacent text or content, maintain consistent padding when
-              placed inside components (e.g., icon + label buttons), and never be stretched or highly cropped. Follow
-              spacing tokens for margins and paddings. When paired with text, use a spacing token between the icon and
-              label to ensure visual balance.
+              Icons should align vertically with adjacent text or content. Follow Halstack spacing tokens when placing
+              icons alongside labels or other interface elements.
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Choose the right style: outline vs filled</strong>
+            <strong>Choose the right style: outlined vs. filled</strong>
             <DxcParagraph>
-              Use <strong>outline</strong> icons as the <strong>default</strong> style in Halstack. They are clean,
-              lightweight, and match the overall tone of our UI. When needing additional visual emphasis, use filled
-              icons for active or selected states, important status indicators, or in places with low visual density or
-              dark background.
+              Use <strong>outlined</strong> icons as the <strong>default</strong> style. Use <strong>filled</strong>{" "}
+              icons when additional visual emphasis is needed, such as for selected states or important status
+              indicators.
             </DxcParagraph>
             <DxcParagraph>
-              Avoid mixing outline and filled styles in the same context unless you are using them to clearly indicate{" "}
-              <strong>states</strong> or <strong>semantic differences</strong>.
+              Avoid mixing styles in the same context unless there is a clear visual or semantic reason.
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Don't use icons without clear purpose</strong>
+            <strong>Use custom icons when necessary</strong>
             <DxcParagraph>
-              Every icon should add value and support comprehension. Avoid using icons just for decoration: if it
-              doesn't clarify, reinforce, or simplify an interaction, it's better to leave it out. Also avoid overly
-              abstract or ambiguous icons. Clarity is more important than cleverness.
+              Prefer existing Material Icons whenever possible. Use custom SVGs when a specific visual representation is
+              not available in the existing library, such as product-specific icons.
+            </DxcParagraph>
+            <DxcParagraph>Ensure custom SVGs have appropriate dimensions, proportions, and colors.</DxcParagraph>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Don't use icons without a clear purpose</strong>
+            <DxcParagraph>
+              Every icon should support comprehension or reinforce an interaction. Avoid using icons purely for
+              decoration when they do not add value.
             </DxcParagraph>
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -539,7 +482,7 @@ const sections = [
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <Link href="https://fonts.google.com/icons" passHref legacyBehavior>
-              <DxcLink>Material Icons Library</DxcLink>
+              <DxcLink newWindow>Material Icons Library</DxcLink>
             </Link>
             <br />
             Explore the complete set of Material Icons available for download or use via web fonts. You can search by
@@ -547,7 +490,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <Link href="https://m3.material.io/styles/icons/overview" passHref legacyBehavior>
-              <DxcLink>Icons in Material Design System</DxcLink>
+              <DxcLink newWindow>Icons in Material Design</DxcLink>
             </Link>
             <br />
             Learn about the design principles, structure, and usage guidelines behind Material Icons. This resource

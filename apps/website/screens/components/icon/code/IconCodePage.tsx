@@ -91,7 +91,7 @@ const sections = [
       },
       {
         title: "Custom SVG icon",
-        content: <Example example={customSvg} />,
+        content: <Example example={customSvg} defaultIsVisible />,
       },
     ],
   },
