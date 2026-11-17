@@ -45,9 +45,9 @@ const sections = [
             <strong>Label:</strong> communicates the destination or purpose of the navigation.
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <DxcTypography as="p" fontStyle="italic">
+        <DxcParagraph>
           Button link follows the existing button component's typography, spacing, sizing, and visual styling rules.
-        </DxcTypography>
+        </DxcParagraph>
       </>
     ),
   },
@@ -97,10 +97,10 @@ const sections = [
             </tr>
           </tbody>
         </DxcTable>
-        <DxcTypography as="p" fontStyle="italic">
+        <DxcParagraph>
           Choose the variant according to the importance of the destination within the interface. Avoid giving multiple
           navigation elements the same level of prominence when a clear visual hierarchy can be established.
-        </DxcTypography>
+        </DxcParagraph>
       </>
     ),
   },
@@ -429,13 +429,6 @@ const sections = [
               <DxcBulletedList.Item>
                 <strong>Provide descriptive labels:</strong> Ensure the accessible name communicates the destination or
                 purpose of the link.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Support keyboard navigation:</strong> Ensure users can reach the component using the keyboard
-                and activate it using Enter.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Maintain visible focus:</strong> Provide a clearly visible focus indicator for keyboard users.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Ensure sufficient contrast:</strong> Maintain sufficient contrast between the component and its
