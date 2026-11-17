@@ -188,7 +188,6 @@ const sections = [
             <DxcBulletedList.Item>
               Material Symbols should be selected using their predefined Material Symbol names.
             </DxcBulletedList.Item>
-            <DxcBulletedList.Item>Original Material Symbol names should be preserved.</DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Custom SVGs can be provided when an icon is not available in the existing Material Symbols library.
             </DxcBulletedList.Item>
