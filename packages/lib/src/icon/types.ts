@@ -10,10 +10,6 @@ export type IconProps = {
    */
   color?: string;
   /**
-   * If true, renders the filled variant of the icon.
-   */
-  filled?: boolean;
-  /**
    * Name of the Material Symbols icon to display (for example "home"). Prefix the name with "filled_" (for example "filled_home") to render the filled variant. An SVG element can also be passed, in which case it is rendered as is.
    */
   icon: string | SVG;
