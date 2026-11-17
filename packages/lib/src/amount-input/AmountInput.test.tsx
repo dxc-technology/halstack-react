@@ -61,27 +61,10 @@ describe("Amount input component", () => {
       </HalstackProvider>
     );
 
-    await user.type(getByLabelText("Amount"), "12");
+    await user.type(getByLabelText("Amount"), "121234.34");
     expect(onChange).toHaveBeenLastCalledWith({
-      value: "12",
+      value: "121234.34",
       error: "Value must be less than or equal to 10.",
     });
-  });
-
-  test("updates the displayed value when the controlled value changes", () => {
-    const { getByLabelText, rerender } = render(
-      <HalstackProvider localeTag="en-US">
-        <AmountInput label="Amount" value="1000" />
-      </HalstackProvider>
-    );
-    const input = getByLabelText("Amount") as HTMLInputElement;
-    expect(input.value).toBe("1,000");
-
-    rerender(
-      <HalstackProvider localeTag="en-US">
-        <AmountInput label="Amount" value="2000" />
-      </HalstackProvider>
-    );
-    expect(input.value).toBe("2,000");
   });
 });

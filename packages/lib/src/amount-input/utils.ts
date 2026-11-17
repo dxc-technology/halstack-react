@@ -5,41 +5,38 @@ import { ConfigType } from "./types";
  */
 export const sanitizeAmount = (
   value: string | undefined,
-  decimalSeparator: string,
-  thousandSeparator: string,
   numberOfDecimals?: number,
   numberOfIntegers?: number
 ): string => {
   if (!value) return "";
-  value = value.replace(/[^\d.,()-]/g, "");
-  const isNegative = value.includes("(") && value.includes(")");
-  const decimalSeparatorCount = (value.match(new RegExp(`\\${decimalSeparator}`, "g")) || []).length;
-  if (decimalSeparatorCount > 1) {
-    const firstIndex = value.indexOf(decimalSeparator);
-    value =
-      value.slice(0, firstIndex + 1) +
-      value.slice(firstIndex + 1).replace(new RegExp(`\\${decimalSeparator}`, "g"), "");
+  value = value.replace(/[^\d.-]/g, "");
+  if (value.startsWith("-")) {
+    value = "-" + value.slice(1).replace(/-/g, "");
+  } else {
+    value = value.replace(/-/g, "");
   }
-  let sanitized = value
-    .replace(new RegExp(`\\${thousandSeparator}`, "g"), "")
-    .replace(new RegExp(`\\${decimalSeparator}`), ".");
+  const isNegative = value.includes("(") && value.includes(")");
+  const decimalSeparatorCount = (value.match(new RegExp(`\\.`, "g")) || []).length;
+  if (decimalSeparatorCount > 1) {
+    const firstIndex = value.indexOf(".");
+    value = value.slice(0, firstIndex + 1) + value.slice(firstIndex + 1).replace(new RegExp(`\\.`, "g"), "");
+  }
 
   if (numberOfDecimals !== undefined && numberOfDecimals >= 0) {
-    const [integerPart, decimalPart] = sanitized.split(".");
+    const [integerPart, decimalPart] = value.split(".");
     if (decimalPart) {
-      sanitized = `${integerPart}.${decimalPart.slice(0, numberOfDecimals)}`;
+      value = `${integerPart}.${decimalPart.slice(0, numberOfDecimals)}`;
     }
   }
   if (numberOfIntegers !== undefined && numberOfIntegers >= 0) {
-    const [integerPart, decimalPart] = sanitized.split(".");
+    const [integerPart, decimalPart] = value.split(".");
     if (integerPart) {
-      sanitized = `${integerPart.slice(0, numberOfIntegers)}${decimalPart ? `.${decimalPart}` : ""}`;
+      value = `${integerPart.slice(0, numberOfIntegers)}${decimalPart ? `.${decimalPart}` : ""}`;
     }
   }
-  return isNegative && sanitized ? `-${sanitized}` : sanitized;
+  return isNegative && value ? `-${value}` : value;
 };
 
-// TODO: take into account config.symbolPosition
 export const formatString = (value: string, locale: string | undefined, config?: ConfigType): string => {
   let formatter = new Intl.NumberFormat(locale);
   if (config?.currencyConfig && config.currencyConfig.currency) {
@@ -57,10 +54,40 @@ export const formatString = (value: string, locale: string | undefined, config?:
       unitDisplay: config.unitsConfig.unitDisplay || "short",
     });
   }
-  console.log("Formatter:", formatter.formatToParts(parseFloat(value)));
-  // check for unit/currency and any literal part next to it in the formatted output and position them based on config.symbolPosition if provided
-  return formatter
-    .formatToParts(parseFloat(value))
+  let formattedParts = formatter.formatToParts(parseFloat(value));
+
+  console.log(formattedParts);
+
+  if (
+    config?.symbolPosition === "before" &&
+    formattedParts.some((part) => part.type === "currency" || part.type === "unit")
+  ) {
+    let symbolIndex = formattedParts.findIndex((part) => part.type === "currency" || part.type === "unit");
+    if (symbolIndex > 0) {
+      if (formattedParts[symbolIndex - 1]?.type === "literal") {
+        const [literalPart] = formattedParts.splice(symbolIndex - 1, 1);
+        if (literalPart) formattedParts.unshift(literalPart);
+        // symbolIndex--;
+      }
+      const [symbolPart] = formattedParts.splice(symbolIndex, 1);
+      if (symbolPart) formattedParts.unshift(symbolPart);
+    }
+  } else if (
+    config?.symbolPosition === "after" &&
+    formattedParts.some((part) => part.type === "currency" || part.type === "unit")
+  ) {
+    let symbolIndex = formattedParts.findIndex((part) => part.type === "currency" || part.type === "unit");
+    if (symbolIndex < formattedParts.length - 1) {
+      if (formattedParts[symbolIndex + 1]?.type === "literal") {
+        const [literalPart] = formattedParts.splice(symbolIndex + 1, 1);
+        if (literalPart) formattedParts.push(literalPart);
+      }
+      const [symbolPart] = formattedParts.splice(symbolIndex, 1);
+      if (symbolPart) formattedParts.push(symbolPart);
+    }
+  }
+
+  return formattedParts
     .map((part) => {
       if (part.type === "decimal" && config?.decimalSeparator) return config.decimalSeparator;
       if (part.type === "group" && config?.thousandSeparator) return config.thousandSeparator;
@@ -70,10 +97,12 @@ export const formatString = (value: string, locale: string | undefined, config?:
 };
 
 export const getDefaultConfigBasedOnLocale = (locale: string | undefined, config?: ConfigType) => {
-  const number = 5004.11;
-  const formattedNumber = formatString(number.toString(), locale, config);
-  const decimalSeparator = formattedNumber[formattedNumber.indexOf("4") + 1] || ".";
-  const thousandSeparator = formattedNumber[formattedNumber.indexOf("5") + 1] || ",";
+  const number = 1234.56;
+  let formatter = new Intl.NumberFormat(locale);
+  const decimalSeparator =
+    config?.decimalSeparator || formatter.formatToParts(number).find((part) => part.type === "decimal")?.value || ".";
+  const thousandSeparator =
+    config?.thousandSeparator || formatter.formatToParts(number).find((part) => part.type === "group")?.value || ",";
   return { decimalSeparator, thousandSeparator };
 };
 

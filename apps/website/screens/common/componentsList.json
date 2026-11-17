@@ -118,6 +118,12 @@
     "icon": "assignment",
     "links": [
       {
+        "label": "Amount input",
+        "path": "/components/amount-input",
+        "status": "experimental",
+        "icon": "smart_button"
+      },
+      {
         "label": "Button",
         "path": "/components/button",
         "status": "stable",

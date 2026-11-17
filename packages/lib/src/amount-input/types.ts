@@ -139,8 +139,4 @@ export type AmountInputProps = {
  */
 export type RefType = HTMLDivElement;
 
-/**
- * Single suggestion of a Text Input component.
- */
-
 export type { AmountInputProps as default };
