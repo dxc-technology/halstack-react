@@ -1,10 +1,11 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import Image from "@/common/Image";
 import materialVariants from "./images/material_variants.png";
 import iconSizes from "./images/icon_sizes.png";
+import Link from "next/link";
 
 const sections = [
   {
@@ -68,21 +69,25 @@ const sections = [
     title: "Resources",
     content: (
       <DxcParagraph>
-        Halstack uses <strong>Material Icons</strong> as it’s <strong>primary icon resource</strong> and supports
-        <strong>custom SVG</strong> icons when an appropriate Material Icon is <strong>unavailable</strong>.
+        Halstack uses{" "}
+        <Link href="https://m3.material.io/styles/icons/overview" passHref legacyBehavior>
+          <DxcLink newWindow>Material Symbols</DxcLink>
+        </Link>{" "}
+        as it’s <strong>primary icon resource</strong> and supports
+        <strong>custom SVG</strong> icons when an appropriate Material Symbol is <strong>unavailable</strong>.
       </DxcParagraph>
     ),
     subSections: [
       {
-        title: "Material Icons",
+        title: "Material Symbols",
         content: (
           <>
             <DxcParagraph>
-              Material Icons are the primary icon resource used by Halstack. They provide a consistent visual language
+              Material Symbols are the primary icon resource used by Halstack. They provide a consistent visual language
               and a predefined collection of commonly used interface icons.
             </DxcParagraph>
-            <DxcParagraph>The component supports the following Material Icons styles:</DxcParagraph>
-            <Image src={materialVariants} alt="Material Icons variants" />
+            <DxcParagraph>The component supports the following Material Symbols styles:</DxcParagraph>
+            <Image src={materialVariants} alt="Material Symbols variants" />
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 <strong>Outlined:</strong> The default style, suitable for more general-purpose interface scenarios.
@@ -99,7 +104,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The component also supports custom SVG icons when an appropriate Material Icon is unavailable.
+              The component also supports custom SVG icons when an appropriate Material Symbol is unavailable.
             </DxcParagraph>
             <DxcParagraph>When using custom SVGs:</DxcParagraph>
             <DxcBulletedList>
@@ -118,7 +123,7 @@ const sections = [
             <DxcParagraph>
               <em>
                 <strong>Note:</strong> Custom SVG icons retain their original appearance and are not affected by the
-                Material Icons visual styles. Their colors can be defined directly in the SVG or configured to inherit
+                Material Symbols visual styles. Their colors can be defined directly in the SVG or configured to inherit
                 from the parent.
               </em>
             </DxcParagraph>
@@ -171,7 +176,7 @@ const sections = [
     title: "Implementation notes",
     content: (
       <DxcParagraph>
-        The Icon component provides a consistent interface for displaying Material Icons and custom SVG icons in
+        The Icon component provides a consistent interface for displaying Material Symbols and custom SVG icons in
         Halstack.
       </DxcParagraph>
     ),
@@ -181,11 +186,11 @@ const sections = [
         content: (
           <DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Material Icons should be selected using their predefined Material Icon names.
+              Material Symbols should be selected using their predefined Material Symbol names.
             </DxcBulletedList.Item>
-            <DxcBulletedList.Item>Original Material Icon names should be preserved.</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Original Material Symbol names should be preserved.</DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Custom SVGs can be provided when an icon is not available in the existing Material Icons library.
+              Custom SVGs can be provided when an icon is not available in the existing Material Symbols library.
             </DxcBulletedList.Item>
           </DxcBulletedList.Item>
         ),
@@ -199,8 +204,8 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Material Icons:</strong> Inherit their size from the parent element. When used standalone, they
-                inherit the font size of the <Code>{"<body>"}</Code> element.
+                <strong>Material Symbols:</strong> Inherit their font size from the parent element. When used
+                standalone, they inherit the font size of the <Code>{"<body>"}</Code> element.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Custom SVGs:</strong> Do not automatically inherit their size from the parent element. They have
@@ -218,7 +223,7 @@ const sections = [
                 <strong>20px:</strong> For medium-sized interactions.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>24px:</strong> Standard Material Icon size and default custom SVG size.
+                <strong>24px:</strong> Standard Material Symbol size and default custom SVG size.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
@@ -235,8 +240,8 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              <strong>Material Icons</strong> inherit their color from their parent element by default, allowing them to
-              remain visually consistent with surrounding text and interface components.
+              <strong>Material Symbols</strong> inherit their color from their parent element by default, allowing them
+              to remain visually consistent with surrounding text and interface components.
             </DxcParagraph>
             <DxcParagraph>
               For <strong>custom SVG icons</strong>, color inheritance depends on how the SVG is defined. SVGs using
@@ -275,8 +280,8 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Use Material Icon whenever possible:</strong> Prefer Material Icon when an appropriate is available to
-          maintain consistency across Halstack applications.
+          <strong>Use Material Symbol whenever possible:</strong> Prefer Material Symbol when an appropriate is
+          available to maintain consistency across Halstack applications.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Choose the appropriate visual style:</strong> Use Outlined as the default style. Choose Filled when
