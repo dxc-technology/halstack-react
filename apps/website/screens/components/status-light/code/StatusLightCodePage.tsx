@@ -4,7 +4,6 @@ import DocFooter from "@/common/DocFooter";
 import { TableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -21,12 +20,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                label
-              </DxcFlex>
-            </td>
+            <td>label</td>
             <td>
               <TableCode>string</TableCode>
             </td>

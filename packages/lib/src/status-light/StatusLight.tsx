@@ -71,9 +71,11 @@ export default function DxcStatusLight({ label, mode = "default", size = "medium
   return (
     <StatusLightContainer role="status" size={size}>
       <Dot mode={mode} size={size} aria-hidden="true" />
-      <Label mode={mode} size={size}>
-        {label}
-      </Label>
+      {label && (
+        <Label mode={mode} size={size}>
+          {label}
+        </Label>
+      )}
     </StatusLightContainer>
   );
 }
