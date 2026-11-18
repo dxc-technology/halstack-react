@@ -26,27 +26,27 @@ const sections = [
     ),
     subSections: [
       {
-        title: "Material Icons",
+        title: "Material Symbols",
         content: (
           <>
             <DxcParagraph>
-              At Halstack, we've chosen to adopt the Material Icons library, specifically the <strong>outline</strong>{" "}
+              At Halstack, we've chosen to adopt the Material Symbols library, specifically the <strong>outline</strong>{" "}
               and <strong>filled</strong> variants, as our standard icon set. While we did not create these icons
               ourselves, there are strong reasons behind this decision that align with the goals of our design system:
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Consistency</strong>: Material Icons offer a comprehensive, visually coherent set of icons that
-                cover a wide range of common actions, objects, and concepts. Using a unified library helps us maintain
-                consistency across all Halstack-based products.
+                <strong>Consistency</strong>: Material Symbols offer a comprehensive, visually coherent set of icons
+                that cover a wide range of common actions, objects, and concepts. Using a unified library helps us
+                maintain consistency across all Halstack-based products.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Scalability</strong>: with hundreds of pre-designed icons available and frequent updates,
-                Material Icons scale easily with product needs: whether we're designing simple interfaces or more
+                Material Symbols scale easily with product needs: whether we're designing simple interfaces or more
                 complex workflows.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Accessibility</strong>: Material Icons are built with accessibility in mind, supporting clear
+                <strong>Accessibility</strong>: Material Symbols are built with accessibility in mind, supporting clear
                 recognition and compatibility with assistive technologies when used correctly.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
@@ -55,12 +55,12 @@ const sections = [
                 allowing teams to focus on building better user experiences.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Cross-platform support</strong>: Material Icons are optimized for use across web, Android, and
+                <strong>Cross-platform support</strong>: Material Symbols are optimized for use across web, Android, and
                 iOS platforms, helping us build consistent and adaptable experiences regardless of the target platform.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
-              By adopting Material Icons, we ensure that our iconography remains modern, flexible, and easy to work
+              By adopting Material Symbols, we ensure that our iconography remains modern, flexible, and easy to work
               with, without sacrificing quality or usability.
             </DxcParagraph>
           </>
@@ -73,7 +73,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Material Icons are grouped into <strong>functional categories</strong> that help organize their purpose and
+          Material Symbols are grouped into <strong>functional categories</strong> that help organize their purpose and
           usage. Within Halstack, we follow this categorization to help designers and developers quickly find the right
           icon for each context.
         </DxcParagraph>
@@ -150,8 +150,8 @@ const sections = [
             </DxcParagraph>
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <Figure caption="Material icons in Halstack components">
-          <Image src={iconsHalstack} alt="Material icons in Halstack components" />
+        <Figure caption="Material Symbols in Halstack components">
+          <Image src={iconsHalstack} alt="Material Symbols in Halstack components" />
         </Figure>
       </>
     ),
@@ -160,12 +160,12 @@ const sections = [
     title: "Available styles",
     content: (
       <>
-        <Figure caption="Outline and filled icons from Material Icons Library">
-          <Image src={materialIcons} alt="Outline and filled icons from Material Icons Library" />
+        <Figure caption="Outline and filled icons from Material Symbols Library">
+          <Image src={materialIcons} alt="Outline and filled icons from Material Symbols Library" />
         </Figure>
         <DxcParagraph>
-          Halstack supports two visual styles of Material Icons: <strong>Outline</strong> and <strong>Filled</strong>.
-          Both styles are available through the Material Icons library and can be used across the design system
+          Halstack supports two visual styles of Material Symbols: <strong>Outline</strong> and <strong>Filled</strong>.
+          Both styles are available through the Material Symbols library and can be used across the design system
           depending on the context and visual intent. By offering both outline and filled styles, Halstack ensures
           visual flexibility while maintaining system consistency. Designers can use tone and emphasis intentionally,
           matching icon style to context without compromising clarity or usability.
@@ -197,7 +197,7 @@ const sections = [
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
-              <em>Outlined icons are suitable for navigation, secondary actions, and supporting content.</em>
+              Outlined icons are suitable for navigation, secondary actions, and supporting content.
             </DxcParagraph>
           </>
         ),
@@ -241,18 +241,18 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Custom icons should maintain visual consistency with the existing Material Icons library. Avoid icons that are
-          overly detailed, multicolored, or visually inconsistent with the surrounding interface, as they may introduce
-          unnecessary visual noise.
+          Custom icons should maintain visual consistency with the existing Material Symbols library. Avoid icons that
+          are overly detailed, multicolored, or visually inconsistent with the surrounding interface, as they may
+          introduce unnecessary visual noise.
         </DxcParagraph>
         <DxcParagraph>
-          Custom icons should only be used when an appropriate icon is not available in the existing Material Icons
+          Custom icons should only be used when an appropriate icon is not available in the existing Material Symbols
           library.
         </DxcParagraph>
         <DxcParagraph>When creating or using custom icons, consider the following:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            Maintain visual consistency with Material Icons through appropriate proportions, stroke weight, alignment,
+            Maintain visual consistency with Material Symbols through appropriate proportions, stroke weight, alignment,
             and level of detail.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -281,11 +281,11 @@ const sections = [
           <DxcFlex direction="column" gap="2rem">
             <DxcParagraph>
               Figure 1 shows an example of a custom icon that is overly detailed, multicolored, and visually complex.
-              Its appearance differs significantly from the monochromatic and simplified geometry of Material Icons,
+              Its appearance differs significantly from the monochromatic and simplified geometry of Material Symbols,
               introducing unnecessary visual noise and reducing consistency across the interface.
             </DxcParagraph>
             <DxcParagraph>
-              In contrast, Figure 2 shows a custom icon that follows the visual principles of Material Icons, using
+              In contrast, Figure 2 shows a custom icon that follows the visual principles of Material Symbols, using
               consistent proportions, stroke weight, alignment, and level of detail. This allows the custom icon to
               integrate naturally with the existing iconography.
             </DxcParagraph>
@@ -321,17 +321,6 @@ const sections = [
               Use appropriate accessibility attributes, such as <Code>aria-label</Code> or <Code>aria-labelledby</Code>,
               depending on the implementation context. When the icon's meaning is already conveyed through adjacent
               text, avoid providing redundant accessible names.
-            </DxcParagraph>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Provide accessible names for interactive icons</strong>
-            <DxcParagraph>
-              Icons used within interactive elements, such as buttons and links, should have an accessible name defined
-              by their parent element.
-            </DxcParagraph>
-            <DxcParagraph>
-              For example, an icon-only button should have an accessible label describing its action, such as "Edit" or
-              "Delete".
             </DxcParagraph>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -419,7 +408,7 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Handling icons in frames</strong>
             <DxcParagraph>
-              Material Icons are designed around a <strong>24 × 24px grid</strong>, which provides consistent
+              Material Symbols are designed around a <strong>24px × 24px grid</strong>, which provides consistent
               proportions and alignment.
             </DxcParagraph>
             <DxcParagraph>
@@ -430,8 +419,8 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Keep the default icon names</strong>
             <DxcParagraph>
-              Use the original predefined Material Icon names when referencing icons in Figma or code. This makes
-              collaboration between design and development easier and keeps references aligned with the Material Icons
+              Use the original predefined Material Symbol names when referencing icons in Figma or code. This makes
+              collaboration between design and development easier and keeps references aligned with the Material Symbols
               library.
             </DxcParagraph>
           </DxcBulletedList.Item>
@@ -456,8 +445,8 @@ const sections = [
           <DxcBulletedList.Item>
             <strong>Use custom icons when necessary</strong>
             <DxcParagraph>
-              Prefer existing Material Icons whenever possible. Use custom SVGs when a specific visual representation is
-              not available in the existing library, such as product-specific icons.
+              Prefer existing Material Symbols whenever possible. Use custom SVGs when a specific visual representation
+              is not available in the existing library, such as product-specific icons.
             </DxcParagraph>
             <DxcParagraph>Ensure custom SVGs have appropriate dimensions, proportions, and colors.</DxcParagraph>
           </DxcBulletedList.Item>
@@ -477,15 +466,15 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          For further reference and documentation about Material icons library, please visit the following resources:
+          For further reference and documentation about Material Symbols library, please visit the following resources:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <Link href="https://fonts.google.com/icons" passHref legacyBehavior>
-              <DxcLink newWindow>Material Icons Library</DxcLink>
+              <DxcLink newWindow>Material Symbols Library</DxcLink>
             </Link>
             <br />
-            Explore the complete set of Material Icons available for download or use via web fonts. You can search by
+            Explore the complete set of Material Symbols available for download or use via web fonts. You can search by
             name, category, or keyword, and preview each icon in outline, filled, rounded, sharp, or two-tone styles
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -493,7 +482,7 @@ const sections = [
               <DxcLink newWindow>Icons in Material Design</DxcLink>
             </Link>
             <br />
-            Learn about the design principles, structure, and usage guidelines behind Material Icons. This resource
+            Learn about the design principles, structure, and usage guidelines behind Material Symbols. This resource
             explains how icons are built, how to choose between styles, and how to apply them consistently across
             interfaces.
           </DxcBulletedList.Item>

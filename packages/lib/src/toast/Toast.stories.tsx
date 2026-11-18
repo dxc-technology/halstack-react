@@ -38,7 +38,7 @@ const Toast = () => (
       <DxcToast semantic="default" duration={2147483647} message="This is a toast." onClear={onClear} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With material icon" />
+      <Title title="With material symbol" />
       <DxcToast semantic="default" duration={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
     </ExampleContainer>
     <ExampleContainer>

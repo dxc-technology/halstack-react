@@ -16,9 +16,9 @@ const IconPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Icon" />
           <DxcParagraph>
-            The Icon component provides a consistent way to display Material Icons and custom SVG icons across Halstack
-            applications. It helps users recognize actions, understand information, and navigate interfaces through
-            visual representation while maintaining consistency in appearance, sizing, color and accessibility.
+            The Icon component provides a consistent way to display Material Symbols and custom SVG icons across
+            Halstack applications. It helps users recognize actions, understand information, and navigate interfaces
+            through visual representation while maintaining consistency in appearance, sizing, color and accessibility.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
