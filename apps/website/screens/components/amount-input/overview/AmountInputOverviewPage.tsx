@@ -1,46 +1,54 @@
-import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
-// import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-// import Image from "@/common/Image";
+import Image from "@/common/Image";
+import anatomy from "./images/amount_input_anatomy.png";
+import Code from "@/common/Code";
 
 const sections = [
   {
     title: "Introduction",
-    content: <DxcParagraph>Introduction</DxcParagraph>,
+    content: (
+      <>
+        <DxcParagraph>
+          Distinct from the standard number input, the amount input is optimized for values where{" "}
+          <strong>numeric formatting is required</strong> (ex. currency, financial values, percentages, and
+          measurements). It can present values using grouping, decimal separators, and symbols to provide contextual
+          information to users.
+        </DxcParagraph>
+        <DxcParagraph>
+          This makes the component particularly useful for financial forms, payments, budgets, transactions, quotations,
+          and other experiences where users enter financial or values requiring specific units and formatting.
+        </DxcParagraph>
+      </>
+    ),
   },
   {
     title: "Anatomy",
     content: (
       <>
-        {/* <Image src={anatomy} alt="Amount input anatomy" /> */}
+        <Image src={anatomy} alt="Amount input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Label</strong> <em>(Optional)</em>: a descriptive text that helps users understand what information
-            is expected in the amount input field. It should be clear, concise, and placed near the input for better
-            readability.
+            <strong>Label</strong> <em>(Optional)</em>: a descriptive text that identifies the amount users are expected
+            to enter. Labels should be concise and should communicate the purpose of the value rather than its
+            formatting.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Optional indicator</strong> <em>(Optional)</em>: a small indicator that signals the input field is
-            not mandatory. It helps users know they can leave the field empty without causing validation errors.
+            <strong>Optional indicator</strong> <em>(Optional)</em>: indicates that providing an amount is not required.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Clear action</strong> <em>(Optional)</em>: a small button, represented by an "X" icon, that allows
-            users to clear the entered text quickly without manually deleting it.
+            <strong>Helper text</strong> <em>(Optional)</em>: provides additional information about the expected amount,
+            currency, restrictions, or other requirements.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Helper text</strong> <em>(Optional)</em>: additional text placed below the input field that provides
-            guidance, examples, or explanations to assist users in filling out the field correctly.
+            <strong>Container:</strong> the visual wrapper for the input. It establishes the interactive area and
+            communicates states such as hover, focus, error, disabled, and read-only.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Container:</strong> the visual wrapper around the input field that provides structure, ensures
-            accessibility, and helps differentiate the input from other UI elements.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Placeholder/Value:</strong> a short hint displayed inside the input field before any text is
-            entered, offering a brief example or instruction on what type of data is expected. It disappears when the
-            user starts typing. The value represents the actual content entered by the user. Unlike the placeholder, the
-            value persists during interaction and is what gets submitted with the form.
+            <strong>Placeholder/Value:</strong> provides an example or hint before a value is entered. The value
+            represents the number provided by the user and can be automatically formatted based on currency, percentage,
+            or unit settings.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -51,14 +59,13 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Form inputs are essential UI elements that allow users to interact with digital products by{" "}
-          <strong>entering or selecting data</strong>. Choosing the right input type and structure is key to designing
-          efficient, user-friendly forms that support task completion and data accuracy.
+          Form inputs allow users to enter or select data. Choosing an input that matches the type of information being
+          collected helps improve task completion and data accuracy.
         </DxcParagraph>
         <DxcParagraph>
-          A form input (also known as a form field) is used to capture user data. Common input types include text
-          fields, date pickers, number fields, radio buttons, checkboxes, toggles, and dropdowns. Forms should always
-          include a submission method, such as a submit button, link, or keyboard trigger, to complete the interaction.
+          Amount input should be used when the numeric information being collected has value and formatting-specific
+          presentation requirements. For numeric data where rigid formatting is unnecessary, use the more general number
+          input instead.
         </DxcParagraph>
       </>
     ),
@@ -67,29 +74,16 @@ const sections = [
         title: "Shared input characteristics",
         content: (
           <>
-            <DxcParagraph>
-              Although input fields vary in type and purpose, they often share a common set of features:
-            </DxcParagraph>
+            <DxcParagraph>Amount input shares the common characteristics of other Halstack form inputs:</DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Placeholder:</strong> a short hint displayed inside the input field that describes its expected
-                value or purpose.
+                <strong>Placeholder:</strong> provides a hint or example of the expected value.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Size and max length:</strong> inputs can have both a visual size (width of the field) and a
-                character limit that defines how much text can be entered.
+                <strong>Helper text:</strong> provides instructions or additional information about the expected amount.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Prefix or suffix:</strong> some inputs include a visual element before or after the user input,
-                like currency symbols or units, to help clarify the expected data.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Helper text:</strong> additional information displayed below the field to guide the user in
-                providing the correct input.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Optional label:</strong> inputs that are not mandatory can be marked with an "Optional" tag to
-                set clear expectations.
+                <strong>Optional label:</strong> communicates that entering a value is not mandatory.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
@@ -121,6 +115,150 @@ const sections = [
     ],
   },
   {
+    title: "Using amount inputs",
+    content: (
+      <DxcParagraph>
+        Amount inputs should be used whenever users need to enter monetary values or other numeric values where{" "}
+        <strong>amount formatting and readability are important</strong>.
+      </DxcParagraph>
+    ),
+    subSections: [
+      {
+        title: "Amount Input vs Number Input vs Text Input",
+        content: (
+          <>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                Use <strong>amount input</strong> when the value represents an amount and requires currency-specific,
+                percentage, or measurement unit formatting.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Use <strong>number input</strong> for discrete, countable quantities like Item counts, guests, age, or
+                ratings where the numeric value itself is calculated or compared.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Use <strong>text input</strong> for general numeric values that need more flexibility or a combination
+                of numbers and letters. These can include location information like address, contact number, and zip
+                code.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Need</th>
+                  <th>Component</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Address, phone number, zip code</td>
+                  <td>Text Input</td>
+                </tr>
+                <tr>
+                  <td>Quantities that Increment/decrement with a defined step (ex. age, object count, ratings)</td>
+                  <td>Number Input</td>
+                </tr>
+                <tr>
+                  <td>Currency or locale-formatted values</td>
+                  <td>Amount Input</td>
+                </tr>
+                <tr>
+                  <td>
+                    Price, cost, payment or financial amounts that require specific digits, separators, decimals, or
+                    formatting
+                  </td>
+                  <td>Amount Input</td>
+                </tr>
+                <tr>
+                  <td>Quantities with units(percent, weight, distance, volume)</td>
+                  <td>Amount Input</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Formatting",
+    content: (
+      <>
+        <DxcParagraph>
+          Users should be able to type an amount directly into the field using familiar numeric input conventions.
+        </DxcParagraph>
+        <DxcParagraph>
+          The component should distinguish between a user's <strong>editing state</strong> and the{" "}
+          <strong>formatted representation</strong> of the final value. This prevents formatting from interfering
+          unnecessarily while users are entering or correcting an amount.
+        </DxcParagraph>
+        <DxcParagraph>For example, a user typing:</DxcParagraph>
+        <div>
+          <Code>1234567.89</Code>
+        </div>
+        <DxcParagraph>may ultimately see:</DxcParagraph>
+        <div>
+          <Code>1,234,567.89</Code>
+        </div>
+        <DxcParagraph>after the value has been accepted and formatted.</DxcParagraph>
+        <DxcParagraph>Common use cases and corresponding amount input formatting examples:</DxcParagraph>
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Use case</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Currency</td>
+              <td>
+                $ 2,532.50
+                <br />
+                123.456,79 €<br />
+                -3,500.00 US dollars
+              </td>
+            </tr>
+            <tr>
+              <td>Units</td>
+              <td>
+                1,000 km
+                <br />
+                58.2 litres
+              </td>
+            </tr>
+            <tr>
+              <td>Percentage</td>
+              <td>
+                97.999 %
+                <br />
+                2.5%
+              </td>
+            </tr>
+            <tr>
+              <td>Digit grouping and separators</td>
+              <td>
+                R$ 1.250.500,75
+                <br />
+                1 250 500,75 €
+                <br />
+                ₹12,50,500.75
+              </td>
+            </tr>
+            <tr>
+              <td>Decimal values</td>
+              <td>
+                0.00075
+                <br />
+                9.81
+              </td>
+            </tr>
+          </tbody>
+        </DxcTable>
+      </>
+    ),
+  },
+  {
     title: "Best practices",
     subSections: [
       {
@@ -128,68 +266,56 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Always use clear labels:</strong> ensure every text input has a visible, descriptive label that
-              doesn't disappear as users begin typing. Avoid relying solely on placeholder text.
+              <strong>Always use clear labels:</strong> describe what the amount represents rather than relying on its
+              formatting or currency symbol alone.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Use placeholders as hints only:</strong> placeholders should provide examples or expected formats
-              (e.g., "e.g., johndoe@email.com"), not serve as the primary field descriptor.
+              <strong>Make currency clear:</strong> when the value represents money, users should be able to determine
+              which currency applies without relying on context elsewhere on the page.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Clarify field requirements:</strong> use an "Optional" tag next to labels to indicate when a field
-              isn't mandatory, reducing user uncertainty.
+              <strong>Use helper text when necessary:</strong> explain constraints, expected values, or other
+              requirements that cannot be inferred from the label.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Provide helper text when needed:</strong> include contextual guidance below the input to help
-              users provide the correct information, especially for complex or specific inputs.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              <strong>Support various states consistently:</strong> reflect focus, disabled, error, and read-only states
-              with distinct, accessible visual cues.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              <strong>Apply appropiate alignment:</strong> It is recommended to use left alignment in general, except
-              when there is a specific need for right alignment, such as in currency inputs or numeric fields, generally
-              using a suffix.
+              <strong>Indicate optional fields:</strong> use the standard Halstack optional indicator when entering an
+              amount is not mandatory.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
       },
       {
-        title: "Actions",
+        title: "Formatting",
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Provide a way to clear content:</strong> allow users to easily clear the input with a clear icon
-              or button, especially useful for fields like search or filters.
+              <strong>Format for readability, not decoration:</strong> thousand/grouping separators are especially
+              useful for large values making them easier to read. Alignment also plays a significant role in improving
+              the readability of multiple values, particularly those with fixed decimal digits.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Use custom action icons appropriately:</strong> if adding custom icons inside the input (e.g., a
-              calendar icon for date inputs or a search icon), ensure they're meaningful, accessible, and do not
-              interfere with user input.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              <strong>Avoid distracting behaviors:</strong> don't introduce actions that reset, redirect, or submit
-              forms unexpectedly from within a text field.
+              <strong>Consider locale carefully and communicate it clearly with users:</strong> Decimal and grouping
+              separators differ between locales. For example, <Code>1,234.56</Code> and <Code>1.234,56</Code> can
+              represent the same amount under different conventions.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
       },
       {
-        title: "Prefix/suffix",
+        title: "Validation",
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Use prefixes and suffixes to add clarity:</strong> add visual cues like currency symbols (€),
-              units (kg), or domain suffixes (.com) to help users understand the context of their input.
+              <strong>Provide useful validation messages:</strong> explain why an amount is invalid and, where possible,
+              what users need to do to correct it.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Do not confuse with input content:</strong> ensure prefixes/suffixes are visually distinct and not
-              editable to avoid confusion with the actual value being typed.
+              <strong>Explain constraints in human-readable terms:</strong> for example, prefer “Enter an amount between
+              $100 and $1,000” over a generic “Invalid value.”
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              <strong>Keep it minimal and functional:</strong> avoid decorative or unnecessary additions. Prefixes and
-              suffixes should always serve a clear purpose.
+              <strong>Preserve user input when displaying an error:</strong> so users can correct the value rather than
+              entering it again.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),

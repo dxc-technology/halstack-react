@@ -15,7 +15,10 @@ const AmountInputPageHeading = ({ children }: { children: ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="var(--spacing-gap-xl)">
           <ComponentHeading name="Amount input" />
-          <DxcParagraph>Amount input's description.</DxcParagraph>
+          <DxcParagraph>
+            Amount inputs are fields specifically designed to capture and display{" "}
+            <strong>monetary or amount-based numeric values</strong> in a structured, readable, and accessible format.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>

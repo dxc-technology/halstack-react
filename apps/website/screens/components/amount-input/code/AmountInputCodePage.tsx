@@ -1,8 +1,13 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 // import Example from "@/common/example/Example";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
+import controlled from "./examples/controlled";
+import Example from "@/common/example/Example";
+import currency from "./examples/currency";
+import unit from "./examples/unit";
+import Link from "next/link";
 
 const configTypeString = `{
   thousandSeparator?: string;
@@ -78,7 +83,11 @@ const sections = [
             <td>
               Configuration for the amount input, including currency or units, and formatting options such as thousand
               and decimal separators and the position of the currency symbol. <Code>currencyConfig</Code> and{" "}
-              <Code>unitsConfig</Code> are mutually exclusive.
+              <Code>unitsConfig</Code> are mutually exclusive. To better understand the allowed values for currencies
+              and units, please refer to the{" "}
+              <Link href="/theme-generator/user-guide" legacyBehavior passHref>
+                <DxcLink newWindow>respective documentation.</DxcLink>
+              </Link>
             </td>
             <td>-</td>
           </tr>
@@ -159,7 +168,10 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Specifies the number of decimal places allowed in the input.</td>
+            <td>
+              Specifies the number of decimal places allowed in the input. By default it is set to 3 or the permitted
+              amount by the currency.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -271,7 +283,15 @@ const sections = [
     subSections: [
       {
         title: "Controlled",
-        // content: <Example example={controlled} defaultIsVisible />,
+        content: <Example example={controlled} defaultIsVisible />,
+      },
+      {
+        title: "Currency",
+        content: <Example example={currency} defaultIsVisible />,
+      },
+      {
+        title: "Unit",
+        content: <Example example={unit} defaultIsVisible />,
       },
     ],
   },
