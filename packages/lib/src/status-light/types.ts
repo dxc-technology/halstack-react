@@ -8,7 +8,7 @@ export type StatusLightProps = {
   /**
    * An auxiliar text that will add some context to the status.
    */
-  label: string;
+  label?: string;
   /**
    *  Size of the component. Should be defined based on its importance and/or available space.
    */
