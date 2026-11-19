@@ -8,6 +8,10 @@ export const getMargin = (marginProp: Space | Margin | undefined, side: Side) =>
       ? spaces[marginProp]
       : "0px";
 
+export const isFilledIcon = (icon: string) => icon.startsWith("filled_");
+
+export const getIconName = (icon: string) => (isFilledIcon(icon) ? icon.replace(/filled_/g, "") : icon);
+
 export const getLengthErrorMessage = ({
   value,
   minLength,
