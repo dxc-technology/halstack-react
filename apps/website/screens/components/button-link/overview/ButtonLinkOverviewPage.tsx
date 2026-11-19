@@ -24,7 +24,7 @@ const sections = [
           button. Users should be able to navigate to its destination, open it in a new tab, or copy its link address
           using standard browser functionality. It should also support the expected keyboard interaction for links,
           where users can navigate to it using the keyboard and activate it using Enter. Its button-like appearance does
-          not change its primary purpose: navigation.
+          not change its primary purpose: <strong>navigation</strong>.
         </DxcParagraph>
       </>
     ),
