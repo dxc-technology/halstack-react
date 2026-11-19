@@ -329,13 +329,6 @@ const sections = [
                     needs greater visual emphasis than a standard text link.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
-
-                <DxcParagraph>
-                  Although button link looks like a button, it should behave like a regular link. Users should be able
-                  to navigate to its destination, open it in a new tab, copy its link address, and activate it using the
-                  Enter key. These behaviors should remain consistent regardless of whether the component uses the
-                  primary, secondary, or tertiary visual variant.
-                </DxcParagraph>
               </>
             ),
           },
