@@ -73,7 +73,7 @@ const sections = [
         <Link href="https://m3.material.io/styles/icons/overview" passHref legacyBehavior>
           <DxcLink newWindow>Material Symbols</DxcLink>
         </Link>{" "}
-        as it’s <strong>primary icon resource</strong> and supports
+        as its <strong>primary icon resource</strong> and supports
         <strong>custom SVG</strong> icons when an appropriate Material Symbol is <strong>unavailable</strong>.
       </DxcParagraph>
     ),
@@ -100,7 +100,7 @@ const sections = [
         ),
       },
       {
-        title: "Custom SVG Icons",
+        title: "Custom SVG icons",
         content: (
           <>
             <DxcParagraph>
@@ -113,7 +113,7 @@ const sections = [
                 Follow the same visual proportions and alignment as the existing icon library.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Ensure that the SVG scales correctly and recognizable at different sizes.
+                Ensure that the SVG scales correctly and remains recognizable at different sizes.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 Define the SVG's colors within the asset or use <Code>currentColor</Code> when parent color inheritance
@@ -184,14 +184,15 @@ const sections = [
       {
         title: "Icon selection",
         content: (
-          <DxcBulletedList.Item>
+          <DxcBulletedList>
             <DxcBulletedList.Item>
-              Material Symbols should be selected using their predefined Material Symbol names.
+              Material Symbols should be selected using their predefined Material Symbols names.
             </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Original Material Symbols names should be preserved.</DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Custom SVGs can be provided when an icon is not available in the existing Material Symbols library.
             </DxcBulletedList.Item>
-          </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
@@ -249,7 +250,7 @@ const sections = [
             </DxcParagraph>
             <DxcParagraph>
               Color should not be the only means of communicating information. Provide additional visual or textual
-              context
+              context when necessary.
             </DxcParagraph>
           </>
         ),
@@ -279,7 +280,7 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Use Material Symbol whenever possible:</strong> Prefer Material Symbol when an appropriate is
+          <strong>Use Material Symbols whenever possible:</strong> Prefer Material Symbols when an appropriate icon is
           available to maintain consistency across Halstack applications.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
@@ -295,12 +296,12 @@ const sections = [
           surrounding content. Avoid using icons without a clear purpose.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Provide accessible context:</strong>Ensure meaningful icons have an accessible name. Pair icons with
+          <strong>Provide accessible context:</strong> Ensure meaningful icons have an accessible name. Pair icons with
           text when their meaning may not be immediately recognizable.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use appropriate interactive components: </strong> When an icon represents an action, place it within
-          an appropriate interactive component, such as a Button, button link, or link, rather than treating the icon
+          <strong>Use appropriate interactive components:</strong> When an icon represents an action, place it within an
+          appropriate interactive component, such as a Button, button link, or link, rather than treating the icon
           itself as interactive.
         </DxcBulletedList.Item>
       </DxcBulletedList>
