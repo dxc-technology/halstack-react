@@ -17,8 +17,8 @@ const ButtonLinkPageHeading = ({ children }: { children: ReactNode }) => {
           <ComponentHeading name="Button link" />
           <DxcParagraph>
             Button link is a navigation element that combines the visual appearance of a button with the native behavior
-            and semantics of a link. It allows users to navigate to another page, resource, or destination through a
-            more prominent, button-like interface.
+            of a regular link. It allows users to navigate to another page, resource, or destination through a more
+            prominent, button-like interface.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>

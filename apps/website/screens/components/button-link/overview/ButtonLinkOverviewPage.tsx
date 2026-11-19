@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTypography, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import iconUsage from "./examples/iconUsage";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -14,15 +15,16 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Halstack Button Link component is designed for navigation that requires more visual emphasis than a
-          standard text link. It provides the familiar appearance of a button while preserving the expected behavior of
-          a link.
+          Although buttons and links can look similar, they serve different purposes. A button triggers an action within
+          the current interface, while a link navigates users to another destination. Button link bridges this visual
+          distinction by providing the appearance of a button while retaining the expected behavior of a regular link.
         </DxcParagraph>
         <DxcParagraph>
-          Although buttons and links can look similar, they serve different purposes. A button triggers an action within
-          the current interface, while a link navigates users to another destination. Button Link bridges this visual
-          distinction by allowing navigation to be presented with the appearance of a button without changing its
-          underlying semantics.
+          This means that, regardless of its visual variant, button link should behave like a regular link rather than a
+          button. Users should be able to navigate to its destination, open it in a new tab, or copy its link address
+          using standard browser functionality. It should also support the expected keyboard interaction for links,
+          where users can navigate to it using the keyboard and activate it using Enter. Its button-like appearance does
+          not change its primary purpose: navigation.
         </DxcParagraph>
       </>
     ),
@@ -328,10 +330,12 @@ const sections = [
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
 
-                <DxcTypography as="p" fontStyle="italic">
-                  Although button link looks like a button, it must retain link semantics and native anchor behavior. It
-                  should navigate to a destination rather than trigger an action within the current interface
-                </DxcTypography>
+                <DxcParagraph>
+                  Although button link looks like a button, it should behave like a regular link. Users should be able
+                  to navigate to its destination, open it in a new tab, copy its link address, and activate it using the
+                  Enter key. These behaviors should remain consistent regardless of whether the component uses the
+                  primary, secondary, or tertiary visual variant.
+                </DxcParagraph>
               </>
             ),
           },
@@ -423,8 +427,11 @@ const sections = [
           <>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Preserve link semantics:</strong> Implement Button link using link semantics, regardless of its
-                visual variant.
+                <strong>Maintain expected link behaviors:</strong> Implement button link as a native link element with a
+                valid destination (such as an <Code>href</Code> attribute), rather than as a button element. This
+                ensures assistive technologies identify it as a link and that users retain expected link functionality,
+                such as opening the destination in a new tab, copying the link address, and activating it using the
+                Enter key. The component's visual variant should not change its underlying semantics or behavior.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 <strong>Provide descriptive labels:</strong> Ensure the accessible name communicates the destination or
