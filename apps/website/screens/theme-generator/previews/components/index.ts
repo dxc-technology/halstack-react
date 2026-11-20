@@ -1,5 +1,6 @@
 export { default as AccordionPreview } from "./AccordionPreview";
 export { default as AlertPreview } from "./AlertPreview";
+export { default as AmountInputPreview } from "./AmountInputPreview";
 export { default as AvatarPreview } from "./AvatarPreview";
 export { default as BadgePreview } from "./BadgePreview";
 export { default as BreadcrumbsPreview } from "./BreadcrumbsPreview";

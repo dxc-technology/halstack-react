@@ -168,6 +168,40 @@ const sections = [
         ),
       },
       {
+        title: "amountInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>valueGreaterThanOrEqualToErrorMessage</Code>
+                </td>
+                <td>
+                  Value must be greater than or equal to <Code>value</Code>.
+                </td>
+                <td>It is a function that receives one parameter (value) and returns the text with that parameter.</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>valueLessThanOrEqualToErrorMessage</Code>
+                </td>
+                <td>
+                  Value must be less than or equal to <Code>value</Code>.
+                </td>
+                <td>It is a function that receives one parameter (value) and returns the text with that parameter.</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "calendar",
         content: (
           <DxcTable>
