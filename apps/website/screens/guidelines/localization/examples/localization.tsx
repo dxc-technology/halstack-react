@@ -1,4 +1,11 @@
-import { DxcDateInput, DxcTimeInput, HalstackProvider, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
+import {
+  DxcAmountInput,
+  DxcDateInput,
+  DxcTimeInput,
+  HalstackProvider,
+  DxcInset,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 
 const code = `() => {
 
@@ -21,6 +28,15 @@ const labels = {
             label="Time"
             optional
           />
+          <DxcAmountInput
+            label="Amount"
+            optional
+            config={{
+              currencyConfig: {
+                currency: "EUR",
+              },
+            }}
+          />
         </DxcFlex>
       </DxcInset>
     </HalstackProvider>
@@ -31,6 +47,7 @@ const scope = {
   DxcFlex,
   DxcTimeInput,
   DxcDateInput,
+  DxcAmountInput,
   HalstackProvider,
   DxcInset,
 };

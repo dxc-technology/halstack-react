@@ -1,7 +1,6 @@
 import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-// import Example from "@/common/example/Example";
 import Code, { TableCode, ExtendedTableCode } from "@/common/Code";
 import controlled from "./examples/controlled";
 import Example from "@/common/example/Example";
