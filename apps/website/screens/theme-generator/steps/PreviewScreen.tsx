@@ -75,6 +75,7 @@ const componentsExceptions = [
   "/components/header",
   "/components/heading",
   "/components/image",
+  "/components/icon",
   "/components/inset",
   "/components/paragraph",
   "/components/popover",

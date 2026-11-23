@@ -10,6 +10,7 @@ export { default as DxcBleed } from "./bleed/Bleed";
 export { default as DxcBreadcrumbs } from "./breadcrumbs/Breadcrumbs";
 export { default as DxcBulletedList } from "./bulleted-list/BulletedList";
 export { default as DxcButton } from "./button/Button";
+export { default as DxcButtonLink } from "./button-link/ButtonLink";
 export { default as DxcCard } from "./card/Card";
 export { default as DxcCheckbox } from "./checkbox/Checkbox";
 export { default as DxcChip } from "./chip/Chip";
@@ -24,6 +25,7 @@ export { default as DxcFileInput } from "./file-input/FileInput";
 export { default as DxcFlex } from "./flex/Flex";
 export { default as DxcGrid } from "./grid/Grid";
 export { default as DxcHeading } from "./heading/Heading";
+export { default as DxcIcon } from "./icon/Icon";
 export { default as DxcImage } from "./image/Image";
 export { default as DxcInset } from "./inset/Inset";
 export { default as DxcLink } from "./link/Link";
@@ -105,6 +107,7 @@ export type {
   ButtonSemantic as DxcButtonSemantic,
   ButtonSize as DxcButtonSize,
 } from "./button/types";
+export type { ButtonLinkProps as DxcButtonLinkProps } from "./button-link/types";
 export type { CardProps as DxcCardProps } from "./card/types";
 export type { CheckboxProps as DxcCheckboxProps } from "./checkbox/types";
 export type { ChipProps as DxcChipProps } from "./chip/types";
@@ -157,6 +160,7 @@ export type {
   HeaderGroupItem as DxcHeaderGroupItem,
 } from "./header/types";
 export type { HeadingProps as DxcHeadingProps } from "./heading/types";
+export type { IconProps as DxcIconProps } from "./icon/types";
 export type { ImageProps as DxcImageProps } from "./image/types";
 export type { InsetProps as DxcInsetProps } from "./inset/types";
 export type { LinkProps as DxcLinkProps } from "./link/types";

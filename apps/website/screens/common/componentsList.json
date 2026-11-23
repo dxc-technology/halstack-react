@@ -34,6 +34,12 @@
         "icon": "border_left"
       },
       {
+        "label": "Icon",
+        "path": "/components/icon",
+        "status": "experimental",
+        "icon": "emoji_symbols"
+      },
+      {
         "label": "Image",
         "path": "/components/image",
         "status": "stable",
@@ -290,6 +296,12 @@
         "path": "/components/breadcrumbs",
         "status": "stable",
         "icon": "arrow_back"
+      },
+      {
+        "label": "Button link",
+        "path": "/components/button-link",
+        "status": "experimental",
+        "icon": "outbound"
       },
       {
         "label": "Contextual menu",
