@@ -32,7 +32,8 @@ const sections = [
             easy recognition.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label:</strong> a short text description alongside the status light to provide additional context.
+            <strong>Label (Optional):</strong> a short text description alongside the status light to provide additional
+            context.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>

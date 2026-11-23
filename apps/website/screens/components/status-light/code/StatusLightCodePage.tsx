@@ -4,7 +4,6 @@ import DocFooter from "@/common/DocFooter";
 import { TableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -21,16 +20,16 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="var(--spacing-gap-xs)" alignItems="baseline">
-                <StatusBadge status="required" />
-                label
-              </DxcFlex>
-            </td>
+            <td>label</td>
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>An auxiliary text that will add some context to the status.</td>
+            <td>
+              An auxiliary text that will add some context to the status. It is the only accessible text of the
+              component: without it, the status light is only a colored dot and it must be accompanied by a visible
+              element or by surrounding context that explains its meaning. Screen readers only announce the status when
+              a label is provided.
+            </td>
             <td>-</td>
           </tr>
           <tr>

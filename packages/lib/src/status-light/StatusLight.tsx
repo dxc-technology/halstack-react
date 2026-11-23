@@ -69,11 +69,13 @@ const Label = styled.span<{
 
 export default function DxcStatusLight({ label, mode = "default", size = "medium" }: StatusLightProps) {
   return (
-    <StatusLightContainer role="status" size={size}>
+    <StatusLightContainer role={label ? "status" : undefined} size={size}>
       <Dot mode={mode} size={size} aria-hidden="true" />
-      <Label mode={mode} size={size}>
-        {label}
-      </Label>
+      {label && (
+        <Label mode={mode} size={size}>
+          {label}
+        </Label>
+      )}
     </StatusLightContainer>
   );
 }

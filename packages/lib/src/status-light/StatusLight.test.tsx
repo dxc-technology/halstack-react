@@ -2,18 +2,15 @@ import { render } from "@testing-library/react";
 import DxcStatusLight from "./StatusLight";
 
 describe("StatusLight component tests", () => {
-  test("StatusLight renders with correct label", () => {
-    const { getByText } = render(<DxcStatusLight label="Status Light Test" />);
-    expect(getByText("Status Light Test")).toBeTruthy();
-  });
-  test("StatusLight renders with role 'status'", () => {
-    const { getByRole } = render(<DxcStatusLight label="Status Light Test" />);
-    expect(getByRole("status")).toBeTruthy();
+  test("StatusLight with label has role status and shows the label", () => {
+    const { getByRole } = render(<DxcStatusLight label="Online" />);
+    const status = getByRole("status");
+    expect(status.textContent).toBe("Online");
   });
 
-  test("StatusLight dot is aria-hidden", () => {
-    const { container } = render(<DxcStatusLight label="Hidden Dot Test" />);
-    const dot = container.querySelector("div[aria-hidden='true']");
-    expect(dot).toBeTruthy();
+  test("StatusLight without label has no status role, since there is nothing to announce", () => {
+    const { queryByRole, container } = render(<DxcStatusLight mode="error" />);
+    expect(queryByRole("status")).toBeNull();
+    expect(container.querySelector("[aria-hidden='true']")).not.toBeNull();
   });
 });
