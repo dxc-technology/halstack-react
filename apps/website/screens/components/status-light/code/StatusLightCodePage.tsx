@@ -24,7 +24,12 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>An auxiliary text that will add some context to the status.</td>
+            <td>
+              An auxiliary text that will add some context to the status. It is the only accessible text of the
+              component: without it, the status light is only a colored dot and it must be accompanied by a visible
+              element or by surrounding context that explains its meaning. Screen readers only announce the status when
+              a label is provided.
+            </td>
             <td>-</td>
           </tr>
           <tr>
