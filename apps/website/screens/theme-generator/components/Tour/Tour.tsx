@@ -261,7 +261,7 @@ const Tour = ({ currentStep, onTourStepIndexChange }: TourProps) => {
               </DxcParagraph>
               <DxcFlex gap="var(--spacing-gap-s)" justifyContent="end" alignSelf="stretch">
                 <DxcButton
-                  label="Skip"
+                  label="Skip tour"
                   mode="tertiary"
                   size={{ height: "medium" }}
                   onClick={() => setDialogVisible(false)}
