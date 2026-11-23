@@ -127,7 +127,7 @@
         "label": "Amount input",
         "path": "/components/amount-input",
         "status": "experimental",
-        "icon": "money_range"
+        "icon": "universal_currency_alt"
       },
       {
         "label": "Button",
