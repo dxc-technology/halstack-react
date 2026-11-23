@@ -1,6 +1,7 @@
 import {
   AccordionPreview,
   AlertPreview,
+  AmountInputPreview,
   AvatarPreview,
   BadgePreview,
   BreadcrumbsPreview,
@@ -43,6 +44,7 @@ import { ApplicationPreview, DashboardPreview, FormPreview } from "./previews/ex
 
 export const componentsRegistry = {
   "/components/accordion": AccordionPreview,
+  "/components/amount-input": AmountInputPreview,
   "/components/avatar": AvatarPreview,
   "/components/divider": DividerPreview,
   "/components/wizard": WizardPreview,
