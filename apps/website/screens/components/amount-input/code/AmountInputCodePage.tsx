@@ -84,7 +84,11 @@ const sections = [
               and decimal separators and the position of the currency symbol. <Code>currencyConfig</Code> and{" "}
               <Code>unitsConfig</Code> are mutually exclusive. To better understand the allowed values for currencies
               and units, please refer to the{" "}
-              <Link href="/theme-generator/user-guide" legacyBehavior passHref>
+              <Link
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf"
+                legacyBehavior
+                passHref
+              >
                 <DxcLink newWindow>respective documentation.</DxcLink>
               </Link>
             </td>

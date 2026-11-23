@@ -52,6 +52,22 @@ describe("Amount input component", () => {
     expect(input.value).toBe("1,234.5");
   });
 
+  test("limits integer digits without counting the negative sign", async () => {
+    const user = userEvent.setup();
+    const onChange = jest.fn();
+    const { getByLabelText } = render(<AmountInput label="Amount" numberOfIntegers={3} onChange={onChange} />);
+    const input = getByLabelText("Amount") as HTMLInputElement;
+
+    await user.type(input, "-1234");
+
+    expect(onChange).toHaveBeenLastCalledWith({ value: "-123", error: undefined });
+    expect(input.value).toBe("-123");
+
+    fireEvent.change(input, { target: { value: "-1234.56" } });
+    expect(onChange).toHaveBeenLastCalledWith({ value: "-123.56", error: undefined });
+    expect(input.value).toBe("-123.56");
+  });
+
   test("reports an error when the value exceeds the maximum", async () => {
     const user = userEvent.setup();
     const onChange = jest.fn();

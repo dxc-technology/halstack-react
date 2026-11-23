@@ -70,7 +70,6 @@ const AmountInput = ({
 
   const handleChange = (event: { value: string; error?: string }) => {
     const sanitizedValue = sanitizeAmount(event.value, numberOfDecimals, numberOfIntegers);
-    console.log("onChange Sanitized value:", sanitizedValue);
     if (!isControlled.current) {
       setInternalValue(sanitizedValue);
     }

@@ -9,13 +9,13 @@ export const sanitizeAmount = (
   numberOfIntegers?: number
 ): string => {
   if (!value) return "";
+  const isNegativeAccounting = value.includes("(") && value.includes(")");
   value = value.replace(/[^\d.-]/g, "");
   if (value.startsWith("-")) {
     value = "-" + value.slice(1).replace(/-/g, "");
   } else {
     value = value.replace(/-/g, "");
   }
-  const isNegative = value.includes("(") && value.includes(")");
   const decimalSeparatorCount = (value.match(new RegExp(`\\.`, "g")) || []).length;
   if (decimalSeparatorCount > 1) {
     const firstIndex = value.indexOf(".");
@@ -31,10 +31,12 @@ export const sanitizeAmount = (
   if (numberOfIntegers !== undefined && numberOfIntegers >= 0) {
     const [integerPart, decimalPart] = value.split(".");
     if (integerPart) {
-      value = `${integerPart.slice(0, numberOfIntegers)}${decimalPart ? `.${decimalPart}` : ""}`;
+      const sign = integerPart.startsWith("-") ? "-" : "";
+      const digits = sign ? integerPart.slice(1) : integerPart;
+      value = `${sign}${digits.slice(0, numberOfIntegers)}${decimalPart ? `.${decimalPart}` : ""}`;
     }
   }
-  return isNegative && value ? `-${value}` : value;
+  return isNegativeAccounting && value ? `-${value}` : value;
 };
 
 export const formatString = (value: string, locale: string | undefined, config?: ConfigType): string => {
@@ -55,8 +57,6 @@ export const formatString = (value: string, locale: string | undefined, config?:
     });
   }
   let formattedParts = formatter.formatToParts(parseFloat(value));
-
-  console.log(formattedParts);
 
   if (
     config?.symbolPosition === "before" &&

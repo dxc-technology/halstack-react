@@ -170,7 +170,7 @@ const sections = [
                   <td>Amount Input</td>
                 </tr>
                 <tr>
-                  <td>Quantities with units(percent, weight, distance, volume)</td>
+                  <td>Quantities with units (percent, weight, distance, volume)</td>
                   <td>Amount Input</td>
                 </tr>
               </tbody>

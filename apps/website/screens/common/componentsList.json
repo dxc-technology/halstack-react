@@ -127,7 +127,7 @@
         "label": "Amount input",
         "path": "/components/amount-input",
         "status": "experimental",
-        "icon": "smart_button"
+        "icon": "money_range"
       },
       {
         "label": "Button",
