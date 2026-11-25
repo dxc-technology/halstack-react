@@ -4,12 +4,12 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import customSvg from "./examples/customSvg";
-import { TableCode } from "@/common/Code";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
-    title: "Code",
+    title: "Props",
     content: (
       <>
         <DxcTable>
@@ -48,9 +48,9 @@ const sections = [
                 <TableCode>string | SVG</TableCode>
               </td>
               <td>
-                Name of the Material Symbols icon to display (for example "home"). Prefix the name with "filled_" (for
-                example "filled_home") to render the filled variant. An SVG element can also be passed, in which case it
-                is rendered as is.
+                Name of the Material Symbols icon to display (for example <Code>"home"</Code>). Prefix the name with{" "}
+                <Code>"filled_" </Code> (for example <Code>"filled_home"</Code>) to render the filled variant. An SVG
+                element can also be passed, in which case it is rendered as is.
               </td>
               <td>-</td>
             </tr>
