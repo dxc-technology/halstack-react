@@ -49,8 +49,8 @@ const sections = [
               </td>
               <td>
                 Name of the Material Symbols icon to display (for example <Code>"add_card"</Code>). Prefix the name with{" "}
-                <Code>"filled_" </Code> (for example <Code>"filled_home"</Code>) to render the filled variant. An SVG
-                element can also be passed, in which case it is rendered as is.
+                <Code>"filled_" </Code> (for example <Code>"filled_add_card"</Code>) to render the filled variant. An
+                SVG element can also be passed, in which case it is rendered as is.
               </td>
               <td>-</td>
             </tr>
