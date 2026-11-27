@@ -18,7 +18,7 @@
       {
         "label": "Card",
         "path": "/components/card",
-        "status": "experimental",
+        "status": "new",
         "icon": "credit_card"
       },
       {
@@ -37,7 +37,7 @@
         "label": "Icon",
         "path": "/components/icon",
         "status": "experimental",
-        "icon": "emoji_symbols"
+        "icon": "interests"
       },
       {
         "label": "Image",
@@ -156,7 +156,7 @@
       {
         "label": "Message input",
         "path": "/components/message-input",
-        "status": "experimental",
+        "status": "new",
         "icon": "chat_bubble"
       },
       {
@@ -210,7 +210,7 @@
       {
         "label": "Time input",
         "path": "/components/time-input",
-        "status": "experimental",
+        "status": "new",
         "icon": "schedule"
       },
       {
@@ -288,7 +288,7 @@
       {
         "label": "Popover",
         "path": "/components/popover",
-        "status": "experimental",
+        "status": "new",
         "icon": "chat_bubble"
       }
     ]
@@ -360,7 +360,7 @@
       {
         "label": "Chip",
         "path": "/components/chip",
-        "status": "experimental",
+        "status": "new",
         "icon": "toggle_off"
       },
       {
