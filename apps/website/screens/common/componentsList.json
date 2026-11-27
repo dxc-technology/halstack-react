@@ -37,7 +37,7 @@
         "label": "Icon",
         "path": "/components/icon",
         "status": "experimental",
-        "icon": "emoji_symbols"
+        "icon": "interests"
       },
       {
         "label": "Image",
